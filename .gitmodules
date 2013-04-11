@@ -1,0 +1,3 @@
+[submodule "Vendor/xcconfig"]
+	path = Vendor/xcconfig
+	url = https://github.com/jspahrsummers/xcconfigs.git
