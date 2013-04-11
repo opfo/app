@@ -24,3 +24,8 @@ _*) Something like this: `git config --global alias.pulls '!f(){ git pull "$@" &
 
 ## Hacking
 Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well as GitHub’s [Objective-C conventions](https://github.com/github/objective-c-conventions).
+
+## Testing and constant integration
+You can view the status of the constant integration (run every time new commits are pushed to GitHub) on [Code Stream’s Travis CI status page](https://travis-ci.org/opfo/app).
+
+If you want to configure when and why you receive build status notifications please have a look at Travis CI’s [notifications documentation](http://about.travis-ci.org/docs/user/notifications/).
