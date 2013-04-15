@@ -1,6 +1,8 @@
 # Code Stream
 An iOS app for the EDA397 course made at Chalmers in the spring of 2013.
 
+[![Build Status](https://travis-ci.org/opfo/app.png?branch=master)](https://travis-ci.org/opfo/app)
+
 ## Getting started
 
 ```shell
