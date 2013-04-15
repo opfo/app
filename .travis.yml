@@ -1,7 +1,7 @@
 language: objective-c
 notifications:
   hipchat:
-    - secure: "AHEx5QOPKCVfb9LUs1TOFPa7v0VLSmulhTr+mZFKCPxntrGlD6nncsL49yM6\nCXh8bjjvRrVpfiHPNc3F+fUm5w29i14cJF3TabSu1Z7+Jbeoe8IseAFfwRs8\n+c1e6najEVSDOhH1UCfzLNpj/r2e8iAGBz9jSJWt2h/v/u0CKoA="
+    - secure: "K+ugbhcOQfDN+sV9RXJgMJp/HylUy58GdgyXSTCTL+/3CV0TeHsk3ViCnvJX\n1rJXLR2B/tQQbE5mkDWwpp85msCnzijSsW/aFaoGLK6BtpCej+A3nqh8ocDk\nhHrkFJ+Z87LtuBBHeBSkOdaRr/FH/CQzL3jLFDuaqfQxpwsp0jw="
 before_install:
   - "(which ios-sim || brew install ios-sim) && sudo gem update --system && sudo gem install bundler && bundle install"
   - "git submodule update --init --recursive"
