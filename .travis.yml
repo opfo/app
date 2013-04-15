@@ -2,4 +2,6 @@ language: objective-c
 notifications:
   secure: "JAoptBGuEfVhlgzS59l2zI3xuz46jULk58EF4P9IOaG1g3H5Njy4wKpZ8dDB\nXUrGRxFB12NhtyVbdlG7CYovK87LZkvPc6dQKNVHHAvRB5fUN7/XQpIvKUo7\n5DurLZkP15LIZy11T2dzKNyXcLJuePmQC9qydfyQvwWmbzNSeBg="
 before_install:
-  - git submodule update --init --recursive
+  - "(which ios-sim || brew install ios-sim) && sudo gem update --system && sudo gem install bundler && bundle install"
+  - "git submodule update --init --recursive"
+script: "bundle exec rake test --trace"
