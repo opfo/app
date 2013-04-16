@@ -25,4 +25,6 @@
 @property (assign) NSInteger upVotes;
 @property (assign) NSInteger downVotes;
 
++ (NSArray*) all;
+
 @end

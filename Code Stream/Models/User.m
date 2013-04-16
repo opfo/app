@@ -7,6 +7,7 @@
 //
 
 #import "User.h"
+#import "DatabaseAccess.h"
 
 @interface User (/*private */)
 @property(assign, readwrite) NSInteger identifier;
@@ -14,5 +15,12 @@
 @end
 
 @implementation User
+
+//
+// Returns all user objects in the database
++ (NSArray*) all {
+    return nil;
+}
+
 
 @end
