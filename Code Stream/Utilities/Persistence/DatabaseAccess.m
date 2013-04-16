@@ -20,4 +20,11 @@
 	return _sharedDatabase;
 }
 
+- (id) init {
+    self = [super init];
+    if (self == nil) return nil;
+    _db = [FMDatabase databaseWithPath:[[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"]];
+    return self;
+}
+
 @end
