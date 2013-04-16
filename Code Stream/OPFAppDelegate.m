@@ -7,11 +7,14 @@
 //
 
 #import "OPFAppDelegate.h"
+#import "DatabaseAccess.h"
 
 @implementation OPFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize DatabaseAccess
+    [DatabaseAccess getDBAccess];
     // Override point for customization after application launch.
     return YES;
 }
