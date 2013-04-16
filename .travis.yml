@@ -3,6 +3,6 @@ notifications:
   hipchat:
     - secure: "K+ugbhcOQfDN+sV9RXJgMJp/HylUy58GdgyXSTCTL+/3CV0TeHsk3ViCnvJX\n1rJXLR2B/tQQbE5mkDWwpp85msCnzijSsW/aFaoGLK6BtpCej+A3nqh8ocDk\nhHrkFJ+Z87LtuBBHeBSkOdaRr/FH/CQzL3jLFDuaqfQxpwsp0jw="
 before_install:
-  - "(which ios-sim || brew install ios-sim) && sudo gem update --system && sudo gem install bundler && bundle install"
+  - "(which ios-sim || brew install ios-sim) && gem install bundler && bundle install"
   - "git submodule update --init --recursive"
 script: "bundle exec rake test --trace"
