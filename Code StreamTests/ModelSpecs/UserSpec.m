@@ -22,6 +22,10 @@ describe(@"foo", ^{
     it(@"is an example", ^{
         expect(1).equal(1);
     });
+    
+    it(@"should fail", ^{
+        expect(1).equal(2);
+    });
 });
 
 SpecEnd
