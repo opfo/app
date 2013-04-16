@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
+		816F9739171D48ED00E881B6 /* UserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* UserSpec.m */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51391716FBE0004CC9E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -23,7 +24,6 @@
 		9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
-		9C1C51661716FBE1004CC9E3 /* Code_StreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C1C51651716FBE1004CC9E3 /* Code_StreamTests.m */; };
 		9C47FD7B171D511F00419AD5 /* App.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FD7A171D511F00419AD5 /* App.xcconfig */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		816F9738171D48ED00E881B6 /* UserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSpec.m; path = ModelSpecs/UserSpec.m; sourceTree = "<group>"; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C1C51361716FBE0004CC9E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -59,8 +60,6 @@
 		9C1C51581716FBE1004CC9E3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9C1C51601716FBE1004CC9E3 /* Code StreamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Code StreamTests-Info.plist"; sourceTree = "<group>"; };
 		9C1C51621716FBE1004CC9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9C1C51641716FBE1004CC9E3 /* Code_StreamTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Code_StreamTests.h; sourceTree = "<group>"; };
-		9C1C51651716FBE1004CC9E3 /* Code_StreamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Code_StreamTests.m; sourceTree = "<group>"; };
 		9C1C51761716FFD4004CC9E3 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		9C1C51781716FFD4004CC9E3 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		9C1C51791716FFD4004CC9E3 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
@@ -105,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		816F9736171D47EE00E881B6 /* ModelSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				816F9738171D48ED00E881B6 /* UserSpec.m */,
+			);
+			name = ModelSpecs;
+			sourceTree = "<group>";
+		};
 		9C1C51281716FBE0004CC9E3 = {
 			isa = PBXGroup;
 			children = (
@@ -169,8 +176,7 @@
 		9C1C515E1716FBE1004CC9E3 /* Code StreamTests */ = {
 			isa = PBXGroup;
 			children = (
-				9C1C51641716FBE1004CC9E3 /* Code_StreamTests.h */,
-				9C1C51651716FBE1004CC9E3 /* Code_StreamTests.m */,
+				816F9736171D47EE00E881B6 /* ModelSpecs */,
 				9C1C515F1716FBE1004CC9E3 /* Supporting Files */,
 			);
 			path = "Code StreamTests";
@@ -432,7 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C1C51661716FBE1004CC9E3 /* Code_StreamTests.m in Sources */,
+				816F9739171D48ED00E881B6 /* UserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +566,7 @@
 		};
 		9C1C516D1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C1C51801716FFD4004CC9E3 /* iOS-Base.xcconfig */;
+			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -578,7 +584,7 @@
 		};
 		9C1C516E1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C1C51801716FFD4004CC9E3 /* iOS-Base.xcconfig */;
+			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
