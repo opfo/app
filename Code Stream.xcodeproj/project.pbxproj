@@ -27,6 +27,9 @@
 		9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
+		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
+		9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */; };
+		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,11 @@
 		9C1C51871716FFD4004CC9E3 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		9C5F8C0F171D934E0075A1C4 /* OPFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostViewController.h; sourceTree = "<group>"; };
+		9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostViewController.m; sourceTree = "<group>"; };
+		9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostViewController.xib; sourceTree = "<group>"; };
+		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
+		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -232,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
+				9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -241,6 +250,10 @@
 			children = (
 				9C1C514F1716FBE0004CC9E3 /* OPFViewController.h */,
 				9C1C51501716FBE0004CC9E3 /* OPFViewController.m */,
+				9C5F8C0F171D934E0075A1C4 /* OPFPostViewController.h */,
+				9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */,
+				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
+				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -396,6 +409,7 @@
 				9C1C514B1716FBE0004CC9E3 /* Default-568h@2x.png in Resources */,
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
 				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
+				9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,7 +476,8 @@
 				9C1C51451716FBE0004CC9E3 /* OPFAppDelegate.m in Sources */,
 				9C1C51511716FBE0004CC9E3 /* OPFViewController.m in Sources */,
 				815261FC171D62FA00B5EF2D /* User.m in Sources */,
-				8128DF94171D82C300C44410 /* DatabaseAccess.m in Sources */,
+				9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */,
+				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
