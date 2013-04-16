@@ -11,8 +11,13 @@ build/
 !default.perspectivev3
 *.xcworkspace
 !default.xcworkspace
+!Code Stream.xcworkspace
 xcuserdata
 profile
 *.moved-aside
 DerivedData
 .idea/
+
+# Cocoapods
+Pods
+**/Pods
