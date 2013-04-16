@@ -10,22 +10,20 @@ An iOS app for the EDA397 course made at Chalmers in the spring of 2013.
 git clone https://github.com/opfo/app.git Code-Stream
 cd Code-Stream
 
-# Init the submodules and their submodules (might take a while).
-git submodule update --recursive --init
+# Bootstrap the project
+./Scripts/bootstrap
 
 # Start hacking.
-open "Code Stream.xcodeproj"
+open "Code Stream.xcworkspace"
 ```
 
 Done, yay woop woop.
 
 ### Staying updated
-Normally just do a `git pull` but when a new submodule has been added or one has been updated (see the commit history) you will also need to tell git to update the submodules. That is run `git submodule update --init --recursive`, that command could easily be a git alias* :wink:.
-
-_*) Something like this: `git config --global alias.pulls '!f(){ git pull "$@" && git submodule update --init --recursive; }; f'` and then just use `git pulls`._
+Normally just do a `git pull` but when a submodule or CocoaPod has been added or updated (see the commit history) you will also need to run the bootstrap script again. That is, from the project root, `./Scripts/bootstrap`.
 
 ## Hacking
-Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well as GitHub’s [Objective-C conventions](https://github.com/github/objective-c-conventions).
+Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well our [Coding Conventions](https://github.com/opfo/resources/blob/master/coding_convetions.md). Then you can open the Xcode workspace file (`open "Code Stream.xcworkspace"`).
 
 ## Testing and constant integration
 You can view the status of the constant integration (run every time new commits are pushed to GitHub) on [Code Stream’s Travis CI status page](https://travis-ci.org/opfo/app).
