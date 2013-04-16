@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
 
 @interface DatabaseAccess : NSObject
+
++ (instancetype) getDB;
+
+@property(strong) FMDatabase* db;
 
 @end

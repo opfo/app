@@ -10,4 +10,14 @@
 
 @implementation DatabaseAccess
 
++ (instancetype) getDB;
+{
+	static id _sharedDatabase = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_sharedDatabase = [[self alloc] init];
+	});
+	return _sharedDatabase;
+}
+
 @end
