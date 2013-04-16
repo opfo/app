@@ -23,7 +23,7 @@ Done, yay woop woop.
 Normally just do a `git pull` but when a submodule or CocoaPod has been added or updated (see the commit history) you will also need to run the bootstrap script again. That is, from the project root, `./Scripts/bootstrap`.
 
 ## Hacking
-Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well as GitHub’s [Objective-C conventions](https://github.com/github/objective-c-conventions). Then you can open the Xcode workspace file (`open "Code Stream.xcworkspace"`).
+Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well our [Coding Conventions](https://github.com/opfo/resources/blob/master/coding_convetions.md). Then you can open the Xcode workspace file (`open "Code Stream.xcworkspace"`).
 
 ## Testing and constant integration
 You can view the status of the constant integration (run every time new commits are pushed to GitHub) on [Code Stream’s Travis CI status page](https://travis-ci.org/opfo/app).
