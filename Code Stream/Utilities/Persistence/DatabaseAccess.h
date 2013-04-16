@@ -13,6 +13,6 @@
 
 + (instancetype) getDBAccess;
 
-@property(strong) FMDatabase* db;
+@property(strong, readonly) FMDatabase* baseDB;
 
 @end
