@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
+		8128DF94171D82C300C44410 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* DatabaseAccess.m */; };
+		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		815261FC171D62FA00B5EF2D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* User.m */; };
 		816F9739171D48ED00E881B6 /* UserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* UserSpec.m */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
@@ -39,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8128DF92171D82C300C44410 /* DatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseAccess.h; path = Utilities/Persistence/DatabaseAccess.h; sourceTree = "<group>"; };
+		8128DF93171D82C300C44410 /* DatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseAccess.m; path = Utilities/Persistence/DatabaseAccess.m; sourceTree = "<group>"; };
+		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
 		815261FA171D62FA00B5EF2D /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* UserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSpec.m; path = ModelSpecs/UserSpec.m; sourceTree = "<group>"; };
@@ -107,6 +112,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8128DF90171D81DA00C44410 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8128DF91171D81E500C44410 /* Persistence */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		8128DF91171D81E500C44410 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				8128DF92171D82C300C44410 /* DatabaseAccess.h */,
+				8128DF93171D82C300C44410 /* DatabaseAccess.m */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 		816F9736171D47EE00E881B6 /* ModelSpecs */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +175,7 @@
 		9C1C513A1716FBE0004CC9E3 /* Code Stream */ = {
 			isa = PBXGroup;
 			children = (
+				8128DF90171D81DA00C44410 /* Utilities */,
 				9C1C516F1716FE85004CC9E3 /* Models */,
 				9C1C51701716FE8B004CC9E3 /* Views */,
 				9C1C51711716FE90004CC9E3 /* Controllers */,
@@ -166,6 +189,7 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8128DF95171D832C00C44410 /* so.sqlite */,
 				9C1C513C1716FBE0004CC9E3 /* Code Stream-Info.plist */,
 				9C1C513D1716FBE0004CC9E3 /* InfoPlist.strings */,
 				9C1C51401716FBE0004CC9E3 /* main.m */,
@@ -371,6 +395,7 @@
 				9C1C51491716FBE0004CC9E3 /* Default@2x.png in Resources */,
 				9C1C514B1716FBE0004CC9E3 /* Default-568h@2x.png in Resources */,
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
+				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +462,7 @@
 				9C1C51451716FBE0004CC9E3 /* OPFAppDelegate.m in Sources */,
 				9C1C51511716FBE0004CC9E3 /* OPFViewController.m in Sources */,
 				815261FC171D62FA00B5EF2D /* User.m in Sources */,
+				8128DF94171D82C300C44410 /* DatabaseAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
