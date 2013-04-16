@@ -10,7 +10,7 @@
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816AB8171DE0C000964AF2 /* OPFCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AB6171DE0C000964AF2 /* OPFCommentsViewController.xib */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewController.m */; };
-		1A816ABD171DF2C900964AF2 /* OPFCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewController.xib */; };
+		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
 		1A816AC0171DF51700964AF2 /* tdeekens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABF171DF51700964AF2 /* tdeekens.jpg */; };
 		1A816AC2171DF6D300964AF2 /* tdeekens@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */; };
 		1A816AC6171DF7EC00964AF2 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC4171DF7EC00964AF2 /* calendar@2x.png */; };
@@ -56,7 +56,7 @@
 		1A816AB6171DE0C000964AF2 /* OPFCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewController.xib; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewController.h; sourceTree = "<group>"; };
 		1A816ABA171DECA300964AF2 /* OPFCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewController.m; sourceTree = "<group>"; };
-		1A816ABC171DF2C900964AF2 /* OPFCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewController.xib; sourceTree = "<group>"; };
+		1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewCell.xib; sourceTree = "<group>"; };
 		1A816ABF171DF51700964AF2 /* tdeekens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tdeekens.jpg; sourceTree = "<group>"; };
 		1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tdeekens@2x.jpg"; sourceTree = "<group>"; };
 		1A816AC4171DF7EC00964AF2 /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 				1A816AB6171DE0C000964AF2 /* OPFCommentsViewController.xib */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
 				9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */,
-				1A816ABC171DF2C900964AF2 /* OPFCommentViewController.xib */,
+				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
 				9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */,
 				1A816AB8171DE0C000964AF2 /* OPFCommentsViewController.xib in Resources */,
-				1A816ABD171DF2C900964AF2 /* OPFCommentViewController.xib in Resources */,
+				1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */,
 				1A816AC0171DF51700964AF2 /* tdeekens.jpg in Resources */,
 				1A816AC2171DF6D300964AF2 /* tdeekens@2x.jpg in Resources */,
 				1A816AC6171DF7EC00964AF2 /* calendar@2x.png in Resources */,
