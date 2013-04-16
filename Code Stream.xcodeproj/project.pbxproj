@@ -24,7 +24,6 @@
 		9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
-		9C47FD7B171D511F00419AD5 /* App.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9C47FD7A171D511F00419AD5 /* App.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +75,7 @@
 		9C1C51871716FFD4004CC9E3 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -121,6 +121,7 @@
 				9C1C51331716FBE0004CC9E3 /* Frameworks */,
 				9C1C51321716FBE0004CC9E3 /* Products */,
 				9C47FD7A171D511F00419AD5 /* App.xcconfig */,
+				9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */,
 				AED7BF5F92E44E138A010B62 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -365,7 +366,6 @@
 				9C1C51491716FBE0004CC9E3 /* Default@2x.png in Resources */,
 				9C1C514B1716FBE0004CC9E3 /* Default-568h@2x.png in Resources */,
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
-				9C47FD7B171D511F00419AD5 /* App.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +566,7 @@
 		};
 		9C1C516D1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -584,7 +584,7 @@
 		};
 		9C1C516E1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
