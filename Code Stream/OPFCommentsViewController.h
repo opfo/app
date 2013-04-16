@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFCommentViewController : UITableViewController
+@interface OPFCommentsViewController : UITableViewController
 
 @end

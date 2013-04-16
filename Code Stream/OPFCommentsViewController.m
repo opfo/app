@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFCommentViewController.h"
+#import "OPFCommentsViewController.h"
 
-@interface OPFCommentViewController ()
+@interface OPFCommentsViewController ()
 
 @end
 
-@implementation OPFCommentViewController
+@implementation OPFCommentsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,16 +44,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    // Returning 1 because we only display one post's comments
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    // Shall return the number of items in data source
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
