@@ -11,7 +11,7 @@
 
 @interface DatabaseAccess : NSObject
 
-+ (instancetype) getDB;
++ (instancetype) getDBAccess;
 
 @property(strong) FMDatabase* db;
 

@@ -10,7 +10,9 @@
 
 @implementation DatabaseAccess
 
-+ (instancetype) getDB;
+//
+//  Returns the singleton database instance
++ (instancetype) getDBAccess;
 {
 	static id _sharedDatabase = nil;
 	static dispatch_once_t onceToken;
@@ -20,6 +22,8 @@
 	return _sharedDatabase;
 }
 
+//
+//  Inits with the preinstalled database.
 - (id) init {
     self = [super init];
     if (self == nil) return nil;
