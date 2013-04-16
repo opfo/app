@@ -50,7 +50,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="y5B-qz-o93" kind="push" identifier="ShowQuestionDebugSegue" id="b7d-OZ-azt"/>
+                                            <segue destination="sTy-Bw-8eH" kind="push" identifier="ShowQuestionDebugSegue" id="so2-8F-IVa"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -67,59 +67,35 @@
             </objects>
             <point key="canvasLocation" x="660" y="190"/>
         </scene>
-        <!--Collection View Controller - Question-->
-        <scene sceneID="Mz7-DC-hYt">
+        <!--Question View Controller - Question-->
+        <scene sceneID="Rr5-pr-3UK">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="y5B-qz-o93" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="1hR-zo-IE7">
+                <tableViewController storyboardIdentifier="QuestionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sTy-Bw-8eH" customClass="OPFQuestionViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vwC-ld-vUf">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AsZ-pQ-7cj">
-                            <size key="itemSize" width="278" height="184"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uEI-ky-1xC">
-                                <rect key="frame" x="21" y="0.0" width="278" height="184"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="44" id="3Fc-o3-G4Q">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="278" height="184"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Question" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfC-uc-CjP">
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="This is the question..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ko5-EW-tK4">
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="Ko5-EW-tK4" firstAttribute="top" secondItem="gfC-uc-CjP" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7V2-c1-zky"/>
-                                    <constraint firstItem="gfC-uc-CjP" firstAttribute="leading" secondItem="uEI-ky-1xC" secondAttribute="leading" constant="20" type="default" id="I9J-7B-QQ2"/>
-                                    <constraint firstItem="gfC-uc-CjP" firstAttribute="top" secondItem="uEI-ky-1xC" secondAttribute="top" type="default" id="fE1-TL-LIc"/>
-                                    <constraint firstItem="Ko5-EW-tK4" firstAttribute="leading" secondItem="uEI-ky-1xC" secondAttribute="leading" constant="20" type="default" id="hI0-eh-C3w"/>
-                                </constraints>
-                            </collectionViewCell>
-                        </cells>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="y5B-qz-o93" id="AmW-as-VAF"/>
-                            <outlet property="delegate" destination="y5B-qz-o93" id="2y0-VI-jMe"/>
+                            <outlet property="dataSource" destination="sTy-Bw-8eH" id="pQJ-1M-TFT"/>
+                            <outlet property="delegate" destination="sTy-Bw-8eH" id="kIu-2N-Za7"/>
                         </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Question" id="zMf-wq-uA4"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d07-cg-gsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Question" id="B8w-7C-hHY"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TKH-KT-ODQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="535"/>
+            <point key="canvasLocation" x="1200" y="598"/>
         </scene>
         <!--Table View Controller - Questions-->
         <scene sceneID="6Sa-Fa-xzp">
@@ -130,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1Ze-bJ-kNe">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionCell" id="1Ze-bJ-kNe">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -172,23 +148,8 @@
         </scene>
     </scenes>
     <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="UICollectionReusableView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
-        </class>
-        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
-        </class>
-        <class className="UICollectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewController.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        <class className="OPFQuestionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
