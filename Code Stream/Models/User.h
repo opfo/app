@@ -11,18 +11,18 @@
 
 @interface User : MTLModel
 
-@property (nonatomic, assign, readonly) NSInteger identifier;
-@property (nonatomic, assign) NSInteger reputation;
-@property (nonatomic, copy, readonly) NSDate* creationDate;
-@property (nonatomic, copy) NSString* displayName;
-@property (nonatomic, copy) NSString* emailHash;
-@property (nonatomic, copy) NSDate* lastAccessDate;
-@property (nonatomic, copy) NSString* websiteUrl;
-@property (nonatomic, copy) NSString* location;
-@property (nonatomic, assign) NSInteger age;
-@property (nonatomic, copy) NSString* aboutMe;
-@property (nonatomic, assign) NSInteger view;
-@property (nonatomic, assign) NSInteger upVotes;
-@property (nonatomic, assign) NSInteger downVotes;
+@property (assign, readonly) NSInteger identifier;
+@property (assign) NSInteger reputation;
+@property (strong, readonly) NSDate* creationDate;
+@property (copy) NSString* displayName;
+@property (copy) NSString* emailHash;
+@property (strong) NSDate* lastAccessDate;
+@property (copy) NSString* websiteUrl;
+@property (copy) NSString* location;
+@property (assign) NSInteger age;
+@property (copy) NSString* aboutMe;
+@property (assign) NSInteger view;
+@property (assign) NSInteger upVotes;
+@property (assign) NSInteger downVotes;
 
 @end

@@ -8,6 +8,11 @@
 
 #import "User.h"
 
+@interface User (/*private */)
+@property(assign, readwrite) NSInteger identifier;
+@property(strong, readwrite) NSDate* creationDate;
+@end
+
 @implementation User
 
 @end
