@@ -1,0 +1,2 @@
+#include "Vendor/xcconfig/iOS/iOS-Base.xcconfig"
+#include "Pods/Pods.xcconfig"

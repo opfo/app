@@ -77,6 +77,8 @@
 		9C1C51861716FFD4004CC9E3 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
 		9C1C51871716FFD4004CC9E3 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,8 @@
 				9C1C51731716FEBB004CC9E3 /* Vendor */,
 				9C1C51331716FBE0004CC9E3 /* Frameworks */,
 				9C1C51321716FBE0004CC9E3 /* Products */,
+				9C47FD7A171D511F00419AD5 /* App.xcconfig */,
+				9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */,
 				AED7BF5F92E44E138A010B62 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -540,7 +544,7 @@
 		};
 		9C1C516A1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C47FD7A171D511F00419AD5 /* App.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
@@ -554,7 +558,7 @@
 		};
 		9C1C516B1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C47FD7A171D511F00419AD5 /* App.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
@@ -568,7 +572,7 @@
 		};
 		9C1C516D1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -586,7 +590,7 @@
 		};
 		9C1C516E1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AED7BF5F92E44E138A010B62 /* Pods.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
