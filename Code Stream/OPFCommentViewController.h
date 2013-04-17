@@ -10,4 +10,11 @@
 
 @interface OPFCommentViewController : UITableViewCell
 
+@property(nonatomic, weak) IBOutlet UITextView *commentBody;
+@property(nonatomic, weak) IBOutlet UILabel *commentUserName;
+@property(nonatomic, weak) IBOutlet UILabel *commentDate;
+@property(nonatomic, weak) IBOutlet UILabel *commentTime;
+@property(nonatomic, weak) IBOutlet UIButton *commentUpVote;
+@property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
+
 @end
