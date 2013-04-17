@@ -8,7 +8,6 @@
 
 #import "OPFCommentsViewController.h"
 #import "OPFCommentViewCell.h"
-#import "OPFCommentViewCell.h"
 
 @interface OPFCommentsViewController ()
 
