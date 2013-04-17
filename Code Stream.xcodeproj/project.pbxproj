@@ -43,6 +43,7 @@
 		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
 		9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
+		9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* DatabaseAccess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -553,6 +554,7 @@
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 				1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */,
 				1A816ABB171DECA300964AF2 /* OPFCommentViewController.m in Sources */,
+				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
