@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFCommentViewController : UITableViewCell
+@interface OPFCommentViewCell : UITableViewCell
 
 @property(nonatomic, weak) IBOutlet UITextView *commentBody;
 @property(nonatomic, weak) IBOutlet UILabel *commentUserName;

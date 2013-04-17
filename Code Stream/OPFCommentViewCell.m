@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFCommentViewController.h"
+#import "OPFCommentViewCell.h"
 
-@implementation OPFCommentViewController
+@implementation OPFCommentViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
-		1A816ABB171DECA300964AF2 /* OPFCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewController.m */; };
+		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
 		1A816AC0171DF51700964AF2 /* tdeekens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABF171DF51700964AF2 /* tdeekens.jpg */; };
 		1A816AC2171DF6D300964AF2 /* tdeekens@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */; };
@@ -61,8 +61,8 @@
 /* Begin PBXFileReference section */
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
-		1A816AB9171DECA300964AF2 /* OPFCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewController.h; sourceTree = "<group>"; };
-		1A816ABA171DECA300964AF2 /* OPFCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewController.m; sourceTree = "<group>"; };
+		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
+		1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewCell.m; sourceTree = "<group>"; };
 		1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewCell.xib; sourceTree = "<group>"; };
 		1A816ABF171DF51700964AF2 /* tdeekens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tdeekens.jpg; sourceTree = "<group>"; };
 		1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tdeekens@2x.jpg"; sourceTree = "<group>"; };
@@ -301,6 +301,8 @@
 			children = (
 				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
 				1A97782A171F20310061DA85 /* OPFCommentViewHeader.xib */,
+				1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */,
+				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
 				9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */,
 				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
@@ -320,8 +322,6 @@
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
-				1A816AB9171DECA300964AF2 /* OPFCommentViewController.h */,
-				1A816ABA171DECA300964AF2 /* OPFCommentViewController.m */,
 				1A977828171F20310061DA85 /* OPFCommentViewHeaderController.h */,
 				1A977829171F20310061DA85 /* OPFCommentViewHeaderController.m */,
 			);
@@ -562,7 +562,7 @@
 				9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */,
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 				1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */,
-				1A816ABB171DECA300964AF2 /* OPFCommentViewController.m in Sources */,
+				1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
 				1A97782B171F20310061DA85 /* OPFCommentViewHeaderController.m in Sources */,
 			);
