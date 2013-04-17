@@ -26,4 +26,13 @@
     // Configure the view for the selected state
 }
 
+- (void)setModelValuesInView
+{
+//    self.commentBody.text = self.commentModel.commentBody;
+//    self.commentTime.text = self.commentModel.commentTime;
+//    self.userAvatar.text = self.commentModel.userAvatar;
+//    self.commentDate.text = self.commentModel.commentDate;
+//    self.commentUpVote.titleLabel.text = self.commentModel.votes;
+//    self.commentUserName.text = self.commentModel.userName;
+}
 @end

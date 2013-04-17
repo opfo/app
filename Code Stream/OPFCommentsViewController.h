@@ -10,4 +10,6 @@
 
 @interface OPFCommentsViewController : UITableViewController
 
+@property(nonatomic, strong) NSArray *commentModels;
+
 @end

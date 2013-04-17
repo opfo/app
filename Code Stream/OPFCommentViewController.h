@@ -17,4 +17,8 @@
 @property(nonatomic, weak) IBOutlet UIButton *commentUpVote;
 @property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
 
+@property(nonatomic, strong) NSObject *commentModel;
+
+- (void)setModelValuesInView;
+
 @end

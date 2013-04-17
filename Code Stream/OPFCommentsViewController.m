@@ -7,6 +7,7 @@
 //
 
 #import "OPFCommentsViewController.h"
+#import "OPFCommentViewController.h"
 
 @interface OPFCommentsViewController ()
 
@@ -51,18 +52,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Shall return the number of items in data source
-    return 1;
+    //return self.commentModels.count;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *commentViewCellIdentifier = @"OPFCommentViewCell";
+        
+    OPFCommentViewController *cell = (OPFCommentViewController *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:commentViewCellIdentifier owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    // Configure the cell...
+    cell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
     
     return cell;
 }
