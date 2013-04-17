@@ -7,6 +7,7 @@
 //
 
 #import "OPFCommentViewCell.h"
+#import "OPFCommentsViewController.h"
 
 @implementation OPFCommentViewCell
 
@@ -26,13 +27,23 @@
     // Configure the view for the selected state
 }
 
+- (void)voteUpComment:(UIButton *)sender
+{
+    [self.commentsViewController voteUpComment:sender];
+}
+
 - (void)setModelValuesInView
 {
 //    self.commentBody.text = self.commentModel.commentBody;
 //    self.commentTime.text = self.commentModel.commentTime;
 //    self.userAvatar.text = self.commentModel.userAvatar;
 //    self.commentDate.text = self.commentModel.commentDate;
-//    self.commentUpVote.titleLabel.text = self.commentModel.votes;
+//    self.commentVoteUp.titleLabel.text = self.commentModel.votes;
 //    self.commentUserName.text = self.commentModel.userName;
+}
+
+- (void)setupUserInteractionBindings
+{
+    [self.commentVoteUp addTarget:self action:@selector(commentVoteUp) forControlEvents:UIControlEventTouchUpInside];
 }
 @end

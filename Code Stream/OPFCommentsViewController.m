@@ -7,7 +7,8 @@
 //
 
 #import "OPFCommentsViewController.h"
-#import "OPFCommentViewController.h"
+#import "OPFCommentViewCell.h"
+#import "OPFCommentViewCell.h"
 
 @interface OPFCommentsViewController ()
 
@@ -60,16 +61,25 @@
 {
     static NSString *commentViewCellIdentifier = @"OPFCommentViewCell";
         
-    OPFCommentViewController *cell = (OPFCommentViewController *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
+    OPFCommentViewCell *commentViewCell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
     
-    if (cell == nil) {
+    if (commentViewCell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:commentViewCellIdentifier owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        commentViewCell = [nib objectAtIndex:0];
     }
     
-    cell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
+    commentViewCell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
+    commentViewCell.commentsViewController = self;
     
-    return cell;
+    return commentViewCell;
+}
+
+- (void)voteUpComment:(UIButton *)sender
+{
+    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
+    NSIndexPath *indexPathOfCommentViewCell = [commentTableView indexPathForCell:subordinateCommentViewCell];
+    
+    NSLog(@"%@",indexPathOfCommentViewCell);
 }
 
 /*
