@@ -13,6 +13,7 @@
 }
 
 @property(nonatomic, strong) NSArray *commentModels;
+@property(nonatomic, strong) NSObject *postModel;
 
 - (void)voteUpComment:(UIButton *)sender;
 

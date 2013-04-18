@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFCommentViewHeaderController : UIViewController
+@interface OPFCommentViewHeaderView : UITableViewHeaderFooterView
 
 @property(nonatomic, weak) IBOutlet UILabel *postTitle;
 @property(nonatomic, weak) IBOutlet UILabel *postUserName;
@@ -16,9 +16,5 @@
 @property(nonatomic, weak) IBOutlet UILabel *postTime;
 @property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
 @property(nonatomic, weak) IBOutlet UILabel *postVoteCount;
-
-@property(nonatomic, strong) NSObject *postModel;
-
-- (void)setModelValuesInView;
 
 @end

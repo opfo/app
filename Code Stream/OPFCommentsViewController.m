@@ -8,6 +8,7 @@
 
 #import "OPFCommentsViewController.h"
 #import "OPFCommentViewCell.h"
+#import "OPFCommentViewHeaderController.h"
 
 @interface OPFCommentsViewController ()
 
@@ -79,6 +80,16 @@
     NSIndexPath *indexPathOfCommentViewCell = [commentTableView indexPathForCell:subordinateCommentViewCell];
     
     NSLog(@"%@",indexPathOfCommentViewCell);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    OPFCommentViewHeaderController commentViewHeaderController = [[OPFCommentViewHeaderController alloc] init];
+    
+    commentViewHeaderController.postModel = self.postModel;
+    commentViewHeaderController.setModelValuesInView;
+    
+    return commentViewHeaderController.view;
 }
 
 /*
