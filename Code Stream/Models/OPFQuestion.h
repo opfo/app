@@ -8,20 +8,10 @@
 
 #import "MTLModel.h"
 
-@interface OPFQuestion : MTLModel
+@interface OPFQuestion : OPFPost
 
-@property (assign, readonly) NSInteger identifier;
-@property (assign) NSInteger reputation;
-@property (strong, readonly) NSDate* creationDate;
-@property (copy) NSString* displayName;
-@property (copy) NSString* emailHash;
-@property (strong) NSDate* lastAccessDate;
-@property (copy) NSString* websiteUrl;
-@property (copy) NSString* location;
-@property (assign) NSInteger age;
-@property (copy) NSString* aboutMe;
-@property (assign) NSInteger view;
-@property (assign) NSInteger upVotes;
-@property (assign) NSInteger downVotes;
+@property (strong) NSArray* tags;
+@property (strong) OPFAnswer* acceptedAnswer;
+@property (strong) NSDate* closedDate;
 
 @end
