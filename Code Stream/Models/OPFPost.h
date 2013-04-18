@@ -9,13 +9,14 @@
 #import "MTLModel.h"
 #import "OPFUser.h"
 #import "OPFModel.h"
+#import "OPFRecordProtocol.h"
 
 typedef enum : NSInteger {
     KOPF_POST_TYPE_QUESTION = 1,
     KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
-@interface OPFPost : MTLModel <OPFRecordProtocol>
+@interface OPFPost : OPFModel <OPFRecordProtocol>
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong, readonly) NSDate* creationDate;
