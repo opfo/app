@@ -8,13 +8,14 @@
 
 #import "MTLModel.h"
 #import "OPFUser.h"
+#import "OPFModel.h"
 
 typedef enum : NSInteger {
     QUESTION = 1,
     ANSWER = 2
 } OPFPostType;
 
-@interface OPFPost : MTLModel
+@interface OPFPost : MTLModel <OPFModel>
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong, readonly) NSDate* creationDate;
@@ -29,9 +30,9 @@ typedef enum : NSInteger {
 @property (strong) NSDate* lastEditDate;
 @property (strong) NSDate* lastActivityDate;
 @property (strong) NSDate* communityOwnedDate;
-@property (strong) NSDate* closedDate;
-@property (assign) NSInteger answerCount;
 @property (assign) NSInteger commentCount;
 @property (assign) NSInteger favoriteCount;
+
+- (NSArray *) comments;
 
 @end

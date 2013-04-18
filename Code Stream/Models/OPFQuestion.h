@@ -13,5 +13,6 @@
 @property (strong) NSArray* tags;
 @property (strong) OPFAnswer* acceptedAnswer;
 @property (strong) NSDate* closedDate;
+@property (assign) NSInteger answerCount;
 
 @end

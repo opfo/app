@@ -13,7 +13,6 @@
 		816F9739171D48ED00E881B6 /* UserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* UserSpec.m */; };
 		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		81C18471171FD8B3008273A6 /* OPFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18470171FD8B3008273A6 /* OPFPost.m */; };
-		81C18474171FD8D9008273A6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18473171FD8D9008273A6 /* OPFModel.m */; };
 		81C18477171FD908008273A6 /* OPFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18476171FD908008273A6 /* OPFAnswer.m */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
@@ -59,10 +58,9 @@
 		81C1846D171FD687008273A6 /* OPFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestion.m; path = Models/OPFQuestion.m; sourceTree = "<group>"; };
 		81C1846F171FD8B3008273A6 /* OPFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFPost.h; path = Models/OPFPost.h; sourceTree = "<group>"; };
 		81C18470171FD8B3008273A6 /* OPFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPost.m; path = Models/OPFPost.m; sourceTree = "<group>"; };
-		81C18472171FD8D9008273A6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
-		81C18473171FD8D9008273A6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
 		81C18475171FD908008273A6 /* OPFAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFAnswer.h; path = Models/OPFAnswer.h; sourceTree = "<group>"; };
 		81C18476171FD908008273A6 /* OPFAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswer.m; path = Models/OPFAnswer.m; sourceTree = "<group>"; };
+		81C18478171FDFF8008273A6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C1C51361716FBE0004CC9E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -252,10 +250,9 @@
 				81C1846D171FD687008273A6 /* OPFQuestion.m */,
 				81C1846F171FD8B3008273A6 /* OPFPost.h */,
 				81C18470171FD8B3008273A6 /* OPFPost.m */,
-				81C18472171FD8D9008273A6 /* OPFModel.h */,
-				81C18473171FD8D9008273A6 /* OPFModel.m */,
 				81C18475171FD908008273A6 /* OPFAnswer.h */,
 				81C18476171FD908008273A6 /* OPFAnswer.m */,
+				81C18478171FDFF8008273A6 /* OPFModel.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -523,7 +520,6 @@
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
 				81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */,
 				81C18471171FD8B3008273A6 /* OPFPost.m in Sources */,
-				81C18474171FD8D9008273A6 /* OPFModel.m in Sources */,
 				81C18477171FD908008273A6 /* OPFAnswer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
