@@ -203,7 +203,7 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
 		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%d", post.owner.reputation];
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
-		cell.textLabel.text = NSLocalizedString(@"No comments, yet…", @"No comments on post label.");
+		cell.detailTextLabel.text = NSLocalizedString(@"No comments, yet…", @"No comments on post label.");
 	} else {
 		NSAssert(NO, @"Unknonw cell identifier '%@'", cellIdentifier);
 	}
