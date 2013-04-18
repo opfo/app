@@ -67,6 +67,7 @@
     }
     
     commentViewCell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
+    
     [commentViewCell setupDateformatters];
     [commentViewCell setModelValuesInView];
     
@@ -88,6 +89,8 @@
     OPFCommentViewHeaderView *commentViewHeader = [OPFCommentViewHeaderView new];
     
     commentViewHeader.postModel = self.postModel;
+    
+    [commentViewHeader setupDateformatters];
     [commentViewHeader setModelValuesInView];
     
     return commentViewHeader;

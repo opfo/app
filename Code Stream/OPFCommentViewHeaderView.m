@@ -24,9 +24,7 @@
 - (id)init
 {
     self = [self.class opf_loadViewFromNIB];
-    
-    [self setupDateformatters];
-    
+        
     return self;
 }
 

@@ -24,5 +24,6 @@
 @property(nonatomic, strong) NSDateFormatter *timeFormatter;
 
 - (void)setModelValuesInView;
+- (void)setupDateformatters;
 
 @end
