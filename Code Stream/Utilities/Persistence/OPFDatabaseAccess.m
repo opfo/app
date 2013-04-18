@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "DatabaseAccess.h"
+#import "OPFDatabaseAccess.h"
 
-@implementation DatabaseAccess
+@implementation OPFDatabaseAccess
 
 //
 //  Returns the singleton database instance

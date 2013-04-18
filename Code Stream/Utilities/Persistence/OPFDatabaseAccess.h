@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 
-@interface DatabaseAccess : NSObject
+@interface OPFDatabaseAccess : NSObject
 
 + (instancetype) getDBAccess;
 
