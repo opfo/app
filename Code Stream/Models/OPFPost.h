@@ -15,7 +15,7 @@ typedef enum : NSInteger {
     KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
-@interface OPFPost : MTLModel <OPFModel>
+@interface OPFPost : MTLModel <OPFRecordProtocol>
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong, readonly) NSDate* creationDate;

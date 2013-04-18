@@ -16,6 +16,7 @@ SpecBegin(OPFComment)
 describe(@"Model creation", ^{
     __block OPFComment* comment;
     __block NSDictionary* properties = @{@"score": @(9), @"text": @"lorem ipsum", @"creationDate": [NSDate date]};
+    __block NSString* commentBody = @"Did you try to link it statically?";
     
     it(@"should be possible using a dictionary", ^{
         NSError* error;
@@ -29,6 +30,7 @@ describe(@"Model creation", ^{
     it(@"should be possible using the database", ^{
         OPFComment* comment = [OPFComment find: 10393284];
         expect(comment).toNot.equal(nil);
+        expect(comment.text).to.equal(commentBody);
     });
 });
 

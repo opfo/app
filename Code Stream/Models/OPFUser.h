@@ -10,7 +10,7 @@
 #import "MTLModel.h"
 #import "OPFModel.h"
 
-@interface OPFUser : MTLModel <OPFModel>
+@interface OPFUser : MTLModel <OPFRecordProtocol>
 
 @property (assign, readonly) NSInteger identifier;
 @property (assign) NSInteger reputation;

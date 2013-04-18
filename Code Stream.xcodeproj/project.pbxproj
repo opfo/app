@@ -79,7 +79,7 @@
 		81C18470171FD8B3008273A6 /* OPFPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPost.m; path = Models/OPFPost.m; sourceTree = "<group>"; };
 		81C18475171FD908008273A6 /* OPFAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFAnswer.h; path = Models/OPFAnswer.h; sourceTree = "<group>"; };
 		81C18476171FD908008273A6 /* OPFAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswer.m; path = Models/OPFAnswer.m; sourceTree = "<group>"; };
-		81C18478171FDFF8008273A6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
+		81C18478171FDFF8008273A6 /* OPFRecordProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFRecordProtocol.h; path = Models/OPFRecordProtocol.h; sourceTree = "<group>"; };
 		81C1C74017202A83004AB177 /* OPFComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFComment.h; path = Models/OPFComment.h; sourceTree = "<group>"; };
 		81C1C74117202A83004AB177 /* OPFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFComment.m; path = Models/OPFComment.m; sourceTree = "<group>"; };
 		81C1C74417202F3C004AB177 /* OPFCommentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFCommentSpec.m; path = ModelSpecs/OPFCommentSpec.m; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		8134D025171FE25000E5386D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				81C18478171FDFF8008273A6 /* OPFModel.h */,
+				81C18478171FDFF8008273A6 /* OPFRecordProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

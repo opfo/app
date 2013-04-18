@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol OPFModel <NSObject>
+@protocol OPFRecordProtocol <NSObject>
 @required
 + (NSArray *) all;
 + (instancetype) find: (NSInteger) identifier;

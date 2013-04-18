@@ -10,7 +10,7 @@
 #import "OPFModel.h"
 #import "OPFPost.h"
 
-@interface OPFComment : MTLModel <OPFModel>
+@interface OPFComment : MTLModel <OPFRecordProtocol>
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong) OPFPost* post;
