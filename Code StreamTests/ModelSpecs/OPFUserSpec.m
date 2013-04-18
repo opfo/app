@@ -10,22 +10,10 @@
 #define EXP_SHORTHAND
 #import "Expecta.h"
 
-SpecBegin(Foo)
+SpecBegin(OPFUser)
 
-describe(@"foo", ^{
-    __block NSString *foo;
+describe(@"User creation", ^{
     
-    beforeEach(^{
-        foo = @"foo";
-    });
-    
-    it(@"is an example", ^{
-        expect(1).equal(1);
-    });
-    
-//    it(@"should fail", ^{
-//        expect(1).equal(2);
-//    });
 });
 
 SpecEnd

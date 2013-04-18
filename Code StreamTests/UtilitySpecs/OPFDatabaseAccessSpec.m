@@ -25,6 +25,16 @@ describe(@"executing SQL", ^{
     
     it(@"returns ten items for the given query", ^{
         FMResultSet* result = [dbAccess executeSQL: sqlString];
+        int i = 0;
+        while([result next]) {
+            i++;
+        }
+        expect(i).to.equal(10);
+        [result close];
+    });
+    
+    it(@"returns the correct amount of columns for the given query", ^{
+        FMResultSet* result = [dbAccess executeSQL: sqlString];
         expect([result columnCount]).to.equal(20);
         [result close];
     });
