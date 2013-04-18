@@ -22,6 +22,10 @@
 
 + (id) find:(NSInteger)identifier
 {
+    FMResultSet* result = [self findModel: @"" withIdentifier: identifier];
+    if([result next]) {
+//        NSDictionary* attributes = [result resultDictionary];
+    }
     return nil;
 }
 

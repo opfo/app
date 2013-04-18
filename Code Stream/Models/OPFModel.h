@@ -11,6 +11,8 @@
 
 @interface OPFModel : MTLModel
 
-+(OPFDatabaseAccess *) getDBAccess;
+@property (copy, readonly) NSString* modelName;
 
++(OPFDatabaseAccess *) getDBAccess;
++(FMResultSet *) findModel: (NSString*) modelName withIdentifier: (NSInteger) identifier;
 @end

@@ -15,4 +15,10 @@
     return [OPFDatabaseAccess getDBAccess];
 }
 
++ (FMResultSet *) findModel:(NSString *)modelName withIdentifier:(NSInteger)identifier
+{
+    NSString* sql = [NSString stringWithFormat:@"SELECT 'user'.* FROM '%@' LIMIT 1", modelName];
+    return [[self getDBAccess] executeSQL: sql];
+}
+
 @end
