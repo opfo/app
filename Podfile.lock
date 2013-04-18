@@ -13,13 +13,17 @@ PODS:
 
 DEPENDENCIES:
   - Expecta (= 0.2.1)
-  - FMDB (= 2.0)
+  - FMDB (from `git://github.com/ccgus/fmdb.git`)
   - Mantle (= 1.0)
   - Specta (= 0.1.8)
 
+EXTERNAL SOURCES:
+  FMDB:
+    :git: git://github.com/ccgus/fmdb.git
+
 SPEC CHECKSUMS:
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
-  FMDB: 77fb1c93b51bbf14d84d49d5374344b7f68c54f1
+  FMDB: 2fe05139e2cde6557d32282a541eba685583222e
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aa9860e40cc365a094ef60fec46848fee7b03ca7
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
