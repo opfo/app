@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewController.xib */; };
+		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
 		1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */; };
+		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
+		1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FD17201A000033DFA8 /* acceptedAnswer.png */; };
+		1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		815261FC171D62FA00B5EF2D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* User.m */; };
@@ -46,9 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewController.xib; sourceTree = "<group>"; };
+		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewCell.xib; sourceTree = "<group>"; };
 		1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSingleQuestionPreviewCell.h; sourceTree = "<group>"; };
 		1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSingleQuestionPreviewCell.m; sourceTree = "<group>"; };
+		1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsViewController.h; sourceTree = "<group>"; };
+		1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsViewController.m; sourceTree = "<group>"; };
+		1478B5FD17201A000033DFA8 /* acceptedAnswer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acceptedAnswer.png; sourceTree = "<group>"; };
+		1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer@2x.png"; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8128DF92171D82C300C44410 /* DatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseAccess.h; path = Utilities/Persistence/DatabaseAccess.h; sourceTree = "<group>"; };
 		8128DF93171D82C300C44410 /* DatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatabaseAccess.m; path = Utilities/Persistence/DatabaseAccess.m; sourceTree = "<group>"; };
@@ -131,9 +138,11 @@
 		1478B5ED171FD8E30033DFA8 /* Questions View */ = {
 			isa = PBXGroup;
 			children = (
-				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewController.xib */,
+				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */,
 				1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */,
 				1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */,
+				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
+				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
 			);
 			name = "Questions View";
 			sourceTree = "<group>";
@@ -218,6 +227,8 @@
 			children = (
 				8128DF95171D832C00C44410 /* so.sqlite */,
 				9C1C513C1716FBE0004CC9E3 /* Code Stream-Info.plist */,
+				1478B5FD17201A000033DFA8 /* acceptedAnswer.png */,
+				1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */,
 				9C1C513D1716FBE0004CC9E3 /* InfoPlist.strings */,
 				9C1C51401716FBE0004CC9E3 /* main.m */,
 				9C1C51421716FBE0004CC9E3 /* Code Stream-Prefix.pch */,
@@ -447,7 +458,9 @@
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
 				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
 				9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */,
-				1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewController.xib in Resources */,
+				1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */,
+				1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */,
+				1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +532,7 @@
 				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
 				1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */,
+				1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
