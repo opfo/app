@@ -14,6 +14,7 @@
 		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		81C18471171FD8B3008273A6 /* OPFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18470171FD8B3008273A6 /* OPFPost.m */; };
 		81C18477171FD908008273A6 /* OPFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18476171FD908008273A6 /* OPFAnswer.m */; };
+		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51391716FBE0004CC9E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -65,6 +66,8 @@
 		81C18475171FD908008273A6 /* OPFAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFAnswer.h; path = Models/OPFAnswer.h; sourceTree = "<group>"; };
 		81C18476171FD908008273A6 /* OPFAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswer.m; path = Models/OPFAnswer.m; sourceTree = "<group>"; };
 		81C18478171FDFF8008273A6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
+		81E579381720131100F9D4E3 /* OPFDatabaseAccessSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFDatabaseAccessSpec.h; path = UtilitySpecs/OPFDatabaseAccessSpec.h; sourceTree = "<group>"; };
+		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C1C51361716FBE0004CC9E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -178,6 +181,15 @@
 			name = ModelSpecs;
 			sourceTree = "<group>";
 		};
+		81E57937172012EE00F9D4E3 /* UtilitySpecs */ = {
+			isa = PBXGroup;
+			children = (
+				81E579381720131100F9D4E3 /* OPFDatabaseAccessSpec.h */,
+				81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */,
+			);
+			name = UtilitySpecs;
+			sourceTree = "<group>";
+		};
 		9C1C51281716FBE0004CC9E3 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +258,7 @@
 		9C1C515E1716FBE1004CC9E3 /* Code StreamTests */ = {
 			isa = PBXGroup;
 			children = (
+				81E57937172012EE00F9D4E3 /* UtilitySpecs */,
 				816F9736171D47EE00E881B6 /* ModelSpecs */,
 				9C1C515F1716FBE1004CC9E3 /* Supporting Files */,
 			);
@@ -569,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				816F9739171D48ED00E881B6 /* UserSpec.m in Sources */,
+				81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
