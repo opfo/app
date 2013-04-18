@@ -11,6 +11,7 @@
 #import "OPFPostMetadataTableViewCell.h"
 #import "OPFPostTagsTableViewCell.h"
 #import "NSCache+OPFSubscripting.h"
+#import "OPFPost.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -83,8 +84,24 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 #pragma mark - View Lifecycle
 - (void)viewWillAppear:(BOOL)animated
 {
-	[self.posts addObjectsFromArray:@[ @"First", @"Second", @"Third" ]];
+    OPFUser *user = [[OPFUser alloc] init];
+    [user setReputation:351];
+    [user setDisplayName:@"Aron"];
+    OPFPost *post = [[OPFPost alloc] init];
+    [post setScore:123];
+    [post setTitle:@"Very good post"];
+    [post setBody:@"hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf"];
+    post.owner = user;
+    
+    OPFPost *post1 = [[OPFPost alloc] init];
+    [post1 setScore:456];
+    [post1 setTitle:@"Second good question"];
+    [post1 setBody:@"very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed"];
+    
+    post1.owner=user;
+	[self.posts addObjectsFromArray:@[ post, post1 ]];
 	
+    
 	[super viewWillAppear:animated];
 }
 
@@ -176,12 +193,14 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
 	NSString *cellIdentifier = [self cellIdentifierForIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	
-	if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
-		((OPFPostBodyTableViewCell *)cell).bodyTextView.text = @"Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text ";
+    OPFPost *post = [self postForIndexPath:indexPath];
+	
+    if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
+		((OPFPostBodyTableViewCell *)cell).bodyTextView.text = post.body;
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
-		metadataCell.authorLabel.text = @"Aron";
-		metadataCell.authorScoreLabel.text = @"351 points";
+		metadataCell.authorLabel.text = post.owner.displayName;
+		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%d", post.owner.reputation];
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
 		cell.textLabel.text = NSLocalizedString(@"No comments, yet…", @"No comments on post label.");
@@ -197,7 +216,7 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
 	CGFloat height = 0.f;
 	if (indexPath.row == kOPFQuestionBodyCell) {
 		OPFPost *post = [self postForIndexPath:indexPath];
-		NSString *body = @"Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text Some nice test text ";//post.body;
+		NSString *body = post.body;
 	
 		UIFont *bodyFont = [UIFont systemFontOfSize:14.f];
 		CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
