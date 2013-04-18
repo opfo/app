@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 
-@interface DatabaseAccess : NSObject
+@interface OPFDatabaseAccess : NSObject
 
 + (instancetype) getDBAccess;
+
+- (FMResultSet *) executeSQL: (NSString *) sql;
 
 @property(strong, readonly) FMDatabase* baseDB;
 

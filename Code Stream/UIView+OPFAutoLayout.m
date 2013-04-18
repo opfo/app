@@ -10,7 +10,7 @@
 
 @implementation UIView (OPFAutoLayout)
 
-- (void)opf_addAutoresizedSubview:(UIView *)aView
+- (void)opf_addFillingAutoresizedSubview:(UIView *)aView;
 {
 	if (aView != nil) {
 		[aView setTranslatesAutoresizingMaskIntoConstraints:NO];
