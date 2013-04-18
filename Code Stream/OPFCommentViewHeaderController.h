@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFCommentViewHeader : UIView
+@interface OPFCommentViewHeaderController : UIViewController
 
 @property(nonatomic, weak) IBOutlet UILabel *postTitle;
 @property(nonatomic, weak) IBOutlet UILabel *postUserName;

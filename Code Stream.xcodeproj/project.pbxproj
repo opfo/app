@@ -20,7 +20,7 @@
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
 		1A97782C171F20310061DA85 /* OPFCommentViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeader.xib */; };
-		1A97782F171F33430061DA85 /* OPFCommentViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A97782E171F33430061DA85 /* OPFCommentViewHeader.m */; };
+		1A97782F171F33430061DA85 /* OPFCommentViewHeaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A97782E171F33430061DA85 /* OPFCommentViewHeaderController.m */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
@@ -73,8 +73,8 @@
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeader.xib; sourceTree = "<group>"; };
-		1A97782D171F33430061DA85 /* OPFCommentViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeader.h; sourceTree = "<group>"; };
-		1A97782E171F33430061DA85 /* OPFCommentViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeader.m; sourceTree = "<group>"; };
+		1A97782D171F33430061DA85 /* OPFCommentViewHeaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderController.h; sourceTree = "<group>"; };
+		1A97782E171F33430061DA85 /* OPFCommentViewHeaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderController.m; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8128DF92171D82C300C44410 /* DatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatabaseAccess.h; path = Utilities/Persistence/DatabaseAccess.h; sourceTree = "<group>"; };
@@ -304,8 +304,6 @@
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
 				9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */,
 				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
-				1A97782D171F33430061DA85 /* OPFCommentViewHeader.h */,
-				1A97782E171F33430061DA85 /* OPFCommentViewHeader.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -313,6 +311,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A97782D171F33430061DA85 /* OPFCommentViewHeaderController.h */,
+				1A97782E171F33430061DA85 /* OPFCommentViewHeaderController.m */,
 				9C1C514F1716FBE0004CC9E3 /* OPFViewController.h */,
 				9C1C51501716FBE0004CC9E3 /* OPFViewController.m */,
 				9C5F8C0F171D934E0075A1C4 /* OPFPostViewController.h */,
@@ -560,7 +560,7 @@
 				1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */,
 				1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
-				1A97782F171F33430061DA85 /* OPFCommentViewHeader.m in Sources */,
+				1A97782F171F33430061DA85 /* OPFCommentViewHeaderController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
