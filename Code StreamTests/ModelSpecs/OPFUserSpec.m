@@ -23,9 +23,9 @@ describe(@"foo", ^{
         expect(1).equal(1);
     });
     
-    it(@"should fail", ^{
-        expect(1).equal(2);
-    });
+//    it(@"should fail", ^{
+//        expect(1).equal(2);
+//    });
 });
 
 SpecEnd
