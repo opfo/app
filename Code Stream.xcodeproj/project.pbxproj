@@ -11,6 +11,7 @@
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
 		816F9739171D48ED00E881B6 /* UserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* UserSpec.m */; };
+		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51391716FBE0004CC9E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -26,8 +27,8 @@
 		9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
-		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
+		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
 		9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* DatabaseAccess.m */; };
@@ -51,6 +52,8 @@
 		815261FA171D62FA00B5EF2D /* OPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFUser.h; path = Models/OPFUser.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* OPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUser.m; path = Models/OPFUser.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* UserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserSpec.m; path = ModelSpecs/UserSpec.m; sourceTree = "<group>"; };
+		81C1846C171FD687008273A6 /* OPFQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuestion.h; path = Models/OPFQuestion.h; sourceTree = "<group>"; };
+		81C1846D171FD687008273A6 /* OPFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestion.m; path = Models/OPFQuestion.m; sourceTree = "<group>"; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C1C51361716FBE0004CC9E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -236,6 +239,8 @@
 			children = (
 				815261FA171D62FA00B5EF2D /* OPFUser.h */,
 				815261FB171D62FA00B5EF2D /* OPFUser.m */,
+				81C1846C171FD687008273A6 /* OPFQuestion.h */,
+				81C1846D171FD687008273A6 /* OPFQuestion.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
+				81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
