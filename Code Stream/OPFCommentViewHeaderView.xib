@@ -1086,9 +1086,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="calendar@2x.png">{16, 16}</string>
-			<string key="clock@2x.png">{16, 16}</string>
-			<string key="rastersize@2x.jpg">{16, 16}</string>
+			<string key="calendar@2x.png">{30, 30}</string>
+			<string key="clock@2x.png">{30, 30}</string>
+			<string key="rastersize@2x.jpg">{60, 60}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
