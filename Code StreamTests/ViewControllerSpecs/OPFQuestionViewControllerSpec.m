@@ -47,7 +47,7 @@ describe(@"cellIdentifierForIndexPath:", ^{
 	});
 	
 	it(@"should return nil if the index path does not match any known identifier", ^{
-		expect([questionViewController cellIdentifierForIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]).beNil;
+		expect([questionViewController cellIdentifierForIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]]).to.equal(nil);
 	});
 });
 
