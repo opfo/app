@@ -27,17 +27,34 @@
 - (id) init {
     self = [super init];
     if (self == nil) return nil;
-    _baseDB = [FMDatabase databaseWithPath:[[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"]];
+    NSString* databasePath = [[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"];
+    _baseDB = [FMDatabase databaseWithPath: databasePath];
+    _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: databasePath];
     return self;
 }
 
+//
+// Executes an SQL string and returns the result.
+// Returns nil if result is empty.
+// Returns nil if db is unavailable.
 - (FMResultSet *) executeSQL:(NSString *)sql
 {
-    FMResultSet* result;
     if([_baseDB open]) {
-        result = [_baseDB executeQuery:sql];
+        NSLog(@"Opened database");
+        __block FMResultSet* result;
+        [_baseDBQueue inDatabase: ^(FMDatabase* db) {
+            result = [db executeQuery:sql];
+        }];
+        return result;
+    } else {
+        NSLog(@"Failed to open database");
+        return nil;
     }
-    return result;
+}
+
+-(void) close
+{
+    [_baseDB close];
 }
 
 @end
