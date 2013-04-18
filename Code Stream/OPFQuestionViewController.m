@@ -10,6 +10,7 @@
 #import "OPFPostBodyTableViewCell.h"
 #import "OPFPostMetadataTableViewCell.h"
 #import "OPFPostTagsTableViewCell.h"
+#import "OPFQuestionHeaderView.h"
 #import "NSCache+OPFSubscripting.h"
 #import "OPFPost.h"
 
@@ -37,6 +38,14 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 @end
 
 @implementation OPFQuestionViewController
+
+#pragma mark - Reuse Identifiers
+static NSString *const BodyCellIdentifier = @"PostBodyCell";
+static NSString *const MetadataCellIdentifier = @"PostMetadataCell";
+static NSString *const TagsCellIdentifier = @"PostTagsCell";
+static NSString *const CommentsCellIdentifier = @"PostCommentsCell";
+
+static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 #pragma mark - Object Lifecycle
 - (void)questionViewControllerSharedInit
@@ -82,6 +91,14 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 
 
 #pragma mark - View Lifecycle
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	UINib *headerViewNib = [UINib nibWithNibName:@"OPFQuestionHeaderView" bundle:nil];
+	[self.tableView registerNib:headerViewNib forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     OPFUser *user = [[OPFUser alloc] init];
@@ -143,11 +160,6 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 
 
 #pragma mark -
-static NSString *BodyCellIdentifier = @"PostBodyCell";
-static NSString *MetadataCellIdentifier = @"PostMetadataCell";
-static NSString *TagsCellIdentifier = @"PostTagsCell";
-static NSString *CommentsCellIdentifier = @"PostCommentsCell";
-
 - (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath
 {
 	NSString *cellIdentifier = nil;
@@ -183,9 +195,15 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
     return (section == 0 ? 4 : 3);
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	return @"Some post header";
+	OPFQuestionHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
+	
+	OPFPost *post = self.posts[section];
+	headerView.titleLabel.text = post.title;
+	headerView.scoreLabel.text = [NSString stringWithFormat:@"%d", post.score];
+	
+	return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -203,12 +221,23 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
 		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%d", post.owner.reputation];
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
-		cell.detailTextLabel.text = NSLocalizedString(@"No comments, yet…", @"No comments on post label.");
+		if (post.comments.count > 0) {
+			cell.detailTextLabel.text = @"TEMP: The first body";//post.comments[0].body;
+		} else {
+			cell.detailTextLabel.text = NSLocalizedString(@"Add the first comment", @"No comments on post summary label.");
+		}
 	} else {
 		NSAssert(NO, @"Unknonw cell identifier '%@'", cellIdentifier);
 	}
 	
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+	OPFQuestionHeaderView *headerView = (OPFQuestionHeaderView *)view;
+	headerView.backgroundView = [UIView new];
+	headerView.backgroundView.backgroundColor = UIColor.lightGrayColor;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -226,6 +255,11 @@ static NSString *CommentsCellIdentifier = @"PostCommentsCell";
 		height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
 	}
 	return height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 44.f;
 }
 
 #pragma mark - Table view delegate

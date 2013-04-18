@@ -31,6 +31,8 @@
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
 		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
+		9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */; };
+		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */; };
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
@@ -103,6 +105,9 @@
 		9C469298171F5C1B00F75C31 /* UIView+OPFAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OPFAutoLayout.h"; sourceTree = "<group>"; };
 		9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OPFAutoLayout.m"; sourceTree = "<group>"; };
 		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionHeaderView.xib; sourceTree = "<group>"; };
+		9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionHeaderView.h; sourceTree = "<group>"; };
+		9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionHeaderView.m; sourceTree = "<group>"; };
 		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
 		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
 		9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostBodyTableViewCell.h; sourceTree = "<group>"; };
@@ -277,6 +282,9 @@
 			children = (
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
+				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
+				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -475,6 +483,7 @@
 				9C1C514B1716FBE0004CC9E3 /* Default-568h@2x.png in Resources */,
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
 				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
+				9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +549,6 @@
 				9C1C51411716FBE0004CC9E3 /* main.m in Sources */,
 				9C1C51451716FBE0004CC9E3 /* OPFAppDelegate.m in Sources */,
 				815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */,
-				9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */,
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */,
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
@@ -552,6 +560,7 @@
 				9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */,
 				9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */,
 				9C7F6E12171FE171008F6473 /* OPFPostTagsTableViewCell.m in Sources */,
+				9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
