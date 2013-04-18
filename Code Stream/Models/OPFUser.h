@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "MTLModel.h"
+#import "OPFModel.h"
 
-@interface User : MTLModel
+@interface OPFUser : MTLModel <OPFModel>
 
 @property (assign, readonly) NSInteger identifier;
 @property (assign) NSInteger reputation;
@@ -24,7 +25,5 @@
 @property (assign) NSInteger view;
 @property (assign) NSInteger upVotes;
 @property (assign) NSInteger downVotes;
-
-+ (NSArray*) all;
 
 @end

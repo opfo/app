@@ -7,34 +7,259 @@
 //
 
 #import "OPFQuestionViewController.h"
-#import "OPFPostViewController.h"
+#import "OPFPostBodyTableViewCell.h"
+#import "OPFPostMetadataTableViewCell.h"
+#import "OPFPostTagsTableViewCell.h"
+#import "OPFQuestionHeaderView.h"
+#import "NSCache+OPFSubscripting.h"
+#import "OPFPost.h"
+
+enum {
+	kOPFQuestionBodyCell = 0,
+	kOPFQuestionMetadataCell = 1,
+	kOPFQuestionTagsCell = 2,
+	kOPFQuestionCommentsWithTagsCell = 3,
+	kOPFQuestionCommentsWithoutTagsCell = 2,
+};
+
+static const NSInteger kOPQuestionSection = 0;
+
+static const CGFloat kOPQuestionBodyInset = 20.f;
+
 
 @interface OPFQuestionViewController ()
+@property (strong, readonly) NSCache *cache;
 
+// TEMP (start):
+@property (strong, readonly) NSMutableArray *posts;
+- (OPFPost *)questionPost;
+- (NSArray *)answerPosts;
+// TEMP (end)
 @end
 
 @implementation OPFQuestionViewController
 
-#pragma mark - Table view data source
+#pragma mark - Reuse Identifiers
+static NSString *const BodyCellIdentifier = @"PostBodyCell";
+static NSString *const MetadataCellIdentifier = @"PostMetadataCell";
+static NSString *const TagsCellIdentifier = @"PostTagsCell";
+static NSString *const CommentsCellIdentifier = @"PostCommentsCell";
 
+static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
+
+#pragma mark - Object Lifecycle
+- (void)questionViewControllerSharedInit
+{
+	_posts = [[NSMutableArray alloc] init];
+}
+
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		[self questionViewControllerSharedInit];
+	}
+	return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+	self = [super initWithStyle:style];
+	if (self) {
+		[self questionViewControllerSharedInit];
+	}
+	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		[self questionViewControllerSharedInit];
+	}
+	return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+	if (self) {
+		[self questionViewControllerSharedInit];
+	}
+	return self;
+}
+
+
+#pragma mark - View Lifecycle
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	
+	UINib *headerViewNib = [UINib nibWithNibName:@"OPFQuestionHeaderView" bundle:nil];
+	[self.tableView registerNib:headerViewNib forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    OPFUser *user = [[OPFUser alloc] init];
+    [user setReputation:351];
+    [user setDisplayName:@"Aron"];
+    OPFPost *post = [[OPFPost alloc] init];
+    [post setScore:123];
+    [post setTitle:@"Very good post"];
+    [post setBody:@"hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf"];
+    post.owner = user;
+    
+    OPFPost *post1 = [[OPFPost alloc] init];
+    [post1 setScore:456];
+    [post1 setTitle:@"Second good question"];
+    [post1 setBody:@"very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed"];
+    
+    post1.owner=user;
+	[self.posts addObjectsFromArray:@[ post, post1 ]];
+	
+    
+	[super viewWillAppear:animated];
+}
+
+
+#pragma mark - 
+- (OPFPost *)questionPost
+{
+	return self.posts.count > 0 ? self.posts[0] : nil;
+}
+
+- (NSArray *)answerPosts
+{
+	NSArray *answerPosts = self.cache[@"answerPosts"];
+	// Posts count must be larger than one (1) as the first post (index 0) is
+	// the question post.
+	if (answerPosts == nil && self.posts.count > 1) {
+		answerPosts = [self.posts sortedArrayUsingComparator:^NSComparisonResult(OPFPost *post1, OPFPost *post2) {
+			return NSOrderedSame;
+//			if (post1.score == post2.score) return NSOrderedSame;
+//			return (post1.score > post2.score ? NSOrderedDescending : NSOrderedAscending);
+		}];
+		self.cache[@"answerPosts"] = answerPosts;
+	} else {
+		answerPosts = NSArray.array;
+	}
+	
+	return answerPosts;
+}
+
+- (OPFPost *)postForIndexPath:(NSIndexPath *)indexPath
+{
+	return self.posts[indexPath.section];
+}
+
+- (BOOL)isPostQuestionPost:(OPFPost *)post
+{
+	return post == self.questionPost;
+}
+
+
+#pragma mark -
+- (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *cellIdentifier = nil;
+	if (indexPath.row == kOPFQuestionBodyCell) {
+		cellIdentifier = BodyCellIdentifier;
+	} else if (indexPath.row == kOPFQuestionMetadataCell) {
+		cellIdentifier = MetadataCellIdentifier;
+	} else {
+		if (indexPath.section == kOPQuestionSection) {
+			if (indexPath.row == kOPFQuestionTagsCell) {
+				cellIdentifier = TagsCellIdentifier;
+			} else if (indexPath.row == kOPFQuestionCommentsWithTagsCell) {
+				cellIdentifier = CommentsCellIdentifier;
+			}
+		} else if (indexPath.row == kOPFQuestionCommentsWithoutTagsCell) {
+			cellIdentifier = CommentsCellIdentifier;
+		}
+	}
+	return cellIdentifier;
+}
+
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1; /*self.posts.count;*/
+    return self.posts.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	// Each section will always contain one row (i.e. one section per post).
-    return 1;
+	// The first section corresponds the question which has an extra row for tags.
+    return (section == 0 ? 4 : 3);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	OPFQuestionHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
+	
+	OPFPost *post = self.posts[section];
+	headerView.titleLabel.text = post.title;
+	headerView.scoreLabel.text = [NSString stringWithFormat:@"%d", post.score];
+	
+	return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"PostCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	NSString *cellIdentifier = [self cellIdentifierForIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+	
+    OPFPost *post = [self postForIndexPath:indexPath];
+	
+    if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
+		((OPFPostBodyTableViewCell *)cell).bodyTextView.text = post.body;
+	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
+		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
+		metadataCell.authorLabel.text = post.owner.displayName;
+		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%d", post.owner.reputation];
+	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
+	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
+		if (post.comments.count > 0) {
+			cell.detailTextLabel.text = @"TEMP: The first body";//post.comments[0].body;
+		} else {
+			cell.detailTextLabel.text = NSLocalizedString(@"Add the first comment", @"No comments on post summary label.");
+		}
+	} else {
+		NSAssert(NO, @"Unknonw cell identifier '%@'", cellIdentifier);
+	}
 	
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+	OPFQuestionHeaderView *headerView = (OPFQuestionHeaderView *)view;
+	headerView.backgroundView = [UIView new];
+	headerView.backgroundView.backgroundColor = UIColor.lightGrayColor;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat height = 0.f;
+	if (indexPath.row == kOPFQuestionBodyCell) {
+		OPFPost *post = [self postForIndexPath:indexPath];
+		NSString *body = post.body;
+	
+		UIFont *bodyFont = [UIFont systemFontOfSize:14.f];
+		CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
+		CGSize bodySize = [body sizeWithFont:bodyFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
+		height = bodySize.height + kOPQuestionBodyInset;
+	} else {
+		height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+	}
+	return height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 44.f;
 }
 
 #pragma mark - Table view delegate
