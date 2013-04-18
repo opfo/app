@@ -34,6 +34,7 @@
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
 		9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */; };
 		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
+		9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */; };
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
@@ -110,6 +111,7 @@
 		9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionHeaderView.xib; sourceTree = "<group>"; };
 		9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionHeaderView.h; sourceTree = "<group>"; };
 		9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionHeaderView.m; sourceTree = "<group>"; };
+		9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewControllerSpec.m; sourceTree = "<group>"; };
 		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
 		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
 		9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostBodyTableViewCell.h; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		9C1C515E1716FBE1004CC9E3 /* Code StreamTests */ = {
 			isa = PBXGroup;
 			children = (
+				9C4DD47F1720240F002D5238 /* ViewControllerSpecs */,
 				81E57937172012EE00F9D4E3 /* UtilitySpecs */,
 				816F9736171D47EE00E881B6 /* ModelSpecs */,
 				9C1C515F1716FBE1004CC9E3 /* Supporting Files */,
@@ -391,6 +394,14 @@
 				9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		9C4DD47F1720240F002D5238 /* ViewControllerSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */,
+			);
+			path = ViewControllerSpecs;
 			sourceTree = "<group>";
 		};
 		9C7F6E16171FE185008F6473 /* Post Table View Cells */ = {
@@ -581,6 +592,7 @@
 			files = (
 				816F9739171D48ED00E881B6 /* UserSpec.m in Sources */,
 				81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */,
+				9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
