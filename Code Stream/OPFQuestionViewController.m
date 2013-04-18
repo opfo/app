@@ -136,9 +136,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	// the question post.
 	if (answerPosts == nil && self.posts.count > 1) {
 		answerPosts = [self.posts sortedArrayUsingComparator:^NSComparisonResult(OPFPost *post1, OPFPost *post2) {
-			return NSOrderedSame;
-//			if (post1.score == post2.score) return NSOrderedSame;
-//			return (post1.score > post2.score ? NSOrderedDescending : NSOrderedAscending);
+			if (post1.score == post2.score) return NSOrderedSame;
+			return (post1.score > post2.score ? NSOrderedDescending : NSOrderedAscending);
 		}];
 		self.cache[@"answerPosts"] = answerPosts;
 	} else {
