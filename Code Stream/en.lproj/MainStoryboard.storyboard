@@ -76,12 +76,154 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="44" id="3Fc-o3-G4Q">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="postBodyCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostBodyCell" id="3Fc-o3-G4Q" userLabel="Body Table View Cell" customClass="OPFPostBodyTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAK-C8-9M5">
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="aAK-C8-9M5" firstAttribute="trailing" secondItem="3Fc-o3-G4Q" secondAttribute="trailing" type="default" id="Q6a-LJ-9I5"/>
+                                    <constraint firstAttribute="bottom" secondItem="aAK-C8-9M5" secondAttribute="bottom" type="user" id="diT-ID-DDQ"/>
+                                    <constraint firstItem="aAK-C8-9M5" firstAttribute="leading" secondItem="3Fc-o3-G4Q" secondAttribute="leading" type="default" id="dow-pP-2tQ"/>
+                                    <constraint firstItem="aAK-C8-9M5" firstAttribute="centerY" secondItem="3Fc-o3-G4Q" secondAttribute="centerY" type="user" id="jPi-4U-5gb"/>
+                                    <constraint firstItem="aAK-C8-9M5" firstAttribute="top" secondItem="3Fc-o3-G4Q" secondAttribute="top" type="user" id="slD-Pr-sjD"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="bodyTextView" destination="aAK-C8-9M5" id="xBS-1N-Uhi"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="postMetadataCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostMetadataCell" id="Kf6-DB-3YK" userLabel="Metadata Table View Cell" customClass="OPFPostMetadataTableViewCell">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUS-Mh-m7c" userLabel="Vote Up Button">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="ByA-rt-65d"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="/\">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riz-Zf-Mho" userLabel="Vote Down Button">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="sx3-O1-sAY"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <state key="normal" title="\/">
+                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="highlighted">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDD-vp-n5D" userLabel="User Avatar Image View">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" type="user" id="AfV-T0-uVx"/>
+                                                <constraint firstAttribute="width" constant="44" type="user" id="pzU-Tu-v6l"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="&lt;User>" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfC-Rw-eZk" userLabel="User Name Label">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="159" id="ugA-je-jMW"/>
+                                                <constraint firstAttribute="height" constant="18" id="yNs-ha-ehX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="123 points" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsv-uV-FgC" userLabel="User Points Label">
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="JfC-Rw-eZk" firstAttribute="top" secondItem="Kf6-DB-3YK" secondAttribute="top" constant="4" id="74r-Tg-w0m"/>
+                                    <constraint firstItem="dDD-vp-n5D" firstAttribute="top" secondItem="riz-Zf-Mho" secondAttribute="top" type="default" id="Jas-LP-wqe"/>
+                                    <constraint firstItem="Zsv-uV-FgC" firstAttribute="leading" secondItem="riz-Zf-Mho" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="KMw-FU-0zY"/>
+                                    <constraint firstItem="LUS-Mh-m7c" firstAttribute="bottom" secondItem="riz-Zf-Mho" secondAttribute="bottom" type="default" id="Kiq-Ze-h60"/>
+                                    <constraint firstItem="dDD-vp-n5D" firstAttribute="trailing" secondItem="Kf6-DB-3YK" secondAttribute="trailing" type="default" id="LaM-tZ-NsT"/>
+                                    <constraint firstItem="dDD-vp-n5D" firstAttribute="leading" secondItem="JfC-Rw-eZk" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QtN-H6-DTA"/>
+                                    <constraint firstItem="dDD-vp-n5D" firstAttribute="leading" secondItem="Zsv-uV-FgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="XYg-tu-8B7"/>
+                                    <constraint firstItem="LUS-Mh-m7c" firstAttribute="top" secondItem="Kf6-DB-3YK" secondAttribute="top" constant="-1" id="eqL-QH-2D3"/>
+                                    <constraint firstItem="riz-Zf-Mho" firstAttribute="bottom" secondItem="dDD-vp-n5D" secondAttribute="bottom" type="default" id="mgl-IB-wOS"/>
+                                    <constraint firstItem="riz-Zf-Mho" firstAttribute="baseline" secondItem="LUS-Mh-m7c" secondAttribute="baseline" type="default" id="pu4-qn-CKm"/>
+                                    <constraint firstItem="Zsv-uV-FgC" firstAttribute="top" secondItem="Kf6-DB-3YK" secondAttribute="top" constant="19" id="snQ-oi-cBD"/>
+                                    <constraint firstItem="riz-Zf-Mho" firstAttribute="top" secondItem="LUS-Mh-m7c" secondAttribute="top" type="default" id="tKk-El-uOy"/>
+                                    <constraint firstItem="JfC-Rw-eZk" firstAttribute="leading" secondItem="riz-Zf-Mho" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="vdC-x2-iCo"/>
+                                    <constraint firstItem="riz-Zf-Mho" firstAttribute="leading" secondItem="LUS-Mh-m7c" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zrp-Dr-e06"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="authorAvatarImageView" destination="dDD-vp-n5D" id="rKv-62-vaQ"/>
+                                    <outlet property="authorLabel" destination="JfC-Rw-eZk" id="cWf-fc-S27"/>
+                                    <outlet property="authorScoreLabel" destination="Zsv-uV-FgC" id="gib-Yw-H4R"/>
+                                    <outlet property="voteDownButton" destination="riz-Zf-Mho" id="ZiA-1n-8hr"/>
+                                    <outlet property="voteUpButton" destination="LUS-Mh-m7c" id="AfO-eB-goq"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="postTagsCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="PostTagsCell" id="dJt-ZT-SKN" userLabel="Tags Table View Cell" customClass="OPFPostTagsTableViewCell">
+                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKR-WA-2rS" userLabel="Tags View">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="VKR-WA-2rS" firstAttribute="trailing" secondItem="dJt-ZT-SKN" secondAttribute="trailing" type="default" id="Nf8-4L-dCw"/>
+                                    <constraint firstAttribute="bottom" secondItem="VKR-WA-2rS" secondAttribute="bottom" constant="1" id="QWW-wE-OPF"/>
+                                    <constraint firstItem="VKR-WA-2rS" firstAttribute="leading" secondItem="dJt-ZT-SKN" secondAttribute="leading" type="default" id="U5T-Gc-0Qr"/>
+                                    <constraint firstItem="VKR-WA-2rS" firstAttribute="top" secondItem="dJt-ZT-SKN" secondAttribute="top" type="default" id="ZjN-fe-b60"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="tagsView" destination="VKR-WA-2rS" id="4Ta-Xh-82q"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="postCommentsCell" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PostCommentsCell" textLabel="hsa-lF-K58" detailTextLabel="Fsv-9y-lLZ" style="IBUITableViewCellStyleValue2" id="Fmo-5N-7xp" userLabel="Comments Table View Cell">
+                                <rect key="frame" x="0.0" y="154" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Comments" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsa-lF-K58">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.32156862745098042" green="0.40000000000000002" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="No comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsv-9y-lLZ">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
@@ -148,6 +290,31 @@
         </scene>
     </scenes>
     <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bodyTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="OPFPostMetadataTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostMetadataTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorAvatarImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="authorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="authorScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voteDownButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="voteUpButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="OPFPostTagsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostTagsTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
         <class className="OPFQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
         </class>
