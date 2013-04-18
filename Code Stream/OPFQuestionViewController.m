@@ -106,13 +106,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [user setDisplayName:@"Aron"];
     OPFPost *post = [[OPFPost alloc] init];
     [post setScore:123];
-    [post setTitle:@"Very good post"];
+    [post setTitle:@"This is the question right? Well the title will most likely be a bit long."];
     [post setBody:@"hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf hejeb ewkjfeklsjfnw efbwelk fjnaleskfn jenf"];
     post.owner = user;
     
     OPFPost *post1 = [[OPFPost alloc] init];
     [post1 setScore:456];
-    [post1 setTitle:@"Second good question"];
+    [post1 setTitle:@"This is a question with a rather long title, right? But it could also be even longer, or could it? What happens when we make it crazy long?"];
     [post1 setBody:@"very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed very good question indeed"];
     
     post1.owner=user;
