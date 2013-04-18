@@ -30,8 +30,8 @@
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
-		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
 		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
+		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
 		9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* DatabaseAccess.m */; };
@@ -153,6 +153,14 @@
 			name = Persistence;
 			sourceTree = "<group>";
 		};
+		8134D025171FE25000E5386D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				81C18478171FDFF8008273A6 /* OPFModel.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		816F9736171D47EE00E881B6 /* ModelSpecs */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +263,7 @@
 				81C18470171FD8B3008273A6 /* OPFPost.m */,
 				81C18475171FD908008273A6 /* OPFAnswer.h */,
 				81C18476171FD908008273A6 /* OPFAnswer.m */,
-				81C18478171FDFF8008273A6 /* OPFModel.h */,
+				8134D025171FE25000E5386D /* Protocols */,
 			);
 			name = Models;
 			sourceTree = "<group>";

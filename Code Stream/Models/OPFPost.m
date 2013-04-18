@@ -10,4 +10,22 @@
 
 @implementation OPFPost
 
++ (NSArray *) all {
+    return NULL;
+}
+
++ (NSArray *) where:(NSDictionary *)attributes
+{
+    return NULL;
+}
+
++ (instancetype) find:(NSInteger)identifier
+{
+    return NULL;
+}
+
+- (NSArray * ) comments {
+    return NULL;
+}
+
 @end

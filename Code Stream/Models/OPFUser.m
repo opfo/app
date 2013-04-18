@@ -22,5 +22,14 @@
     return nil;
 }
 
++ (NSArray*) where:(NSDictionary *)attributes
+{
+    return NULL;
+}
+
++ (instancetype) find:(NSInteger)identifier {
+    return NULL;
+}
+
 
 @end
