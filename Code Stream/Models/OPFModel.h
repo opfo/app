@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import <Foundation/Foundation.h>
 
-@interface OPFModel : MTLModel
-
+@protocol OPFModel <NSObject>
+- (NSArray *) all;
+- (id) find: (NSInteger) identifier;
+- (NSArray *) where: (NSDictionary *) attributes;
 @end
