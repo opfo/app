@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MTLModel.h"
 
-@interface User : MTLModel
+@interface OPFUser : MTLModel
 
 @property (assign, readonly) NSInteger identifier;
 @property (assign) NSInteger reputation;
