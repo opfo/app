@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFPost;
+
 @interface OPFCommentsViewController : UITableViewController {
     IBOutlet UITableView *commentTableView;
 }
 
 @property(nonatomic, strong) NSArray *commentModels;
-@property(nonatomic, strong) NSObject *postModel;
+@property(nonatomic, strong) OPFPost *postModel;
 
 - (void)voteUpComment:(UIButton *)sender;
 

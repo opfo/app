@@ -8,7 +8,7 @@
 
 #import "OPFCommentsViewController.h"
 #import "OPFCommentViewCell.h"
-#import "OPFCommentViewHeaderController.h"
+#import "OPFCommentViewHeader.h"
 
 @interface OPFCommentsViewController ()
 
@@ -16,12 +16,10 @@
 
 @implementation OPFCommentsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
+    self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
+    
     return self;
 }
 
@@ -84,52 +82,23 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    OPFCommentViewHeaderController commentViewHeaderController = [[OPFCommentViewHeaderController alloc] init];
+    OPFCommentViewHeaderView *commentViewHeader = [OPFCommentViewHeaderView new];
     
-    commentViewHeaderController.postModel = self.postModel;
-    commentViewHeaderController.setModelValuesInView;
+//    commentViewHeader.postModel = self.postModel;
+//    commentViewHeader.setModelValuesInView;
     
-    return commentViewHeaderController.view;
+    return commentViewHeader;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return 44;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    return 122;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

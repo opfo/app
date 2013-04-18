@@ -7,9 +7,9 @@
 //
 
 #import "OPFCommentViewHeader.h"
-#import "UIView+OPFViewLoading.h
+#import "UIView+OPFViewLoading.h"
 
-@implementation OPFCommentViewHeader
+@implementation OPFCommentViewHeaderView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,7 +22,7 @@
 
 - (id)init
 {
-    self = [self opf_loadViewFromNIB];
+    self = [self.class opf_loadViewFromNIB];
     
     return self;
 }
