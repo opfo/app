@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFCommentViewHeader.h"
+#import "OPFCommentViewHeaderView.h"
 #import "UIView+OPFViewLoading.h"
 
 @implementation OPFCommentViewHeaderView

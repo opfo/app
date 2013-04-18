@@ -8,7 +8,7 @@
 
 #import "OPFCommentsViewController.h"
 #import "OPFCommentViewCell.h"
-#import "OPFCommentViewHeader.h"
+#import "OPFCommentViewHeaderView.h"
 
 @interface OPFCommentsViewController ()
 
