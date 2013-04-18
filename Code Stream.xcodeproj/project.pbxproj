@@ -66,7 +66,6 @@
 		81C18475171FD908008273A6 /* OPFAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFAnswer.h; path = Models/OPFAnswer.h; sourceTree = "<group>"; };
 		81C18476171FD908008273A6 /* OPFAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswer.m; path = Models/OPFAnswer.m; sourceTree = "<group>"; };
 		81C18478171FDFF8008273A6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
-		81E579381720131100F9D4E3 /* OPFDatabaseAccessSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFDatabaseAccessSpec.h; path = UtilitySpecs/OPFDatabaseAccessSpec.h; sourceTree = "<group>"; };
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -184,7 +183,6 @@
 		81E57937172012EE00F9D4E3 /* UtilitySpecs */ = {
 			isa = PBXGroup;
 			children = (
-				81E579381720131100F9D4E3 /* OPFDatabaseAccessSpec.h */,
 				81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */,
 			);
 			name = UtilitySpecs;
