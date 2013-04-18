@@ -14,7 +14,10 @@
 	OPFQuestion *question = [OPFQuestion new];
 	
 	
-	question.acceptedAnswer = [OPFAnswer new];
+	// 50-50 chance of having an accepted answer
+	question.acceptedAnswer = (arc4random() % 2 == 0) ? [OPFAnswer new] : nil;
+	
+	// Create random integers
 	question.answerCount = arc4random() % 100;
 	question.score = arc4random() % 1500;
 	question.viewCount = arc4random() % 2300;

@@ -9,13 +9,13 @@
 #import "OPFSingleQuestionPreviewCell.h"
 
 @implementation OPFSingleQuestionPreviewCell
-@synthesize views = _views;
+@synthesize score = _score;
 @synthesize title = _title;
 @synthesize answers = _answers;
 
 - (id)configureWithQuestionData:(OPFQuestion *)question {
 	self.acceptedAnswer = question.acceptedAnswer != nil;
-	self.views = question.viewCount;
+	self.score = question.score;
 	self.answers = question.answerCount;
 	self.title = question.title;
 	
@@ -30,13 +30,13 @@
 	return !self.acceptedAnswerImage.hidden;
 }
 
-- (void)setViews:(NSInteger)Views {
-	_views = Views;
+- (void)setScore:(NSInteger)Score {
+	_score = Score;
 	
-	if (Views >= 1000) {
-		self.viewsLabel.text = [NSString stringWithFormat: @"%1.1fk", (double)Views / 1000.0];
+	if (Score >= 1000) {
+		self.scoreLabel.text = [NSString stringWithFormat: @"%1.1fk", (double)Score / 1000.0];
 	} else {
-		self.viewsLabel.text = [NSString stringWithFormat:@"%d", Views];
+		self.scoreLabel.text = [NSString stringWithFormat:@"%d", Score];
 	}
 }
 
