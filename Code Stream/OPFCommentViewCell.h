@@ -22,7 +22,10 @@
 @property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
 
 @property(nonatomic, strong) NSObject *commentModel;
+@property(nonatomic, strong) NSDateFormatter *dateFormatter;
+@property(nonatomic, strong) NSDateFormatter *timeFormatter;
 
 - (void)setModelValuesInView;
+- (void)setupDateformatters;
 
 @end

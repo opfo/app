@@ -26,11 +26,20 @@
 - (void)setModelValuesInView
 {
 //    self.commentBody.text = self.commentModel.commentBody;
-//    self.commentTime.text = self.commentModel.commentTime;
-//    self.userAvatar.text = self.commentModel.userAvatar;
-//    self.commentDate.text = self.commentModel.commentDate;
+//    self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.lastEditDate];
+//    self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.lastEditDate];
 //    self.commentVoteUp.titleLabel.text = self.commentModel.votes;
 //    self.commentUserName.text = self.commentModel.userName;
+//    self.userAvatar.text = self.commentModel.userAvatar;
+}
+
+- (void)setupDateformatters
+{
+    self.dateFormatter = [NSDateFormatter new];
+    self.dateFormatter = [NSDateFormatter new];
+    
+    [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    [self.timeFormatter setDateFormat:@"HH:mm"];
 }
 
 - (void)setupUserInteractionBindings
