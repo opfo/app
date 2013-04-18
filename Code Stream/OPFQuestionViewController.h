@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFPost;
+@class OPFQuestion;
+
 @interface OPFQuestionViewController : UITableViewController
+
+@property (strong) OPFQuestion *question;
 
 @end
