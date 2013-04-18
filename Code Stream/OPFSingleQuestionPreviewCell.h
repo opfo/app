@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFQuestion.h"
 
 @interface OPFSingleQuestionPreviewCell : UITableViewCell
 
@@ -16,6 +17,8 @@
 @property (nonatomic, copy) NSArray *tags;
 @property (nonatomic, assign) BOOL acceptedAnswer;
 
+
+- (id) configureWithQuestionData:(OPFQuestion *)question;
 
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *viewsLabel;

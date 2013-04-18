@@ -13,6 +13,15 @@
 @synthesize title = _title;
 @synthesize answers = _answers;
 
+- (id)configureWithQuestionData:(OPFQuestion *)question {
+	self.acceptedAnswer = question.acceptedAnswer != nil;
+	self.views = question.viewCount;
+	self.answers = question.answerCount;
+	self.title = question.title;
+	
+	return self;
+}
+
 - (void)setAcceptedAnswer:(BOOL)acceptedAnswer {
 	self.acceptedAnswerImage.hidden = !acceptedAnswer;
 }
