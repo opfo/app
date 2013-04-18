@@ -13,6 +13,8 @@
 
 + (instancetype) getDBAccess;
 
+- (FMResultSet *) executeSQL: (NSString *) sql;
+
 @property(strong, readonly) FMDatabase* baseDB;
 
 @end

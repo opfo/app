@@ -31,4 +31,13 @@
     return self;
 }
 
+- (FMResultSet *) executeSQL:(NSString *)sql
+{
+    FMResultSet* result;
+    if([_baseDB open]) {
+        result = [_baseDB executeQuery:sql];
+    }
+    return result;
+}
+
 @end
