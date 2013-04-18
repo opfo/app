@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "User.h"
+#import "OPFUser.h"
 #import "DatabaseAccess.h"
 
-@interface User (/*private */)
+@interface OPFUser (/*private */)
 @property(assign, readwrite) NSInteger identifier;
 @property(strong, readwrite) NSDate* creationDate;
 @end
 
-@implementation User
+@implementation OPFUser
 
 //
 // Returns all user objects in the database
