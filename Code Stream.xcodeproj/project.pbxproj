@@ -31,6 +31,7 @@
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
 		9C5F8C12171D934E0075A1C4 /* OPFPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */; };
+		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
 		9C5F8C13171D934E0075A1C4 /* OPFPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5F8C11171D934E0075A1C4 /* OPFPostViewController.xib */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* DatabaseAccess.m */; };
@@ -98,6 +99,8 @@
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+OPFSubscripting.h"; sourceTree = "<group>"; };
 		9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+OPFSubscripting.m"; sourceTree = "<group>"; };
+		9C46928B171F4D4500F75C31 /* UIView+OPFViewLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OPFViewLoading.h"; sourceTree = "<group>"; };
+		9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OPFViewLoading.m"; sourceTree = "<group>"; };
 		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
 		9C5F8C0F171D934E0075A1C4 /* OPFPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostViewController.h; sourceTree = "<group>"; };
 		9C5F8C10171D934E0075A1C4 /* OPFPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostViewController.m; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 			children = (
 				9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */,
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
+				9C46928B171F4D4500F75C31 /* UIView+OPFViewLoading.h */,
+				9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */,
 				81C18471171FD8B3008273A6 /* OPFPost.m in Sources */,
 				81C18477171FD908008273A6 /* OPFAnswer.m in Sources */,
+				9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
