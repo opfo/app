@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "DatabaseAccess.h"
+#import "OPFDatabaseAccess.h"
 
-@implementation DatabaseAccess
+@implementation OPFDatabaseAccess
 
 //
 //  Returns the singleton database instance
@@ -29,6 +29,15 @@
     if (self == nil) return nil;
     _baseDB = [FMDatabase databaseWithPath:[[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"]];
     return self;
+}
+
+- (FMResultSet *) executeSQL:(NSString *)sql
+{
+    FMResultSet* result;
+    if([_baseDB open]) {
+        result = [_baseDB executeQuery:sql];
+    }
+    return result;
 }
 
 @end

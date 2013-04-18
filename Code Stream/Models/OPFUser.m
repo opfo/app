@@ -7,7 +7,7 @@
 //
 
 #import "OPFUser.h"
-#import "DatabaseAccess.h"
+#import "OPFDatabaseAccess.h"
 
 @interface OPFUser (/*private */)
 @property(assign, readwrite) NSInteger identifier;
