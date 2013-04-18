@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol OPFModel <NSObject>
-- (NSArray *) all;
-- (id) find: (NSInteger) identifier;
-- (NSArray *) where: (NSDictionary *) attributes;
+@required
++ (NSArray *) all;
++ (instancetype) find: (NSInteger) identifier;
++ (NSArray *) where: (NSDictionary *) attributes;
 @end
