@@ -70,6 +70,7 @@
     
     [commentViewCell setupDateformatters];
     [commentViewCell setModelValuesInView];
+    [commentViewCell setupUserInteractionBindings];
     
     commentViewCell.commentsViewController = self;
     
@@ -78,10 +79,8 @@
 
 - (void)voteUpComment:(UIButton *)sender
 {
-    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
-    NSIndexPath *indexPathOfCommentViewCell = [commentTableView indexPathForCell:subordinateCommentViewCell];
-    
-    NSLog(@"%@",indexPathOfCommentViewCell);
+//    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
+//    NSIndexPath *indexPathOfCommentViewCell = [commentTableView indexPathForCell:subordinateCommentViewCell];    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
