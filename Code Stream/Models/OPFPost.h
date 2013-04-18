@@ -11,8 +11,8 @@
 #import "OPFModel.h"
 
 typedef enum : NSInteger {
-    QUESTION = 1,
-    ANSWER = 2
+    KOPF_POST_TYPE_QUESTION = 1,
+    KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
 @interface OPFPost : MTLModel <OPFModel>
@@ -24,8 +24,8 @@ typedef enum : NSInteger {
 @property (assign) NSInteger viewCount;
 @property (copy) NSString* title;
 @property (copy) NSString* body;
-@property (weak) OPFUser* owner;
-@property (weak) OPFUser* lastEditor;
+@property (strong) OPFUser* owner;
+@property (strong) OPFUser* lastEditor;
 @property (copy) NSString* lastEditorDisplayName;
 @property (strong) NSDate* lastEditDate;
 @property (strong) NSDate* lastActivityDate;
