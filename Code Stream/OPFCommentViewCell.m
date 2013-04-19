@@ -8,6 +8,7 @@
 
 #import "OPFCommentViewCell.h"
 #import "OPFCommentsViewController.h"
+#import "OPFComment.h"
 
 @implementation OPFCommentViewCell
 
@@ -21,6 +22,7 @@
 - (void)voteUpComment:(UIButton *)sender
 {
     [self.commentsViewController voteUpComment:sender];
+    //TODO: Add handling for only adding once and saving it to D B   
 }
 
 - (void)setModelValuesInView
@@ -28,7 +30,7 @@
 //    self.commentBody.text = self.commentModel.commentBody;
 //    self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.lastEditDate];
 //    self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.lastEditDate];
-//    self.commentVoteUp.titleLabel.text = self.commentModel.votes;
+//    self.commentVoteUp.titleLabel.text = [@(self.commentModel.score) stringValue];
 //    self.commentUserName.text = self.commentModel.userName;
 //    self.userAvatar.text = self.commentModel.userAvatar;
 }
@@ -40,10 +42,5 @@
     
     [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     [self.timeFormatter setDateFormat:@"HH:mm"];
-}
-
-- (void)setupUserInteractionBindings
-{
-    [self.commentVoteUp addTarget:self action:@selector(commentVoteUp) forControlEvents:UIControlEventTouchUpInside];
 }
 @end
