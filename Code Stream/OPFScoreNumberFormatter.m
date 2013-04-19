@@ -32,6 +32,7 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 		_numberFormatter.groupingSeparator = @",";
 		_numberFormatter.decimalSeparator = @".";
 		_numberFormatter.maximumFractionDigits = 1;
+		_numberFormatter.roundingMode = NSNumberFormatterRoundHalfUp;
 	}
 	return self;
 }
@@ -52,6 +53,8 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 	} else {
 		score = [self.numberFormatter numberFromString:string].unsignedIntegerValue;
 	}
+	
+	return score;
 }
 
 - (NSString *)stringFromScore:(NSUInteger)score
@@ -61,7 +64,7 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 		string = [self.numberFormatter stringFromNumber:@(score)];
 	} else {
 		double shortFormScore = ((double)score) / 1000.f;
-		string = [self.numberFormatter stringFromNumber:@(shortFormScore)];
+		string = [[self.numberFormatter stringFromNumber:@(shortFormScore)] stringByAppendingString:@"k"];
 	}
 	return string;
 }
