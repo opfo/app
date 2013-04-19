@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class OPFCommentsViewController;
+@class OPFCommentsViewController, OPFComment;
 
 @interface OPFCommentViewCell : UITableViewCell
 
@@ -21,9 +21,11 @@
 @property(nonatomic, weak) IBOutlet UIButton *commentVoteUp;
 @property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
 
-@property(nonatomic, strong) NSObject *commentModel;
+@property(nonatomic, strong) OPFComment *commentModel;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 @property(nonatomic, strong) NSDateFormatter *timeFormatter;
+
+- (IBAction)voteUpComment:(UIButton *)sender;
 
 - (void)setModelValuesInView;
 - (void)setupDateformatters;
