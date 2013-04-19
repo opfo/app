@@ -15,10 +15,24 @@
     return [OPFDatabaseAccess getDBAccess];
 }
 
++ (FMResultSet *) allForModel:(NSString *)modelName{
+    NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@'", modelName, modelName];
+    return [[self getDBAccess] executeSQL:sql];
+}
+
++ (FMResultSet *) allForModel:(NSString *)modelName page:(NSInteger)page {
+    return [self allForModel:modelName page:page per: [self defaultPageSize]];
+}
+
++ (FMResultSet *) allForModel:(NSString *)modelName page:(NSInteger)page per:(NSInteger)per {
+    NSInteger offset = per * page;
+    NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@' LIMIT %d OFFSET %d", modelName, modelName, per, offset];
+    return [[self getDBAccess] executeSQL:sql];
+}
+
 + (FMResultSet *) findModel:(NSString *)modelName withIdentifier:(NSInteger)identifier
 {
     NSString* sql = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@' WHERE '%@'.'id' = %d  LIMIT 1", modelName, modelName, modelName, identifier];
-    NSLog(sql);
     return [[self getDBAccess] executeSQL: sql];
 }
 
@@ -29,6 +43,10 @@
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US"];
     formatter.dateFormat = @"yyyy-MM-dd";
     return formatter;
+}
+
++ (NSInteger) defaultPageSize {
+    return 10;
 }
 
 @end

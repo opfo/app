@@ -15,5 +15,9 @@
 
 +(OPFDatabaseAccess *) getDBAccess;
 +(FMResultSet *) findModel: (NSString*) modelName withIdentifier: (NSInteger) identifier;
++(FMResultSet *) allForModel: (NSString*) modelName;
++(FMResultSet *) allForModel:(NSString *)modelName page: (NSInteger) page;
++(FMResultSet *) allForModel:(NSString *)modelName page: (NSInteger) page per: (NSInteger) per;
 +(NSDateFormatter*) dateFormatter;
++(NSInteger) defaultPageSize;
 @end
