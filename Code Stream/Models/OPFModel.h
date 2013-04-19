@@ -6,13 +6,14 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "MTLModel.h"
+#import "Mantle.h"  
 #import "OPFDatabaseAccess.h"
 
-@interface OPFModel : MTLModel
+@interface OPFModel : MTLModel <MTLJSONSerializing>
 
 @property (copy, readonly) NSString* modelName;
 
 +(OPFDatabaseAccess *) getDBAccess;
 +(FMResultSet *) findModel: (NSString*) modelName withIdentifier: (NSInteger) identifier;
++(NSDateFormatter*) dateFormatter;
 @end
