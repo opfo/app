@@ -17,7 +17,7 @@
 
 + (NSArray *) all
 {
-    return nil;
+    return [self allForModel: [self modelTableName]];
 }
 
 + (NSArray *) where:(NSDictionary *)attributes
@@ -25,21 +25,19 @@
     return nil;
 }
 
+//
+// Find a single comment
 + (instancetype) find:(NSInteger)identifier
 {
     FMResultSet* result = [self findModel: [self modelTableName] withIdentifier: identifier];
     NSError* error;
     if([result next]) {
-        NSLog(@"Found a result at least");
         NSDictionary* attributes = [result resultDictionary];
-        [[result resultDictionary] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* STOP){
-            NSLog([NSString stringWithFormat:@"Key: %@, Obj: %@", key, obj]);
-        }];
         OPFComment* comment =[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
         [result close];
         return comment;
     } else {
-        NSLog(@"Apparently we found nothing");
+        NSLog(@"Comment not found");
         [result close];
         return nil;
     }
@@ -55,7 +53,7 @@
              @"text": @"text",
              @"creationDate": @"creation_date",
              @"author_id": @"user_id"
-             };
+    };
 }
 
 @end
