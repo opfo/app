@@ -68,6 +68,7 @@
 		9C7F6E12171FE171008F6473 /* OPFPostTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */; };
 		9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
+		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFScoreNumberFormatter.h; sourceTree = "<group>"; };
 		9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatter.m; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */,
+				9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */,
 			);
 			name = UtilitySpecs;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				81C1C74517202F3C004AB177 /* OPFCommentSpec.m in Sources */,
 				81D5E0571721661500E572B2 /* OPFModelSpec.m in Sources */,
 				81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */,
+				9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
