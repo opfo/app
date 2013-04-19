@@ -90,7 +90,7 @@
 {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     // Need to change locale later?
-    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"en_US"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier: @"sv_SE"];
     formatter.dateFormat = @"yyyy-MM-dd";
     return formatter;
 }
@@ -128,6 +128,14 @@
 {
     [NSException raise:@"Invalid call on abstract method" format:@""];
     return nil;
+}
+
++ (NSValueTransformer *)createdAtJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
 }
 
 @end
