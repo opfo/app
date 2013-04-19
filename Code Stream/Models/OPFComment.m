@@ -17,7 +17,31 @@
 
 + (NSArray *) all
 {
-    return [self allForModel: [self modelTableName]];
+    FMResultSet* result = [self allForModel: [self modelTableName]];
+    return [self parseMultipleResult:result];
+}
+
++ (NSArray *) all:(NSInteger)page
+{
+    FMResultSet* result = [self allForModel:[self modelTableName] page:page];
+    return [self parseMultipleResult:result];
+}
+
++ (NSArray*) all:(NSInteger) page per:(NSInteger)pageSize
+{
+    FMResultSet* result = [self allForModel:[self modelTableName] page:page per:pageSize];
+    return [self parseMultipleResult: result];
+}
+
++ (NSArray *) parseMultipleResult: (FMResultSet*) result
+{
+    NSMutableArray* comments = [[NSMutableArray alloc] init];
+    OPFComment* comment;
+    while([result next]) {
+        comment = [self parseDictionary:[result resultDictionary]];
+        [comments addObject:comment];
+    }
+    return comments;
 }
 
 + (NSArray *) where:(NSDictionary *)attributes
@@ -54,6 +78,11 @@
              @"creationDate": @"creation_date",
              @"author_id": @"user_id"
     };
+}
+
++ (instancetype) parseDictionary: (NSDictionary*) attributes {
+    NSError* error;
+    return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
 }
 
 @end

@@ -35,4 +35,17 @@ describe(@"Model creation", ^{
     });
 });
 
+describe(@"Pagination", ^{
+    it(@"should paginate by ten by default", ^{
+        NSArray* result = [OPFComment all:0];
+        expect([result count]).to.equal([OPFModel defaultPageSize]);
+    });
+    
+    it(@"should support arbitrary pagination", ^{
+        NSArray* result = [OPFComment all:0 per: 500];
+        expect([result count]).to.equal(500);
+    });
+});
+
+
 SpecEnd
