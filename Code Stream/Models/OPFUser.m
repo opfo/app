@@ -31,5 +31,9 @@
     return NULL;
 }
 
++ (NSString*) modelTableName {
+    return @"users";
+}
+
 
 @end

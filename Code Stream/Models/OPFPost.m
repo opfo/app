@@ -10,6 +10,11 @@
 
 @implementation OPFPost
 
++ (NSString *) modelTableName
+{
+    return @"posts";
+}
+
 + (NSArray *) all {
     return NULL;
 }
