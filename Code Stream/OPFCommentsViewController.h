@@ -10,7 +10,7 @@
 
 @class OPFPost;
 
-@interface OPFCommentsViewController : UITableViewController {
+@interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *commentTableView;
 }
 
