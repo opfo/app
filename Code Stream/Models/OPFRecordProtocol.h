@@ -11,6 +11,8 @@
 @protocol OPFRecordProtocol <NSObject>
 @required
 + (NSArray *) all;
++ (NSArray *) all: (NSInteger) page;
++ (NSArray *) all: (NSInteger) page per: (NSInteger) pageSize;
 + (instancetype) find: (NSInteger) identifier;
 + (NSArray *) where: (NSDictionary *) attributes;
 + (NSString*) modelTableName;
