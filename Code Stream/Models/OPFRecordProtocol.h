@@ -13,4 +13,5 @@
 + (NSArray *) all;
 + (instancetype) find: (NSInteger) identifier;
 + (NSArray *) where: (NSDictionary *) attributes;
++ (NSString*) modelTableName;
 @end
