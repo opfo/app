@@ -15,6 +15,8 @@
     return [OPFDatabaseAccess getDBAccess];
 }
 
+# pragma mark - Generic find all methods
+
 + (FMResultSet *) allForModel:(NSString *)modelName{
     NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@'", modelName, modelName];
     return [[self getDBAccess] executeSQL:sql];
@@ -36,6 +38,54 @@
     return [[self getDBAccess] executeSQL: sql];
 }
 
+# pragma mark - Generic where methods
+
++ (FMResultSet*) findModel:(NSString *)modelName where: (NSDictionary*) attributes
+{
+    return nil;
+}
+
+# pragma mark - Find All methods used by the actual models
+
++ (NSArray *) all
+{
+    FMResultSet* result = [self allForModel: [self modelTableName]];
+    return [self parseMultipleResult:result];
+}
+
++ (NSArray *) all:(NSInteger)page
+{
+    FMResultSet* result = [self allForModel:[self modelTableName] page:page];
+    return [self parseMultipleResult:result];
+}
+
+// Find page [page] of all models with [pageSize]
++ (NSArray*) all:(NSInteger) page per:(NSInteger)pageSize
+{
+    FMResultSet* result = [self allForModel:[self modelTableName] page:page per:pageSize];
+    return [self parseMultipleResult: result];
+}
+
+//
+// Find a single model
++ (instancetype) find:(NSInteger)identifier
+{
+    FMResultSet* result = [self findModel: [self modelTableName] withIdentifier: identifier];
+    NSError* error;
+    if([result next]) {
+        NSDictionary* attributes = [result resultDictionary];
+        id model =[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
+        [result close];
+        return model;
+    } else {
+        NSLog(@"Model not found");
+        [result close];
+        return nil;
+    }
+}
+
+# pragma mark - Data parsing methods
+
 + (NSDateFormatter*) dateFormatter
 {
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
@@ -45,8 +95,41 @@
     return formatter;
 }
 
++ (NSArray *) parseMultipleResult: (FMResultSet*) result
+{
+    NSMutableArray* models = [[NSMutableArray alloc] init];
+    id model;
+    while([result next]) {
+        model = [self parseDictionary:[result resultDictionary]];
+        [models addObject: model];
+    }
+    return models;
+}
+
 + (NSInteger) defaultPageSize {
     return 10;
+}
+
+
+// This method needs to be overridden by subclasses
++ (NSString*) modelTableName
+{
+    [NSException raise:@"Invalid call on abstract method" format:@""];
+    return nil;
+}
+
+// This method needs to be overridden by subclasses
++ (instancetype) parseDictionary: (NSDictionary*) attributes
+{
+    [NSException raise:@"Invalid call on abstract method" format:@""];
+    return nil;
+}
+
+// This method needs to be overridden by subclasses
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    [NSException raise:@"Invalid call on abstract method" format:@""];
+    return nil;
 }
 
 @end

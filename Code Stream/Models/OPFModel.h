@@ -8,8 +8,9 @@
 
 #import "Mantle.h"  
 #import "OPFDatabaseAccess.h"
+#import "OPFRecordProtocol.h"
 
-@interface OPFModel : MTLModel <MTLJSONSerializing>
+@interface OPFModel : MTLModel <MTLJSONSerializing, OPFRecordProtocol>
 
 @property (copy, readonly) NSString* modelName;
 

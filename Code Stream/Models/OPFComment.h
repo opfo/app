@@ -11,7 +11,7 @@
 #import "OPFPost.h"
 #import "OPFModel.h"
 
-@interface OPFComment : OPFModel <OPFRecordProtocol>
+@interface OPFComment : OPFModel
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong) OPFPost* post;
