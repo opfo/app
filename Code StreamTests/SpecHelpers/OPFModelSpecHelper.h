@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FMResultSet.h"
 
-@interface OPFModelTestHelper : NSObject
+@interface OPFModelSpecHelper : NSObject
+
++(NSInteger) countResult: (FMResultSet*) result;
 
 @end

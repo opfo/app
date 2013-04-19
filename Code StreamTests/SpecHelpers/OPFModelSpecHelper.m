@@ -6,8 +6,16 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFModelTestHelper.h"
+#import "OPFModelSpecHelper.h"
 
-@implementation OPFModelTestHelper
+@implementation OPFModelSpecHelper
+
++(NSInteger) countResult: (FMResultSet*) result {
+    NSInteger i = 0;
+    while([result next]) {
+        i++;
+    }
+    return i;
+}
 
 @end
