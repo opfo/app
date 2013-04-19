@@ -10,13 +10,23 @@
 
 @class OPFPost;
 
-@interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    IBOutlet UITableView *commentTableView;
-}
+@interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic, strong) NSArray *commentModels;
 @property(nonatomic, strong) OPFPost *postModel;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *inputView;
+@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
+@property (weak, nonatomic) IBOutlet UIButton *inputSendButton;
+
 - (void)voteUpComment:(UIButton *)sender;
 
+- (IBAction)commentSavePressed:(UIButton *)sender;
+- (void)scrollToBottomAnimated:(BOOL)animated;
+
+#pragma mark - Keyboard notifications
+- (void)handleWillShowKeyboard:(NSNotification *)notification;
+- (void)handleWillHideKeyboard:(NSNotification *)notification;
+- (void)keyboardWillShowHide:(NSNotification *)notification;
 @end

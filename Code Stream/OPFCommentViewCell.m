@@ -22,8 +22,7 @@
 - (void)voteUpComment:(UIButton *)sender
 {
     [self.commentsViewController voteUpComment:sender];
-    //TODO: Add handling for only adding once and saving it to DB
-    self.commentVoteUp.titleLabel.text = [@(self.commentModel.score) stringValue];
+    //TODO: Add handling for only adding once and saving it to D B   
 }
 
 - (void)setModelValuesInView
@@ -43,10 +42,5 @@
     
     [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     [self.timeFormatter setDateFormat:@"HH:mm"];
-}
-
-- (void)setupUserInteractionBindings
-{
-    [self.commentVoteUp addTarget:self action:@selector(voteUpComment:) forControlEvents:UIControlEventTouchUpInside];
 }
 @end

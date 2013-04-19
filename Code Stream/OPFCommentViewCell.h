@@ -25,8 +25,9 @@
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 @property(nonatomic, strong) NSDateFormatter *timeFormatter;
 
+- (IBAction)voteUpComment:(UIButton *)sender;
+
 - (void)setModelValuesInView;
 - (void)setupDateformatters;
-- (void)setupUserInteractionBindings;
 
 @end

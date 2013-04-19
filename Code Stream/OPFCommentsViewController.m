@@ -9,6 +9,9 @@
 #import "OPFCommentsViewController.h"
 #import "OPFCommentViewCell.h"
 #import "OPFCommentViewHeaderView.h"
+#import "UIView+AnimationOptionsForCurve.h"
+
+#define INPUT_HEIGHT 44.0f
 
 @interface OPFCommentsViewController ()
 
@@ -19,19 +22,24 @@
 - (id)init
 {
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
-    
+            
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)commentSavePressed:(UIButton *)sender
+{
+    NSString *commentText = self.inputTextField.text;
+    
+    NSLog(@"%@ %@", @"Comment's text:", commentText);
+
+    [self.inputTextField setText:nil];
+    [self.inputTextField resignFirstResponder];
+    [self scrollToBottomAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +78,6 @@
     
     [commentViewCell setupDateformatters];
     [commentViewCell setModelValuesInView];
-    [commentViewCell setupUserInteractionBindings];
     
     commentViewCell.commentsViewController = self;
     
@@ -80,7 +87,7 @@
 - (void)voteUpComment:(UIButton *)sender
 {
 //    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
-//    NSIndexPath *indexPathOfCommentViewCell = [commentTableView indexPathForCell:subordinateCommentViewCell];    
+//    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -103,6 +110,85 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 122;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self scrollToBottomAnimated:NO];
+    
+	[[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(handleWillShowKeyboard:)
+		name:UIKeyboardWillShowNotification
+        object:nil];
+    
+	[[NSNotificationCenter defaultCenter] addObserver:self
+		selector:@selector(handleWillHideKeyboard:)
+		name:UIKeyboardWillHideNotification
+        object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+#pragma mark - Keyboard notifications
+- (void)handleWillShowKeyboard:(NSNotification *)notification
+{
+    [self keyboardWillShowHide:notification];
+}
+
+- (void)handleWillHideKeyboard:(NSNotification *)notification
+{
+    [self keyboardWillShowHide:notification];
+}
+
+- (void)keyboardWillShowHide:(NSNotification *)notification
+{
+    CGRect keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+	UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+	double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    [UIView animateWithDuration:duration delay:0.0f options:[UIView animationOptionsForCurve:curve]
+        animations:^{
+            CGFloat keyboardY = [self.view convertRect:keyboardRect fromView:nil].origin.y;
+                         
+            CGRect inputViewFrame = self.inputView.frame;
+            CGFloat inputViewFrameY = keyboardY - inputViewFrame.size.height;
+                         
+            // for ipad modal form presentations
+            CGFloat messageViewFrameBottom = self.view.frame.size.height - INPUT_HEIGHT;
+            if(inputViewFrameY > messageViewFrameBottom)
+                inputViewFrameY = messageViewFrameBottom;
+                         
+            self.inputView.frame = CGRectMake(inputViewFrame.origin.x, inputViewFrameY, inputViewFrame.size.width, inputViewFrame.size.height);
+                         
+            UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, self.view.frame.size.height - self.inputView.frame.origin.y - INPUT_HEIGHT, 0.0f);
+
+            self.tableView.contentInset = insets;
+            self.tableView.scrollIndicatorInsets = insets;
+        }
+        completion:^(BOOL finished) {
+        }];
+}
+
+- (void)scrollToBottomAnimated:(BOOL)animated
+{
+    NSInteger rows = [self.tableView numberOfRowsInSection:0];
+    
+    if(rows > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                        atScrollPosition:UITableViewScrollPositionBottom
+                        animated:animated];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self commentSavePressed:self.inputSendButton];
+    
+    return YES;
 }
 
 #pragma mark - Table view delegate
