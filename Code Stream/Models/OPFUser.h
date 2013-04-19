@@ -11,7 +11,7 @@
 #import "OPFModel.h"
 #import "OPFRecordProtocol.h"
 
-@interface OPFUser : OPFModel <OPFRecordProtocol>
+@interface OPFUser : OPFModel
 
 @property (assign, readonly) NSInteger identifier;
 @property (assign) NSInteger reputation;
@@ -26,5 +26,9 @@
 @property (assign) NSInteger view;
 @property (assign) NSInteger upVotes;
 @property (assign) NSInteger downVotes;
+
+- (NSArray *) questionsPage: (NSInteger) page;
+- (NSArray *) answersPage: (NSInteger) page;
+- (NSArray *) commentsPage: (NSInteger) page;
 
 @end
