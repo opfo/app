@@ -16,6 +16,7 @@ SpecBegin(OPFComment)
 describe(@"Model creation", ^{
     __block OPFComment* comment;
     __block NSDictionary* properties = @{@"score": @(9), @"text": @"lorem ipsum", @"creationDate": [NSDate date]};
+    __block NSString* commentBody = @"a minute later doesn't make you any less right.";
     
     it(@"should be possible using a dictionary", ^{
         NSError* error;
@@ -27,9 +28,24 @@ describe(@"Model creation", ^{
     });
     
     it(@"should be possible using the database", ^{
-        OPFComment* comment = [OPFComment find: 10393284];
+        OPFComment* comment = [OPFComment find: 8894930];
         expect(comment).toNot.equal(nil);
+        expect(comment.text).to.equal(commentBody);
+        expect(comment.author_id).to.equal(@(378133));
     });
 });
+
+describe(@"Pagination", ^{
+    it(@"should paginate by ten by default", ^{
+        NSArray* result = [OPFComment all:0];
+        expect([result count]).to.equal([OPFModel defaultPageSize]);
+    });
+    
+    it(@"should support arbitrary pagination", ^{
+        NSArray* result = [OPFComment all:0 per: 500];
+        expect([result count]).to.equal(500);
+    });
+});
+
 
 SpecEnd

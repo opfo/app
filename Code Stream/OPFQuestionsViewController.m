@@ -63,14 +63,11 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
     OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-	
-	cell.title = @"Placeholder Title";
-	cell.views = (arc4random() % 1500);
-	cell.answers = (arc4random() % 100);
-	cell.acceptedAnswer = (arc4random() % 2);
+	[cell configureWithQuestionData:[OPFQuestion generatePlaceholderQuestion]];
 
     return cell;
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 150;

@@ -9,14 +9,17 @@
 #import "MTLModel.h"
 #import "OPFModel.h"
 #import "OPFPost.h"
+#import "OPFModel.h"
 
-@interface OPFComment : MTLModel <OPFModel>
+@interface OPFComment : OPFModel <OPFRecordProtocol>
 
 @property (assign, readonly) NSInteger identifier;
 @property (strong) OPFPost* post;
-@property (assign) NSInteger score;
+@property (strong) NSNumber* score;
 @property (copy) NSString* text;
 @property (strong) NSDate* creationDate;
+@property (assign) NSInteger author_id;
 @property (strong) OPFUser* author;
+@property (strong, readonly) NSDictionary* keyTransformations;
 
 @end
