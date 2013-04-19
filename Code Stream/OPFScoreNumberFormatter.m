@@ -49,7 +49,7 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 	NSRange rangeOfk = [string rangeOfString:@"k"];
 	if (rangeOfk.location != NSNotFound) {
 		string = [string substringToIndex:rangeOfk.location];
-		score = [self.numberFormatter numberFromString:string].unsignedIntegerValue * 1000;
+		score = (NSUInteger)([self.numberFormatter numberFromString:string].doubleValue * 1000.f);
 	} else {
 		score = [self.numberFormatter numberFromString:string].unsignedIntegerValue;
 	}
