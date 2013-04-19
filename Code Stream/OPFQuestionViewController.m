@@ -13,6 +13,7 @@
 #import "OPFQuestionHeaderView.h"
 #import "NSCache+OPFSubscripting.h"
 #import "OPFPost.h"
+#import "OPFCommentsViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -265,6 +266,15 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier] == NO)
+        return;
+    
+    OPFPost *post = [self postForIndexPath:indexPath];
+    OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
+    
+    commentViewController.postModel = post;
+    
+    [self.navigationController pushViewController:commentViewController animated:YES];
 }
 
 @end

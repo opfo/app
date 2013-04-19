@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
+		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
+		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
+		1A816AC0171DF51700964AF2 /* tdeekens.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABF171DF51700964AF2 /* tdeekens.jpg */; };
+		1A816AC2171DF6D300964AF2 /* tdeekens@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */; };
+		1A816AC6171DF7EC00964AF2 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC4171DF7EC00964AF2 /* calendar@2x.png */; };
+		1A816AC7171DF7EC00964AF2 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC5171DF7EC00964AF2 /* clock@2x.png */; };
+		1A816AC9171DFBBC00964AF2 /* arrow-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AC8171DFBBC00964AF2 /* arrow-up@2x.png */; };
+		1A816AD2171E00B900964AF2 /* JesperJosefsson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACE171E00B900964AF2 /* JesperJosefsson@2x.jpg */; };
+		1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */; };
+		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
+		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
+		1A97782C171F20310061DA85 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
+		1A97782F171F33430061DA85 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */; };
+		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
 		1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */; };
 		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
@@ -44,6 +59,7 @@
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
 		9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */; };
 		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
+		9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
 		9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */; };
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
@@ -62,6 +78,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
+		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
+		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
+		1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewCell.m; sourceTree = "<group>"; };
+		1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewCell.xib; sourceTree = "<group>"; };
+		1A816ABF171DF51700964AF2 /* tdeekens.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tdeekens.jpg; sourceTree = "<group>"; };
+		1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tdeekens@2x.jpg"; sourceTree = "<group>"; };
+		1A816AC4171DF7EC00964AF2 /* calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar@2x.png"; sourceTree = "<group>"; };
+		1A816AC5171DF7EC00964AF2 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock@2x.png"; sourceTree = "<group>"; };
+		1A816AC8171DFBBC00964AF2 /* arrow-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-up@2x.png"; sourceTree = "<group>"; };
+		1A816ACE171E00B900964AF2 /* JesperJosefsson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "JesperJosefsson@2x.jpg"; sourceTree = "<group>"; };
+		1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarcusJohansson@2x.jpg"; sourceTree = "<group>"; };
+		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
+		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
+		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
+		1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
+		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewCell.xib; sourceTree = "<group>"; };
 		1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSingleQuestionPreviewCell.h; sourceTree = "<group>"; };
 		1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSingleQuestionPreviewCell.m; sourceTree = "<group>"; };
@@ -135,6 +169,7 @@
 		9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionHeaderView.xib; sourceTree = "<group>"; };
 		9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionHeaderView.h; sourceTree = "<group>"; };
 		9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionHeaderView.m; sourceTree = "<group>"; };
+		9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewControllerSpec.m; sourceTree = "<group>"; };
 		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
 		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
 		9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostBodyTableViewCell.h; sourceTree = "<group>"; };
@@ -172,6 +207,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A816ABE171DF51700964AF2 /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				1A816ACE171E00B900964AF2 /* JesperJosefsson@2x.jpg */,
+				1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */,
+				1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */,
+				1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */,
+				1A816AC1171DF6D300964AF2 /* tdeekens@2x.jpg */,
+				1A816ABF171DF51700964AF2 /* tdeekens.jpg */,
+			);
+			path = Avatars;
+			sourceTree = "<group>";
+		};
+		1A816AC3171DF7EC00964AF2 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				1A816AC8171DFBBC00964AF2 /* arrow-up@2x.png */,
+				1A816AC4171DF7EC00964AF2 /* calendar@2x.png */,
+				1A816AC5171DF7EC00964AF2 /* clock@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
+		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */,
+				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
+			);
+			name = "Comment Table View Cells";
+			sourceTree = "<group>";
+		};
 		1478B5ED171FD8E30033DFA8 /* Questions View */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +356,8 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A816AC3171DF7EC00964AF2 /* Icons */,
+				1A816ABE171DF51700964AF2 /* Avatars */,
 				8128DF95171D832C00C44410 /* so.sqlite */,
 				9C1C513C1716FBE0004CC9E3 /* Code Stream-Info.plist */,
 				1478B5FD17201A000033DFA8 /* acceptedAnswer.png */,
@@ -307,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				81D5E0581721689500E572B2 /* SpecHelpers */,
+				9C4DD47F1720240F002D5238 /* ViewControllerSpecs */,
 				81E57937172012EE00F9D4E3 /* UtilitySpecs */,
 				816F9736171D47EE00E881B6 /* ModelSpecs */,
 				9C1C515F1716FBE1004CC9E3 /* Supporting Files */,
@@ -346,9 +416,14 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */,
+				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
+				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
+				1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
+				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -361,6 +436,8 @@
 			children = (
 				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
+				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
+				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -449,6 +526,14 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		9C4DD47F1720240F002D5238 /* ViewControllerSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */,
+			);
+			path = ViewControllerSpecs;
+			sourceTree = "<group>";
+		};
 		9C7F6E16171FE185008F6473 /* Post Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +550,7 @@
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
 			);
 			name = "Table View Cells";
@@ -550,6 +636,18 @@
 				9C1C514B1716FBE0004CC9E3 /* Default-568h@2x.png in Resources */,
 				9C1C514E1716FBE0004CC9E3 /* MainStoryboard.storyboard in Resources */,
 				8128DF96171D832C00C44410 /* so.sqlite in Resources */,
+				1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */,
+				1A816AC0171DF51700964AF2 /* tdeekens.jpg in Resources */,
+				1A816AC2171DF6D300964AF2 /* tdeekens@2x.jpg in Resources */,
+				1A816AC6171DF7EC00964AF2 /* calendar@2x.png in Resources */,
+				1A816AC7171DF7EC00964AF2 /* clock@2x.png in Resources */,
+				1A816AC9171DFBBC00964AF2 /* arrow-up@2x.png in Resources */,
+				1A816AD2171E00B900964AF2 /* JesperJosefsson@2x.jpg in Resources */,
+				1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */,
+				1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */,
+				1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */,
+				1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */,
+				1A97782C171F20310061DA85 /* OPFCommentViewHeaderView.xib in Resources */,
 				9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */,
 				1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */,
 				1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */,
@@ -620,6 +718,9 @@
 				9C1C51451716FBE0004CC9E3 /* OPFAppDelegate.m in Sources */,
 				815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */,
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
+				1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */,
+				1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */,
+				1A97782F171F33430061DA85 /* OPFCommentViewHeaderView.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */,
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
 				81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */,
@@ -644,6 +745,7 @@
 			files = (
 				816F9739171D48ED00E881B6 /* OPFUserSpec.m in Sources */,
 				81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */,
+				9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */,
 				81C1C74517202F3C004AB177 /* OPFCommentSpec.m in Sources */,
 				81D5E0571721661500E572B2 /* OPFModelSpec.m in Sources */,
 				81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */,
