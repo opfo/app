@@ -8,6 +8,7 @@
 
 #import "OPFQuestionsViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
+#import "OPFQuestion+Mockup.h"
 
 @interface OPFQuestionsViewController ()
 
