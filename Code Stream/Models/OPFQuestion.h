@@ -16,7 +16,4 @@
 @property (strong) NSDate* closedDate;
 @property (assign) NSInteger answerCount;
 
-// Added by <gothm> for testing. Delete / move at will
-+ (id) generatePlaceholderQuestion;
-
 @end
