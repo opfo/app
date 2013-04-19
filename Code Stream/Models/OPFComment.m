@@ -33,9 +33,4 @@
     };
 }
 
-+ (instancetype) parseDictionary: (NSDictionary*) attributes {
-    NSError* error;
-    return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
-}
-
 @end

@@ -106,6 +106,11 @@
     return models;
 }
 
++ (instancetype) parseDictionary: (NSDictionary*) attributes {
+    NSError* error;
+    return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
+}
+
 + (NSInteger) defaultPageSize {
     return 10;
 }
@@ -113,13 +118,6 @@
 
 // This method needs to be overridden by subclasses
 + (NSString*) modelTableName
-{
-    [NSException raise:@"Invalid call on abstract method" format:@""];
-    return nil;
-}
-
-// This method needs to be overridden by subclasses
-+ (instancetype) parseDictionary: (NSDictionary*) attributes
 {
     [NSException raise:@"Invalid call on abstract method" format:@""];
     return nil;
