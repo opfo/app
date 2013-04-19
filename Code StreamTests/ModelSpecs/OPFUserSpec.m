@@ -9,11 +9,58 @@
 #import "Specta.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
+#import "OPFUser.h"
+#import "Mantle.h"
 
 SpecBegin(OPFUser)
 
 describe(@"User creation", ^{
+    __block OPFUser* user;
+    __block NSDictionary* properties = @{@"reputation": @(9), @"displayName": @"lorem ipsum", @"creationDate": [NSDate date]};
+    __block NSDictionary* correctProperties
+        = @{
+            @"identifier": @42,
+            @"reputation": @9060,
+            @"creationDate": [[OPFModel dateFormatter] dateFromString:@"2008-08-01"],
+            @"displayName": @"Coincoin",
+            @"email_hash": @"621f5ee6cf6e295d1b5fa45bde67c803",
+            @"lastAccessDate": [[OPFModel dateFormatter] dateFromString:@"2012-07-30"],
+            @"location": @"Montreal, Canada",
+            @"age": @32,
+            @"downVotes": @37,
+            @"upVotes": @297
+            };
     
+    it(@"should be possible using a dictionary", ^{
+        NSError* error;
+        user = [[OPFUser alloc] initWithDictionary: properties error: &error];
+        expect(user).toNot.equal(nil);
+        expect(user.reputation).to.equal(@(9));
+        expect(user.displayName).to.equal(properties[@"displayName"]);
+        expect(user.creationDate).to.equal(properties[@"creationDate"]);
+    });
+    
+    it(@"should be possible using the database", ^{
+        user = [OPFUser find: 42];
+        expect(user.displayName).to.equal(@"Coincoin");
+    });
+    
+    it(@"should have all wanted attributes when fetched from the DB", ^{
+        user = [OPFUser find: 42];
+        [correctProperties ]
+    });
+});
+
+describe(@"Pagination", ^{
+    it(@"should paginate by ten by default", ^{
+        NSArray* result = [OPFUser all:0];
+        expect([result count]).to.equal([OPFModel defaultPageSize]);
+    });
+    
+    it(@"should support arbitrary pagination", ^{
+        NSArray* result = [OPFUser all:0 per: 500];
+        expect([result count]).to.equal(500);
+    });
 });
 
 SpecEnd
