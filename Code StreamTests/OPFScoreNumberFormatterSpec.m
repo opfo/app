@@ -67,6 +67,23 @@ describe(@"converting a score number into a string using _long_ form", ^{
 	});
 });
 
+describe(@"converting a score string into a number", ^{
+	OPFScoreNumberFormatter *scoreFormatter = [OPFScoreNumberFormatter new];
+	
+	it(@"should multiply a short form number with 1000", ^{
+		expect([scoreFormatter scoreFromString:@"5.3k"]).to.equal(@(5300));
+	});
+	
+	it(@"should return the score from a long form score string", ^{
+		expect([scoreFormatter scoreFromString:@"0"]).to.equal(@(0));
+		expect([scoreFormatter scoreFromString:@"999"]).to.equal(@(999));
+	});
+	
+	it(@"should return the score from a long form score string which contains thousands separators", ^{
+		expect([scoreFormatter scoreFromString:@"1,000"]).to.equal(@(1000));
+	});
+});
+
 SpecEnd
 
 
