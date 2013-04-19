@@ -10,7 +10,7 @@
 #define EXP_SHORTHAND
 #import "Expecta.h"
 #import "OPFUser.h"
-#import "Mantle.h"
+#include <objc/runtime.h>
 
 SpecBegin(OPFUser)
 
@@ -21,10 +21,10 @@ describe(@"User creation", ^{
         = @{
             @"identifier": @42,
             @"reputation": @9060,
-            @"creationDate": [[OPFModel dateFormatter] dateFromString:@"2008-08-01"],
+            @"creationDate": @"2008-08-01",
             @"displayName": @"Coincoin",
-            @"email_hash": @"621f5ee6cf6e295d1b5fa45bde67c803",
-            @"lastAccessDate": [[OPFModel dateFormatter] dateFromString:@"2012-07-30"],
+            @"emailHash": @"621f5ee6cf6e295d1b5fa45bde67c803",
+            @"lastAccessDate": @"2012-07-30",
             @"location": @"Montreal, Canada",
             @"age": @32,
             @"downVotes": @37,
@@ -47,7 +47,9 @@ describe(@"User creation", ^{
     
     it(@"should have all wanted attributes when fetched from the DB", ^{
         user = [OPFUser find: 42];
-        [correctProperties ]
+        for(NSString* key in correctProperties) {
+            expect([user valueForKey:key]).to.equal([correctProperties valueForKey: key]);
+        }
     });
 });
 
