@@ -44,6 +44,9 @@
 		81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */; };
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
+		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
+		9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
+		9C0C4F6D17221B550025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
 		9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51391716FBE0004CC9E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -139,6 +142,7 @@
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
+		9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9C1C51361716FBE0004CC9E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */,
 				9C1C51351716FBE0004CC9E3 /* UIKit.framework in Frameworks */,
 				9C1C51371716FBE0004CC9E3 /* Foundation.framework in Frameworks */,
 				9C1C51391716FBE0004CC9E3 /* CoreGraphics.framework in Frameworks */,
@@ -214,6 +219,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C0C4F6D17221B550025FDC0 /* QuartzCore.framework in Frameworks */,
+				9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */,
 				9C1C51591716FBE1004CC9E3 /* SenTestingKit.framework in Frameworks */,
 				9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */,
 				9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */,
@@ -350,6 +357,7 @@
 		9C1C51331716FBE0004CC9E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */,
 				9C1C51341716FBE0004CC9E3 /* UIKit.framework */,
 				9C1C51361716FBE0004CC9E3 /* Foundation.framework */,
 				9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */,
