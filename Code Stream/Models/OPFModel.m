@@ -32,6 +32,8 @@
     return [[self getDBAccess] executeSQL:sql];
 }
 
+# pragma mark - Generic find one model method
+
 + (FMResultSet *) findModel:(NSString *)modelName withIdentifier:(NSInteger)identifier
 {
     NSString* sql = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@' WHERE '%@'.'id' = %d  LIMIT 1", modelName, modelName, modelName, identifier];
@@ -66,7 +68,8 @@
     return [self parseMultipleResult: result];
 }
 
-//
+# pragma mark - Find one model by identifier
+
 // Find a single model
 + (instancetype) find:(NSInteger)identifier
 {
@@ -95,6 +98,7 @@
     return formatter;
 }
 
+//  Returns model objects for each row in a FMResultSet.
 + (NSArray *) parseMultipleResult: (FMResultSet*) result
 {
     NSMutableArray* models = [[NSMutableArray alloc] init];
@@ -106,11 +110,13 @@
     return models;
 }
 
+//  Takes a dictionary and returns a populated model class
 + (instancetype) parseDictionary: (NSDictionary*) attributes {
     NSError* error;
     return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
 }
 
+//  Self-explanatory.
 + (NSInteger) defaultPageSize {
     return 10;
 }
