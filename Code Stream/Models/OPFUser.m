@@ -8,6 +8,9 @@
 
 #import "OPFUser.h"
 #import "OPFDatabaseAccess.h"
+#import "OPFQuestion.h"
+#import "OPFComment.h"
+#import "OPFAnswer.h"
 
 @interface OPFUser (/*private */)
 @property(assign, readwrite) NSInteger identifier;
@@ -32,6 +35,8 @@
 
 - (NSArray*) commentsPage:(NSInteger)page
 {
+    NSDictionary* predicate = @{@"user_id": [NSNumber numberWithInteger:[self identifier]]};
+    [OPFComment where: predicate];
     return nil;
 }
 
