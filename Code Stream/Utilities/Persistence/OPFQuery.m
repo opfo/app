@@ -9,6 +9,7 @@
 #import "OPFQuery.h"
 #import "OPFIsQuery.h"
 #import "OPFInQuery.h"
+#import "OPFLikeQuery.h"
 
 
 @implementation OPFQuery
@@ -28,7 +29,9 @@
 
 - (instancetype) column: (NSString*) column like: (NSString*) term
 {
-    return nil;
+    OPFLikeQuery* query = [OPFLikeQuery initWithColumn: column term: term rootQuery: self.rootQuery];
+    self.andQuery = query;
+    return query;
 }
 
 - (instancetype) column: (NSString*) column is: (NSString*) term

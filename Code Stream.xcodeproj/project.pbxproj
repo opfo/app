@@ -41,6 +41,8 @@
 		815E1B5B17251B0A00FBDFEF /* OPFIsQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */; };
 		815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5D1725207500FBDFEF /* OPFInQuery.m */; };
 		815E1B61172532D000FBDFEF /* OPFInQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */; };
+		815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */; };
+		815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */; };
 		816F9739171D48ED00E881B6 /* OPFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* OPFUserSpec.m */; };
 		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		81C18471171FD8B3008273A6 /* OPFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18470171FD8B3008273A6 /* OPFPost.m */; };
@@ -144,6 +146,9 @@
 		815E1B5C1725207500FBDFEF /* OPFInQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFInQuery.h; path = Utilities/Persistence/OPFInQuery.h; sourceTree = "<group>"; };
 		815E1B5D1725207500FBDFEF /* OPFInQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFInQuery.m; path = Utilities/Persistence/OPFInQuery.m; sourceTree = "<group>"; };
 		815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFInQuerySpec.m; path = UtilitySpecs/OPFInQuerySpec.m; sourceTree = "<group>"; };
+		815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFLikeQuery.h; path = Utilities/Persistence/OPFLikeQuery.h; sourceTree = "<group>"; };
+		815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuery.m; path = Utilities/Persistence/OPFLikeQuery.m; sourceTree = "<group>"; };
+		815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuerySpec.m; path = UtilitySpecs/OPFLikeQuerySpec.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* OPFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUserSpec.m; path = ModelSpecs/OPFUserSpec.m; sourceTree = "<group>"; };
 		81C1846C171FD687008273A6 /* OPFQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuestion.h; path = Models/OPFQuestion.h; sourceTree = "<group>"; };
 		81C1846D171FD687008273A6 /* OPFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestion.m; path = Models/OPFQuestion.m; sourceTree = "<group>"; };
@@ -317,6 +322,8 @@
 				815E1B57172516A700FBDFEF /* OPFRootQuery.m */,
 				815E1B5C1725207500FBDFEF /* OPFInQuery.h */,
 				815E1B5D1725207500FBDFEF /* OPFInQuery.m */,
+				815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */,
+				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -357,6 +364,7 @@
 				815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */,
 				815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */,
 				815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */,
+				815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */,
 			);
 			name = UtilitySpecs;
 			sourceTree = "<group>";
@@ -848,6 +856,7 @@
 				815E1B551724856900FBDFEF /* OPFIsQuery.m in Sources */,
 				815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */,
 				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
+				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +874,7 @@
 				815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */,
 				815E1B5B17251B0A00FBDFEF /* OPFIsQuerySpec.m in Sources */,
 				815E1B61172532D000FBDFEF /* OPFInQuerySpec.m in Sources */,
+				815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
