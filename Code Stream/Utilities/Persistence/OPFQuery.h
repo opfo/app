@@ -43,13 +43,13 @@
 - (FMResultSet*) getMany;
 
 // Create a LIKE query and set is as an AND query for this query
-- (instancetype) column: (NSString*) column like: (NSString*) term;
+- (instancetype) whereColumn: (NSString*) column like: (NSString*) term;
 
 // Create an IS (equals) query and set is as an AND query for this query
-- (instancetype) column: (NSString*) column is: (NSString*) term;
+- (instancetype) whereColumn: (NSString*) column is: (NSString*) term;
 
 // Create an IN query and set is as an AND query for this query
-- (instancetype) column: (NSString*) column in: (NSArray*) terms;
+- (instancetype) whereColumn: (NSString*) column in: (NSArray*) terms;
 
 // Set a query as the conjunction query of this query
 - (instancetype) and: (OPFQuery*) otherQuery;

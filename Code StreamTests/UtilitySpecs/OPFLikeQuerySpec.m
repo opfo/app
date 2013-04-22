@@ -23,7 +23,7 @@ describe(@"fetching and SQL-strings", ^{
     
     before(^{
         rootQuery = [OPFComment query];
-        inQuery = [rootQuery column:@"text" like: @"%%CSS%%"];
+        inQuery = [rootQuery whereColumn:@"text" like: @"%%CSS%%"];
     });
     
     it(@"returns correct sql for subquery", ^{

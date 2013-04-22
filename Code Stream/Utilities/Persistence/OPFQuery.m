@@ -27,21 +27,21 @@
     return result;
 }
 
-- (instancetype) column: (NSString*) column like: (NSString*) term
+- (instancetype) whereColumn: (NSString*) column like: (NSString*) term
 {
     OPFLikeQuery* query = [OPFLikeQuery initWithColumn: column term: term rootQuery: self.rootQuery];
     self.andQuery = query;
     return query;
 }
 
-- (instancetype) column: (NSString*) column is: (NSString*) term
+- (instancetype) whereColumn: (NSString*) column is: (NSString*) term
 {
     OPFIsQuery* query = [OPFIsQuery initWithColumn: column term: term rootQuery: self.rootQuery];
     self.andQuery = query;
     return query;
 }
 
-- (instancetype) column: (NSString*) column in: (NSArray*) terms{
+- (instancetype) whereColumn: (NSString*) column in: (NSArray*) terms{
     OPFInQuery* query = [OPFInQuery initWithColumn: column terms: terms rootQuery: self];
     self.andQuery = query;
     return query;

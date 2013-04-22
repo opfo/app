@@ -23,7 +23,7 @@ describe(@"fetching and SQL-strings", ^{
     
     before(^{
         rootQuery = [OPFComment query];
-        inQuery = [rootQuery column:@"score" in: @[@"1", @"2", @(3)]];
+        inQuery = [rootQuery whereColumn:@"score" in: @[@"1", @"2", @(3)]];
     });
     
     it(@"returns correct sql for subquery", ^{
@@ -40,7 +40,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"should work with AND queries", ^{
-        [inQuery column:@"user_id" is:@"270"];
+        [inQuery whereColumn:@"user_id" is:@"270"];
         result = [inQuery getMany];
         int i = 0;
         NSDictionary* attributes;

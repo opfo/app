@@ -22,7 +22,7 @@ describe(@"fetching and SQL-strings", ^{
     
     before(^{
         rootQuery = [OPFComment query];
-        isQuery = [rootQuery column:@"score" is:@"1"];
+        isQuery = [rootQuery whereColumn:@"score" is:@"1"];
     });
     
     it(@"returns correct SQL for subquery", ^(){
@@ -43,7 +43,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"fetches correct object for for a single object query", ^{
-        isQuery = [rootQuery column: @"user_id" is: @"270"];
+        isQuery = [rootQuery whereColumn: @"user_id" is: @"270"];
         FMResultSet* result = [isQuery getOne];
         NSDictionary* attributes;
         int i = 0;
@@ -56,8 +56,10 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"returns correct SQL for an and-query", ^{
-        OPFIsQuery* secondQuery = [isQuery column:@"post_id" is:@"1"];
-        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)");
+        OPFIsQuery* secondQuery = [isQuery whereColumn:@"post_id" is:@"1"];
+        expect([rootQuery toSQLString])
+            .to
+            .equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)");
     });
 });
 

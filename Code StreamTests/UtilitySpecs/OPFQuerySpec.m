@@ -32,7 +32,7 @@ describe(@"Root query", ^(){
         expect([query rootQuery]).to.equal(query);
     });
     it(@"should return the root query for a subquery", ^{
-        secondQuery = [query column: @"score" is: @"1"];
+        secondQuery = [query whereColumn: @"score" is: @"1"];
         expect(secondQuery).notTo.beNil();
         expect(secondQuery.rootQuery).to.equal(query);
     });
