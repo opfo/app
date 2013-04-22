@@ -12,12 +12,17 @@
 
 - (NSString*) toSQLString
 {
-    NSLog(@"=============>>>> SQL STRING METHOD CALL");
+    NSMutableString* output;
     if ([self andQuery] == nil) {
-        return [self baseSQLString];
+        output = [NSMutableString stringWithString:[self baseSQLString]];
     } else {
-        return [self sqlConcat: [[self andQuery] toSQLString]];
+        output = [NSMutableString stringWithString:[self sqlConcat: [[self andQuery] toSQLString]]];
     }
+    if([self limit] != nil) {
+        [output appendString:@" "];
+        [output appendString:[NSString stringWithFormat: @"LIMIT %@", [self limit]]];
+    }
+    return output;
 }
 
 - (NSString*) baseSQLString
