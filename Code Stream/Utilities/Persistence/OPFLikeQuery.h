@@ -8,8 +8,10 @@
 
 #import "OPFQuery.h"
 
+// Represents an SQL LIKE-query
 @interface OPFLikeQuery : OPFQuery
 
+// The search term
 @property (copy) NSString* term;
 
 + (instancetype) initWithColumn: (NSString*) column term: (NSString*) term rootQuery: (OPFQuery*) otherQuery;

@@ -14,7 +14,7 @@
 {
     NSMutableString* output;
     if ([self andQuery] == nil) {
-        output = [NSMutableString stringWithString:[self baseSQLString]];
+        output = [NSMutableString stringWithString:[self baseSQL]];
     } else {
         output = [NSMutableString stringWithString:[self sqlConcat: [[self andQuery] toSQLString]]];
     }
@@ -25,7 +25,7 @@
     return output;
 }
 
-- (NSString*) baseSQLString
+- (NSString*) baseSQL
 {
     NSString* output = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@'", [self tableName], [self tableName]];
     return output;
@@ -33,7 +33,7 @@
 
 - (NSString*) sqlConcat:(NSString *) other
 {
-    NSMutableString* output = [NSMutableString stringWithString: [self baseSQLString]];
+    NSMutableString* output = [NSMutableString stringWithString: [self baseSQL]];
     [output appendString:@" "];
     [output appendString: [NSString stringWithFormat:@"WHERE %@", [[self andQuery] toSQLString]]];
     return output;

@@ -9,27 +9,76 @@
 #import <Foundation/Foundation.h>
 #import "OPFDatabaseAccess.h"
 
+// Used to query objects in a SQLite database using FMDB
+// Principle:
+//  1. Fetch a root query from the wanted model
+//  2. Start chaining away
+//  3. Calling further queries on a query will result in a AND-query
+//  4. Call getOne or getMany to return a FMResultSet*
+//
+//      Example:
+//      [[[[OPFComment query] column: @"post_id" is: @"2"] column: @"text" like: @"%%CSS%%"] column: @"user_id" in: @[@"1", @"2", @"3"]]
+//          => "SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'post_id' = 2 AND ('comments'.'text' LIKE '%CSS%' AND 'comments'.'user_id' IN (1,2,3)))"
 @interface OPFQuery : NSObject
 
 @property (copy) NSString* tableName;
 @property (copy) NSString* columnName;
+
+// A query that the current query should be AND:ed with
 @property (strong) OPFQuery* andQuery;
+
+// A query that the current query should be OR:ed with
+// TODO: not implemented yet
 @property (strong) OPFQuery* orQuery;
+
+// All queries, except for the root query itself, must have a rootQuery
 @property (strong) OPFQuery* rootQuery;
 @property (assign) NSNumber* limit;
 
+// Fetches one database row based on the query
+// Equivalent to setting LIMIT = 1
 - (FMResultSet*) getOne;
+
+// Fetches all database rows that match the query
 - (FMResultSet*) getMany;
+
+// Create a LIKE query and set is as an AND query for this query
 - (instancetype) column: (NSString*) column like: (NSString*) term;
+
+// Create an IS (equals) query and set is as an AND query for this query
 - (instancetype) column: (NSString*) column is: (NSString*) term;
+
+// Create an IN query and set is as an AND query for this query
 - (instancetype) column: (NSString*) column in: (NSArray*) terms;
+
+// Set a query as the conjunction query of this query
 - (instancetype) and: (OPFQuery*) otherQuery;
+
+// Set a query as the disjunction query of this query
+// TODO: Not implemented yet
 - (instancetype) or: (OPFQuery*) otherQuery;
 - (instancetype) limit: (NSNumber*) n;
+
+// Returns this query as it would appear in a WHERE-block
+//      Example:
+//      [[[OPFComment query] column: @"foo", is: @"bar"] baseSQL]
+//          => "'comments'.'foo' = 'bar'"
 - (NSString*) baseSQL;
+
+// Returns the query as it would appear in a WHERE-block with its conjunctions or disjunctions
+//  Note: disjunctions not implemented yet
+//      Example:
+//      [[[[OPFComment query] column: @"score" is: @"1"] column: @"post_id" is: @"1"] toSQLString]
+//          => ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)
 - (NSString*) toSQLString;
+
+// Constructs the conjunction using own baseSQL and the conjunction query's toSQLString
 - (NSString*) sqlForAnd;
+
+// Adds a string the existing SQL string
 - (NSString*) sqlConcat: (NSString*) sqlString;
+
+// Initializes a query with a table name
 + (instancetype) queryWithTableName: (NSString*) tableName;
 
 @end

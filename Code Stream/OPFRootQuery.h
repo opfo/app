@@ -9,5 +9,4 @@
 #import "OPFQuery.h"
 
 @interface OPFRootQuery : OPFQuery
-- (NSString*) baseSQLString;
 @end
