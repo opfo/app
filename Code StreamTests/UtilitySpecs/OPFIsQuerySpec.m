@@ -16,7 +16,7 @@
 
 SpecBegin(OPFIsQuery)
 
-describe(@"toSqlString", ^{
+describe(@"fetching and SQL-strings", ^{
     __block OPFRootQuery* rootQuery;
     __block OPFQuery* isQuery;
     
@@ -31,6 +31,28 @@ describe(@"toSqlString", ^{
     
     it(@"returns correct SQL for total query", ^{
         expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE 'comments'.'score' = 1");
+    });
+    
+    it(@"fetches correct number of results when fetching multiple", ^{
+        FMResultSet* result = [isQuery getMany];
+        int i = 0;
+        while ([result next]) {
+            i++;
+        }
+        expect(i).to.equal(1620);
+    });
+    
+    it(@"fetches correct object for for a single object query", ^{
+        isQuery = [rootQuery column: @"user_id" is: @"270"];
+        FMResultSet* result = [isQuery getOne];
+        NSDictionary* attributes;
+        int i = 0;
+        while([result next]) {
+            attributes = [result resultDictionary];
+            i++;
+        }
+        expect(i).to.equal(1);
+        expect([attributes valueForKey:@"id"]).to.equal(@(10395903));
     });
 });
 
