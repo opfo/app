@@ -9,16 +9,20 @@
 #import "OPFQuery.h"
 #import "OPFIsQuery.h"
 
+
 @implementation OPFQuery
 
 @synthesize rootQuery = _rootQuery;
 
-- (instancetype) getOne {
-    return nil;
+- (FMResultSet*) getOne {
+    [[self rootQuery] setLimit: @(1)];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
+    return result;
 }
 
-- (NSArray*) getMany {
-    return nil;
+- (FMResultSet*) getMany {
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
+    return result;
 }
 
 - (instancetype) column: (NSString*) column like: (NSString*) term

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OPFDatabaseAccess.h"
 
 @interface OPFQuery : NSObject
 
@@ -15,9 +16,10 @@
 @property (strong) OPFQuery* andQuery;
 @property (strong) OPFQuery* orQuery;
 @property (strong) OPFQuery* rootQuery;
+@property (assign) NSNumber* limit;
 
-- (instancetype) getOne;
-- (NSArray*) getMany;
+- (FMResultSet*) getOne;
+- (FMResultSet*) getMany;
 - (instancetype) column: (NSString*) column like: (NSString*) term;
 - (instancetype) column: (NSString*) column is: (NSString*) term;
 - (instancetype) column: (NSString*) column in: (NSArray*) terms;
