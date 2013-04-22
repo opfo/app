@@ -25,7 +25,7 @@ describe(@"fetching and SQL-strings", ^{
         isQuery = [rootQuery column:@"score" is:@"1"];
     });
     
-    it(@"return correct SQL for subquery", ^(){
+    it(@"returns correct SQL for subquery", ^(){
         expect([isQuery toSQLString]).to.equal(@"'comments'.'score' = 1");
     });
     
@@ -53,6 +53,11 @@ describe(@"fetching and SQL-strings", ^{
         }
         expect(i).to.equal(1);
         expect([attributes valueForKey:@"id"]).to.equal(@(10395903));
+    });
+    
+    it(@"returns correct SQL for an and-query", ^{
+        OPFIsQuery* secondQuery = [isQuery column:@"post_id" is:@"1"];
+        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)");
     });
 });
 
