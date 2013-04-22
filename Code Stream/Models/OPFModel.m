@@ -7,6 +7,7 @@
 //
 
 #import "OPFModel.h"
+#import "OPFRootQuery.h"
 
 @implementation OPFModel
 
@@ -142,6 +143,13 @@
     } reverseBlock:^(NSDate *date) {
         return [self.dateFormatter stringFromDate:date];
     }];
+}
+
+# pragma mark - Query
+
++ (OPFRootQuery*) query
+{
+    return [OPFRootQuery queryWithTableName: [self modelTableName]];
 }
 
 @end

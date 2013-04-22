@@ -9,8 +9,10 @@
 #import "Mantle.h"  
 #import "OPFDatabaseAccess.h"
 #import "OPFRecordProtocol.h"
+#import "OPFQuery.h"
+#import "OPFQueryable.h"
 
-@interface OPFModel : MTLModel <MTLJSONSerializing, OPFRecordProtocol>
+@interface OPFModel : MTLModel <MTLJSONSerializing, OPFRecordProtocol, OPFQueryable>
 
 @property (copy, readonly) NSString* modelName;
 
@@ -21,4 +23,5 @@
 +(FMResultSet *) allForModel:(NSString *)modelName page: (NSInteger) page per: (NSInteger) per;
 +(NSDateFormatter*) dateFormatter;
 +(NSInteger) defaultPageSize;
++(OPFRootQuery*) query;
 @end

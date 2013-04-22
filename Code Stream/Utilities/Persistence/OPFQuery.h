@@ -12,7 +12,9 @@
 
 @property (copy) NSString* tableName;
 @property (copy) NSString* columnName;
-@property (strong) id value;
+@property (strong) OPFQuery* andQuery;
+@property (strong) OPFQuery* orQuery;
+@property (strong) OPFQuery* rootQuery;
 
 - (instancetype) getOne;
 - (NSArray*) getMany;
@@ -22,6 +24,8 @@
 - (instancetype) and: (OPFQuery*) otherQuery;
 - (instancetype) or: (OPFQuery*) otherQuery;
 - (instancetype) limit: (NSInteger) n;
-
+- (NSString*) toSQLString;
+- (NSString*) sqlConcat: (NSString*) sqlString;
++ (instancetype) queryWithTableName: (NSString*) tableName;
 
 @end
