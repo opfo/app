@@ -10,4 +10,8 @@
 
 @interface OPFInQuery : OPFQuery
 
+@property (strong) NSArray* terms;
+
+- (NSString*) termsToString;
++ (OPFInQuery*) initWithColumn: (NSString*) column terms: (NSArray*) terms rootQuery: (OPFQuery*) rootQuery;
 @end
