@@ -40,7 +40,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"should work with AND queries", ^{
-        OPFQuery* isQuery = [inQuery column:@"user_id" is:@"270"];
+        [inQuery column:@"user_id" is:@"270"];
         result = [inQuery getMany];
         int i = 0;
         NSDictionary* attributes;
