@@ -25,8 +25,10 @@
 - (instancetype) column: (NSString*) column in: (NSArray*) terms;
 - (instancetype) and: (OPFQuery*) otherQuery;
 - (instancetype) or: (OPFQuery*) otherQuery;
-- (instancetype) limit: (NSInteger) n;
+- (instancetype) limit: (NSNumber*) n;
+- (NSString*) baseSQL;
 - (NSString*) toSQLString;
+- (NSString*) sqlForAnd;
 - (NSString*) sqlConcat: (NSString*) sqlString;
 + (instancetype) queryWithTableName: (NSString*) tableName;
 

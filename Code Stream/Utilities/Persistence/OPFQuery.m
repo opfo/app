@@ -8,6 +8,7 @@
 
 #import "OPFQuery.h"
 #import "OPFIsQuery.h"
+#import "OPFInQuery.h"
 
 
 @implementation OPFQuery
@@ -32,13 +33,15 @@
 
 - (instancetype) column: (NSString*) column is: (NSString*) term
 {
-    OPFIsQuery* query = [OPFIsQuery initWithColumn: column term: term rootQuery: self];
+    OPFIsQuery* query = [OPFIsQuery initWithColumn: column term: term rootQuery: self.rootQuery];
     self.andQuery = query;
     return query;
 }
 
 - (instancetype) column: (NSString*) column in: (NSArray*) terms{
-    return nil;
+    OPFInQuery* query = [OPFInQuery initWithColumn: column terms: terms rootQuery: self];
+    self.andQuery = query;
+    return query;
 }
 
 - (instancetype) and: (OPFQuery*) otherQuery
@@ -67,14 +70,29 @@
     return nil;
 }
 
-- (instancetype) limit: (NSInteger) n
+- (instancetype) limit: (NSNumber*) n
 {
-    return nil;
+    [[self rootQuery] setLimit:n];
+    return self;
 }
 
 - (NSString*) toSQLString
 {
-    return nil;
+    if([self andQuery] != nil) {
+        return [self sqlForAnd];
+    } else {
+        return [self baseSQL];
+    }
+}
+
+- (NSString*) sqlForAnd
+{
+    NSMutableString* output = [NSMutableString stringWithString:@"("];
+    [output appendString:[self baseSQL]];
+    [output appendString:@" AND "];
+    [output appendString:[[self andQuery] toSQLString]];
+    [output appendString:@")"];
+    return output;
 }
 
 # pragma mark - Factory methods

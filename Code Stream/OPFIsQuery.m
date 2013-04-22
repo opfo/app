@@ -19,7 +19,7 @@
     return query;
 }
 
-- (NSString*) toSQLString
+- (NSString*) baseSQL
 {
     return [NSString stringWithFormat:@"'%@'.'%@' = %@", [self.rootQuery tableName], [self columnName], [self term]];
 }
