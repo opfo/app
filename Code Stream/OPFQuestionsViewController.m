@@ -189,31 +189,43 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 
 - (NSArray *)tagsFromSearchString:(NSString *)searchString
 {
+	NSParameterAssert(searchString != nil);
+	
 	searchString = searchString.copy;
 	NSMutableArray *tags = NSMutableArray.new;
-	NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
 	
-	[tagsRegularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-		if ([result numberOfRanges] >= 2) {
-			NSRange caputerRange = [result rangeAtIndex:1];
-			NSString *capture = [searchString substringWithRange:caputerRange];
-			[tags addObject:capture.opf_stringByTrimmingWhitespace];
-		}
-	}];
+	// The shortest possible tag is `[a]`, i.e. three (3) chars.
+	if (searchString.length > 3) {
+		NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
+		[tagsRegularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+			if ([result numberOfRanges] >= 2) {
+				NSRange caputerRange = [result rangeAtIndex:1];
+				NSString *capture = [searchString substringWithRange:caputerRange];
+				[tags addObject:capture.opf_stringByTrimmingWhitespace];
+			}
+		}];
+	}
 	
 	return tags;
 }
 
 - (NSString *)keywordSearchStringFromSearchString:(NSString *)searchString
 {
-	NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
-	NSString *keywordSearchString = [tagsRegularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
-	return keywordSearchString.opf_stringByTrimmingWhitespace;
+	NSParameterAssert(searchString != nil);
+	
+	NSString *keywordSearchString = @"";
+	if (searchString.length > 0) {
+		NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
+		keywordSearchString = [tagsRegularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
+		keywordSearchString = keywordSearchString.opf_stringByTrimmingWhitespace;
+	}
+	
+	return keywordSearchString;
 }
 
 - (void)updateFilteredQuestions
 {
-	NSString *searchString = self.searchString;
+	NSString *searchString = self.searchString ?: @"";
 	NSArray *tags = [self tagsFromSearchString:searchString];
 	DLog(@"tags: %@", tags);
 	NSString *keywords = [self keywordSearchStringFromSearchString:searchString];
