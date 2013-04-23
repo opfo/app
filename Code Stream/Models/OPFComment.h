@@ -18,7 +18,7 @@
 @property (strong) NSNumber* score;
 @property (copy) NSString* text;
 @property (strong) NSDate* creationDate;
-@property (assign) NSInteger author_id;
+@property (assign) NSNumber* author_id;
 @property (strong) OPFUser* author;
 @property (strong, readonly) NSDictionary* keyTransformations;
 
