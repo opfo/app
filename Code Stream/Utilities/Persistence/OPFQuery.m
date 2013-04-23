@@ -83,6 +83,11 @@
     return nil;
 }
 
+- (instancetype) or: (OPFQuery*) otherQuery
+{
+    return nil;
+}
+
 - (void) setRootQuery:(OPFQuery *)rootQuery
 {
     _rootQuery = rootQuery;
@@ -95,11 +100,6 @@
     } else {
         return self;
     }
-}
-
-- (instancetype) or: (OPFQuery*) otherQuery
-{
-    return nil;
 }
 
 - (instancetype) limit: (NSNumber*) n
@@ -142,6 +142,12 @@
     [query setOnGetOne: oneCallback];
     [query setOnGetMany:manyCallback];
     return query;
+}
+
+// Subclasses must override this.
+- (NSString*) sqlConcat:(NSString *)sqlString
+{
+    return nil;
 }
 
 @end
