@@ -18,22 +18,23 @@ typedef enum : NSInteger {
 
 @interface OPFPost : OPFModel <OPFRecordProtocol>
 
-@property (assign, readonly) NSInteger identifier;
+@property (assign, readonly) NSNumber* identifier;
 @property (strong, readonly) NSDate* creationDate;
 @property (assign) OPFPostType postType;
-@property (assign) NSInteger score;
-@property (assign) NSInteger viewCount;
+@property (strong) NSNumber* score;
+@property (strong) NSNumber* viewCount;
 @property (copy) NSString* title;
 @property (copy) NSString* body;
+@property (strong) NSNumber* ownerId;
 @property (strong) OPFUser* owner;
 @property (strong) OPFUser* lastEditor;
+@property (strong) NSNumber* lastEditorId;
 @property (copy) NSString* lastEditorDisplayName;
 @property (strong) NSDate* lastEditDate;
 @property (strong) NSDate* lastActivityDate;
 @property (strong) NSDate* communityOwnedDate;
-@property (assign) NSInteger commentCount;
-@property (assign) NSInteger favoriteCount;
-
-- (NSArray *) comments;
+@property (strong) NSNumber* commentCount;
+@property (strong) NSNumber* favoriteCount;
+@property (strong, readonly) NSArray* comments;
 
 @end

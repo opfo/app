@@ -7,13 +7,18 @@
 //
 
 #import "OPFPost.h"
-#import "OPFAnswer.h"
+@class OPFAnswer;
 
 @interface OPFQuestion : OPFPost
 
-@property (strong) NSArray* tags;
+@property (strong, readonly) NSArray* tags;
 @property (strong) OPFAnswer* acceptedAnswer;
+@property (strong) NSNumber* acceptedAnswerId;
 @property (strong) NSDate* closedDate;
-@property (assign) NSInteger answerCount;
+@property (strong) NSNumber* answerCount;
+@property (strong, readonly) NSArray* answers;
+@property (copy) NSString* rawTags;
+
++ (NSValueTransformer*) closedDateJSONTransformer;
 
 @end
