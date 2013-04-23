@@ -15,7 +15,7 @@
 
 - (id)configureWithQuestionData:(OPFQuestion *)question {
 	self.acceptedAnswer = question.acceptedAnswer != nil;
-	self.score = question.score;
+	self.score = [question.score integerValue];
 	self.answers = question.answerCount;
 	self.title = question.title;
 	
