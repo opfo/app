@@ -243,6 +243,24 @@
 			name = "Questions View";
 			sourceTree = "<group>";
 		};
+		1A6833451726A14C00E3A687 /* Table Header Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A6833461726A15800E3A687 /* Comment View Header */,
+			);
+			name = "Table Header Views";
+			sourceTree = "<group>";
+		};
+		1A6833461726A15800E3A687 /* Comment View Header */ = {
+			isa = PBXGroup;
+			children = (
+				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
+				1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */,
+				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+			);
+			name = "Comment View Header";
+			sourceTree = "<group>";
+		};
 		1A816ABE171DF51700964AF2 /* Avatars */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,15 +466,13 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */,
-				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
+				1A6833451726A14C00E3A687 /* Table Header Views */,
 				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
 				1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
 				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
-				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 			);
