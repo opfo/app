@@ -11,19 +11,37 @@
 #import "Expecta.h"
 #import "OPFModelSpecHelper.h"
 #import "OPFQuestion.h"
+#import "OPFAnswer.h"
 
 SpecBegin(OPFQuestion)
 
 describe(@"Fetching", ^{
+    __block OPFQuestion* question;
+    
+    beforeEach(^{
+        question = [[[OPFQuestion query] whereColumn:@"id" is:@(8414075)] getOne];
+    });
     it(@"should not fetch an incorrect type of model", ^{
-        id question = [[[OPFQuestion query] whereColumn: @"id" is: @"8474693"] getOne];
+        question = [[[OPFQuestion query] whereColumn: @"id" is: @"8474693"] getOne];
         expect(question).to.beNil();
     });
     
     it(@"should fetch an object of the correct type", ^{
-        id question = [[[OPFQuestion query] whereColumn:@"id" is: @(8414075)] getOne];
         expect(question).to.beKindOf([OPFQuestion class]);
     });
+    
+    it(@"should be possible to get the accepted answer", ^{
+        expect(question.acceptedAnswer).to.beKindOf([OPFAnswer class]);
+    });
+    
+    it(@"should be possible to get all answers", ^{
+        NSArray* answers = question.answers;
+        expect([answers count]).to.equal(2);
+        for(id answer in answers) {
+            expect(answer).to.beKindOf([OPFAnswer class]);
+        }
+    });
+    
 });
 
 SpecEnd
