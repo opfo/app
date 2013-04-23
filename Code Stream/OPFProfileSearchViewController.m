@@ -12,6 +12,8 @@
 
 @interface OPFProfileSearchViewController ()
 
+@property (strong, nonatomic) NSMutableArray *mutableUserModels;
+
 @end
 
 @implementation OPFProfileSearchViewController
@@ -26,7 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+}
+
+- (void)setUserModels:(NSArray *)userModels
+{
+    self.userModels = userModels;
+    self.mutableUserModels = [NSMutableArray arrayWithCapacity:self.userModels.count];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +61,8 @@
 {
     OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView new];
     
+    self.profileSearchBar = profileViewHeader.profileSearchBar;
+    
     return profileViewHeader;
 }
 
@@ -76,6 +85,30 @@
     profileViewCell.profilesViewController = self;
     
     return profileViewCell;
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    [self.mutableUserModels removeAllObjects];
+
+    self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.displayName contains[c] %@", searchText];
+    
+    self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+
+    return YES;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

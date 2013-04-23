@@ -10,4 +10,6 @@
 
 @interface OPFProfileSearchHeaderView : UITableViewHeaderFooterView
 
+@property (weak, nonatomic) IBOutlet UISearchBar *profileSearchBar;
+
 @end
