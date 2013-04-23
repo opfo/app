@@ -560,8 +560,6 @@
         <class className="OPFDebugViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showCommentsView:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="showProfileSearch:" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
