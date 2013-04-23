@@ -261,6 +261,14 @@
 			name = "Comment View Header";
 			sourceTree = "<group>";
 		};
+		1A6833471726A23600E3A687 /* Comments View */ = {
+			isa = PBXGroup;
+			children = (
+				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
+			);
+			name = "Comments View";
+			sourceTree = "<group>";
+		};
 		1A816ABE171DF51700964AF2 /* Avatars */ = {
 			isa = PBXGroup;
 			children = (
@@ -467,8 +475,8 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A6833471726A23600E3A687 /* Comments View */,
 				1A6833451726A14C00E3A687 /* Table Header Views */,
-				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
