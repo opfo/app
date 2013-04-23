@@ -16,4 +16,6 @@
 @property (strong) NSDate* closedDate;
 @property (assign) NSInteger answerCount;
 
+- (NSArray*) getAnswers;
+
 @end
