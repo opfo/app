@@ -266,6 +266,7 @@
 			children = (
 				1A639EBC17267384009EB280 /* OPFProfileViewCell.h */,
 				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
+				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
 			);
 			name = "Profile Table View Cells";
 			sourceTree = "<group>";
@@ -499,7 +500,6 @@
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
-				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";

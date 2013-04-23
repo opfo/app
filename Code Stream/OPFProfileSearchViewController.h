@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFProfileSearchViewController : UIViewController
+@interface OPFProfileSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property(nonatomic, strong) NSArray *userModels;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
