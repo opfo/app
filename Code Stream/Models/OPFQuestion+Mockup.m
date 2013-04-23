@@ -7,6 +7,7 @@
 //
 
 #import "OPFQuestion+Mockup.h"
+#import "OPFAnswer.h"
 
 @implementation OPFQuestion (Mockup)
 
@@ -19,7 +20,7 @@
 	question.acceptedAnswer = (arc4random() % 2 == 0) ? [OPFAnswer new] : nil;
 	
 	// Create random integers
-	question.answerCount = arc4random() % 100;
+	question.answerCount = @(arc4random() % 100);
 	question.score = @(arc4random() % 1500);
 	question.viewCount = @(arc4random() % 2300);
 	question.title = @"Is this a question that contains a line break or not?";
