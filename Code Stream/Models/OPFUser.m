@@ -13,7 +13,7 @@
 #import "OPFAnswer.h"
 
 @interface OPFUser (/*private */)
-@property(assign, readwrite) NSInteger identifier;
+@property(strong, readwrite) NSNumber* identifier;
 @property(strong, readwrite) NSDate* creationDate;
 @end
 
@@ -35,8 +35,6 @@
 
 - (NSArray*) commentsPage:(NSInteger)page
 {
-    NSDictionary* predicate = @{@"user_id": [NSNumber numberWithInteger:[self identifier]]};
-    [OPFComment where: predicate];
     return nil;
 }
 

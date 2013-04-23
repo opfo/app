@@ -50,9 +50,10 @@
              @"commentCount": @"comment_count",
              @"favoriteCount": @"favorite_count",
              @"closedDate": @"closed_date",
-             @"acceptedAnswer": @"accepted_answer_id",
+             @"acceptedAnswerId": @"accepted_answer_id",
              @"rawTags": @"tags",
-             @"answerCount": @"answer_count"
+             @"answerCount": @"answer_count",
+             @"parentId" : @"parent_id"
              
              
    };

@@ -7,6 +7,7 @@
 //
 
 #import "OPFQuestion.h"
+#import "OPFAnswer.h"
 
 @implementation OPFQuestion
 
@@ -21,6 +22,42 @@
     };
     OPFRootQuery* rootQuery = [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singleModelCallback manyCallback:multipleModelCallback];
     return [rootQuery whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_QUESTION)];
+}
+
++ (NSValueTransformer*) closedDateJSONTransformer
+{
+    return [self standardDateTransformer];
+}
+
+@synthesize answers = _answers;
+
+- (NSArray*) answers
+{
+    if(_answers == nil) {
+        OPFQuery* query = [[OPFAnswer query] whereColumn:@"id" is:self.identifier];
+        _answers = [query getMany];
+    }
+    return _answers;
+}
+
+@synthesize acceptedAnswer = _acceptedAnswer;
+
+- (OPFAnswer*) acceptedAnswer
+{
+    if (_acceptedAnswer == nil)
+    {
+        OPFQuery* query = [[OPFAnswer query] whereColumn:@"id" is:self.acceptedAnswerId];
+        _acceptedAnswer = [query getOne];
+    }
+    return _acceptedAnswer;
+}
+
+- (void) setAcceptedAnswer:(OPFAnswer *)acceptedAnswer
+{
+    if(acceptedAnswer != _acceptedAnswer) {
+        _acceptedAnswer = acceptedAnswer;
+        _acceptedAnswerId = acceptedAnswer.identifier;
+    }
 }
 
 
