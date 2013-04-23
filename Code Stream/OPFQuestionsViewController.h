@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFQuestionsViewController : UITableViewController
+@interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
 
 @end
