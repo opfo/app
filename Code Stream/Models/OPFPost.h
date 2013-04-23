@@ -18,7 +18,7 @@ typedef enum : NSInteger {
 
 @interface OPFPost : OPFModel <OPFRecordProtocol>
 
-@property (assign, readonly) NSInteger identifier;
+@property (assign, readonly) NSNumber* identifier;
 @property (strong, readonly) NSDate* creationDate;
 @property (assign) OPFPostType postType;
 @property (strong) NSNumber* score;
@@ -35,7 +35,6 @@ typedef enum : NSInteger {
 @property (strong) NSDate* communityOwnedDate;
 @property (strong) NSNumber* commentCount;
 @property (strong) NSNumber* favoriteCount;
-
-- (NSArray *) comments;
+@property (strong, readonly) NSArray* comments;
 
 @end

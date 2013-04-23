@@ -9,16 +9,13 @@
 #import "OPFPost.h"
 #import "OPFAnswer.h"
 #import "OPFQuestion.h"
+#import "OPFComment.h"
 
 @implementation OPFPost
 
 + (NSString *) modelTableName
 {
     return @"posts";
-}
-
-- (NSArray * ) comments {
-    return NULL;
 }
 
 //  Takes a dictionary and returns a populated model class
@@ -51,7 +48,13 @@
              @"lastActivityDate": @"last_activity_date",
              @"communityOwnedDate": @"community_owned_date",
              @"commentCount": @"comment_count",
-             @"favoriteCount": @"favorite_count"
+             @"favoriteCount": @"favorite_count",
+             @"closedDate": @"closed_date",
+             @"acceptedAnswer": @"accepted_answer_id",
+             @"rawTags": @"tags",
+             @"answerCount": @"answer_count"
+             
+             
    };
 }
 
@@ -69,5 +72,35 @@
 {
     return [self standardDateTransformer];
 }
+
+@synthesize comments = _comments;
+
+- (NSArray * ) comments {
+    if(_comments == nil) {
+        OPFQuery* query = [[OPFComment query] whereColumn:@"post_id" is: self.identifier];
+        _comments = [query getMany];
+    }
+    return _comments;
+}
+
+@synthesize owner = _owner;
+
+- (OPFUser*) owner
+{
+    if (_owner == nil) {
+        OPFQuery* query = [[OPFUser query] whereColumn:@"id" is: self.ownerId];
+        _owner = [query getOne];
+    }
+    return _owner;
+}
+
+- (void) setOwner:(OPFUser *)owner
+{
+    _owner = owner;
+    [self setOwnerId: owner.identifier];
+}
+
+@synthesize lastEditor = _lastEditor;
+
 
 @end
