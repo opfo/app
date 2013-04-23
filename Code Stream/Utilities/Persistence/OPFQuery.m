@@ -76,14 +76,14 @@
     return query;
 }
 
-- (instancetype) and: (OPFQuery*) otherQuery
+- (instancetype) andQuery: (OPFQuery*) otherQuery
 {
     self.andQuery = otherQuery;
     otherQuery.rootQuery = self.rootQuery;
     return nil;
 }
 
-- (instancetype) or: (OPFQuery*) otherQuery
+- (instancetype) orQuery: (OPFQuery*) otherQuery
 {
     return nil;
 }
@@ -144,7 +144,7 @@
     return query;
 }
 
-// Subclasses must override this.
+// Subclasses must override this
 - (NSString*) sqlConcat:(NSString *)sqlString
 {
     return nil;

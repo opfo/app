@@ -42,7 +42,6 @@ typedef id (^OnGetOne)(NSDictionary*);
 @property (strong) OPFQuery* rootQuery;
 @property (strong) NSNumber* limit;
 @property (strong) NSNumber* pageSize;
-@property (assign) Class klass;
 
 // Fetches one database row based on the query
 // Equivalent to setting LIMIT = 1
@@ -66,11 +65,11 @@ typedef id (^OnGetOne)(NSDictionary*);
 - (instancetype) whereColumn: (NSString*) column in: (NSArray*) terms;
 
 // Set a query as the conjunction query of this query
-- (instancetype) and: (OPFQuery*) otherQuery;
+- (instancetype) andQuery: (OPFQuery*) otherQuery;
 
 // Set a query as the disjunction query of this query
 // TODO: Not implemented yet
-- (instancetype) or: (OPFQuery*) otherQuery;
+- (instancetype) orQuery: (OPFQuery*) otherQuery;
 - (instancetype) limit: (NSNumber*) n;
 
 // Returns this query as it would appear in a WHERE-block
