@@ -34,7 +34,7 @@
 - (NSArray*) answers
 {
     if(_answers == nil) {
-        OPFQuery* query = [[OPFAnswer query] whereColumn:@"id" is:self.identifier];
+        OPFQuery* query = [[OPFAnswer query] whereColumn:@"parent_id" is:self.identifier];
         _answers = [query getMany];
     }
     return _answers;
