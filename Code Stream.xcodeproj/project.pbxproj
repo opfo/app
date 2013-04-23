@@ -72,6 +72,10 @@
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
 		9C7F6E12171FE171008F6473 /* OPFPostTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */; };
 		9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */; };
+		9C9B79CA1726A1F300E5333B /* OPFPostBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */; };
+		9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */; };
+		9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */; };
+		9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 /* End PBXBuildFile section */
@@ -198,6 +202,10 @@
 		9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFScoreNumberFormatter.h; sourceTree = "<group>"; };
 		9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatter.m; sourceTree = "<group>"; };
 		9C9B79C81726845600E5333B /* CDKittMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDKittMacros.h; sourceTree = "<group>"; };
+		9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostBodyTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostMetadataTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostTagsTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostCommentTableViewCell.xib; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -573,12 +581,16 @@
 		9C7F6E16171FE185008F6473 /* Post Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */,
 				9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */,
 				9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */,
+				9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */,
 				9C7F6E0D171FE164008F6473 /* OPFPostMetadataTableViewCell.h */,
 				9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */,
+				9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */,
 				9C7F6E10171FE171008F6473 /* OPFPostTagsTableViewCell.h */,
 				9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */,
+				9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */,
 			);
 			name = "Post Table View Cells";
 			sourceTree = "<group>";
@@ -709,6 +721,10 @@
 				1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */,
 				1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */,
 				1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */,
+				9C9B79CA1726A1F300E5333B /* OPFPostBodyTableViewCell.xib in Resources */,
+				9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */,
+				9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */,
+				9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
