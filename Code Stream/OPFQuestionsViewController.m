@@ -9,12 +9,14 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionViewController.h"
+#import "OPFQuestion.h"
 #import "OPFQuestion+Mockup.h"
+#import "NSString+OPFStripCharacters.h"
 
 
 @interface OPFQuestionsViewController (/*Private*/)
 #pragma mark - Presented Data
-@property (strong) NSMutableArray *questions;
+@property (copy) NSArray *questions;
 @property (strong) NSMutableArray *filteredQuestions;
 
 - (void)reloadQuestions;
@@ -36,7 +38,7 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
-	_questions = NSMutableArray.new;
+	_questions = NSArray.new;
 	_filteredQuestions = NSMutableArray.new;
 }
 
@@ -87,14 +89,24 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
 	
 	// Fetch all questions matching our current search limits.
 	// TEMP:
+	NSMutableArray *questions = NSMutableArray.new;
 	for (NSInteger i = 0; i < 5; ++i) {
-		[self.questions addObject:OPFQuestion.generatePlaceholderQuestion];
+		[questions addObject:OPFQuestion.generatePlaceholderQuestion];
 	}
+	self.questions = questions;
 	[self.filteredQuestions setArray:self.questions];
 	[self.tableView reloadData];
+	[self updateFilteredQuestions];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
 
@@ -106,8 +118,13 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	// Return the number of rows in the section.
-	return self.questions.count;
+	NSInteger rows = 0;
+	if (tableView == self.tableView) {
+		rows = self.questions.count;
+	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
+		rows = self.filteredQuestions.count;
+	}
+	return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,5 +172,82 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	
 	[self.navigationController pushViewController:questionViewController animated:YES];
 }
+
+
+#pragma mark - 
++ (NSRegularExpression *)tagsFromSearchStringRegularExpression
+{
+	static NSRegularExpression *_tagsRegularExpression = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSError *error = NULL;
+		_tagsRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\[([^\\[]+)\\]" options:0 error:&error];
+		ZAssert(_tagsRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
+	});
+	return _tagsRegularExpression;
+}
+
+- (NSArray *)tagsFromSearchString:(NSString *)searchString
+{
+	searchString = searchString.copy;
+	NSMutableArray *tags = NSMutableArray.new;
+	NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
+	
+	[tagsRegularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		if ([result numberOfRanges] >= 2) {
+			NSRange caputerRange = [result rangeAtIndex:1];
+			NSString *capture = [searchString substringWithRange:caputerRange];
+			[tags addObject:capture.opf_stringByTrimmingWhitespace];
+		}
+	}];
+	
+	return tags;
+}
+
+- (NSString *)keywordSearchStringFromSearchString:(NSString *)searchString
+{
+	NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
+	NSString *keywordSearchString = [tagsRegularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
+	return keywordSearchString.opf_stringByTrimmingWhitespace;
+}
+
+- (void)updateFilteredQuestions
+{
+	NSString *searchString = self.searchString;
+	NSArray *tags = [self tagsFromSearchString:searchString];
+	DLog(@"tags: %@", tags);
+	NSString *keywords = [self keywordSearchStringFromSearchString:searchString];
+	DLog(@"keywords: %@", keywords);
+	
+//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title LIKE %@ OR body LIKE @%) AND ALL %K IN %@", keywords, keywords, @"tags", tags];
+	
+	if (keywords.length > 0 || tags.count > 0) {
+		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title like[cd] %@", keywords];
+		[self.filteredQuestions setArray:[self.questions filteredArrayUsingPredicate:predicate]];
+	} else {
+		[self.filteredQuestions setArray:self.questions];
+	}
+	DLog(@"filtered: %@", self.filteredQuestions);
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		[self.searchDisplayController.searchResultsTableView reloadData];
+	}];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
+		[self updateFilteredQuestions];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	}
+}
+
+
+#pragma mark - UISearchBarDelegate Methods
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+	self.searchString = searchText;
+}
+
 
 @end

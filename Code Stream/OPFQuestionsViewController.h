@@ -10,5 +10,6 @@
 
 @interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 
+@property (copy, nonatomic) NSString *searchString;
 
 @end
