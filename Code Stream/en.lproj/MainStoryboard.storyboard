@@ -21,7 +21,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="20m-ye-cNq" detailTextLabel="CTr-pq-RgM" style="IBUITableViewCellStyleSubtitle" id="VSA-lc-way">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellToKeepSearchBarAtTop" textLabel="20m-ye-cNq" detailTextLabel="CTr-pq-RgM" style="IBUITableViewCellStyleSubtitle" id="VSA-lc-way">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
