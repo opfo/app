@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
+#import "GCTagList.h"
 
-@interface OPFSingleQuestionPreviewCell : UITableViewCell
+@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource>
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger score;
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answersLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *acceptedAnswerImage;
-
+@property (weak, nonatomic) IBOutlet GCTagList *tagList;
+@property NSArray *data;
 
 @end
