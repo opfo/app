@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "OPFDatabaseAccess.h"
 
+typedef NSArray* (^OnGetMany)(FMResultSet*);
+typedef id (^OnGetOne)(NSDictionary*);
+
 // Used to query objects in a SQLite database using FMDB
 // Principle:
 //  1. Fetch a root query from the wanted model
@@ -18,11 +21,15 @@
 //
 //      Example:
 //      [[[[OPFComment query] column: @"post_id" is: @"2"] column: @"text" like: @"%%CSS%%"] column: @"user_id" in: @[@"1", @"2", @"3"]]
-//          => "SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'post_id' = 2 AND ('comments'.'text' LIKE '%CSS%' AND 'comments'.'user_id' IN (1,2,3)))"
+//          => "SELECT 'comments'.* FROM 'comments'
+//              WHERE ('comments'.'post_id' = 2 AND ('comments'.'text' LIKE '%CSS%' AND 'comments'.'user_id' IN (1,2,3)))"
 @interface OPFQuery : NSObject
 
 @property (copy) NSString* tableName;
 @property (copy) NSString* columnName;
+
+@property (copy, nonatomic) OnGetMany onGetMany;
+@property (copy, nonatomic) OnGetOne onGetOne;
 
 // A query that the current query should be AND:ed with
 @property (strong) OPFQuery* andQuery;
@@ -33,14 +40,21 @@
 
 // All queries, except for the root query itself, must have a rootQuery
 @property (strong) OPFQuery* rootQuery;
-@property (assign) NSNumber* limit;
+@property (strong) NSNumber* limit;
+@property (strong) NSNumber* pageSize;
+@property (assign) Class klass;
 
 // Fetches one database row based on the query
 // Equivalent to setting LIMIT = 1
-- (FMResultSet*) getOne;
+- (FMResultSet*) getResultSetOne;
 
 // Fetches all database rows that match the query
-- (FMResultSet*) getMany;
+- (FMResultSet*) getResultSetMany;
+
+// Fetches one row from the database and applies the onGetOne-callback
+- (id) getOne;
+// Fetches the rows from the database and applies the onGetMany-callback
+- (NSArray*) getMany;
 
 // Create a LIKE query and set is as an AND query for this query
 - (instancetype) whereColumn: (NSString*) column like: (NSString*) term;
@@ -80,5 +94,8 @@
 
 // Initializes a query with a table name
 + (instancetype) queryWithTableName: (NSString*) tableName;
+
+// Initializes a query with a table name and a completion callback;
++ (instancetype) queryWithTableName:(NSString *)tableName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
 
 @end

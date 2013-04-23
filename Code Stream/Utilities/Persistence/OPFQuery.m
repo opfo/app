@@ -10,21 +10,46 @@
 #import "OPFIsQuery.h"
 #import "OPFInQuery.h"
 #import "OPFLikeQuery.h"
+#import "OPFRootQuery.h"
 
 
 @implementation OPFQuery
 
 @synthesize rootQuery = _rootQuery;
 
-- (FMResultSet*) getOne {
+- (FMResultSet*) getResultSetOne {
     [[self rootQuery] setLimit: @(1)];
     FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
 }
 
-- (FMResultSet*) getMany {
+- (FMResultSet*) getResultSetMany {
     FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
+}
+
+- (id) getOne
+{
+    FMResultSet* result = [self getResultSetOne];
+    if ([result next]) {
+        return self.onGetOne([result resultDictionary]);
+    } else {
+        return nil;
+    }
+}
+
+- (NSArray*) getMany
+{
+    if([self isKindOfClass: [OPFRootQuery class]]) {
+        FMResultSet* result = [self getResultSetMany];
+        if(self.onGetMany != nil) {
+            return self.onGetMany(result);
+        } else {
+            return nil;
+        }
+    } else {
+       return [self.rootQuery getMany];
+    }
 }
 
 - (instancetype) whereColumn: (NSString*) column like: (NSString*) term
@@ -104,6 +129,14 @@
 {
     id query = [[self alloc] init];
     [query setTableName: tableName];
+    return query;
+}
+
++ (instancetype) queryWithTableName:(NSString *)tableName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
+{
+    id query = [self queryWithTableName:tableName];
+    [query setOnGetOne: oneCallback];
+    [query setOnGetMany:manyCallback];
     return query;
 }
 

@@ -149,7 +149,13 @@
 
 + (OPFRootQuery*) query
 {
-    return [OPFRootQuery queryWithTableName: [self modelTableName]];
+    OnGetOne singelModelCallback = ^(NSDictionary* attributes){
+        return [self parseDictionary:attributes];
+    };
+    OnGetMany multipleModelCallback = ^(FMResultSet* result) {
+        return [self parseMultipleResult:result];
+    };
+    return [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singelModelCallback manyCallback:multipleModelCallback];
 }
 
 @end
