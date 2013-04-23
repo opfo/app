@@ -294,14 +294,14 @@
 			name = "Questions View";
 			sourceTree = "<group>";
 		};
-		1A639EBB172671FA009EB280 /* Profile Table View Cells */ = {
+		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
 				1A639EBC17267384009EB280 /* OPFProfileViewCell.h */,
 				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
 				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
 			);
-			name = "Profile Table View Cells";
+			name = "Profile Search Table View Cells";
 			sourceTree = "<group>";
 		};
 		1A639EC91726821A009EB280 /* Profile Search View */ = {
@@ -731,7 +731,7 @@
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
-				1A639EBB172671FA009EB280 /* Profile Table View Cells */,
+				1A639EBB172671FA009EB280 /* Profile Search Table View Cells */,
 				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
 			);
