@@ -8,6 +8,7 @@
 
 #import "OPFProfileSearchViewController.h"
 #import "OPFProfileViewCell.h"
+#import "OPFProfileSearchHeaderView.h"
 
 @interface OPFProfileSearchViewController ()
 
@@ -47,6 +48,13 @@
     // Shall return the number of items in data source
     //return self.commentModels.count;
     return 5;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView new];
+    
+    return profileViewHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
