@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="RootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C9G-Z7-a1G" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="g5J-1C-SOx">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -79,7 +79,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show Profile search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RQ-cO-244">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show profile search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RQ-cO-244">
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -87,9 +87,22 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="goM-A3-kRv" kind="push" id="fbf-VT-3HY"/>
-                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yUu-kt-Gbz" style="IBUITableViewCellStyleDefault" id="bte-K9-75d">
+                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show comments view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUu-kt-Gbz">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -105,27 +118,12 @@
             </objects>
             <point key="canvasLocation" x="660" y="190"/>
         </scene>
-        <!--Profile Search View Controller-->
-        <scene sceneID="x2A-dp-Pp2">
-            <objects>
-                <viewController id="goM-A3-kRv" customClass="OPFProfileSearchViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aAV-TM-kTC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="lBS-48-by1"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LIY-G7-xOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1192" y="426"/>
-        </scene>
         <!--Question View Controller - Question-->
         <scene sceneID="Rr5-pr-3UK">
             <objects>
                 <tableViewController storyboardIdentifier="QuestionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sTy-Bw-8eH" customClass="OPFQuestionViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vwC-ld-vUf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -222,7 +220,6 @@
                                     <constraint firstItem="dDD-vp-n5D" firstAttribute="leading" secondItem="Zsv-uV-FgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="XYg-tu-8B7"/>
                                     <constraint firstItem="LUS-Mh-m7c" firstAttribute="top" secondItem="Kf6-DB-3YK" secondAttribute="top" constant="-1" id="eqL-QH-2D3"/>
                                     <constraint firstItem="riz-Zf-Mho" firstAttribute="bottom" secondItem="dDD-vp-n5D" secondAttribute="bottom" type="default" id="mgl-IB-wOS"/>
-                                    <constraint firstItem="riz-Zf-Mho" firstAttribute="baseline" secondItem="LUS-Mh-m7c" secondAttribute="baseline" type="default" id="pu4-qn-CKm"/>
                                     <constraint firstItem="Zsv-uV-FgC" firstAttribute="top" secondItem="Kf6-DB-3YK" secondAttribute="top" constant="19" id="snQ-oi-cBD"/>
                                     <constraint firstItem="riz-Zf-Mho" firstAttribute="top" secondItem="LUS-Mh-m7c" secondAttribute="top" type="default" id="tKk-El-uOy"/>
                                     <constraint firstItem="JfC-Rw-eZk" firstAttribute="leading" secondItem="riz-Zf-Mho" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="vdC-x2-iCo"/>
@@ -290,14 +287,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKH-KT-ODQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1204" y="1306"/>
+            <point key="canvasLocation" x="1308" y="926"/>
         </scene>
         <!--Table View Controller - UserProfile-->
         <scene sceneID="Lz9-2x-rtF">
             <objects>
                 <tableViewController id="aBZ-q2-boG" userLabel="Table View Controller - UserProfile" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hvg-Qu-oeh">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -504,14 +501,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYG-jP-wVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192" y="-238"/>
+            <point key="canvasLocation" x="1292" y="198"/>
         </scene>
         <!--Questions View Controller - Questions-->
         <scene sceneID="6Sa-Fa-xzp">
             <objects>
                 <tableViewController id="0eg-Zj-rT7" customClass="OPFQuestionsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CZj-Ne-cNj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
@@ -523,7 +520,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-z6-UuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192" y="-913"/>
+            <point key="canvasLocation" x="1292" y="-477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uld-3q-ctB">
@@ -574,12 +571,6 @@
                 <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
             </relationships>
         </class>
-        <class className="OPFProfileSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFProfileSearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
         <class className="OPFQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
         </class>
@@ -590,6 +581,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

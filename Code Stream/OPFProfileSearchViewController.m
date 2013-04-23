@@ -13,6 +13,7 @@
 @interface OPFProfileSearchViewController ()
 
 @property (strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(nonatomic) BOOL isFiltered;
 
 @end
 
@@ -21,6 +22,17 @@
 - (id)init
 {
     self = [super initWithNibName:@"OPFProfileSearchView" bundle:nil];
+    
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if(self) {
+        //init goes here mofo
+    }
     
     return self;
 }
@@ -52,8 +64,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Shall return the number of items in data source
-    //return self.commentModels.count;
+    //return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
     return 5;
 }
 
@@ -62,6 +73,8 @@
     OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView new];
     
     self.profileSearchBar = profileViewHeader.profileSearchBar;
+    
+    self.profileSearchBar.delegate = (id)self;
     
     return profileViewHeader;
 }
@@ -87,28 +100,20 @@
     return profileViewCell;
 }
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+#pragma mark - SearchBar Delegate -
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    self.isFiltered = (searchText.length == 0) ? NO : YES;
+    
     [self.mutableUserModels removeAllObjects];
 
-    self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.displayName contains[c] %@", searchText];
+    self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
     
     self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+    
+    [self.tableView reloadData];
 }
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-
-    [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-
-    return YES;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-    // Tells the table data source to reload when scope bar selection changes
-    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"searchBar button clicked");
 }
 
 @end
