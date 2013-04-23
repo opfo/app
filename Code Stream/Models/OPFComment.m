@@ -15,22 +15,54 @@
     return @"comments";
 }
 
-+ (NSArray *) where:(NSDictionary *)attributes
-{
-    return nil;
-}
-
 //
 // Translates incoming dictionary keys into the names of the target properties
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"identifier": @"id",
-             @"post_id": @"post_id",
+             @"postId": @"post_id",
              @"score": @"score",
              @"text": @"text",
              @"creationDate": @"creation_date",
-             @"author_id": @"user_id"
+             @"authorId": @"user_id"
     };
+}
+
+@synthesize post = _post;
+
+- (OPFPost*) post
+{
+    if (_post == nil) {
+        OPFQuery* query = [[OPFPost query] whereColumn:@"id" is: self.postId];
+        _post = [query getOne];
+    }
+    return _post;
+}
+
+- (void) setPost:(OPFPost *)post
+{
+    if (_post != post) {
+        _post = post;
+        _postId = post.identifier;
+    }
+}
+@synthesize author = _author;
+
+- (OPFUser*) author
+{
+    if (_author == nil) {
+        OPFQuery* query = [[OPFUser query] whereColumn:@"id" is: self.authorId];
+        _author = [query getOne];
+    }
+    return _author;
+}
+
+- (void) setAuthor:(OPFUser *)author
+{
+    if (_author != author) {
+        _author = author;
+        _authorId = author.identifier;
+    }
 }
 
 @end

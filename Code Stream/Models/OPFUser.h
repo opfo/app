@@ -23,9 +23,9 @@
 @property (copy) NSString* location;
 @property (strong) NSNumber* age;
 @property (copy) NSString* aboutMe;
-@property (assign) NSInteger view;
-@property (assign) NSInteger upVotes;
-@property (assign) NSInteger downVotes;
+@property (strong) NSNumber* view;
+@property (strong) NSNumber* upVotes;
+@property (strong) NSNumber* downVotes;
 
 - (NSArray *) questionsPage: (NSInteger) page;
 - (NSArray *) answersPage: (NSInteger) page;
