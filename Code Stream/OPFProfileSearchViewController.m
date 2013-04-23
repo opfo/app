@@ -62,14 +62,14 @@
         profileViewCell = [nib objectAtIndex:0];
     }
     
-    profileViewCell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
+    profileViewCell.userModel = [self.userModels objectAtIndex:indexPath.row];
     
-    [commentViewCell setupDateformatters];
-    [commentViewCell setModelValuesInView];
+    [profileViewCell setupDateformatters];
+    [profileViewCell setModelValuesInView];
     
-    commentViewCell.commentsViewController = self;
+    profileViewCell.profilesViewController = self;
     
-    return commentViewCell;
+    return profileViewCell;
 }
 
 @end
