@@ -138,6 +138,10 @@
 }
 
 + (NSValueTransformer *)createdAtJSONTransformer {
+    return [self standardDateTransformer];
+}
+
++ (NSValueTransformer *)standardDateTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
         return [self.dateFormatter dateFromString:str];
     } reverseBlock:^(NSDate *date) {
@@ -149,13 +153,13 @@
 
 + (OPFRootQuery*) query
 {
-    OnGetOne singelModelCallback = ^(NSDictionary* attributes){
+    OnGetOne singleModelCallback = ^(NSDictionary* attributes){
         return [self parseDictionary:attributes];
     };
     OnGetMany multipleModelCallback = ^(FMResultSet* result) {
         return [self parseMultipleResult:result];
     };
-    return [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singelModelCallback manyCallback:multipleModelCallback];
+    return [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singleModelCallback manyCallback:multipleModelCallback];
 }
 
 @end

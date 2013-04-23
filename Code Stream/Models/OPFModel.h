@@ -24,4 +24,5 @@
 +(NSDateFormatter*) dateFormatter;
 +(NSInteger) defaultPageSize;
 +(OPFRootQuery*) query;
++(NSValueTransformer*) standardDateTransformer;
 @end
