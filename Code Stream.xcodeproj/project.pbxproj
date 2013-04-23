@@ -197,6 +197,7 @@
 		9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostTagsTableViewCell.m; sourceTree = "<group>"; };
 		9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFScoreNumberFormatter.h; sourceTree = "<group>"; };
 		9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatter.m; sourceTree = "<group>"; };
+		9C9B79C81726845600E5333B /* CDKittMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDKittMacros.h; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -477,6 +478,7 @@
 		9C1C51731716FEBB004CC9E3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				9C9B79C71726845600E5333B /* CDKitt */,
 				9C1C51741716FFD4004CC9E3 /* xcconfig */,
 			);
 			name = Vendor;
@@ -588,6 +590,15 @@
 				9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */,
 			);
 			name = Formatters;
+			sourceTree = "<group>";
+		};
+		9C9B79C71726845600E5333B /* CDKitt */ = {
+			isa = PBXGroup;
+			children = (
+				9C9B79C81726845600E5333B /* CDKittMacros.h */,
+			);
+			name = CDKitt;
+			path = Vendor/CDKitt;
 			sourceTree = "<group>";
 		};
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
