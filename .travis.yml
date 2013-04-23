@@ -1,5 +1,6 @@
 language: objective-c
 notifications:
+  email: false
   hipchat:
     - secure: "K+ugbhcOQfDN+sV9RXJgMJp/HylUy58GdgyXSTCTL+/3CV0TeHsk3ViCnvJX\n1rJXLR2B/tQQbE5mkDWwpp85msCnzijSsW/aFaoGLK6BtpCej+A3nqh8ocDk\nhHrkFJ+Z87LtuBBHeBSkOdaRr/FH/CQzL3jLFDuaqfQxpwsp0jw="
 before_install:
