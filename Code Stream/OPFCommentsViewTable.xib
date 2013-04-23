@@ -43,7 +43,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 524}</string>
 						<reference key="NSSuperview" ref="394989230"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1001881314"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="945078119">
@@ -69,7 +68,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{10, 7}, {252, 30}}</string>
 								<reference key="NSSuperview" ref="1001881314"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="214142944"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -107,8 +105,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{270, 7}, {40, 30}}</string>
 								<reference key="NSSuperview" ref="1001881314"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -141,7 +137,6 @@
 						</array>
 						<string key="NSFrame">{{0, 524}, {320, 44}}</string>
 						<reference key="NSSuperview" ref="394989230"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1048572482"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -154,7 +149,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="899951066"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -673,8 +667,8 @@
 				<string key="247.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="252.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array key="252.IBViewMetadataConstraints">
-					<reference ref="439457446"/>
 					<reference ref="130259567"/>
+					<reference ref="439457446"/>
 				</array>
 				<boolean value="NO" key="252.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="253.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
