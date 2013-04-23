@@ -243,12 +243,12 @@
 			name = "Questions View";
 			sourceTree = "<group>";
 		};
-		1A6833451726A14C00E3A687 /* Table Header Views */ = {
+		1A6833451726A14C00E3A687 /* Table View Headers */ = {
 			isa = PBXGroup;
 			children = (
 				1A6833461726A15800E3A687 /* Comment View Header */,
 			);
-			name = "Table Header Views";
+			name = "Table View Headers";
 			sourceTree = "<group>";
 		};
 		1A6833461726A15800E3A687 /* Comment View Header */ = {
@@ -476,7 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				1A6833471726A23600E3A687 /* Comments View */,
-				1A6833451726A14C00E3A687 /* Table Header Views */,
+				1A6833451726A14C00E3A687 /* Table View Headers */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
