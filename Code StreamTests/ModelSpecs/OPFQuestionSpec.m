@@ -19,6 +19,11 @@ describe(@"Fetching", ^{
         id question = [[[OPFQuestion query] whereColumn: @"id" is: @"8474693"] getOne];
         expect(question).to.beNil();
     });
+    
+    it(@"should fetch an object of the correct type", ^{
+        id question = [[[OPFQuestion query] whereColumn:@"id" is: @(8414075)] getOne];
+        expect(question).to.beKindOf([OPFQuestion class]);
+    });
 });
 
 SpecEnd
