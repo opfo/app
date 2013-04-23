@@ -8,6 +8,7 @@
 
 #import "OPFQuestionsViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
+#import "OPFQuestionViewController.h"
 #import "OPFQuestion+Mockup.h"
 
 
@@ -136,13 +137,20 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	// Navigation logic may go here. Create and push another view controller.
-	/*
-	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"Nib name" bundle:nil];
-	 // ...
-	 // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 */
+	OPFQuestion *question = nil;
+	if (tableView == self.tableView) {
+		question = self.questions[indexPath.row];
+	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
+		question = self.filteredQuestions[indexPath.row];
+	} else {
+		NSAssert(NO, @"Unknown table view %@", tableView);
+		return;
+	}
+	
+	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
+	questionViewController.question = question;
+	
+	[self.navigationController pushViewController:questionViewController animated:YES];
 }
 
 @end
