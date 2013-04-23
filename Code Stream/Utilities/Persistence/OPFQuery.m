@@ -30,11 +30,15 @@
 
 - (id) getOne
 {
-    FMResultSet* result = [self getResultSetOne];
-    if ([result next]) {
-        return self.onGetOne([result resultDictionary]);
+    if([self isKindOfClass: [OPFRootQuery class]]) {
+        FMResultSet* result = [self getResultSetOne];
+        if(self.onGetOne != nil && [result next]) {
+            return self.onGetOne([result resultDictionary]);
+        } else {
+            return nil;
+        }
     } else {
-        return nil;
+        return [self.rootQuery getOne];
     }
 }
 
