@@ -15,12 +15,10 @@
 
 @implementation OPFProfileSearchViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
+    self = [super initWithNibName:@"OPFProfileSearchView" bundle:nil];
+    
     return self;
 }
 
