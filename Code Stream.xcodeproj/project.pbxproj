@@ -13,8 +13,6 @@
 		1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FD17201A000033DFA8 /* acceptedAnswer.png */; };
 		1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
-		1A088E541726A828000EDDBB /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A088E511726A828000EDDBB /* OPFCommentViewHeaderView.xib */; };
-		1A088E551726A828000EDDBB /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A088E531726A828000EDDBB /* OPFCommentViewHeaderView.m */; };
 		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
 		1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */; };
 		1A639EC217267AB6009EB280 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC117267AB6009EB280 /* location@2x.png */; };
@@ -37,6 +35,7 @@
 		1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */; };
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
+		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
@@ -107,9 +106,7 @@
 		1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer@2x.png"; sourceTree = "<group>"; };
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
-		1A088E511726A828000EDDBB /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
-		1A088E531726A828000EDDBB /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
 		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
 		1A639EBD17267384009EB280 /* OPFProfileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileViewCell.m; sourceTree = "<group>"; };
 		1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
@@ -137,9 +134,8 @@
 		1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarcusJohansson@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
+		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OPFCommentViewHeaderView.xib; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.xib"; sourceTree = "<absolute>"; };
-		1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFCommentViewHeaderView.h; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.h"; sourceTree = "<absolute>"; };
-		1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFCommentViewHeaderView.m; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.m"; sourceTree = "<absolute>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,7 +307,7 @@
 			children = (
 				1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */,
 				1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */,
-				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
+				1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */,
 			);
 			name = "Comment View Header";
 			sourceTree = "<group>";
@@ -791,7 +787,6 @@
 				1A639EC817267F0B009EB280 /* activity@2x.png in Resources */,
 				1A639ECB17268280009EB280 /* OPFProfileSearchView.xib in Resources */,
 				1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */,
-				1A088E541726A828000EDDBB /* OPFCommentViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,7 +904,7 @@
 				1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */,
 				1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */,
 				1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */,
-				1A088E551726A828000EDDBB /* OPFCommentViewHeaderView.m in Sources */,
+				1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
