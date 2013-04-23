@@ -325,6 +325,7 @@
 			children = (
 				1A6833461726A15800E3A687 /* Comment View Header */,
 				1A639ED017269C19009EB280 /* Profile Search Header */,
+				1A7219831727285A002B43CD /* Profile View Header */,
 			);
 			name = "Table View Headers";
 			sourceTree = "<group>";
@@ -375,6 +376,20 @@
 				1A72197F172726A8002B43CD /* OPFProfileViewController.m */,
 			);
 			name = "Profile View";
+			sourceTree = "<group>";
+		};
+		1A7219831727285A002B43CD /* Profile View Header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Profile View Header";
+			sourceTree = "<group>";
+		};
+		1A721984172728C6002B43CD /* Profile Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Profile Table View Cells";
 			sourceTree = "<group>";
 		};
 		1A816ABE171DF51700964AF2 /* Avatars */ = {
@@ -761,6 +776,7 @@
 			isa = PBXGroup;
 			children = (
 				1A639EBB172671FA009EB280 /* Profile Table View Cells */,
+				1A721984172728C6002B43CD /* Profile Table View Cells */,
 				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
 			);

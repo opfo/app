@@ -9,6 +9,7 @@
 #import "OPFDebugViewController.h"
 #import "OPFCommentsViewController.h"
 #import "OPFProfileSearchViewController.h"
+#import "OPFProfileViewController.h"
 
 enum {
 	kOPFQuestionsViewCell = 0,
@@ -116,6 +117,8 @@ static NSString *const CommentsViewCell = @"CommentsViewCell";
         viewToPush = [OPFCommentsViewController new];
     } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:ProfileSearchViewCell] == YES) {
         viewToPush = [OPFProfileSearchViewController new];
+    } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserProfileViewCell] == YES) {
+        viewToPush = [OPFProfileViewController new];
     }
     
     [self.navigationController pushViewController:viewToPush animated:YES];
