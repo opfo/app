@@ -77,9 +77,18 @@ static NSString *const CommentsViewCell = @"CommentsViewCell";
         case kOPFProfileSearchViewCell:
             cellIdentifier = ProfileSearchViewCell;
             break;
-        default:
+        case kOPFCommentsViewCell:
             cellIdentifier = CommentsViewCell;
             break;
+		case kOPFQuestionsViewCell:
+			cellIdentifier = QuestionsViewCell;
+			break;
+		case kOPFQuestionViewCell:
+			cellIdentifier = QuestionViewCell;
+			break;
+		default:
+			cellIdentifier = nil;
+			break;
     }
     
     return cellIdentifier;
@@ -117,8 +126,9 @@ static NSString *const CommentsViewCell = @"CommentsViewCell";
     } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:ProfileSearchViewCell] == YES) {
         viewToPush = [OPFProfileSearchViewController new];
     }
-    
-    [self.navigationController pushViewController:viewToPush animated:YES];
+    if (viewToPush) {
+		[self.navigationController pushViewController:viewToPush animated:YES];
+	}
 }
 
 @end
