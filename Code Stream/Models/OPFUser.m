@@ -8,9 +8,12 @@
 
 #import "OPFUser.h"
 #import "OPFDatabaseAccess.h"
+#import "OPFQuestion.h"
+#import "OPFComment.h"
+#import "OPFAnswer.h"
 
 @interface OPFUser (/*private */)
-@property(assign, readwrite) NSInteger identifier;
+@property(strong, readwrite) NSNumber* identifier;
 @property(strong, readwrite) NSDate* creationDate;
 @end
 

@@ -41,6 +41,7 @@
 {
     if([_baseDB open]) {
         NSLog(@"Opened database");
+        NSLog([NSString stringWithFormat:@"Executing SQL: %@", sql]);
         __block FMResultSet* result;
         [_baseDBQueue inDatabase: ^(FMDatabase* db) {
             result = [db executeQuery:sql];

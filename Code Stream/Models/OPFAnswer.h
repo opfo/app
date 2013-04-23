@@ -7,7 +7,11 @@
 //
 
 #import "OPFPost.h"
+#import "OPFQuestion.h"
 
 @interface OPFAnswer : OPFPost
+
+@property NSNumber* parentId;
+@property OPFQuestion* parent;
 
 @end

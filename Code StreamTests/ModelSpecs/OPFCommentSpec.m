@@ -31,7 +31,7 @@ describe(@"Model creation", ^{
         OPFComment* comment = [OPFComment find: 8894930];
         expect(comment).toNot.equal(nil);
         expect(comment.text).to.equal(commentBody);
-        expect(comment.author_id).to.equal(@(378133));
+        expect(comment.authorId).to.equal(@(378133));
     });
 });
 
@@ -47,5 +47,17 @@ describe(@"Pagination", ^{
     });
 });
 
+describe(@"relations", ^{
+    __block OPFComment* comment;
+    
+    beforeEach(^{
+        comment = [[[OPFComment query] whereColumn:@"id" is:@(10405390)] getOne];
+    });
+    
+    it(@"should fetch related objects when needed",  ^{
+        expect(comment.author).to.beKindOf([OPFUser class]);
+        expect(comment.post).to.beKindOf([OPFPost class]);
+    });
+});
 
 SpecEnd
