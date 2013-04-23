@@ -57,10 +57,10 @@ typedef id (^OnGetOne)(NSDictionary*);
 - (NSArray*) getMany;
 
 // Create a LIKE query and set is as an AND query for this query
-- (instancetype) whereColumn: (NSString*) column like: (NSString*) term;
+- (instancetype) whereColumn: (NSString*) column like: (id) term;
 
 // Create an IS (equals) query and set is as an AND query for this query
-- (instancetype) whereColumn: (NSString*) column is: (NSString*) term;
+- (instancetype) whereColumn: (NSString*) column is: (id) term;
 
 // Create an IN query and set is as an AND query for this query
 - (instancetype) whereColumn: (NSString*) column in: (NSArray*) terms;

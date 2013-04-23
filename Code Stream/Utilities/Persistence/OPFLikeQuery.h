@@ -12,8 +12,8 @@
 @interface OPFLikeQuery : OPFQuery
 
 // The search term
-@property (copy) NSString* term;
+@property (copy) id term;
 
-+ (instancetype) initWithColumn: (NSString*) column term: (NSString*) term rootQuery: (OPFQuery*) otherQuery;
++ (instancetype) initWithColumn: (NSString*) column term: (id) term rootQuery: (OPFQuery*) otherQuery;
 
 @end

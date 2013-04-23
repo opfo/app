@@ -16,7 +16,7 @@
     return output;
 }
 
-+ (OPFLikeQuery*) initWithColumn:(NSString *)column term:(NSString *)term rootQuery:(OPFQuery *)rootQuery
++ (OPFLikeQuery*) initWithColumn:(NSString *)column term:(id)term rootQuery:(OPFQuery *)rootQuery
 {
     OPFLikeQuery* query = [[OPFLikeQuery alloc] init];
     query.columnName = column;
