@@ -247,14 +247,25 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableFooterView" contentMode="redraw" id="dkh-vA-gi0">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="c4J-aO-4w7">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
-                                <outlet property="delegate" destination="0eg-Zj-rT7" id="qCo-tx-hwB"/>
+                                <outlet property="delegate" destination="0eg-Zj-rT7" id="XOi-PT-SlY"/>
                             </connections>
                         </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="VSA-lc-way">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="0eg-Zj-rT7" id="NTj-O6-R1s"/>
                             <outlet property="delegate" destination="0eg-Zj-rT7" id="ivm-VU-HUo"/>
@@ -262,17 +273,17 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Questions" id="3gg-I0-8Gx"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="pFf-Uj-0wW" id="3ZX-Qe-f98"/>
+                        <outlet property="searchDisplayController" destination="Vp2-IH-3Tv" id="gZo-ds-EC2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-z6-UuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="pFf-Uj-0wW">
+                <searchDisplayController id="Vp2-IH-3Tv">
                     <connections>
-                        <outlet property="delegate" destination="0eg-Zj-rT7" id="waO-b1-G3O"/>
-                        <outlet property="searchBar" destination="dkh-vA-gi0" id="X4s-PD-ZVF"/>
-                        <outlet property="searchContentsController" destination="0eg-Zj-rT7" id="dqy-sj-kGz"/>
-                        <outlet property="searchResultsDataSource" destination="0eg-Zj-rT7" id="e3O-AG-Awz"/>
-                        <outlet property="searchResultsDelegate" destination="0eg-Zj-rT7" id="jGt-Fp-PsU"/>
+                        <outlet property="delegate" destination="0eg-Zj-rT7" id="rBN-g6-BhS"/>
+                        <outlet property="searchBar" destination="c4J-aO-4w7" id="MGi-TE-SR9"/>
+                        <outlet property="searchContentsController" destination="0eg-Zj-rT7" id="Yhs-Sc-hfo"/>
+                        <outlet property="searchResultsDataSource" destination="0eg-Zj-rT7" id="6YX-d9-MEj"/>
+                        <outlet property="searchResultsDelegate" destination="0eg-Zj-rT7" id="bsV-SQ-qYU"/>
                     </connections>
                 </searchDisplayController>
             </objects>
