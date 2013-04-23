@@ -103,7 +103,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 - (void)viewWillAppear:(BOOL)animated
 {
     OPFUser *user = [[OPFUser alloc] init];
-    [user setReputation:351];
+    [user setReputation:@(351)];
     [user setDisplayName:@"Aron"];
     OPFPost *post = [[OPFPost alloc] init];
     [post setScore:@(123)];
@@ -218,7 +218,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
 		metadataCell.authorLabel.text = post.owner.displayName;
-		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%d", post.owner.reputation];
+		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%@", post.owner.reputation];
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
 		if (post.comments.count > 0) {
