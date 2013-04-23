@@ -34,7 +34,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"fetches correct number of results when fetching multiple", ^{
-        FMResultSet* result = [isQuery getMany];
+        FMResultSet* result = [isQuery getResultSetMany];
         int i = 0;
         while ([result next]) {
             i++;
@@ -44,7 +44,7 @@ describe(@"fetching and SQL-strings", ^{
     
     it(@"fetches correct object for for a single object query", ^{
         isQuery = [rootQuery whereColumn: @"user_id" is: @"270"];
-        FMResultSet* result = [isQuery getOne];
+        FMResultSet* result = [isQuery getResultSetOne];
         NSDictionary* attributes;
         int i = 0;
         while([result next]) {
@@ -56,10 +56,18 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"returns correct SQL for an and-query", ^{
-        OPFIsQuery* secondQuery = [isQuery whereColumn:@"post_id" is:@"1"];
+        [isQuery whereColumn:@"post_id" is:@"1"];
         expect([rootQuery toSQLString])
             .to
             .equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)");
+    });
+    
+    it(@"returns model objects ", ^{
+        NSArray* objects = [isQuery getMany];
+        expect([objects count]).notTo.equal(0);
+        for(id obj in objects) {
+            expect(obj).to.beKindOf([OPFComment class]);
+        }
     });
 });
 

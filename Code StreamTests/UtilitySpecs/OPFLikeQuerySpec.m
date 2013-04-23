@@ -31,7 +31,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"returns the correct amount of objects for the given query", ^{
-        result = [inQuery getMany];
+        result = [inQuery getResultSetMany];
         int i = 0;
         while([result next]) {
             i++;
