@@ -117,9 +117,12 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	if (tableView == self.tableView) {
 		cellIdentifier = QuestionCellIdentifier;
 		question = self.questions[indexPath.row];
-	} else {
+	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
 		cellIdentifier = SearchQuestionsCellIdentifier;
 		question = self.filteredQuestions[indexPath.row];
+	} else {
+		NSAssert(NO, @"Unknown table view %@", tableView);
+		return nil;
 	}
 	
 	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
