@@ -45,7 +45,7 @@
 		815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */; };
 		816F9739171D48ED00E881B6 /* OPFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* OPFUserSpec.m */; };
 		8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */; };
-		8194A6A41726A8D300B2F0D5 /* OPFAnswerSpec.m in Resources */ = {isa = PBXBuildFile; fileRef = 8194A6A31726A8D300B2F0D5 /* OPFAnswerSpec.m */; };
+		8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */; };
 		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		81C18471171FD8B3008273A6 /* OPFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18470171FD8B3008273A6 /* OPFPost.m */; };
 		81C18477171FD908008273A6 /* OPFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18476171FD908008273A6 /* OPFAnswer.m */; };
@@ -153,7 +153,7 @@
 		815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuerySpec.m; path = UtilitySpecs/OPFLikeQuerySpec.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* OPFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUserSpec.m; path = ModelSpecs/OPFUserSpec.m; sourceTree = "<group>"; };
 		8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestionSpec.m; path = ModelSpecs/OPFQuestionSpec.m; sourceTree = "<group>"; };
-		8194A6A31726A8D300B2F0D5 /* OPFAnswerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswerSpec.m; path = ModelSpecs/OPFAnswerSpec.m; sourceTree = "<group>"; };
+		8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswerSpec.m; path = ModelSpecs/OPFAnswerSpec.m; sourceTree = "<group>"; };
 		81C1846C171FD687008273A6 /* OPFQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuestion.h; path = Models/OPFQuestion.h; sourceTree = "<group>"; };
 		81C1846D171FD687008273A6 /* OPFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestion.m; path = Models/OPFQuestion.m; sourceTree = "<group>"; };
 		81C1846F171FD8B3008273A6 /* OPFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFPost.h; path = Models/OPFPost.h; sourceTree = "<group>"; };
@@ -348,7 +348,7 @@
 				81C1C74417202F3C004AB177 /* OPFCommentSpec.m */,
 				81D5E0561721661500E572B2 /* OPFModelSpec.m */,
 				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
-				8194A6A31726A8D300B2F0D5 /* OPFAnswerSpec.m */,
+				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
 			);
 			name = ModelSpecs;
 			sourceTree = "<group>";
@@ -751,7 +751,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */,
-				8194A6A41726A8D300B2F0D5 /* OPFAnswerSpec.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,6 +882,7 @@
 				815E1B61172532D000FBDFEF /* OPFInQuerySpec.m in Sources */,
 				815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */,
 				8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */,
+				8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
