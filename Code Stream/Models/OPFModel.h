@@ -25,4 +25,6 @@
 +(NSInteger) defaultPageSize;
 +(OPFRootQuery*) query;
 +(NSValueTransformer*) standardDateTransformer;
++(NSArray *) parseMultipleResult: (FMResultSet*) result;
++(instancetype) parseDictionary: (NSDictionary*) attributes;
 @end
