@@ -19,6 +19,8 @@
 		1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC317267D29009EB280 /* votes-down@2x.png */; };
 		1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC417267D29009EB280 /* votes-up@2x.png */; };
 		1A639EC817267F0B009EB280 /* activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC717267F0B009EB280 /* activity@2x.png */; };
+		1A639ECB17268280009EB280 /* OPFProfileSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */; };
+		1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */; };
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
@@ -110,6 +112,9 @@
 		1A639EC317267D29009EB280 /* votes-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-down@2x.png"; sourceTree = "<group>"; };
 		1A639EC417267D29009EB280 /* votes-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-up@2x.png"; sourceTree = "<group>"; };
 		1A639EC717267F0B009EB280 /* activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity@2x.png"; sourceTree = "<group>"; };
+		1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchView.xib; sourceTree = "<group>"; };
+		1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchViewController.h; sourceTree = "<group>"; };
+		1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchViewController.m; sourceTree = "<group>"; };
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
@@ -263,6 +268,14 @@
 				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
 			);
 			name = "Profile Table View Cells";
+			sourceTree = "<group>";
+		};
+		1A639EC91726821A009EB280 /* Profile Search View */ = {
+			isa = PBXGroup;
+			children = (
+				1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */,
+			);
+			name = "Profile Search View";
 			sourceTree = "<group>";
 		};
 		1A816ABE171DF51700964AF2 /* Avatars */ = {
@@ -474,6 +487,7 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1A639EC91726821A009EB280 /* Profile Search View */,
 				1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */,
 				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
 				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
@@ -497,6 +511,8 @@
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
+				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
+				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -731,6 +747,7 @@
 				1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */,
 				1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */,
 				1A639EC817267F0B009EB280 /* activity@2x.png in Resources */,
+				1A639ECB17268280009EB280 /* OPFProfileSearchView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,6 +864,7 @@
 				810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */,
 				9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */,
 				1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */,
+				1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
