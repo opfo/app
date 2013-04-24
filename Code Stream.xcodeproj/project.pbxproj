@@ -33,6 +33,7 @@
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
 		810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */ = {isa = PBXBuildFile; fileRef = 810C9CD51721E99C00FDF562 /* OPFQuestion+Mockup.m */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
+		813482451727C045008E8F22 /* auxiliary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 813482441727C045008E8F22 /* auxiliary.sqlite */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
 		815E1B4E172473FE00FBDFEF /* OPFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B4D172473FE00FBDFEF /* OPFQuery.m */; };
 		815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */; };
@@ -134,6 +135,7 @@
 		8128DF92171D82C300C44410 /* OPFDatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFDatabaseAccess.h; path = Utilities/Persistence/OPFDatabaseAccess.h; sourceTree = "<group>"; };
 		8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccess.m; path = Utilities/Persistence/OPFDatabaseAccess.m; sourceTree = "<group>"; };
 		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
+		813482441727C045008E8F22 /* auxiliary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = auxiliary.sqlite; sourceTree = "<group>"; };
 		815261FA171D62FA00B5EF2D /* OPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFUser.h; path = Models/OPFUser.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* OPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUser.m; path = Models/OPFUser.m; sourceTree = "<group>"; };
 		815E1B4C172473FE00FBDFEF /* OPFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuery.h; path = Utilities/Persistence/OPFQuery.h; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
 				8128DF95171D832C00C44410 /* so.sqlite */,
@@ -754,6 +757,7 @@
 				1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */,
 				1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */,
 				1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */,
+				813482451727C045008E8F22 /* auxiliary.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
