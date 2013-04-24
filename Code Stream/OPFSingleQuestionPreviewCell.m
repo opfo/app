@@ -20,14 +20,16 @@
 	self.score = question.score;
 	self.answers = question.answerCount;
 	self.title = question.title;
-	
-	self.tags = @[@"test1", @"test2", @"test3"];
-	self.tagList.dataSource = self;
-	[self.tagList reloadData];
-	
-	// [self addObserver:self forKeyPath:@"tags" options:0 context:nil];
+	self.tags = question.tags;
 	
 	return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual: @"tags"]) {
+		self.tagList.dataSource = self;
+		[self.tagList reloadData];
+	}
 }
 
 - (NSInteger)numberOfTagLabelInTagList:(GCTagList *)tagList {
@@ -42,11 +44,10 @@
     if(!tag) {
         tag = [GCTagLabel tagLabelWithReuseIdentifier:identifier];
         tag.labelBackgroundColor = [UIColor colorWithRed:84/255.f green:164/255.f blue:222/255.f alpha:1.f];
-		
     }
 	
     [tag setLabelText:self.tags[index]
-        accessoryType:GCTagLabelAccessoryCrossFont];
+        accessoryType:GCTagLabelAccessoryNone];
 	
     return tag;
 }
@@ -79,15 +80,27 @@
 	self.questionLabel.text = Title;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		self.tagList.dataSource = self;
+		[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
+	}
+	return self;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
 	
 	
     return self;
+}
+
+-(void)dealloc{
+	[self removeObserver:self forKeyPath:@"tags"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
