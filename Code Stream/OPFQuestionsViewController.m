@@ -21,22 +21,15 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-  
-  [self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	[super viewDidLoad];
+	
+	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
+    self.clearsSelectionOnViewWillAppear = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +63,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return 150;
+	return 150;
 }
 
 #pragma mark - Table view delegate
