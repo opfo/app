@@ -13,6 +13,17 @@
 		1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FD17201A000033DFA8 /* acceptedAnswer.png */; };
 		1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
+		1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */; };
+		1A639EC217267AB6009EB280 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC117267AB6009EB280 /* location@2x.png */; };
+		1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC317267D29009EB280 /* votes-down@2x.png */; };
+		1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC417267D29009EB280 /* votes-up@2x.png */; };
+		1A639EC817267F0B009EB280 /* activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC717267F0B009EB280 /* activity@2x.png */; };
+		1A639ECB17268280009EB280 /* OPFProfileSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */; };
+		1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */; };
+		1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */; };
+		1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */; };
+		1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72197A172715DF002B43CD /* OPFDebugViewController.m */; };
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
@@ -25,16 +36,27 @@
 		1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */; };
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
-		1A97782C171F20310061DA85 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
-		1A97782F171F33430061DA85 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */; };
+		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
 		810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */ = {isa = PBXBuildFile; fileRef = 810C9CD51721E99C00FDF562 /* OPFQuestion+Mockup.m */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
+		813482451727C045008E8F22 /* auxiliary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 813482441727C045008E8F22 /* auxiliary.sqlite */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
+		815E1B4E172473FE00FBDFEF /* OPFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B4D172473FE00FBDFEF /* OPFQuery.m */; };
+		815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */; };
+		815E1B551724856900FBDFEF /* OPFIsQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B541724856900FBDFEF /* OPFIsQuery.m */; };
+		815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B57172516A700FBDFEF /* OPFRootQuery.m */; };
+		815E1B5B17251B0A00FBDFEF /* OPFIsQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */; };
+		815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5D1725207500FBDFEF /* OPFInQuery.m */; };
+		815E1B61172532D000FBDFEF /* OPFInQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */; };
+		815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */; };
+		815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */; };
 		816F9739171D48ED00E881B6 /* OPFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* OPFUserSpec.m */; };
+		8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */; };
+		8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */; };
 		81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1846D171FD687008273A6 /* OPFQuestion.m */; };
 		81C18471171FD8B3008273A6 /* OPFPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18470171FD8B3008273A6 /* OPFPost.m */; };
 		81C18477171FD908008273A6 /* OPFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18476171FD908008273A6 /* OPFAnswer.m */; };
@@ -97,6 +119,22 @@
 		1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer@2x.png"; sourceTree = "<group>"; };
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
+		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
+		1A639EBD17267384009EB280 /* OPFProfileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileViewCell.m; sourceTree = "<group>"; };
+		1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
+		1A639EC117267AB6009EB280 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
+		1A639EC317267D29009EB280 /* votes-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-down@2x.png"; sourceTree = "<group>"; };
+		1A639EC417267D29009EB280 /* votes-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-up@2x.png"; sourceTree = "<group>"; };
+		1A639EC717267F0B009EB280 /* activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity@2x.png"; sourceTree = "<group>"; };
+		1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchView.xib; sourceTree = "<group>"; };
+		1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchViewController.h; sourceTree = "<group>"; };
+		1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchViewController.m; sourceTree = "<group>"; };
+		1A639ED117269CA3009EB280 /* OPFProfileSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchHeaderView.h; sourceTree = "<group>"; };
+		1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchHeaderView.m; sourceTree = "<group>"; };
+		1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchHeaderView.xib; sourceTree = "<group>"; };
+		1A721979172715DF002B43CD /* OPFDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDebugViewController.h; sourceTree = "<group>"; };
+		1A72197A172715DF002B43CD /* OPFDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDebugViewController.m; sourceTree = "<group>"; };
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
@@ -111,9 +149,8 @@
 		1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarcusJohansson@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
-		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
-		1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
-		1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
+		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
+		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OPFCommentViewHeaderView.xib; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.xib"; sourceTree = "<absolute>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,9 +160,27 @@
 		8128DF92171D82C300C44410 /* OPFDatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFDatabaseAccess.h; path = Utilities/Persistence/OPFDatabaseAccess.h; sourceTree = "<group>"; };
 		8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccess.m; path = Utilities/Persistence/OPFDatabaseAccess.m; sourceTree = "<group>"; };
 		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
+		813482441727C045008E8F22 /* auxiliary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = auxiliary.sqlite; sourceTree = "<group>"; };
 		815261FA171D62FA00B5EF2D /* OPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFUser.h; path = Models/OPFUser.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* OPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUser.m; path = Models/OPFUser.m; sourceTree = "<group>"; };
+		815E1B4C172473FE00FBDFEF /* OPFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuery.h; path = Utilities/Persistence/OPFQuery.h; sourceTree = "<group>"; };
+		815E1B4D172473FE00FBDFEF /* OPFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuery.m; path = Utilities/Persistence/OPFQuery.m; sourceTree = "<group>"; };
+		815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuerySpec.m; path = UtilitySpecs/OPFQuerySpec.m; sourceTree = "<group>"; };
+		815E1B5217247EC300FBDFEF /* OPFQueryable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQueryable.h; path = Models/OPFQueryable.h; sourceTree = "<group>"; };
+		815E1B531724856900FBDFEF /* OPFIsQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFIsQuery.h; sourceTree = "<group>"; };
+		815E1B541724856900FBDFEF /* OPFIsQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFIsQuery.m; sourceTree = "<group>"; };
+		815E1B56172516A700FBDFEF /* OPFRootQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFRootQuery.h; sourceTree = "<group>"; };
+		815E1B57172516A700FBDFEF /* OPFRootQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFRootQuery.m; sourceTree = "<group>"; };
+		815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFIsQuerySpec.m; path = UtilitySpecs/OPFIsQuerySpec.m; sourceTree = "<group>"; };
+		815E1B5C1725207500FBDFEF /* OPFInQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFInQuery.h; path = Utilities/Persistence/OPFInQuery.h; sourceTree = "<group>"; };
+		815E1B5D1725207500FBDFEF /* OPFInQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFInQuery.m; path = Utilities/Persistence/OPFInQuery.m; sourceTree = "<group>"; };
+		815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFInQuerySpec.m; path = UtilitySpecs/OPFInQuerySpec.m; sourceTree = "<group>"; };
+		815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFLikeQuery.h; path = Utilities/Persistence/OPFLikeQuery.h; sourceTree = "<group>"; };
+		815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuery.m; path = Utilities/Persistence/OPFLikeQuery.m; sourceTree = "<group>"; };
+		815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuerySpec.m; path = UtilitySpecs/OPFLikeQuerySpec.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* OPFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUserSpec.m; path = ModelSpecs/OPFUserSpec.m; sourceTree = "<group>"; };
+		8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestionSpec.m; path = ModelSpecs/OPFQuestionSpec.m; sourceTree = "<group>"; };
+		8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswerSpec.m; path = ModelSpecs/OPFAnswerSpec.m; sourceTree = "<group>"; };
 		81C1846C171FD687008273A6 /* OPFQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuestion.h; path = Models/OPFQuestion.h; sourceTree = "<group>"; };
 		81C1846D171FD687008273A6 /* OPFQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestion.m; path = Models/OPFQuestion.m; sourceTree = "<group>"; };
 		81C1846F171FD8B3008273A6 /* OPFPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFPost.h; path = Models/OPFPost.h; sourceTree = "<group>"; };
@@ -197,6 +252,7 @@
 		9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostTagsTableViewCell.m; sourceTree = "<group>"; };
 		9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFScoreNumberFormatter.h; sourceTree = "<group>"; };
 		9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatter.m; sourceTree = "<group>"; };
+		9C9B79C81726845600E5333B /* CDKittMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDKittMacros.h; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -243,6 +299,71 @@
 			name = "Questions View";
 			sourceTree = "<group>";
 		};
+		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A639EBC17267384009EB280 /* OPFProfileViewCell.h */,
+				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
+				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
+			);
+			name = "Profile Search Table View Cells";
+			sourceTree = "<group>";
+		};
+		1A639EC91726821A009EB280 /* Profile Search View */ = {
+			isa = PBXGroup;
+			children = (
+				1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */,
+			);
+			name = "Profile Search View";
+			sourceTree = "<group>";
+		};
+		1A639ECF17269C01009EB280 /* Table View Headers */ = {
+			isa = PBXGroup;
+			children = (
+				1A6833461726A15800E3A687 /* Comment View Header */,
+				1A639ED017269C19009EB280 /* Profile Search Header */,
+			);
+			name = "Table View Headers";
+			sourceTree = "<group>";
+		};
+		1A639ED017269C19009EB280 /* Profile Search Header */ = {
+			isa = PBXGroup;
+			children = (
+				1A639ED117269CA3009EB280 /* OPFProfileSearchHeaderView.h */,
+				1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */,
+				1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */,
+			);
+			name = "Profile Search Header";
+			sourceTree = "<group>";
+		};
+		1A6833461726A15800E3A687 /* Comment View Header */ = {
+			isa = PBXGroup;
+			children = (
+				1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */,
+				1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */,
+				1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */,
+			);
+			name = "Comment View Header";
+			sourceTree = "<group>";
+		};
+		1A6833471726A23600E3A687 /* Comments View */ = {
+			isa = PBXGroup;
+			children = (
+				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
+			);
+			name = "Comments View";
+			sourceTree = "<group>";
+		};
+		1A72197C17271A1C002B43CD /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
+				1A721979172715DF002B43CD /* OPFDebugViewController.h */,
+				1A72197A172715DF002B43CD /* OPFDebugViewController.m */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		1A816ABE171DF51700964AF2 /* Avatars */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,7 +380,11 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A639EC117267AB6009EB280 /* location@2x.png */,
 				1AC64EB417213DAA00E9A984 /* submit@2x.png */,
+				1A639EC317267D29009EB280 /* votes-down@2x.png */,
+				1A639EC717267F0B009EB280 /* activity@2x.png */,
+				1A639EC417267D29009EB280 /* votes-up@2x.png */,
 				1A816AC8171DFBBC00964AF2 /* arrow-up@2x.png */,
 				1A816AC4171DF7EC00964AF2 /* calendar@2x.png */,
 				1A816AC5171DF7EC00964AF2 /* clock@2x.png */,
@@ -270,6 +395,7 @@
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 				1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */,
 				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
 			);
@@ -290,6 +416,16 @@
 			children = (
 				8128DF92171D82C300C44410 /* OPFDatabaseAccess.h */,
 				8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */,
+				815E1B4C172473FE00FBDFEF /* OPFQuery.h */,
+				815E1B531724856900FBDFEF /* OPFIsQuery.h */,
+				815E1B541724856900FBDFEF /* OPFIsQuery.m */,
+				815E1B4D172473FE00FBDFEF /* OPFQuery.m */,
+				815E1B56172516A700FBDFEF /* OPFRootQuery.h */,
+				815E1B57172516A700FBDFEF /* OPFRootQuery.m */,
+				815E1B5C1725207500FBDFEF /* OPFInQuery.h */,
+				815E1B5D1725207500FBDFEF /* OPFInQuery.m */,
+				815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */,
+				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -298,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				81C18478171FDFF8008273A6 /* OPFRecordProtocol.h */,
+				815E1B5217247EC300FBDFEF /* OPFQueryable.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -308,6 +445,8 @@
 				816F9738171D48ED00E881B6 /* OPFUserSpec.m */,
 				81C1C74417202F3C004AB177 /* OPFCommentSpec.m */,
 				81D5E0561721661500E572B2 /* OPFModelSpec.m */,
+				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
+				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
 			);
 			name = ModelSpecs;
 			sourceTree = "<group>";
@@ -326,6 +465,10 @@
 			children = (
 				81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */,
 				9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */,
+				815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */,
+				815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */,
+				815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */,
+				815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */,
 			);
 			name = UtilitySpecs;
 			sourceTree = "<group>";
@@ -386,6 +529,7 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
 				8128DF95171D832C00C44410 /* so.sqlite */,
@@ -448,14 +592,12 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1A97782D171F33430061DA85 /* OPFCommentViewHeaderView.h */,
-				1A97782E171F33430061DA85 /* OPFCommentViewHeaderView.m */,
-				1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */,
-				1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */,
+				1A72197C17271A1C002B43CD /* Storyboard */,
+				1A639ECF17269C01009EB280 /* Table View Headers */,
+				1A639EC91726821A009EB280 /* Profile Search View */,
+				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
-				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
-				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -470,6 +612,8 @@
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
+				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
+				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -477,6 +621,7 @@
 		9C1C51731716FEBB004CC9E3 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				9C9B79C71726845600E5333B /* CDKitt */,
 				9C1C51741716FFD4004CC9E3 /* xcconfig */,
 			);
 			name = Vendor;
@@ -590,9 +735,19 @@
 			name = Formatters;
 			sourceTree = "<group>";
 		};
+		9C9B79C71726845600E5333B /* CDKitt */ = {
+			isa = PBXGroup;
+			children = (
+				9C9B79C81726845600E5333B /* CDKittMacros.h */,
+			);
+			name = CDKitt;
+			path = Vendor/CDKitt;
+			sourceTree = "<group>";
+		};
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1A639EBB172671FA009EB280 /* Profile Search Table View Cells */,
 				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
 			);
@@ -692,12 +847,19 @@
 				1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */,
 				1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */,
 				1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */,
-				1A97782C171F20310061DA85 /* OPFCommentViewHeaderView.xib in Resources */,
 				9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */,
 				1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */,
 				1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */,
 				1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */,
 				1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */,
+				813482451727C045008E8F22 /* auxiliary.sqlite in Resources */,
+				1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */,
+				1A639EC217267AB6009EB280 /* location@2x.png in Resources */,
+				1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */,
+				1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */,
+				1A639EC817267F0B009EB280 /* activity@2x.png in Resources */,
+				1A639ECB17268280009EB280 /* OPFProfileSearchView.xib in Resources */,
+				1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -794,7 +956,6 @@
 				9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */,
 				1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */,
 				1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */,
-				1A97782F171F33430061DA85 /* OPFCommentViewHeaderView.m in Sources */,
 				9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */,
 				9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */,
 				81C1846E171FD687008273A6 /* OPFQuestion.m in Sources */,
@@ -813,6 +974,16 @@
 				81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */,
 				810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */,
 				9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */,
+				1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */,
+				1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */,
+				1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */,
+				1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */,
+				815E1B4E172473FE00FBDFEF /* OPFQuery.m in Sources */,
+				815E1B551724856900FBDFEF /* OPFIsQuery.m in Sources */,
+				815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */,
+				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
+				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
+				1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +998,12 @@
 				81D5E0571721661500E572B2 /* OPFModelSpec.m in Sources */,
 				81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */,
 				9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */,
+				815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */,
+				815E1B5B17251B0A00FBDFEF /* OPFIsQuerySpec.m in Sources */,
+				815E1B61172532D000FBDFEF /* OPFInQuerySpec.m in Sources */,
+				815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */,
+				8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */,
+				8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,6 +1138,8 @@
 			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -984,6 +1163,8 @@
 			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",

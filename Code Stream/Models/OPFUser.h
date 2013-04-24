@@ -13,19 +13,19 @@
 
 @interface OPFUser : OPFModel
 
-@property (assign, readonly) NSInteger identifier;
-@property (assign) NSInteger reputation;
+@property (strong, readonly) NSNumber* identifier;
+@property (strong) NSNumber* reputation;
 @property (strong, readonly) NSDate* creationDate;
 @property (copy) NSString* displayName;
 @property (copy) NSString* emailHash;
 @property (strong) NSDate* lastAccessDate;
 @property (copy) NSString* websiteUrl;
 @property (copy) NSString* location;
-@property (assign) NSInteger age;
+@property (strong) NSNumber* age;
 @property (copy) NSString* aboutMe;
-@property (assign) NSInteger view;
-@property (assign) NSInteger upVotes;
-@property (assign) NSInteger downVotes;
+@property (strong) NSNumber* view;
+@property (strong) NSNumber* upVotes;
+@property (strong) NSNumber* downVotes;
 
 - (NSArray *) questionsPage: (NSInteger) page;
 - (NSArray *) answersPage: (NSInteger) page;

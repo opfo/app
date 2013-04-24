@@ -28,8 +28,14 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[super viewDidLoad];
 	
+	NSMutableArray *array = [NSMutableArray arrayWithCapacity:10];
+	for (int i = 0; i < 10; i++) {
+		[array addObject:[OPFQuestion generatePlaceholderQuestion]];
+	}
+	
+	self.questions = array;
+	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
-    self.clearsSelectionOnViewWillAppear = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,7 +55,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return self.questions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -57,7 +63,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
     OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-	[cell configureWithQuestionData:[OPFQuestion generatePlaceholderQuestion]];
+	[cell configureWithQuestionData:self.questions[[indexPath indexAtPosition:indexPath.length-1]]];
     return cell;
 }
 

@@ -18,6 +18,7 @@
 @synthesize title = _title;
 @synthesize answers = _answers;
 
+
 - (void)setAcceptedAnswer:(BOOL)acceptedAnswer {
 	self.acceptedAnswerImage.hidden = !acceptedAnswer;
 }
@@ -59,8 +60,8 @@
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
 	self.acceptedAnswer = question.acceptedAnswer != nil;
-	self.score = question.score;
-	self.answers = question.answerCount;
+	self.score = [question.score integerValue];
+	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
 	self.tags = question.tags;
 }

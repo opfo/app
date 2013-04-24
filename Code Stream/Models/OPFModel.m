@@ -7,6 +7,7 @@
 //
 
 #import "OPFModel.h"
+#import "OPFRootQuery.h"
 
 @implementation OPFModel
 
@@ -31,6 +32,8 @@
     NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@' LIMIT %d OFFSET %d", modelName, modelName, per, offset];
     return [[self getDBAccess] executeSQL:sql];
 }
+
+# pragma mark - Generic find one model method
 
 + (FMResultSet *) findModel:(NSString *)modelName withIdentifier:(NSInteger)identifier
 {
@@ -66,7 +69,8 @@
     return [self parseMultipleResult: result];
 }
 
-//
+# pragma mark - Find one model by identifier
+
 // Find a single model
 + (instancetype) find:(NSInteger)identifier
 {
@@ -95,6 +99,7 @@
     return formatter;
 }
 
+//  Returns model objects for each row in a FMResultSet.
 + (NSArray *) parseMultipleResult: (FMResultSet*) result
 {
     NSMutableArray* models = [[NSMutableArray alloc] init];
@@ -106,11 +111,13 @@
     return models;
 }
 
+//  Takes a dictionary and returns a populated model class
 + (instancetype) parseDictionary: (NSDictionary*) attributes {
     NSError* error;
     return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:attributes error: &error];
 }
 
+//  Self-explanatory.
 + (NSInteger) defaultPageSize {
     return 10;
 }
@@ -131,11 +138,28 @@
 }
 
 + (NSValueTransformer *)createdAtJSONTransformer {
+    return [self standardDateTransformer];
+}
+
++ (NSValueTransformer *)standardDateTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
         return [self.dateFormatter dateFromString:str];
     } reverseBlock:^(NSDate *date) {
         return [self.dateFormatter stringFromDate:date];
     }];
+}
+
+# pragma mark - Query
+
++ (OPFRootQuery*) query
+{
+    OnGetOne singleModelCallback = ^(NSDictionary* attributes){
+        return [self parseDictionary:attributes];
+    };
+    OnGetMany multipleModelCallback = ^(FMResultSet* result) {
+        return [self parseMultipleResult:result];
+    };
+    return [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singleModelCallback manyCallback:multipleModelCallback];
 }
 
 @end
