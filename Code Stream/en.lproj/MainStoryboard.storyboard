@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller - DEBUG ROOT-->
+        <!--Debug View Controller - DEBUG ROOT-->
         <scene sceneID="0cU-49-GqC">
             <objects>
-                <tableViewController storyboardIdentifier="RootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C9G-Z7-a1G" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RootViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="C9G-Z7-a1G" customClass="OPFDebugViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="g5J-1C-SOx">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -15,7 +15,7 @@
                         <sections>
                             <tableViewSection id="COx-5z-FQ7">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="9LN-4M-zMb" style="IBUITableViewCellStyleDefault" id="IpX-U6-3Tm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionsViewCell" textLabel="9LN-4M-zMb" style="IBUITableViewCellStyleDefault" id="IpX-U6-3Tm">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -34,7 +34,7 @@
                                             <segue destination="0eg-Zj-rT7" kind="push" identifier="ShowQuestionsDebugSegue" id="Gq5-hB-fZz"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="OKl-9S-UHo" style="IBUITableViewCellStyleDefault" id="P6x-ey-q56">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionViewCell" textLabel="OKl-9S-UHo" style="IBUITableViewCellStyleDefault" id="P6x-ey-q56">
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -53,14 +53,14 @@
                                             <segue destination="sTy-Bw-8eH" kind="push" identifier="ShowQuestionDebugSegue" id="so2-8F-IVa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="pPA-fj-YN2" style="IBUITableViewCellStyleDefault" id="puE-GF-07v">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserProfileViewCell" textLabel="pPA-fj-YN2" style="IBUITableViewCellStyleDefault" id="puE-GF-07v">
                                         <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show userProfileView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPA-fj-YN2">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show user profile view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPA-fj-YN2">
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,15 +72,54 @@
                                             <segue destination="aBZ-q2-boG" kind="push" id="gfI-ct-SDW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ProfileSearchViewCell" textLabel="jgp-fK-Kdn" style="IBUITableViewCellStyleDefault" id="47t-ir-4Rc">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show profile search view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgp-fK-Kdn">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CommentsViewCell" textLabel="umC-Vn-QVv" style="IBUITableViewCellStyleDefault" id="WkX-Fr-hD1">
+                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show comments view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umC-Vn-QVv">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="C9G-Z7-a1G" id="elH-fg-Es4"/>
-                            <outlet property="delegate" destination="C9G-Z7-a1G" id="owT-nC-q4R"/>
+                            <outlet property="dataSource" destination="C9G-Z7-a1G" id="SH3-8L-15C"/>
+                            <outlet property="delegate" destination="C9G-Z7-a1G" id="rjT-bx-hS1"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="DEBUG ROOT" id="tdE-qb-nyI"/>
+                    <connections>
+                        <outlet property="commentsViewCell" destination="WkX-Fr-hD1" id="B3E-qH-KsE"/>
+                        <outlet property="questionViewCell" destination="P6x-ey-q56" id="xtx-pw-aCg"/>
+                        <outlet property="questionsViewCell" destination="IpX-U6-3Tm" id="gsh-jG-SMH"/>
+                        <outlet property="userProfileSearchViewCell" destination="47t-ir-4Rc" id="6oL-UE-Mvr"/>
+                        <outlet property="userProfileViewCell" destination="puE-GF-07v" id="8gY-lZ-4cW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rep-fp-ac7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,7 +359,7 @@
                                         <rect key="frame" x="0.0" y="147" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="1000" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6hf-ZI-vnh">
@@ -331,7 +370,7 @@
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fJx-Sz-eDI">
-                                                    <rect key="frame" x="233" y="11" width="57" height="21"/>
+                                                    <rect key="frame" x="231" y="11" width="59" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
@@ -426,7 +465,7 @@
                                         <rect key="frame" x="0.0" y="440" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pws-ZP-Muo">
@@ -444,7 +483,7 @@
                                         <rect key="frame" x="0.0" y="485" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Questions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8j-Km-PtC">
@@ -517,6 +556,18 @@
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OPFDebugViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showCommentsView:" candidateClass="UITableViewCell"/>
+                <relationship kind="action" name="showProfileSearch:" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userProfileSearchViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userProfileViewCell" candidateClass="UITableViewCell"/>
+            </relationships>
         </class>
         <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
