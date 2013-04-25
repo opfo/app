@@ -41,6 +41,19 @@ describe(@"Fetching", ^{
             expect(answer).to.beKindOf([OPFAnswer class]);
         }
     });
+	
+	it(@"should create a correct tag array from string", ^{
+		OPFQuestion *question = [OPFQuestion new];
+		question.rawTags = @"<test1><test2><test3>";
+		expect(question.tags).to.haveCountOf(3);
+		for(id tag in question.tags) {
+			expect(tag).to.contain(@"test");
+		}
+		
+		expect(question.rawTags).to.equal(@"<test1><test2><test3>");
+	});
+	
+	
     
 });
 
