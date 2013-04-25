@@ -12,7 +12,7 @@
 
 @interface OPFProfileSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
-@property(nonatomic, strong) NSArray *userModels;
+@property(nonatomic, strong) NSArray *rootUserModels;
 @property(nonatomic, strong) NSPredicate *profilePredicate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

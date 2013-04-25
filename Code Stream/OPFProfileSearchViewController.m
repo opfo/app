@@ -14,7 +14,8 @@
 
 @interface OPFProfileSearchViewController ()
 
-@property (strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(strong, nonatomic) NSArray *databaseUserModels;
 @property(nonatomic) BOOL isFiltered;
 
 - (void)performInitialDatabaseFetch;
@@ -61,7 +62,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)performInitialDatabaseFetch
 {
-    self.userModels = [OPFUser all:0 per:30];
+    self.rootUserModels = [OPFUser all:0 per:50];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,7 +85,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
+    return self.isFiltered ? self.mutableUserModels.count : self.rootUserModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +100,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     }
         
     profileViewCell.userModel
-    = (self.isFiltered == YES) ? [self.mutableUserModels objectAtIndex:indexPath.row] : [self.userModels objectAtIndex:indexPath.row];
+    = (self.isFiltered == YES) ? [self.mutableUserModels objectAtIndex:indexPath.row] : [self.rootUserModels objectAtIndex:indexPath.row];
     
     [profileViewCell setupFormatters];
     [profileViewCell setModelValuesInView];
@@ -114,13 +115,15 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isFiltered = (searchText.length == 0) ? NO : YES;
     
+    self.databaseUserModels = [[[OPFUser query] whereColumn:@"displayName" like:searchText] getMany];
+    
     //No else clause needed, next search will flush array anyways
     if(self.isFiltered) {
         [self.mutableUserModels removeAllObjects];
         
         self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
                 
-        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.rootUserModels filteredArrayUsingPredicate:self.profilePredicate]];
     }
     
     [self.tableView reloadData];
