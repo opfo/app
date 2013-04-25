@@ -11,6 +11,7 @@
 #import "OPFProfileSearchHeaderView.h"
 #import "OPFUser.h"
 #import "UIView+OPFViewLoading.h"
+#import "OPFUserProfileViewController.h"
 
 @interface OPFProfileSearchViewController ()
 
@@ -70,6 +71,11 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [super didReceiveMemoryWarning];
 }
 
+- (OPFUser *)userForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.isFiltered ? self.mutableUserModels[indexPath.section] : self.rootUserModels[indexPath.section];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -108,6 +114,18 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     profileViewCell.profilesViewController = self;
     
     return profileViewCell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OPFUser *userModel = [self userForIndexPath:indexPath];
+    OPFUserProfileViewController *userProfileViewController = [OPFUserProfileViewController new];
+    
+    userProfileViewController.user = userModel;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 #pragma mark - SearchBar Delegate -
