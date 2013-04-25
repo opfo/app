@@ -14,4 +14,7 @@
 @property (copy) NSString* name;
 @property (readonly)NSArray* questions;
 
++ (NSString*) arrayToRawTags: (NSArray*) array;
++ (NSArray*) rawTagsToArray: (NSString*) rawTags;
+
 @end

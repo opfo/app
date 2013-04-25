@@ -40,4 +40,15 @@
 {
     return @"tags";
 }
+
++ (NSString*) arrayToRawTags:(NSArray *)array
+{
+    return nil;
+}
+
++ (NSArray*) rawTagsToArray:(NSString *)rawTags
+{
+    return nil;
+}
+
 @end
