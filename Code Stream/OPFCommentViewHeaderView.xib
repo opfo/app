@@ -666,6 +666,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">User Avatar</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
@@ -699,6 +700,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Comment Topic</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
@@ -743,6 +745,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">User Displayname</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">28</int>
@@ -787,6 +790,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Post Comment Count</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
@@ -836,6 +840,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Post Date Icon</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">58</int>
@@ -869,6 +874,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Post Time Icon</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">63</int>
@@ -880,12 +886,14 @@
 						<reference key="object" ref="814274148"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Comment Post Date</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">141</int>
 						<reference key="object" ref="604293436"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="971003041"/>
+						<string key="objectName">Comment Post Time</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">181</int>
