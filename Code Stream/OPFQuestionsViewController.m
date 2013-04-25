@@ -33,7 +33,7 @@
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
-//static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
+
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -80,6 +80,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
@@ -97,7 +98,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		[questions addObject:OPFQuestion.generatePlaceholderQuestion];
 	}
 	self.questions = questions;
-	[self updateFilteredQuestions];
+	[self updateFilteredQuestionsCompletion:^{
+		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	}];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -223,7 +226,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	return predicate;
 }
 
-- (void)updateFilteredQuestions
+- (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	NSString *searchString = self.searchString ?: @"";
 	NSArray *tags = [self tagsFromSearchString:searchString];
@@ -240,6 +243,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
+		if (completionBlock) {
+			completionBlock();
+		}
 	}];
 }
 
@@ -247,7 +253,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			[self updateFilteredQuestions];
+			[self updateFilteredQuestionsCompletion:nil];
 		});
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
