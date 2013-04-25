@@ -63,7 +63,7 @@
 	self.score = [question.score integerValue];
 	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
-	self.tags = question.tags;
+	self.tags = @[@"test",@"test1"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -94,11 +94,6 @@
     GCTagLabel* tag = [tagList dequeueReusableTagLabelWithIdentifier:identifier];
     if(!tag) {
         tag = [GCTagLabel tagLabelWithReuseIdentifier:identifier];
-        tag.labelBackgroundColor = [UIColor
-									colorWithRed:84/255.f
-									green:164/255.f
-									blue:222/255.f
-									alpha:1.f];
     }
 	
     [tag setLabelText:self.tags[index] accessoryType:GCTagLabelAccessoryNone];
