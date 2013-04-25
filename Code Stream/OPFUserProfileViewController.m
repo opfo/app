@@ -26,6 +26,15 @@ static CGFloat userAboutMeInset = 100.0;
     [_user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
     [_user setLocation:@"Gothenburg, Sweden"];
     self.userDisplayName.text = _user.displayName;
+    self.userAboutMe.text = _user.aboutMe;
+    self.userLocation.text = _user.location;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
+    self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
+
     
 }
 
@@ -54,6 +63,29 @@ static CGFloat userAboutMeInset = 100.0;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    CGFloat height = 0.f;
+    
+    if(indexPath.section==1 && indexPath.row == 0){
+        NSString *aboutUser = _user.aboutMe;
+        UIFont *aboutUserFont = [UIFont systemFontOfSize:14.f];
+        CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
+        CGSize aboutUserSize = [aboutUser sizeWithFont:aboutUserFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
+        height = aboutUserSize.height + userAboutMeInset;
+    }
+    else
+    {
+        height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+    return height;
+}
+
+
+
 #pragma mark - Table view data source
 
 /*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,12 +95,14 @@ static CGFloat userAboutMeInset = 100.0;
     return 0;
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,24 +165,5 @@ static CGFloat userAboutMeInset = 100.0;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 //}
-
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    CGFloat height = 0.f;
-    
-    if(indexPath.section==1 && indexPath.row == 0){
-        NSString *aboutUser = _user.aboutMe;
-        UIFont *aboutUserFont = [UIFont systemFontOfSize:14.f];
-        CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
-        CGSize aboutUserSize = [aboutUser sizeWithFont:aboutUserFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
-        height = aboutUserSize.height + userAboutMeInset;
-    }
-    else
-    {
-        height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
-    }
-    return height;
-}
 
 @end

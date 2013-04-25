@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLocation;
 @property (weak, nonatomic) IBOutlet UILabel *userReputation;
 @property (weak, nonatomic) IBOutlet UILabel *userCreationDate;
-@property (weak, nonatomic) IBOutlet UITableViewCell *userLastAccess;
+@property (weak, nonatomic) IBOutlet UILabel *userLastAccess;
 
 @end

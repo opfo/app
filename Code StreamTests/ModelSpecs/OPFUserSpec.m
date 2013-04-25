@@ -53,6 +53,21 @@ describe(@"User creation", ^{
     });
 });
 
+describe(@"user fetching", ^{
+    __block OPFUser* user;
+    
+    beforeEach(^{
+        user = [[[OPFUser query] whereColumn:@"id" is: @(13)] getOne];
+    });
+    
+    it(@"has the correct url", ^{
+        expect(user.websiteUrl).to.beKindOf([NSURL class]);
+        expect(user.websiteUrl).to.equal([NSURL URLWithString:@"http://about.me/cky"]);
+    });
+    
+    
+});
+
 describe(@"Pagination", ^{
     it(@"should paginate by ten by default", ^{
         NSArray* result = [OPFUser all:0];
