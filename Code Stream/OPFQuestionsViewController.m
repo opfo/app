@@ -20,6 +20,8 @@
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 @end
 
 
@@ -78,7 +80,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
+	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 }
@@ -254,9 +256,30 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
 
 #pragma mark - UISearchBarDelegate Methods
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	
+	[searchBar setShowsCancelButton:YES animated:YES];
+	
+	return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:NO animated:YES];
+	return YES;
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
 	self.searchString = searchText;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar resignFirstResponder];
+	searchBar.text = @"";
+	self.searchString = @"";
 }
 
 
