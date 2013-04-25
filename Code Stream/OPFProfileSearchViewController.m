@@ -63,7 +63,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)performInitialDatabaseFetch
 {
-    self.rootUserModels = [OPFUser all:0 per:10];
+    self.rootUserModels = [OPFUser all:0 per:25];
 }
 
 - (void)didReceiveMemoryWarning
