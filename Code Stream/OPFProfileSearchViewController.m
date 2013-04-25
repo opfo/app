@@ -9,19 +9,33 @@
 #import "OPFProfileSearchViewController.h"
 #import "OPFProfileViewCell.h"
 #import "OPFProfileSearchHeaderView.h"
+#import "OPFUser.h"
+#import "UIView+OPFViewLoading.h"
+#import "OPFUserProfileViewController.h"
 
 @interface OPFProfileSearchViewController ()
 
-@property (strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(strong, nonatomic) NSArray *databaseUserModels;
 @property(nonatomic) BOOL isFiltered;
+
+- (void)performInitialDatabaseFetch;
+- (void)opfSetupView;
 
 @end
 
 @implementation OPFProfileSearchViewController
 
+static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
+
 - (id)init
 {
     self = [super initWithNibName:@"OPFProfileSearchView" bundle:nil];
+
+    if(self) {
+        [self opfSetupView];
+    }
+   
     
     return self;
 }
@@ -31,7 +45,7 @@
     self = [super initWithCoder:aDecoder];
     
     if(self) {
-        //init goes here mofo
+        [self opfSetupView];
     }
     
     return self;
@@ -42,23 +56,31 @@
     [super viewDidLoad];
 }
 
-- (void)setUserModels:(NSArray *)userModels
+- (void)opfSetupView
 {
-    self.userModels = userModels;
-    self.mutableUserModels = [NSMutableArray arrayWithCapacity:self.userModels.count];
+    [self performInitialDatabaseFetch];    
+}
+
+- (void)performInitialDatabaseFetch
+{
+    self.rootUserModels = [OPFUser all:0 per:25];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (OPFUser *)userForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.isFiltered ? self.mutableUserModels[indexPath.section] : self.rootUserModels[indexPath.section];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Returning 1 because we only display one post's comments
+    // Returning 1 because we only have one section for users
     return 1;
 }
 
@@ -69,19 +91,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
-    return 5;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView new];
-    
-    self.profileSearchBar = profileViewHeader.profileSearchBar;
-    
-    self.profileSearchBar.delegate = (id)self;
-    
-    return profileViewHeader;
+    return self.isFiltered ? self.mutableUserModels.count : self.rootUserModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,10 +104,11 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:profileViewCellIdentifier owner:self options:nil];
         profileViewCell = [nib objectAtIndex:0];
     }
+        
+    profileViewCell.userModel
+    = (self.isFiltered == YES) ? [self.mutableUserModels objectAtIndex:indexPath.row] : [self.rootUserModels objectAtIndex:indexPath.row];
     
-    profileViewCell.userModel = [self.userModels objectAtIndex:indexPath.row];
-    
-    [profileViewCell setupDateformatters];
+    [profileViewCell setupFormatters];
     [profileViewCell setModelValuesInView];
     
     profileViewCell.profilesViewController = self;
@@ -105,20 +116,41 @@
     return profileViewCell;
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OPFUser *userModel = [self userForIndexPath:indexPath];
+    OPFUserProfileViewController *userProfileViewController = [OPFUserProfileViewController new];
+    
+    userProfileViewController.user = userModel;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
+}
+
 #pragma mark - SearchBar Delegate -
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
     self.isFiltered = (searchText.length == 0) ? NO : YES;
     
-    [self.mutableUserModels removeAllObjects];
-
-    self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
+    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
     
-    self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+    if(self.isFiltered) {
+        [self.mutableUserModels removeAllObjects];
+        
+        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
+                
+        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+    } else {
+        [self searchBarSearchButtonClicked:searchBar];
+    }
     
     [self.tableView reloadData];
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"searchBar button clicked");
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 @end
