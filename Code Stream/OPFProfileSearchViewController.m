@@ -98,7 +98,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
         profileViewCell = [nib objectAtIndex:0];
     }
         
-    profileViewCell.userModel = [self.userModels objectAtIndex:indexPath.row];
+    profileViewCell.userModel
+    = (self.isFiltered == YES) ? [self.mutableUserModels objectAtIndex:indexPath.row] : [self.userModels objectAtIndex:indexPath.row];
     
     [profileViewCell setupFormatters];
     [profileViewCell setModelValuesInView];
@@ -117,8 +118,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     if(self.isFiltered) {
         [self.mutableUserModels removeAllObjects];
         
-        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName like[d] %@", searchText];
-        
+        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
+                
         self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
     }
     
