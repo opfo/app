@@ -11,6 +11,11 @@
 
 @implementation OPFAppDelegate
 
++ (void)initialize
+{
+	[[UISearchBar appearance] setTintColor:[UIColor colorWithHue:203.f/360.f saturation:9.f/100.f brightness:77/100.f alpha:1.f]];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize DatabaseAccess
