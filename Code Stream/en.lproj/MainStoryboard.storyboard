@@ -680,6 +680,7 @@
                 <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
+
             </relationships>
         </class>
     </classes>
