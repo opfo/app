@@ -9,6 +9,8 @@
 #import "OPFProfileViewCell.h"
 #import "OPFUser.h"
 #import "OPFScoreNumberFormatter.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface OPFProfileViewCell()
 
@@ -18,6 +20,8 @@
 @end
 
 @implementation OPFProfileViewCell
+
+static NSString *const NotSpecifiedInformationPlaceholder = @"-";
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -36,13 +40,12 @@
 - (void)setModelValuesInView
 {
     self.userName.text = self.userModel.displayName;
-    self.userLocation.text = self.userModel.location;
-    self.userWebsite.text = (! [[self.userModel.websiteUrl absoluteString] isEqualToString:@"NULL"]) ? [self.userModel.websiteUrl absoluteString] : @"";
+    self.userLocation.text = (! [self.userModel.location isEqualToString:@"NULL"] ) ? self.userModel.location : NotSpecifiedInformationPlaceholder;
+    self.userWebsite.text = (! [[self.userModel.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.userModel.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.userModel.reputation integerValue]];
     self.userVotesUp.text = [self.scoreFormatter stringFromScore:[self.userModel.upVotes integerValue]];
     self.userVotesDown.text = [self.scoreFormatter stringFromScore:[self.userModel.downVotes integerValue]];
-        
-    //self.userAvatar;
+    [self.userAvatar setImageWithGravatarEmailHash:self.userModel.emailHash placeholderImage:self.userAvatar.image];
 }
 
 - (void)setupFormatters

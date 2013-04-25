@@ -1,7 +1,10 @@
 PODS:
+  - AFNetworking (1.2.1)
   - Expecta (0.2.1)
   - FMDB (2.0)
   - GCTagList (0.2pre)
+  - KHGravatar (0.0.2):
+    - AFNetworking (~> 1.0)
   - libextobjc/EXTKeyPathCoding (0.2.5):
     - libextobjc/RuntimeExtensions
   - libextobjc/EXTScope (0.2.5):
@@ -13,9 +16,11 @@ PODS:
   - Specta (0.1.8)
 
 DEPENDENCIES:
+  - AFNetworking (= 1.2.1)
   - Expecta (= 0.2.1)
   - FMDB (from `git://github.com/ccgus/fmdb.git`)
   - GCTagList (from `git://github.com/opfo/GCTagList.git`)
+  - KHGravatar (from `https://github.com/opfo/KHGravatar.git`)
   - Mantle (= 1.0)
   - Specta (= 0.1.8)
 
@@ -24,11 +29,15 @@ EXTERNAL SOURCES:
     :git: git://github.com/ccgus/fmdb.git
   GCTagList:
     :git: git://github.com/opfo/GCTagList.git
+  KHGravatar:
+    :git: https://github.com/opfo/KHGravatar.git
 
 SPEC CHECKSUMS:
+  AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
   FMDB: 2fe05139e2cde6557d32282a541eba685583222e
   GCTagList: f2fb0d56eeee4ebd3505bd9cdb6b3628d73b133d
+  KHGravatar: efd627eabbaa4277ff898f88a19979d6e65c0f89
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aa9860e40cc365a094ef60fec46848fee7b03ca7
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
