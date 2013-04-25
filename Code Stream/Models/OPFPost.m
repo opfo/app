@@ -52,6 +52,7 @@
              @"closedDate": @"closed_date",
              @"acceptedAnswerId": @"accepted_answer_id",
              @"rawTags": @"tags",
+             @"tags" :@"tags",
              @"answerCount": @"answer_count",
              @"parentId" : @"parent_id"
              

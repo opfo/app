@@ -39,6 +39,7 @@ describe(@"Pagination", ^{
     it(@"should paginate by ten by default", ^{
         NSArray* result = [OPFComment all:0];
         expect([result count]).to.equal([OPFModel defaultPageSize]);
+        expect([[result objectAtIndex:0] identifier]).to.equal(@(8894930));
     });
     
     it(@"should support arbitrary pagination", ^{
