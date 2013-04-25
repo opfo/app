@@ -135,13 +135,14 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     
     self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
     
-    //No else clause needed, next search will flush array anyways
     if(self.isFiltered) {
         [self.mutableUserModels removeAllObjects];
         
         self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
                 
         self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+    } else {
+        [self searchBarSearchButtonClicked:searchBar];
     }
     
     [self.tableView reloadData];
@@ -149,7 +150,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    
+    [searchBar resignFirstResponder];
 }
 
 @end
