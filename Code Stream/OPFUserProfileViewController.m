@@ -9,21 +9,24 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFUser.h"
 @interface OPFUserProfileViewController ()
-
+@property (strong) OPFUser *user;
 
 @end
 
 @implementation OPFUserProfileViewController
 
+static CGFloat userAboutMeInset = 100.0;
+
+
 - (void) viewWillAppear:(BOOL)animated{
-    OPFUser *user = [[OPFUser alloc] init];
     
-    [user setDisplayName:@"Marcus"];
-    [user setReputation:@1367];
-    [user setLastAccessDate:[[NSDate alloc] init]];
-    [user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
-    [user setLocation:@"Gothenburg, Sweden"];
-    self.userDisplayName.text = @"Fredrik";
+    _user = [[OPFUser alloc] init];
+    [_user setDisplayName:@"Marcus"];
+    [_user setReputation:@1367];
+    [_user setLastAccessDate:[[NSDate alloc] init]];
+    [_user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
+    [_user setLocation:@"Gothenburg, Sweden"];
+    self.userDisplayName.text = _user.displayName;
     
 }
 
@@ -129,5 +132,24 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 //}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    CGFloat height = 0.f;
+    
+    if(indexPath.section==1 && indexPath.row == 0){
+        NSString *aboutUser = _user.aboutMe;
+        UIFont *aboutUserFont = [UIFont systemFontOfSize:14.f];
+        CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
+        CGSize aboutUserSize = [aboutUser sizeWithFont:aboutUserFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
+        height = aboutUserSize.height + userAboutMeInset;
+    }
+    else
+    {
+        height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+    return height;
+}
 
 @end

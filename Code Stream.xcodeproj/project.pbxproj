@@ -595,8 +595,6 @@
 		9C1C51701716FE8B004CC9E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
-				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 				1A72197C17271A1C002B43CD /* Storyboard */,
 				1A639ECF17269C01009EB280 /* Table View Headers */,
 				1A639EC91726821A009EB280 /* Profile Search View */,
@@ -613,6 +611,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
+				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
