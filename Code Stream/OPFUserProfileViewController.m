@@ -144,7 +144,7 @@ static CGFloat userAboutMeInset = 50.0;
     }
     // ...
     // Pass the selected object to the new view controller.
-    if(self.navigationController){
+    if(YES){//detailViewController){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 
