@@ -61,9 +61,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)performInitialDatabaseFetch
 {
-    self.userModels = [OPFUser all:1 per:30];
-    
-    NSLog(@"%@", [self.userModels objectAtIndex:0]);
+    self.userModels = [OPFUser all:0 per:30];
 }
 
 - (void)didReceiveMemoryWarning
@@ -115,6 +113,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isFiltered = (searchText.length == 0) ? NO : YES;
     
+    //No else clause needed, next search will flush array anyways
     if(self.isFiltered) {
         [self.mutableUserModels removeAllObjects];
         
