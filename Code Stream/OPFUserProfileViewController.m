@@ -7,12 +7,36 @@
 //
 
 #import "OPFUserProfileViewController.h"
-
+#import "OPFUser.h"
 @interface OPFUserProfileViewController ()
 
 @end
 
 @implementation OPFUserProfileViewController
+
+static CGFloat userAboutMeInset = 100.0;
+
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    _user = [[OPFUser alloc] init];
+    [_user setDisplayName:@"Marcus"];
+    [_user setReputation:@1367];
+    [_user setLastAccessDate:[[NSDate alloc] init]];
+    [_user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
+    [_user setLocation:@"Gothenburg, Sweden"];
+    self.userDisplayName.text = _user.displayName;
+    self.userAboutMe.text = _user.aboutMe;
+    self.userLocation.text = _user.location;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
+    self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
+
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,14 +64,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    CGFloat height = 0.f;
+    
+    if(indexPath.section==1 && indexPath.row == 0){
+        NSString *aboutUser = _user.aboutMe;
+        UIFont *aboutUserFont = [UIFont systemFontOfSize:14.f];
+        CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
+        CGSize aboutUserSize = [aboutUser sizeWithFont:aboutUserFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
+        height = aboutUserSize.height + userAboutMeInset;
+    }
+    else
+    {
+        height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+    return height;
+}
+
+
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 0;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -55,6 +102,7 @@
     // Return the number of rows in the section.
     return 0;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -103,7 +151,7 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
 
 #pragma mark - Table view delegate
 
@@ -116,6 +164,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
+//}
 
 @end

@@ -637,6 +637,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
+				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
 				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
 				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
@@ -645,8 +647,6 @@
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
 				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
 				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
-				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
-				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
