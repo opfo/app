@@ -8,6 +8,7 @@
 
 #import "OPFQuestion+Mockup.h"
 #import "OPFAnswer.h"
+#import <objc/runtime.h>
 
 @interface OPFQuestion (MockupInterface)
 @property (readwrite) NSArray *tags;
@@ -27,6 +28,8 @@
 	[resultString appendString:@">"];
 	return [NSString stringWithString:resultString];
 }
+
+static const void *kOPFQuestionMockupTagsKey;
 
 // Added by <gothm> for testing. Delete / move at will
 + (id)generatePlaceholderQuestion {
@@ -52,7 +55,17 @@
 	question.lastActivityDate = [NSDate dateWithTimeIntervalSince1970: arc4random() % 1366296511];
 	question.communityOwnedDate = [NSDate dateWithTimeIntervalSince1970: arc4random() % 1366296511];
 	
+	// Tags
+	NSArray *tags = (arc4random() % 4 != 0 ? (arc4random() % 2 == 0 ? @[ @"java", @"objective-c" ] : @[ @"git", @"version-control" ]) : @[ @"c" ]);
+	objc_setAssociatedObject(question, kOPFQuestionMockupTagsKey, tags, OBJC_ASSOCIATION_COPY_NONATOMIC);
+	
 	return question;
+}
+
+- (NSArray *)tags
+{
+	NSArray *tags = objc_getAssociatedObject(self, kOPFQuestionMockupTagsKey);
+	return tags;
 }
 
 @end

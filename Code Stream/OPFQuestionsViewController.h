@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFQuestionsViewController : UITableViewController
+@interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate>
 
-@property (copy) NSArray *questions;
+@property (copy) NSString *searchString;
 
 @end
