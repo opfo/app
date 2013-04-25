@@ -9,6 +9,8 @@
 #import "OPFCommentViewHeaderView.h"
 #import "UIView+OPFViewLoading.h"
 #import "OPFPost.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation OPFCommentViewHeaderView
 
@@ -44,8 +46,8 @@
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.lastEditDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.lastEditDate];
     self.postVoteCount.text = [self.postModel.score stringValue];
-    
-    //self.userAvatar = self.postModel
+    [self.userAvatar setImageWithGravatarEmailHash:self.postModel.owner.emailHash placeholderImage:self.userAvatar.image];
+
 }
 
 @end
