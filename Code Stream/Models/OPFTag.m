@@ -43,12 +43,22 @@
 
 + (NSString*) arrayToRawTags:(NSArray *)array
 {
-    return nil;
+    NSMutableString *resultString = [NSMutableString stringWithString:@"<"];
+    [resultString appendString:[array componentsJoinedByString:@"><"]];
+    [resultString appendString:@">"];
+    return [NSString stringWithString:resultString];
 }
 
 + (NSArray*) rawTagsToArray:(NSString *)rawTags
 {
-    return nil;
+    NSMutableArray* matches = [[NSMutableArray alloc]init];
+    NSError* error;
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"<([^<>]+)>" options:NSRegularExpressionCaseInsensitive error: &error];
+    [regex enumerateMatchesInString:rawTags options: 0 range: NSMakeRange(0, [rawTags length]) usingBlock: ^(NSTextCheckingResult* match, NSMatchingFlags flags, BOOL *stop){
+        NSString* stringMatch = [rawTags substringWithRange:[match rangeAtIndex:1]];
+        [matches addObject:stringMatch];
+    }];
+    return matches;
 }
 
 @end
