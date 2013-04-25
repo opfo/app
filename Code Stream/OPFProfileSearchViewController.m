@@ -117,7 +117,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     if(self.isFiltered) {
         [self.mutableUserModels removeAllObjects];
         
-        self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.displayName contains[c] %@", searchText];
+        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName like[d] %@", searchText];
         
         self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
     }

@@ -13,6 +13,7 @@
 @interface OPFProfileViewCell()
 
 @property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+@property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 @end
 
@@ -36,11 +37,11 @@
 {
     self.userName.text = self.userModel.displayName;
     self.userLocation.text = self.userModel.location;
-    self.userLastEditDate.text = [self.dateFormatter stringFromDate:self.userModel.lastAccessDate];
+    //self.userWebsite.text = [self.userModel.websiteUrl baseURL];
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.userModel.reputation integerValue]];
     self.userVotesUp.text = [self.scoreFormatter stringFromScore:[self.userModel.upVotes integerValue]];
     self.userVotesDown.text = [self.scoreFormatter stringFromScore:[self.userModel.downVotes integerValue]];
-    
+        
     //self.userAvatar;
 }
 
