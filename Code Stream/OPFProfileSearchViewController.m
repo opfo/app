@@ -63,7 +63,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)performInitialDatabaseFetch
 {
-    self.rootUserModels = [OPFUser all:0 per:50];
+    self.rootUserModels = [OPFUser all:0 per:10];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,7 +133,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isFiltered = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"displayName" like:searchText] getMany];
+    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
     
     //No else clause needed, next search will flush array anyways
     if(self.isFiltered) {
@@ -141,7 +141,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
         
         self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
                 
-        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.rootUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
     }
     
     [self.tableView reloadData];
