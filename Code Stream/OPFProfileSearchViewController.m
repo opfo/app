@@ -62,10 +62,6 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)performInitialDatabaseFetch
 {
     self.userModels = [OPFUser all];
-    
-    OPFUser *firstUser = [self.userModels objectAtIndex:0];
-    
-    NSLog(@"%@", firstUser);
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,19 +109,23 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 }
 
 #pragma mark - SearchBar Delegate -
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
     self.isFiltered = (searchText.length == 0) ? NO : YES;
     
-    [self.mutableUserModels removeAllObjects];
-
-    self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
-    
-    self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+    if(self.isFiltered) {
+        [self.mutableUserModels removeAllObjects];
+        
+        self.profilePredicate = [NSPredicate predicateWithFormat:@"SELF.displayName contains[c] %@", searchText];
+        
+        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userModels filteredArrayUsingPredicate:self.profilePredicate]];
+    }
     
     [self.tableView reloadData];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
     NSLog(@"searchBar button clicked");
 }
 
