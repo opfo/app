@@ -581,7 +581,7 @@
         <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
             <relationships>
-                <relationship kind="outlet" name="bodyTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="bodyTextView" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="OPFPostMetadataTableViewCell" superclassName="UITableViewCell">

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface OPFPostBodyTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UITextView *bodyTextView;
+@property (weak, nonatomic) IBOutlet UIWebView *bodyTextView;
 @end

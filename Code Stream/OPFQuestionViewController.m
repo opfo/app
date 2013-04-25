@@ -218,8 +218,12 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
     OPFPost *post = [self postForIndexPath:indexPath];
 	
+	
+	
     if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
-		((OPFPostBodyTableViewCell *)cell).bodyTextView.text = post.body;
+		
+		UIWebView *htmlView = ((OPFPostBodyTableViewCell*)cell).bodyTextView;
+		[htmlView loadHTMLString:post.body baseURL:0];
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
 		metadataCell.authorLabel.text = post.owner.displayName;
