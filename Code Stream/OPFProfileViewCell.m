@@ -9,6 +9,8 @@
 #import "OPFProfileViewCell.h"
 #import "OPFUser.h"
 #import "OPFScoreNumberFormatter.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface OPFProfileViewCell()
 
@@ -41,8 +43,7 @@
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.userModel.reputation integerValue]];
     self.userVotesUp.text = [self.scoreFormatter stringFromScore:[self.userModel.upVotes integerValue]];
     self.userVotesDown.text = [self.scoreFormatter stringFromScore:[self.userModel.downVotes integerValue]];
-        
-    //self.userAvatar;
+    [self.userAvatar setImageWithGravatarEmailHash:self.userModel.emailHash placeholderImage:self.userAvatar.image];
 }
 
 - (void)setupFormatters
