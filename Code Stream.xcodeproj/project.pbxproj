@@ -66,6 +66,7 @@
 		81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */; };
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
+		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
 		9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
 		9C0C4F6D17221B550025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
@@ -197,6 +198,8 @@
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
+		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
+		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
 		9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C1C51311716FBE0004CC9E3 /* Code Stream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Stream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C1C51341716FBE0004CC9E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -614,6 +617,8 @@
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
 				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
 				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
+				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
+				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
 				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
 				1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */,
+				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
