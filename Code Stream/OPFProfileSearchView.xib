@@ -41,7 +41,7 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUISearchBar" id="781458346">
+							<object class="IBUISearchBar" id="843896741">
 								<reference key="NSNextResponder" ref="633628522"/>
 								<int key="NSvFlags">290</int>
 								<string key="NSFrameSize">{320, 44}</string>
@@ -58,7 +58,7 @@
 						<string key="NSFrameSize">{320, 568}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="781458346"/>
+						<reference key="NSNextKeyView" ref="843896741"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -73,7 +73,7 @@
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">22</float>
 						<float key="IBUISectionFooterHeight">22</float>
-						<reference key="IBUITableHeaderView" ref="781458346"/>
+						<reference key="IBUITableHeaderView" ref="843896741"/>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
@@ -129,7 +129,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">profileSearchBar</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="781458346"/>
+						<reference key="destination" ref="843896741"/>
 					</object>
 					<int key="connectionID">13</int>
 				</object>
@@ -148,6 +148,14 @@
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">9</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="843896741"/>
+						<reference key="destination" ref="633628522"/>
+					</object>
+					<int key="connectionID">14</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -246,7 +254,7 @@
 						<int key="objectID">3</int>
 						<reference key="object" ref="633628522"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="781458346"/>
+							<reference ref="843896741"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Profile Table</string>
@@ -273,7 +281,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
-						<reference key="object" ref="781458346"/>
+						<reference key="object" ref="843896741"/>
 						<reference key="parent" ref="633628522"/>
 						<string key="objectName">Profile Search Bar</string>
 					</object>
@@ -303,7 +311,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">13</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
