@@ -19,8 +19,6 @@
 @property (copy) NSArray *questions;
 @property (strong) NSMutableArray *filteredQuestions;
 
-- (void)reloadQuestions;
-
 #pragma mark - Searching
 @end
 
@@ -33,7 +31,7 @@
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
-static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
+//static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -83,7 +81,6 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	self.searchDisplayController.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
-	[self.searchDisplayController.searchResultsTableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:SearchQuestionsCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -98,8 +95,6 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 		[questions addObject:OPFQuestion.generatePlaceholderQuestion];
 	}
 	self.questions = questions;
-	[self.filteredQuestions setArray:self.questions];
-	[self.tableView reloadData];
 	[self updateFilteredQuestions];
 }
 
@@ -118,31 +113,13 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSInteger rows = 0;
-	if (tableView == self.tableView) {
-		rows = self.questions.count;
-	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
-		rows = self.filteredQuestions.count;
-	}
-	return rows;
+	return self.filteredQuestions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *cellIdentifier = nil;
-	OPFQuestion *question = nil;
-	if (tableView == self.tableView) {
-		cellIdentifier = QuestionCellIdentifier;
-		question = self.questions[indexPath.row];
-	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
-		cellIdentifier = SearchQuestionsCellIdentifier;
-		question = self.filteredQuestions[indexPath.row];
-	} else {
-		NSAssert(NO, @"Unknown table view %@", tableView);
-		return nil;
-	}
-	
-	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
+	OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	[cell configureWithQuestionData:question];
 	
 	return cell;
@@ -157,15 +134,7 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	OPFQuestion *question = nil;
-	if (tableView == self.tableView) {
-		question = self.questions[indexPath.row];
-	} else if (tableView == self.searchDisplayController.searchResultsTableView) {
-		question = self.filteredQuestions[indexPath.row];
-	} else {
-		NSAssert(NO, @"Unknown table view %@", tableView);
-		return;
-	}
+	OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	
 	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
 	questionViewController.question = question;
@@ -195,7 +164,7 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	NSMutableArray *tags = NSMutableArray.new;
 	
 	// The shortest possible tag is `[a]`, i.e. three (3) chars.
-	if (searchString.length > 3) {
+	if (searchString.length >= 3) {
 		NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
 		[tagsRegularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
 			if ([result numberOfRanges] >= 2) {
@@ -209,7 +178,7 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	return tags;
 }
 
-- (NSString *)keywordSearchStringFromSearchString:(NSString *)searchString
+- (NSString *)keywordsSearchStringFromSearchString:(NSString *)searchString
 {
 	NSParameterAssert(searchString != nil);
 	
@@ -223,32 +192,61 @@ static NSString *const SearchQuestionsCellIdentifier = @"SearchQuestionCell";
 	return keywordSearchString;
 }
 
+- (NSPredicate *)questionsFilterPredicateForTags:(NSArray *)tags keywordsString:(NSString *)keywords
+{
+	NSPredicate *tagsPredicate = [NSPredicate predicateWithBlock:^BOOL(OPFQuestion *evaluatedQuestion, NSDictionary *bindings) {
+		__block BOOL shouldInclude = YES;
+		[tags enumerateObjectsUsingBlock:^(id aTag, NSUInteger idx, BOOL *stop) {
+			shouldInclude = shouldInclude && [evaluatedQuestion.tags containsObject:aTag];
+			*stop = !shouldInclude;
+		}];
+		return shouldInclude;
+	}];
+	
+	NSPredicate *keywordsTitlePredicate = [NSPredicate predicateWithFormat:@"title contains[cd] %@", keywords];
+	NSPredicate *keywordsBodyPredicate = [NSPredicate predicateWithFormat:@"body contains[cd] %@", keywords];
+	NSPredicate *keywordsPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[ keywordsTitlePredicate, keywordsBodyPredicate ]];
+	
+	NSPredicate *predicate = nil;
+	if (keywords.length > 0 && tags.count > 0) {
+		predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[ tagsPredicate, keywordsPredicate ]];
+	} else if (keywords.length > 0) {
+		predicate = keywordsPredicate;
+	} else if (tags.count > 0) {
+		predicate = tagsPredicate;
+	} else {
+		ZAssert(NO, @"Well, we’re at that place again. You know that place you really shouldn’t be able to get to. Yeah, we’re there…");
+	}
+	
+	return predicate;
+}
+
 - (void)updateFilteredQuestions
 {
 	NSString *searchString = self.searchString ?: @"";
 	NSArray *tags = [self tagsFromSearchString:searchString];
-	DLog(@"tags: %@", tags);
-	NSString *keywords = [self keywordSearchStringFromSearchString:searchString];
-	DLog(@"keywords: %@", keywords);
+	NSString *keywords = [self keywordsSearchStringFromSearchString:searchString];
 	
-//	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(title LIKE %@ OR body LIKE @%) AND ALL %K IN %@", keywords, keywords, @"tags", tags];
-	
+	NSArray *filteredQuestions = nil;
 	if (keywords.length > 0 || tags.count > 0) {
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title like[cd] %@", keywords];
-		[self.filteredQuestions setArray:[self.questions filteredArrayUsingPredicate:predicate]];
+		NSPredicate *predicate = [self questionsFilterPredicateForTags:tags keywordsString:keywords];
+		filteredQuestions = [self.questions filteredArrayUsingPredicate:predicate];
 	} else {
-		[self.filteredQuestions setArray:self.questions];
+		filteredQuestions = self.questions;
 	}
-	DLog(@"filtered: %@", self.filteredQuestions);
+	
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-		[self.searchDisplayController.searchResultsTableView reloadData];
+		[self.filteredQuestions setArray:filteredQuestions];
+		[self.tableView reloadData];
 	}];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
-		[self updateFilteredQuestions];
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			[self updateFilteredQuestions];
+		});
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
