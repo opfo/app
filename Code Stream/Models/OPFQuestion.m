@@ -9,8 +9,8 @@
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
 
-@implementation OPFQuestion
 
+@implementation OPFQuestion
 
 + (OPFRootQuery*) query
 {
@@ -59,6 +59,8 @@
         _acceptedAnswerId = acceptedAnswer.identifier;
     }
 }
+
+
 
 
 @end
