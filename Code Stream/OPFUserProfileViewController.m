@@ -7,12 +7,24 @@
 //
 
 #import "OPFUserProfileViewController.h"
-
+#import "OPFUser.h"
 @interface OPFUserProfileViewController ()
+
 
 @end
 
 @implementation OPFUserProfileViewController
+
+- (void) viewWillAppear:(BOOL)animated{
+    OPFUser *user = [[OPFUser alloc] init];
+    
+    [user setDisplayName:@"Marcus"];
+    [user setReputation:@1367];
+    [user setLastAccessDate:[[NSDate alloc] init]];
+    [user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
+    [user setLocation:@"Gothenburg, Sweden"];
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,10 +51,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
@@ -103,7 +114,7 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
 
 #pragma mark - Table view delegate
 
@@ -116,6 +127,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
+//}
 
 @end

@@ -300,7 +300,7 @@
         <!--Table View Controller - UserProfile-->
         <scene sceneID="Lz9-2x-rtF">
             <objects>
-                <tableViewController id="aBZ-q2-boG" userLabel="Table View Controller - UserProfile" sceneMemberID="viewController">
+                <tableViewController id="aBZ-q2-boG" userLabel="Table View Controller - UserProfile" customClass="OPFUserProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hvg-Qu-oeh">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -560,8 +560,6 @@
         <class className="OPFDebugViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showCommentsView:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="showProfileSearch:" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
@@ -596,6 +594,9 @@
         </class>
         <class className="OPFQuestionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionsViewController.h"/>
+        </class>
+        <class className="OPFUserProfileViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
