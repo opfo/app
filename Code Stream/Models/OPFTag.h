@@ -10,4 +10,8 @@
 
 @interface OPFTag : OPFModel
 
+@property (strong) NSNumber* identifier;
+@property (copy) NSString* name;
+@property (readonly)NSArray* questions;
+
 @end

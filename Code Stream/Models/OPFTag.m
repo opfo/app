@@ -7,6 +7,7 @@
 //
 
 #import "OPFTag.h"
+#import "OPFQuestion.h"
 
 @implementation OPFTag
 
@@ -15,4 +16,28 @@
     return @"auxDB";
 }
 
+//
+// Translates incoming dictionary keys into the names of the target properties
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"identifier": @"id",
+             @"name": @"name"
+             };
+}
+
+@synthesize questions = _questions;
+
+- (NSArray*) questions
+{
+    if (_questions == nil) {
+        OPFQuery* query = [[OPFQuestion query] whereColumn:@"tags" like: [NSString stringWithFormat:@"%%%@%%", self.name]];
+        _questions = [query getMany];
+    }
+    return _questions;
+}
+
++ (NSString*) modelTableName
+{
+    return @"tags";
+}
 @end
