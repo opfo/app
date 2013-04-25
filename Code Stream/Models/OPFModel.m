@@ -122,6 +122,10 @@
     return 10;
 }
 
++ (NSString*) modelDBName
+{
+    return @"so.sqlite";
+}
 
 // This method needs to be overridden by subclasses
 + (NSString*) modelTableName
@@ -149,6 +153,11 @@
     }];
 }
 
++ (NSString*) dbName
+{
+    return @"baseDB";
+}
+
 # pragma mark - Query
 
 + (OPFRootQuery*) query
@@ -159,7 +168,7 @@
     OnGetMany multipleModelCallback = ^(FMResultSet* result) {
         return [self parseMultipleResult:result];
     };
-    return [OPFRootQuery queryWithTableName: [self modelTableName] oneCallback: singleModelCallback manyCallback:multipleModelCallback];
+    return [OPFRootQuery queryWithTableName: [self modelTableName] dbName: [self dbName] oneCallback: singleModelCallback manyCallback:multipleModelCallback];
 }
 
 @end

@@ -27,4 +27,5 @@
 +(NSValueTransformer*) standardDateTransformer;
 +(NSArray *) parseMultipleResult: (FMResultSet*) result;
 +(instancetype) parseDictionary: (NSDictionary*) attributes;
++(NSString*) dbName;
 @end

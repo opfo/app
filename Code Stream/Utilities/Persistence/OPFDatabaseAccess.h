@@ -15,9 +15,13 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
+- (FMResultSet *) executeSQL: (NSString *) sql withDatabase: (NSString*) databaseName;
 - (void) close;
 
 @property(strong, readonly) FMDatabase* baseDB;
+@property(strong, readonly) FMDatabase* auxDB;
 @property(strong, readonly) FMDatabaseQueue* baseDBQueue;
+@property(strong, readonly) FMDatabaseQueue* auxDBQueue;
+@property(strong, readonly) NSDictionary* dataBaseIndex;
 
 @end

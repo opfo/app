@@ -60,5 +60,10 @@
     }
 }
 
+-(NSValueTransformer*) tagsJSONValueTransformer
+{
+    return nil;
+}
+
 
 @end
