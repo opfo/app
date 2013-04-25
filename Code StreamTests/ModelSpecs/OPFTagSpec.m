@@ -33,4 +33,21 @@ describe(@"Fetching", ^{
     
 });
 
+describe(@"tag splitting", ^{
+    __block NSString* testString1 = @"<mysql><ajax><amazon-web-services><scalability><redundancy>";
+    __block NSArray* referenceArray1 = @[@"mysql", @"ajax", @"amazon-web-services", @"scalability", @"redundancy"];
+    __block NSString* testString2 = @"<iphone><ios><facebook><facebook-graph-api><facebook-connect>";
+    __block NSArray* referenceArray2 = @[@"iphone", @"ios", @"facebook", @"facebook-graph-api", @"facebook-connect"];
+    
+    it(@"should be able to split the input", ^{
+        expect([OPFTag rawTagsToArray:testString1]).to.equal(referenceArray1);
+        expect([OPFTag rawTagsToArray:testString2]).to.equal(referenceArray2);
+    });
+    
+    it(@"should be able to transform that shit back", ^{
+        expect([OPFTag arrayToRawTags:referenceArray1]).to.equal(testString1);
+        expect([OPFTag arrayToRawTags:referenceArray2]).to.equal(testString2);
+    });
+});
+
 SpecEnd

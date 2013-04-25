@@ -41,6 +41,14 @@ describe(@"Fetching", ^{
             expect(answer).to.beKindOf([OPFAnswer class]);
         }
     });
+    
+    it(@"should load the correct tags", ^{
+        question = [[[OPFQuestion query] whereColumn:@"id" is:@(8414337)] getOne];
+        NSArray* reference = @[@"iphone", @"ios", @"facebook", @"facebook-graph-api", @"facebook-connect"];
+        expect(question.tags).to.beKindOf([NSArray class]);
+        expect([question.tags count]).equal([reference count]);
+        expect(question.tags).to.equal(reference);
+    });
 	
 //	it(@"should create a correct tag array from string", ^{
 //		OPFQuestion *question = [OPFQuestion new];
