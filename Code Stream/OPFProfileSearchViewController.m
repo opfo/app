@@ -52,15 +52,6 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView opf_loadViewFromNIB];
-    
-    self.profileSearchBar = profileViewHeader.profileSearchBar;
-    
-    self.profileSearchBar.delegate = (id) self;
-    
-    self.tableView.tableHeaderView = profileViewHeader;
-
 }
 
 - (void)opfSetupView

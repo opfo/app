@@ -16,6 +16,6 @@
 @property(nonatomic, strong) NSPredicate *profilePredicate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) UISearchBar *profileSearchBar;
+@property (weak, nonatomic) IBOutlet UISearchBar *profileSearchBar;
 
 @end
