@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFUser.h"
 
 @interface OPFUserProfileViewController : UITableViewController
+@property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
 @property (weak, nonatomic) IBOutlet UITextView *userAboutMe;
 @property (weak, nonatomic) IBOutlet UILabel *userLocation;
