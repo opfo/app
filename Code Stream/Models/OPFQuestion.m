@@ -9,9 +9,6 @@
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
 
-@interface OPFQuestion ()
-@property (readwrite) NSArray* tags;
-@end
 
 @implementation OPFQuestion
 
@@ -63,18 +60,7 @@
     }
 }
 
-- (void)setRawTags:(NSString *)rawTags {
-	NSRange range = { .location = 1, .length = rawTags.length-2 };
-	NSString *substring = [rawTags substringWithRange:range];
-	self.tags = [substring componentsSeparatedByString:@"><"];
-}
 
-- (NSString *)rawTags {
-	NSMutableString *resultString = [NSMutableString stringWithString:@"<"];
-	[resultString appendString:[self.tags componentsJoinedByString:@"><"]];
-	[resultString appendString:@">"];
-	return [NSString stringWithString:resultString];
-}
 
 
 @end

@@ -9,7 +9,24 @@
 #import "OPFQuestion+Mockup.h"
 #import "OPFAnswer.h"
 
-@implementation OPFQuestion (Mockup)
+@interface OPFQuestion (MockupInterface)
+@property (readwrite) NSArray *tags;
+@end
+
+@implementation OPFQuestion (MockupImplementation)
+
+- (void)setRawTags:(NSString *)rawTags {
+	NSRange range = { .location = 1, .length = rawTags.length-2 };
+	NSString *substring = [rawTags substringWithRange:range];
+	self.tags = [substring componentsSeparatedByString:@"><"];
+}
+
+- (NSString *)rawTags {
+	NSMutableString *resultString = [NSMutableString stringWithString:@"<"];
+	[resultString appendString:[self.tags componentsJoinedByString:@"><"]];
+	[resultString appendString:@">"];
+	return [NSString stringWithString:resultString];
+}
 
 // Added by <gothm> for testing. Delete / move at will
 + (id)generatePlaceholderQuestion {
