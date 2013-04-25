@@ -59,7 +59,7 @@ static NSString* OPFDefaultDB = @"baseDB";
 //        return nil;
 //    }
     __block FMResultSet* result;
-    NSLog([NSString stringWithFormat:@"Executing SQL on db %@: %@", databaseName, sql]);
+    NSLog(@"Executing SQL on db %@: %@", databaseName, sql);
     [db inDatabase: ^(FMDatabase* db) {
         result = [db executeQuery:sql];
     }];
