@@ -56,12 +56,14 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)opfSetupView
 {
-    [self performInitialDatabaseFetch];
+    [self performInitialDatabaseFetch];    
 }
 
 - (void)performInitialDatabaseFetch
 {
-    self.userModels = [OPFUser all];
+    self.userModels = [OPFUser all:1 per:30];
+    
+    NSLog(@"%@", [self.userModels objectAtIndex:0]);
 }
 
 - (void)didReceiveMemoryWarning
