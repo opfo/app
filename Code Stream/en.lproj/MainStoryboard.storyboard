@@ -449,7 +449,7 @@
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="1337" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58F-pF-AKh">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
@@ -511,14 +511,14 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Posts" id="ams-Km-QmD">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Pws-ZP-Muo" style="IBUITableViewCellStyleDefault" id="Jzh-zk-Ed6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserQuestionsViewCell" textLabel="s8j-Km-PtC" style="IBUITableViewCellStyleDefault" id="jIF-j5-q9R">
                                         <rect key="frame" x="0.0" y="528" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pws-ZP-Muo">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Questions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8j-Km-PtC">
                                                     <rect key="frame" x="10" y="0.0" width="260" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -529,14 +529,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="s8j-Km-PtC" style="IBUITableViewCellStyleDefault" id="jIF-j5-q9R">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserAnswersViewCell" textLabel="Pws-ZP-Muo" style="IBUITableViewCellStyleDefault" id="Jzh-zk-Ed6">
                                         <rect key="frame" x="0.0" y="573" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Questions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8j-Km-PtC">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pws-ZP-Muo">
                                                     <rect key="frame" x="10" y="0.0" width="260" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -624,6 +624,65 @@
     <resources>
         <image name="MarcusJohansson@2x.jpg" width="60" height="60"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OPFDebugViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userProfileSearchViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userProfileViewCell" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bodyTextView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="OPFPostMetadataTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostMetadataTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="authorAvatarImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="authorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="authorScoreLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="voteDownButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="voteUpButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="OPFPostTagsTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostTagsTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="OPFQuestionViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
+        </class>
+        <class className="OPFQuestionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="OPFUserProfileViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="userAboutMe" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userDisplayName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
