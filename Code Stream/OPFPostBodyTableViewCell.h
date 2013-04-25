@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OPFPostBodyTableViewCell : UITableViewCell
+
+@property (copy, nonatomic) NSString *htmlString;
 @property (weak, nonatomic) IBOutlet UIWebView *bodyTextView;
 @end
