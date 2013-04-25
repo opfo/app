@@ -100,6 +100,11 @@
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
 		9C7F6E12171FE171008F6473 /* OPFPostTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */; };
 		9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */; };
+		9C9B79CA1726A1F300E5333B /* OPFPostBodyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */; };
+		9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */; };
+		9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */; };
+		9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */; };
+		9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 /* End PBXBuildFile section */
@@ -267,6 +272,12 @@
 		9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFScoreNumberFormatter.h; sourceTree = "<group>"; };
 		9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatter.m; sourceTree = "<group>"; };
 		9C9B79C81726845600E5333B /* CDKittMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDKittMacros.h; sourceTree = "<group>"; };
+		9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostBodyTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostMetadataTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostTagsTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostCommentTableViewCell.xib; sourceTree = "<group>"; };
+		9C9B79D91726DCBB00E5333B /* NSString+OPFStripCharacters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFStripCharacters.h"; sourceTree = "<group>"; };
+		9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFStripCharacters.m"; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
@@ -307,8 +318,6 @@
 				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */,
 				1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */,
 				1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */,
-				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
-				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
 			);
 			name = "Questions View";
 			sourceTree = "<group>";
@@ -628,6 +637,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
+				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
 				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
 				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
 				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
@@ -717,6 +728,8 @@
 			children = (
 				9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */,
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
+				9C9B79D91726DCBB00E5333B /* NSString+OPFStripCharacters.h */,
+				9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */,
 				9C469298171F5C1B00F75C31 /* UIView+OPFAutoLayout.h */,
 				9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */,
 				9C46928B171F4D4500F75C31 /* UIView+OPFViewLoading.h */,
@@ -738,12 +751,16 @@
 		9C7F6E16171FE185008F6473 /* Post Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9C9B79C91726A1F300E5333B /* OPFPostBodyTableViewCell.xib */,
 				9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */,
 				9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */,
+				9C9B79CB1726A22400E5333B /* OPFPostMetadataTableViewCell.xib */,
 				9C7F6E0D171FE164008F6473 /* OPFPostMetadataTableViewCell.h */,
 				9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */,
+				9C9B79CD1726A22D00E5333B /* OPFPostTagsTableViewCell.xib */,
 				9C7F6E10171FE171008F6473 /* OPFPostTagsTableViewCell.h */,
 				9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */,
+				9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */,
 			);
 			name = "Post Table View Cells";
 			sourceTree = "<group>";
@@ -875,6 +892,10 @@
 				1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */,
 				1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */,
 				813482451727C045008E8F22 /* auxiliary.sqlite in Resources */,
+				9C9B79CA1726A1F300E5333B /* OPFPostBodyTableViewCell.xib in Resources */,
+				9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */,
+				9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */,
+				9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */,
 				1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */,
 				1A639EC217267AB6009EB280 /* location@2x.png in Resources */,
 				1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */,
@@ -999,6 +1020,7 @@
 				81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */,
 				810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */,
 				9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */,
+				9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */,
 				1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */,
 				1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */,
 				1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */,

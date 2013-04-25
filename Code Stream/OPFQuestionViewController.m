@@ -96,8 +96,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 {
 	[super viewDidLoad];
 	
-	UINib *headerViewNib = [UINib nibWithNibName:@"OPFQuestionHeaderView" bundle:nil];
-	[self.tableView registerNib:headerViewNib forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
+	self.title = NSLocalizedString(@"Question", @"Question view controller title");
+	
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostBodyTableViewCell) bundle:nil] forCellReuseIdentifier:BodyCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostMetadataTableViewCell) bundle:nil] forCellReuseIdentifier:MetadataCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostTagsTableViewCell) bundle:nil] forCellReuseIdentifier:TagsCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:@"OPFPostCommentTableViewCell" bundle:nil] forCellReuseIdentifier:CommentsCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated

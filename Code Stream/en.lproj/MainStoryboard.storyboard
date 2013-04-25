@@ -519,12 +519,23 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="U82-2o-Na6">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="0eg-Zj-rT7" id="hzB-y1-TFl"/>
+                            </connections>
+                        </searchBar>
                         <connections>
                             <outlet property="dataSource" destination="0eg-Zj-rT7" id="NTj-O6-R1s"/>
                             <outlet property="delegate" destination="0eg-Zj-rT7" id="ivm-VU-HUo"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Questions" id="3gg-I0-8Gx"/>
+                    <connections>
+                        <outlet property="searchBar" destination="U82-2o-Na6" id="qFB-rL-pYQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-z6-UuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -560,8 +571,6 @@
         <class className="OPFDebugViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showCommentsView:" candidateClass="UITableViewCell"/>
-                <relationship kind="action" name="showProfileSearch:" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
@@ -596,6 +605,9 @@
         </class>
         <class className="OPFQuestionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
