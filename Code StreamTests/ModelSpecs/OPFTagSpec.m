@@ -50,4 +50,11 @@ describe(@"tag splitting", ^{
     });
 });
 
+describe(@"get tags by name", ^{
+    it(@"should return the correct tag", ^{
+        OPFTag* tag = [OPFTag byName:@"mysql"];
+        expect(tag.identifier).to.equal(@(1));
+    });
+});
+
 SpecEnd

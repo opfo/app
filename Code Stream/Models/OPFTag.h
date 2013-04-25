@@ -14,7 +14,13 @@
 @property (copy) NSString* name;
 @property (readonly)NSArray* questions;
 
+// Transforms an array of strings into a string of tags
+//      Example:    [OPFTag arrayToRawTags: @[@"apa", @"bepa"]];
+//                  => "<apa><bepa>"
 + (NSString*) arrayToRawTags: (NSArray*) array;
 + (NSArray*) rawTagsToArray: (NSString*) rawTags;
+
+// Get a tag by name
++ (instancetype) byName: (NSString*) name;
 
 @end

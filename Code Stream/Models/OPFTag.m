@@ -61,4 +61,9 @@
     return matches;
 }
 
++ (instancetype) byName:(NSString *)name
+{
+    return [[[self query] whereColumn:@"name" is: name] getOne];
+}
+
 @end
