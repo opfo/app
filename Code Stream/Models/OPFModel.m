@@ -29,7 +29,7 @@
 
 + (FMResultSet *) allForModel:(NSString *)modelName page:(NSInteger)page per:(NSInteger)per {
     NSInteger offset = per * page;
-    NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@' LIMIT %d OFFSET %d", modelName, modelName, per, offset];
+    NSString* sql = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@' LIMIT %d OFFSET %d", modelName, modelName, per, offset];
     return [[self getDBAccess] executeSQL:sql];
 }
 
