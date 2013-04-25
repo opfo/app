@@ -10,6 +10,7 @@
 #import "OPFProfileViewCell.h"
 #import "OPFProfileSearchHeaderView.h"
 #import "OPFUser.h"
+#import "UIView+OPFViewLoading.h"
 
 @interface OPFProfileSearchViewController ()
 
@@ -22,6 +23,8 @@
 @end
 
 @implementation OPFProfileSearchViewController
+
+static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
 
 - (id)init
 {
@@ -49,6 +52,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView opf_loadViewFromNIB];
+    
+    self.profileSearchBar = profileViewHeader.profileSearchBar;
+    
+    self.profileSearchBar.delegate = (id) self;
+    
+    self.tableView.tableHeaderView = profileViewHeader;
+
 }
 
 - (void)opfSetupView
@@ -86,17 +98,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    OPFProfileSearchHeaderView *profileViewHeader = [OPFProfileSearchHeaderView new];
-    
-    self.profileSearchBar = profileViewHeader.profileSearchBar;
-    
-    self.profileSearchBar.delegate = (id)self;
-    
-    return profileViewHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
