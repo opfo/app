@@ -27,6 +27,7 @@ typedef id (^OnGetOne)(NSDictionary*);
 
 @property (copy) NSString* tableName;
 @property (copy) NSString* columnName;
+@property (copy) NSString* dbName;
 
 @property (copy, nonatomic) OnGetMany onGetMany;
 @property (copy, nonatomic) OnGetOne onGetOne;
@@ -94,7 +95,11 @@ typedef id (^OnGetOne)(NSDictionary*);
 // Initializes a query with a table name
 + (instancetype) queryWithTableName: (NSString*) tableName;
 
++ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName;
+
 // Initializes a query with a table name and a completion callback;
 + (instancetype) queryWithTableName:(NSString *)tableName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
+
++ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
 
 @end

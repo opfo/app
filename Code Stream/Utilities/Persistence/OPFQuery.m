@@ -12,6 +12,7 @@
 #import "OPFLikeQuery.h"
 #import "OPFRootQuery.h"
 
+static NSString* defaultDB = @"baseDB";
 
 @implementation OPFQuery
 
@@ -19,12 +20,12 @@
 
 - (FMResultSet*) getResultSetOne {
     [[self rootQuery] setLimit: @(1)];
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
     return result;
 }
 
 - (FMResultSet*) getResultSetMany {
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
     return result;
 }
 
@@ -133,6 +134,14 @@
 {
     id query = [[self alloc] init];
     [query setTableName: tableName];
+    [query setDbName:defaultDB];
+    return query;
+}
+
++ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName
+{
+    id query = [self queryWithTableName:tableName];
+    [query setDbName:dbName];
     return query;
 }
 
@@ -144,10 +153,35 @@
     return query;
 }
 
++ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
+{
+    id query = [self queryWithTableName:tableName oneCallback:oneCallback manyCallback:manyCallback];
+    [query setDbName:dbName];
+    return query;
+}
+
 // Subclasses must override this
 - (NSString*) sqlConcat:(NSString *)sqlString
 {
     return nil;
+}
+
+@synthesize dbName = _dbName;
+
+- (NSString* ) dbName
+{
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
+        return _dbName;
+    } else {
+        return self.rootQuery.dbName;
+    }
+}
+
+- (void) setDbName:(NSString *)dbName
+{
+    if (_dbName != dbName) {
+        _dbName = dbName;
+    }
 }
 
 @end
