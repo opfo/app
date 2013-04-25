@@ -11,7 +11,7 @@
 
 @interface OPFQuestion : OPFPost
 
-@property (strong, readonly) NSArray* tags;
+@property (strong) NSArray* tags;
 @property (strong) OPFAnswer* acceptedAnswer;
 @property (strong) NSNumber* acceptedAnswerId;
 @property (strong) NSDate* closedDate;

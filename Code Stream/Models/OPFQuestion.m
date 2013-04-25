@@ -8,9 +8,10 @@
 
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
+#import "OPFTag.h"
+
 
 @implementation OPFQuestion
-
 
 + (OPFRootQuery*) query
 {
@@ -60,5 +61,12 @@
     }
 }
 
-
++(NSValueTransformer*) tagsJSONTransformer
+{
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [OPFTag rawTagsToArray: str];
+    } reverseBlock:^(NSArray *array) {
+        return [OPFTag arrayToRawTags: array];
+    }];
+}
 @end

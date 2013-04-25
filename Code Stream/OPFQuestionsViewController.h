@@ -10,5 +10,6 @@
 
 @interface OPFQuestionsViewController : UITableViewController
 
+@property (copy) NSArray *questions;
 
 @end

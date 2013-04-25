@@ -21,7 +21,7 @@
 
 - (NSString*) baseSQL
 {
-    return [NSString stringWithFormat:@"'%@'.'%@' = %@", [self.rootQuery tableName], [self columnName], [self term]];
+    return [NSString stringWithFormat:@"'%@'.'%@' = '%@'", [self.rootQuery tableName], [self columnName], [self term]];
 }
 
 @end
