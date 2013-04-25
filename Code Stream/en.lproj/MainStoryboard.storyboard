@@ -506,6 +506,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="User Profile" id="dtW-5Y-zGQ"/>
+                    <connections>
+                        <outlet property="userAboutMe" destination="tze-7p-0EM" id="KaQ-hu-yfO"/>
+                        <outlet property="userCreationDate" destination="pib-nM-hiP" id="qXh-Gm-XzZ"/>
+                        <outlet property="userDisplayName" destination="YHB-t5-kVW" id="3IF-Iz-7hb"/>
+                        <outlet property="userLastAccess" destination="Ezx-Zw-IjF" id="WYC-rg-0sY"/>
+                        <outlet property="userLocation" destination="fJx-Sz-eDI" id="o11-Tq-uOT"/>
+                        <outlet property="userReputation" destination="58F-pF-AKh" id="zrd-N9-O9O"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYG-jP-wVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -597,6 +605,14 @@
         </class>
         <class className="OPFUserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="userAboutMe" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userDisplayName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLastAccess" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

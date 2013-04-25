@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface OPFUserProfileViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
+@property (weak, nonatomic) IBOutlet UITextView *userAboutMe;
+@property (weak, nonatomic) IBOutlet UILabel *userLocation;
+@property (weak, nonatomic) IBOutlet UILabel *userReputation;
+@property (weak, nonatomic) IBOutlet UILabel *userCreationDate;
+@property (weak, nonatomic) IBOutlet UITableViewCell *userLastAccess;
 
 @end

@@ -23,6 +23,7 @@
     [user setLastAccessDate:[[NSDate alloc] init]];
     [user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
     [user setLocation:@"Gothenburg, Sweden"];
+    self.userDisplayName.text = @"Fredrik";
     
 }
 
