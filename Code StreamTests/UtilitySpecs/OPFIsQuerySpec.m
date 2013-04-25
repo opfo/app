@@ -26,11 +26,11 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"returns correct SQL for subquery", ^(){
-        expect([isQuery toSQLString]).to.equal(@"'comments'.'score' = 1");
+        expect([isQuery toSQLString]).to.equal(@"'comments'.'score' = '1'");
     });
     
     it(@"returns correct SQL for total query", ^{
-        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE 'comments'.'score' = 1");
+        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE 'comments'.'score' = '1'");
     });
     
     it(@"fetches correct number of results when fetching multiple", ^{
@@ -59,7 +59,7 @@ describe(@"fetching and SQL-strings", ^{
         [isQuery whereColumn:@"post_id" is:@"1"];
         expect([rootQuery toSQLString])
             .to
-            .equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = 1 AND 'comments'.'post_id' = 1)");
+            .equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = '1' AND 'comments'.'post_id' = '1')");
     });
     
     it(@"returns model objects ", ^{

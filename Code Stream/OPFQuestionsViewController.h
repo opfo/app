@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFQuestionsViewController : UITableViewController
+@interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate>
 
+@property (copy) NSString *searchString;
 
 @end

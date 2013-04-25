@@ -7,6 +7,15 @@
 //
 
 #import "OPFProfileViewCell.h"
+#import "OPFUser.h"
+#import "OPFScoreNumberFormatter.h"
+
+@interface OPFProfileViewCell()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+@property(nonatomic, strong) NSDateFormatter *dateFormatter;
+
+@end
 
 @implementation OPFProfileViewCell
 
@@ -22,24 +31,25 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)setModelValuesInView
 {
-    //    self.commentBody.text = self.commentModel.commentBody;
-    //    self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.lastEditDate];
-    //    self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.lastEditDate];
-    //    self.commentVoteUp.titleLabel.text = [@(self.commentModel.score) stringValue];
-    //    self.commentUserName.text = self.commentModel.userName;
-    //    self.userAvatar.text = self.commentModel.userAvatar;
+    self.userName.text = self.userModel.displayName;
+    self.userLocation.text = self.userModel.location;
+    self.userWebsite.text = (! [[self.userModel.websiteUrl absoluteString] isEqualToString:@"NULL"]) ? [self.userModel.websiteUrl absoluteString] : @"";
+    self.userReputation.text = [self.scoreFormatter stringFromScore:[self.userModel.reputation integerValue]];
+    self.userVotesUp.text = [self.scoreFormatter stringFromScore:[self.userModel.upVotes integerValue]];
+    self.userVotesDown.text = [self.scoreFormatter stringFromScore:[self.userModel.downVotes integerValue]];
+        
+    //self.userAvatar;
 }
 
-- (void)setupDateformatters
+- (void)setupFormatters
 {
     self.dateFormatter = [NSDateFormatter new];
-    
     [self.dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+    
+    self.scoreFormatter = [OPFScoreNumberFormatter new];
 }
 @end
