@@ -9,7 +9,6 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFUser.h"
 @interface OPFUserProfileViewController ()
-@property (strong) OPFUser *user;
 
 @end
 
