@@ -37,7 +37,7 @@
 {
     self.userName.text = self.userModel.displayName;
     self.userLocation.text = self.userModel.location;
-    //self.userWebsite.text = [self.userModel.websiteUrl baseURL];
+    self.userWebsite.text = (! [[self.userModel.websiteUrl absoluteString] isEqualToString:@"NULL"]) ? [self.userModel.websiteUrl absoluteString] : @"";
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.userModel.reputation integerValue]];
     self.userVotesUp.text = [self.scoreFormatter stringFromScore:[self.userModel.upVotes integerValue]];
     self.userVotesDown.text = [self.scoreFormatter stringFromScore:[self.userModel.downVotes integerValue]];
