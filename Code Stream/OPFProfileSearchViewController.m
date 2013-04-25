@@ -9,11 +9,15 @@
 #import "OPFProfileSearchViewController.h"
 #import "OPFProfileViewCell.h"
 #import "OPFProfileSearchHeaderView.h"
+#import "OPFUser.h"
 
 @interface OPFProfileSearchViewController ()
 
 @property (strong, nonatomic) NSMutableArray *mutableUserModels;
 @property(nonatomic) BOOL isFiltered;
+
+- (void)performInitialDatabaseFetch;
+- (void)opfSetupView;
 
 @end
 
@@ -22,6 +26,11 @@
 - (id)init
 {
     self = [super initWithNibName:@"OPFProfileSearchView" bundle:nil];
+
+    if(self) {
+        [self opfSetupView];
+    }
+   
     
     return self;
 }
@@ -31,7 +40,7 @@
     self = [super initWithCoder:aDecoder];
     
     if(self) {
-        //init goes here mofo
+        [self opfSetupView];
     }
     
     return self;
@@ -42,23 +51,30 @@
     [super viewDidLoad];
 }
 
-- (void)setUserModels:(NSArray *)userModels
+- (void)opfSetupView
 {
-    self.userModels = userModels;
-    self.mutableUserModels = [NSMutableArray arrayWithCapacity:self.userModels.count];
+    [self performInitialDatabaseFetch];
+}
+
+- (void)performInitialDatabaseFetch
+{
+    self.userModels = [OPFUser all];
+    
+    OPFUser *firstUser = [self.userModels objectAtIndex:0];
+    
+    NSLog(@"%@", firstUser);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Returning 1 because we only display one post's comments
+    // Returning 1 because we only have one section for users
     return 1;
 }
 
@@ -69,8 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
-    return 5;
+    return self.isFiltered ? self.mutableUserModels.count : self.userModels.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -94,10 +109,10 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:profileViewCellIdentifier owner:self options:nil];
         profileViewCell = [nib objectAtIndex:0];
     }
-    
+        
     profileViewCell.userModel = [self.userModels objectAtIndex:indexPath.row];
     
-    [profileViewCell setupDateformatters];
+    [profileViewCell setupFormatters];
     [profileViewCell setModelValuesInView];
     
     profileViewCell.profilesViewController = self;
@@ -117,6 +132,7 @@
     
     [self.tableView reloadData];
 }
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     NSLog(@"searchBar button clicked");
 }

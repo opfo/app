@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFUser;
+
 @interface OPFProfileSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property(nonatomic, strong) NSArray *userModels;

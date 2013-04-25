@@ -53,7 +53,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">MarcusJohansson@2x.jpg</string>
+									<string key="NSResourceName">avatar-empty@2x.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="716059345">
@@ -167,7 +167,6 @@
 								<string key="NSFrame">{{295, 34}, {17, 21}}</string>
 								<reference key="NSSuperview" ref="313999765"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -1570,8 +1569,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="MarcusJohansson@2x.jpg">{60, 60}</string>
 			<string key="activity@2x.png">{30, 30}</string>
+			<string key="avatar-empty@2x.png">{120, 120}</string>
 			<string key="location@2x.png">{22, 30}</string>
 			<string key="votes-down@2x.png">{30, 30}</string>
 			<string key="votes-up@2x.png">{30, 30}</string>

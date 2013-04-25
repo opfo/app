@@ -26,6 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userVotesDown;
 
 - (void)setModelValuesInView;
-- (void)setupDateformatters;
+- (void)setupFormatters;
 
 @end
