@@ -16,6 +16,12 @@
 
 static CGFloat userAboutMeInset = 100.0;
 
+-(id) init{
+    if (self) {
+       self = [super init];
+    }
+    return self;
+}
 
 - (void) viewWillAppear:(BOOL)animated{
     
@@ -25,9 +31,22 @@ static CGFloat userAboutMeInset = 100.0;
     [_user setLastAccessDate:[[NSDate alloc] init]];
     [_user setAboutMe:@"I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java.I'm a developer who works with java."];
     [_user setLocation:@"Gothenburg, Sweden"];
+    [_user setAge:@23];
+    [_user setWebsiteUrl:[[[NSURL alloc] init] initWithString:@"www.chalmers.se"]];
+    
     self.userDisplayName.text = _user.displayName;
     self.userAboutMe.text = _user.aboutMe;
     self.userLocation.text = _user.location;
+    
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    self.userReputation.text = [numberFormatter stringFromNumber:_user.reputation];
+    
+    self.userAge.text = [numberFormatter stringFromNumber:_user.age];
+    
+
+    
+    self.userWebsite.text = [_user.websiteUrl absoluteString];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];

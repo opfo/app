@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userReputation;
 @property (weak, nonatomic) IBOutlet UILabel *userCreationDate;
 @property (weak, nonatomic) IBOutlet UILabel *userLastAccess;
+@property (weak, nonatomic) IBOutlet UILabel *userAge;
+@property (weak, nonatomic) IBOutlet UILabel *userWebsite;
 
 @end
