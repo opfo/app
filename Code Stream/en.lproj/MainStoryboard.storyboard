@@ -534,19 +534,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Questions" id="3gg-I0-8Gx"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="XKg-3G-reD" id="b53-Fy-BXy"/>
+                        <outlet property="searchBar" destination="U82-2o-Na6" id="qFB-rL-pYQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-z6-UuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="XKg-3G-reD">
-                    <connections>
-                        <outlet property="delegate" destination="0eg-Zj-rT7" id="tb8-ST-2R7"/>
-                        <outlet property="searchBar" destination="U82-2o-Na6" id="ZUh-Vr-bCa"/>
-                        <outlet property="searchContentsController" destination="0eg-Zj-rT7" id="gZk-XY-vv2"/>
-                        <outlet property="searchResultsDataSource" destination="0eg-Zj-rT7" id="DfL-TD-N1m"/>
-                        <outlet property="searchResultsDelegate" destination="0eg-Zj-rT7" id="y5g-as-hLX"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1200" y="-253"/>
         </scene>
@@ -614,6 +605,9 @@
         </class>
         <class className="OPFQuestionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
