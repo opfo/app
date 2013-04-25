@@ -55,6 +55,7 @@
 		815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */; };
 		815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */; };
 		8161DD2C172854F100806493 /* OPFTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 8161DD2B172854F100806493 /* OPFTag.m */; };
+		8161DD2F172919AD00806493 /* OPFTagSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8161DD2E172919AD00806493 /* OPFTagSpec.m */; };
 		816F9739171D48ED00E881B6 /* OPFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F9738171D48ED00E881B6 /* OPFUserSpec.m */; };
 		8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */; };
 		8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */; };
@@ -181,6 +182,7 @@
 		815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFLikeQuerySpec.m; path = UtilitySpecs/OPFLikeQuerySpec.m; sourceTree = "<group>"; };
 		8161DD2A172854F100806493 /* OPFTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFTag.h; path = Models/OPFTag.h; sourceTree = "<group>"; };
 		8161DD2B172854F100806493 /* OPFTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFTag.m; path = Models/OPFTag.m; sourceTree = "<group>"; };
+		8161DD2E172919AD00806493 /* OPFTagSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFTagSpec.m; path = ModelSpecs/OPFTagSpec.m; sourceTree = "<group>"; };
 		816F9738171D48ED00E881B6 /* OPFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUserSpec.m; path = ModelSpecs/OPFUserSpec.m; sourceTree = "<group>"; };
 		8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFQuestionSpec.m; path = ModelSpecs/OPFQuestionSpec.m; sourceTree = "<group>"; };
 		8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFAnswerSpec.m; path = ModelSpecs/OPFAnswerSpec.m; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				81D5E0561721661500E572B2 /* OPFModelSpec.m */,
 				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
 				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
+				8161DD2E172919AD00806493 /* OPFTagSpec.m */,
 			);
 			name = ModelSpecs;
 			sourceTree = "<group>";
@@ -1010,6 +1013,7 @@
 				815E1B6717253CCE00FBDFEF /* OPFLikeQuerySpec.m in Sources */,
 				8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */,
 				8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */,
+				8161DD2F172919AD00806493 /* OPFTagSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
