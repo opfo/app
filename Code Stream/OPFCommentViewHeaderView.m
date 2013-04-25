@@ -45,9 +45,8 @@
     self.postUserName.text = self.postModel.owner.displayName;
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.lastEditDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.lastEditDate];
-    self.postVoteCount.text = [self.postModel.score stringValue];
+    self.postCommentCount.text = [NSString stringWithFormat:@"%@", self.postModel.commentCount];
     [self.userAvatar setImageWithGravatarEmailHash:self.postModel.owner.emailHash placeholderImage:self.userAvatar.image];
-
 }
 
 @end

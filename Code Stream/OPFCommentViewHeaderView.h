@@ -17,7 +17,7 @@
 @property(nonatomic, weak) IBOutlet UILabel *postDate;
 @property(nonatomic, weak) IBOutlet UILabel *postTime;
 @property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
-@property(nonatomic, weak) IBOutlet UILabel *postVoteCount;
+@property(nonatomic, weak) IBOutlet UILabel *postCommentCount;
 
 @property(nonatomic, strong) OPFPost *postModel;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;

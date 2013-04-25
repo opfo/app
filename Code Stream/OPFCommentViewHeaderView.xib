@@ -283,11 +283,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">postVoteCount</string>
+						<string key="label">postCommentCount</string>
 						<reference key="source" ref="971003041"/>
 						<reference key="destination" ref="305908808"/>
 					</object>
-					<int key="connectionID">254</int>
+					<int key="connectionID">281</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1096,7 +1096,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">280</int>
+			<int key="maxID">281</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1112,14 +1112,23 @@
 					<string key="className">OPFCommentViewHeaderView</string>
 					<string key="superclassName">UITableViewHeaderFooterView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="post">UILabel</string>
+						<string key="postCommentCount">UILabel</string>
 						<string key="postDate">UILabel</string>
 						<string key="postTime">UILabel</string>
 						<string key="postTitle">UILabel</string>
 						<string key="postUserName">UILabel</string>
-						<string key="postVoteCount">UILabel</string>
 						<string key="userAvatar">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="post">
+							<string key="name">post</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="postCommentCount">
+							<string key="name">postCommentCount</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="postDate">
 							<string key="name">postDate</string>
 							<string key="candidateClassName">UILabel</string>
@@ -1134,10 +1143,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="postUserName">
 							<string key="name">postUserName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="postVoteCount">
-							<string key="name">postVoteCount</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="userAvatar">
