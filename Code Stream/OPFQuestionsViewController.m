@@ -15,7 +15,6 @@
 
 @interface OPFQuestionsViewController (/*Private*/)
 #pragma mark - Presented Data
-//@property (copy) NSArray *questions;
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
@@ -37,7 +36,6 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
-//	_questions = NSArray.new;
 	_filteredQuestions = NSMutableArray.new;
 }
 
@@ -227,9 +225,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	NSArray *filteredQuestions = nil;
 	if (keywords.length > 0 || tags.count > 0) {
 		NSPredicate *predicate = [self questionsFilterPredicateForTags:tags keywordsString:keywords];
-		filteredQuestions = [[OPFQuestion all] filteredArrayUsingPredicate:predicate];
+		filteredQuestions = [[OPFQuestion all:0 per:30] filteredArrayUsingPredicate:predicate];
 	} else {
-		filteredQuestions = [OPFQuestion all];
+		filteredQuestions = [OPFQuestion all:0 per:30];
 	}
 	
 	DLog(@"q: %@", filteredQuestions[0]);
