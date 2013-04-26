@@ -95,7 +95,6 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		return evaluatedObject.score.integerValue >= 8;
 	}]];
 	
-	self.questions = questions;
 	[self updateFilteredQuestionsCompletion:^{
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}];

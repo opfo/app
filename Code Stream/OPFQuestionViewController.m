@@ -126,8 +126,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     post1.owner=user;
 	if (self.question) {
 		[self.posts addObject:self.question];
-		//TODO<gothm>: correctly access the property
-		// [self.posts addObjectsFromArray:self.question.answers];
+		[self.posts addObjectsFromArray:self.question.answers];
 	} else
 		[self.posts addObjectsFromArray:@[ post, post1 ]];
 	[super viewWillAppear:animated];
