@@ -47,6 +47,7 @@
 								<string key="NSFrameSize">{320, 44}</string>
 								<reference key="NSSuperview" ref="633628522"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<int key="IBUIContentMode">3</int>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -119,19 +120,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tableView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="633628522"/>
-					</object>
-					<int key="connectionID">11</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">profileSearchBar</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="843896741"/>
 					</object>
 					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tableView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="633628522"/>
+					</object>
+					<int key="connectionID">16</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -311,7 +312,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">16</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -325,7 +326,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">OPFProfileSearchViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">UITableViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="profileSearchBar">UISearchBar</string>
 						<string key="tableView">UITableView</string>

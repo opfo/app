@@ -28,6 +28,7 @@ typedef id (^OnGetOne)(NSDictionary*);
 @property (copy) NSString* tableName;
 @property (copy) NSString* columnName;
 @property (copy) NSString* dbName;
+@property (assign) BOOL paged;
 
 @property (copy, nonatomic) OnGetMany onGetMany;
 @property (copy, nonatomic) OnGetOne onGetOne;
@@ -43,6 +44,7 @@ typedef id (^OnGetOne)(NSDictionary*);
 @property (strong) OPFQuery* rootQuery;
 @property (strong) NSNumber* limit;
 @property (strong) NSNumber* pageSize;
+@property (strong) NSNumber* offset;
 
 // Fetches one database row based on the query
 // Equivalent to setting LIMIT = 1
@@ -72,6 +74,8 @@ typedef id (^OnGetOne)(NSDictionary*);
 // TODO: Not implemented yet
 - (instancetype) orQuery: (OPFQuery*) otherQuery;
 - (instancetype) limit: (NSNumber*) n;
+- (instancetype) page: (NSNumber*) page;
+- (instancetype) page: (NSNumber*) page per: (NSNumber*) pageSize;
 
 // Returns this query as it would appear in a WHERE-block
 //      Example:
@@ -100,6 +104,6 @@ typedef id (^OnGetOne)(NSDictionary*);
 // Initializes a query with a table name and a completion callback;
 + (instancetype) queryWithTableName:(NSString *)tableName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
 
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
++ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback pageSize: (NSNumber*)pageSize;
 
 @end

@@ -17,14 +17,19 @@
 
 @property(strong, nonatomic) NSMutableArray *mutableUserModels;
 @property(strong, nonatomic) NSArray *databaseUserModels;
-@property(nonatomic) BOOL isFiltered;
+@property(nonatomic) BOOL hasLoaded;
+@property(nonatomic) BOOL isSearching;
 
 - (void)performInitialDatabaseFetch;
+- (void)setupRefreshControl;
 - (void)opfSetupView;
 
 @end
 
 @implementation OPFProfileSearchViewController
+
+//Used for initial fetch and any susequent call
+#define OPF_PAGE_SIZE 25
 
 static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
 
@@ -35,7 +40,6 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     if(self) {
         [self opfSetupView];
     }
-   
     
     return self;
 }
@@ -54,16 +58,30 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupRefreshControl];
 }
 
 - (void)opfSetupView
-{
-    [self performInitialDatabaseFetch];    
+{    
+    [self performInitialDatabaseFetch];
 }
 
 - (void)performInitialDatabaseFetch
 {
-    self.rootUserModels = [OPFUser all:0 per:25];
+    self.atPage = [NSNumber numberWithInt:0];
+
+    self.rootUserModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
+    self.mutableUserModels = [NSMutableArray arrayWithArray:self.rootUserModels];
+}
+
+- (void)setupRefreshControl
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView addSubview:refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +91,19 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (OPFUser *)userForIndexPath:(NSIndexPath *)indexPath
 {
-    return self.isFiltered ? self.mutableUserModels[indexPath.section] : self.rootUserModels[indexPath.section];
+    OPFUser *userModel = nil;
+    
+    if(self.hasLoaded || self.isSearching) {
+        int index = self.mutableUserModels.count - indexPath.row - 1;
+        
+        userModel = index > 0 ? self.mutableUserModels[index]: nil;
+    } else {
+        int index = self.rootUserModels.count - indexPath.row - 1;
+
+        userModel = self.rootUserModels[index];
+    }
+    
+    return userModel;
 }
 
 #pragma mark - Table view data source
@@ -91,7 +121,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.isFiltered ? self.mutableUserModels.count : self.rootUserModels.count;
+    return self.hasLoaded ? self.mutableUserModels.count : self.rootUserModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,8 +135,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
         profileViewCell = [nib objectAtIndex:0];
     }
         
-    profileViewCell.userModel
-    = (self.isFiltered == YES) ? [self.mutableUserModels objectAtIndex:indexPath.row] : [self.rootUserModels objectAtIndex:indexPath.row];
+    profileViewCell.userModel = [self userForIndexPath:indexPath];
     
     [profileViewCell setupFormatters];
     [profileViewCell setModelValuesInView];
@@ -131,11 +160,13 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 #pragma mark - SearchBar Delegate -
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    self.isFiltered = (searchText.length == 0) ? NO : YES;
+    self.isSearching = (searchText.length == 0) ? NO : YES;
     
     self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
     
-    if(self.isFiltered) {
+    if(self.isSearching) {
+        self.hasLoaded = NO;
+        
         [self.mutableUserModels removeAllObjects];
         
         self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
@@ -151,6 +182,28 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - UIRefreshControl delegates
+
+- (void)refresh:(id)sender {
+    //All results have been loaded, nothing to fetch
+    if (self.isSearching) {
+        [(UIRefreshControl *)sender endRefreshing];
+        return; 
+    }
+    
+    self.atPage = [NSNumber numberWithInteger:[self.atPage integerValue] + 1];
+    
+    self.hasLoaded = YES;
+    
+    NSArray *fetchedModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
+    
+    [self.mutableUserModels addObjectsFromArray:fetchedModels];
+    
+    [self.tableView reloadData];
+    
+    [(UIRefreshControl *)sender endRefreshing];
 }
 
 @end
