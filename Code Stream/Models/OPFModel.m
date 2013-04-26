@@ -108,6 +108,7 @@
         model = [self parseDictionary:[result resultDictionary]];
         [models addObject: model];
     }
+    [result close];
     return models;
 }
 
