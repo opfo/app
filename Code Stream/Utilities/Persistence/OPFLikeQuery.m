@@ -12,7 +12,13 @@
 
 - (NSString*) baseSQL
 {
-    NSString* output = [NSString stringWithFormat:@"'%@'.'%@' LIKE '%@'", [self.rootQuery tableName], [self columnName], [self term]];
+    NSString* formatString;
+    if (self.exact == YES) {
+        formatString = @"'%@'.'%@' LIKE '%@'";
+    } else {
+        formatString = @"'%@'.'%@' LIKE '%%%@%%'";
+    }
+    NSString* output = [NSString stringWithFormat: formatString, [self.rootQuery tableName], [self columnName], [self term]];
     return output;
 }
 
@@ -22,6 +28,13 @@
     query.columnName = column;
     query.term = term;
     query.rootQuery = rootQuery;
+    return query;
+}
+
++ (instancetype) initWithColumn:(NSString *)column term:(id)term rootQuery:(OPFQuery *)otherQuery exact:(BOOL)exact
+{
+    OPFLikeQuery* query = [self initWithColumn:column term:term rootQuery:otherQuery];
+    query.exact = exact;
     return query;
 }
 
