@@ -20,11 +20,15 @@
 @property(nonatomic) BOOL isFiltered;
 
 - (void)performInitialDatabaseFetch;
+- (void)setupRefreshControl;
 - (void)opfSetupView;
 
 @end
 
 @implementation OPFProfileSearchViewController
+
+//Used for initial fetch and any susequent call
+#define OPF_PAGE_SIZE 25
 
 static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
 
@@ -35,7 +39,6 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     if(self) {
         [self opfSetupView];
     }
-   
     
     return self;
 }
@@ -54,16 +57,34 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupRefreshControl];
 }
 
 - (void)opfSetupView
-{
-    [self performInitialDatabaseFetch];    
+{    
+    [self performInitialDatabaseFetch];
+}
+
+- (void)insertRowsAtBottom {
+    self.isFiltered = YES;
+    self.atPage = [NSNumber numberWithInt:[self.atPage integerValue] + 1];
 }
 
 - (void)performInitialDatabaseFetch
 {
-    self.rootUserModels = [OPFUser all:0 per:25];
+    self.atPage = [NSNumber numberWithInt:0];
+
+    self.rootUserModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
+}
+
+- (void)setupRefreshControl
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView addSubview:refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -116,6 +137,12 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     return profileViewCell;
 }
 
+-(void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Loading profiles…"];
+    
+    [refresh endRefreshing];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -151,6 +178,14 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - UIRefreshControl delegates
+
+- (void)refresh:(id)sender {
+    NSLog(@"Refreshing");
+    // End Refreshing
+    [(UIRefreshControl *)sender endRefreshing];
 }
 
 @end
