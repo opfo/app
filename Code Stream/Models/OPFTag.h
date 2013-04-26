@@ -12,7 +12,7 @@
 
 @property (strong) NSNumber* identifier;
 @property (copy) NSString* name;
-@property (readonly)NSArray* questions;
+@property (strong, readonly)NSArray* questions;
 
 // Transforms an array of strings into a string of tags
 //      Example:    [OPFTag arrayToRawTags: @[@"apa", @"bepa"]];

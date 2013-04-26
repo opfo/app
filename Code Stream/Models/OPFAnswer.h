@@ -11,7 +11,7 @@
 
 @interface OPFAnswer : OPFPost
 
-@property NSNumber* parentId;
-@property OPFQuestion* parent;
+@property (strong) NSNumber* parentId;
+@property (strong) OPFQuestion* parent;
 
 @end
