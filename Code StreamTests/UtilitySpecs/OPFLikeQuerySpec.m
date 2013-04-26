@@ -9,34 +9,39 @@
 #import "Specta.h"
 #define EXP_SHORTHAND
 #import "Expecta.h"
-#import "OPFInQuery.h"
+#import "OPFLikeQuery.h"
 #import "OPFRootQuery.h"
 #import "OPFComment.h"
+#import "OPFQuestion.h"
 
 
 SpecBegin(OPFLikeQuery)
 
 describe(@"fetching and SQL-strings", ^{
     __block OPFRootQuery* rootQuery;
-    __block OPFQuery* inQuery;
+    __block id likeQuery;
     __block FMResultSet* result;
     
     before(^{
         rootQuery = [OPFComment query];
-        inQuery = [rootQuery whereColumn:@"text" like: @"%%CSS%%"];
-    });
-    
-    it(@"returns correct sql for subquery", ^{
-        expect([inQuery toSQLString]).to.equal(@"'comments'.'text' LIKE '%%CSS%%'");
+        likeQuery = [rootQuery whereColumn:@"text" like: @"CSS"];
     });
     
     it(@"returns the correct amount of objects for the given query", ^{
-        result = [inQuery getResultSetMany];
+        result = [likeQuery getResultSetMany];
         int i = 0;
         while([result next]) {
             i++;
         }
         expect(i).to.equal(140);
+    });
+    
+    it(@"returns the correct amount of objects for an exact query, and the first object has the correct id", ^{
+        likeQuery = [[OPFQuestion query] whereColumn: @"tags" like: @"<mysql>"];
+        [likeQuery setExact: YES];
+        NSArray* result = [likeQuery getMany];
+        expect(result.count).to.equal(@(10));
+        expect([[result objectAtIndex:0] identifier]).to.equal(@(8414075));
     });
     
     afterEach(^{

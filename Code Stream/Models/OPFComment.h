@@ -19,7 +19,7 @@
 @property (strong) NSNumber* score;
 @property (copy) NSString* text;
 @property (strong) NSDate* creationDate;
-@property (assign) NSNumber* authorId;
+@property (strong) NSNumber* authorId;
 @property (strong) OPFUser* author;
 
 @end

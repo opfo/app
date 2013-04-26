@@ -44,7 +44,6 @@
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
-		810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */ = {isa = PBXBuildFile; fileRef = 810C9CD51721E99C00FDF562 /* OPFQuestion+Mockup.m */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		813482451727C045008E8F22 /* auxiliary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 813482441727C045008E8F22 /* auxiliary.sqlite */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
@@ -67,7 +66,6 @@
 		81C18477171FD908008273A6 /* OPFAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C18476171FD908008273A6 /* OPFAnswer.m */; };
 		81C1C74217202A83004AB177 /* OPFComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1C74117202A83004AB177 /* OPFComment.m */; };
 		81C1C74517202F3C004AB177 /* OPFCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1C74417202F3C004AB177 /* OPFCommentSpec.m */; };
-		81D5E0571721661500E572B2 /* OPFModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E0561721661500E572B2 /* OPFModelSpec.m */; };
 		81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */; };
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
@@ -169,8 +167,6 @@
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Code StreamTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		810C9CD41721E99C00FDF562 /* OPFQuestion+Mockup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "OPFQuestion+Mockup.h"; path = "Models/OPFQuestion+Mockup.h"; sourceTree = "<group>"; };
-		810C9CD51721E99C00FDF562 /* OPFQuestion+Mockup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "OPFQuestion+Mockup.m"; path = "Models/OPFQuestion+Mockup.m"; sourceTree = "<group>"; };
 		8128DF92171D82C300C44410 /* OPFDatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFDatabaseAccess.h; path = Utilities/Persistence/OPFDatabaseAccess.h; sourceTree = "<group>"; };
 		8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccess.m; path = Utilities/Persistence/OPFDatabaseAccess.m; sourceTree = "<group>"; };
 		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
@@ -208,7 +204,6 @@
 		81C1C74017202A83004AB177 /* OPFComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFComment.h; path = Models/OPFComment.h; sourceTree = "<group>"; };
 		81C1C74117202A83004AB177 /* OPFComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFComment.m; path = Models/OPFComment.m; sourceTree = "<group>"; };
 		81C1C74417202F3C004AB177 /* OPFCommentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFCommentSpec.m; path = ModelSpecs/OPFCommentSpec.m; sourceTree = "<group>"; };
-		81D5E0561721661500E572B2 /* OPFModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModelSpec.m; path = ModelSpecs/OPFModelSpec.m; sourceTree = "<group>"; };
 		81D5E059172168B800E572B2 /* OPFModelSpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModelSpecHelper.h; path = SpecHelpers/OPFModelSpecHelper.h; sourceTree = "<group>"; };
 		81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModelSpecHelper.m; path = SpecHelpers/OPFModelSpecHelper.m; sourceTree = "<group>"; };
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
@@ -470,7 +465,6 @@
 			children = (
 				816F9738171D48ED00E881B6 /* OPFUserSpec.m */,
 				81C1C74417202F3C004AB177 /* OPFCommentSpec.m */,
-				81D5E0561721661500E572B2 /* OPFModelSpec.m */,
 				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
 				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
 				8161DD2E172919AD00806493 /* OPFTagSpec.m */,
@@ -610,8 +604,6 @@
 				81C1C74117202A83004AB177 /* OPFComment.m */,
 				81FDFF39172039A00060DBC6 /* OPFModel.h */,
 				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
-				810C9CD41721E99C00FDF562 /* OPFQuestion+Mockup.h */,
-				810C9CD51721E99C00FDF562 /* OPFQuestion+Mockup.m */,
 				8161DD2A172854F100806493 /* OPFTag.h */,
 				8161DD2B172854F100806493 /* OPFTag.m */,
 			);
@@ -1018,7 +1010,6 @@
 				1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */,
 				1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */,
 				81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */,
-				810C9CD61721E99C00FDF562 /* OPFQuestion+Mockup.m in Sources */,
 				9C8DC917172187D00098C7A4 /* OPFScoreNumberFormatter.m in Sources */,
 				9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */,
 				1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */,
@@ -1044,7 +1035,6 @@
 				81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */,
 				9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */,
 				81C1C74517202F3C004AB177 /* OPFCommentSpec.m in Sources */,
-				81D5E0571721661500E572B2 /* OPFModelSpec.m in Sources */,
 				81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */,
 				9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */,
 				815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */,
