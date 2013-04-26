@@ -88,6 +88,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[super viewWillAppear:animated];
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
+	
 	[self updateFilteredQuestionsCompletion:^{
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}];

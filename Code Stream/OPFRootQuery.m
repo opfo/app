@@ -20,7 +20,12 @@
     }
     if([self limit] != nil) {
         [output appendString:@" "];
-        [output appendString:[NSString stringWithFormat: @"LIMIT %@", [self limit]]];
+        [output appendString:[NSString stringWithFormat: @"LIMIT %@", self.limit]];
+    }
+    if([self paged] == YES) {
+        [output appendString:@" "];
+        [output appendString:[NSString stringWithFormat: @"LIMIT %@ ", self.pageSize]];
+        [output appendString: [NSString stringWithFormat: @"OFFSET %@", self.offset]];
     }
     return output;
 }

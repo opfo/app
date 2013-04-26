@@ -13,7 +13,9 @@
 
 // The search term
 @property (copy) id term;
+@property (assign) BOOL exact;
 
-+ (instancetype) initWithColumn: (NSString*) column term: (id) term rootQuery: (OPFQuery*) otherQuery;
++ (instancetype) initWithColumn: (NSString *) column term: (id) term rootQuery: (OPFQuery *) otherQuery;
++ (instancetype) initWithColumn: (NSString *) column term: (id) term rootQuery: (OPFQuery *) otherQuery exact: (BOOL) exact;
 
 @end
