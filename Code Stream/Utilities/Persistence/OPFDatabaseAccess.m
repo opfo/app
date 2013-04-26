@@ -36,6 +36,12 @@ static NSString* OPFDefaultDB = @"baseDB";
     _auxDB = [FMDatabase databaseWithPath:auxDBPath];
     _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:auxDBPath];
     _dataBaseIndex = @{@"baseDB": _baseDBQueue, @"auxDB":  _auxDBQueue};
+    [_auxDBQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"CREATE VIRTUAL TABLE IF NOT EXISTS docs USING fts3(name, contents);"];
+        if([db hadError]) {
+            NSLog(@"===================PHAT ERROR ======\n ==> %@ \n <=======", [db lastErrorMessage]);
+        }
+    }];
     return self;
 }
 
