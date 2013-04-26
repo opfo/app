@@ -12,6 +12,7 @@
 #import "OPFLikeQuery.h"
 #import "OPFRootQuery.h"
 #import "OPFComment.h"
+#import "OPFQuestion.h"
 
 
 SpecBegin(OPFLikeQuery)
@@ -35,11 +36,12 @@ describe(@"fetching and SQL-strings", ^{
         expect(i).to.equal(140);
     });
     
-    it(@"returns the correct amount of objects for an exact query", ^{
+    it(@"returns the correct amount of objects for an exact query, and the first object has the correct id", ^{
+        likeQuery = [[OPFQuestion query] whereColumn: @"tags" like: @"<mysql>"];
         [likeQuery setExact: YES];
         NSArray* result = [likeQuery getMany];
-        expect(result.count).to.equal(@(0));
-        
+        expect(result.count).to.equal(@(10));
+        expect([[result objectAtIndex:0] identifier]).to.equal(@(8414075));
     });
     
     afterEach(^{
