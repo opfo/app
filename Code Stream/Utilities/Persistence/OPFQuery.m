@@ -34,7 +34,9 @@ static NSString* defaultDB = @"baseDB";
     if([self isKindOfClass: [OPFRootQuery class]]) {
         FMResultSet* result = [self getResultSetOne];
         if(self.onGetOne != nil && [result next]) {
-            return self.onGetOne([result resultDictionary]);
+            NSDictionary* attributes = [result resultDictionary];
+            [result close];
+            return self.onGetOne(attributes);
         } else {
             return nil;
         }
@@ -142,6 +144,7 @@ static NSString* defaultDB = @"baseDB";
 {
     id query = [self queryWithTableName:tableName];
     [query setDbName:dbName];
+    [query setPaged: NO];
     return query;
 }
 
@@ -158,6 +161,27 @@ static NSString* defaultDB = @"baseDB";
     id query = [self queryWithTableName:tableName oneCallback:oneCallback manyCallback:manyCallback];
     [query setDbName:dbName];
     return query;
+}
+
++ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback pageSize: (NSNumber*)pageSize
+{
+    id query = [self queryWithTableName:tableName dbName:dbName oneCallback:oneCallback manyCallback:manyCallback];
+    [query setPageSize:pageSize];
+    return query;
+}
+
+- (instancetype) page:(NSNumber *)page
+{
+    self.paged = YES;
+    self.offset = @([self.pageSize integerValue] * [page integerValue]);
+    return self;
+}
+
+- (instancetype) page:(NSNumber *)page per:(NSNumber *)pageSize
+{
+    self.pageSize = pageSize;
+    [self page: page];
+    return self;
 }
 
 // Subclasses must override this
@@ -179,8 +203,50 @@ static NSString* defaultDB = @"baseDB";
 
 - (void) setDbName:(NSString *)dbName
 {
-    if (_dbName != dbName) {
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
         _dbName = dbName;
+    } else {
+        self.rootQuery.dbName = _dbName;
+    }
+}
+
+@synthesize paged = _paged;
+
+- (BOOL) paged
+{
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
+        return _paged;
+    } else {
+        return self.rootQuery.paged;
+    }
+}
+
+- (void) setPaged:(BOOL)paged
+{
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
+        _paged = paged;
+    } else {
+        self.rootQuery.paged = paged;
+    }
+}
+
+@synthesize offset = _offset;
+
+- (NSNumber* ) offset
+{
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
+        return _offset;
+    } else {
+        return self.rootQuery.offset;
+    }
+}
+
+- (void) setOffset:(NSNumber *)offset
+{
+    if ([self isKindOfClass:[OPFRootQuery class]]) {
+        _offset = offset;
+    } else {
+        self.rootQuery.offset = offset;
     }
 }
 
