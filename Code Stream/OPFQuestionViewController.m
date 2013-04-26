@@ -14,6 +14,7 @@
 #import "NSCache+OPFSubscripting.h"
 #import "OPFPost.h"
 #import "OPFCommentsViewController.h"
+#import "OPFScoreNumberFormatter.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -206,7 +207,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	OPFPost *post = self.posts[section];
 	headerView.titleLabel.text = post.title;
-	headerView.scoreLabel.text = [NSString stringWithFormat:@"%@", post.score];
+	
+	OPFScoreNumberFormatter *scoreFormatter = self.cache[@"scoreFormatter"];
+	if (scoreFormatter == nil) {
+		scoreFormatter = [OPFScoreNumberFormatter new];
+		self.cache[@"scoreFormatter"] = scoreFormatter;
+	}
+	headerView.scoreLabel.text = [scoreFormatter stringFromScore:post.score.unsignedIntegerValue];
 	
 	return headerView;
 }
