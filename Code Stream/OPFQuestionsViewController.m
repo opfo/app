@@ -88,6 +88,13 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[super viewWillAppear:animated];
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
 	
+	// Fetch all questions matching our current search limits.
+	// TEMP:
+	NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"tags" like:@"%c#%"] getMany].mutableCopy;
+	[questions filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OPFQuestion* evaluatedObject, NSDictionary *bindings) {
+		return evaluatedObject.score.integerValue >= 8;
+	}]];
+	
 	[self updateFilteredQuestionsCompletion:^{
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}];
