@@ -34,7 +34,9 @@ static NSString* defaultDB = @"baseDB";
     if([self isKindOfClass: [OPFRootQuery class]]) {
         FMResultSet* result = [self getResultSetOne];
         if(self.onGetOne != nil && [result next]) {
-            return self.onGetOne([result resultDictionary]);
+            NSDictionary* attributes = [result resultDictionary];
+            [result close];
+            return self.onGetOne(attributes);
         } else {
             return nil;
         }
