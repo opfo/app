@@ -93,11 +93,13 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	
 	// Fetch all questions matching our current search limits.
 	// TEMP:
-	NSMutableArray *questions = NSMutableArray.new;
-	for (NSInteger i = 0; i < 10; ++i) {
-		[questions addObject:OPFQuestion.generatePlaceholderQuestion];
-	}
+	NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"tags" like:@"%c#%"] getMany].mutableCopy;
+	[questions filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OPFQuestion* evaluatedObject, NSDictionary *bindings) {
+		return evaluatedObject.score.integerValue >= 8;
+	}]];
+	
 	self.questions = questions;
+	
 	[self updateFilteredQuestionsCompletion:^{
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}];
