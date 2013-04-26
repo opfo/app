@@ -21,6 +21,15 @@ describe(@"Fetching", ^{
     beforeEach(^{
         question = [[[OPFQuestion query] whereColumn:@"id" is:@(8414075)] getOne];
     });
+    
+    it(@"should be possible to do a all-query", ^{
+        NSArray* questions = [OPFQuestion all: 30];
+        expect(questions.count).to.equal(10);
+        for(id question in questions) {
+            expect(question).to.beKindOf([OPFQuestion class]);
+        }
+    });
+    
     it(@"should not fetch an incorrect type of model", ^{
         question = [[[OPFQuestion query] whereColumn: @"id" is: @"8474693"] getOne];
         expect(question).to.beNil();
