@@ -10,13 +10,11 @@
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionViewController.h"
 #import "OPFQuestion.h"
-#import "OPFQuestion+Mockup.h"
 #import "NSString+OPFStripCharacters.h"
 
 
 @interface OPFQuestionsViewController (/*Private*/)
 #pragma mark - Presented Data
-@property (copy) NSArray *questions;
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
@@ -38,7 +36,6 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
-	_questions = NSArray.new;
 	_filteredQuestions = NSMutableArray.new;
 }
 
@@ -91,13 +88,6 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[super viewWillAppear:animated];
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
 	
-	// Fetch all questions matching our current search limits.
-	// TEMP:
-	NSMutableArray *questions = NSMutableArray.new;
-	for (NSInteger i = 0; i < 10; ++i) {
-		[questions addObject:OPFQuestion.generatePlaceholderQuestion];
-	}
-	self.questions = questions;
 	[self updateFilteredQuestionsCompletion:^{
 		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}];
@@ -235,9 +225,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	NSArray *filteredQuestions = nil;
 	if (keywords.length > 0 || tags.count > 0) {
 		NSPredicate *predicate = [self questionsFilterPredicateForTags:tags keywordsString:keywords];
-		filteredQuestions = [self.questions filteredArrayUsingPredicate:predicate];
+		filteredQuestions = [[OPFQuestion all:0 per:30] filteredArrayUsingPredicate:predicate];
 	} else {
-		filteredQuestions = self.questions;
+		filteredQuestions = [OPFQuestion all:0 per:30];
 	}
 	
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
