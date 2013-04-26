@@ -19,7 +19,7 @@
 # pragma mark - Generic find all methods
 
 + (FMResultSet *) allForModel:(NSString *)modelName{
-    NSString* sql = [NSString stringWithFormat:@"SELECT '%@' FROM '%@'", modelName, modelName];
+    NSString* sql = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@'", modelName, modelName];
     return [[self getDBAccess] executeSQL:sql];
 }
 
