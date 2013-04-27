@@ -10,6 +10,8 @@
 
 @interface OPFAppDelegate : UIResponder <UIApplicationDelegate>
 
++ (instancetype)sharedAppDelegate;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end
