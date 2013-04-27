@@ -69,6 +69,8 @@
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
+		1AB5CA6F172C1128009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA6E172C1128009FD9B7 /* app-icon@2.png */; };
+		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
@@ -224,6 +226,8 @@
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OPFCommentViewHeaderView.xib; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.xib"; sourceTree = "<absolute>"; };
+		1AB5CA6E172C1128009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
+		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
@@ -600,6 +604,7 @@
 		9C1C51281716FBE0004CC9E3 = {
 			isa = PBXGroup;
 			children = (
+				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				9C1C513A1716FBE0004CC9E3 /* Code Stream */,
 				9C1C515E1716FBE1004CC9E3 /* Code StreamTests */,
 				9C1C51731716FEBB004CC9E3 /* Vendor */,
@@ -653,6 +658,7 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1AB5CA6E172C1128009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
@@ -1034,6 +1040,8 @@
 				1AD5D24417292A4A00B99352 /* avatar-empty@2x.png in Resources */,
 				1ABA0A5917296D330007BBFE /* score@2x.png in Resources */,
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
+				1AB5CA6F172C1128009FD9B7 /* app-icon@2.png in Resources */,
+				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
