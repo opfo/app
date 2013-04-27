@@ -12,6 +12,7 @@
 #import "OPFUser.h"
 #import "UIView+OPFViewLoading.h"
 #import "OPFUserProfileViewController.h"
+#import "OPFAppDelegate.h"
 
 @interface OPFProfileSearchViewController ()
 
@@ -149,9 +150,11 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OPFUser *userModel = [self userForIndexPath:indexPath];
-    OPFUserProfileViewController *userProfileViewController = [OPFUserProfileViewController new];
-    
+	// This be a hack, do not ship stuff like this!
+	NSAssert(OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFUserProfileViewController *userProfileViewController = [self.view.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+
+	OPFUser *userModel = [self userForIndexPath:indexPath];
     userProfileViewController.user = userModel;
     
     [self.navigationController pushViewController:userProfileViewController animated:YES];

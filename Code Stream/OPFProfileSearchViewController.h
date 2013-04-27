@@ -10,13 +10,12 @@
 
 @class OPFUser;
 
-@interface OPFProfileSearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface OPFProfileSearchViewController : UITableViewController <UISearchBarDelegate>
 
 @property(nonatomic, strong) NSArray *rootUserModels;
 @property(nonatomic, strong) NSPredicate *profilePredicate;
 @property(nonatomic, assign) NSNumber *atPage;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *profileSearchBar;
 
 @end
