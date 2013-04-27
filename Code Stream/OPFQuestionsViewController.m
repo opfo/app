@@ -38,6 +38,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
+	_searchString = @"";
 	_isFirstTimeAppearing = YES;
 	_filteredQuestions = NSMutableArray.new;
 }
@@ -81,6 +82,8 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[super viewDidLoad];
 
+	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
+	
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
@@ -90,6 +93,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[super viewWillAppear:animated];
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
+	
+	if (self.searchString.length > 0) {
+		self.searchBar.text = self.searchString;
+	}
 	
 	// Fetch all questions matching our current search limits.
 	// TEMP:
@@ -148,6 +155,30 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	questionViewController.question = question;
 	
 	[self.navigationController pushViewController:questionViewController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	OPFSingleQuestionPreviewCell *questionCell = (OPFSingleQuestionPreviewCell *)cell;
+	questionCell.delegate = self;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	OPFSingleQuestionPreviewCell *questionCell = (OPFSingleQuestionPreviewCell *)cell;
+	questionCell.delegate = nil;
+}
+
+
+#pragma mark - GCTagListDelegate Methods
+- (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag
+{
+	self.searchString = [(self.searchString ?: @"") stringByAppendingFormat:@"[%@]", tag];
+	self.searchBar.text = self.searchString;
+	
+	if (self.tableView.contentOffset.y != 0) {
+		[self.tableView setContentOffset:CGPointZero animated:YES];
+	}
 }
 
 
@@ -267,9 +298,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-	
 	[searchBar setShowsCancelButton:YES animated:YES];
-	
 	return YES;
 }
 

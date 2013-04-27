@@ -10,7 +10,17 @@
 #import "OPFQuestion.h"
 #import "GCTagList.h"
 
-@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource>
+@class OPFSingleQuestionPreviewCell;
+@protocol OPFSingleQuestionPreviewCellDelegate <NSObject>
+@optional
+- (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag;
+
+@end
+
+
+@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource, GCTagListDelegate>
+
+@property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
 
 
 @property (nonatomic, copy) NSString *title;
