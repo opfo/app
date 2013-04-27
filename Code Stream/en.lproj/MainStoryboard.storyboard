@@ -30,9 +30,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="0eg-Zj-rT7" kind="push" identifier="ShowQuestionsDebugSegue" id="Gq5-hB-fZz"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="QuestionViewCell" textLabel="OKl-9S-UHo" style="IBUITableViewCellStyleDefault" id="P6x-ey-q56">
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
@@ -571,36 +568,6 @@
             </objects>
             <point key="canvasLocation" x="1602" y="190"/>
         </scene>
-        <!--Questions View Controller - Questions-->
-        <scene sceneID="6Sa-Fa-xzp">
-            <objects>
-                <tableViewController id="0eg-Zj-rT7" customClass="OPFQuestionsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CZj-Ne-cNj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="U82-2o-Na6">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="0eg-Zj-rT7" id="hzB-y1-TFl"/>
-                            </connections>
-                        </searchBar>
-                        <connections>
-                            <outlet property="dataSource" destination="0eg-Zj-rT7" id="NTj-O6-R1s"/>
-                            <outlet property="delegate" destination="0eg-Zj-rT7" id="ivm-VU-HUo"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Questions" id="3gg-I0-8Gx"/>
-                    <connections>
-                        <outlet property="searchBar" destination="U82-2o-Na6" id="qFB-rL-pYQ"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b8V-z6-UuR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1200" y="-253"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uld-3q-ctB">
             <objects>
@@ -662,12 +629,6 @@
         </class>
         <class className="OPFQuestionViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
-        </class>
-        <class className="OPFQuestionsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
         </class>
         <class className="OPFUserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>

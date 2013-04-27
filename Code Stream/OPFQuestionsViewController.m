@@ -44,7 +44,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
 - (id)init
 {
-	self = [super init];
+	self = [super initWithNibName:CDStringFromClass(self) bundle:nil];
 	if (self) [self sharedQuestionsViewControllerInit];
 	return self;
 }
