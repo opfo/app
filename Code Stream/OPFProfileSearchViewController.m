@@ -27,7 +27,9 @@
 
 @end
 
-@implementation OPFProfileSearchViewController
+@implementation OPFProfileSearchViewController {
+	BOOL _isFirstTimeAppearing;
+}
 
 //Used for initial fetch and any susequent call
 #define OPF_PAGE_SIZE 25
@@ -63,8 +65,24 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [self setupRefreshControl];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	if (_isFirstTimeAppearing) {
+		_isFirstTimeAppearing = NO;
+		
+		BOOL isSearchingAndHasRows = (self.hasLoaded || self.isSearching) && self.mutableUserModels.count > 0;
+		BOOL isNotSearchingAndHasRows = (self.hasLoaded || self.isSearching) == NO && self.rootUserModels.count > 0;
+		if (isSearchingAndHasRows || isNotSearchingAndHasRows) {
+			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
+	}
+}
+
 - (void)opfSetupView
-{    
+{
+	_isFirstTimeAppearing = YES;
     [self performInitialDatabaseFetch];
 }
 
