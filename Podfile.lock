@@ -1,5 +1,6 @@
 PODS:
   - AFNetworking (1.2.1)
+  - AGMedallionView (1.2.0)
   - Expecta (0.2.1)
   - FMDB (2.0)
   - GCTagList (0.2pre)
@@ -17,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (= 1.2.1)
+  - AGMedallionView (from `https://github.com/opfo/AGMedallionView.git`)
   - Expecta (= 0.2.1)
   - FMDB (from `git://github.com/ccgus/fmdb.git`)
   - GCTagList (from `git://github.com/opfo/GCTagList.git`)
@@ -25,6 +27,8 @@ DEPENDENCIES:
   - Specta (= 0.1.8)
 
 EXTERNAL SOURCES:
+  AGMedallionView:
+    :git: https://github.com/opfo/AGMedallionView.git
   FMDB:
     :git: git://github.com/ccgus/fmdb.git
   GCTagList:
@@ -34,6 +38,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
+  AGMedallionView: 5eeb9e90035d8da77c7ffcce83bd480b1503c1bd
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
   FMDB: 2fe05139e2cde6557d32282a541eba685583222e
   GCTagList: f2fb0d56eeee4ebd3505bd9cdb6b3628d73b133d
