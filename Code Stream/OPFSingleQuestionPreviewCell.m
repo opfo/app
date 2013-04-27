@@ -49,7 +49,7 @@
 
 // KVO method for updating the tag view on change of the public property
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual: @"tags"]) {
+	if ([keyPath isEqual: @"tags"] && self.tags) {
 		self.tagList.dataSource = self;
 		[self.tagList reloadData];
 	}
@@ -63,7 +63,7 @@
 	self.score = [question.score integerValue];
 	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
-	self.tags = @[@"test",@"test1"];
+	self.tags = question.tags;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {

@@ -27,7 +27,9 @@
 // - Keywords (free text, search in title and body)
 // - Tags (match exactly)
 
-@implementation OPFQuestionsViewController
+@implementation OPFQuestionsViewController {
+	BOOL _isFirstTimeAppearing;
+}
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
@@ -36,6 +38,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
+	_isFirstTimeAppearing = YES;
 	_filteredQuestions = NSMutableArray.new;
 }
 
@@ -89,8 +92,18 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
 	
+	// Fetch all questions matching our current search limits.
+	// TEMP:
+	NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"tags" like:@"%c#%"] getMany].mutableCopy;
+	[questions filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OPFQuestion* evaluatedObject, NSDictionary *bindings) {
+		return evaluatedObject.score.integerValue >= 8;
+	}]];
+	
 	[self updateFilteredQuestionsCompletion:^{
-		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		if (_isFirstTimeAppearing) {
+			_isFirstTimeAppearing = NO;
+			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
 	}];
 }
 
