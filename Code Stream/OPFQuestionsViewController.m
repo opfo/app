@@ -27,7 +27,9 @@
 // - Keywords (free text, search in title and body)
 // - Tags (match exactly)
 
-@implementation OPFQuestionsViewController
+@implementation OPFQuestionsViewController {
+	BOOL _isFirstTimeAppearing;
+}
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
@@ -36,6 +38,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
+	_isFirstTimeAppearing = YES;
 	_filteredQuestions = NSMutableArray.new;
 }
 
@@ -96,7 +99,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	}]];
 	
 	[self updateFilteredQuestionsCompletion:^{
-		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		if (_isFirstTimeAppearing) {
+			_isFirstTimeAppearing = NO;
+			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
 	}];
 }
 
