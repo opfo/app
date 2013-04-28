@@ -12,5 +12,6 @@
 @interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, OPFSingleQuestionPreviewCellDelegate>
 
 @property (copy) NSString *searchString;
+@property (nonatomic, copy) NSArray *questions;
 
 @end
