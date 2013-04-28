@@ -13,6 +13,7 @@
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
 #import "OPFScoreNumberFormatter.h"
+#import "OPFQuestion.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -179,6 +180,10 @@ static CGFloat userAboutMeInset = 50.0;
 
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
+        OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
+        NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;
+
+        questionsViewController.questions=questions;
         detailViewController =[OPFQuestionsViewController new];
     }
     // To be implemented

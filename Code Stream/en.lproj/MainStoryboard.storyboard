@@ -66,14 +66,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="aBZ-q2-boG" kind="push" id="gfI-ct-SDW"/>
+                                            <segue destination="aBZ-q2-boG" kind="push" identifier="ShowUserProfileView" id="gfI-ct-SDW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ProfileSearchViewCell" textLabel="jgp-fK-Kdn" style="IBUITableViewCellStyleDefault" id="47t-ir-4Rc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileSearchViewCell" textLabel="jgp-fK-Kdn" style="IBUITableViewCellStyleDefault" id="47t-ir-4Rc">
                                         <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show profile search view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgp-fK-Kdn">
@@ -85,11 +85,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CommentsViewCell" textLabel="umC-Vn-QVv" style="IBUITableViewCellStyleDefault" id="WkX-Fr-hD1">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CommentsViewCell" textLabel="umC-Vn-QVv" style="IBUITableViewCellStyleDefault" id="WkX-Fr-hD1">
                                         <rect key="frame" x="0.0" y="176" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show comments view" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="umC-Vn-QVv">
@@ -305,7 +305,7 @@
                         <sections>
                             <tableViewSection id="u8i-Vr-RDh">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="YHB-t5-kVW" imageView="kll-9w-4N5" style="IBUITableViewCellStyleDefault" id="LIk-Tl-Egd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="YHB-t5-kVW" imageView="pU9-a4-VuR" style="IBUITableViewCellStyleDefault" id="LIk-Tl-Egd">
                                         <rect key="frame" x="0.0" y="10" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -317,7 +317,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="MarcusJohansson@2x.jpg" id="kll-9w-4N5">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="avatar-empty@2x.png" id="pU9-a4-VuR">
                                                     <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -558,7 +558,6 @@
                         <outlet property="userAge" destination="Opi-oZ-ih4" id="SJ9-ar-EMN"/>
                         <outlet property="userCreationDate" destination="pib-nM-hiP" id="qXh-Gm-XzZ"/>
                         <outlet property="userDisplayName" destination="YHB-t5-kVW" id="3IF-Iz-7hb"/>
-                        <outlet property="userImage" destination="kll-9w-4N5" id="Wgz-sk-uOZ"/>
                         <outlet property="userLastAccess" destination="rqb-gl-F4P" id="iKY-O7-mVe"/>
                         <outlet property="userLocation" destination="fJx-Sz-eDI" id="o11-Tq-uOT"/>
                         <outlet property="userReputation" destination="58F-pF-AKh" id="zrd-N9-O9O"/>
@@ -590,7 +589,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MarcusJohansson@2x.jpg" width="60" height="60"/>
+        <image name="avatar-empty@2x.png" width="120" height="120"/>
     </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
