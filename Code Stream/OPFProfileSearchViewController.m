@@ -103,7 +103,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
         userModel = self.rootUserModels[index];
     }
-    
+
     return userModel;
 }
 
