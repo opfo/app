@@ -27,7 +27,10 @@
 // - Keywords (free text, search in title and body)
 // - Tags (match exactly)
 
-@implementation OPFQuestionsViewController
+@implementation OPFQuestionsViewController {
+	BOOL _isFirstTimeAppearing;
+}
+
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
@@ -36,12 +39,14 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
 {
+	_searchString = @"";
+	_isFirstTimeAppearing = YES;
 	_filteredQuestions = NSMutableArray.new;
 }
 
 - (id)init
 {
-	self = [super init];
+	self = [super initWithNibName:CDStringFromClass(self) bundle:nil];
 	if (self) [self sharedQuestionsViewControllerInit];
 	return self;
 }
@@ -78,6 +83,8 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[super viewDidLoad];
 
+	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
+	
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
@@ -88,6 +95,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[super viewWillAppear:animated];
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
 	
+	if (self.searchString.length > 0) {
+		self.searchBar.text = self.searchString;
+	}
+	
 	// Fetch all questions matching our current search limits.
 	// TEMP:
 	NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"tags" like:@"%c#%"] getMany].mutableCopy;
@@ -96,7 +107,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	}]];
 	
 	[self updateFilteredQuestionsCompletion:^{
-		[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		if (_isFirstTimeAppearing) {
+			_isFirstTimeAppearing = NO;
+			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
 	}];
 }
 
@@ -133,6 +147,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	return 150;
 }
 
+- (void)setQuestions:(NSArray *)questions {
+	NSLog(@"Questions View has recieved %lu questions to insert",(unsigned long)questions.count);
+}
+
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,6 +160,30 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	questionViewController.question = question;
 	
 	[self.navigationController pushViewController:questionViewController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	OPFSingleQuestionPreviewCell *questionCell = (OPFSingleQuestionPreviewCell *)cell;
+	questionCell.delegate = self;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	OPFSingleQuestionPreviewCell *questionCell = (OPFSingleQuestionPreviewCell *)cell;
+	questionCell.delegate = nil;
+}
+
+
+#pragma mark - GCTagListDelegate Methods
+- (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag
+{
+	self.searchString = [(self.searchString ?: @"") stringByAppendingFormat:@"[%@]", tag];
+	self.searchBar.text = self.searchString;
+	
+	if (self.tableView.contentOffset.y != 0) {
+		[self.tableView setContentOffset:CGPointZero animated:YES];
+	}
 }
 
 
@@ -261,9 +303,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-	
 	[searchBar setShowsCancelButton:YES animated:YES];
-	
 	return YES;
 }
 
