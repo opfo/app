@@ -9,6 +9,7 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFUser.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFAppDelegate.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -25,6 +26,14 @@ static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
 
 static CGFloat userAboutMeInset = 50.0;
+
++ (instancetype)newFromStoryboard
+{
+	// This be a hack, do not ship stuff like this!
+	NSAssert(OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFUserProfileViewController *userProfileViewController = [OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+	return userProfileViewController;
+}
 
 -(id) init{
     if (self) {

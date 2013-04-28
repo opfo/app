@@ -10,6 +10,9 @@
 #import "OPFUser.h"
 
 @interface OPFUserProfileViewController : UITableViewController
+
++ (instancetype)newFromStoryboard;
+
 @property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
 @property (weak, nonatomic) IBOutlet UITextView *userAboutMe;
