@@ -9,6 +9,14 @@
 #import "OPFDatabaseAccess.h"
 
 static NSString* OPFDefaultDB = @"baseDB";
+static NSString* OPFDefaultDBFilename = @"so.sqlite";
+static NSString* OPFAuxDBFilename = @"auxiliary.sqlite";
+static NSString* OPFWritableBaseDBPath;
+static NSString* OPFWritableAuxDBPath;
+
+@interface OPFDatabaseAccess(/*private*/)
++ (void) copyDatabaseIfNeeded;
+@end
 
 @implementation OPFDatabaseAccess
 
@@ -24,24 +32,49 @@ static NSString* OPFDefaultDB = @"baseDB";
 	return _sharedDatabase;
 }
 
++ (void) setDBPaths
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    OPFWritableBaseDBPath = [documentsDirectory stringByAppendingPathComponent: OPFDefaultDBFilename];
+    OPFWritableAuxDBPath = [documentsDirectory stringByAppendingPathComponent: OPFAuxDBFilename];
+}
+
++ (void) copyDatabaseIfNeeded
+{
+    // First, test for existence.
+    BOOL successBase;
+    BOOL successAux;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
+    successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
+    if (!successBase) {
+        NSString* defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFDefaultDBFilename];
+        successBase = [fileManager copyItemAtPath:defaultDBPath toPath: OPFWritableBaseDBPath error: &error];
+    }
+    if (!successAux) {
+        NSString* auxDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFAuxDBFilename];
+        successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
+    }
+    if(!successBase) {
+        NSLog(@"Failed to copy base db to documents directory");
+    }
+    if(!successAux) {
+        NSLog(@"Failed to copy aux db to documents directory");
+    }
+}
+
 //
 //  Inits with the preinstalled database.
 - (id) init {
     self = [super init];
     if (self == nil) return nil;
-    NSString* baseDBPath = [[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"];
-    NSString* auxDBPath = [[NSBundle mainBundle] pathForResource:@"auxiliary" ofType:@"sqlite"];
-    _baseDB = [FMDatabase databaseWithPath: baseDBPath];
-    _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: baseDBPath];
-    _auxDB = [FMDatabase databaseWithPath:auxDBPath];
-    _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:auxDBPath];
+    [OPFDatabaseAccess setDBPaths];
+    [OPFDatabaseAccess copyDatabaseIfNeeded];
+    _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: OPFWritableBaseDBPath];
+    _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableAuxDBPath];
     _dataBaseIndex = @{@"baseDB": _baseDBQueue, @"auxDB":  _auxDBQueue};
-    [_auxDBQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [db executeUpdate:@"CREATE VIRTUAL TABLE IF NOT EXISTS docs USING fts3(name, contents);"];
-        if([db hadError]) {
-            NSLog(@"===================PHAT ERROR ======\n ==> %@ \n <=======", [db lastErrorMessage]);
-        }
-    }];
     return self;
 }
 

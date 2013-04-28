@@ -24,4 +24,5 @@
 @property(strong, readonly) FMDatabaseQueue* auxDBQueue;
 @property(strong, readonly) NSDictionary* dataBaseIndex;
 
+
 @end
