@@ -512,7 +512,7 @@
                                         <rect key="frame" x="0.0" y="528" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Questions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8j-Km-PtC">
@@ -530,7 +530,7 @@
                                         <rect key="frame" x="0.0" y="573" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Answers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pws-ZP-Muo">
@@ -558,6 +558,7 @@
                         <outlet property="userAge" destination="Opi-oZ-ih4" id="SJ9-ar-EMN"/>
                         <outlet property="userCreationDate" destination="pib-nM-hiP" id="qXh-Gm-XzZ"/>
                         <outlet property="userDisplayName" destination="YHB-t5-kVW" id="3IF-Iz-7hb"/>
+                        <outlet property="userImage" destination="kll-9w-4N5" id="Wgz-sk-uOZ"/>
                         <outlet property="userLastAccess" destination="rqb-gl-F4P" id="iKY-O7-mVe"/>
                         <outlet property="userLocation" destination="fJx-Sz-eDI" id="o11-Tq-uOT"/>
                         <outlet property="userReputation" destination="58F-pF-AKh" id="zrd-N9-O9O"/>
@@ -637,6 +638,7 @@
                 <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userDisplayName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
