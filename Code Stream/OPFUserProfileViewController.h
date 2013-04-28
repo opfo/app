@@ -10,6 +10,11 @@
 #import "OPFUser.h"
 
 @interface OPFUserProfileViewController : UITableViewController
+
+
++ (instancetype)newFromStoryboard;
+
+
 @property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
 @property (weak, nonatomic) IBOutlet UITextView *userAboutMe;
@@ -19,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLastAccess;
 @property (weak, nonatomic) IBOutlet UILabel *userAge;
 @property (weak, nonatomic) IBOutlet UILabel *userWebsite;
+@property (weak, nonatomic) IBOutlet UIImageView *userImage;
 
 @end

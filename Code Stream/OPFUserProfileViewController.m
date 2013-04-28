@@ -9,6 +9,7 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFUser.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFAppDelegate.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -26,16 +27,23 @@ static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
 
 static CGFloat userAboutMeInset = 50.0;
 
++ (instancetype)newFromStoryboard
+{
+	// This be a hack, do not ship stuff like this!
+	NSAssert(OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFUserProfileViewController *userProfileViewController = [OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+	return userProfileViewController;
+}
+
 -(id) init{
+	self = [super init];
     if (self) {
-       self = [super init];
     }
     return self;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
-    // Create a user to test the view
-    [self dummyUser];
+    // Configure the view according to the userdata
     [self configureView];
 }
 
@@ -62,6 +70,8 @@ static CGFloat userAboutMeInset = 50.0;
     // Dispose of any resources that can be recreated.
 }
 
+
+
 -(void) configureView{
     // Set the textFields in the userInterface
     self.userDisplayName.text = _user.displayName;
@@ -78,6 +88,8 @@ static CGFloat userAboutMeInset = 50.0;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
+    NSLog(@"Created? ");
+    NSLog(self.userCreationDate.text);
     self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
 }
 
@@ -165,23 +177,6 @@ static CGFloat userAboutMeInset = 50.0;
  }
 */
 
-#pragma mark - Table view delegate
-
-
-
-// Just a user to test the view before we have connected it with the other controllers
--(void) dummyUser{
-    _user = [[OPFUser alloc] init];
-    [_user setDisplayName:@"Marcus"];
-    [_user setLocation:@"Gothenburg, Sweden"];
-    [_user setReputation:@1367];
-    [_user setLastAccessDate:[[NSDate alloc] init]];
-    [_user setAboutMe:@"I'm a developer who works with java. My interest are computers, solving hard problems and looking at funny pictures of cats. Opps, I forgot Star Wars, which also is one of my interests. "];
-    [_user setAge:@23];
-    [_user setWebsiteUrl:[NSURL URLWithString:[@"http://www.chalmers.se" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-    
-    // [_user setWebsiteUrl:];
-}
 
 
 @end

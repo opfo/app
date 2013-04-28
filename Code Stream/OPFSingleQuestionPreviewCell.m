@@ -7,6 +7,7 @@
 //
 
 #import "OPFSingleQuestionPreviewCell.h"
+#import "OPFQuestionsViewController.h"
 
 
 @implementation OPFSingleQuestionPreviewCell
@@ -50,8 +51,9 @@
 // KVO method for updating the tag view on change of the public property
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual: @"tags"] && self.tags) {
-		self.tagList.dataSource = self;
 		[self.tagList reloadData];
+	} else {
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
 
@@ -69,11 +71,23 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		self.tagList.dataSource = self;
 		// Add KVO-Observer for self.observeValueForKeyPath
 		[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
 	}
 	return self;
+}
+
+- (void)awakeFromNib
+{
+	[super awakeFromNib];
+	
+	self.tagList.dataSource = self;
+	self.tagList.delegate = self;
+}
+
+- (void)prepareForReuse
+{
+	self.delegate = nil;
 }
 
 -(void)dealloc{
@@ -99,5 +113,16 @@
     [tag setLabelText:self.tags[index] accessoryType:GCTagLabelAccessoryNone];
 	return tag;
 }
+
+
+#pragma mark - CGTagListDelegate
+- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)idx
+{
+	if ([self.delegate respondsToSelector:@selector(singleQuestionPreviewCell:didSelectTag:)]) {
+		NSString *tag = self.tags[idx];
+		[self.delegate singleQuestionPreviewCell:self didSelectTag:tag];
+	}
+}
+
 
 @end
