@@ -36,8 +36,8 @@ static CGFloat userAboutMeInset = 50.0;
 }
 
 -(id) init{
+	self = [super init];
     if (self) {
-       self = [super init];
     }
     return self;
 }
