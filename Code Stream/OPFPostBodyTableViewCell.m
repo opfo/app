@@ -28,7 +28,7 @@
 		[myRepr replaceOccurrencesOfString:[toReplace objectAtIndex:i] withString:[replaceWith objectAtIndex:i] options:0 range:myRange];
 	}
 	NSString *retStr = [NSString stringWithFormat:@"%@", myRepr];
-	NSLog(@"To: %@\n\n",retStr);
+	// NSLog(@"To: %@\n\n",retStr);
 	return retStr;
 }
 
@@ -40,6 +40,15 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	[self reloadHTMLWithString:_htmlString];
 }
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return NO;
+	} else return YES;
+}
+
+
 
 - (void)awakeFromNib {
 	self.bodyTextView.keyboardDisplayRequiresUserAction = NO;
