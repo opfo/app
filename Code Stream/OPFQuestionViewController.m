@@ -239,8 +239,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%@", post.owner.reputation];
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
-		if (NO && post.comments.count > 0) { //TEMP<gothm> Prevents bug in comments
-			cell.detailTextLabel.text = @"TEMP: The first body";//post.comments[0].body;
+		if (post.comments.count > 0) {
+			cell.detailTextLabel.text = ((OPFComment*)post.comments[0]).text;
 		} else {
 			cell.detailTextLabel.text = NSLocalizedString(@"Add the first comment", @"No comments on post summary label.");
 		}
@@ -286,7 +286,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 {
     if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier] == NO)
         return;
-    
+    // Selected cell was comment
+	
     OPFPost *post = [self postForIndexPath:indexPath];
     OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
     
