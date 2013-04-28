@@ -22,13 +22,13 @@
 	NSLog(@"From: %@\n\n",unescaped);
 	NSMutableString *myRepr = [[NSMutableString alloc] initWithString:unescaped];
 	NSRange myRange = NSMakeRange(0, [unescaped length]);
-	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"", nil];
-	NSArray *replaceWith = [NSArray arrayWithObjects:@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", nil];
+	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"\"", @"\"", nil];
+	NSArray *replaceWith = [NSArray arrayWithObjects:@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", @"\\\"", nil];
 	for (int i = 0, count = [toReplace count]; i < count; ++i) {
 		[myRepr replaceOccurrencesOfString:[toReplace objectAtIndex:i] withString:[replaceWith objectAtIndex:i] options:0 range:myRange];
 	}
 	NSString *retStr = [NSString stringWithFormat:@"%@", myRepr];
-	// NSLog(@"To: %@\n\n",retStr);
+	NSLog(@"To: %@\n\n",retStr);
 	return retStr;
 }
 
@@ -38,7 +38,20 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+	// Insert html from database and run prettify
 	[self reloadHTMLWithString:_htmlString];
+	
+	// Resize the cell accordingly
+	CGRect frame = webView.frame;
+    frame.size.height = 1;
+    webView.frame = frame;
+    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+    frame.size = fittingSize;
+    webView.frame = frame;
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+	NSLog(@"%@",error);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -54,6 +67,7 @@
 	self.bodyTextView.keyboardDisplayRequiresUserAction = NO;
 	self.bodyTextView.mediaPlaybackAllowsAirPlay = NO;
 	self.bodyTextView.mediaPlaybackRequiresUserAction = NO;
+	self.bodyTextView.dataDetectorTypes = UIDataDetectorTypeNone;
 	self.bodyTextView.delegate = self;
 	
 	NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"bodytemplate" ofType:@"html"];

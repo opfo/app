@@ -56,7 +56,7 @@
 }
 
 
-#pragma mark creationAndDestruction
+#pragma mark Object Lifecycle
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
 	self.acceptedAnswer = question.acceptedAnswer != nil;

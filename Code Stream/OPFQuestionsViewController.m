@@ -98,6 +98,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		return evaluatedObject.score.integerValue >= 8;
 	}]];
 	
+	
 	[self updateFilteredQuestionsCompletion:^{
 		if (_isFirstTimeAppearing) {
 			_isFirstTimeAppearing = NO;
