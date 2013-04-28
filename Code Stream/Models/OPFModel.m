@@ -97,7 +97,7 @@
     return nil;
 }
 
-+ (NSValueTransformer *)createdAtJSONTransformer {
++ (NSValueTransformer *)creationDateJSONTransformer {
     return [self standardDateTransformer];
 }
 
