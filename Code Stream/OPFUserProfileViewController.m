@@ -88,8 +88,6 @@ static CGFloat userAboutMeInset = 50.0;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
-    NSLog(@"Created? ");
-    NSLog(self.userCreationDate.text);
     self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
 }
 
