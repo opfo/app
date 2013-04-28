@@ -140,6 +140,7 @@
 		9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
+		9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,7 +227,7 @@
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
-		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OPFCommentViewHeaderView.xib; path = "/Volumes/HDD/Documents/Studium/Master Software Engineering/SS 13/Agile Development Processes/Code-Stream/Code Stream/OPFCommentViewHeaderView.xib"; sourceTree = "<absolute>"; };
+		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
@@ -1047,6 +1048,7 @@
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
 				9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */,
+				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
