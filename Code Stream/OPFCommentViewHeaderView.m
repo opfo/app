@@ -12,6 +12,12 @@
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
 
+@interface OPFCommentViewHeaderView()
+
+- (void)loadUserGravatar;
+
+@end
+
 @implementation OPFCommentViewHeaderView
 
 - (id)initWithFrame:(CGRect)frame
@@ -46,7 +52,19 @@
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.lastEditDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.lastEditDate];
     self.postCommentCount.text = [NSString stringWithFormat:@"%@", self.postModel.commentCount];
-    [self.userAvatar setImageWithGravatarEmailHash:self.postModel.owner.emailHash placeholderImage:self.userAvatar.image];
+    [self loadUserGravatar];
+}
+
+- (void)loadUserGravatar
+{
+    __weak OPFCommentViewHeaderView *weakSelf = self;
+    
+    [self.userAvatar setImageWithGravatarEmailHash:self.postModel.owner.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            self.userAvatar.image = image;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 
+        }];
 }
 
 @end
