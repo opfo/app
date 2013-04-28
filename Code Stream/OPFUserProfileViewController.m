@@ -10,13 +10,24 @@
 #import "OPFUser.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFAppDelegate.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
+#import "OPFScoreNumberFormatter.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
     kOPFUserAnswersViewCell = 5
-    };
+};
 
 @interface OPFUserProfileViewController ()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+@property(nonatomic, strong) NSNumberFormatter *numberFormatter;
+@property(nonatomic, strong) NSDateFormatter *dateFormatter;
+
+- (void)loadUserGravatar;
+- (void)setAvatarWithGravatar :(UIImage*) gravatar;
+
 @end
 
 @implementation OPFUserProfileViewController
@@ -35,14 +46,16 @@ static CGFloat userAboutMeInset = 50.0;
 	return userProfileViewController;
 }
 
--(id) init{
+-(id) init
+{
 	self = [super init];
     if (self) {
     }
     return self;
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated
+{
     // Configure the view according to the userdata
     [self configureView];
 }
@@ -70,27 +83,44 @@ static CGFloat userAboutMeInset = 50.0;
     // Dispose of any resources that can be recreated.
 }
 
-
-
--(void) configureView{
-    // Set the textFields in the userInterface
-    self.userDisplayName.text = _user.displayName;
-    self.userAboutMe.text = _user.aboutMe;
-    self.userLocation.text = _user.location;
-    self.userWebsite.text = [_user.websiteUrl absoluteString];
+- (void)loadUserGravatar
+{
+    __weak OPFUserProfileViewController *weakSelf = self;
     
-    //Set number-fields by using a NSNumberFormatter
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    self.userReputation.text = [numberFormatter stringFromNumber:_user.reputation];
-    self.userAge.text = [numberFormatter stringFromNumber:_user.age];
+    [self.userImage setImageWithGravatarEmailHash:self.user.emailHash placeholderImage:weakSelf.userImage.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                [weakSelf setAvatarWithGravatar:image];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 
+    }];
+}
+
+- (void)setAvatarWithGravatar :(UIImage*) gravatar
+{
+    self.userImage.image = gravatar;
+}
+
+-(void) configureView
+{
+    self.scoreFormatter = [OPFScoreNumberFormatter new];
+    self.numberFormatter = [NSNumberFormatter new];
+    self.dateFormatter = [NSDateFormatter new];
+    
+    // Set the textFields in the userInterface
+    self.userDisplayName.text = self.user.displayName;
+    self.userAboutMe.text = self.user.aboutMe;
+    self.userLocation.text = self.user.location;
+    self.userWebsite.text = [self.user.websiteUrl absoluteString];
+    [self loadUserGravatar];
+    
+    //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
+    self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
+    self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
     
     // Set date-fields by using a NSDateFormatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
-    NSLog(@"Created? ");
-    NSLog(self.userCreationDate.text);
-    self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
+    [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
+    self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,7 +160,8 @@ static CGFloat userAboutMeInset = 50.0;
 }
 
 // Indentify which cell the user clicked on
--(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath{
+-(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
+{
     NSString *cellIdentifier = nil;
     
     if(indexPath.section==4){
