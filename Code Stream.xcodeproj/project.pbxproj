@@ -121,6 +121,7 @@
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */; };
+		9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
 		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
@@ -314,6 +315,7 @@
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFStyleController.h; sourceTree = "<group>"; };
 		9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFStyleController.m; sourceTree = "<group>"; };
+		9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionsViewController.xib; sourceTree = "<group>"; };
 		9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+OPFSubscripting.h"; sourceTree = "<group>"; };
 		9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+OPFSubscripting.m"; sourceTree = "<group>"; };
 		9C46928B171F4D4500F75C31 /* UIView+OPFViewLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OPFViewLoading.h"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 		1478B5ED171FD8E30033DFA8 /* Questions View */ = {
 			isa = PBXGroup;
 			children = (
+				9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */,
 				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */,
 				1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */,
 				1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */,
@@ -1043,6 +1046,7 @@
 				1ABA0A5917296D330007BBFE /* score@2x.png in Resources */,
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
+				9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

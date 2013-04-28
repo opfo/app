@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFSingleQuestionPreviewCell.h"
 
-@interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate>
+@interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, OPFSingleQuestionPreviewCellDelegate>
 
 @property (copy) NSString *searchString;
 
