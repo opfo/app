@@ -58,6 +58,11 @@ describe(@"Fetching", ^{
         expect([question.tags count]).equal([reference count]);
         expect(question.tags).to.equal(reference);
     });
+    
+    it(@"should load correct property types", ^{
+        question = [[[OPFQuestion query] whereColumn:@"id" is:@(8473230)] getOne];
+        expect(question.closedDate).beKindOf([NSDate class]);
+    });
 });
 
 SpecEnd
