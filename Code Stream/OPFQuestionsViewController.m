@@ -179,7 +179,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - GCTagListDelegate Methods
 - (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag
 {
-	self.searchString = [(self.searchString ?: @"") stringByAppendingFormat:@"[%@]", tag];
+	self.searchString = [NSString stringWithFormat:@"[%@]", tag ?: @""];
 	self.searchBar.text = self.searchString;
 	
 	if (self.tableView.contentOffset.y != 0) {
