@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */; };
 		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
 		1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */; };
 		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
@@ -153,6 +154,7 @@
 
 /* Begin PBXFileReference section */
 		0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code StreamTests.xcconfig"; path = "Pods/Pods-Code StreamTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFJavaScriptParserSpec.m; path = UtilitySpecs/OPFJavaScriptParserSpec.m; sourceTree = "<group>"; };
 		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewCell.xib; sourceTree = "<group>"; };
 		1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSingleQuestionPreviewCell.h; sourceTree = "<group>"; };
 		1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSingleQuestionPreviewCell.m; sourceTree = "<group>"; };
@@ -598,6 +600,7 @@
 				815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */,
 				815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */,
 				815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */,
+				14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */,
 			);
 			name = UtilitySpecs;
 			sourceTree = "<group>";
@@ -1190,6 +1193,7 @@
 				8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */,
 				8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */,
 				8161DD2F172919AD00806493 /* OPFTagSpec.m in Sources */,
+				14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,11 +30,9 @@
 - (void)setScore:(NSInteger)Score {
 	_score = Score;
 	
-	if (Score >= 1000) {
-		self.scoreLabel.text = [NSString stringWithFormat: @"%1.1fk", (double)Score / 1000.0];
-	} else {
-		self.scoreLabel.text = [NSString stringWithFormat:@"%d", Score];
-	}
+	OPFScoreNumberFormatter *format = [OPFScoreNumberFormatter new];
+	
+	self.scoreLabel.text = [format stringFromScore:Score];
 }
 
 - (void)setAnswers:(NSInteger)Answers {
