@@ -25,6 +25,11 @@
     //TODO: Add handling for only adding once and saving it to D B   
 }
 
+- (void)didSelectDisplayName:(UIButton *)sender
+{
+    NSLog(@"yay boi");
+}
+
 - (void)setModelValuesInView
 {    
     self.commentBody.text = self.commentModel.text;
@@ -32,7 +37,7 @@
     self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.creationDate];
     self.commentVoteUp.titleLabel.text =
         [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
-    self.commentUserName.text = self.commentModel.author.displayName;
+    self.commentUserName.titleLabel.text = self.commentModel.author.displayName;
     
     //self.userAvatar = self.commentModel.userAvatar;
 }
