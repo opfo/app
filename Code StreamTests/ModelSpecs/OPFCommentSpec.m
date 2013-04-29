@@ -61,4 +61,24 @@ describe(@"relations", ^{
     });
 });
 
+describe(@"ordering", ^{
+    it(@"should be possible to order by a column DESC", ^{
+        NSArray* comments = [[[[OPFComment query] orderBy:@"score" order:kOPFSortOrderDescending] page: 0] getMany];
+        expect([[comments objectAtIndex: 0] score]).to.equal(@(33));
+        expect([[comments objectAtIndex:9] score]).to.equal(@(10));
+        expect([[comments objectAtIndex:1] identifier]).to.equal(@(10400555));
+    });
+    it(@"should be possible to order by a column ASC", ^{
+        NSArray* comments = [[[[OPFComment query] orderBy:@"score" order:kOPFSortOrderAscending] page: 0] getMany];
+        expect([[comments objectAtIndex: 0] identifier]).to.equal(@(10405390));
+        expect([[comments objectAtIndex:9] identifier]).to.equal(@(10412549));
+    });
+    
+    it(@"should be possible to order by date", ^{
+        NSArray* comments = [[[[OPFComment query] orderBy:@"creation_date" order:kOPFSortOrderAscending] page: 0] getMany];
+        expect([[comments objectAtIndex: 0] identifier]).to.equal(@(213900));
+        expect([[comments objectAtIndex:9] identifier]).to.equal(@(10394260));
+    });
+});
+
 SpecEnd
