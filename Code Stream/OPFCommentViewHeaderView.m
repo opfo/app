@@ -53,7 +53,7 @@ static NSString *const NotSpecifiedInformationPlaceholder = @"-";
     self.postUserName.text = self.postModel.owner.displayName;
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.creationDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.creationDate];
-    self.postCommentCount.text = (! self.postModel.commentCount == NULL ) ? self.postModel.commentCount : @"0";
+    self.postCommentCount.text = [self.postModel.commentCount stringValue];
 
     [self loadUserGravatar];
 }

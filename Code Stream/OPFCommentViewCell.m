@@ -71,7 +71,7 @@
 - (void)setupDateformatters
 {
     self.dateFormatter = [NSDateFormatter new];
-    self.dateFormatter = [NSDateFormatter new];
+    self.timeFormatter = [NSDateFormatter new];
     
     [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     [self.timeFormatter setDateFormat:@"HH:mm"];
