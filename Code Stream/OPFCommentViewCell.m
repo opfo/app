@@ -48,7 +48,7 @@
 - (void)voteUpComment:(UIButton *)sender
 {
     [self.commentsViewController voteUpComment:sender];
-    //TODO: Add handling for only adding once and saving it to D B   
+    //TODO: Add handling for only adding once and saving it to DB   
 }
 
 - (void)didSelectDisplayName:(UIButton *)sender
@@ -64,7 +64,7 @@
     self.commentVoteUp.titleLabel.text =
         [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
     self.commentUserName.titleLabel.text = self.commentModel.author.displayName;
-    
+        
     [self loadUserGravatar];
 }
 

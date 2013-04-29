@@ -19,6 +19,8 @@
 
 @property(nonatomic, strong) NSArray *commentModels;
 
+- (void)opfSetupView;
+
 @end
 
 @implementation OPFCommentsViewController
@@ -28,10 +30,26 @@
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
     
     if(self) {
-        
+        [self opfSetupView];
     }
     
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if(self) {
+        [self opfSetupView];
+    }
+    
+    return self;
+}
+
+- (void)opfSetupView
+{
+    
 }
 
 - (void)viewDidLoad
@@ -44,6 +62,8 @@
     _postModel = postModel;
         
     [self performInitialDatabaseFetch];
+    
+    [self.tableView reloadData];
 }
 
 - (void)commentSavePressed:(UIButton *)sender
@@ -63,10 +83,8 @@
 }
 
 - (void)performInitialDatabaseFetch
-{
-    //NSLog(@"%@", self.postModel);
-    
-    self.commentModels = self.postModel.comments;    
+{    
+    self.commentModels = self.postModel.comments;
 }
 
 #pragma mark - Table view data source
@@ -85,7 +103,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *commentViewCellIdentifier = @"OPFCommentViewCell";
-        
+    
     OPFCommentViewCell *commentViewCell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
     
     if (commentViewCell == nil) {
