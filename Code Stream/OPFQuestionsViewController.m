@@ -31,6 +31,7 @@
 	BOOL _isFirstTimeAppearing;
 }
 
+
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
@@ -145,6 +146,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 150;
+}
+
+- (void)setQuestions:(NSArray *)questions {
+	NSLog(@"Questions View has recieved %lu questions to insert",(unsigned long)questions.count);
 }
 
 #pragma mark - UITableViewDelegate Methods

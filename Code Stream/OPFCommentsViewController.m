@@ -10,10 +10,14 @@
 #import "OPFCommentViewCell.h"
 #import "OPFCommentViewHeaderView.h"
 #import "UIView+AnimationOptionsForCurve.h"
+#import "OPFPost.h"
+#import "OPFComment.h"
 
 #define INPUT_HEIGHT 44.0f
 
 @interface OPFCommentsViewController ()
+
+@property(nonatomic, strong) NSArray *commentModels;
 
 @end
 
@@ -22,7 +26,11 @@
 - (id)init
 {
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
-            
+    
+    if(self) {
+        
+    }
+    
     return self;
 }
 
@@ -31,12 +39,19 @@
     [super viewDidLoad];
 }
 
+- (void)setPostModel:(OPFPost *)postModel
+{
+    _postModel = postModel;
+        
+    [self performInitialDatabaseFetch];
+}
+
 - (void)commentSavePressed:(UIButton *)sender
 {
     NSString *commentText = self.inputTextField.text;
     
-    NSLog(@"%@ %@", @"Comment's text:", commentText);
-
+    NSLog(@"%@%@", @"NOP of saving comment: ", commentText);
+    
     [self.inputTextField setText:nil];
     [self.inputTextField resignFirstResponder];
     [self scrollToBottomAnimated:YES];
@@ -45,7 +60,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)performInitialDatabaseFetch
+{
+    //NSLog(@"%@", self.postModel);
+    
+    self.commentModels = self.postModel.comments;    
 }
 
 #pragma mark - Table view data source
@@ -58,9 +79,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Shall return the number of items in data source
-    //return self.commentModels.count;
-    return 5;
+    return self.commentModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
