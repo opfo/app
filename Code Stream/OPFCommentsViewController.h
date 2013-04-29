@@ -12,7 +12,6 @@
 
 @interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 
-@property(nonatomic, strong) NSArray *commentModels;
 @property(nonatomic, strong) OPFPost *postModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
