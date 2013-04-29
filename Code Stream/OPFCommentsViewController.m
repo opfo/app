@@ -64,9 +64,9 @@
 
 - (void)performInitialDatabaseFetch
 {
-    NSLog(@"%@", self.postModel);
+    //NSLog(@"%@", self.postModel);
     
-    self.commentModels = [[[OPFComment query] whereColumn:@"postId" is:self.postModel.identifier] getMany];
+    self.commentModels = self.postModel.comments;    
 }
 
 #pragma mark - Table view data source
