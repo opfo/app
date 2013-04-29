@@ -115,8 +115,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     OPFPost *post = [[OPFPost alloc] init];
     [post setScore:@(123)];
     [post setTitle:@"This is the question right? Well the title will most likely be a bit long."];
-    [post setBody:@"<p>We can write</p>\n\n<pre class=\"lang-rb prettyprint-override\"><code>get '/foo' do\n  ...\nend\n</code></pre>\n\n<p>and</p>\n\n<pre class=\"lang-rb prettyprint-override\"><code>post '/foo' do\n  ...\nend\n</code></pre>\n\n<p>which is fine.  But can I combine multiple HTTP verbs in one route?</p>\n"];
-	[post setBody:@"<p>We can write</p>\n\n<pre class=""lang-rb prettyprint-override""><code>get '/foo' do\n  ...\nend\n</code></pre>\n\n<p>and</p>\n\n<pre class=""lang-rb prettyprint-override""><code>post '/foo' do\n  ...\nend\n</code></pre>\n\n<p>which is fine.  But can I combine multiple HTTP verbs in one route?</p>\n"];
+    [post setBody:@"<p>We can write</p>\n\n<pre class=\"\"lang-rb prettyprint-override\"\"><code>get '/foo' do\n  ...\nend\n</code></pre>\n\n<p>and</p>\n\n<pre class=\"\"lang-rb prettyprint-override\"\"><code>post '/foo' do\n  ...\nend\n</code></pre>\n\n<p>which is fine.  But can I combine multiple HTTP verbs in one route?</p>\n"];
 	
     post.owner = user;
     

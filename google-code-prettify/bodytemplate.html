@@ -7,17 +7,11 @@
     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
     <script type="text/javascript">
     function loadBody(string) {
-		try {
-        	document.body.innerHTML = string;
-        	prettyPrint();
-		} catch(err) {
-			return err;
-		}
+		document.body.innerHTML = string;
+        prettyPrint();
+		
 		return "Works";
     }
-	function shit() {
-		return "shit";
-	}
     </script>
 <link href="prettify.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="prettify.js"></script>

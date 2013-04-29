@@ -22,8 +22,8 @@
 	NSLog(@"From: %@\n\n",unescaped);
 	NSMutableString *myRepr = [[NSMutableString alloc] initWithString:unescaped];
 	NSRange myRange = NSMakeRange(0, [unescaped length]);
-	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"\"", nil];
-	NSArray *replaceWith = [NSArray arrayWithObjects:@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", nil];
+	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"\"", @"<pre>", nil];
+	NSArray *replaceWith = [NSArray arrayWithObjects:@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", @"<pre class=\\\"prettyprint\\\">", nil];
 	for (int i = 0, count = [toReplace count]; i < count; ++i) {
 		[myRepr replaceOccurrencesOfString:[toReplace objectAtIndex:i] withString:[replaceWith objectAtIndex:i] options:0 range:myRange];
 	}
