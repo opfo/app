@@ -12,6 +12,7 @@
 #import "UIView+AnimationOptionsForCurve.h"
 #import "OPFPost.h"
 #import "OPFComment.h"
+#import "OPFUserProfileViewController.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -125,6 +126,14 @@
 {
 //    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
 //    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];    
+}
+
+- (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
+{
+	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
+    userProfileViewController.user = userModel;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

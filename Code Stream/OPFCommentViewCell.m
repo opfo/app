@@ -53,7 +53,7 @@
 
 - (void)didSelectDisplayName:(UIButton *)sender
 {
-    NSLog(@"yay boi");
+    [self.commentsViewController didSelectDisplayName:self.commentUserName :self.commentModel.author];
 }
 
 - (void)setModelValuesInView
