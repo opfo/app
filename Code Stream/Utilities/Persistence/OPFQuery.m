@@ -111,6 +111,13 @@ static NSString* defaultDB = @"baseDB";
     return self;
 }
 
+- (instancetype) orderBy: (NSString*) column order: (OPFSortOrder) sortOrder {
+    
+    [self rootQuery].orderByColumn = column;
+    [self rootQuery].order = sortOrder;
+    return self;
+}
+
 - (NSString*) toSQLString
 {
     if([self andQuery] != nil) {

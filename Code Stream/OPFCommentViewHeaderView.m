@@ -9,8 +9,18 @@
 #import "OPFCommentViewHeaderView.h"
 #import "UIView+OPFViewLoading.h"
 #import "OPFPost.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
+
+@interface OPFCommentViewHeaderView()
+
+- (void)loadUserGravatar;
+
+@end
 
 @implementation OPFCommentViewHeaderView
+
+static NSString *const NoCountInformationPlaceholder = @"0";
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -31,7 +41,7 @@
 - (void)setupDateformatters
 {
     self.dateFormatter = [NSDateFormatter new];
-    self.dateFormatter = [NSDateFormatter new];
+    self.timeFormatter = [NSDateFormatter new];
     
     [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
     [self.timeFormatter setDateFormat:@"HH:mm"];
@@ -41,10 +51,23 @@
 {
     self.postTitle.text = self.postModel.title;
     self.postUserName.text = self.postModel.owner.displayName;
-    self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.lastEditDate];
-    self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.lastEditDate];
-    self.postVoteCount.text = [self.postModel.score stringValue];
-    //self.userAvatar = self.postModel
+    self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.creationDate];
+    self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.creationDate];
+    self.postCommentCount.text = (! [self.postModel.commentCount stringValue] == 0 ) ? [self.postModel.commentCount stringValue] : NoCountInformationPlaceholder;
+
+    [self loadUserGravatar];
+}
+
+- (void)loadUserGravatar
+{
+    __weak OPFCommentViewHeaderView *weakSelf = self;
+    
+    [self.userAvatar setImageWithGravatarEmailHash:self.postModel.owner.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            self.userAvatar.image = image;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 
+        }];
 }
 
 @end

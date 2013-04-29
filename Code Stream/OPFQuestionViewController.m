@@ -290,7 +290,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 {
     if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier] == NO)
         return;
-    
+    // Selected cell was comment
+	
     OPFPost *post = [self postForIndexPath:indexPath];
     OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
     

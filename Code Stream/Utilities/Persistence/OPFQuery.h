@@ -12,6 +12,8 @@
 typedef NSArray* (^OnGetMany)(FMResultSet*);
 typedef id (^OnGetOne)(NSDictionary*);
 
+typedef enum : NSInteger { kOPFSortOrderAscending, kOPFSortOrderDescending } OPFSortOrder;
+
 // Used to query objects in a SQLite database using FMDB
 // Principle:
 //  1. Fetch a root query from the wanted model
@@ -45,6 +47,8 @@ typedef id (^OnGetOne)(NSDictionary*);
 @property (strong) NSNumber* limit;
 @property (strong) NSNumber* pageSize;
 @property (strong) NSNumber* offset;
+@property (copy) NSString* orderByColumn;
+@property (assign) OPFSortOrder order;
 
 // Fetches one database row based on the query
 // Equivalent to setting LIMIT = 1
@@ -76,6 +80,7 @@ typedef id (^OnGetOne)(NSDictionary*);
 - (instancetype) limit: (NSNumber*) n;
 - (instancetype) page: (NSNumber*) page;
 - (instancetype) page: (NSNumber*) page per: (NSNumber*) pageSize;
+- (instancetype) orderBy: (NSString*) column order: (OPFSortOrder) sortOrder;
 
 // Returns this query as it would appear in a WHERE-block
 //      Example:

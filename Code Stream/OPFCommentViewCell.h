@@ -14,18 +14,19 @@
 
 @property(nonatomic, weak) OPFCommentsViewController *commentsViewController;
 
-@property(nonatomic, weak) IBOutlet UITextView *commentBody;
-@property(nonatomic, weak) IBOutlet UILabel *commentUserName;
-@property(nonatomic, weak) IBOutlet UILabel *commentDate;
-@property(nonatomic, weak) IBOutlet UILabel *commentTime;
-@property(nonatomic, weak) IBOutlet UIButton *commentVoteUp;
-@property(nonatomic, weak) IBOutlet UIImageView *userAvatar;
+@property(weak, nonatomic) IBOutlet UITextView *commentBody;
+@property(weak, nonatomic) IBOutlet UIButton *commentUserName;
+@property(weak, nonatomic) IBOutlet UILabel *commentDate;
+@property(weak, nonatomic) IBOutlet UILabel *commentTime;
+@property(weak, nonatomic) IBOutlet UIButton *commentVoteUp;
+@property(weak, nonatomic) IBOutlet UIImageView *userAvatar;
 
-@property(nonatomic, strong) OPFComment *commentModel;
-@property(nonatomic, strong) NSDateFormatter *dateFormatter;
-@property(nonatomic, strong) NSDateFormatter *timeFormatter;
+@property(strong, nonatomic) OPFComment *commentModel;
+@property(strong, nonatomic) NSDateFormatter *dateFormatter;
+@property(strong, nonatomic) NSDateFormatter *timeFormatter;
 
 - (IBAction)voteUpComment:(UIButton *)sender;
+- (IBAction)didSelectDisplayName:(UIButton *)sender;
 
 - (void)setModelValuesInView;
 - (void)setupDateformatters;
