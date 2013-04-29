@@ -183,7 +183,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	self.searchBar.text = self.searchString;
 	
 	if (self.tableView.contentOffset.y != 0) {
-		[self.tableView setContentOffset:CGPointZero animated:YES];
+		[self.tableView scrollRectToVisible:CGRectZero animated:YES];
 	}
 }
 
