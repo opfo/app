@@ -38,7 +38,7 @@ enum  {
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
 
-static CGFloat userAboutMeInset = 50.0;
+static CGFloat userAboutMeInset = 20.0;
 
 + (instancetype)newFromStoryboard
 {
@@ -89,7 +89,7 @@ static CGFloat userAboutMeInset = 50.0;
 {
     __weak OPFUserProfileViewController *weakSelf = self;
     
-    [self.userImage setImageWithGravatarEmailHash:self.user.emailHash placeholderImage:weakSelf.userImage.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+    [self.userAvatar setImageWithGravatarEmailHash:self.user.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                 [weakSelf setAvatarWithGravatar:image];
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
@@ -99,7 +99,7 @@ static CGFloat userAboutMeInset = 50.0;
 
 - (void)setAvatarWithGravatar :(UIImage*) gravatar
 {
-    self.userImage.image = gravatar;
+    self.userAvatar.image = gravatar;
 }
 
 -(void) configureView
@@ -109,8 +109,8 @@ static CGFloat userAboutMeInset = 50.0;
     self.dateFormatter = [NSDateFormatter new];
     
     // Set the textFields in the userInterface
-    self.userDisplayName.text = self.user.displayName;
-    self.userAboutMe.text = self.user.aboutMe;
+    self.userName.text = self.user.displayName;
+    //self.userAboutMe.text = self.user.aboutMe;
     self.userLocation.text = self.user.location;
     self.userWebsite.text = [self.user.websiteUrl absoluteString];
     [self loadUserGravatar];
@@ -123,6 +123,12 @@ static CGFloat userAboutMeInset = 50.0;
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
+    
+    [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+    
+    
+    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
+    self.views.text = [self.user.view stringValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,7 +204,7 @@ static CGFloat userAboutMeInset = 50.0;
     }
     // ...
     // Pass the selected object to the new view controller.
-    if(YES){//detailViewController){
+    if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 
