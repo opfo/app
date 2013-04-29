@@ -9,6 +9,15 @@
 #import "OPFCommentViewCell.h"
 #import "OPFCommentsViewController.h"
 #import "OPFComment.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
+
+@interface OPFCommentViewCell()
+
+- (void)loadUserGravatar;
+- (void)setAvatarWithGravatar :(UIImage*) gravatar;
+
+@end
 
 @implementation OPFCommentViewCell
 
@@ -17,6 +26,23 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)loadUserGravatar
+{
+    __weak OPFCommentViewCell *weakSelf = self;
+
+    [self.userAvatar setImageWithGravatarEmailHash:self.commentModel.author.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            [weakSelf setAvatarWithGravatar:image];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+           
+    }];
+}
+
+- (void)setAvatarWithGravatar :(UIImage*) gravatar
+{
+    self.userAvatar.image = gravatar;
 }
 
 - (void)voteUpComment:(UIButton *)sender
@@ -39,7 +65,7 @@
         [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
     self.commentUserName.titleLabel.text = self.commentModel.author.displayName;
     
-    //self.userAvatar = self.commentModel.userAvatar;
+    [self loadUserGravatar];
 }
 
 - (void)setupDateformatters
