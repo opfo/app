@@ -280,8 +280,6 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		filteredQuestions = [OPFQuestion all:0 per:30];
 	}
 	
-	DLog(@"q: %@", filteredQuestions[0]);
-	
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
