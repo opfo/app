@@ -10,6 +10,7 @@
 #import "OPFCommentsViewController.h"
 #import "OPFProfileSearchViewController.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFUserProfileViewController.h"
 
 enum {
 	kOPFQuestionsViewCell = 0,
@@ -133,6 +134,17 @@ static NSString *const CommentsViewCell = @"CommentsViewCell";
     if (viewToPush) {
 		[self.navigationController pushViewController:viewToPush animated:YES];
 	}
+}
+
+// Send the data to the detailViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+{
+    if ([[segue identifier] isEqualToString:@"ShowUserProfileView"]) {
+        OPFUserProfileViewController *profileViewController = [segue destinationViewController];
+        NSArray *users = [[[OPFUser query] whereColumn:@"display_name" like:@"Matt"] getMany];
+        profileViewController.user = [users objectAtIndex:0];
+    }
 }
 
 @end
