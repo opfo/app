@@ -122,7 +122,7 @@
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */; };
-		9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */; };
+		9C3AB702172C94310060F46D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
 		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
@@ -383,7 +383,6 @@
 		1478B5ED171FD8E30033DFA8 /* Questions View */ = {
 			isa = PBXGroup;
 			children = (
-				9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */,
 				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */,
 				1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */,
 				1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */,
@@ -427,7 +426,8 @@
 				14DA81121729D48400DAFE49 /* prettify.js */,
 				14DA81131729D48400DAFE49 /* run_prettify.js */,
 			);
-			path = "google-code-prettify";
+			name = "google-code-prettify";
+			path = "Vendor/google-code-prettify";
 			sourceTree = "<group>";
 		};
 		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
@@ -1049,7 +1049,7 @@
 				1ABA0A5917296D330007BBFE /* score@2x.png in Resources */,
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
-				9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */,
+				9C3AB702172C94310060F46D /* (null) in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
