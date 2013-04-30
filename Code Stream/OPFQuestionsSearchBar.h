@@ -23,4 +23,13 @@ extern NSString *const kOPFQuestionsSearchBarTypeUserAttribute;
 
 
 @interface OPFQuestionsSearchBar : UISearchBar
+
+// An array of the ranges in the `searchString` of all tags.
+// @see OPFQuestionsSearchBarTokenRange
+@property (copy, nonatomic) NSArray *tagRanges;
+
+// An array of the range in the `searchString` for each user.
+// @see OPFQuestionsSearchBarTokenRange
+@property (copy, nonatomic) NSArray *userRanges;
+
 @end
