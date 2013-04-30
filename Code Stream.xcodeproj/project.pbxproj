@@ -68,12 +68,14 @@
 		1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */; };
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
-		1A88127C172FB5A5008A9F71 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A881278172FB5A5008A9F71 /* tab-home@2x.png */; };
-		1A88127D172FB5A5008A9F71 /* tab-interaction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A881279172FB5A5008A9F71 /* tab-interaction.png */; };
-		1A88127E172FB5A5008A9F71 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A88127A172FB5A5008A9F71 /* tab-me@2x.png */; };
-		1A88127F172FB5A5008A9F71 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */; };
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
 		1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
+		1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */; };
+		1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */; };
+		1A896CF3172FD3A300E19525 /* tab-activity@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-activity@2.png */; };
+		1A896CF4172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-home@2x.png */; };
+		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
+		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -230,13 +232,16 @@
 		1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarcusJohansson@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
-		1A881278172FB5A5008A9F71 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-home@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-home@2x.png"; sourceTree = "<group>"; };
-		1A881279172FB5A5008A9F71 /* tab-interaction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-interaction.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-interaction.png"; sourceTree = "<group>"; };
-		1A88127A172FB5A5008A9F71 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-me@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-me@2x.png"; sourceTree = "<group>"; };
-		1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-searchprofiles@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
 		1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTabbedHomeViewController.h; sourceTree = "<group>"; };
 		1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTabbedHomeViewController.m; sourceTree = "<group>"; };
+		1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityViewController.h; sourceTree = "<group>"; };
+		1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityViewController.m; sourceTree = "<group>"; };
+		1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityViewController.xib; sourceTree = "<group>"; };
+		1A896CEF172FD3A300E19525 /* tab-activity@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2.png"; sourceTree = "<group>"; };
+		1A896CF0172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
+		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
+		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
@@ -518,6 +523,10 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A896CEF172FD3A300E19525 /* tab-activity@2.png */,
+				1A896CF0172FD3A300E19525 /* tab-home@2x.png */,
+				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
+				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
 				1A639EC117267AB6009EB280 /* location@2x.png */,
@@ -530,6 +539,14 @@
 				1A816AC5171DF7EC00964AF2 /* clock@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		1A896CE7172FD00800E19525 /* Activity View */ = {
+			isa = PBXGroup;
+			children = (
+				1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */,
+			);
+			name = "Activity View";
 			sourceTree = "<group>";
 		};
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
@@ -670,10 +687,6 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1A881278172FB5A5008A9F71 /* tab-home@2x.png */,
-				1A881279172FB5A5008A9F71 /* tab-interaction.png */,
-				1A88127A172FB5A5008A9F71 /* tab-me@2x.png */,
-				1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */,
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
@@ -744,6 +757,7 @@
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
+				1A896CE7172FD00800E19525 /* Activity View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -768,6 +782,8 @@
 				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
 				1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */,
 				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
+				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
+				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1063,10 +1079,11 @@
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
 				9C3AB702172C94310060F46D /* (null) in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
-				1A88127C172FB5A5008A9F71 /* tab-home@2x.png in Resources */,
-				1A88127D172FB5A5008A9F71 /* tab-interaction.png in Resources */,
-				1A88127E172FB5A5008A9F71 /* tab-me@2x.png in Resources */,
-				1A88127F172FB5A5008A9F71 /* tab-searchprofiles@2x.png in Resources */,
+				1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */,
+				1A896CF3172FD3A300E19525 /* tab-activity@2.png in Resources */,
+				1A896CF4172FD3A300E19525 /* tab-home@2x.png in Resources */,
+				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
+				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,6 +1211,7 @@
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
 				1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */,
+				1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

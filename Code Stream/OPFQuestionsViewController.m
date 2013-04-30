@@ -125,13 +125,13 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 // Setting the image of the tab.
 - (NSString *)tabImageName
 {
-    return @"tab-interaction";
+    return @"tab-home";
 }
 
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return @"Questions";
+    return @"It's hot";
 }
 
 #pragma mark - UITableViewDataSource Methods

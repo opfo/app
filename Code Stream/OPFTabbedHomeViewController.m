@@ -10,12 +10,14 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFProfileSearchViewController.h"
 #import "OPFUserProfileViewController.h"
+#import "OPFActivityViewController.h"
 
 @interface OPFTabbedHomeViewController ()
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
 @property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
+@property(strong, nonatomic) OPFActivityViewController *activityViewController;
 
 - (void)opfSetupView;
 
@@ -41,8 +43,14 @@ const int TabbedBarHeight = 60;
     self.questionsViewController = [OPFQuestionsViewController new];
     self.profileSearchViewController = [OPFProfileSearchViewController new];
     self.userProfileViewController = [OPFUserProfileViewController new];
+    self.activityViewController = [OPFActivityViewController new];
     
-    [self setViewControllers:[NSMutableArray arrayWithObjects:self.questionsViewController, self.profileSearchViewController, self.userProfileViewController, nil]];
+    [self setViewControllers:[NSMutableArray arrayWithObjects:
+                              self.questionsViewController,
+                              self.activityViewController,
+                              self.profileSearchViewController,
+                              self.userProfileViewController,
+                            nil]];
 }
 
 - (void)viewDidLoad

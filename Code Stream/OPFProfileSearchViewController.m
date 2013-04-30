@@ -97,7 +97,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return @"Profile search";
+    return @"User search";
 }
 
 - (void)performInitialDatabaseFetch
