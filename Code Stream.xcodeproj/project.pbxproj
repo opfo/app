@@ -56,7 +56,6 @@
 		1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */; };
 		1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */; };
 		1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */; };
-		1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72197A172715DF002B43CD /* OPFDebugViewController.m */; };
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
@@ -217,8 +216,6 @@
 		1A639ED117269CA3009EB280 /* OPFProfileSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchHeaderView.h; sourceTree = "<group>"; };
 		1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchHeaderView.m; sourceTree = "<group>"; };
 		1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchHeaderView.xib; sourceTree = "<group>"; };
-		1A721979172715DF002B43CD /* OPFDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDebugViewController.h; sourceTree = "<group>"; };
-		1A72197A172715DF002B43CD /* OPFDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDebugViewController.m; sourceTree = "<group>"; };
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
@@ -500,8 +497,6 @@
 			isa = PBXGroup;
 			children = (
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
-				1A721979172715DF002B43CD /* OPFDebugViewController.h */,
-				1A72197A172715DF002B43CD /* OPFDebugViewController.m */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -1195,7 +1190,6 @@
 				815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */,
 				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
 				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
-				1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */,
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,

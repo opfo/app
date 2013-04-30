@@ -104,19 +104,8 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="C9G-Z7-a1G" id="SH3-8L-15C"/>
-                            <outlet property="delegate" destination="C9G-Z7-a1G" id="rjT-bx-hS1"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="DEBUG ROOT" id="tdE-qb-nyI"/>
-                    <connections>
-                        <outlet property="commentsViewCell" destination="WkX-Fr-hD1" id="B3E-qH-KsE"/>
-                        <outlet property="questionViewCell" destination="P6x-ey-q56" id="xtx-pw-aCg"/>
-                        <outlet property="questionsViewCell" destination="IpX-U6-3Tm" id="gsh-jG-SMH"/>
-                        <outlet property="userProfileSearchViewCell" destination="47t-ir-4Rc" id="6oL-UE-Mvr"/>
-                        <outlet property="userProfileViewCell" destination="puE-GF-07v" id="8gY-lZ-4cW"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rep-fp-ac7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -652,16 +641,6 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="OPFDebugViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="userProfileSearchViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="userProfileViewCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
         <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
             <relationships>
@@ -700,7 +679,8 @@
                 <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
-           </relationships>
+                <relationship kind="outlet" name="views" candidateClass="UILabel"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
