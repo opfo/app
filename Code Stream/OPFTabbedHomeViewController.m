@@ -11,8 +11,14 @@
 #import "OPFProfileSearchViewController.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
+#import "OPFAppState.h"
 
 @interface OPFTabbedHomeViewController ()
+
+@property(strong, nonatomic) UINavigationController *questionsViewNavigationController;
+@property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
+@property(strong, nonatomic) UINavigationController *userProfileNavigationController;
+@property(strong, nonatomic) UINavigationController *activityViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
@@ -42,14 +48,21 @@ const int TabbedBarHeight = 60;
 {
     self.questionsViewController = [OPFQuestionsViewController new];
     self.profileSearchViewController = [OPFProfileSearchViewController new];
-    self.userProfileViewController = [OPFUserProfileViewController new];
+    self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
     
+    self.userProfileViewController.user = [OPFAppState userModel];
+
+    self.questionsViewNavigationController = [[UINavigationController new] initWithRootViewController:self.questionsViewController];
+    self.profileSearchViewNavigationController = [[UINavigationController new] initWithRootViewController:self.profileSearchViewController];
+    self.userProfileNavigationController = [[UINavigationController new] initWithRootViewController:self.userProfileViewController];
+    self.activityViewNavigationController = [[UINavigationController new] initWithRootViewController:self.activityViewController];
+    
     [self setViewControllers:[NSMutableArray arrayWithObjects:
-                              self.questionsViewController,
-                              self.activityViewController,
-                              self.profileSearchViewController,
-                              self.userProfileViewController,
+                              self.questionsViewNavigationController,
+                              self.profileSearchViewNavigationController,
+                              self.userProfileNavigationController,
+                              self.activityViewNavigationController,
                             nil]];
 }
 

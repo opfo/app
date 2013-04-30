@@ -76,6 +76,7 @@
 		1A896CF4172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-home@2x.png */; };
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
+		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -242,6 +243,8 @@
 		1A896CF0172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
 		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
 		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
+		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
+		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
@@ -678,6 +681,8 @@
 				9C1C51711716FE90004CC9E3 /* Controllers */,
 				9C1C51431716FBE0004CC9E3 /* OPFAppDelegate.h */,
 				9C1C51441716FBE0004CC9E3 /* OPFAppDelegate.m */,
+				1A896CF7172FD72D00E19525 /* OPFAppState.h */,
+				1A896CF8172FD72D00E19525 /* OPFAppState.m */,
 				9C46926A171F38B300F75C31 /* Categories */,
 				9C1C513B1716FBE0004CC9E3 /* Supporting Files */,
 			);
@@ -1212,6 +1217,7 @@
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
 				1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */,
 				1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */,
+				1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
