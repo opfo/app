@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OPFSingleQuestionPreviewCell.h"
 
+@class OPFQuery;
+
 @interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, OPFSingleQuestionPreviewCellDelegate>
 
 @property (copy) NSString *searchString;
-@property (nonatomic, copy) NSArray *questions;
+@property (strong) OPFQuery *query;
 
 @end
