@@ -141,8 +141,8 @@ static CGFloat userAboutMeInset = 20.0;
     
     [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
     
-    
     self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
+    
     self.views.text = [self.user.view stringValue];
 }
 
@@ -196,7 +196,7 @@ static CGFloat userAboutMeInset = 20.0;
     return cellIdentifier;
 }
 
-// THIS METHOD IS NOT COMPLETE, NEED TO BE CONNECTED TO THE QUESTIONSVIEW FIRST.
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
@@ -205,16 +205,10 @@ static CGFloat userAboutMeInset = 20.0;
        
         OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
 		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
-		questionsViewController.query = questionsQuery;
+		
+        questionsViewController.query = questionsQuery;
 		
         detailViewController = questionsViewController;
-    }
-    // To be implemented
-    else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserAnswersViewCell]){
-        
-        /*NSMutableArray *questions = [[[OPFAnswer query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;*/
-        
-        detailViewController = nil;
     }
     
     // Pass the selected object to the new view controller.

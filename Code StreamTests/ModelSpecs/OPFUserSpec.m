@@ -44,6 +44,7 @@ describe(@"User creation", ^{
         user = [OPFUser find: 42];
         expect(user.displayName).to.equal(@"Coincoin");
     });
+    
 });
 
 describe(@"user fetching", ^{
@@ -77,4 +78,12 @@ describe(@"Pagination", ^{
     });
 });
 
+describe(@"User Profile Views", ^{
+    it(@"The views shuld be a NSNumber", ^{
+        OPFUser *user = [[OPFUser alloc] init];
+        user.view = @111;
+       // expect(user.view).to.equal(111111);
+        expect(user.view).to.beInstanceOf([NSNumber class]);
+    });
+});
 SpecEnd
