@@ -13,7 +13,7 @@
 
 + (OPFUser *)userModel
 {
-    OPFUser *userModel = [[[OPFUser query] whereColumn:@"id" is:@"13"] getOne];
+    OPFUser *userModel = [[[OPFUser query] whereColumn:@"id" is:@"797"] getOne];
     
     //To lazy to cache the response here
     return userModel;

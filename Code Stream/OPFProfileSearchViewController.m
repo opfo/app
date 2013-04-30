@@ -84,6 +84,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
 	_isFirstTimeAppearing = YES;
     [self performInitialDatabaseFetch];
+    
+    self.title = NSLocalizedString(@"User search", @"Profile search controller title");
 }
 
 #pragma mark - TabbedViewController methods
@@ -97,7 +99,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return @"User search";
+    return NSLocalizedString(@"User search", @"Profile search controller tab title");
 }
 
 - (void)performInitialDatabaseFetch

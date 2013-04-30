@@ -72,8 +72,8 @@
 		1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
 		1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */; };
 		1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */; };
-		1A896CF3172FD3A300E19525 /* tab-activity@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-activity@2.png */; };
-		1A896CF4172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-home@2x.png */; };
+		1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-home@2x.png */; };
+		1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-activity@2x.png */; };
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
@@ -239,8 +239,8 @@
 		1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityViewController.h; sourceTree = "<group>"; };
 		1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityViewController.m; sourceTree = "<group>"; };
 		1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityViewController.xib; sourceTree = "<group>"; };
-		1A896CEF172FD3A300E19525 /* tab-activity@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2.png"; sourceTree = "<group>"; };
-		1A896CF0172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
+		1A896CEF172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
+		1A896CF0172FD3A300E19525 /* tab-activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2x.png"; sourceTree = "<group>"; };
 		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
 		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
@@ -526,8 +526,8 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				1A896CEF172FD3A300E19525 /* tab-activity@2.png */,
-				1A896CF0172FD3A300E19525 /* tab-home@2x.png */,
+				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
+				1A896CF0172FD3A300E19525 /* tab-activity@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
@@ -1085,8 +1085,8 @@
 				9C3AB702172C94310060F46D /* (null) in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
 				1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */,
-				1A896CF3172FD3A300E19525 /* tab-activity@2.png in Resources */,
-				1A896CF4172FD3A300E19525 /* tab-home@2x.png in Resources */,
+				1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */,
+				1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */,
 				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
 				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 			);

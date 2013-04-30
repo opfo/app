@@ -60,9 +60,9 @@ const int TabbedBarHeight = 60;
     
     [self setViewControllers:[NSMutableArray arrayWithObjects:
                               self.questionsViewNavigationController,
+                              self.activityViewNavigationController,
                               self.profileSearchViewNavigationController,
                               self.userProfileNavigationController,
-                              self.activityViewNavigationController,
                             nil]];
 }
 

@@ -131,7 +131,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return @"It's hot";
+    return NSLocalizedString(@"Questions", @"Questions view controller tab title");
 }
 
 #pragma mark - UITableViewDataSource Methods

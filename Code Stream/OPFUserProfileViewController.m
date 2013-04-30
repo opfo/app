@@ -96,7 +96,7 @@ static CGFloat userAboutMeInset = 20.0;
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return @"My Profile";
+    return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
 }
 
 
