@@ -700,8 +700,7 @@
                 <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="views" candidateClass="UILabel"/>
-            </relationships>
+           </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

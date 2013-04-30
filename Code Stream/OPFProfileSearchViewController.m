@@ -12,6 +12,7 @@
 #import "OPFUser.h"
 #import "UIView+OPFViewLoading.h"
 #import "OPFUserProfileViewController.h"
+#import "OPFAppDelegate.h"
 
 @interface OPFProfileSearchViewController ()
 
@@ -167,6 +168,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
 	OPFUser *userModel = [self userForIndexPath:indexPath];
 	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
     userProfileViewController.user = userModel;

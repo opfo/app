@@ -1,20 +1,17 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<title>Titel</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
     <script type="text/javascript">
     function loadBody(string) {
-		try {
-        	document.body.innerHTML = string;
-        	prettyPrint();
-		} catch(err) {
-			return err;
-		}
+		document.body.innerHTML = string;
+        prettyPrint();
+		
 		return "Works";
     }
-	function shit() {
-		return "shit";
-	}
     </script>
 <link href="prettify.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="prettify.js"></script>
@@ -31,7 +28,7 @@ body{
     font-size:14px;
     -webkit-text-size-adjust:100%;
     background-color: #fff;
-    margin: 0;
+    margin: 10px;
 }
 
 code {
@@ -42,8 +39,9 @@ code {
 pre {
     padding: 10px;
     margin-bottom: 5px;
+	margin-right:-10px;
     background-color: #eee;
-	white-space: pre-wrap;
+	overflow-x:scroll;
 }
 
 img {

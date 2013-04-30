@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
 #import "GCTagList.h"
+#import "OPFScoreNumberFormatter.h"
 
 @class OPFSingleQuestionPreviewCell;
 @protocol OPFSingleQuestionPreviewCellDelegate <NSObject>
