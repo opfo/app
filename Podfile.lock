@@ -15,6 +15,7 @@ PODS:
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
   - Specta (0.1.8)
+  - SSToolkit (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (= 1.2.1)
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - KHGravatar (from `https://github.com/opfo/KHGravatar.git`)
   - Mantle (= 1.0)
   - Specta (= 0.1.8)
+  - SSToolkit (= 1.0.4)
 
 EXTERNAL SOURCES:
   AGMedallionView:
@@ -46,5 +48,6 @@ SPEC CHECKSUMS:
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aa9860e40cc365a094ef60fec46848fee7b03ca7
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
+  SSToolkit: 689acaedac79c2079e492e528a55bcb5db9d98c4
 
 COCOAPODS: 0.18.1
