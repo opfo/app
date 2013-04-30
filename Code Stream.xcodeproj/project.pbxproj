@@ -129,6 +129,7 @@
 		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
 		9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
+		9C610E5C172EB97700664B94 /* OPFQuestionsSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C610E5B172EB97700664B94 /* OPFQuestionsSearchBar.m */; };
 		9C610E5F172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C610E5E172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m */; };
 		9C610E62172ED70100664B94 /* UIColor+OPFHEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */; };
 		9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */; };
@@ -332,6 +333,8 @@
 		9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewControllerSpec.m; sourceTree = "<group>"; };
 		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
 		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
+		9C610E5A172EB97700664B94 /* OPFQuestionsSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsSearchBar.h; sourceTree = "<group>"; };
+		9C610E5B172EB97700664B94 /* OPFQuestionsSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsSearchBar.m; sourceTree = "<group>"; };
 		9C610E5D172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsSearchBarTokenView.h; sourceTree = "<group>"; };
 		9C610E5E172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsSearchBarTokenView.m; sourceTree = "<group>"; };
 		9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFHEX.h"; sourceTree = "<group>"; };
@@ -741,6 +744,8 @@
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
+				9C610E5A172EB97700664B94 /* OPFQuestionsSearchBar.h */,
+				9C610E5B172EB97700664B94 /* OPFQuestionsSearchBar.m */,
 				9C610E5D172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.h */,
 				9C610E5E172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
@@ -1186,6 +1191,7 @@
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
+				9C610E5C172EB97700664B94 /* OPFQuestionsSearchBar.m in Sources */,
 				9C610E5F172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m in Sources */,
 				9C610E62172ED70100664B94 /* UIColor+OPFHEX.m in Sources */,
 			);
