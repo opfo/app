@@ -86,6 +86,20 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [self performInitialDatabaseFetch];
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-searchprofiles";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return @"Profile search";
+}
+
 - (void)performInitialDatabaseFetch
 {
     self.atPage = [NSNumber numberWithInt:0];

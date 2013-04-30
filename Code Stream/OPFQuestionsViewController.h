@@ -13,6 +13,9 @@
 
 @interface OPFQuestionsViewController : UITableViewController <UISearchBarDelegate, OPFSingleQuestionPreviewCellDelegate>
 
+- (NSString *)tabImageName;
+- (NSString *)tabTitle;
+
 @property (copy) NSString *searchString;
 @property (strong) OPFQuery *query;
 

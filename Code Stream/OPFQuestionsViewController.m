@@ -120,6 +120,19 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-interaction";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return @"Questions";
+}
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

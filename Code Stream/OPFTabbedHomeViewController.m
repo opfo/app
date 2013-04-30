@@ -32,6 +32,7 @@ const int TabbedBarHeight = 60;
     if (self) {
         [self opfSetupView];
     }
+    
     return self;
 }
 

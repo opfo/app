@@ -85,6 +85,21 @@ static CGFloat userAboutMeInset = 20.0;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-me";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return @"My Profile";
+}
+
+
 - (void)loadUserGravatar
 {
     __weak OPFUserProfileViewController *weakSelf = self;
