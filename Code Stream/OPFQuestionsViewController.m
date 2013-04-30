@@ -11,6 +11,7 @@
 #import "OPFQuestionViewController.h"
 #import "OPFQuestion.h"
 #import "NSString+OPFStripCharacters.h"
+#import <SSToolkit/SSLineView.h>
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -82,12 +83,22 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
+	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
+	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
-	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
+	UIView *searchBarInputView = UIView.new;
+	searchBarInputView.frame = CGRectMake(0.f, 0.f, 0.f, 44.f);
+	searchBarInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	searchBarInputView.backgroundColor = UIColor.whiteColor;
 	
-	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
+	SSLineView *tokenTopBorderView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 1.f)];
+	tokenTopBorderView.lineColor = UIColor.redColor;
+	tokenTopBorderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	
+	[searchBarInputView addSubview:tokenTopBorderView];
+	self.searchBar.inputAccessoryView = searchBarInputView;
+	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 }
 
 - (void)viewWillAppear:(BOOL)animated
