@@ -18,6 +18,11 @@
     } else {
         output = [NSMutableString stringWithString:[self sqlConcat: [[self andQuery] toSQLString]]];
     }
+    if ([self orderByColumn] != nil) {
+        [output appendString:@" "];
+        NSString* order = self.order == kOPFSortOrderAscending ? @"ASC" : @"DESC";
+        [output appendString: [NSString stringWithFormat:@"ORDER BY '%@'.'%@' %@", self.tableName, self.orderByColumn, order]];
+    }
     if([self limit] != nil) {
         [output appendString:@" "];
         [output appendString:[NSString stringWithFormat: @"LIMIT %@", self.limit]];
