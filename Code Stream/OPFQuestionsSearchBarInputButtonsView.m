@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFQuestionsSearchBarAccessoryButtonsView.h"
+#import "OPFQuestionsSearchBarInputButtonsView.h"
 
-@implementation OPFQuestionsSearchBarAccessoryButtonsView
+@implementation OPFQuestionsSearchBarInputButtonsView
 @end

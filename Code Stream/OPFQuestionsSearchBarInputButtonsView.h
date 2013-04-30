@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFQuestionsSearchBarAccessoryButtonsView : UIView
+@interface OPFQuestionsSearchBarInputButtonsView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *insertNewTagButton;
 @property (weak, nonatomic) IBOutlet UIButton *insertNewUserButton;

@@ -10,8 +10,9 @@
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionViewController.h"
 #import "OPFQuestion.h"
+#import "OPFQuestionsSearchBarInputView.h"
+#import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "NSString+OPFStripCharacters.h"
-#import <SSToolkit/SSLineView.h>
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -20,13 +21,10 @@
 
 #pragma mark - Searching
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) OPFQuestionsSearchBarInputView *searchBarInputView;
 
 @end
 
-
-// It should be possible to search for:
-// - Keywords (free text, search in title and body)
-// - Tags (match exactly)
 
 @implementation OPFQuestionsViewController {
 	BOOL _isFirstTimeAppearing;
@@ -87,16 +85,11 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
-	UIView *searchBarInputView = UIView.new;
-	searchBarInputView.frame = CGRectMake(0.f, 0.f, 0.f, 44.f);
-	searchBarInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	searchBarInputView.backgroundColor = UIColor.whiteColor;
+	OPFQuestionsSearchBarInputView *searchBarInputView = OPFQuestionsSearchBarInputView.new;
+	[searchBarInputView.buttonsView.insertNewTagButton addTarget:self action:@selector(insertNewTag:) forControlEvents:UIControlEventTouchUpInside];
+	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
+	self.searchBarInputView = searchBarInputView;
 	
-	SSLineView *tokenTopBorderView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 1.f)];
-	tokenTopBorderView.lineColor = UIColor.redColor;
-	tokenTopBorderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	
-	[searchBarInputView addSubview:tokenTopBorderView];
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 }
@@ -340,6 +333,50 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[searchBar resignFirstResponder];
 	self.searchString = @"";
+}
+
+
+#pragma mark - Search Buttons
+- (void)insertNewTag:(id)sender
+{
+	DLog(@"Should insert a new tag at current position.");
+	
+	[self changeSearchBarInputViewToCompletionsView];
+}
+
+- (void)insertNewUser:(id)sender
+{
+	DLog(@"Should insert a new user at current position.");
+	
+	[self changeSearchBarInputViewToCompletionsView];
+}
+
+- (void)changeSearchBarInputViewToCompletionsView
+{
+	[self changeSearchBarInputViewToState:kOPFQuestionsSearchBarInputStateCompletions];
+}
+
+- (void)changeSearchBarInputViewToButtonsView
+{
+	[self changeSearchBarInputViewToState:kOPFQuestionsSearchBarInputStateButtons];
+}
+
+- (void)changeSearchBarInputViewToState:(OPFQuestionsSearchBarInputState)state
+{
+	if (self.searchBarInputView.state != state) {
+		self.searchBarInputView.state = state;
+		[UIView animateWithDuration:.5f animations:^{
+			CGFloat searchBarInputWidth = CGRectGetWidth(self.searchBarInputView.frame);
+			
+			CGRect buttonsFrame = self.searchBarInputView.buttonsView.frame;
+			buttonsFrame.origin.x = (state == kOPFQuestionsSearchBarInputStateButtons ? 0.f : -searchBarInputWidth);
+			self.searchBarInputView.buttonsView.frame = buttonsFrame;
+			
+			CGRect completionsFrame = self.searchBarInputView.completionsView.frame;
+			completionsFrame.origin.x = (state == kOPFQuestionsSearchBarInputStateCompletions ? 0.f : searchBarInputWidth);
+			self.searchBarInputView.completionsView.frame = completionsFrame;
+		}];
+	}
 }
 
 
