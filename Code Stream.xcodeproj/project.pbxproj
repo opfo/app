@@ -68,6 +68,10 @@
 		1A816AD3171E00B900964AF2 /* MarcusJohansson@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */; };
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
+		1A88127C172FB5A5008A9F71 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A881278172FB5A5008A9F71 /* tab-home@2x.png */; };
+		1A88127D172FB5A5008A9F71 /* tab-interaction.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A881279172FB5A5008A9F71 /* tab-interaction.png */; };
+		1A88127E172FB5A5008A9F71 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A88127A172FB5A5008A9F71 /* tab-me@2x.png */; };
+		1A88127F172FB5A5008A9F71 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */; };
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
@@ -226,6 +230,10 @@
 		1A816ACF171E00B900964AF2 /* MarcusJohansson@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MarcusJohansson@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
+		1A881278172FB5A5008A9F71 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-home@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-home@2x.png"; sourceTree = "<group>"; };
+		1A881279172FB5A5008A9F71 /* tab-interaction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-interaction.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-interaction.png"; sourceTree = "<group>"; };
+		1A88127A172FB5A5008A9F71 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-me@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-me@2x.png"; sourceTree = "<group>"; };
+		1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-searchprofiles@2x.png"; path = "../../../../../../../../../Users/tdeekens/Desktop/tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
@@ -662,6 +670,10 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1A881278172FB5A5008A9F71 /* tab-home@2x.png */,
+				1A881279172FB5A5008A9F71 /* tab-interaction.png */,
+				1A88127A172FB5A5008A9F71 /* tab-me@2x.png */,
+				1A88127B172FB5A5008A9F71 /* tab-searchprofiles@2x.png */,
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
@@ -1049,6 +1061,10 @@
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
 				9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
+				1A88127C172FB5A5008A9F71 /* tab-home@2x.png in Resources */,
+				1A88127D172FB5A5008A9F71 /* tab-interaction.png in Resources */,
+				1A88127E172FB5A5008A9F71 /* tab-me@2x.png in Resources */,
+				1A88127F172FB5A5008A9F71 /* tab-searchprofiles@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
