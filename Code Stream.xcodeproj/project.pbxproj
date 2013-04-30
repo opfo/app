@@ -129,6 +129,7 @@
 		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
 		9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */; };
 		9C5F8C19171D9C960075A1C4 /* OPFQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */; };
+		9C610E62172ED70100664B94 /* UIColor+OPFHEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */; };
 		9C7F6E0C171FE11F008F6473 /* OPFPostBodyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */; };
 		9C7F6E0F171FE164008F6473 /* OPFPostMetadataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E0E171FE164008F6473 /* OPFPostMetadataTableViewCell.m */; };
 		9C7F6E12171FE171008F6473 /* OPFPostTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */; };
@@ -330,6 +331,8 @@
 		9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewControllerSpec.m; sourceTree = "<group>"; };
 		9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionViewController.h; sourceTree = "<group>"; };
 		9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionViewController.m; sourceTree = "<group>"; };
+		9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFHEX.h"; sourceTree = "<group>"; };
+		9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OPFHEX.m"; sourceTree = "<group>"; };
 		9C7F6E0A171FE11F008F6473 /* OPFPostBodyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostBodyTableViewCell.h; sourceTree = "<group>"; };
 		9C7F6E0B171FE11F008F6473 /* OPFPostBodyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostBodyTableViewCell.m; sourceTree = "<group>"; };
 		9C7F6E0D171FE164008F6473 /* OPFPostMetadataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostMetadataTableViewCell.h; sourceTree = "<group>"; };
@@ -836,6 +839,8 @@
 			children = (
 				9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */,
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
+				9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */,
+				9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */,
 				9C9B79D91726DCBB00E5333B /* NSString+OPFStripCharacters.h */,
 				9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */,
 				9C469298171F5C1B00F75C31 /* UIView+OPFAutoLayout.h */,
@@ -1176,6 +1181,7 @@
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
+				9C610E62172ED70100664B94 /* UIColor+OPFHEX.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
