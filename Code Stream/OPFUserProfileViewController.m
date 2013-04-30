@@ -202,27 +202,12 @@ static CGFloat userAboutMeInset = 20.0;
         
         detailViewController = nil;
     }
-    // ...
+    
     // Pass the selected object to the new view controller.
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
-
-    
 }
-
-#pragma mark - Table view data source
-
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- static NSString *CellIdentifier = @"Cell";
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
-*/
 
 
 

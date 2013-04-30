@@ -15,7 +15,6 @@
 + (instancetype)newFromStoryboard;
 
 @property (strong, nonatomic) OPFUser *user;
-//@property (weak, nonatomic) IBOutlet UILabel *userDisplayName;
 @property (weak, nonatomic) IBOutlet UILabel *userVotes;
 @property (weak, nonatomic) IBOutlet UILabel *views;
 @property (weak, nonatomic) IBOutlet UIWebView *userBio;
@@ -29,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLastAccess;
 @property (weak, nonatomic) IBOutlet UILabel *userAge;
 @property (weak, nonatomic) IBOutlet UILabel *userWebsite;
-//@property (weak, nonatomic) IBOutlet UIImageView *userImage;
 
 
 @end
