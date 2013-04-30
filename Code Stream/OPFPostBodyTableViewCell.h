@@ -12,4 +12,9 @@
 
 @property (copy, nonatomic) NSString *htmlString;
 @property (weak, nonatomic) IBOutlet UIWebView *bodyTextView;
+
++ (NSString *)escapeJavaScriptWithString:(NSString*)unescaped;
+
+
+
 @end

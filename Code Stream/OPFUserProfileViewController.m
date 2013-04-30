@@ -189,11 +189,10 @@ static CGFloat userAboutMeInset = 20.0;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
        
         OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
-       
-        NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;
-
-        questionsViewController.questions=questions;
-        detailViewController =[OPFQuestionsViewController new];
+		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
+		questionsViewController.query = questionsQuery;
+		
+        detailViewController = questionsViewController;
     }
     // To be implemented
     else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserAnswersViewCell]){
@@ -202,27 +201,12 @@ static CGFloat userAboutMeInset = 20.0;
         
         detailViewController = nil;
     }
-    // ...
+    
     // Pass the selected object to the new view controller.
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
-
-    
 }
-
-#pragma mark - Table view data source
-
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- static NSString *CellIdentifier = @"Cell";
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
-*/
 
 
 
