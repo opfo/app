@@ -189,11 +189,10 @@ static CGFloat userAboutMeInset = 20.0;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
        
         OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
-       
-        NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;
-
-        questionsViewController.questions=questions;
-        detailViewController =[OPFQuestionsViewController new];
+		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
+		questionsViewController.query = questionsQuery;
+		
+        detailViewController = questionsViewController;
     }
     // To be implemented
     else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserAnswersViewCell]){
