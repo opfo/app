@@ -144,6 +144,7 @@
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 		9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
+		9CE68EB1172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68EB0172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,6 +357,8 @@
 		9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFStripCharacters.m"; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
+		9CE68EAF172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsSearchBarTokenRange.h; sourceTree = "<group>"; };
+		9CE68EB0172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsSearchBarTokenRange.m; sourceTree = "<group>"; };
 		AED7BF5F92E44E138A010B62 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -728,6 +731,8 @@
 				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
 				8161DD2A172854F100806493 /* OPFTag.h */,
 				8161DD2B172854F100806493 /* OPFTag.m */,
+				9CE68EAF172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.h */,
+				9CE68EB0172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1194,6 +1199,7 @@
 				9C610E5C172EB97700664B94 /* OPFQuestionsSearchBar.m in Sources */,
 				9C610E5F172EBC4C00664B94 /* OPFQuestionsSearchBarTokenView.m in Sources */,
 				9C610E62172ED70100664B94 /* UIColor+OPFHEX.m in Sources */,
+				9CE68EB1172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
