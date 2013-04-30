@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OPFComment.h"
-
 
 @class OPFPost;
 @class OPFQuestion;

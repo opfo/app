@@ -14,8 +14,12 @@
 #import "NSCache+OPFSubscripting.h"
 #import "OPFPost.h"
 #import "OPFQuestion.h"
+#import "OPFComment.h"
 #import "OPFCommentsViewController.h"
 #import "OPFScoreNumberFormatter.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
+#import "OPFUserPreviewButton.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -212,7 +216,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	OPFQuestionHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
 	
 	OPFPost *post = self.posts[section];
-	headerView.titleLabel.text = post.title;
+	headerView.titleLabel.text = [post isKindOfClass:[OPFQuestion class]] ? post.title : @"";
 	
 	OPFScoreNumberFormatter *scoreFormatter = self.cache[@"scoreFormatter"];
 	if (scoreFormatter == nil) {
@@ -238,8 +242,9 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
-		metadataCell.authorLabel.text = post.owner.displayName;
-		metadataCell.authorScoreLabel.text = [NSString localizedStringWithFormat:@"%@", post.owner.reputation];
+		metadataCell.userPreviewButton.user = post.owner;
+												   
+											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
