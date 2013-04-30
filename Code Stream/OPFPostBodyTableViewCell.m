@@ -19,7 +19,6 @@
 }
 
 + (NSString*)escapeJavaScriptWithString:(NSString*)unescaped {
-	NSLog(@"From: %@\n\n",unescaped);
 	NSMutableString *myRepr = [[NSMutableString alloc] initWithString:unescaped];
 	NSRange myRange = NSMakeRange(0, [unescaped length]);
 	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"\"", @"<pre>", nil];
@@ -28,7 +27,6 @@
 		[myRepr replaceOccurrencesOfString:[toReplace objectAtIndex:i] withString:[replaceWith objectAtIndex:i] options:0 range:myRange];
 	}
 	NSString *retStr = [NSString stringWithFormat:@"%@", myRepr];
-	NSLog(@"To: %@\n\n",retStr);
 	return retStr;
 }
 
