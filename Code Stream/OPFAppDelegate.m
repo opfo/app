@@ -9,6 +9,7 @@
 #import "OPFAppDelegate.h"
 #import "OPFDatabaseAccess.h"
 #import "OPFStyleController.h"
+#import "OPFTabbedHomeViewController.h"
 
 @implementation OPFAppDelegate
 
@@ -19,10 +20,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Init the window
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //Apply our styles from the stylecontroller
 	[OPFStyleController applyStyle];
+    
     // Initialize DatabaseAccess
     [OPFDatabaseAccess getDBAccess];
-    // Override point for customization after application launch.
+    
+    //Load storyboard as bundle by name
+    self.storyboard =[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    
+    //Set tabbed home screen as rootview controller
+    [_window setRootViewController:[OPFTabbedHomeViewController new]];
+    [_window makeKeyAndVisible];
+    
     return YES;
 }
 							

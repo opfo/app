@@ -10,7 +10,4 @@
 
 @interface OPFTabbedHomeViewController : AKTabBarController
 
-- (NSString *)tabImageName;
-- (NSString *)tabTitle;
-
 @end
