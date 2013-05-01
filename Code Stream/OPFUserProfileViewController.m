@@ -127,8 +127,10 @@ static CGFloat userAboutMeInset = 20.0;
     [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
     
     self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
-    
-    self.views.text = [self.user.view stringValue];
+    if(self.user.view!=nil)
+        self.views.text = [self.user.view stringValue];
+    else
+        self.views.text = @"-";
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

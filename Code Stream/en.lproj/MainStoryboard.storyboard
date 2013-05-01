@@ -648,61 +648,6 @@
             <point key="canvasLocation" x="191" y="190"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OPFDebugViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFDebugViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="commentsViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="questionsViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="userProfileSearchViewCell" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="userProfileViewCell" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="OPFPostBodyTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostBodyTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bodyTextView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="OPFPostMetadataTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostMetadataTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="authorAvatarImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="authorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="authorScoreLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="voteDownButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="voteUpButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="OPFPostTagsTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFPostTagsTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tagsView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="OPFQuestionViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFQuestionViewController.h"/>
-        </class>
-        <class className="OPFUserProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userBio" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
-           </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
