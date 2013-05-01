@@ -102,7 +102,6 @@
 		81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */; };
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
-		81EF07BF1731491000DD7A2D /* OPFSearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BE1731491000DD7A2D /* OPFSearchQuery.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
@@ -278,10 +277,7 @@
 		81D5E059172168B800E572B2 /* OPFModelSpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModelSpecHelper.h; path = SpecHelpers/OPFModelSpecHelper.h; sourceTree = "<group>"; };
 		81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModelSpecHelper.m; path = SpecHelpers/OPFModelSpecHelper.m; sourceTree = "<group>"; };
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
-		81EF07BA1731095A00DD7A2D /* OPFPostSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFPostSpec.h; path = ModelSpecs/OPFPostSpec.h; sourceTree = "<group>"; };
 		81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPostSpec.m; path = ModelSpecs/OPFPostSpec.m; sourceTree = "<group>"; };
-		81EF07BD1731491000DD7A2D /* OPFSearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFSearchQuery.h; path = Utilities/Persistence/OPFSearchQuery.h; sourceTree = "<group>"; };
-		81EF07BE1731491000DD7A2D /* OPFSearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchQuery.m; path = Utilities/Persistence/OPFSearchQuery.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
@@ -565,8 +561,6 @@
 				815E1B5D1725207500FBDFEF /* OPFInQuery.m */,
 				815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */,
 				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
-				81EF07BD1731491000DD7A2D /* OPFSearchQuery.h */,
-				81EF07BE1731491000DD7A2D /* OPFSearchQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -588,7 +582,6 @@
 				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
 				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
 				8161DD2E172919AD00806493 /* OPFTagSpec.m */,
-				81EF07BA1731095A00DD7A2D /* OPFPostSpec.h */,
 				81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */,
 			);
 			name = ModelSpecs;
@@ -1186,7 +1179,6 @@
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
-				81EF07BF1731491000DD7A2D /* OPFSearchQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
