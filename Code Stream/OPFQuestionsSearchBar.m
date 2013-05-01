@@ -8,6 +8,11 @@
 
 #import "OPFQuestionsSearchBar.h"
 
+NSString *const kOPFQuestionsSearchBarTypeName = @"OPFQuestionsSearchBarTypeName";
+NSString *const kOPFQuestionsSearchBarTypeTagAttribute = @"OPFQuestionsSearchBarTypeTagAttribute";
+NSString *const kOPFQuestionsSearchBarTypeUserAttribute = @"OPFQuestionsSearchBarTypeUserAttribute";
+
+
 @implementation OPFQuestionsSearchBar
 
 /*

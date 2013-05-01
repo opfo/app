@@ -10,6 +10,7 @@
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionViewController.h"
 #import "OPFQuestion.h"
+#import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "NSString+OPFStripCharacters.h"
@@ -20,7 +21,7 @@
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
 @property (strong, nonatomic) OPFQuestionsSearchBarInputView *searchBarInputView;
 
 @end
