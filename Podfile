@@ -10,3 +10,4 @@ pod 'AFNetworking', '1.2.1'
 pod 'KHGravatar', :git => "https://github.com/opfo/KHGravatar.git"
 pod 'AGMedallionView', :git => "https://github.com/opfo/AGMedallionView.git"
 pod 'SSToolkit', '1.0.4'
+pod 'AKTabBarController'
