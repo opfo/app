@@ -77,13 +77,4 @@ describe(@"Pagination", ^{
         expect([result count]).to.equal(500);
     });
 });
-
-describe(@"User Profile Views", ^{
-    it(@"The views shuld be a NSNumber", ^{
-        OPFUser *user = [[OPFUser alloc] init];
-        user.view = @111;
-       // expect(user.view).to.equal(111111);
-        expect(user.view).to.beInstanceOf([NSNumber class]);
-    });
-});
 SpecEnd
