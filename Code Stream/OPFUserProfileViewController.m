@@ -34,6 +34,9 @@ enum  {
 
 @implementation OPFUserProfileViewController
 
+//Used on not specified information in model such as location or website
+static NSString *const NotSpecifiedInformationPlaceholder = @"-";
+
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
@@ -126,8 +129,9 @@ static CGFloat userAboutMeInset = 20.0;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
-    self.userLocation.text = self.user.location;
-    self.userWebsite.text = [self.user.websiteUrl absoluteString];
+    self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
+    self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
+
     [self loadUserGravatar];
     
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
@@ -139,9 +143,13 @@ static CGFloat userAboutMeInset = 20.0;
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
+    if (![self.user.aboutMe isEqualToString:@"NULL"]) {
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+    }
+    
     [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
     
-    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
+    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@" / "] stringByAppendingString:[self.user.downVotes stringValue]];
     
     self.views.text = [self.user.views stringValue];
 }
