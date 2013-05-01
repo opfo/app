@@ -124,6 +124,19 @@ Boolean heatMode = NO;
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-home";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return NSLocalizedString(@"Questions", @"Questions view controller tab title");
+}
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

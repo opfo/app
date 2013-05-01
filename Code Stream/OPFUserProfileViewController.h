@@ -13,6 +13,9 @@
 
 
 + (instancetype)newFromStoryboard;
+- (NSString *)tabImageName;
+- (NSString *)tabTitle;
+
 
 @property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userVotes;
