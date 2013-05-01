@@ -19,4 +19,6 @@
 @property (copy) NSString *searchString;
 @property (strong) OPFQuery *query;
 
+
+
 @end
