@@ -205,27 +205,70 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	return _tagsRegularExpression;
 }
 
-- (NSArray *)tagsFromSearchString:(NSString *)searchString
++ (NSRegularExpression *)usersFromSearchStringRegularExpression
+{
+	static NSRegularExpression *_usersRegularExpression = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSError *error = NULL;
+		_usersRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"@([^@]+)@" options:0 error:&error];
+		ZAssert(_usersRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
+	});
+	return _usersRegularExpression;
+}
+
++ (NSRegularExpression *)nonKeywordsFromSearchStringRegularExpression
+{
+	static NSRegularExpression *_nonKeywordsRegularExpression = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSError *error = NULL;
+		_nonKeywordsRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"@([^@]+)@|\\[([^\\[]+)\\]" options:0 error:&error];
+		ZAssert(_nonKeywordsRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
+	});
+	return _nonKeywordsRegularExpression;
+}
+
+- (NSArray *)tokensFromSearchString:(NSString *)searchString tokenRegularExpression:(NSRegularExpression *)regularExpression
 {
 	NSParameterAssert(searchString != nil);
+	NSParameterAssert(regularExpression != nil);
 	
 	searchString = searchString.copy;
-	NSMutableArray *tags = NSMutableArray.new;
+	NSMutableArray *tokens = NSMutableArray.new;
 	
 	// The shortest possible tag is `[a]`, i.e. three (3) chars.
 	if (searchString.length >= 3) {
-		NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
-		[tagsRegularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+		[regularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
 			if ([result numberOfRanges] >= 2) {
 				NSRange caputerRange = [result rangeAtIndex:1];
 				NSString *capture = [searchString substringWithRange:caputerRange];
-				[tags addObject:capture.opf_stringByTrimmingWhitespace];
+				[tokens addObject:capture.opf_stringByTrimmingWhitespace];
 			}
 		}];
 	}
 	
+	return tokens;
+}
+
+- (NSArray *)tagsFromSearchString:(NSString *)searchString
+{
+	NSParameterAssert(searchString != nil);
+	
+	NSRegularExpression *regularExpression = self.class.tagsFromSearchStringRegularExpression;
+	NSArray *tags = [self tokensFromSearchString:searchString tokenRegularExpression:regularExpression];
 	return tags;
 }
+
+- (NSArray *)usersFromSearchString:(NSString *)searchString
+{
+	NSParameterAssert(searchString != nil);
+	
+	NSRegularExpression *regularExpression = self.class.usersFromSearchStringRegularExpression;
+	NSArray *users = [self tokensFromSearchString:searchString tokenRegularExpression:regularExpression];
+	return users;
+}
+
 
 - (NSString *)keywordsSearchStringFromSearchString:(NSString *)searchString
 {
@@ -233,8 +276,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	
 	NSString *keywordSearchString = @"";
 	if (searchString.length > 0) {
-		NSRegularExpression *tagsRegularExpression = self.class.tagsFromSearchStringRegularExpression;
-		keywordSearchString = [tagsRegularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
+		NSRegularExpression *replacementRgularExpression = self.class.nonKeywordsFromSearchStringRegularExpression;
+		keywordSearchString = [replacementRgularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
+		
 		keywordSearchString = keywordSearchString.opf_stringByTrimmingWhitespace;
 	}
 	
@@ -337,6 +381,9 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
 
 #pragma mark - Search Buttons
+// Tag syntax:  [some tag]
+// User syntax: @Some cool User@
+
 - (void)insertNewTag:(id)sender
 {
 	DLog(@"Should insert a new tag at current position.");
