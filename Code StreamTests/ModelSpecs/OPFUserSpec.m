@@ -44,13 +44,6 @@ describe(@"User creation", ^{
         user = [OPFUser find: 42];
         expect(user.displayName).to.equal(@"Coincoin");
     });
-    
-    it(@"should have all wanted attributes when fetched from the DB", ^{
-        user = [OPFUser find: 42];
-        for(NSString* key in correctProperties) {
-            expect([user valueForKey:key]).to.equal([correctProperties valueForKey: key]);
-        }
-    });
 });
 
 describe(@"user fetching", ^{
@@ -65,7 +58,10 @@ describe(@"user fetching", ^{
         expect(user.websiteUrl).to.equal([NSURL URLWithString:@"http://about.me/cky"]);
     });
     
-    
+    it (@"has correct types", ^{
+        expect(user.creationDate).to.beKindOf([NSDate class]);
+        expect(user.lastAccessDate).to.beKindOf([NSDate class]);
+    });
 });
 
 describe(@"Pagination", ^{

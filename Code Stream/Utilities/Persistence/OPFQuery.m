@@ -111,6 +111,13 @@ static NSString* defaultDB = @"baseDB";
     return self;
 }
 
+- (instancetype) orderBy: (NSString*) column order: (OPFSortOrder) sortOrder {
+    
+    [self rootQuery].orderByColumn = column;
+    [self rootQuery].order = sortOrder;
+    return self;
+}
+
 - (NSString*) toSQLString
 {
     if([self andQuery] != nil) {
@@ -131,42 +138,15 @@ static NSString* defaultDB = @"baseDB";
 }
 
 # pragma mark - Factory methods
-
-+ (instancetype) queryWithTableName: (NSString*) tableName
-{
-    id query = [[self alloc] init];
-    [query setTableName: tableName];
-    [query setDbName:defaultDB];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName
-{
-    id query = [self queryWithTableName:tableName];
-    [query setDbName:dbName];
-    [query setPaged: NO];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
-{
-    id query = [self queryWithTableName:tableName];
-    [query setOnGetOne: oneCallback];
-    [query setOnGetMany:manyCallback];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
-{
-    id query = [self queryWithTableName:tableName oneCallback:oneCallback manyCallback:manyCallback];
-    [query setDbName:dbName];
-    return query;
-}
-
 + (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback pageSize: (NSNumber*)pageSize
 {
-    id query = [self queryWithTableName:tableName dbName:dbName oneCallback:oneCallback manyCallback:manyCallback];
+    id query = [[self alloc] init];
+    [query setTableName:tableName];
+    [query setDbName:dbName];
+    [query setOnGetOne:oneCallback];
+    [query setOnGetMany:manyCallback];
     [query setPageSize:pageSize];
+    [query setPaged:NO];
     return query;
 }
 

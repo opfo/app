@@ -9,13 +9,27 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFUser.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFAppDelegate.h"
+#import "UIImageView+KHGravatar.h"
+#import "UIImageView+AFNetworking.h"
+#import "OPFScoreNumberFormatter.h"
+#import "OPFQuestion.h"
+#import "OPFAnswer.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
     kOPFUserAnswersViewCell = 5
-    };
+};
 
 @interface OPFUserProfileViewController ()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+@property(nonatomic, strong) NSNumberFormatter *numberFormatter;
+@property(nonatomic, strong) NSDateFormatter *dateFormatter;
+
+- (void)loadUserGravatar;
+- (void)setAvatarWithGravatar :(UIImage*) gravatar;
+
 @end
 
 @implementation OPFUserProfileViewController
@@ -24,18 +38,27 @@ enum  {
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
 
-static CGFloat userAboutMeInset = 50.0;
+static CGFloat userAboutMeInset = 20.0;
 
--(id) init{
++ (instancetype)newFromStoryboard
+{
+	// This be a hack, do not ship stuff like this!
+	NSAssert(OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFUserProfileViewController *userProfileViewController = [OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+	return userProfileViewController;
+}
+
+-(id) init
+{
+	self = [super init];
     if (self) {
-       self = [super init];
     }
     return self;
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    // Create a user to test the view
-    [self dummyUser];
+- (void) viewWillAppear:(BOOL)animated
+{
+    // Configure the view according to the userdata
     [self configureView];
 }
 
@@ -62,23 +85,50 @@ static CGFloat userAboutMeInset = 50.0;
     // Dispose of any resources that can be recreated.
 }
 
--(void) configureView{
-    // Set the textFields in the userInterface
-    self.userDisplayName.text = _user.displayName;
-    self.userAboutMe.text = _user.aboutMe;
-    self.userLocation.text = _user.location;
-    self.userWebsite.text = [_user.websiteUrl absoluteString];
+- (void)loadUserGravatar
+{
+    __weak OPFUserProfileViewController *weakSelf = self;
     
-    //Set number-fields by using a NSNumberFormatter
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    self.userReputation.text = [numberFormatter stringFromNumber:_user.reputation];
-    self.userAge.text = [numberFormatter stringFromNumber:_user.age];
+    [self.userAvatar setImageWithGravatarEmailHash:self.user.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
+        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                [weakSelf setAvatarWithGravatar:image];
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                 
+    }];
+}
+
+- (void)setAvatarWithGravatar :(UIImage*) gravatar
+{
+    self.userAvatar.image = gravatar;
+}
+
+-(void) configureView
+{
+    self.scoreFormatter = [OPFScoreNumberFormatter new];
+    self.numberFormatter = [NSNumberFormatter new];
+    self.dateFormatter = [NSDateFormatter new];
+    
+    // Set the textFields in the userInterface
+    self.userName.text = self.user.displayName;
+    //self.userAboutMe.text = self.user.aboutMe;
+    self.userLocation.text = self.user.location;
+    self.userWebsite.text = [self.user.websiteUrl absoluteString];
+    [self loadUserGravatar];
+    
+    //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
+    self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
+    self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
     
     // Set date-fields by using a NSDateFormatter
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    self.userCreationDate.text = [formatter stringFromDate:_user.creationDate];
-    self.userLastAccess.text = [formatter stringFromDate:_user.lastAccessDate];
+    [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
+    self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
+    
+    [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+    
+    
+    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
+    self.views.text = [self.user.view stringValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +168,8 @@ static CGFloat userAboutMeInset = 50.0;
 }
 
 // Indentify which cell the user clicked on
--(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath{
+-(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
+{
     NSString *cellIdentifier = nil;
     
     if(indexPath.section==4){
@@ -136,21 +187,29 @@ static CGFloat userAboutMeInset = 50.0;
 
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
+       
+        OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
+       
+        NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;
+
+        questionsViewController.questions=questions;
         detailViewController =[OPFQuestionsViewController new];
     }
     // To be implemented
     else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserAnswersViewCell]){
+        
+        /*NSMutableArray *questions = [[[OPFAnswer query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;*/
+        
         detailViewController = nil;
     }
     // ...
     // Pass the selected object to the new view controller.
-    if(YES){//detailViewController){
+    if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
 
     
 }
-
 
 #pragma mark - Table view data source
 
@@ -165,23 +224,6 @@ static CGFloat userAboutMeInset = 50.0;
  }
 */
 
-#pragma mark - Table view delegate
-
-
-
-// Just a user to test the view before we have connected it with the other controllers
--(void) dummyUser{
-    _user = [[OPFUser alloc] init];
-    [_user setDisplayName:@"Marcus"];
-    [_user setLocation:@"Gothenburg, Sweden"];
-    [_user setReputation:@1367];
-    [_user setLastAccessDate:[[NSDate alloc] init]];
-    [_user setAboutMe:@"I'm a developer who works with java. My interest are computers, solving hard problems and looking at funny pictures of cats. Opps, I forgot Star Wars, which also is one of my interests. "];
-    [_user setAge:@23];
-    [_user setWebsiteUrl:[NSURL URLWithString:[@"http://www.chalmers.se" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
-    
-    // [_user setWebsiteUrl:];
-}
 
 
 @end

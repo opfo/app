@@ -9,6 +9,8 @@
 #import "OPFDebugViewController.h"
 #import "OPFCommentsViewController.h"
 #import "OPFProfileSearchViewController.h"
+#import "OPFQuestionsViewController.h"
+#import "OPFUserProfileViewController.h"
 
 enum {
 	kOPFQuestionsViewCell = 0,
@@ -121,14 +123,28 @@ static NSString *const CommentsViewCell = @"CommentsViewCell";
 {
     UIViewController *viewToPush = nil;
     
-    if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsViewCell] == YES) {
-        viewToPush = [OPFCommentsViewController new];
-    } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:ProfileSearchViewCell] == YES) {
-        viewToPush = [OPFProfileSearchViewController new];
-    }
+    if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsViewCell]) {
+        viewToPush = OPFCommentsViewController.new;
+    } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:ProfileSearchViewCell]) {
+        viewToPush = OPFProfileSearchViewController.new;
+    } else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:QuestionsViewCell]) {
+		viewToPush = OPFQuestionsViewController.new;
+	}
+	
     if (viewToPush) {
 		[self.navigationController pushViewController:viewToPush animated:YES];
 	}
+}
+
+// Send the data to the detailViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+
+{
+    if ([[segue identifier] isEqualToString:@"ShowUserProfileView"]) {
+        OPFUserProfileViewController *profileViewController = [segue destinationViewController];
+        NSArray *users = [[[OPFUser query] whereColumn:@"display_name" like:@"Matt"] getMany];
+        profileViewController.user = [users objectAtIndex:0];
+    }
 }
 
 @end

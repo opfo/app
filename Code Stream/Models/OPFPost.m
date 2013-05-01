@@ -11,6 +11,12 @@
 #import "OPFQuestion.h"
 #import "OPFComment.h"
 
+@interface OPFPost(/*Private*/)
+
++(NSString*) matchClauseFromSearchString: (NSString*) searchString;
+
+@end
+
 @implementation OPFPost
 
 + (NSString *) modelTableName
@@ -104,5 +110,53 @@
 
 @synthesize lastEditor = _lastEditor;
 
+- (OPFUser*) lastEditor
+{
+    if (_lastEditor == nil) {
+        OPFQuery* query = [[OPFUser query] whereColumn:@"id" is: self.lastEditorId];
+        _lastEditor = [query getOne];
+    }
+    return _lastEditor;
+}
+
+- (void) setLastEditor:(OPFUser *)lastEditor
+{
+    if (_lastEditor != lastEditor) {
+        _lastEditor = lastEditor;
+        [self setLastEditorId: lastEditor.identifier];
+    }
+}
+
+# pragma mark - Full text search methods
+
++ (OPFQuery*) searchFor:(NSString *)searchTerms
+{
+    NSString* queryFormat = @"SELECT post_id FROM posts_index WHERE index_string MATCH %@";
+    NSString* output = [NSString stringWithFormat:queryFormat, [self matchClauseFromSearchString:searchTerms]];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output withDatabase:@"auxDB"];
+    NSMutableArray* postIds = [[NSMutableArray alloc] init];
+    while ([result next]) {
+        [postIds addObject: @([result intForColumn:@"post_id"])];
+    }
+    return [[self query] whereColumn:@"id" in:postIds];
+}
+
++ (NSString*) matchClauseFromSearchString: (NSString*) searchString
+{
+    /**
+     This method could later be used to tweak the query string.
+     For now we will return the input.
+     For example usage see below:
+     
+    NSArray* tokens = [searchString componentsSeparatedByString:@" "];
+    NSMutableArray* wildCardTokens = [[NSMutableArray alloc] initWithCapacity: [tokens count]];
+    for(id token in tokens) {
+        [wildCardTokens addObject:[NSString stringWithFormat:@"%@*", token]];
+    }
+    NSString* output = [wildCardTokens componentsJoinedByString:@" AND "];
+    return output;
+     */
+    return [NSString stringWithFormat:@"'%@'", searchString];
+}
 
 @end

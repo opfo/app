@@ -10,10 +10,17 @@
 #import "OPFCommentViewCell.h"
 #import "OPFCommentViewHeaderView.h"
 #import "UIView+AnimationOptionsForCurve.h"
+#import "OPFPost.h"
+#import "OPFComment.h"
+#import "OPFUserProfileViewController.h"
 
 #define INPUT_HEIGHT 44.0f
 
 @interface OPFCommentsViewController ()
+
+@property(nonatomic, strong) NSArray *commentModels;
+
+- (void)opfSetupView;
 
 @end
 
@@ -22,8 +29,28 @@
 - (id)init
 {
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
-            
+    
+    if(self) {
+        [self opfSetupView];
+    }
+    
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if(self) {
+        [self opfSetupView];
+    }
+    
+    return self;
+}
+
+- (void)opfSetupView
+{
+    
 }
 
 - (void)viewDidLoad
@@ -31,12 +58,21 @@
     [super viewDidLoad];
 }
 
+- (void)setPostModel:(OPFPost *)postModel
+{
+    _postModel = postModel;
+        
+    [self performInitialDatabaseFetch];
+    
+    [self.tableView reloadData];
+}
+
 - (void)commentSavePressed:(UIButton *)sender
 {
     NSString *commentText = self.inputTextField.text;
     
-    NSLog(@"%@ %@", @"Comment's text:", commentText);
-
+    NSLog(@"%@%@", @"NOP of saving comment: ", commentText);
+    
     [self.inputTextField setText:nil];
     [self.inputTextField resignFirstResponder];
     [self scrollToBottomAnimated:YES];
@@ -45,7 +81,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)performInitialDatabaseFetch
+{    
+    self.commentModels = self.postModel.comments;
 }
 
 #pragma mark - Table view data source
@@ -58,15 +98,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Shall return the number of items in data source
-    //return self.commentModels.count;
-    return 5;
+    return self.commentModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *commentViewCellIdentifier = @"OPFCommentViewCell";
-        
+    
     OPFCommentViewCell *commentViewCell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
     
     if (commentViewCell == nil) {
@@ -88,6 +126,14 @@
 {
 //    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
 //    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];    
+}
+
+- (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
+{
+	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
+    userProfileViewController.user = userModel;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
