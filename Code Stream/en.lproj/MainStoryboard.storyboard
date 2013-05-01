@@ -360,6 +360,7 @@
             </relationships>
         </class>
     </classes>
+
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
