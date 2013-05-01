@@ -6,8 +6,19 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
-#import "OPFPostSpec.h"
+#import "Specta.h"
+#define EXP_SHORTHAND
+#import "Expecta.h"
+#import "OPFModelSpecHelper.h"
+#import "OPFPost.h"
 
-@implementation OPFPostSpec
+SpecBegin(OPFPost)
 
-@end
+describe(@"Search", ^{
+    it(@"should be possible to perform a simple search", ^{
+        NSArray* posts = [[OPFPost searchFor:@"bacon"] getMany];
+        expect([posts count]).to.equal(@(1));
+    });
+});
+
+SpecEnd
