@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class OPFPost;
+@class OPFPost, OPFUser;
 
 @interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *inputSendButton;
 
 - (void)voteUpComment:(UIButton *)sender;
+- (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel;
 
 - (IBAction)commentSavePressed:(UIButton *)sender;
 - (void)scrollToBottomAnimated:(BOOL)animated;

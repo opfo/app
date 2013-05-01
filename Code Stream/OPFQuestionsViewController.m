@@ -30,7 +30,6 @@
 	BOOL _isFirstTimeAppearing;
 }
 
-
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 
@@ -110,6 +109,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[questions filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OPFQuestion* evaluatedObject, NSDictionary *bindings) {
 		return evaluatedObject.score.integerValue >= 8;
 	}]];
+	
 	
 	[self updateFilteredQuestionsCompletion:^{
 		if (_isFirstTimeAppearing) {
