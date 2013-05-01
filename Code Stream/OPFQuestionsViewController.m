@@ -97,7 +97,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	[super viewWillAppear:animated];
 	
-	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:0 context:NULL];
+	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
 	
 	if (self.searchString.length > 0) {
 		self.searchBar.text = self.searchString;
@@ -232,9 +232,14 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			[self updateFilteredQuestionsCompletion:nil];
-		});
+		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == NO) {
+			[NSOperationQueue.mainQueue addOperationWithBlock:^{
+				self.searchBar.text = self.searchString;
+			}];
+			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+				[self updateFilteredQuestionsCompletion:nil];
+			});
+		}
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
