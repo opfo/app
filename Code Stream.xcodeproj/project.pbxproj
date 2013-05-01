@@ -56,7 +56,6 @@
 		1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */; };
 		1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */; };
 		1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */; };
-		1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72197A172715DF002B43CD /* OPFDebugViewController.m */; };
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
@@ -70,6 +69,14 @@
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
+		1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
+		1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */; };
+		1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */; };
+		1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-home@2x.png */; };
+		1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-activity@2x.png */; };
+		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
+		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
+		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -212,8 +219,6 @@
 		1A639ED117269CA3009EB280 /* OPFProfileSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchHeaderView.h; sourceTree = "<group>"; };
 		1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchHeaderView.m; sourceTree = "<group>"; };
 		1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchHeaderView.xib; sourceTree = "<group>"; };
-		1A721979172715DF002B43CD /* OPFDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDebugViewController.h; sourceTree = "<group>"; };
-		1A72197A172715DF002B43CD /* OPFDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDebugViewController.m; sourceTree = "<group>"; };
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
@@ -229,6 +234,17 @@
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
+		1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTabbedHomeViewController.h; sourceTree = "<group>"; };
+		1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTabbedHomeViewController.m; sourceTree = "<group>"; };
+		1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityViewController.h; sourceTree = "<group>"; };
+		1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityViewController.m; sourceTree = "<group>"; };
+		1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityViewController.xib; sourceTree = "<group>"; };
+		1A896CEF172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
+		1A896CF0172FD3A300E19525 /* tab-activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2x.png"; sourceTree = "<group>"; };
+		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
+		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
+		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
+		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
@@ -491,8 +507,6 @@
 			isa = PBXGroup;
 			children = (
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
-				1A721979172715DF002B43CD /* OPFDebugViewController.h */,
-				1A72197A172715DF002B43CD /* OPFDebugViewController.m */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -514,6 +528,10 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
+				1A896CF0172FD3A300E19525 /* tab-activity@2x.png */,
+				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
+				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
 				1A639EC117267AB6009EB280 /* location@2x.png */,
@@ -526,6 +544,14 @@
 				1A816AC5171DF7EC00964AF2 /* clock@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		1A896CE7172FD00800E19525 /* Activity View */ = {
+			isa = PBXGroup;
+			children = (
+				1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */,
+			);
+			name = "Activity View";
 			sourceTree = "<group>";
 		};
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
@@ -657,6 +683,8 @@
 				9C1C51711716FE90004CC9E3 /* Controllers */,
 				9C1C51431716FBE0004CC9E3 /* OPFAppDelegate.h */,
 				9C1C51441716FBE0004CC9E3 /* OPFAppDelegate.m */,
+				1A896CF7172FD72D00E19525 /* OPFAppState.h */,
+				1A896CF8172FD72D00E19525 /* OPFAppState.m */,
 				9C46926A171F38B300F75C31 /* Categories */,
 				9C1C513B1716FBE0004CC9E3 /* Supporting Files */,
 			);
@@ -736,6 +764,7 @@
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
+				1A896CE7172FD00800E19525 /* Activity View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -758,6 +787,10 @@
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
 				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
 				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
+				1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */,
+				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
+				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
+				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1052,6 +1085,11 @@
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
+				1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */,
+				1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */,
+				1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */,
+				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
+				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1176,10 +1214,12 @@
 				815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */,
 				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
 				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
-				1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */,
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
+				1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */,
+				1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */,
+				1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
