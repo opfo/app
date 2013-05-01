@@ -46,8 +46,8 @@
 		14DA81321729D48400DAFE49 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81121729D48400DAFE49 /* prettify.js */; };
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */; };
 		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
-		1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */; };
 		1A639EC217267AB6009EB280 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC117267AB6009EB280 /* location@2x.png */; };
 		1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC317267D29009EB280 /* votes-down@2x.png */; };
 		1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC417267D29009EB280 /* votes-up@2x.png */; };
@@ -206,9 +206,9 @@
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
 		1A639EBD17267384009EB280 /* OPFProfileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileViewCell.m; sourceTree = "<group>"; };
-		1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EC117267AB6009EB280 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		1A639EC317267D29009EB280 /* votes-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-down@2x.png"; sourceTree = "<group>"; };
 		1A639EC417267D29009EB280 /* votes-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-up@2x.png"; sourceTree = "<group>"; };
@@ -453,7 +453,7 @@
 			children = (
 				1A639EBC17267384009EB280 /* OPFProfileViewCell.h */,
 				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
-				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
+				1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */,
 			);
 			name = "Profile Search Table View Cells";
 			sourceTree = "<group>";
@@ -1041,7 +1041,6 @@
 				9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */,
 				9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */,
 				9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */,
-				1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */,
 				1A639EC217267AB6009EB280 /* location@2x.png in Resources */,
 				1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */,
 				1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */,
@@ -1091,6 +1090,7 @@
 				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
 				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
+				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
