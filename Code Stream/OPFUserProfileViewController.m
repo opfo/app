@@ -143,7 +143,7 @@ static CGFloat userAboutMeInset = 20.0;
     
     self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
     
-    self.views.text = [self.user.view stringValue];
+    self.views.text = [self.user.views stringValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
