@@ -7,18 +7,24 @@
 //
 
 #import "OPFQuestionsSearchBar.h"
+#import "OPFQuestionsSearchBarTokenView.h"
 
+
+@interface OPFQuestionsSearchBarToken ()
+@property (strong) OPFQuestionsSearchBarTokenView *view;
+@end
 
 @implementation OPFQuestionsSearchBarToken
-+ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type
++ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type text:(NSString *)text
 {
-	return [[self alloc] initWithRange:range type:type];
+	return [[self alloc] initWithRange:range type:type text:text];
 }
 
-- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type
+- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type text:(NSString *)text
 {
 	self = [super init];
 	if (self) {
+		_text = text.copy;
 		_range = range;
 		_type = type;
 	}
@@ -27,7 +33,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p range = %@; type = %d>", self.class, self, NSStringFromRange(self.range), self.type];
+	return [NSString stringWithFormat:@"<%@: %p range = %@; type = %d; text = %@>", self.class, self, NSStringFromRange(self.range), self.type, self.text];
 }
 
 @end
@@ -59,6 +65,36 @@
 	self = [super initWithCoder:aDecoder];
 	if (self) [self sharedQuestionsSearchBarInit];
 	return self;
+}
+
+- (void)setTokens:(NSArray *)tokens
+{
+	if (_tokens != tokens) {
+		for (OPFQuestionsSearchBarToken *token in _tokens) {
+			[token.view removeFromSuperview];
+		}
+		
+		_tokens = tokens.copy;
+		
+		for (OPFQuestionsSearchBarToken *token in _tokens) {
+			OPFQuestionsSearchBarTokenStyle style = (token.type == kOPFQuestionsSearchBarTokenUser ? kOPFQuestionsSearchBarTokenStyleUser : kOPFQuestionsSearchBarTokenStyleTag);
+			token.view = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:style];
+			token.view.text = token.text;
+			[self addSubview:token.view];
+		}
+		
+		[self setNeedsLayout];
+	}
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+	
+	for (OPFQuestionsSearchBarToken *token in _tokens) {
+		OPFQuestionsSearchBarTokenView *tokenView = token.view;
+		
+	}
 }
 
 /*

@@ -424,7 +424,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 				tokenContent = tokenContent.opf_stringByTrimmingWhitespace;
 				
 				if (tokenContent.length > 0) {
-					OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:tokenRange type:tokenType];
+					OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:tokenRange type:tokenType text:tokenContent];
 					[tokens addObject:token];
 				}
 			}
@@ -441,7 +441,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 		if (tagStartCount != tagEndCount) {
 			NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenTagStartCharacter options:NSBackwardsSearch];
 			rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
-			OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenTag];
+			OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenTag text:@"TEMP"];
 			[tokens addObject:token];
 		} else {
 			NSUInteger userStartCount = [searchString componentsSeparatedByString:kOPFTokenUserStartCharacter].count;
@@ -450,7 +450,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 			if (userStartCount % 2 == 0) {
 				NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenUserStartCharacter options:NSBackwardsSearch];
 				rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
-				OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenUser];
+				OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenUser text:@"TEMP"];
 				[tokens addObject:token];
 			}
 		}

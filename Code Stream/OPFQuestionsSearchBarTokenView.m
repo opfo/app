@@ -142,6 +142,13 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 
 
 #pragma mark - Layout
+- (CGSize)sizeThatFits:(CGSize)maxSize
+{
+	CGSize textSize = [self.textLabel sizeThatFits:maxSize];
+	CGSize size = CGSizeMake(kOPFTokenPaddingLeft + textSize.width + kOPFTokenPaddingRight, kOPFTokenHeight);
+	return size;
+}
+
 - (void)layoutSubviews
 {
 	[super layoutSubviews];

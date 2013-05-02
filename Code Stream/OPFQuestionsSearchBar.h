@@ -17,8 +17,10 @@ typedef enum : NSInteger {
 
 
 @interface OPFQuestionsSearchBarToken : NSObject
-+ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type;
-- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type;
++ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type text:(NSString *)text;
+- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type text:(NSString *)text;
+
+@property (copy, readonly) NSString *text;
 @property (assign, readonly) NSRange range;
 @property (assign, readonly) OPFQuestionsSearchBarTokenType type;
 @end
