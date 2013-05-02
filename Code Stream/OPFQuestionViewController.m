@@ -20,6 +20,7 @@
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
 #import "OPFUserPreviewButton.h"
+#import "OPFUserProfileViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -243,6 +244,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
 		metadataCell.userPreviewButton.user = post.owner;
+		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
+		NSArray* arr = [metadataCell.userPreviewButton actionsForTarget:self forControlEvent:UIControlEventTouchUpInside];
+		NSLog(@"%ui", arr.count);
+		
 												   
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
@@ -293,16 +298,32 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier] == NO)
-        return;
-    // Selected cell was comment
-	
-    OPFPost *post = [self postForIndexPath:indexPath];
-    OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
-    
-    commentViewController.postModel = post;
-    
-    [self.navigationController pushViewController:commentViewController animated:YES];
+	if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:MetadataCellIdentifier]) {
+		OPFPost *post = [self postForIndexPath:indexPath];
+		OPFUserProfileViewController *view = OPFUserProfileViewController.newFromStoryboard;
+		view.user = post.owner;
+		
+		[self.navigationController pushViewController:view animated:YES];
+		
+	}
+    if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier]) {
+        
+		// Selected cell was comment
+		
+		OPFPost *post = [self postForIndexPath:indexPath];
+		OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
+		
+		commentViewController.postModel = post;
+		
+		[self.navigationController pushViewController:commentViewController animated:YES];
+	}
 }
 
+#pragma mark - User Preview Button delegate
+- (void)pressedUserPreviewButton:(id)sender {
+	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
+    userProfileViewController.user = ((OPFUserPreviewButton*)sender).user;
+    
+    [self.navigationController pushViewController:userProfileViewController animated:YES];
+}
 @end

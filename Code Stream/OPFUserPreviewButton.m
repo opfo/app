@@ -14,7 +14,7 @@
 #import "OPFUserProfileViewController.h"
 
 @implementation OPFUserPreviewButton
-@synthesize user = _user;
+
 
 - (void)setUser:(OPFUser *)user {
 	_user = user;
@@ -24,7 +24,6 @@
 	self.displayNameLabel.text = user.displayName;
 	self.scoreLabel.text = [format stringFromScore:user.reputation.integerValue];
 	[self.userAvatar setImageWithGravatarEmailHash:user.emailHash];
-	[self addTarget:self action:@selector(openUserProfileView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)openUserProfileView {
@@ -68,6 +67,7 @@
 }
 
 -(void)layoutSubviews {
+	[super layoutSubviews];
 	CGRect frame = self.frame;
 	CGRect image = { .origin.x = frame.size.width-frame.size.height, .origin.y = 0.0, .size.width = frame.size.height, .size.height = frame.size.height };
 	CGRect displayName = { .origin.x = 0.0, .origin.y = 0.0, .size.width = frame.size.width - frame.size.height, .size.height = frame.size.height / 2 };

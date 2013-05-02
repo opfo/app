@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFUserPreviewButton.h"
 
 @class OPFPost;
 @class OPFQuestion;
 
-@interface OPFQuestionViewController : UITableViewController
+@interface OPFQuestionViewController : UITableViewController 
 
 @property (strong) OPFQuestion *question;
 
