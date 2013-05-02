@@ -26,6 +26,7 @@ GEM
       rake (~> 10.0.0)
     cocoapods-downloader (0.1.0)
     colored (1.2)
+    colorize (0.5.8)
     escape (0.0.4)
     faraday (0.8.7)
       multipart-post (~> 1.1)
@@ -55,4 +56,5 @@ PLATFORMS
 
 DEPENDENCIES
   cocoapods (~> 0.18.1)
+  colorize
   rake
