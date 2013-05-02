@@ -12,6 +12,7 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
 #import "OPFFavoritesViewController.h"
+#import "OPFLoginViewController.h"
 #import "OPFAppState.h"
 
 @interface OPFTabbedHomeViewController ()
@@ -21,12 +22,14 @@
 @property(strong, nonatomic) UINavigationController *userProfileNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
 @property(strong, nonatomic) UINavigationController *favoritesViewNavigationController;
+@property(strong, nonatomic) UINavigationController *loginViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
 @property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
 @property(strong, nonatomic) OPFActivityViewController *activityViewController;
 @property(strong, nonatomic) OPFFavoritesViewController *favoritesViewController;
+@property(strong, nonatomic) OPFLoginViewController *loginViewController;
 
 - (void)opfSetupView;
 
@@ -54,6 +57,7 @@ const int TabbedBarHeight = 60;
     self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
     self.favoritesViewController = [OPFFavoritesViewController new];
+    self.loginViewController = [OPFLoginViewController new];
     
     self.userProfileViewController.user = [OPFAppState userModel];
 
@@ -62,13 +66,14 @@ const int TabbedBarHeight = 60;
     self.userProfileNavigationController = [[UINavigationController new] initWithRootViewController:self.userProfileViewController];
     self.activityViewNavigationController = [[UINavigationController new] initWithRootViewController:self.activityViewController];
     self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
+    self.loginViewNavigationController = [[UINavigationController new] initWithRootViewController:self.loginViewController];
     
     [self setViewControllers:[NSMutableArray arrayWithObjects:
                               self.questionsViewNavigationController,
                               self.activityViewNavigationController,
                               self.favoritesViewNavigationController,
                               self.profileSearchViewNavigationController,
-                              self.userProfileNavigationController,
+                              self.loginViewNavigationController,
                             nil]];
 }
 

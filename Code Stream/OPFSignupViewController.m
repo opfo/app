@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self opfSetupView];
     }
     return self;
 }
@@ -33,6 +33,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)opfSetupView
+{
+    self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
 }
 
 @end

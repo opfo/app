@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFLoginViewController : UIViewController
+@interface OPFLoginViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDataSource>
+
+- (NSString *)tabImageName;
+- (NSString *)tabTitle;
 
 @end

@@ -11,12 +11,37 @@
 
 @implementation OPFAppState
 
+static OPFUser *userModel;
+
 + (OPFUser *)userModel
 {
-    OPFUser *userModel = [[[OPFUser query] whereColumn:@"id" is:@"797"] getOne];
+    //self.userModel = [[[OPFUser query] whereColumn:@"id" is:@"797"] getOne];
     
     //To lazy to cache the response here
     return userModel;
+}
+
++ (void)setUserModel:(OPFUser *)userModel
+{
+    self.userModel = userModel;
+}
+
++ (BOOL)login:(NSString *)displayName
+{
+    OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"display_name" is:displayName] getOne];
+    
+    if (userModel) {
+        userModel = loggedInUserModel;
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isLoggedIn
+{
+    return userModel != nil ? true : false;
 }
 
 @end
