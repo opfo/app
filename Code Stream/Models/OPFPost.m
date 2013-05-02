@@ -137,15 +137,27 @@
 
 + (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
 {
-    OPFQuery* query  = [self searchFor: searchTerms];
-    query = [query whereColumn:@"tags" like: [self tagSearchStringFromArray: tags]];
+    OnGetOne singleModelCallback = ^(NSDictionary* attributes){
+        return [self parseDictionary:attributes];
+    };
+    OnGetMany multipleModelCallback = ^(FMResultSet* result) {
+        return [self parseMultipleResult:result];
+    };
+    NSString* combinedTerms = [NSString stringWithFormat:@"%@ %@", [self matchClauseFromSearchString:searchTerms], [self tagSearchStringFromArray:tags]];
+    OPFSearchQuery* query = [OPFSearchQuery searchQueryWithTableName:[self modelTableName]
+                                                              dbName:[self dbName]
+                                                         oneCallback:singleModelCallback
+                                                        manyCallback:multipleModelCallback
+                                                            pageSize:@([self defaultPageSize])
+                                                      indexTableName:[self indexTableName]
+                                                          searchTerm: combinedTerms];
     return query;
 }
 
 + (NSString*) tagSearchStringFromArray: (NSArray*) tags
 {
     NSMutableArray* tagStrings = [[NSMutableArray alloc] init];
-    NSString* tagFormat = @"<%@>";
+    NSString* tagFormat = @"tags:%@";
     for (id tag in tags) {
         if([tag class] == [OPFTag class]) {
             [tagStrings addObject: [NSString stringWithFormat: tagFormat, [tag name]]];
@@ -153,7 +165,7 @@
             [tagStrings addObject: [NSString stringWithFormat: tagFormat, tag]];
         }
     }
-    NSString* tagsString = [NSString stringWithFormat:@"%%%@%%", [tagStrings componentsJoinedByString:@"%%"]];
+    NSString* tagsString = [tagStrings componentsJoinedByString:@" "];
     return tagsString;
 }
 
