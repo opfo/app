@@ -148,10 +148,10 @@ static CGFloat userAboutMeInset = 20.0;
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", self.user.aboutMe] baseURL:nil];
     }
     else{
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>-"] baseURL:nil];
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
         
     
@@ -216,7 +216,6 @@ static CGFloat userAboutMeInset = 20.0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Indexpath: %@",[self cellIdentifierForIndexPath:indexPath]);
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
        
@@ -228,7 +227,6 @@ static CGFloat userAboutMeInset = 20.0;
         detailViewController = questionsViewController;
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
-        NSLog(@"Hej");
         NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
         [[UIApplication sharedApplication] openURL:url];
     }
