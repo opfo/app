@@ -24,11 +24,6 @@ describe(@"Search", ^{
         expect([posts count]).to.equal(@(1));
     });
     
-    it(@"should construct a valid tag search string", ^{
-        NSArray* tags = @[@"apa", @"bepa", @"cepa"];
-        NSString* output = @"%%<apa>%%%%<bepa>%%%%<cepa>%%";
-        expect([OPFPost tagSearchStringFromArray:tags]).to.equal(output);
-    });
     
     it(@"should be possible to combine tag search with full text", ^{
         NSArray* posts = [[OPFPost searchFor:@"submitting multiple" inTags:@[@"struts2", @"javascript"]] getMany];

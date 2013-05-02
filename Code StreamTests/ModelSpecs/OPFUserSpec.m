@@ -17,19 +17,6 @@ SpecBegin(OPFUser)
 describe(@"User creation", ^{
     __block OPFUser* user;
     __block NSDictionary* properties = @{@"reputation": @(9), @"displayName": @"lorem ipsum", @"creationDate": [NSDate date]};
-    __block NSDictionary* correctProperties
-        = @{
-            @"identifier": @42,
-            @"reputation": @9060,
-            @"creationDate": @"2008-08-01",
-            @"displayName": @"Coincoin",
-            @"emailHash": @"621f5ee6cf6e295d1b5fa45bde67c803",
-            @"lastAccessDate": @"2012-07-30",
-            @"location": @"Montreal, Canada",
-            @"age": @32,
-            @"downVotes": @37,
-            @"upVotes": @297
-            };
     
     it(@"should be possible using a dictionary", ^{
         NSError* error;
