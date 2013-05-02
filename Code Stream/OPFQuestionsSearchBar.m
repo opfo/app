@@ -15,6 +15,30 @@ NSString *const kOPFQuestionsSearchBarTypeUserAttribute = @"OPFQuestionsSearchBa
 
 @implementation OPFQuestionsSearchBar
 
+- (void)sharedQuestionsSearchBarInit
+{
+	for (UIView *subview in self.subviews) {
+		if ([subview isKindOfClass:UITextField.class]) {
+			_textField = (UITextField *)subview;
+			break;
+		}
+	}
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) [self sharedQuestionsSearchBarInit];
+	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self) [self sharedQuestionsSearchBarInit];
+	return self;
+}
+
 /*
  Le idea #1
  

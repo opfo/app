@@ -32,4 +32,6 @@ extern NSString *const kOPFQuestionsSearchBarTypeUserAttribute;
 // @see OPFQuestionsSearchBarTokenRange
 @property (copy, nonatomic) NSArray *userRanges;
 
+@property (strong, readonly) UITextField *textField;
+
 @end
