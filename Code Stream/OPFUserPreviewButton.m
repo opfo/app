@@ -15,6 +15,12 @@
 
 @implementation OPFUserPreviewButton
 
+@synthesize iconAlign = _iconAlign;
+
+- (void)setIconAlign:(OPFIconAlign)iconAlign {
+	_iconAlign = iconAlign;
+	[self layoutSubviews];
+}
 
 - (void)setUser:(OPFUser *)user {
 	_user = user;
@@ -23,14 +29,7 @@
 	
 	self.displayNameLabel.text = user.displayName;
 	self.scoreLabel.text = [format stringFromScore:user.reputation.integerValue];
-	[self.userAvatar setImageWithGravatarEmailHash:user.emailHash];
-}
-
--(void)openUserProfileView {
-	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
-    userProfileViewController.user = self.user;
-    
-    NSLog(@"Open user %@",self.user.displayName);
+	[self.userAvatar setImageWithGravatarEmailHash:user.emailHash placeholderImage:self.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -51,12 +50,15 @@
 }
 
 -(void)initSubviews {
+	
+	_iconAlign = Left;
+	
 	_userAvatar = [UIImageView new];
 	_displayNameLabel = [UILabel new];
 	_scoreLabel = [UILabel new];
 	
-	_displayNameLabel.textAlignment = NSTextAlignmentRight;
-	_scoreLabel.textAlignment = NSTextAlignmentRight;
+	_displayNameLabel.textAlignment = NSTextAlignmentLeft;
+	_scoreLabel.textAlignment = NSTextAlignmentLeft;
 	_scoreLabel.textColor = [UIColor grayColor];
 	
 
@@ -68,10 +70,48 @@
 
 -(void)layoutSubviews {
 	[super layoutSubviews];
+	
 	CGRect frame = self.frame;
-	CGRect image = { .origin.x = frame.size.width-frame.size.height, .origin.y = 0.0, .size.width = frame.size.height, .size.height = frame.size.height };
-	CGRect displayName = { .origin.x = 0.0, .origin.y = 0.0, .size.width = frame.size.width - frame.size.height, .size.height = frame.size.height / 2 };
-	CGRect score = { .origin.x = 0.0, .origin.y = frame.size.height / 2, .size.width = frame.size.width - frame.size.height, .size.height = frame.size.height / 2 };
+	CGRect displayName, score, image;
+	
+	
+	score.origin.y = frame.size.height / 2;
+	score.size.width = frame.size.width - frame.size.height;
+	score.size.height = frame.size.height / 2;
+	
+	displayName.origin.y = 0.0;
+	displayName.size.height = frame.size.height / 2;
+	displayName.size.width = frame.size.width - frame.size.height;
+	
+	image.origin.y = 0.0;
+	image.size.width = frame.size.height;
+	image.size.height = frame.size.height;
+	
+	switch (self.iconAlign) {
+		case Left:
+			image.origin.x = 0.0;
+			displayName.origin.x = frame.size.height;
+			score.origin.x = frame.size.height;
+			break;
+		case Right:
+			image.origin.x = frame.size.width-frame.size.height;
+			displayName.origin.x = 0.0;
+			score.origin.x = 0.0;
+			
+			self.scoreLabel.textAlignment = NSTextAlignmentRight;
+			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
+			break;
+		case None: {
+			image = CGRectZero;
+			displayName.origin.x = 0.0;
+			score.origin.x = 0.0;
+			
+			displayName.size.width = frame.size.width;
+			score.size.width = frame.size.width;
+		}
+		default:
+			break;
+	}
 	
 	self.displayNameLabel.frame = displayName;
 	self.scoreLabel.frame = score;

@@ -21,6 +21,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
+#import "OPFQuestionsViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -243,14 +244,17 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
+		metadataCell.userPreviewButton.iconAlign = Right;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-		NSArray* arr = [metadataCell.userPreviewButton actionsForTarget:self forControlEvent:UIControlEventTouchUpInside];
-		NSLog(@"%ui", arr.count);
-		
 												   
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
+		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
+		tagsCell.tags = self.question.tags;
+		tagsCell.tagsView.delegate = self;
+		tagsCell.tagsView.dataSource = tagsCell;
+		[tagsCell.tagsView reloadData];
 		
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
 		if (post.comments.count > 0) { 
@@ -326,4 +330,38 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
+
+#pragma mark - Tag List Delegate
+
+- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
+	
+	
+	
+	int views = self.navigationController.viewControllers.count;
+	
+	// See if the previous view controller was a questionS view
+	Boolean reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
+	
+	// Reuse the questionS view if available. Otherwise create new view
+	OPFQuestionsViewController *view = (reuse) ? self.navigationController.viewControllers[views-2] :[OPFQuestionsViewController new] ;
+	
+	// Add search string to view
+	view.searchString = [NSString stringWithFormat:@"[%@]", [taglist.dataSource tagList:taglist tagLabelAtIndex:index].text];
+	
+	
+	
+	// Navigate to the view
+	if (reuse)
+		[self.navigationController popViewControllerAnimated:YES];
+	else
+		[self.navigationController pushViewController:view animated:YES];
+	
+}
+
+
+
+
+
+
+
 @end

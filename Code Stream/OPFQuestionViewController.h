@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFUserPreviewButton.h"
+#import "GCTagList.h"
 
 @class OPFPost;
 @class OPFQuestion;
 
-@interface OPFQuestionViewController : UITableViewController 
+@interface OPFQuestionViewController : UITableViewController <GCTagListDelegate>
 
 @property (strong) OPFQuestion *question;
 

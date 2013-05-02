@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCTagList.h"
 
-@interface OPFPostTagsTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *tagsView;
+@class GCTagList;
+
+@interface OPFPostTagsTableViewCell : UITableViewCell <GCTagListDataSource>
+
+@property (copy) NSArray *tags;
+@property (weak, nonatomic) IBOutlet GCTagList *tagsView;
+
 
 @end

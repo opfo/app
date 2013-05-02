@@ -10,4 +10,22 @@
 
 @implementation OPFPostTagsTableViewCell
 
+- (GCTagLabel *)tagList:(GCTagList *)tagList tagLabelAtIndex:(NSInteger)index {
+	static NSString* identifier = @"TagLabelIdentifier";
+    GCTagLabel* tag = [tagList dequeueReusableTagLabelWithIdentifier:identifier];
+    if(!tag) {
+        tag = [GCTagLabel tagLabelWithReuseIdentifier:identifier];
+    }
+	
+    [tag setLabelText:self.tags[index] accessoryType:GCTagLabelAccessoryNone];
+	return tag;
+}
+
+- (NSInteger)numberOfTagLabelInTagList:(GCTagList *)tagList {
+	return self.tags.count;
+}
+
+
+
+
 @end
