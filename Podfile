@@ -10,7 +10,4 @@ pod 'GCTagList', :git => "git://github.com/opfo/GCTagList.git"
 pod 'AFNetworking', '1.2.1'
 pod 'KHGravatar', :git => "https://github.com/opfo/KHGravatar.git"
 pod 'AGMedallionView', :git => "https://github.com/opfo/AGMedallionView.git"
-<<<<<<< HEAD
-=======
 pod 'AKTabBarController'
->>>>>>> master
