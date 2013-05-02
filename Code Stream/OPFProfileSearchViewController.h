@@ -18,4 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *profileSearchBar;
 
+- (IBAction)didSelectUserWebsite:(UIButton *)sender;
+
 @end

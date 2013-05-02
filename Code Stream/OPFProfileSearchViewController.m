@@ -99,7 +99,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return NSLocalizedString(@"User search", @"Profile search controller tab title");
+    return NSLocalizedString(@"Users", @"Profile search controller tab title");
 }
 
 - (void)performInitialDatabaseFetch
@@ -139,6 +139,16 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     }
 
     return userModel;
+}
+
+- (void)didSelectUserWebsite:(UIButton *)sender;
+{
+    //Only open valid urls
+    NSURL *websiteUrl = [NSURL URLWithString:sender.titleLabel.text];
+    
+    if (websiteUrl != nil) {
+        [[UIApplication sharedApplication] openURL:websiteUrl];
+    }
 }
 
 #pragma mark - Table view data source
@@ -197,16 +207,17 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
+    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" is:searchText] getMany];
     
     if(self.isSearching) {
         self.hasLoaded = NO;
         
         [self.mutableUserModels removeAllObjects];
         
-        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
-                
-        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        //self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
+        //self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        
+        self.mutableUserModels = [NSMutableArray arrayWithArray:self.databaseUserModels];
     } else {
         [self searchBarSearchButtonClicked:searchBar];
     }
