@@ -10,10 +10,12 @@
 #import "OPFAnswer.h"
 #import "OPFQuestion.h"
 #import "OPFComment.h"
+#import "OPFTag.h"
 
 @interface OPFPost(/*Private*/)
 
 +(NSString*) matchClauseFromSearchString: (NSString*) searchString;
++(NSString*) tagSearchStringFromArray: (NSArray*) tags;
 
 @end
 
@@ -139,6 +141,28 @@
         [postIds addObject: @([result intForColumn:@"post_id"])];
     }
     return [[self query] whereColumn:@"id" in:postIds];
+}
+
++ (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
+{
+    OPFQuery* query  = [self searchFor: searchTerms];
+    query = [query whereColumn:@"tags" like: [self tagSearchStringFromArray: tags]];
+    return query;
+}
+
++ (NSString*) tagSearchStringFromArray: (NSArray*) tags
+{
+    NSMutableArray* tagStrings = [[NSMutableArray alloc] init];
+    NSString* tagFormat = @"<%@>";
+    for (id tag in tags) {
+        if([tag class] == [OPFTag class]) {
+            [tagStrings addObject: [NSString stringWithFormat: tagFormat, [tag name]]];
+        } else {
+            [tagStrings addObject: [NSString stringWithFormat: tagFormat, tag]];
+        }
+    }
+    NSString* tagsString = [NSString stringWithFormat:@"%%%@%%", [tagStrings componentsJoinedByString:@"%%"]];
+    return tagsString;
 }
 
 + (NSString*) matchClauseFromSearchString: (NSString*) searchString

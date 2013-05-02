@@ -38,5 +38,6 @@ typedef enum : NSInteger {
 @property (strong, readonly) NSArray* comments;
 
 + (OPFQuery*) searchFor: (NSString*) searchTerms;
++ (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
 
 @end
