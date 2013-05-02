@@ -171,7 +171,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *profileViewCellIdentifier = @"OPFProfileViewCell";
+    static NSString *profileViewCellIdentifier = @"OPFProfileViewCellSimple";
     
     OPFProfileViewCell *profileViewCell = (OPFProfileViewCell *)[tableView dequeueReusableCellWithIdentifier:profileViewCellIdentifier];
     
@@ -207,16 +207,17 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
+    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" is:searchText] getMany];
     
     if(self.isSearching) {
         self.hasLoaded = NO;
         
         [self.mutableUserModels removeAllObjects];
         
-        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
-                
-        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        //self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
+        //self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        
+        self.mutableUserModels = [NSMutableArray arrayWithArray:self.databaseUserModels];
     } else {
         [self searchBarSearchButtonClicked:searchBar];
     }
