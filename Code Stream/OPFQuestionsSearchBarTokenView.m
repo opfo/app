@@ -23,10 +23,10 @@
 	BOOL _needsToUpdateGradient;
 }
 
-const CGFloat kOPFTokenTextFontSize = 15.f;
+const CGFloat kOPFTokenTextFontSize = 14.f;
 
 const CGFloat kOPFTokenHeight = 24.f;
-const CGFloat kOPFTokenPaddingLeft = 10.f;
+const CGFloat kOPFTokenPaddingLeft = 6.f;
 const CGFloat kOPFTokenPaddingRight = kOPFTokenPaddingLeft;
 const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextFontSize) / 4;
 
@@ -102,7 +102,9 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 
 - (void)setUpUserStyleDefaults
 {
-	ZAssert(NO, @"Not yet implemented");
+	self.backgroundStartColor = [UIColor opf_colorWithHexValue:0xceeccb];
+	self.backgroundEndColor = [UIColor opf_colorWithHexValue:0xa1e29a];
+	self.borderColor = [UIColor opf_colorWithHexValue:0x8fb58b];
 }
 
 - (void)setUpQuestionsSearchBarStyle:(OPFQuestionsSearchBarTokenStyle)style

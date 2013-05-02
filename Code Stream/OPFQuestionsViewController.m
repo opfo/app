@@ -431,32 +431,39 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 		}];
 	}
 	
-	DLog(@"tokens before: %@", tokens);
-	
 	// Are we possibly in the act of entering a new token?
 	if (searchString.length >= 1 && ([searchString hasSuffix:kOPFTokenTagEndCharacter] == NO || [searchString hasSuffix:kOPFTokenUserEndCharacter] == NO)) {
 		NSUInteger tagStartCount = [searchString componentsSeparatedByString:kOPFTokenTagStartCharacter].count;
 		NSUInteger tagEndCount = [searchString componentsSeparatedByString:kOPFTokenTagEndCharacter].count;
 		
 		if (tagStartCount != tagEndCount) {
-			NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenTagStartCharacter options:NSBackwardsSearch];
-			rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
-			OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenTag text:@"TEMP"];
+			OPFQuestionsSearchBarToken *token = [self tokenBeingEnteredIntoSearchString:searchString withStartCharacter:kOPFTokenTagStartCharacter type:kOPFQuestionsSearchBarTokenTag];
 			[tokens addObject:token];
 		} else {
 			NSUInteger userStartCount = [searchString componentsSeparatedByString:kOPFTokenUserStartCharacter].count;
 //			NSUInteger userEndCount = [searchString componentsSeparatedByString:kOPFTokenUserEndCharacter].count;
 			
 			if (userStartCount % 2 == 0) {
-				NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenUserStartCharacter options:NSBackwardsSearch];
-				rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
-				OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenUser text:@"TEMP"];
+				OPFQuestionsSearchBarToken *token = [self tokenBeingEnteredIntoSearchString:searchString withStartCharacter:kOPFTokenUserStartCharacter type:kOPFQuestionsSearchBarTokenUser];
 				[tokens addObject:token];
 			}
 		}
 	}
-	DLog(@"tokens after: %@", tokens);
+	
 	self.searchBar.tokens = tokens;
+}
+
+- (OPFQuestionsSearchBarToken *)tokenBeingEnteredIntoSearchString:(NSString *)searchString withStartCharacter:(NSString *)startChar type:(OPFQuestionsSearchBarTokenType)type
+{
+	NSRange rangeOfOpenToken = [searchString rangeOfString:startChar options:NSBackwardsSearch];
+	rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
+	
+	NSRange textRange = NSMakeRange(rangeOfOpenToken.location + 1, searchString.length - (rangeOfOpenToken.location + 1));
+	NSString *text = ((textRange.location + textRange.length) <= searchString.length ? [searchString substringWithRange:textRange] : @"");
+	
+	OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:type text:text];
+	
+	return token;
 }
 
 

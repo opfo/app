@@ -9,9 +9,11 @@
 #import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarTokenView.h"
 
+#import <objc/runtime.h>
+
 
 @interface OPFQuestionsSearchBarToken ()
-@property (strong) OPFQuestionsSearchBarTokenView *view;
+@property (strong) UIView *view;
 @end
 
 @implementation OPFQuestionsSearchBarToken
@@ -78,22 +80,37 @@
 		
 		for (OPFQuestionsSearchBarToken *token in _tokens) {
 			OPFQuestionsSearchBarTokenStyle style = (token.type == kOPFQuestionsSearchBarTokenUser ? kOPFQuestionsSearchBarTokenStyleUser : kOPFQuestionsSearchBarTokenStyleTag);
-			token.view = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:style];
-			token.view.text = token.text;
-			[self addSubview:token.view];
+			OPFQuestionsSearchBarTokenView *tokenView = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:style];
+			tokenView.text = token.text;
+			UIView *tokenWrapperView = UIView.new;
+			[tokenWrapperView addSubview:tokenView];
+			token.view = tokenWrapperView;
+			[self.textField addSubview:token.view];
 		}
 		
 		[self setNeedsLayout];
 	}
 }
 
+- (BOOL)becomeFirstResponder
+{
+	[self setNeedsLayout];
+	return [super becomeFirstResponder];
+}
+
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
+	   
+	CGFloat insetTop = 4.f;
+	CGFloat baseInsetLeft = 30.f;
 	
 	for (OPFQuestionsSearchBarToken *token in _tokens) {
-		OPFQuestionsSearchBarTokenView *tokenView = token.view;
-		
+		CGRect tokenFrame = token.view.frame;
+		tokenFrame.origin.y = tokenFrame.origin.y + insetTop;
+		tokenFrame.origin.x = tokenFrame.origin.x + baseInsetLeft + token.range.location * 8;
+		tokenFrame.size.height = 22.f;
+		token.view.frame = tokenFrame;
 	}
 }
 
