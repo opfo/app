@@ -22,34 +22,32 @@
     return nil;
 }
 
-+ (OPFQuery*) searchFor:(NSString *)searchTerms
++ (OPFSearchQuery*) searchFor: (NSString*) searchTerms
 {
-    NSString* queryFormat = @"SELECT object_id FROM auxDB.%@ WHERE index_string MATCH %@";
-    NSString* joinQueryForm = @"SELECT '%@'.* FROM '%@' INNER JOIN auxDB.%@ ON '%@'.'id' = '%@'.'object_id' WHERE '@%'.'index_string' MATCH '%@'";
-    NSString* output = [NSString stringWithFormat:queryFormat, [self indexTableName], [self matchClauseFromSearchString:searchTerms]];
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output];
-    NSMutableArray* objectIds = [[NSMutableArray alloc] init];
-    while ([result next]) {
-        [objectIds addObject: @([result intForColumn:@"object_id"])];
-    }
-    return [[self query] whereColumn:@"id" in:objectIds];
+    OnGetOne singleModelCallback = ^(NSDictionary* attributes){
+        return [self parseDictionary:attributes];
+    };
+    OnGetMany multipleModelCallback = ^(FMResultSet* result) {
+        return [self parseMultipleResult:result];
+    };
+    OPFSearchQuery* query = [OPFSearchQuery searchQueryWithTableName:[self modelTableName]
+                                                        dbName:[self dbName]
+                                                   oneCallback:singleModelCallback
+                                                  manyCallback:multipleModelCallback
+                                                      pageSize:@([self defaultPageSize])
+                                                indexTableName:[self indexTableName]
+                                                    searchTerm:[self matchClauseFromSearchString:searchTerms]];
+    return query;
 }
+
 + (NSString*) matchClauseFromSearchString: (NSString*) searchString
 {
-    /**
-     This method could later be used to tweak the query string.
-     For now we will return the input.
-     For example usage see below:
-     
-     NSArray* tokens = [searchString componentsSeparatedByString:@" "];
-     NSMutableArray* wildCardTokens = [[NSMutableArray alloc] initWithCapacity: [tokens count]];
-     for(id token in tokens) {
-     [wildCardTokens addObject:[NSString stringWithFormat:@"%@*", token]];
-     }
-     NSString* output = [wildCardTokens componentsJoinedByString:@" AND "];
-     return output;
-     */
-    return [NSString stringWithFormat:@"'%@'", searchString];
+    NSArray* tokens = [searchString componentsSeparatedByString:@" "];
+    NSMutableArray* tokensWithColumnName = [[NSMutableArray alloc] init];
+    for(id token in tokens) {
+        [tokensWithColumnName addObject: [NSString stringWithFormat:@"index_string:%@", token]];
+    }
+    return [tokensWithColumnName componentsJoinedByString:@" "];
 }
 
 @end

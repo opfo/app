@@ -7,11 +7,13 @@
 //
 
 #import "OPFModel.h"
+#import "OPFSearchQuery.h"
 
 @interface OPFSearchable : OPFModel
 
-+ (OPFQuery*) searchFor: (NSString*) searchTerms;
++ (OPFSearchQuery*) searchFor: (NSString*) searchTerms;
 // Has to be overridden by subclasses
 + (NSString*) indexTableName;
++ (NSString*) matchClauseFromSearchString: (NSString*) searchString;
 
 @end
