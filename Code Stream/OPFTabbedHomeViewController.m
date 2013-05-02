@@ -68,13 +68,7 @@ const int TabbedBarHeight = 60;
     self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
     self.loginViewNavigationController = [[UINavigationController new] initWithRootViewController:self.loginViewController];
     
-    [self setViewControllers:[NSMutableArray arrayWithObjects:
-                              self.questionsViewNavigationController,
-                              self.activityViewNavigationController,
-                              self.favoritesViewNavigationController,
-                              self.profileSearchViewNavigationController,
-                              self.loginViewNavigationController,
-                            nil]];
+    [self initWithDefaultTabs];
 }
 
 - (void)viewDidLoad
@@ -87,6 +81,28 @@ const int TabbedBarHeight = 60;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initWithDefaultTabs
+{
+    [self setViewControllers:[NSMutableArray arrayWithObjects:
+                              self.questionsViewNavigationController,
+                              self.activityViewNavigationController,
+                              self.favoritesViewNavigationController,
+                              self.profileSearchViewNavigationController,
+                              self.loginViewNavigationController,
+                              nil]];
+}
+
+- (void)initWithProfileTab
+{
+    [self setViewControllers:[NSMutableArray arrayWithObjects:
+                              self.questionsViewNavigationController,
+                              self.activityViewNavigationController,
+                              self.favoritesViewNavigationController,
+                              self.profileSearchViewNavigationController,
+                              self.profileSearchViewNavigationController,
+                              nil]];
 }
 
 @end

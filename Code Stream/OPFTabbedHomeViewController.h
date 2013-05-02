@@ -10,4 +10,7 @@
 
 @interface OPFTabbedHomeViewController : AKTabBarController
 
+- (void)initWithDefaultTabs;
+- (void)initWithProfileTab;
+
 @end

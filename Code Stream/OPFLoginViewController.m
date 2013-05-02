@@ -8,6 +8,7 @@
 
 #import "OPFLoginViewController.h"
 #import "OPFAppState.h"
+#import "OPFAppDelegate.h"
 
 @interface OPFLoginViewController ()
 
