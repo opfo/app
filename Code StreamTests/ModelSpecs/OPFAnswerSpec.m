@@ -40,8 +40,8 @@ describe(@"Fetching", ^{
     });
     
     it(@"should have a title even though the answer has comments associated", ^{
-        expect(answerWithComments.title).notTo.equal(@"NULL");
-        expect(answerWithComments.title).notTo.beNil();
+        expect(answerWithComments.parent.title).notTo.equal(@"NULL");
+        expect(answerWithComments.parent.title).notTo.beNil();
     });
 });
 

@@ -11,6 +11,7 @@
 #import "OPFProfileSearchViewController.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
+#import "OPFFavoritesViewController.h"
 #import "OPFAppState.h"
 
 @interface OPFTabbedHomeViewController ()
@@ -19,11 +20,13 @@
 @property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
 @property(strong, nonatomic) UINavigationController *userProfileNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
+@property(strong, nonatomic) UINavigationController *favoritesViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
 @property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
 @property(strong, nonatomic) OPFActivityViewController *activityViewController;
+@property(strong, nonatomic) OPFFavoritesViewController *favoritesViewController;
 
 - (void)opfSetupView;
 
@@ -50,6 +53,7 @@ const int TabbedBarHeight = 60;
     self.profileSearchViewController = [OPFProfileSearchViewController new];
     self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
+    self.favoritesViewController = [OPFFavoritesViewController new];
     
     self.userProfileViewController.user = [OPFAppState userModel];
 
@@ -57,10 +61,12 @@ const int TabbedBarHeight = 60;
     self.profileSearchViewNavigationController = [[UINavigationController new] initWithRootViewController:self.profileSearchViewController];
     self.userProfileNavigationController = [[UINavigationController new] initWithRootViewController:self.userProfileViewController];
     self.activityViewNavigationController = [[UINavigationController new] initWithRootViewController:self.activityViewController];
+    self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
     
     [self setViewControllers:[NSMutableArray arrayWithObjects:
                               self.questionsViewNavigationController,
                               self.activityViewNavigationController,
+                              self.favoritesViewNavigationController,
                               self.profileSearchViewNavigationController,
                               self.userProfileNavigationController,
                             nil]];
