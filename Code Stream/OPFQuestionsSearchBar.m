@@ -8,9 +8,29 @@
 
 #import "OPFQuestionsSearchBar.h"
 
-NSString *const kOPFQuestionsSearchBarTypeName = @"OPFQuestionsSearchBarTypeName";
-NSString *const kOPFQuestionsSearchBarTypeTagAttribute = @"OPFQuestionsSearchBarTypeTagAttribute";
-NSString *const kOPFQuestionsSearchBarTypeUserAttribute = @"OPFQuestionsSearchBarTypeUserAttribute";
+
+@implementation OPFQuestionsSearchBarToken
++ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type
+{
+	return [[self alloc] initWithRange:range type:type];
+}
+
+- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type
+{
+	self = [super init];
+	if (self) {
+		_range = range;
+		_type = type;
+	}
+	return self;
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p range = %@; type = %d>", self.class, self, NSStringFromRange(self.range), self.type];
+}
+
+@end
 
 
 @implementation OPFQuestionsSearchBar
@@ -23,6 +43,8 @@ NSString *const kOPFQuestionsSearchBarTypeUserAttribute = @"OPFQuestionsSearchBa
 			break;
 		}
 	}
+	
+	_tokens = NSArray.new;
 }
 
 - (id)initWithFrame:(CGRect)frame

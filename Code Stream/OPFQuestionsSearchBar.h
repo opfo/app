@@ -9,28 +9,24 @@
 #import <UIKit/UIKit.h>
 
 
-/// Attribute for marking a range as a specific type (tag or user).
-///
-/// Example usage to mark a range as a tag:
-///
-///     attributes = @{ kOPFQuestionsSearchBarTypeName: kOPFQuestionsSearchBarTypeTagAttribute };
-///     range = NSMakeRange(10, 3);
-///     [mutableAttributeString setAttributes:attributes range:range];
-///
-extern NSString *const kOPFQuestionsSearchBarTypeName;
-extern NSString *const kOPFQuestionsSearchBarTypeTagAttribute;
-extern NSString *const kOPFQuestionsSearchBarTypeUserAttribute;
+typedef enum : NSInteger {
+	kOPFQuestionsSearchBarTokenCustom,
+	kOPFQuestionsSearchBarTokenTag,
+	kOPFQuestionsSearchBarTokenUser
+} OPFQuestionsSearchBarTokenType;
+
+
+@interface OPFQuestionsSearchBarToken : NSObject
++ (instancetype)tokenWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type;
+- (instancetype)initWithRange:(NSRange)range type:(OPFQuestionsSearchBarTokenType)type;
+@property (assign, readonly) NSRange range;
+@property (assign, readonly) OPFQuestionsSearchBarTokenType type;
+@end
 
 
 @interface OPFQuestionsSearchBar : UISearchBar
 
-// An array of the ranges in the `searchString` of all tags.
-// @see OPFQuestionsSearchBarTokenRange
-@property (copy, nonatomic) NSArray *tagRanges;
-
-// An array of the range in the `searchString` for each user.
-// @see OPFQuestionsSearchBarTokenRange
-@property (copy, nonatomic) NSArray *userRanges;
+@property (copy, nonatomic) NSArray *tokens;
 
 @property (strong, readonly) UITextField *textField;
 

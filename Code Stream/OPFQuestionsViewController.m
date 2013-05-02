@@ -14,17 +14,17 @@
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "OPFQuestionsSearchBarTokenView.h"
-#import "OPFQuestionsSearchBarTokenRange.h"
 #import "OPFTokenCollectionViewCell.h"
+#import "NSRegularExpression+OPFSearchString.h"
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
 
 
 typedef enum : NSInteger {
-	kOPFQuestionsViewControllerTokenBeingInputtedNone,
-	kOPFQuestionsViewControllerTokenBeingInputtedTag,
-	kOPFQuestionsViewControllerTokenBeingInputtedUser
+	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
+	kOPFQuestionsViewControllerTokenBeingInputtedTag = kOPFQuestionsSearchBarTokenTag,
+	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
 
 // Tag syntax:  [some tag]
