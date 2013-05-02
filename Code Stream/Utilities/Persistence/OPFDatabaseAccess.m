@@ -8,7 +8,6 @@
 
 #import "OPFDatabaseAccess.h"
 
-static NSString* OPFDefaultDB = @"baseDB";
 static NSString* OPFDefaultDBFilename = @"so.sqlite";
 static NSString* OPFAuxDBFilename = @"auxiliary.sqlite";
 static NSString* OPFWritableBaseDBPath;
@@ -70,20 +69,11 @@ static NSString* OPFWritableAuxDBPath;
 - (id) init {
     self = [super init];
     if (self == nil) return nil;
+    _auxAttached = NO;
     [OPFDatabaseAccess setDBPaths];
     [OPFDatabaseAccess copyDatabaseIfNeeded];
-    _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: OPFWritableBaseDBPath];
-    _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableAuxDBPath];
     _combinedQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
-    [_combinedQueue inDatabase:^(FMDatabase* db){
-        BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
-        if (result) {
-            NSLog(@"Successfully attached aux db");
-        } else {
-            NSLog(@"Failed to attach aux db");
-        }
-    }];
-    _dataBaseIndex = @{@"baseDB": _baseDBQueue, @"auxDB":  _auxDBQueue};
+    [self attachAuxDB];
     return self;
 }
 
@@ -91,38 +81,37 @@ static NSString* OPFWritableAuxDBPath;
 // Executes an SQL string and returns the result.
 // Returns nil if result is empty.
 // Returns nil if db is unavailable.
-- (FMResultSet *) executeSQL:(NSString *)sql withDatabase: (NSString*) databaseName
+- (FMResultSet *) executeSQL:(NSString *)sql
 {
-    FMDatabaseQueue* db = [self.dataBaseIndex valueForKey:databaseName];
-//    if([_baseDB open]) {
-//        NSLog(@"Opened database");
-//        NSLog([NSString stringWithFormat:@"Executing SQL: %@", sql]);
-//        __block FMResultSet* result;
-//        [_baseDBQueue inDatabase: ^(FMDatabase* db) {
-//            result = [db executeQuery:sql];
-//        }];
-//        return result;
-//    } else {
-//        NSLog(@"Failed to open database");
-//        return nil;
-//    }
+    [self attachAuxDB];
     __block FMResultSet* result;
-    NSLog(@"Executing SQL on db %@: %@", databaseName, sql);
-    [db inDatabase: ^(FMDatabase* db) {
+    [_combinedQueue inDatabase: ^(FMDatabase* db) {
+        NSLog(@"Executing query %@", sql);
         result = [db executeQuery:sql];
     }];
     return result;
 }
 
-- (FMResultSet *) executeSQL:(NSString *)sql
+-(void) attachAuxDB
 {
-    NSLog(@"Using default db");
-    return [self executeSQL: sql withDatabase:OPFDefaultDB];
+    if (!self.auxAttached) {
+        [_combinedQueue inDatabase:^(FMDatabase* db){
+            BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
+            if (result) {
+                NSLog(@"Successfully attached aux db");
+                self.auxAttached = YES;
+            } else {
+                NSLog(@"Failed to attach aux db");
+                self.auxAttached = NO;
+            }
+        }];
+    }
 }
 
 -(void) close
 {
-    [_baseDB close];
+    self.auxAttached = NO;
+    [_combinedQueue close];
 }
 
 @end

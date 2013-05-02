@@ -15,15 +15,11 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
-- (FMResultSet *) executeSQL: (NSString *) sql withDatabase: (NSString*) databaseName;
+- (void) attachAuxDB;
 - (void) close;
 
-@property(strong, readonly) FMDatabase* baseDB;
-@property(strong, readonly) FMDatabase* auxDB;
-@property(strong, readonly) FMDatabaseQueue* baseDBQueue;
-@property(strong, readonly) FMDatabaseQueue* auxDBQueue;
 @property(strong, readonly) FMDatabaseQueue* combinedQueue;
-@property(strong, readonly) NSDictionary* dataBaseIndex;
+@property(assign) BOOL auxAttached;
 
 
 @end
