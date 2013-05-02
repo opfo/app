@@ -84,6 +84,22 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
 	_isFirstTimeAppearing = YES;
     [self performInitialDatabaseFetch];
+    
+    self.title = NSLocalizedString(@"User search", @"Profile search controller title");
+}
+
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-searchprofiles";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return NSLocalizedString(@"User search", @"Profile search controller tab title");
 }
 
 - (void)performInitialDatabaseFetch
@@ -123,6 +139,16 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     }
 
     return userModel;
+}
+
+- (void)didSelectUserWebsite:(UIButton *)sender;
+{
+    //Only open valid urls
+    NSURL *websiteUrl = [NSURL URLWithString:sender.titleLabel.text];
+    
+    if (websiteUrl != nil) {
+        [[UIApplication sharedApplication] openURL:websiteUrl];
+    }
 }
 
 #pragma mark - Table view data source

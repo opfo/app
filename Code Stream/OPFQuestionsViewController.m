@@ -33,7 +33,7 @@
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
-
+Boolean heatMode = NO;
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -112,6 +112,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 		}
 	}];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat"
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -120,6 +124,19 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-home";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return NSLocalizedString(@"Questions", @"Questions view controller tab title");
+}
 
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -135,10 +152,13 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
-	OPFQuestion *question = self.filteredQuestions[indexPath.row];
+    OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	[cell configureWithQuestionData:question];
+    
+    //If Heat Mode is turned on, color the cell according to it's score
+    [cell heatMode:heatMode];
 	
-	return cell;
+    return cell;
 }
 
 
@@ -323,6 +343,18 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	[searchBar resignFirstResponder];
 	searchBar.text = @"";
 	self.searchString = @"";
+}
+
+// Turn on/off heat mode when the "Heat Mode"-button is clicked.
+-(void) switchHeatMode:(id) paramSender{
+    if(!heatMode){
+        heatMode = YES;
+        [self.tableView reloadData];
+    }
+    else{
+        heatMode = NO;
+        [self.tableView reloadData];
+    }
 }
 
 

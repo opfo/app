@@ -44,6 +44,7 @@ describe(@"User creation", ^{
         user = [OPFUser find: 42];
         expect(user.displayName).to.equal(@"Coincoin");
     });
+    
 });
 
 describe(@"user fetching", ^{
@@ -76,5 +77,4 @@ describe(@"Pagination", ^{
         expect([result count]).to.equal(500);
     });
 });
-
 SpecEnd
