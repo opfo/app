@@ -16,6 +16,7 @@
 #import "OPFQuestionsSearchBarTokenView.h"
 #import "OPFQuestionsSearchBarTokenRange.h"
 #import "OPFTokenCollectionViewCell.h"
+#import "NSString+OPFContains.h"
 #import "NSString+OPFStripCharacters.h"
 
 
@@ -26,12 +27,12 @@ typedef enum : NSInteger {
 } OPFQuestionsViewControllerTokenBeingInputtedType;
 
 // Tag syntax:  [some tag]
-NSString *const kOPFQuestionsViewControllerTagTokenStartCharacter = @"[";
-NSString *const kOPFQuestionsViewControllerTagTokenEndCharacter = @"]";
+static NSString *const kOPFQuestionsViewControllerTokenStartCharacterTag = @"[";
+static NSString *const kOPFQuestionsViewControllerTokenEndCharacterTag = @"]";
 
 // User syntax: @Some cool User@
-NSString *const kOPFQuestionsViewControllerUserTokenStartCharacter = @"@";
-NSString *const kOPFQuestionsViewControllerUserTokenEndCharacter = @"@";
+static NSString *const kOPFQuestionsViewControllerTokenStartCharacterUser = @"@";
+static NSString *const kOPFQuestionsViewControllerTokenEndCharacterUser = @"@";
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -214,8 +215,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 #pragma mark - GCTagListDelegate Methods
 - (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag
 {
-	self.searchString = [NSString stringWithFormat:@"[%@]", tag ?: @""];
-	self.searchBar.text = self.searchString;
+	[self updateSearchWithString:[NSString stringWithFormat:@"[%@]", tag ?: @""]];
 	
 	if (self.tableView.contentOffset.y != 0) {
 		[self.tableView scrollRectToVisible:CGRectZero animated:YES];
@@ -245,6 +245,12 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 			completionBlock();
 		}
 	}];
+}
+
+- (void)updateSearchWithString:(NSString *)searchString
+{
+	self.searchString = searchString;
+	self.searchBar.text = self.searchString;
 }
 
 
@@ -321,9 +327,77 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	DLog(@"%@", self.suggestedTokens[indexPath.row]);
+	NSString *token = self.suggestedTokens[indexPath.row];
+	[self didSelectToken:token];
 }
 
+
+#pragma mark - Token Handling
+- (void)didSelectToken:(NSString *)token
+{
+	[self.tokenBeingInputted setString:token];
+	[self endTokenInput];
+}
+
+- (void)replaceCurrentTokenTextWithToken:(NSString *)token
+{
+	NSMutableString *searchString = self.searchString.mutableCopy;
+	NSString *tokenStartChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:NO];
+	NSString *tokenEndChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:YES];
+	NSRange tokenStartRange = [searchString rangeOfString:tokenStartChar options:NSBackwardsSearch];
+	NSRange tokenEndRange = [searchString rangeOfString:tokenEndChar options:NSBackwardsSearch];
+	
+	if (tokenStartRange.location != NSNotFound) {
+		CGFloat location = tokenStartRange.location + tokenStartRange.length;
+		CGFloat length = (tokenEndRange.location != NSNotFound ? tokenEndRange.location - location : searchString.length - location);
+		NSRange replacementRange = NSMakeRange(location, length);
+		
+		if (replacementRange.location < searchString.length) {
+			[searchString deleteCharactersInRange:replacementRange];
+		}
+		[searchString insertString:token atIndex:location];
+		
+		if (tokenEndRange.location == NSNotFound || tokenEndRange.location < tokenStartRange.location) {
+			[searchString appendString:tokenEndChar];
+		}
+		
+		[self updateSearchWithString:searchString.copy];
+	}
+}
+
+- (void)startTokenInputOfType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
+{
+	self.tokenBeingInputted = NSMutableString.new;
+	self.tokenBeingInputtedType = type;
+	
+	NSString *tokenChar = [self tokenCharacterForType:type end:NO];
+	[self updateSearchWithString:[self.searchString stringByAppendingString:tokenChar]];
+	
+	[self changeSearchBarInputViewToCompletionsView];
+}
+
+- (void)endTokenInput
+{
+	NSString *token = self.tokenBeingInputted.copy;
+	[self replaceCurrentTokenTextWithToken:token];
+	
+	self.tokenBeingInputted = nil;
+	self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
+	
+	[self changeSearchBarInputViewToButtonsView];
+}
+
+- (NSString *)tokenCharacterForType:(OPFQuestionsViewControllerTokenBeingInputtedType)type end:(BOOL)end
+{
+	NSString *tokenChar = nil;
+	switch (type) {
+		case kOPFQuestionsViewControllerTokenBeingInputtedNone: tokenChar = @""; break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedTag: tokenChar =  (end == NO ? kOPFQuestionsViewControllerTokenStartCharacterTag : kOPFQuestionsViewControllerTokenEndCharacterTag); break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedUser: tokenChar =  (end == NO ? kOPFQuestionsViewControllerTokenStartCharacterUser : kOPFQuestionsViewControllerTokenEndCharacterUser); break;
+		default: ZAssert(NO, @"Unknown token type %d", type); break;
+	}
+	return tokenChar;
+}
 
 
 #pragma mark - UISearchBarDelegate Methods
@@ -350,32 +424,13 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-	NSString *changedText = [searchBar.text substringWithRange:range];
-	DLog(@"changeText: %@", changedText);
-	DLog(@"text: %@", text);
-	
-	if ([changedText rangeOfString:kOPFQuestionsViewControllerTagTokenStartCharacter].location != NSNotFound) {
-		[self changeSearchBarInputViewToButtonsView];
-	}
-	
-	if (([text rangeOfString:kOPFQuestionsViewControllerTagTokenStartCharacter].location != NSNotFound ||
-		[text rangeOfString:kOPFQuestionsViewControllerUserTokenStartCharacter].location != NSNotFound) &&
-		self.tokenBeingInputted == nil) {
-		self.tokenBeingInputted = NSMutableString.new;
+	if (self.tokenBeingInputted != nil && text.length > 0) {
+		NSString *tokenEndChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:YES];
+		NSRange tokenEndRange = [text rangeOfString:tokenEndChar options:NSBackwardsSearch];
 		
-		[self changeSearchBarInputViewToCompletionsView];
-	}
-	
-	if (([text rangeOfString:kOPFQuestionsViewControllerTagTokenEndCharacter].location != NSNotFound ||
-		 [text rangeOfString:kOPFQuestionsViewControllerUserTokenEndCharacter].location != NSNotFound) &&
-		self.tokenBeingInputted != nil) {
-		// THEN: A tag or user was added
-		self.tokenBeingInputted = nil;
-		self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
-		[self changeSearchBarInputViewToButtonsView];
-	} else if (self.tokenBeingInputted != nil) {
-		DLog(@"add to token %@", text);
-		[self.tokenBeingInputted appendString:text];
+		NSUInteger substringIdx = (tokenEndRange.location != NSNotFound ? tokenEndRange.location : text.length);
+		NSString *tokenText = [text substringToIndex:substringIdx];
+		[self.tokenBeingInputted appendString:tokenText];
 	}
 	
 	return YES;
@@ -383,12 +438,12 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-	/*
-	 if isInputtingTag
-		select best match and add it to search
-	 else if isInputtingUser
-		select best match and add it to search
-	 */
+	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
+		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
+		self.suggestedTokens.count > 0) {
+		NSString *token = self.suggestedTokens[0];
+		[self didSelectToken:token];
+	}
 	
 	[self dismissSearchBarExtras];
 }
@@ -397,9 +452,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 {
 	[self dismissSearchBarExtras];
 	[self changeSearchBarInputViewToButtonsView];
-	
-	self.searchString = @"";
-	self.searchBar.text = @"";
+	[self updateSearchWithString:@""];
 }
 
 - (void)dismissSearchBarExtras
@@ -411,44 +464,16 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 #pragma mark - Search Buttons
 - (IBAction)insertNewTag:(id)sender
 {
-	[self changeSearchBarInputViewToCompletionsView];
-//	self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedTag;
-//	self.tokenBeingInputted = NSMutableString.new;
-//	
-//	NSRange range = NSMakeRange(<#NSUInteger loc#>, <#NSUInteger len#>);
-//	OPFQuestionsSearchBarTokenRange *tokenRange = [OPFQuestionsSearchBarTokenRange tokenRangeWithRange:range];
-//	[self.searchBar.tagRanges ]
-	
-	self.searchString = [self.searchString stringByAppendingString:kOPFQuestionsViewControllerTagTokenStartCharacter];
-	self.searchBar.text = self.searchString;
+	[self startTokenInputOfType:kOPFQuestionsViewControllerTokenBeingInputtedTag];
 }
 
 - (IBAction)insertNewUser:(id)sender
 {
-	[self changeSearchBarInputViewToCompletionsView];
-	
-	self.searchString = [self.searchString stringByAppendingString:kOPFQuestionsViewControllerUserTokenStartCharacter];
-	self.searchBar.text = self.searchString;
-	DLog(@"Should insert a new user at current position.");
+	[self startTokenInputOfType:kOPFQuestionsViewControllerTokenBeingInputtedTag];
 }
 
-- (IBAction)endCurrentToken:(id)sender
-{
-	NSString *endChar = nil;
-	switch (self.tokenBeingInputtedType) {
-		case kOPFQuestionsViewControllerTokenBeingInputtedNone: /*NOP*/ break;
-		case kOPFQuestionsViewControllerTokenBeingInputtedTag: endChar = kOPFQuestionsViewControllerTagTokenEndCharacter; break;
-		case kOPFQuestionsViewControllerTokenBeingInputtedUser: endChar = kOPFQuestionsViewControllerUserTokenEndCharacter; break;
-		
-		default: ZAssert(NO, @"Unknown type for token being inputted, got %d.", self.tokenBeingInputtedType); break;
-	}
-	
-	if (endChar) {
-		self.searchString = [self.searchString stringByAppendingString:endChar];
-		self.searchBar.text = self.searchString;
-	}
-}
 
+#pragma mark - Changing Search Input Accessory View
 - (void)changeSearchBarInputViewToCompletionsView
 {
 	[self changeSearchBarInputViewToState:kOPFQuestionsSearchBarInputStateCompletions];
@@ -507,7 +532,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 	NSParameterAssert(regularExpression != nil);
 	
 	searchString = searchString.copy;
-	NSMutableArray *tokens = NSMutableArray.new;
+	NSMutableSet *tokens = NSMutableSet.new;
 	
 	// The shortest possible tag is `[a]`, i.e. three (3) chars.
 	if (searchString.length >= 3) {
@@ -520,7 +545,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 		}];
 	}
 	
-	return tokens;
+	return tokens.allObjects;
 }
 
 - (NSString *)keywordsSearchStringFromSearchString:(NSString *)searchString
