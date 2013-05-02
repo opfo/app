@@ -16,6 +16,14 @@ typedef enum : NSInteger {
 } OPFQuestionsSearchBarTokenStyle;
 
 
+extern const CGFloat kOPFTokenTextFontSize;
+
+extern const CGFloat kOPFTokenHeight;
+extern const CGFloat kOPFTokenPaddingLeft;
+extern const CGFloat kOPFTokenPaddingRight;
+extern const CGFloat kOPFTokenPaddingTop;
+
+
 /**
  Draws a “token” to be used in a search bar (e.g. for tags or users).
  */

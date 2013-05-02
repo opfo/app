@@ -23,12 +23,12 @@
 	BOOL _needsToUpdateGradient;
 }
 
-static const CGFloat kOPFTokenTextFontSize = 15.f;
+const CGFloat kOPFTokenTextFontSize = 15.f;
 
-static const CGFloat kOPFTokenHeight = 24.f;
-static const CGFloat kOPFTokenPaddingLeft = 10.f;
-static const CGFloat kOPFTokenPaddingRight = kOPFTokenPaddingLeft;
-static const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextFontSize) / 4;
+const CGFloat kOPFTokenHeight = 24.f;
+const CGFloat kOPFTokenPaddingLeft = 10.f;
+const CGFloat kOPFTokenPaddingRight = kOPFTokenPaddingLeft;
+const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextFontSize) / 4;
 
 
 #pragma mark - Object Lifecycle
