@@ -15,6 +15,6 @@
 + (NSArray *) all: (NSInteger) page per: (NSInteger) pageSize;
 + (instancetype) find: (NSInteger) identifier;
 + (NSString*) modelTableName;
-+ (NSString*) modelDBName;
++ (NSString*) dbName;
 + (instancetype) parseDictionary: (NSDictionary*) attribute;
 @end
