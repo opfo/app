@@ -236,13 +236,14 @@ Boolean heatMode = NO;
 	NSArray *users = [searchString opf_usersFromSearchString];
 	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
 	
-	NSArray *filteredQuestions = nil;
+	OPFQuery *query = nil;
 	if (keywords.length > 0 || tags.count > 0) {
-		NSPredicate *predicate = [self questionsFilterPredicateForTags:tags keywordsString:keywords];
-		filteredQuestions = [[OPFQuestion all:0 per:30] filteredArrayUsingPredicate:predicate];
+		query = [[OPFQuestion searchFor:keywords inTags:tags] limit:@(100)];
 	} else {
-		filteredQuestions = [OPFQuestion all:0 per:30];
+		query = [[[OPFQuestion query] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
 	}
+	
+	NSArray *filteredQuestions = [query getMany];
 	
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
@@ -582,38 +583,6 @@ Boolean heatMode = NO;
 			}
 		}];
 	}
-}
-
-
-
-#pragma mark - Questions Filter
-- (NSPredicate *)questionsFilterPredicateForTags:(NSArray *)tags keywordsString:(NSString *)keywords
-{
-	NSPredicate *tagsPredicate = [NSPredicate predicateWithBlock:^BOOL(OPFQuestion *evaluatedQuestion, NSDictionary *bindings) {
-		__block BOOL shouldInclude = YES;
-		[tags enumerateObjectsUsingBlock:^(id aTag, NSUInteger idx, BOOL *stop) {
-			shouldInclude = shouldInclude && [evaluatedQuestion.tags containsObject:aTag];
-			*stop = !shouldInclude;
-		}];
-		return shouldInclude;
-	}];
-	
-	NSPredicate *keywordsTitlePredicate = [NSPredicate predicateWithFormat:@"title contains[cd] %@", keywords];
-	NSPredicate *keywordsBodyPredicate = [NSPredicate predicateWithFormat:@"body contains[cd] %@", keywords];
-	NSPredicate *keywordsPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[ keywordsTitlePredicate, keywordsBodyPredicate ]];
-	
-	NSPredicate *predicate = nil;
-	if (keywords.length > 0 && tags.count > 0) {
-		predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[ tagsPredicate, keywordsPredicate ]];
-	} else if (keywords.length > 0) {
-		predicate = keywordsPredicate;
-	} else if (tags.count > 0) {
-		predicate = tagsPredicate;
-	} else {
-		ZAssert(NO, @"Well, we’re at that place again. You know that place you really shouldn’t be able to get to. Yeah, we’re there…");
-	}
-	
-	return predicate;
 }
 
 
