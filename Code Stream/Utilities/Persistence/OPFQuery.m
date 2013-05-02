@@ -12,20 +12,18 @@
 #import "OPFLikeQuery.h"
 #import "OPFRootQuery.h"
 
-static NSString* defaultDB = @"baseDB";
-
 @implementation OPFQuery
 
 @synthesize rootQuery = _rootQuery;
 
 - (FMResultSet*) getResultSetOne {
     [[self rootQuery] setLimit: @(1)];
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
 }
 
 - (FMResultSet*) getResultSetMany {
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
 }
 
