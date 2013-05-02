@@ -39,7 +39,6 @@ static NSString *const NotSpecifiedInformationPlaceholder = @"-";
 
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
-static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
 static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
@@ -204,8 +203,6 @@ static CGFloat userAboutMeInset = 20.0;
     if(indexPath.section==4){
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
-        else if(indexPath.row==1)
-            cellIdentifier = UserAnswersViewCell;
     }
     else if(indexPath.section==1 && indexPath.row==3)
         cellIdentifier = UserWebsiteViewCell;
