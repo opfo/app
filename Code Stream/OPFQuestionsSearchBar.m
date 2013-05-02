@@ -78,17 +78,17 @@
 		
 		_tokens = tokens.copy;
 		
-		for (OPFQuestionsSearchBarToken *token in _tokens) {
-			OPFQuestionsSearchBarTokenStyle style = (token.type == kOPFQuestionsSearchBarTokenUser ? kOPFQuestionsSearchBarTokenStyleUser : kOPFQuestionsSearchBarTokenStyleTag);
-			OPFQuestionsSearchBarTokenView *tokenView = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:style];
-			tokenView.text = token.text;
-			UIView *tokenWrapperView = UIView.new;
-			[tokenWrapperView addSubview:tokenView];
-			token.view = tokenWrapperView;
-			[self.textField addSubview:token.view];
-		}
-		
-		[self setNeedsLayout];
+//		for (OPFQuestionsSearchBarToken *token in _tokens) {
+//			OPFQuestionsSearchBarTokenStyle style = (token.type == kOPFQuestionsSearchBarTokenUser ? kOPFQuestionsSearchBarTokenStyleUser : kOPFQuestionsSearchBarTokenStyleTag);
+//			OPFQuestionsSearchBarTokenView *tokenView = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:style];
+//			tokenView.text = token.text;
+//			UIView *tokenWrapperView = UIView.new;
+//			[tokenWrapperView addSubview:tokenView];
+//			token.view = tokenWrapperView;
+//			[self.textField addSubview:token.view];
+//		}
+//		
+//		[self setNeedsLayout];
 	}
 }
 
