@@ -10,8 +10,9 @@
 #import "MTLModel.h"
 #import "OPFModel.h"
 #import "OPFRecordProtocol.h"
+#import "OPFSearchable.h"
 
-@interface OPFUser : OPFModel
+@interface OPFUser : OPFSearchable
 
 @property (strong, readonly) NSNumber* identifier;
 @property (strong) NSNumber* reputation;
@@ -27,8 +28,8 @@
 @property (strong) NSNumber* upVotes;
 @property (strong) NSNumber* downVotes;
 
-- (NSArray *) questionsPage: (NSInteger) page;
-- (NSArray *) answersPage: (NSInteger) page;
-- (NSArray *) commentsPage: (NSInteger) page;
+- (OPFQuery *) questions;
+- (OPFQuery *) answers;
+- (OPFQuery *) comments;
 
 @end

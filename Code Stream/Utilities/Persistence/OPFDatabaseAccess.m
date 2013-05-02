@@ -8,7 +8,15 @@
 
 #import "OPFDatabaseAccess.h"
 
-static NSString* OPFDefaultDB = @"baseDB";
+static NSInteger OPFDBOverwriteDBs = YES;
+static NSString* OPFDefaultDBFilename = @"so.sqlite";
+static NSString* OPFAuxDBFilename = @"auxiliary.sqlite";
+static NSString* OPFWritableBaseDBPath;
+static NSString* OPFWritableAuxDBPath;
+
+@interface OPFDatabaseAccess(/*private*/)
++ (void) copyDatabaseIfNeeded;
+@end
 
 @implementation OPFDatabaseAccess
 
@@ -24,18 +32,52 @@ static NSString* OPFDefaultDB = @"baseDB";
 	return _sharedDatabase;
 }
 
++ (void) setDBPaths
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    OPFWritableBaseDBPath = [documentsDirectory stringByAppendingPathComponent: OPFDefaultDBFilename];
+    OPFWritableAuxDBPath = [documentsDirectory stringByAppendingPathComponent: OPFAuxDBFilename];
+}
+
++ (void) copyDatabaseIfNeeded
+{
+    BOOL successBase;
+    BOOL successAux;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    if (OPFDBOverwriteDBs) {
+        [fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
+        [fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
+    }
+    successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
+    successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
+    if (!successBase) {
+        NSString* defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFDefaultDBFilename];
+        successBase = [fileManager copyItemAtPath:defaultDBPath toPath: OPFWritableBaseDBPath error: &error];
+    }
+    if (!successAux) {
+        NSString* auxDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFAuxDBFilename];
+        successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
+    }
+    if(!successBase) {
+        NSLog(@"Failed to copy base db to documents directory");
+    }
+    if(!successAux) {
+        NSLog(@"Failed to copy aux db to documents directory");
+    }
+}
+
 //
 //  Inits with the preinstalled database.
 - (id) init {
     self = [super init];
     if (self == nil) return nil;
-    NSString* baseDBPath = [[NSBundle mainBundle] pathForResource:@"so" ofType:@"sqlite"];
-    NSString* auxDBPath = [[NSBundle mainBundle] pathForResource:@"auxiliary" ofType:@"sqlite"];
-    _baseDB = [FMDatabase databaseWithPath: baseDBPath];
-    _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: baseDBPath];
-    _auxDB = [FMDatabase databaseWithPath:auxDBPath];
-    _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:auxDBPath];
-    _dataBaseIndex = @{@"baseDB": _baseDBQueue, @"auxDB":  _auxDBQueue};
+    _auxAttached = NO;
+    [OPFDatabaseAccess setDBPaths];
+    [OPFDatabaseAccess copyDatabaseIfNeeded];
+    _combinedQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
+    [self attachAuxDB];
     return self;
 }
 
@@ -43,38 +85,37 @@ static NSString* OPFDefaultDB = @"baseDB";
 // Executes an SQL string and returns the result.
 // Returns nil if result is empty.
 // Returns nil if db is unavailable.
-- (FMResultSet *) executeSQL:(NSString *)sql withDatabase: (NSString*) databaseName
+- (FMResultSet *) executeSQL:(NSString *)sql
 {
-    FMDatabaseQueue* db = [self.dataBaseIndex valueForKey:databaseName];
-//    if([_baseDB open]) {
-//        NSLog(@"Opened database");
-//        NSLog([NSString stringWithFormat:@"Executing SQL: %@", sql]);
-//        __block FMResultSet* result;
-//        [_baseDBQueue inDatabase: ^(FMDatabase* db) {
-//            result = [db executeQuery:sql];
-//        }];
-//        return result;
-//    } else {
-//        NSLog(@"Failed to open database");
-//        return nil;
-//    }
+    [self attachAuxDB];
     __block FMResultSet* result;
-    NSLog(@"Executing SQL on db %@: %@", databaseName, sql);
-    [db inDatabase: ^(FMDatabase* db) {
+    [_combinedQueue inDatabase: ^(FMDatabase* db) {
+        NSLog(@"Executing query %@", sql);
         result = [db executeQuery:sql];
     }];
     return result;
 }
 
-- (FMResultSet *) executeSQL:(NSString *)sql
+-(void) attachAuxDB
 {
-    NSLog(@"Using default db");
-    return [self executeSQL: sql withDatabase:OPFDefaultDB];
+    if (!self.auxAttached) {
+        [_combinedQueue inDatabase:^(FMDatabase* db){
+            BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
+            if (result) {
+                NSLog(@"Successfully attached aux db");
+                self.auxAttached = YES;
+            } else {
+                NSLog(@"Failed to attach aux db");
+                self.auxAttached = NO;
+            }
+        }];
+    }
 }
 
 -(void) close
 {
-    [_baseDB close];
+    self.auxAttached = NO;
+    [_combinedQueue close];
 }
 
 @end

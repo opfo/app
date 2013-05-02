@@ -13,6 +13,9 @@ cd Code-Stream
 # Bootstrap the project
 ./Scripts/bootstrap
 
+# Download the databases if needed
+./Scripts/update_dbs
+
 # Start hacking.
 open "Code Stream.xcworkspace"
 ```
@@ -21,6 +24,12 @@ Done, yay woop woop.
 
 ### Staying updated
 Normally just do a `git pull` but when a submodule or CocoaPod has been added or updated (see the commit history) you will also need to run the bootstrap script again. That is, from the project root, `./Scripts/bootstrap`.
+
+If changes are made to the auxiliary database, you need to rerun the database update script using the *force* option:
+
+```shell
+./Scripts/update_dbs force
+```
 
 ## Hacking
 Please have a look at our [definition of done](https://github.com/opfo/resources/blob/master/Definition%20of%20done.md) as well our [Coding Conventions](https://github.com/opfo/resources/blob/master/coding_convetions.md). Then you can open the Xcode workspace file (`open "Code Stream.xcworkspace"`).

@@ -10,6 +10,13 @@
 #import "OPFAnswer.h"
 #import "OPFQuestion.h"
 #import "OPFComment.h"
+#import "OPFTag.h"
+
+@interface OPFPost(/*Private*/)
+
++(NSString*) tagSearchStringFromArray: (NSArray*) tags;
+
+@end
 
 @implementation OPFPost
 
@@ -104,5 +111,62 @@
 
 @synthesize lastEditor = _lastEditor;
 
+- (OPFUser*) lastEditor
+{
+    if (_lastEditor == nil) {
+        OPFQuery* query = [[OPFUser query] whereColumn:@"id" is: self.lastEditorId];
+        _lastEditor = [query getOne];
+    }
+    return _lastEditor;
+}
+
+- (void) setLastEditor:(OPFUser *)lastEditor
+{
+    if (_lastEditor != lastEditor) {
+        _lastEditor = lastEditor;
+        [self setLastEditorId: lastEditor.identifier];
+    }
+}
+
+# pragma mark - Full text search methods
+
++ (NSString*) indexTableName
+{
+    return @"posts_index";
+}
+
++ (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
+{
+    OnGetOne singleModelCallback = ^(NSDictionary* attributes){
+        return [self parseDictionary:attributes];
+    };
+    OnGetMany multipleModelCallback = ^(FMResultSet* result) {
+        return [self parseMultipleResult:result];
+    };
+    NSString* combinedTerms = [NSString stringWithFormat:@"%@ %@", [self matchClauseFromSearchString:searchTerms], [self tagSearchStringFromArray:tags]];
+    OPFSearchQuery* query = [OPFSearchQuery searchQueryWithTableName:[self modelTableName]
+                                                              dbName:[self dbName]
+                                                         oneCallback:singleModelCallback
+                                                        manyCallback:multipleModelCallback
+                                                            pageSize:@([self defaultPageSize])
+                                                      indexTableName:[self indexTableName]
+                                                          searchTerm: combinedTerms];
+    return query;
+}
+
++ (NSString*) tagSearchStringFromArray: (NSArray*) tags
+{
+    NSMutableArray* tagStrings = [[NSMutableArray alloc] init];
+    NSString* tagFormat = @"tags:%@";
+    for (id tag in tags) {
+        if([tag class] == [OPFTag class]) {
+            [tagStrings addObject: [NSString stringWithFormat: tagFormat, [tag name]]];
+        } else {
+            [tagStrings addObject: [NSString stringWithFormat: tagFormat, tag]];
+        }
+    }
+    NSString* tagsString = [tagStrings componentsJoinedByString:@" "];
+    return tagsString;
+}
 
 @end

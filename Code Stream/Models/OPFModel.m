@@ -78,11 +78,6 @@
     return 10;
 }
 
-+ (NSString*) modelDBName
-{
-    return @"so.sqlite";
-}
-
 // This method needs to be overridden by subclasses
 + (NSString*) modelTableName
 {
@@ -111,7 +106,7 @@
 
 + (NSString*) dbName
 {
-    return @"baseDB";
+    return @"main";
 }
 
 # pragma mark - Query

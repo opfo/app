@@ -91,6 +91,10 @@
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		813482451727C045008E8F22 /* auxiliary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 813482441727C045008E8F22 /* auxiliary.sqlite */; };
+		813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F5CD917328AD100F71CD6 /* OPFSearchable.m */; };
+		813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */; };
+		813F5CE01732AE1800F71CD6 /* OPFSearchQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F5CDF1732AE1800F71CD6 /* OPFSearchQuerySpec.m */; };
+		813F5CE31732AEA800F71CD6 /* OPFSearchableSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F5CE21732AEA800F71CD6 /* OPFSearchableSpec.m */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
 		815E1B4E172473FE00FBDFEF /* OPFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B4D172473FE00FBDFEF /* OPFQuery.m */; };
 		815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */; };
@@ -113,6 +117,7 @@
 		81C1C74517202F3C004AB177 /* OPFCommentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1C74417202F3C004AB177 /* OPFCommentSpec.m */; };
 		81D5E05B172168B800E572B2 /* OPFModelSpecHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */; };
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
+		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
@@ -268,6 +273,12 @@
 		8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccess.m; path = Utilities/Persistence/OPFDatabaseAccess.m; sourceTree = "<group>"; };
 		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
 		813482441727C045008E8F22 /* auxiliary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = auxiliary.sqlite; sourceTree = "<group>"; };
+		813F5CD817328AD100F71CD6 /* OPFSearchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFSearchable.h; path = Models/OPFSearchable.h; sourceTree = "<group>"; };
+		813F5CD917328AD100F71CD6 /* OPFSearchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchable.m; path = Models/OPFSearchable.m; sourceTree = "<group>"; };
+		813F5CDB17329E2B00F71CD6 /* OPFSearchQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFSearchQuery.h; path = Utilities/Persistence/OPFSearchQuery.h; sourceTree = "<group>"; };
+		813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchQuery.m; path = Utilities/Persistence/OPFSearchQuery.m; sourceTree = "<group>"; };
+		813F5CDF1732AE1800F71CD6 /* OPFSearchQuerySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchQuerySpec.m; path = UtilitySpecs/OPFSearchQuerySpec.m; sourceTree = "<group>"; };
+		813F5CE21732AEA800F71CD6 /* OPFSearchableSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchableSpec.m; path = ModelSpecs/OPFSearchableSpec.m; sourceTree = "<group>"; };
 		815261FA171D62FA00B5EF2D /* OPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFUser.h; path = Models/OPFUser.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* OPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUser.m; path = Models/OPFUser.m; sourceTree = "<group>"; };
 		815E1B4C172473FE00FBDFEF /* OPFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuery.h; path = Utilities/Persistence/OPFQuery.h; sourceTree = "<group>"; };
@@ -304,6 +315,7 @@
 		81D5E059172168B800E572B2 /* OPFModelSpecHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModelSpecHelper.h; path = SpecHelpers/OPFModelSpecHelper.h; sourceTree = "<group>"; };
 		81D5E05A172168B800E572B2 /* OPFModelSpecHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModelSpecHelper.m; path = SpecHelpers/OPFModelSpecHelper.m; sourceTree = "<group>"; };
 		81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccessSpec.m; path = UtilitySpecs/OPFDatabaseAccessSpec.m; sourceTree = "<group>"; };
+		81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPostSpec.m; path = ModelSpecs/OPFPostSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
@@ -607,6 +619,8 @@
 				815E1B5D1725207500FBDFEF /* OPFInQuery.m */,
 				815E1B6217253C1E00FBDFEF /* OPFLikeQuery.h */,
 				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
+				813F5CDB17329E2B00F71CD6 /* OPFSearchQuery.h */,
+				813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -628,6 +642,8 @@
 				8194A6A11726807B00B2F0D5 /* OPFQuestionSpec.m */,
 				8194A6A61726A9D000B2F0D5 /* OPFAnswerSpec.m */,
 				8161DD2E172919AD00806493 /* OPFTagSpec.m */,
+				81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */,
+				813F5CE21732AEA800F71CD6 /* OPFSearchableSpec.m */,
 			);
 			name = ModelSpecs;
 			sourceTree = "<group>";
@@ -644,6 +660,7 @@
 		81E57937172012EE00F9D4E3 /* UtilitySpecs */ = {
 			isa = PBXGroup;
 			children = (
+				813F5CDF1732AE1800F71CD6 /* OPFSearchQuerySpec.m */,
 				81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */,
 				9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */,
 				815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */,
@@ -770,6 +787,8 @@
 				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
 				8161DD2A172854F100806493 /* OPFTag.h */,
 				8161DD2B172854F100806493 /* OPFTag.m */,
+				813F5CD817328AD100F71CD6 /* OPFSearchable.h */,
+				813F5CD917328AD100F71CD6 /* OPFSearchable.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1243,6 +1262,8 @@
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
+				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
+				813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */,
 				1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */,
 				1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */,
 				1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */,
@@ -1268,6 +1289,9 @@
 				8194A6A21726807B00B2F0D5 /* OPFQuestionSpec.m in Sources */,
 				8194A6A71726A9D000B2F0D5 /* OPFAnswerSpec.m in Sources */,
 				8161DD2F172919AD00806493 /* OPFTagSpec.m in Sources */,
+				81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */,
+				813F5CE01732AE1800F71CD6 /* OPFSearchQuerySpec.m in Sources */,
+				813F5CE31732AEA800F71CD6 /* OPFSearchableSpec.m in Sources */,
 				14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1328,8 +1352,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"DEBUG=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1356,6 +1380,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1376,6 +1401,17 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1392,6 +1428,17 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1417,6 +1464,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					SystemConfiguration,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1437,6 +1497,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					SystemConfiguration,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
