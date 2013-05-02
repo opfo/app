@@ -17,10 +17,13 @@ SpecBegin(OPFAnswer)
 
 describe(@"Fetching", ^{
     __block OPFAnswer* answer;
+    __block OPFAnswer* answerWithComments;
     
     beforeEach(^{
         answer = [[[OPFAnswer query] whereColumn:@"id" is:@(8474366)] getOne];
+        answerWithComments = [[[OPFAnswer query] whereColumn:@"id" is:@(8420200)] getOne];
     });
+    
     it(@"should not fetch an incorrect type of model", ^{
         answer = [[[OPFAnswer query] whereColumn: @"id" is: @(8414076)] getOne];
         expect(answer).to.beNil();
@@ -36,6 +39,10 @@ describe(@"Fetching", ^{
         expect(answer.parent.identifier).to.equal(answer.parentId);
     });
     
+    it(@"should have a title even though the answer has comments associated", ^{
+        expect(answerWithComments.title).notTo.equal(@"NULL");
+        expect(answerWithComments.title).notTo.beNil();
+    });
 });
 
 SpecEnd

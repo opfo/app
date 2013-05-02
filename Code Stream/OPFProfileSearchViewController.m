@@ -141,6 +141,16 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     return userModel;
 }
 
+- (void)didSelectUserWebsite:(UIButton *)sender;
+{
+    //Only open valid urls
+    NSURL *websiteUrl = [NSURL URLWithString:sender.titleLabel.text];
+    
+    if (websiteUrl != nil) {
+        [[UIApplication sharedApplication] openURL:websiteUrl];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
