@@ -14,7 +14,6 @@
 
 @interface OPFPost(/*Private*/)
 
-+(NSString*) matchClauseFromSearchString: (NSString*) searchString;
 +(NSString*) tagSearchStringFromArray: (NSArray*) tags;
 
 @end
@@ -136,18 +135,6 @@
     return @"posts_index";
 }
 
-//+ (OPFQuery*) searchFor:(NSString *)searchTerms
-//{
-//    NSString* queryFormat = @"SELECT post_id FROM auxDB.posts_index WHERE index_string MATCH %@";
-//    NSString* output = [NSString stringWithFormat:queryFormat, [self matchClauseFromSearchString:searchTerms]];
-//    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output];
-//    NSMutableArray* postIds = [[NSMutableArray alloc] init];
-//    while ([result next]) {
-//        [postIds addObject: @([result intForColumn:@"post_id"])];
-//    }
-//    return [[self query] whereColumn:@"id" in:postIds];
-//}
-
 + (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
 {
     OPFQuery* query  = [self searchFor: searchTerms];
@@ -168,24 +155,6 @@
     }
     NSString* tagsString = [NSString stringWithFormat:@"%%%@%%", [tagStrings componentsJoinedByString:@"%%"]];
     return tagsString;
-}
-
-+ (NSString*) matchClauseFromSearchString: (NSString*) searchString
-{
-    /**
-     This method could later be used to tweak the query string.
-     For now we will return the input.
-     For example usage see below:
-     
-    NSArray* tokens = [searchString componentsSeparatedByString:@" "];
-    NSMutableArray* wildCardTokens = [[NSMutableArray alloc] initWithCapacity: [tokens count]];
-    for(id token in tokens) {
-        [wildCardTokens addObject:[NSString stringWithFormat:@"%@*", token]];
-    }
-    NSString* output = [wildCardTokens componentsJoinedByString:@" AND "];
-    return output;
-     */
-    return [NSString stringWithFormat:@"'%@'", searchString];
 }
 
 @end
