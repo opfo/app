@@ -49,7 +49,7 @@
 	UICollectionViewFlowLayout *completionsViewLayout = [UICollectionViewFlowLayout new];
 	completionsViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 	completionsViewLayout.minimumInteritemSpacing = 10.f;
-	completionsViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 10.f, 0.f, 0.f);
+	completionsViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 10.f, 0.f, 10.f);
 	
 	UICollectionView *searchBarInputCompletionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 44.f) collectionViewLayout:completionsViewLayout];
 	searchBarInputCompletionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
