@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler'
+Bundler.setup
+
+require 'colorize'
+
+
+auxDBURL = "https://www.dropbox.com/s/csbmul7q4k210jm/auxiliary.sqlite"
+baseDBURL = "https://www.dropbox.com/s/f0a99tjgccaqsdw/so.sqlite"
+
+if (File.basename(Dir.pwd) == "Scripts")
+  Dir.chdir("../Code Stream")
+elsif (File.basename(Dir.pwd) == "Code-Stream")
+  Dir.chdir("Code Stream")
+end
+
+puts "Checking for missing databases".green
+
+if ARGV[0] == "force"
+  File.delete("auxiliary.sqlite") if File.file? "auxiliary.sqlite"
+end
+
+unless File.file? "auxiliary.sqlite"
+  puts "Fetching auxiliary database".yellow
+  `wget #{auxDBURL}`
+else
+  puts "Did not need to fetch aux db".green
+end
+
+unless File.file? "so.sqlite"
+  puts "Fetching base DB".yellow
+  `wget #{baseDBURL}`
+else
+  puts "Did not need to fetch base db".green
+end
+
+puts "Done.".green
+
+unless ARGV[0] == "force"
+  puts "Use the option ".green + "force".yellow + " to force an update of the auxiliary database".green
+  puts "Example: > ./update_dbs force".green
+end
+

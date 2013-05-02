@@ -10,6 +10,7 @@
 #define EXP_SHORTHAND
 #import "Expecta.h"
 #import "OPFUser.h"
+#import "OPFAnswer.h"
 #include <objc/runtime.h>
 
 SpecBegin(OPFUser)
@@ -17,19 +18,6 @@ SpecBegin(OPFUser)
 describe(@"User creation", ^{
     __block OPFUser* user;
     __block NSDictionary* properties = @{@"reputation": @(9), @"displayName": @"lorem ipsum", @"creationDate": [NSDate date]};
-    __block NSDictionary* correctProperties
-        = @{
-            @"identifier": @42,
-            @"reputation": @9060,
-            @"creationDate": @"2008-08-01",
-            @"displayName": @"Coincoin",
-            @"emailHash": @"621f5ee6cf6e295d1b5fa45bde67c803",
-            @"lastAccessDate": @"2012-07-30",
-            @"location": @"Montreal, Canada",
-            @"age": @32,
-            @"downVotes": @37,
-            @"upVotes": @297
-            };
     
     it(@"should be possible using a dictionary", ^{
         NSError* error;
@@ -78,12 +66,36 @@ describe(@"Pagination", ^{
     });
 });
 
-describe(@"User Profile Views", ^{
-    it(@"The views shuld be a NSNumber", ^{
-        OPFUser *user = [[OPFUser alloc] init];
-        user.view = @111;
-       // expect(user.view).to.equal(111111);
-        expect(user.view).to.beInstanceOf([NSNumber class]);
+describe(@"display name search", ^{
+    it(@"is possible to search users by display name", ^{
+        NSArray* users = [[OPFUser searchFor:@"roryf"] getMany];
+        expect([users count]).to.beGreaterThan(0);
+        expect([[users objectAtIndex:0] identifier]).to.equal(@(270));
+        users = [[OPFUser searchFor:@"matt"] getMany];
+        expect([users count]).to.equal(37);
+        expect([[users objectAtIndex:0] identifier]).to.equal(@(797));
+        expect([[users objectAtIndex:36] identifier]).to.equal(@(1091105));
     });
 });
+
+describe(@"fetching related objects", ^{
+    __block OPFUser *user = [OPFUser find: 22656];
+    __block OPFUser *userWithQuestions = [OPFUser find: 1127616];
+    it(@"is possible to fetch answers", ^{
+        NSArray* answers = [[user answers] getMany];
+        expect(answers.count).to.equal(21);
+        for (id answer in answers) {
+            expect([answer ownerId]).to.equal(user.identifier);
+        }
+    });
+    
+    it(@"is possible to fetch all questions", ^{
+        NSArray* questions = [[userWithQuestions questions] getMany];
+        expect(questions.count).to.equal(3);
+        for(id question in questions) {
+            expect([question ownerId]).to.equal(userWithQuestions.identifier);
+        }
+    });
+});
+
 SpecEnd

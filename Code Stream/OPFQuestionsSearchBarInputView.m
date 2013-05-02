@@ -9,7 +9,7 @@
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "UIView+OPFViewLoading.h"
-#import <SSToolkit/SSLineView.h>
+#import "SSLineView.h"
 #import <QuartzCore/QuartzCore.h>
 
 

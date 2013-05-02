@@ -16,7 +16,7 @@ PODS:
     - libextobjc/EXTKeyPathCoding
     - libextobjc/EXTScope
   - Specta (0.1.8)
-  - SSToolkit (1.0.4)
+  - sqlite3 (3.7.16.1)
 
 DEPENDENCIES:
   - AFNetworking (= 1.2.1)
@@ -28,7 +28,7 @@ DEPENDENCIES:
   - KHGravatar (from `https://github.com/opfo/KHGravatar.git`)
   - Mantle (= 1.0)
   - Specta (= 0.1.8)
-  - SSToolkit (= 1.0.4)
+  - sqlite3 (from `https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec`)
 
 EXTERNAL SOURCES:
   AGMedallionView:
@@ -39,6 +39,8 @@ EXTERNAL SOURCES:
     :git: git://github.com/opfo/GCTagList.git
   KHGravatar:
     :git: https://github.com/opfo/KHGravatar.git
+  sqlite3:
+    :podspec: https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
@@ -51,6 +53,6 @@ SPEC CHECKSUMS:
   libextobjc: 2cbc74caf8bdc74a86fdf24673f773c83424ea98
   Mantle: aa9860e40cc365a094ef60fec46848fee7b03ca7
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
-  SSToolkit: 689acaedac79c2079e492e528a55bcb5db9d98c4
+  sqlite3: 19ef78909d086b66226c54b1e7d323556e640ca3
 
 COCOAPODS: 0.18.1

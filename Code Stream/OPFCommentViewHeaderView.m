@@ -9,6 +9,7 @@
 #import "OPFCommentViewHeaderView.h"
 #import "UIView+OPFViewLoading.h"
 #import "OPFPost.h"
+#import "OPFAnswer.h"
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
 
@@ -49,7 +50,9 @@ static NSString *const NoCountInformationPlaceholder = @"0";
 
 - (void)setModelValuesInView
 {
-    self.postTitle.text = self.postModel.title;
+    NSString *title = (! [self.postModel.title isEqualToString:@"NULL"] ) ? self.postModel.title : ((OPFAnswer *) self.postModel).parent.title;
+    
+    self.postTitle.text = title;
     self.postUserName.text = self.postModel.owner.displayName;
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.creationDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.creationDate];

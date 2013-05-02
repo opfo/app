@@ -38,6 +38,7 @@
 //
 // question - The data model that should be represented by the preview cell
 - (void) configureWithQuestionData:(OPFQuestion *)question;
+- (void) heatMode:(Boolean) modeOn;
 
 // IBOutlet properties linked to SingleQuestionPreviewCell.xib
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;

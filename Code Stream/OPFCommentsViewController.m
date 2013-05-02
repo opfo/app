@@ -21,6 +21,7 @@
 @property(nonatomic, strong) NSArray *commentModels;
 
 - (void)opfSetupView;
+- (OPFComment *)commentForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -65,6 +66,11 @@
     [self performInitialDatabaseFetch];
     
     [self.tableView reloadData];
+}
+
+- (OPFPost *)commentForIndexPath:(NSIndexPath *)indexPath
+{
+    return self.commentModels[indexPath.row];
 }
 
 - (void)commentSavePressed:(UIButton *)sender
@@ -155,7 +161,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 122;
+	return 120;
 }
 
 - (void)viewWillAppear:(BOOL)animated

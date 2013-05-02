@@ -72,8 +72,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
 		
-		BOOL isSearchingAndHasRows = (self.hasLoaded || self.isSearching) && self.mutableUserModels.count > 0;
-		BOOL isNotSearchingAndHasRows = (self.hasLoaded || self.isSearching) == NO && self.rootUserModels.count > 0;
+		BOOL isSearchingAndHasRows = (self.isSearching) && self.mutableUserModels.count > 0;
+		BOOL isNotSearchingAndHasRows = (self.isSearching) == NO && self.mutableUserModels.count > 0;
 		if (isSearchingAndHasRows || isNotSearchingAndHasRows) {
 			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 		}
@@ -99,15 +99,14 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return NSLocalizedString(@"User search", @"Profile search controller tab title");
+    return NSLocalizedString(@"Users", @"Profile search controller tab title");
 }
 
 - (void)performInitialDatabaseFetch
 {
     self.atPage = [NSNumber numberWithInt:0];
 
-    self.rootUserModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
-    self.mutableUserModels = [NSMutableArray arrayWithArray:self.rootUserModels];
+    self.mutableUserModels = [NSMutableArray arrayWithArray:[OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE]];
 }
 
 - (void)setupRefreshControl
@@ -128,17 +127,21 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     OPFUser *userModel = nil;
     
-    if(self.hasLoaded || self.isSearching) {
-        int index = self.mutableUserModels.count - indexPath.row - 1;
+    int index = self.mutableUserModels.count - indexPath.row - 1;
         
-        userModel = index > 0 ? self.mutableUserModels[index]: nil;
-    } else {
-        int index = self.rootUserModels.count - indexPath.row - 1;
-
-        userModel = self.rootUserModels[index];
-    }
+    userModel = index > 0 ? self.mutableUserModels[index]: nil;
 
     return userModel;
+}
+
+- (void)didSelectUserWebsite:(UIButton *)sender;
+{
+    //Only open valid urls
+    NSURL *websiteUrl = [NSURL URLWithString:sender.titleLabel.text];
+    
+    if (websiteUrl != nil) {
+        [[UIApplication sharedApplication] openURL:websiteUrl];
+    }
 }
 
 #pragma mark - Table view data source
@@ -156,7 +159,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.hasLoaded ? self.mutableUserModels.count : self.rootUserModels.count;
+    return self.mutableUserModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -184,7 +187,6 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
 	OPFUser *userModel = [self userForIndexPath:indexPath];
 	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
     userProfileViewController.user = userModel;
@@ -197,16 +199,12 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" like:searchText] getMany];
+    self.databaseUserModels =  [[OPFUser searchFor:searchText] getMany];
     
     if(self.isSearching) {
         self.hasLoaded = NO;
-        
-        [self.mutableUserModels removeAllObjects];
-        
-        self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
                 
-        self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
+        self.mutableUserModels = [NSMutableArray arrayWithArray:self.databaseUserModels];
     } else {
         [self searchBarSearchButtonClicked:searchBar];
     }
@@ -216,6 +214,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    self.hasLoaded = self.isSearching = NO;
+    [self performInitialDatabaseFetch];
     [searchBar resignFirstResponder];
 }
 
