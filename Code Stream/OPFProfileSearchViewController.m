@@ -17,6 +17,7 @@
 @interface OPFProfileSearchViewController ()
 
 @property(strong, nonatomic) NSMutableArray *mutableUserModels;
+@property(strong, nonatomic) NSMutableArray *userModelIds;
 @property(strong, nonatomic) NSArray *databaseUserModels;
 @property(nonatomic) BOOL hasLoaded;
 @property(nonatomic) BOOL isSearching;
@@ -86,6 +87,22 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [self performInitialDatabaseFetch];
     
     self.title = NSLocalizedString(@"User search", @"Profile search controller title");
+        
+    self.databaseUserModels = [OPFUser all];
+    
+    self.userModelIds = [NSMutableArray array];
+    
+    int random;
+    for (OPFUser *userModel in self.databaseUserModels) {
+        random = (arc4random() % 1000) + 1;
+        
+        //Picks .005 of models cuz count if approx. 10 000
+        if(random <= 5) {
+            [self.userModelIds addObject:userModel.identifier];
+        }
+    }
+    
+    NSLog(@"%@ %d", @"Picked number of ids:", [self.userModelIds count]);
 }
 
 #pragma mark - TabbedViewController methods
@@ -207,17 +224,13 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" is:searchText] getMany];
-    
     if(self.isSearching) {
         self.hasLoaded = NO;
         
         [self.mutableUserModels removeAllObjects];
         
-        //self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
-        //self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
-        
-        self.mutableUserModels = [NSMutableArray arrayWithArray:self.databaseUserModels];
+        NSArray *inArray = [NSArray arrayWithArray:self.userModelIds];
+        self.mutableUserModels = [NSArray arrayWithArray:[[[OPFUser query] whereColumn:@"id" in:inArray] getMany]];
     } else {
         [self searchBarSearchButtonClicked:searchBar];
     }
