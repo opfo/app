@@ -46,14 +46,14 @@ describe(@"executing SQL", ^{
         }];
         expect([result next]).beTruthy();
         expect([result intForColumn:@"cnt"]).to.equal(13092);
-        result = [dbAccess executeSQL:@"SELECT post_id FROM auxDB.posts_index WHERE index_string MATCH 'bacon'"];
+        result = [dbAccess executeSQL:@"SELECT object_id FROM auxDB.posts_index WHERE index_string MATCH 'bacon'"];
         expect([result next]).to.beTruthy();
     });
     
     it(@"should be possible to do a combined queue query using the convience method", ^{
-        result = [dbAccess executeSQL:@"SELECT post_id FROM auxDB.posts_index WHERE index_string MATCH 'bacon'"];
+        result = [dbAccess executeSQL:@"SELECT object_id FROM auxDB.posts_index WHERE index_string MATCH 'bacon'"];
         expect([result next]).to.beTruthy();
-        expect([result intForColumn:@"post_id"]).to.equal(8470957);
+        expect([result intForColumn:@"object_id"]).to.equal(8470957);
     });
     afterAll(^{
         [dbAccess close];
