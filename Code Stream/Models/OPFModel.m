@@ -11,11 +11,6 @@
 
 @implementation OPFModel
 
-+ (OPFDatabaseAccess*) getDBAccess
-{
-    return [OPFDatabaseAccess getDBAccess];
-}
-
 # pragma mark - Find All methods used by the actual models
 
 + (NSArray *) all

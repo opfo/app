@@ -154,6 +154,10 @@
     return query;
 }
 
+//  Transforms an array of tags into a string suitable for a MATCH query
+//  Example:
+//  "apa bepa"
+//  => "tags:apa tags:bepa"
 + (NSString*) tagSearchStringFromArray: (NSArray*) tags
 {
     NSMutableArray* tagStrings = [[NSMutableArray alloc] init];
