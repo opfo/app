@@ -359,7 +359,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 		}
 		[searchString insertString:token atIndex:location];
 		
-		if (tokenEndRange.location == NSNotFound || tokenEndRange.location < tokenStartRange.location) {
+		if (tokenEndRange.location == NSNotFound || tokenEndRange.location <= tokenStartRange.location) {
 			[searchString appendString:tokenEndChar];
 		}
 		
