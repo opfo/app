@@ -25,6 +25,7 @@
 + (OPFQuery*) searchFor:(NSString *)searchTerms
 {
     NSString* queryFormat = @"SELECT object_id FROM auxDB.%@ WHERE index_string MATCH %@";
+    NSString* joinQueryForm = @"SELECT '%@'.* FROM '%@' INNER JOIN auxDB.%@ ON '%@'.'id' = '%@'.'object_id' WHERE '@%'.'index_string' MATCH '%@'";
     NSString* output = [NSString stringWithFormat:queryFormat, [self indexTableName], [self matchClauseFromSearchString:searchTerms]];
     FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output];
     NSMutableArray* objectIds = [[NSMutableArray alloc] init];
