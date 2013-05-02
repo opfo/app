@@ -7,6 +7,7 @@
 //
 
 #import "OPFPostBodyTableViewCell.h"
+#import "NSString+OPFEscapeStrings.h"
 
 @implementation OPFPostBodyTableViewCell
 @synthesize htmlString = _htmlString;
@@ -18,20 +19,10 @@
 		[self reloadHTMLWithString:htmlString];
 }
 
-+ (NSString*)escapeJavaScriptWithString:(NSString*)unescaped {
-	NSMutableString *myRepr = [[NSMutableString alloc] initWithString:unescaped];
-	NSRange myRange = NSMakeRange(0, [unescaped length]);
-	NSArray *toReplace = [NSArray arrayWithObjects:@"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e", @"\"\"", @"<pre>", nil];
-	NSArray *replaceWith = [NSArray arrayWithObjects:@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", @"<pre class=\\\"prettyprint\\\">", nil];
-	for (int i = 0, count = [toReplace count]; i < count; ++i) {
-		[myRepr replaceOccurrencesOfString:[toReplace objectAtIndex:i] withString:[replaceWith objectAtIndex:i] options:0 range:myRange];
-	}
-	NSString *retStr = [NSString stringWithFormat:@"%@", myRepr];
-	return retStr;
-}
+
 
 - (void)reloadHTMLWithString:(NSString *)content {
-	NSString *command = [NSString stringWithFormat:@"loadBody(\"%@\")", [OPFPostBodyTableViewCell escapeJavaScriptWithString:content]];
+	NSString *command = [NSString stringWithFormat:@"loadBody(\"%@\")", [content OPF_escapeWithScheme:OPFEscapePrettify]];
 	[self.bodyTextView stringByEvaluatingJavaScriptFromString:command];
 }
 

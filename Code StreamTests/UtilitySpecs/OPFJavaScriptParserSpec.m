@@ -10,12 +10,13 @@
 #define EXP_SHORTHAND
 #import "Expecta.h"
 #import "OPFPostBodyTableViewCell.h"
+#import "NSString+OPFEscapeStrings.h"
 
 SpecBegin(JavaScriptParser)
 
 describe(@"escaping HTML for Java Script", ^{
 	
-	NSString* (^convert)(NSString*) = ^(NSString* string) {return [OPFPostBodyTableViewCell  escapeJavaScriptWithString:string];};
+	NSString* (^convert)(NSString*) = ^(NSString* string) {return [string OPF_escapeWithScheme:OPFEscapePrettify];};
 	
 	it(@"translates HTML Tags without modification", ^{
 		expect(convert(@"<html>test</html>")).
