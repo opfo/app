@@ -26,11 +26,11 @@ static OPFUser *userModel;
     self.userModel = userModel;
 }
 
-+ (BOOL)login:(NSString *)displayName
++ (BOOL)loginWithUsername :(NSString *)userName andPassword :(NSString *)password;
 {
-    OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"display_name" is:displayName] getOne];
+    __strong OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"display_name" is:userName] getOne];
     
-    if (userModel) {
+    if (loggedInUserModel) {
         userModel = loggedInUserModel;
         
         return YES;

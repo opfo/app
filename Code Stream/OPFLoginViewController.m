@@ -80,9 +80,13 @@
         
         UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 200, 35)];
         inputField.delegate = self;
-        if (indexPath.row == 0)
+        if (indexPath.row == 0) {
+            self.userNameField = inputField;
             inputField.tag = 0;
+        }
         else {
+            self.passwordField = inputField;
+            inputField.secureTextEntry = YES;
             inputField.tag = 1;
         }
         [cell.contentView addSubview:inputField];
@@ -91,9 +95,14 @@
 }
 
 #pragma mark - IBActions
-- (IBAction)userRequestsLogin:(id)sender
+
+- (void)userRequestsLogin:(id)sender
 {
+    BOOL loginReponse = [OPFAppState loginWithUsername:self.userNameField.text andPassword:self.passwordField.text];
     
+    if(loginReponse == YES) {
+        
+    }
 }
 
 #pragma mark - TabbedViewController methods

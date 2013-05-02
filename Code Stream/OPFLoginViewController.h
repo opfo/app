@@ -10,8 +10,12 @@
 
 @interface OPFLoginViewController : UIViewController<UITextFieldDelegate, UITableViewDataSource, UITableViewDataSource>
 
+@property(strong, nonatomic) UITextField *userNameField;
+@property(strong, nonatomic) UITextField *passwordField;
+
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
+
 - (IBAction)userRequestsLogin:(id)sender;
 
 @end

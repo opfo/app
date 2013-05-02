@@ -14,7 +14,7 @@
 
 + (OPFUser *)userModel;
 + (void) setUserModel:(OPFUser *)userModel;
-+ (BOOL)login :(NSString *)displayName;
++ (BOOL)loginWithUsername :(NSString *)userName andPassword :(NSString *)password;
 + (BOOL)isLoggedIn;
 
 @end
