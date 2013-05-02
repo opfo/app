@@ -28,8 +28,8 @@
 @property (strong) NSNumber* upVotes;
 @property (strong) NSNumber* downVotes;
 
-- (NSArray *) questionsPage: (NSInteger) page;
-- (NSArray *) answersPage: (NSInteger) page;
-- (NSArray *) commentsPage: (NSInteger) page;
+- (OPFQuery *) questions;
+- (OPFQuery *) answers;
+- (OPFQuery *) comments;
 
 @end

@@ -23,19 +23,19 @@
     return @"users";
 }
 
-- (NSArray*) questionsPage:(NSInteger)page
+-(OPFQuery*) answers
 {
-    return nil;
+    return [[OPFAnswer query] whereColumn:@"owner_user_id" is:self.identifier];
 }
 
-- (NSArray*) answersPage:(NSInteger)page
+-(OPFQuery*) questions
 {
-    return nil;
+    return [[OPFQuestion query] whereColumn:@"owner_user_id" is: self.identifier];
 }
 
-- (NSArray*) commentsPage:(NSInteger)page
+-(OPFQuery*) comments
 {
-    return nil;
+    return [[OPFComment query] whereColumn:@"user_id" is:self.identifier];
 }
 
 //
@@ -66,6 +66,7 @@
     return [self standardDateTransformer];
 }
 
+// Used to build full text queries
 +(NSString*) indexTableName
 {
     return @"users_index";

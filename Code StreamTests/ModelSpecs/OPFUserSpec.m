@@ -10,6 +10,7 @@
 #define EXP_SHORTHAND
 #import "Expecta.h"
 #import "OPFUser.h"
+#import "OPFAnswer.h"
 #include <objc/runtime.h>
 
 SpecBegin(OPFUser)
@@ -74,6 +75,26 @@ describe(@"display name search", ^{
         expect([users count]).to.equal(37);
         expect([[users objectAtIndex:0] identifier]).to.equal(@(797));
         expect([[users objectAtIndex:36] identifier]).to.equal(@(1091105));
+    });
+});
+
+describe(@"fetching related objects", ^{
+    __block OPFUser *user = [OPFUser find: 22656];
+    __block OPFUser *userWithQuestions = [OPFUser find: 1127616];
+    it(@"is possible to fetch answers", ^{
+        NSArray* answers = [[user answers] getMany];
+        expect(answers.count).to.equal(21);
+        for (id answer in answers) {
+            expect([answer ownerId]).to.equal(user.identifier);
+        }
+    });
+    
+    it(@"is possible to fetch all questions", ^{
+        NSArray* questions = [[userWithQuestions questions] getMany];
+        expect(questions.count).to.equal(3);
+        for(id question in questions) {
+            expect([question ownerId]).to.equal(userWithQuestions.identifier);
+        }
     });
 });
 
