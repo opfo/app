@@ -22,6 +22,7 @@
 @property(strong, readonly) FMDatabase* auxDB;
 @property(strong, readonly) FMDatabaseQueue* baseDBQueue;
 @property(strong, readonly) FMDatabaseQueue* auxDBQueue;
+@property(strong, readonly) FMDatabaseQueue* combinedQueue;
 @property(strong, readonly) NSDictionary* dataBaseIndex;
 
 

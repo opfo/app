@@ -39,10 +39,18 @@ describe(@"executing SQL", ^{
         [result close];
     });
     
+    it(@"should be possible to query both dbs using the combined queue", ^{
+        __block FMResultSet* result;
+        [dbAccess.combinedQueue inDatabase:^(FMDatabase* db){
+            result = [db executeQuery:@"SELECT COUNT(*) as cnt FROM 'auxDB'.'posts_index'"];
+        }];
+        expect([result next]).beTruthy();
+        expect([result intForColumn:@"cnt"]).to.equal(13092); 
+    });
+    
     afterAll(^{
         [dbAccess close];
     });
-    
     
 });
 

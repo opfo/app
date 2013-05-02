@@ -74,6 +74,15 @@ static NSString* OPFWritableAuxDBPath;
     [OPFDatabaseAccess copyDatabaseIfNeeded];
     _baseDBQueue = [FMDatabaseQueue databaseQueueWithPath: OPFWritableBaseDBPath];
     _auxDBQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableAuxDBPath];
+    _combinedQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
+    [_combinedQueue inDatabase:^(FMDatabase* db){
+        BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
+        if (result) {
+            NSLog(@"Successfully attached aux db");
+        } else {
+            NSLog(@"Failed to attach aux db");
+        }
+    }];
     _dataBaseIndex = @{@"baseDB": _baseDBQueue, @"auxDB":  _auxDBQueue};
     return self;
 }
