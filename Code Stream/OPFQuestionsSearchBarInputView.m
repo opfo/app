@@ -9,7 +9,6 @@
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "UIView+OPFViewLoading.h"
-#import <GCTagList.h>
 #import <SSToolkit/SSLineView.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -47,10 +46,16 @@
 	OPFQuestionsSearchBarInputButtonsView *searchBarInputButtonsView = [OPFQuestionsSearchBarInputButtonsView opf_loadViewFromNIB];
 	_buttonsView = searchBarInputButtonsView;
 	
-	GCTagList *searchBarInputCompletionView = [[GCTagList alloc] init];
-	searchBarInputCompletionView.frame = CGRectMake(0.f, 0.f, 0.f, 44.f);
+	UICollectionViewFlowLayout *completionsViewLayout = [UICollectionViewFlowLayout new];
+	completionsViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+	completionsViewLayout.minimumInteritemSpacing = 10.f;
+	completionsViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 10.f, 0.f, 0.f);
+	
+	UICollectionView *searchBarInputCompletionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 44.f) collectionViewLayout:completionsViewLayout];
 	searchBarInputCompletionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	searchBarInputCompletionView.backgroundColor = UIColor.redColor;
+	searchBarInputCompletionView.backgroundColor = [UIColor clearColor];
+	searchBarInputCompletionView.showsHorizontalScrollIndicator = NO;
+	searchBarInputCompletionView.showsVerticalScrollIndicator = NO;
 	_completionsView = searchBarInputCompletionView;
 	
 	SSLineView *tokenTopBorderView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 2.f)];

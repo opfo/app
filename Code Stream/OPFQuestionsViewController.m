@@ -7,13 +7,31 @@
 //
 
 #import "OPFQuestionsViewController.h"
-#import "OPFSingleQuestionPreviewCell.h"
-#import "OPFQuestionViewController.h"
 #import "OPFQuestion.h"
+#import "OPFQuestionViewController.h"
+#import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
+#import "OPFQuestionsSearchBarTokenView.h"
+#import "OPFQuestionsSearchBarTokenRange.h"
+#import "OPFTokenCollectionViewCell.h"
 #import "NSString+OPFStripCharacters.h"
+
+
+typedef enum : NSInteger {
+	kOPFQuestionsViewControllerTokenBeingInputtedNone,
+	kOPFQuestionsViewControllerTokenBeingInputtedTag,
+	kOPFQuestionsViewControllerTokenBeingInputtedUser
+} OPFQuestionsViewControllerTokenBeingInputtedType;
+
+// Tag syntax:  [some tag]
+NSString *const kOPFQuestionsViewControllerTagTokenStartCharacter = @"[";
+NSString *const kOPFQuestionsViewControllerTagTokenEndCharacter = @"]";
+
+// User syntax: @Some cool User@
+NSString *const kOPFQuestionsViewControllerUserTokenStartCharacter = @"@";
+NSString *const kOPFQuestionsViewControllerUserTokenEndCharacter = @"@";
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -24,6 +42,10 @@
 @property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
 @property (strong, nonatomic) OPFQuestionsSearchBarInputView *searchBarInputView;
 
+@property (assign) OPFQuestionsViewControllerTokenBeingInputtedType tokenBeingInputtedType;
+@property (strong) NSMutableString *tokenBeingInputted;
+@property (strong) NSMutableArray *suggestedTokens;
+
 @end
 
 
@@ -33,7 +55,7 @@
 
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
-
+static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -80,18 +102,25 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
 {
+	self.suggestedTokens = @[ @"java", @"javafx", @"javascript", @"jaq", @"outside", @"even further outside" ].mutableCopy;
+	
 	[super viewDidLoad];
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
 	OPFQuestionsSearchBarInputView *searchBarInputView = OPFQuestionsSearchBarInputView.new;
+	searchBarInputView.completionsView.delegate = self;
+	searchBarInputView.completionsView.dataSource = self;
+	[searchBarInputView.completionsView registerClass:OPFTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];
 	[searchBarInputView.buttonsView.insertNewTagButton addTarget:self action:@selector(insertNewTag:) forControlEvents:UIControlEventTouchUpInside];
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
 	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -160,9 +189,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	OPFQuestion *question = self.filteredQuestions[indexPath.row];
+	[self dismissSearchBarExtras];
 	
 	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
+	OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	questionViewController.question = question;
 	
 	[self.navigationController pushViewController:questionViewController animated:YES];
@@ -193,7 +223,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 }
 
 
-#pragma mark - 
+#pragma mark - Update Filtered Questions
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	NSString *searchString = self.searchString ?: @"";
@@ -217,13 +247,12 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 	}];
 }
 
+
+#pragma mark - Key Value Obseravation
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
 		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == NO) {
-			[NSOperationQueue.mainQueue addOperationWithBlock:^{
-				self.searchBar.text = self.searchString;
-			}];
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				[self updateFilteredQuestionsCompletion:nil];
 			});
@@ -232,6 +261,69 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
+
+
+#pragma mark - Asking New Questions
+- (IBAction)askQuestions:(id)sender
+{
+	DLog(@"Asking new questions has not been implemtend.");
+	
+	UIViewController *askQuestionsViewController = UIViewController.new;
+	askQuestionsViewController.view.backgroundColor = UIColor.redColor;
+	
+	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:askQuestionsViewController];
+	
+	__weak typeof(self) weakSelf = self;
+	[self presentViewController:askQuestionsNavigationController animated:YES completion:^{
+		double delayInSeconds = .5f;
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+			UIViewController *self = weakSelf;
+			[self dismissViewControllerAnimated:YES completion:nil];
+		});
+	}];
+}
+
+
+#pragma mark - UICollectionViewDataSource Methods
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+	return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+	return self.suggestedTokens.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	OPFTokenCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SuggestedTagCellIdentifier forIndexPath:indexPath];
+	cell.tokenView.text = self.suggestedTokens[indexPath.row];
+	return cell;
+}
+
+
+#pragma mark - UICollectionViewFlowLayout Methods
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat height = kOPFTokenHeight;
+	
+	NSString *token = self.suggestedTokens[indexPath.row];
+	CGSize tokenSize = [token sizeWithFont:[UIFont systemFontOfSize:kOPFTokenTextFontSize]];
+	CGFloat width = kOPFTokenPaddingLeft + tokenSize.width + kOPFTokenPaddingRight;
+	
+	CGSize size = CGSizeMake(width, height);
+	return size;
+}
+
+
+#pragma mark - UICollectionViewDelegate Methods
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	DLog(@"%@", self.suggestedTokens[indexPath.row]);
+}
+
 
 
 #pragma mark - UISearchBarDelegate Methods
@@ -251,11 +343,42 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 {
 	self.searchString = searchText;
 	
-	if (searchText.length > 0) {
-		[searchBar setShowsCancelButton:NO animated:YES];
-	} else {
-		[searchBar setShowsCancelButton:YES animated:YES];
+	if (searchText.length == 0) {
+		[self changeSearchBarInputViewToButtonsView];
 	}
+}
+
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+	NSString *changedText = [searchBar.text substringWithRange:range];
+	DLog(@"changeText: %@", changedText);
+	DLog(@"text: %@", text);
+	
+	if ([changedText rangeOfString:kOPFQuestionsViewControllerTagTokenStartCharacter].location != NSNotFound) {
+		[self changeSearchBarInputViewToButtonsView];
+	}
+	
+	if (([text rangeOfString:kOPFQuestionsViewControllerTagTokenStartCharacter].location != NSNotFound ||
+		[text rangeOfString:kOPFQuestionsViewControllerUserTokenStartCharacter].location != NSNotFound) &&
+		self.tokenBeingInputted == nil) {
+		self.tokenBeingInputted = NSMutableString.new;
+		
+		[self changeSearchBarInputViewToCompletionsView];
+	}
+	
+	if (([text rangeOfString:kOPFQuestionsViewControllerTagTokenEndCharacter].location != NSNotFound ||
+		 [text rangeOfString:kOPFQuestionsViewControllerUserTokenEndCharacter].location != NSNotFound) &&
+		self.tokenBeingInputted != nil) {
+		// THEN: A tag or user was added
+		self.tokenBeingInputted = nil;
+		self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
+		[self changeSearchBarInputViewToButtonsView];
+	} else if (self.tokenBeingInputted != nil) {
+		DLog(@"add to token %@", text);
+		[self.tokenBeingInputted appendString:text];
+	}
+	
+	return YES;
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -267,34 +390,63 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 		select best match and add it to search
 	 */
 	
-	[searchBar resignFirstResponder];
+	[self dismissSearchBarExtras];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-	[searchBar resignFirstResponder];
+	[self dismissSearchBarExtras];
 	[self changeSearchBarInputViewToButtonsView];
 	
 	self.searchString = @"";
+	self.searchBar.text = @"";
+}
+
+- (void)dismissSearchBarExtras
+{
+	[self.searchBar resignFirstResponder];
 }
 
 
 #pragma mark - Search Buttons
-// Tag syntax:  [some tag]
-// User syntax: @Some cool User@
-
-- (void)insertNewTag:(id)sender
+- (IBAction)insertNewTag:(id)sender
 {
-	DLog(@"Should insert a new tag at current position.");
-	
 	[self changeSearchBarInputViewToCompletionsView];
+//	self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedTag;
+//	self.tokenBeingInputted = NSMutableString.new;
+//	
+//	NSRange range = NSMakeRange(<#NSUInteger loc#>, <#NSUInteger len#>);
+//	OPFQuestionsSearchBarTokenRange *tokenRange = [OPFQuestionsSearchBarTokenRange tokenRangeWithRange:range];
+//	[self.searchBar.tagRanges ]
+	
+	self.searchString = [self.searchString stringByAppendingString:kOPFQuestionsViewControllerTagTokenStartCharacter];
+	self.searchBar.text = self.searchString;
 }
 
-- (void)insertNewUser:(id)sender
+- (IBAction)insertNewUser:(id)sender
 {
-	DLog(@"Should insert a new user at current position.");
-	
 	[self changeSearchBarInputViewToCompletionsView];
+	
+	self.searchString = [self.searchString stringByAppendingString:kOPFQuestionsViewControllerUserTokenStartCharacter];
+	self.searchBar.text = self.searchString;
+	DLog(@"Should insert a new user at current position.");
+}
+
+- (IBAction)endCurrentToken:(id)sender
+{
+	NSString *endChar = nil;
+	switch (self.tokenBeingInputtedType) {
+		case kOPFQuestionsViewControllerTokenBeingInputtedNone: /*NOP*/ break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedTag: endChar = kOPFQuestionsViewControllerTagTokenEndCharacter; break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedUser: endChar = kOPFQuestionsViewControllerUserTokenEndCharacter; break;
+		
+		default: ZAssert(NO, @"Unknown type for token being inputted, got %d.", self.tokenBeingInputtedType); break;
+	}
+	
+	if (endChar) {
+		self.searchString = [self.searchString stringByAppendingString:endChar];
+		self.searchBar.text = self.searchString;
+	}
 }
 
 - (void)changeSearchBarInputViewToCompletionsView
@@ -321,6 +473,10 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 			CGRect completionsFrame = self.searchBarInputView.completionsView.frame;
 			completionsFrame.origin.x = (state == kOPFQuestionsSearchBarInputStateCompletions ? 0.f : searchBarInputWidth);
 			self.searchBarInputView.completionsView.frame = completionsFrame;
+		} completion:^(BOOL finished) {
+			if (finished && state == kOPFQuestionsSearchBarInputStateCompletions) {
+				[self.searchBarInputView.completionsView reloadData];
+			}
 		}];
 	}
 }

@@ -24,6 +24,6 @@ typedef enum : NSInteger {
 @property (assign, nonatomic) OPFQuestionsSearchBarInputState state;
 
 @property (strong, nonatomic, readonly) OPFQuestionsSearchBarInputButtonsView *buttonsView;
-@property (strong, nonatomic, readonly) GCTagList *completionsView;
+@property (strong, nonatomic, readonly) UICollectionView *completionsView;
 
 @end
