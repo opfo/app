@@ -66,5 +66,10 @@
     return [self standardDateTransformer];
 }
 
++(NSString*) indexTableName
+{
+    return @"users_index";
+}
+
 
 @end

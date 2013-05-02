@@ -10,8 +10,9 @@
 #import "MTLModel.h"
 #import "OPFModel.h"
 #import "OPFRecordProtocol.h"
+#import "OPFSearchable.h"
 
-@interface OPFUser : OPFModel
+@interface OPFUser : OPFSearchable
 
 @property (strong, readonly) NSNumber* identifier;
 @property (strong) NSNumber* reputation;

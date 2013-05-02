@@ -64,4 +64,16 @@ describe(@"Pagination", ^{
     });
 });
 
+describe(@"display name search", ^{
+    it(@"is possible to search users by display name", ^{
+        NSArray* users = [[OPFUser searchFor:@"roryf"] getMany];
+        expect([users count]).to.beGreaterThan(0);
+        expect([[users objectAtIndex:0] identifier]).to.equal(@(270));
+        users = [[OPFUser searchFor:@"matt"] getMany];
+        expect([users count]).to.equal(37);
+        expect([[users objectAtIndex:0] identifier]).to.equal(@(797));
+        expect([[users objectAtIndex:36] identifier]).to.equal(@(1091105));
+    });
+});
+
 SpecEnd

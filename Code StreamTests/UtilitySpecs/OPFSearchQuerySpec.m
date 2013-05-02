@@ -21,10 +21,19 @@ describe(@"searching", ^{
     });
     
     describe(@"combined with other statements", ^{
-        NSArray* posts = [[[OPFPost searchFor: @"injection"] page:0] getMany];
-        expect([posts count]).to.equal([OPFPost defaultPageSize]);
-        expect([[posts objectAtIndex:0] identifier]).to.equal(@(8414287));
-        expect([[posts objectAtIndex:9] identifier]).to.equal(@(8469386));
+        it(@"works with paging", ^{
+            NSArray* posts = [[[OPFPost searchFor: @"injection"] page:0] getMany];
+            expect([posts count]).to.equal([OPFPost defaultPageSize]);
+            expect([[posts objectAtIndex:0] identifier]).to.equal(@(8414287));
+            expect([[posts objectAtIndex:9] identifier]).to.equal(@(8469386));
+        });
+        
+        it(@"works with ordering", ^{
+            NSArray* users = [[[OPFUser searchFor:@"matt"] orderBy:@"reputation" order: kOPFSortOrderDescending] getMany];
+            expect([users count]).to.beGreaterThan(0);
+            OPFUser* topUser = [users objectAtIndex:0];
+            expect(topUser.identifier).to.equal(@(139010));
+        });
     });
 });
 SpecEnd
