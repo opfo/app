@@ -12,7 +12,6 @@
 
 @interface OPFProfileSearchViewController : UITableViewController <UISearchBarDelegate>
 
-@property(nonatomic, strong) NSArray *rootUserModels;
 @property(nonatomic, strong) NSPredicate *profilePredicate;
 @property(nonatomic, assign) NSNumber *atPage;
 
