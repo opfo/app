@@ -131,17 +131,22 @@
 
 # pragma mark - Full text search methods
 
-+ (OPFQuery*) searchFor:(NSString *)searchTerms
++ (NSString*) indexTableName
 {
-    NSString* queryFormat = @"SELECT post_id FROM posts_index WHERE index_string MATCH %@";
-    NSString* output = [NSString stringWithFormat:queryFormat, [self matchClauseFromSearchString:searchTerms]];
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output withDatabase:@"auxDB"];
-    NSMutableArray* postIds = [[NSMutableArray alloc] init];
-    while ([result next]) {
-        [postIds addObject: @([result intForColumn:@"post_id"])];
-    }
-    return [[self query] whereColumn:@"id" in:postIds];
+    return @"posts_index";
 }
+
+//+ (OPFQuery*) searchFor:(NSString *)searchTerms
+//{
+//    NSString* queryFormat = @"SELECT post_id FROM auxDB.posts_index WHERE index_string MATCH %@";
+//    NSString* output = [NSString stringWithFormat:queryFormat, [self matchClauseFromSearchString:searchTerms]];
+//    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL:output];
+//    NSMutableArray* postIds = [[NSMutableArray alloc] init];
+//    while ([result next]) {
+//        [postIds addObject: @([result intForColumn:@"post_id"])];
+//    }
+//    return [[self query] whereColumn:@"id" in:postIds];
+//}
 
 + (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
 {

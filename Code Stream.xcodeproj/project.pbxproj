@@ -79,6 +79,7 @@
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
 		8128DF96171D832C00C44410 /* so.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8128DF95171D832C00C44410 /* so.sqlite */; };
 		813482451727C045008E8F22 /* auxiliary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 813482441727C045008E8F22 /* auxiliary.sqlite */; };
+		813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 813F5CD917328AD100F71CD6 /* OPFSearchable.m */; };
 		815261FC171D62FA00B5EF2D /* OPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 815261FB171D62FA00B5EF2D /* OPFUser.m */; };
 		815E1B4E172473FE00FBDFEF /* OPFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B4D172473FE00FBDFEF /* OPFQuery.m */; };
 		815E1B5117247E3400FBDFEF /* OPFQuerySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 815E1B5017247E3400FBDFEF /* OPFQuerySpec.m */; };
@@ -241,6 +242,8 @@
 		8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFDatabaseAccess.m; path = Utilities/Persistence/OPFDatabaseAccess.m; sourceTree = "<group>"; };
 		8128DF95171D832C00C44410 /* so.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = so.sqlite; sourceTree = "<group>"; };
 		813482441727C045008E8F22 /* auxiliary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = auxiliary.sqlite; sourceTree = "<group>"; };
+		813F5CD817328AD100F71CD6 /* OPFSearchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFSearchable.h; path = Models/OPFSearchable.h; sourceTree = "<group>"; };
+		813F5CD917328AD100F71CD6 /* OPFSearchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFSearchable.m; path = Models/OPFSearchable.m; sourceTree = "<group>"; };
 		815261FA171D62FA00B5EF2D /* OPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFUser.h; path = Models/OPFUser.h; sourceTree = "<group>"; };
 		815261FB171D62FA00B5EF2D /* OPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFUser.m; path = Models/OPFUser.m; sourceTree = "<group>"; };
 		815E1B4C172473FE00FBDFEF /* OPFQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFQuery.h; path = Utilities/Persistence/OPFQuery.h; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
 				8161DD2A172854F100806493 /* OPFTag.h */,
 				8161DD2B172854F100806493 /* OPFTag.m */,
+				813F5CD817328AD100F71CD6 /* OPFSearchable.h */,
+				813F5CD917328AD100F71CD6 /* OPFSearchable.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1179,6 +1184,7 @@
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
+				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

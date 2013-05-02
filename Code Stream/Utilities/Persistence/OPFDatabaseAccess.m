@@ -8,6 +8,7 @@
 
 #import "OPFDatabaseAccess.h"
 
+static NSInteger OPFDBOverwriteDBs = YES;
 static NSString* OPFDefaultDBFilename = @"so.sqlite";
 static NSString* OPFAuxDBFilename = @"auxiliary.sqlite";
 static NSString* OPFWritableBaseDBPath;
@@ -41,11 +42,14 @@ static NSString* OPFWritableAuxDBPath;
 
 + (void) copyDatabaseIfNeeded
 {
-    // First, test for existence.
     BOOL successBase;
     BOOL successAux;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
+    if (OPFDBOverwriteDBs) {
+        [fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
+        [fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
+    }
     successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
     successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
     if (!successBase) {

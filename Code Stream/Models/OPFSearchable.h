@@ -10,4 +10,8 @@
 
 @interface OPFSearchable : OPFModel
 
++ (OPFQuery*) searchFor: (NSString*) searchTerms;
+// Has to be overridden by subclasses
++ (NSString*) indexTableName;
+
 @end

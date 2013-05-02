@@ -8,7 +8,7 @@
 
 #import "MTLModel.h"
 #import "OPFUser.h"
-#import "OPFModel.h"
+#import "OPFSearchable.h"
 #import "OPFRecordProtocol.h"
 
 typedef enum : NSInteger {
@@ -16,7 +16,7 @@ typedef enum : NSInteger {
     KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
-@interface OPFPost : OPFModel <OPFRecordProtocol>
+@interface OPFPost : OPFSearchable <OPFRecordProtocol>
 
 @property (strong, readonly) NSNumber* identifier;
 @property (strong, readonly) NSDate* creationDate;
