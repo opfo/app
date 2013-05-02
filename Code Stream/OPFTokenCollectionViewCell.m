@@ -13,6 +13,7 @@
 
 
 @implementation OPFTokenCollectionViewCell {
+	@protected
 	OPFQuestionsSearchBarTokenStyle _style;
 }
 
@@ -47,4 +48,22 @@
 	return self;
 }
 
+@end
+
+@implementation OPFTagTokenCollectionViewCell
+- (id)initWithFrame:(CGRect)frame
+{
+	_style =kOPFQuestionsSearchBarTokenStyleTag;
+	self = [super initWithFrame:frame];
+	return self;
+}
+@end
+
+@implementation OPFUserTokenCollectionViewCell
+- (id)initWithFrame:(CGRect)frame
+{
+	_style =kOPFQuestionsSearchBarTokenStyleUser;
+	self = [super initWithFrame:frame];
+	return self;
+}
 @end

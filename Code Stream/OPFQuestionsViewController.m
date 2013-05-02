@@ -50,6 +50,7 @@ typedef enum : NSInteger {
 #pragma mark - Cell Identifiers
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
+static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -106,7 +107,8 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 	OPFQuestionsSearchBarInputView *searchBarInputView = OPFQuestionsSearchBarInputView.new;
 	searchBarInputView.completionsView.delegate = self;
 	searchBarInputView.completionsView.dataSource = self;
-	[searchBarInputView.completionsView registerClass:OPFTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];
+	[searchBarInputView.completionsView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];
+	[searchBarInputView.completionsView registerClass:OPFUserTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedUserCellIdentifier];
 	[searchBarInputView.buttonsView.insertNewTagButton addTarget:self action:@selector(insertNewTag:) forControlEvents:UIControlEventTouchUpInside];
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
@@ -303,7 +305,8 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	OPFTokenCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SuggestedTagCellIdentifier forIndexPath:indexPath];
+	NSString *cellIdentifier = (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser ? SuggestedUserCellIdentifier : SuggestedTagCellIdentifier);
+	OPFTokenCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
 	cell.tokenView.text = self.suggestedTokens[indexPath.row];
 	return cell;
 }

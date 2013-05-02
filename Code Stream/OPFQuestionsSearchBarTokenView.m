@@ -109,6 +109,7 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 
 - (void)setUpQuestionsSearchBarStyle:(OPFQuestionsSearchBarTokenStyle)style
 {
+	_style = style;
 	switch (style) {
 		case kOPFQuestionsSearchBarTokenStyleTag: [self setUpTagStyleDefaults]; break;
 		case kOPFQuestionsSearchBarTokenStyleUser: [self setUpUserStyleDefaults]; break;

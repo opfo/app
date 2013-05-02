@@ -15,3 +15,6 @@
 @property (strong, readonly) OPFQuestionsSearchBarTokenView *tokenView;
 
 @end
+
+@interface OPFTagTokenCollectionViewCell : OPFTokenCollectionViewCell @end
+@interface OPFUserTokenCollectionViewCell : OPFTokenCollectionViewCell @end
