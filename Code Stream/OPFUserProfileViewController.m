@@ -40,6 +40,7 @@ static NSString *const NotSpecifiedInformationPlaceholder = @"-";
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
+static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
 
@@ -136,8 +137,11 @@ static CGFloat userAboutMeInset = 20.0;
     
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
-    self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
-    
+    if(self.user.age!=nil){
+        self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
+    }
+    else
+        self.userAge.text = @"-";
     // Set date-fields by using a NSDateFormatter
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
@@ -146,8 +150,10 @@ static CGFloat userAboutMeInset = 20.0;
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
     }
-    
-    [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+    else{
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>-"] baseURL:nil];
+    }
+        
     
     self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@" / "] stringByAppendingString:[self.user.downVotes stringValue]];
     
@@ -199,15 +205,18 @@ static CGFloat userAboutMeInset = 20.0;
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
         else if(indexPath.row==1)
-        cellIdentifier = UserAnswersViewCell;
+            cellIdentifier = UserAnswersViewCell;
     }
+    else if(indexPath.section==1 && indexPath.row==3)
+        cellIdentifier = UserWebsiteViewCell;
+    
     return cellIdentifier;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    NSLog(@"Indexpath: %@",[self cellIdentifierForIndexPath:indexPath]);
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
        
@@ -217,6 +226,11 @@ static CGFloat userAboutMeInset = 20.0;
         questionsViewController.query = questionsQuery;
 		
         detailViewController = questionsViewController;
+    }
+    else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
+        NSLog(@"Hej");
+        NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
+        [[UIApplication sharedApplication] openURL:url];
     }
     
     // Pass the selected object to the new view controller.

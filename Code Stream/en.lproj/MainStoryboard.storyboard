@@ -121,7 +121,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" textLabel="Uzv-pw-jl0" detailTextLabel="Qdp-p7-OCb" style="IBUITableViewCellStyleValue1" id="wdG-5m-coI">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" reuseIdentifier="UserWebsiteViewCell" textLabel="Uzv-pw-jl0" detailTextLabel="Qdp-p7-OCb" style="IBUITableViewCellStyleValue1" id="wdG-5m-coI">
                                         <rect key="frame" x="0.0" y="244" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
