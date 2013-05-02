@@ -1720,17 +1720,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">OPFProfileViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">voteUpComment:</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">voteUpComment:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">voteUpComment:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="userAvatar">AGMedallionView</string>
 						<string key="userLocation">UILabel</string>
