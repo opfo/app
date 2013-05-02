@@ -12,5 +12,6 @@
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
+- (IBAction)userRequestsLogin:(id)sender;
 
 @end

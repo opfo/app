@@ -51,7 +51,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 59;
+    return 44;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -67,27 +67,33 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-        UILabel *startDtLbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 80, 25)];
+        UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 90, 25)];
         if (indexPath.row == 0)
-            startDtLbl.text = @"Display name";
+            startLabel.text = @"User:";
         else {
-            startDtLbl.text = @"Password";
+            startLabel.text = @"Password:";
         }
         
-        startDtLbl.backgroundColor = [UIColor clearColor];
+        startLabel.backgroundColor = [UIColor clearColor];
         
-        [cell.contentView addSubview:startDtLbl];
+        [cell.contentView addSubview:startLabel];
         
-        UITextField *passwordTF = [[UITextField alloc] initWithFrame:CGRectMake(100, 5, 200, 35)];
-        passwordTF.delegate = self;
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 200, 35)];
+        inputField.delegate = self;
         if (indexPath.row == 0)
-            passwordTF.tag = 0;
+            inputField.tag = 0;
         else {
-            passwordTF.tag = 1;
+            inputField.tag = 1;
         }
-        [cell.contentView addSubview:passwordTF];
+        [cell.contentView addSubview:inputField];
     }
     return cell;
+}
+
+#pragma mark - IBActions
+- (IBAction)userRequestsLogin:(id)sender
+{
+    
 }
 
 #pragma mark - TabbedViewController methods
