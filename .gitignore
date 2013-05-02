@@ -21,3 +21,5 @@ DerivedData
 # Cocoapods
 Pods
 **/Pods
+
+*.sqlite

@@ -11,11 +11,6 @@
 
 @implementation OPFModel
 
-+ (OPFDatabaseAccess*) getDBAccess
-{
-    return [OPFDatabaseAccess getDBAccess];
-}
-
 # pragma mark - Find All methods used by the actual models
 
 + (NSArray *) all
@@ -78,11 +73,6 @@
     return 10;
 }
 
-+ (NSString*) modelDBName
-{
-    return @"so.sqlite";
-}
-
 // This method needs to be overridden by subclasses
 + (NSString*) modelTableName
 {
@@ -111,7 +101,7 @@
 
 + (NSString*) dbName
 {
-    return @"baseDB";
+    return @"main";
 }
 
 # pragma mark - Query

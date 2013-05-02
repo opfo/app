@@ -101,14 +101,6 @@ typedef enum : NSInteger { kOPFSortOrderAscending, kOPFSortOrderDescending } OPF
 // Adds a string the existing SQL string
 - (NSString*) sqlConcat: (NSString*) sqlString;
 
-// Initializes a query with a table name
-+ (instancetype) queryWithTableName: (NSString*) tableName;
-
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName;
-
-// Initializes a query with a table name and a completion callback;
-+ (instancetype) queryWithTableName:(NSString *)tableName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback;
-
 + (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback pageSize: (NSNumber*)pageSize;
 
 @end
