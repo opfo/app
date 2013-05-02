@@ -17,6 +17,7 @@
 #import "OPFQuestionsSearchBarTokenRange.h"
 #import "OPFTokenCollectionViewCell.h"
 #import "NSString+OPFContains.h"
+#import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
 
 
@@ -227,8 +228,9 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	NSString *searchString = self.searchString ?: @"";
-	NSArray *tags = [self tagsFromSearchString:searchString];
-	NSString *keywords = [self keywordsSearchStringFromSearchString:searchString];
+	NSArray *tags = [searchString opf_tagsFromSearchString];
+	NSArray *users = [searchString opf_usersFromSearchString];
+	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
 	
 	NSArray *filteredQuestions = nil;
 	if (keywords.length > 0 || tags.count > 0) {
@@ -461,7 +463,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 }
 
 
-#pragma mark - Search Buttons
+#pragma mark - Search Input Accessory Buttons
 - (IBAction)insertNewTag:(id)sender
 {
 	[self startTokenInputOfType:kOPFQuestionsViewControllerTokenBeingInputtedTag];
@@ -506,98 +508,6 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 	}
 }
 
-
-#pragma mark - Getting Tags, Users and Keywords From Search Input
-- (NSArray *)tagsFromSearchString:(NSString *)searchString
-{
-	NSParameterAssert(searchString != nil);
-	
-	NSRegularExpression *regularExpression = self.class.tagsFromSearchStringRegularExpression;
-	NSArray *tags = [self tokensFromSearchString:searchString tokenRegularExpression:regularExpression];
-	return tags;
-}
-
-- (NSArray *)usersFromSearchString:(NSString *)searchString
-{
-	NSParameterAssert(searchString != nil);
-	
-	NSRegularExpression *regularExpression = self.class.usersFromSearchStringRegularExpression;
-	NSArray *users = [self tokensFromSearchString:searchString tokenRegularExpression:regularExpression];
-	return users;
-}
-
-- (NSArray *)tokensFromSearchString:(NSString *)searchString tokenRegularExpression:(NSRegularExpression *)regularExpression
-{
-	NSParameterAssert(searchString != nil);
-	NSParameterAssert(regularExpression != nil);
-	
-	searchString = searchString.copy;
-	NSMutableSet *tokens = NSMutableSet.new;
-	
-	// The shortest possible tag is `[a]`, i.e. three (3) chars.
-	if (searchString.length >= 3) {
-		[regularExpression enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-			if ([result numberOfRanges] >= 2) {
-				NSRange caputerRange = [result rangeAtIndex:1];
-				NSString *capture = [searchString substringWithRange:caputerRange];
-				[tokens addObject:capture.opf_stringByTrimmingWhitespace];
-			}
-		}];
-	}
-	
-	return tokens.allObjects;
-}
-
-- (NSString *)keywordsSearchStringFromSearchString:(NSString *)searchString
-{
-	NSParameterAssert(searchString != nil);
-	
-	NSString *keywordSearchString = @"";
-	if (searchString.length > 0) {
-		NSRegularExpression *replacementRgularExpression = self.class.nonKeywordsFromSearchStringRegularExpression;
-		keywordSearchString = [replacementRgularExpression stringByReplacingMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) withTemplate:@" "];
-		
-		keywordSearchString = keywordSearchString.opf_stringByTrimmingWhitespace;
-	}
-	
-	return keywordSearchString;
-}
-
-+ (NSRegularExpression *)tagsFromSearchStringRegularExpression
-{
-	static NSRegularExpression *_tagsRegularExpression = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		NSError *error = NULL;
-		_tagsRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\[([^\\[]+)\\]" options:0 error:&error];
-		ZAssert(_tagsRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
-	});
-	return _tagsRegularExpression;
-}
-
-+ (NSRegularExpression *)usersFromSearchStringRegularExpression
-{
-	static NSRegularExpression *_usersRegularExpression = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		NSError *error = NULL;
-		_usersRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"@([^@]+)@" options:0 error:&error];
-		ZAssert(_usersRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
-	});
-	return _usersRegularExpression;
-}
-
-+ (NSRegularExpression *)nonKeywordsFromSearchStringRegularExpression
-{
-	static NSRegularExpression *_nonKeywordsRegularExpression = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		NSError *error = NULL;
-		_nonKeywordsRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"@([^@]+)@|\\[([^\\[]+)\\]" options:0 error:&error];
-		ZAssert(_nonKeywordsRegularExpression != nil, @"Could not create regular expression, got the error: %@", error);
-	});
-	return _nonKeywordsRegularExpression;
-}
 
 
 #pragma mark - Questions Filter
