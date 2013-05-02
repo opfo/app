@@ -31,6 +31,7 @@ describe(@"User creation", ^{
         user = [OPFUser find: 42];
         expect(user.displayName).to.equal(@"Coincoin");
     });
+    
 });
 
 describe(@"user fetching", ^{
@@ -63,6 +64,7 @@ describe(@"Pagination", ^{
         expect([result count]).to.equal(500);
     });
 });
+<<<<<<< HEAD
 
 describe(@"display name search", ^{
     it(@"is possible to search users by display name", ^{
@@ -76,4 +78,6 @@ describe(@"display name search", ^{
     });
 });
 
+=======
+>>>>>>> master
 SpecEnd

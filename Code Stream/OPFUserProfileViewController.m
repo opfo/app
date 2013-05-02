@@ -34,17 +34,20 @@ enum  {
 
 @implementation OPFUserProfileViewController
 
+//Used on not specified information in model such as location or website
+static NSString *const NotSpecifiedInformationPlaceholder = @"-";
+
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
-static NSString *const UserAnswersViewCell = @"UserAnswersViewCell";
+static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
 
 + (instancetype)newFromStoryboard
 {
 	// This be a hack, do not ship stuff like this!
-	NSAssert(OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
-	OPFUserProfileViewController *userProfileViewController = [OPFAppDelegate.sharedAppDelegate.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
+	NSAssert(OPFAppDelegate.sharedAppDelegate.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFUserProfileViewController *userProfileViewController = [OPFAppDelegate.sharedAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"UserProfileViewController"];
 	return userProfileViewController;
 }
 
@@ -85,6 +88,21 @@ static CGFloat userAboutMeInset = 20.0;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TabbedViewController methods
+
+// Setting the image of the tab.
+- (NSString *)tabImageName
+{
+    return @"tab-me";
+}
+
+// Setting the title of the tab.
+- (NSString *)tabTitle
+{
+    return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
+}
+
+
 - (void)loadUserGravatar
 {
     __weak OPFUserProfileViewController *weakSelf = self;
@@ -111,24 +129,34 @@ static CGFloat userAboutMeInset = 20.0;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
-    self.userLocation.text = self.user.location;
-    self.userWebsite.text = [self.user.websiteUrl absoluteString];
+    self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
+    self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
+
     [self loadUserGravatar];
     
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
-    self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
-    
+    if(self.user.age!=nil){
+        self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
+    }
+    else
+        self.userAge.text = @"-";
     // Set date-fields by using a NSDateFormatter
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
-    [self.userBio loadHTMLString:[NSString stringWithFormat:@"<font face='Helvetica' size='2'>%@", self.user.aboutMe] baseURL:nil];
+    if (![self.user.aboutMe isEqualToString:@"NULL"]) {
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", self.user.aboutMe] baseURL:nil];
+    }
+    else{
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
+    }
+        
     
+    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@" / "] stringByAppendingString:[self.user.downVotes stringValue]];
     
-    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@"/"] stringByAppendingString:[self.user.downVotes stringValue]];
-    self.views.text = [self.user.view stringValue];
+    self.views.text = [self.user.views stringValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,54 +203,36 @@ static CGFloat userAboutMeInset = 20.0;
     if(indexPath.section==4){
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
-        else if(indexPath.row==1)
-        cellIdentifier = UserAnswersViewCell;
     }
+    else if(indexPath.section==1 && indexPath.row==3)
+        cellIdentifier = UserWebsiteViewCell;
+    
     return cellIdentifier;
 }
 
-// THIS METHOD IS NOT COMPLETE, NEED TO BE CONNECTED TO THE QUESTIONSVIEW FIRST.
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
        
         OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
-       
-        NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;
-
-        questionsViewController.questions=questions;
-        detailViewController =[OPFQuestionsViewController new];
+		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
+		
+        questionsViewController.query = questionsQuery;
+		
+        detailViewController = questionsViewController;
     }
-    // To be implemented
-    else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:UserAnswersViewCell]){
-        
-        /*NSMutableArray *questions = [[[OPFAnswer query] whereColumn:@"owner_user_id" is:self.user.identifier] getMany].mutableCopy;*/
-        
-        detailViewController = nil;
+    else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
+        NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
+        [[UIApplication sharedApplication] openURL:url];
     }
-    // ...
+    
     // Pass the selected object to the new view controller.
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
-
-    
 }
-
-#pragma mark - Table view data source
-
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- static NSString *CellIdentifier = @"Cell";
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
-*/
 
 
 

@@ -116,6 +116,12 @@
     return self;
 }
 
+- (NSString*) baseSQL
+{
+	ZAssert(NO, @"Subclasses must override the baseSQL method.");
+	return @"";
+}
+
 - (NSString*) toSQLString
 {
     if([self andQuery] != nil) {

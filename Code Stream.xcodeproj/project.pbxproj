@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */; };
+		14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */; };
 		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
 		1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */; };
 		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
@@ -45,8 +47,11 @@
 		14DA81321729D48400DAFE49 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81121729D48400DAFE49 /* prettify.js */; };
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
+		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
+		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
+		1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */; };
 		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
-		1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */; };
 		1A639EC217267AB6009EB280 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC117267AB6009EB280 /* location@2x.png */; };
 		1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC317267D29009EB280 /* votes-down@2x.png */; };
 		1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC417267D29009EB280 /* votes-up@2x.png */; };
@@ -55,7 +60,6 @@
 		1A639ECE172683D4009EB280 /* OPFProfileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */; };
 		1A639ED317269CA3009EB280 /* OPFProfileSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */; };
 		1A639ED517269CD5009EB280 /* OPFProfileSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */; };
-		1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A72197A172715DF002B43CD /* OPFDebugViewController.m */; };
 		1A816AB7171DE0C000964AF2 /* OPFCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */; };
 		1A816ABB171DECA300964AF2 /* OPFCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */; };
 		1A816ABD171DF2C900964AF2 /* OPFCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */; };
@@ -69,6 +73,14 @@
 		1A816AD4171E00B900964AF2 /* MartinGoth@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */; };
 		1A816AD5171E00B900964AF2 /* rastersize@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */; };
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
+		1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
+		1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */; };
+		1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */; };
+		1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-home@2x.png */; };
+		1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-activity@2x.png */; };
+		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
+		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
+		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -126,10 +138,10 @@
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */; };
-		9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */; };
 		9C46926D171F38C700F75C31 /* NSCache+OPFSubscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */; };
 		9C46928D171F4D4500F75C31 /* UIView+OPFViewLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */; };
 		9C46929A171F5C1B00F75C31 /* UIView+OPFAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */; };
+		9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4D48A7173096B800C0C48A /* OPFQuestionsViewController.xib */; };
 		9C4DD47B171FF6C2002D5238 /* OPFQuestionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */; };
 		9C4DD47E171FF820002D5238 /* OPFQuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */; };
 		9C4DD4811720247E002D5238 /* OPFQuestionViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4DD4801720247E002D5238 /* OPFQuestionViewControllerSpec.m */; };
@@ -160,6 +172,9 @@
 
 /* Begin PBXFileReference section */
 		0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code StreamTests.xcconfig"; path = "Pods/Pods-Code StreamTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFJavaScriptParserSpec.m; path = UtilitySpecs/OPFJavaScriptParserSpec.m; sourceTree = "<group>"; };
+		14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFEscapeStrings.h"; sourceTree = "<group>"; };
+		14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFEscapeStrings.m"; sourceTree = "<group>"; };
 		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewCell.xib; sourceTree = "<group>"; };
 		1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSingleQuestionPreviewCell.h; sourceTree = "<group>"; };
 		1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSingleQuestionPreviewCell.m; sourceTree = "<group>"; };
@@ -202,9 +217,13 @@
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFFavoritesViewController.h; sourceTree = "<group>"; };
+		1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFFavoritesViewController.m; sourceTree = "<group>"; };
+		1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFFavoritesViewController.xib; sourceTree = "<group>"; };
+		1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-favorites@2x.png"; sourceTree = "<group>"; };
+		1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
 		1A639EBD17267384009EB280 /* OPFProfileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileViewCell.m; sourceTree = "<group>"; };
-		1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EC117267AB6009EB280 /* location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location@2x.png"; sourceTree = "<group>"; };
 		1A639EC317267D29009EB280 /* votes-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-down@2x.png"; sourceTree = "<group>"; };
 		1A639EC417267D29009EB280 /* votes-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "votes-up@2x.png"; sourceTree = "<group>"; };
@@ -215,8 +234,6 @@
 		1A639ED117269CA3009EB280 /* OPFProfileSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileSearchHeaderView.h; sourceTree = "<group>"; };
 		1A639ED217269CA3009EB280 /* OPFProfileSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileSearchHeaderView.m; sourceTree = "<group>"; };
 		1A639ED417269CD5009EB280 /* OPFProfileSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileSearchHeaderView.xib; sourceTree = "<group>"; };
-		1A721979172715DF002B43CD /* OPFDebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDebugViewController.h; sourceTree = "<group>"; };
-		1A72197A172715DF002B43CD /* OPFDebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDebugViewController.m; sourceTree = "<group>"; };
 		1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentsViewController.h; sourceTree = "<group>"; };
 		1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentsViewController.m; sourceTree = "<group>"; };
 		1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewCell.h; sourceTree = "<group>"; };
@@ -232,6 +249,17 @@
 		1A816AD0171E00B900964AF2 /* MartinGoth@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MartinGoth@2x.jpg"; sourceTree = "<group>"; };
 		1A816AD1171E00B900964AF2 /* rastersize@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "rastersize@2x.jpg"; sourceTree = "<group>"; };
 		1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentViewHeaderView.m; sourceTree = "<group>"; };
+		1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTabbedHomeViewController.h; sourceTree = "<group>"; };
+		1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTabbedHomeViewController.m; sourceTree = "<group>"; };
+		1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityViewController.h; sourceTree = "<group>"; };
+		1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityViewController.m; sourceTree = "<group>"; };
+		1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityViewController.xib; sourceTree = "<group>"; };
+		1A896CEF172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
+		1A896CF0172FD3A300E19525 /* tab-activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2x.png"; sourceTree = "<group>"; };
+		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
+		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
+		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
+		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
@@ -328,7 +356,6 @@
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFStyleController.h; sourceTree = "<group>"; };
 		9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFStyleController.m; sourceTree = "<group>"; };
-		9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionsViewController.xib; sourceTree = "<group>"; };
 		9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCache+OPFSubscripting.h"; sourceTree = "<group>"; };
 		9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCache+OPFSubscripting.m"; sourceTree = "<group>"; };
 		9C46928B171F4D4500F75C31 /* UIView+OPFViewLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OPFViewLoading.h"; sourceTree = "<group>"; };
@@ -336,6 +363,7 @@
 		9C469298171F5C1B00F75C31 /* UIView+OPFAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+OPFAutoLayout.h"; sourceTree = "<group>"; };
 		9C469299171F5C1B00F75C31 /* UIView+OPFAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+OPFAutoLayout.m"; sourceTree = "<group>"; };
 		9C47FD7A171D511F00419AD5 /* App.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
+		9C4D48A7173096B800C0C48A /* OPFQuestionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionsViewController.xib; sourceTree = "<group>"; };
 		9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionHeaderView.xib; sourceTree = "<group>"; };
 		9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionHeaderView.h; sourceTree = "<group>"; };
 		9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionHeaderView.m; sourceTree = "<group>"; };
@@ -394,7 +422,7 @@
 		1478B5ED171FD8E30033DFA8 /* Questions View */ = {
 			isa = PBXGroup;
 			children = (
-				9C3AB701172C94310060F46D /* OPFQuestionsViewController.xib */,
+				9C4D48A7173096B800C0C48A /* OPFQuestionsViewController.xib */,
 				1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */,
 				1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */,
 				1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */,
@@ -438,7 +466,16 @@
 				14DA81121729D48400DAFE49 /* prettify.js */,
 				14DA81131729D48400DAFE49 /* run_prettify.js */,
 			);
-			path = "google-code-prettify";
+			name = "google-code-prettify";
+			path = "Vendor/google-code-prettify";
+			sourceTree = "<group>";
+		};
+		1A40DFDD17326B5A00B9AA00 /* Favorites View */ = {
+			isa = PBXGroup;
+			children = (
+				1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */,
+			);
+			name = "Favorites View";
 			sourceTree = "<group>";
 		};
 		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
@@ -446,7 +483,7 @@
 			children = (
 				1A639EBC17267384009EB280 /* OPFProfileViewCell.h */,
 				1A639EBD17267384009EB280 /* OPFProfileViewCell.m */,
-				1A639EBF1726740F009EB280 /* OPFProfileViewCell.xib */,
+				1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */,
 			);
 			name = "Profile Search Table View Cells";
 			sourceTree = "<group>";
@@ -500,8 +537,6 @@
 			isa = PBXGroup;
 			children = (
 				9C1C514C1716FBE0004CC9E3 /* MainStoryboard.storyboard */,
-				1A721979172715DF002B43CD /* OPFDebugViewController.h */,
-				1A72197A172715DF002B43CD /* OPFDebugViewController.m */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -523,6 +558,11 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */,
+				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
+				1A896CF0172FD3A300E19525 /* tab-activity@2x.png */,
+				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
+				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
 				1A639EC117267AB6009EB280 /* location@2x.png */,
@@ -535,6 +575,14 @@
 				1A816AC5171DF7EC00964AF2 /* clock@2x.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		1A896CE7172FD00800E19525 /* Activity View */ = {
+			isa = PBXGroup;
+			children = (
+				1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */,
+			);
+			name = "Activity View";
 			sourceTree = "<group>";
 		};
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
@@ -619,6 +667,7 @@
 				815E1B5A17251B0A00FBDFEF /* OPFIsQuerySpec.m */,
 				815E1B60172532D000FBDFEF /* OPFInQuerySpec.m */,
 				815E1B6617253CCE00FBDFEF /* OPFLikeQuerySpec.m */,
+				14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */,
 			);
 			name = UtilitySpecs;
 			sourceTree = "<group>";
@@ -670,6 +719,8 @@
 				9C1C51711716FE90004CC9E3 /* Controllers */,
 				9C1C51431716FBE0004CC9E3 /* OPFAppDelegate.h */,
 				9C1C51441716FBE0004CC9E3 /* OPFAppDelegate.m */,
+				1A896CF7172FD72D00E19525 /* OPFAppState.h */,
+				1A896CF8172FD72D00E19525 /* OPFAppState.m */,
 				9C46926A171F38B300F75C31 /* Categories */,
 				9C1C513B1716FBE0004CC9E3 /* Supporting Files */,
 			);
@@ -751,6 +802,8 @@
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
+				1A896CE7172FD00800E19525 /* Activity View */,
+				1A40DFDD17326B5A00B9AA00 /* Favorites View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -773,6 +826,12 @@
 				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
 				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
 				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
+				1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */,
+				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
+				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
+				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
+				1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */,
+				1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -863,6 +922,8 @@
 				9C46928C171F4D4500F75C31 /* UIView+OPFViewLoading.m */,
 				1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */,
 				1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */,
+				14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */,
+				14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1023,7 +1084,6 @@
 				9C9B79CC1726A22400E5333B /* OPFPostMetadataTableViewCell.xib in Resources */,
 				9C9B79CE1726A22E00E5333B /* OPFPostTagsTableViewCell.xib in Resources */,
 				9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */,
-				1A639EC01726740F009EB280 /* OPFProfileViewCell.xib in Resources */,
 				1A639EC217267AB6009EB280 /* location@2x.png in Resources */,
 				1A639EC517267D29009EB280 /* votes-down@2x.png in Resources */,
 				1A639EC617267D29009EB280 /* votes-up@2x.png in Resources */,
@@ -1066,8 +1126,16 @@
 				1ABA0A5917296D330007BBFE /* score@2x.png in Resources */,
 				1ABA0A5B172976310007BBFE /* url@2x.png in Resources */,
 				1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */,
-				9C3AB702172C94310060F46D /* OPFQuestionsViewController.xib in Resources */,
 				9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */,
+				1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */,
+				1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */,
+				1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */,
+				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
+				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
+				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
+				1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */,
+				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
+				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,12 +1259,16 @@
 				815E1B58172516A700FBDFEF /* OPFRootQuery.m in Sources */,
 				815E1B5E1725207500FBDFEF /* OPFInQuery.m in Sources */,
 				815E1B6417253C1E00FBDFEF /* OPFLikeQuery.m in Sources */,
-				1A72197B172715DF002B43CD /* OPFDebugViewController.m in Sources */,
 				8161DD2C172854F100806493 /* OPFTag.m in Sources */,
 				8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */,
 				9C3AB6FF172C7E4F0060F46D /* OPFStyleController.m in Sources */,
 				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
 				813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */,
+				1A896CE6172FB79000E19525 /* OPFTabbedHomeViewController.m in Sources */,
+				1A896CEB172FD03A00E19525 /* OPFActivityViewController.m in Sources */,
+				1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */,
+				1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */,
+				14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1220,6 +1292,7 @@
 				81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */,
 				813F5CE01732AE1800F71CD6 /* OPFSearchQuerySpec.m in Sources */,
 				813F5CE31732AEA800F71CD6 /* OPFSearchableSpec.m in Sources */,
+				14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

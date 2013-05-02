@@ -31,11 +31,9 @@
 - (void)setScore:(NSInteger)Score {
 	_score = Score;
 	
-	if (Score >= 1000) {
-		self.scoreLabel.text = [NSString stringWithFormat: @"%1.1fk", (double)Score / 1000.0];
-	} else {
-		self.scoreLabel.text = [NSString stringWithFormat:@"%d", Score];
-	}
+	OPFScoreNumberFormatter *format = [OPFScoreNumberFormatter new];
+	
+	self.scoreLabel.text = [format stringFromScore:Score];
 }
 
 - (void)setAnswers:(NSInteger)Answers {
@@ -58,7 +56,7 @@
 }
 
 
-#pragma mark creationAndDestruction
+#pragma mark Object Lifecycle
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
 	self.acceptedAnswer = question.acceptedAnswer != nil;
@@ -66,6 +64,8 @@
 	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
 	self.tags = question.tags;
+    
+
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -122,6 +122,26 @@
 		NSString *tag = self.tags[idx];
 		[self.delegate singleQuestionPreviewCell:self didSelectTag:tag];
 	}
+}
+
+// Color the cell according to the question's score if heat mode is turned on
+- (void) heatMode:(Boolean) modeOn{
+    UIView* bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    bgview.opaque = YES;
+    
+    if(modeOn){
+        if(self.score>0)
+            bgview.backgroundColor = [[UIColor alloc] initWithRed:83/255.f green:162/255.f blue:79/255.f alpha:1];
+        else if(self.score<0)
+            bgview.backgroundColor = [[UIColor alloc] initWithRed:162/255.f green:54/255.f blue:54/255.f alpha:1];
+        else
+            bgview.backgroundColor = [[UIColor alloc] initWithRed:210/255.f green:216/255.f blue:49/255.f alpha:1];
+    }
+    else{
+        bgview.backgroundColor = [UIColor whiteColor];
+    }
+   
+    [self setBackgroundView:bgview];
 }
 
 

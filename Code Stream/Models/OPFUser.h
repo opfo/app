@@ -24,7 +24,7 @@
 @property (copy) NSString* location;
 @property (strong) NSNumber* age;
 @property (copy) NSString* aboutMe;
-@property (strong) NSNumber* view;
+@property (strong) NSNumber* views;
 @property (strong) NSNumber* upVotes;
 @property (strong) NSNumber* downVotes;
 

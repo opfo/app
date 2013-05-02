@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
 #import "GCTagList.h"
+#import "OPFScoreNumberFormatter.h"
 
 @class OPFSingleQuestionPreviewCell;
 @protocol OPFSingleQuestionPreviewCellDelegate <NSObject>
@@ -37,6 +38,7 @@
 //
 // question - The data model that should be represented by the preview cell
 - (void) configureWithQuestionData:(OPFQuestion *)question;
+- (void) heatMode:(Boolean) modeOn;
 
 // IBOutlet properties linked to SingleQuestionPreviewCell.xib
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
