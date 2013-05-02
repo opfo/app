@@ -10,6 +10,15 @@
 #import "NSString+OPFStripCharacters.h"
 #import "NSRegularExpression+OPFSearchString.h"
 
+// Tag syntax:  [some tag]
+NSString *const kOPFTokenTagStartCharacter = @"[";
+NSString *const kOPFTokenTagEndCharacter = @"]";
+
+// User syntax: @Some cool User@
+NSString *const kOPFTokenUserStartCharacter = @"@";
+NSString *const kOPFTokenUserEndCharacter = @"@";
+
+
 @implementation NSString (OPFSearchString)
 
 #pragma mark - Getting Tags, Users and Keywords From Search Input
@@ -58,6 +67,18 @@
 		}];
 	}
 	return tokens.allObjects;
+}
+
+
+#pragma mark -
+- (NSString *)opf_stringAsTagTokenString
+{
+	return [NSString stringWithFormat:@"%@%@%@", kOPFTokenTagStartCharacter, self, kOPFTokenTagEndCharacter];
+}
+
+- (NSString *)opf_stringAsUserTokenString
+{
+	return [NSString stringWithFormat:@"%@%@%@", kOPFTokenUserStartCharacter, self, kOPFTokenUserEndCharacter];
 }
 
 

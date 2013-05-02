@@ -8,7 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+// Tag syntax:  [some tag]
+extern NSString *const kOPFTokenTagStartCharacter;
+extern NSString *const kOPFTokenTagEndCharacter;
+
+// User syntax: @Some cool User@
+extern NSString *const kOPFTokenUserStartCharacter;
+extern NSString *const kOPFTokenUserEndCharacter;
+
+
 @interface NSString (OPFSearchString)
+
+- (NSString *)opf_stringAsTagTokenString;
+- (NSString *)opf_stringAsUserTokenString;
 
 - (NSArray *)opf_tagsFromSearchString;
 - (NSArray *)opf_usersFromSearchString;

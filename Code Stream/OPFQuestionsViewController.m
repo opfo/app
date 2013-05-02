@@ -27,14 +27,6 @@ typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
 
-// Tag syntax:  [some tag]
-static NSString *const kOPFQuestionsViewControllerTokenStartCharacterTag = @"[";
-static NSString *const kOPFQuestionsViewControllerTokenEndCharacterTag = @"]";
-
-// User syntax: @Some cool User@
-static NSString *const kOPFQuestionsViewControllerTokenStartCharacterUser = @"@";
-static NSString *const kOPFQuestionsViewControllerTokenEndCharacterUser = @"@";
-
 
 @interface OPFQuestionsViewController (/*Private*/)
 #pragma mark - Presented Data
@@ -216,7 +208,9 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 #pragma mark - GCTagListDelegate Methods
 - (void)singleQuestionPreviewCell:(OPFSingleQuestionPreviewCell *)cell didSelectTag:(NSString *)tag
 {
-	[self updateSearchWithString:[NSString stringWithFormat:@"[%@]", tag ?: @""]];
+	NSParameterAssert(tag.length > 0);
+	
+	[self updateSearchWithString:tag.opf_stringAsTagTokenString];
 	
 	if (self.tableView.contentOffset.y != 0) {
 		[self.tableView scrollRectToVisible:CGRectZero animated:YES];
@@ -261,6 +255,9 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
 		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == NO) {
+			[NSOperationQueue.mainQueue addOperationWithBlock:^{
+				[self updateSearchBarWithTokens];
+			}];
 			dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 				[self updateFilteredQuestionsCompletion:nil];
 			});
@@ -394,11 +391,72 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 	NSString *tokenChar = nil;
 	switch (type) {
 		case kOPFQuestionsViewControllerTokenBeingInputtedNone: tokenChar = @""; break;
-		case kOPFQuestionsViewControllerTokenBeingInputtedTag: tokenChar =  (end == NO ? kOPFQuestionsViewControllerTokenStartCharacterTag : kOPFQuestionsViewControllerTokenEndCharacterTag); break;
-		case kOPFQuestionsViewControllerTokenBeingInputtedUser: tokenChar =  (end == NO ? kOPFQuestionsViewControllerTokenStartCharacterUser : kOPFQuestionsViewControllerTokenEndCharacterUser); break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedTag: tokenChar =  (end == NO ? kOPFTokenTagStartCharacter : kOPFTokenTagEndCharacter); break;
+		case kOPFQuestionsViewControllerTokenBeingInputtedUser: tokenChar =  (end == NO ? kOPFTokenUserStartCharacter : kOPFTokenUserEndCharacter); break;
 		default: ZAssert(NO, @"Unknown token type %d", type); break;
 	}
 	return tokenChar;
+}
+
+- (void)updateSearchBarWithTokens
+{
+	// 1. Get all complete tokens (tags and users) and their location
+	// 2. Get any incomplete token at the end of the string
+	
+	NSMutableArray *tokens = NSMutableArray.new;
+	
+	// 3 is the shortest possible tag.
+	NSString *searchString = self.searchString;
+	if (searchString.length >= 3) {
+		NSRegularExpression *tokensRegex = NSRegularExpression.opf_nonKeywordsFromSearchStringRegularExpression;
+		[tokensRegex enumerateMatchesInString:searchString options:0 range:NSMakeRange(0, searchString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+			if (result.numberOfRanges > 0) {
+				NSRange tokenRange = [result rangeAtIndex:0];
+				OPFQuestionsSearchBarTokenType tokenType = kOPFQuestionsSearchBarTokenCustom;
+				if ([searchString rangeOfString:kOPFTokenTagStartCharacter options:NSAnchoredSearch range:tokenRange].location != NSNotFound) {
+					tokenType = kOPFQuestionsSearchBarTokenTag;
+				} else if ([searchString rangeOfString:kOPFTokenUserStartCharacter options:NSAnchoredSearch range:tokenRange].location != NSNotFound) {
+					tokenType = kOPFQuestionsSearchBarTokenUser;
+				}
+				
+				NSRange contentRange = NSMakeRange(tokenRange.location + 1, tokenRange.length - 2);
+				NSString *tokenContent = [searchString substringWithRange:contentRange];
+				tokenContent = tokenContent.opf_stringByTrimmingWhitespace;
+				
+				if (tokenContent.length > 0) {
+					OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:tokenRange type:tokenType];
+					[tokens addObject:token];
+				}
+			}
+		}];
+	}
+	
+	DLog(@"tokens before: %@", tokens);
+	
+	// Are we possibly in the act of entering a new token?
+	if (searchString.length >= 1 && ([searchString hasSuffix:kOPFTokenTagEndCharacter] == NO || [searchString hasSuffix:kOPFTokenUserEndCharacter] == NO)) {
+		NSUInteger tagStartCount = [searchString componentsSeparatedByString:kOPFTokenTagStartCharacter].count;
+		NSUInteger tagEndCount = [searchString componentsSeparatedByString:kOPFTokenTagEndCharacter].count;
+		
+		if (tagStartCount != tagEndCount) {
+			NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenTagStartCharacter options:NSBackwardsSearch];
+			rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
+			OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenTag];
+			[tokens addObject:token];
+		} else {
+			NSUInteger userStartCount = [searchString componentsSeparatedByString:kOPFTokenUserStartCharacter].count;
+//			NSUInteger userEndCount = [searchString componentsSeparatedByString:kOPFTokenUserEndCharacter].count;
+			
+			if (userStartCount % 2 == 0) {
+				NSRange rangeOfOpenToken = [searchString rangeOfString:kOPFTokenUserStartCharacter options:NSBackwardsSearch];
+				rangeOfOpenToken.length = searchString.length - rangeOfOpenToken.location;
+				OPFQuestionsSearchBarToken *token = [OPFQuestionsSearchBarToken tokenWithRange:rangeOfOpenToken type:kOPFQuestionsSearchBarTokenUser];
+				[tokens addObject:token];
+			}
+		}
+	}
+	DLog(@"tokens after: %@", tokens);
+	self.searchBar.tokens = tokens;
 }
 
 
