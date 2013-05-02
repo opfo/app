@@ -154,6 +154,7 @@
 		9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */; };
 		9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
+		9CB0DF971732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 		9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
 		9CE68EB1172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE68EB0172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m */; };
@@ -388,6 +389,8 @@
 		9C9B79D91726DCBB00E5333B /* NSString+OPFStripCharacters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFStripCharacters.h"; sourceTree = "<group>"; };
 		9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFStripCharacters.m"; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+OPFSearchString.h"; sourceTree = "<group>"; };
+		9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+OPFSearchString.m"; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
 		9CE68EAF172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsSearchBarTokenRange.h; sourceTree = "<group>"; };
 		9CE68EB0172FD30200131D38 /* OPFQuestionsSearchBarTokenRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsSearchBarTokenRange.m; sourceTree = "<group>"; };
@@ -925,6 +928,8 @@
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
 				9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */,
 				9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */,
+				9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */,
+				9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */,
 				9C8619A917328BC5004CA0DC /* NSString+OPFContains.h */,
 				9C8619AA17328BC5004CA0DC /* NSString+OPFContains.m */,
 				9C8619AC1732976B004CA0DC /* NSString+OPFSearchString.h */,
@@ -1286,6 +1291,7 @@
 				9C8619A817326AB4004CA0DC /* OPFTokenCollectionViewCell.m in Sources */,
 				9C8619AB17328BC5004CA0DC /* NSString+OPFContains.m in Sources */,
 				9C8619AE1732976B004CA0DC /* NSString+OPFSearchString.m in Sources */,
+				9CB0DF971732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
