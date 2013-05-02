@@ -81,6 +81,10 @@
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
+		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
+		1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */; };
+		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
+		1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -256,6 +260,12 @@
 		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
 		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
+		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
+		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
+		1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFSignupView.xib; sourceTree = "<group>"; };
+		1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFLoginViewController.h; sourceTree = "<group>"; };
+		1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFLoginViewController.m; sourceTree = "<group>"; };
+		1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFLoginView.xib; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
@@ -573,6 +583,15 @@
 			name = "Activity View";
 			sourceTree = "<group>";
 		};
+		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
+			isa = PBXGroup;
+			children = (
+				1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */,
+				1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */,
+			);
+			name = "Signup Login View";
+			sourceTree = "<group>";
+		};
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +804,7 @@
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				1A896CE7172FD00800E19525 /* Activity View */,
 				1A40DFDD17326B5A00B9AA00 /* Favorites View */,
+				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
@@ -813,6 +833,10 @@
 				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
 				1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */,
 				1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */,
+				1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */,
+				1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */,
+				1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */,
+				1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1117,6 +1141,8 @@
 				1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */,
 				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
 				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
+				1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */,
+				1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,6 +1274,8 @@
 				1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */,
 				1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */,
 				14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */,
+				1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */,
+				1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
