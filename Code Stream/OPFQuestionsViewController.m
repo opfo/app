@@ -471,7 +471,7 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 
 - (IBAction)insertNewUser:(id)sender
 {
-	[self startTokenInputOfType:kOPFQuestionsViewControllerTokenBeingInputtedTag];
+	[self startTokenInputOfType:kOPFQuestionsViewControllerTokenBeingInputtedUser];
 }
 
 
