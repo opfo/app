@@ -10,4 +10,15 @@
 
 @interface OPFSearchQuery : OPFRootQuery
 
+@property (strong) NSString* indexTableName;
+@property (strong) NSString* searchTerms;
+
++ (instancetype) searchQueryWithTableName:(NSString *)tableName
+                                   dbName: (NSString *) dbName
+                              oneCallback: (OnGetOne) oneCallback
+                             manyCallback: (OnGetMany) manyCallback
+                                 pageSize: (NSNumber*)pageSize
+                           indexTableName: (NSString*) indexTableName
+                               searchTerm: (NSString*) searchTerm;
+
 @end

@@ -228,4 +228,10 @@
     }
 }
 
+- (NSString*) baseSQL
+{
+    [NSException raise:@"Invalid call on abstract method" format:@""];
+    return nil;
+}
+
 @end
