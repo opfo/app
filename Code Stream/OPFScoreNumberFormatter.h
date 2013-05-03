@@ -24,5 +24,6 @@
 
 - (NSUInteger)scoreFromString:(NSString *)string;
 - (NSString *)stringFromScore:(NSInteger)score;
+- (NSString *)stringFromScoreNumber:(NSNumber *)scoreNumber;
 
 @end

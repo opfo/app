@@ -69,5 +69,10 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 	return string;
 }
 
+- (NSString *)stringFromScoreNumber:(NSNumber *)scoreNumber
+{
+	return [self stringFromScore:scoreNumber.integerValue];
+}
+
 
 @end
