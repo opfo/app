@@ -129,7 +129,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     
     int index = self.mutableUserModels.count - indexPath.row - 1;
         
-    userModel = index > 0 ? self.mutableUserModels[index]: nil;
+    userModel = index >= 0 ? self.mutableUserModels[index]: nil;
 
     return userModel;
 }
