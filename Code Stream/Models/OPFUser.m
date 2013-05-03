@@ -72,5 +72,10 @@
     return @"users_index";
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p id = %@; display name = %@>", self.class, self, self.identifier, self.displayName];
+}
+
 
 @end
