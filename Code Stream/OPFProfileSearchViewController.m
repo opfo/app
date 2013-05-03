@@ -75,7 +75,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 		BOOL isSearchingAndHasRows = (self.isSearching) && self.mutableUserModels.count > 0;
 		BOOL isNotSearchingAndHasRows = (self.isSearching) == NO && self.mutableUserModels.count > 0;
 		if (isSearchingAndHasRows || isNotSearchingAndHasRows) {
-			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			CGPoint offsetPoint = CGPointMake(0, CGRectGetHeight(self.profileSearchBar.bounds));
+			[self.tableView setContentOffset:offsetPoint animated:NO];
 		}
 	}
 }
