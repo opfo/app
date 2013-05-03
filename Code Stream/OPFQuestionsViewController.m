@@ -246,7 +246,7 @@ Boolean heatMode = NO;
 	if (keywords.length > 0 || tags.count > 0) {
 		query = [[[OPFQuestion searchFor:keywords inTags:tags] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
 	} else {
-		query = [[[OPFQuestion query] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
 	}
 	
 	NSArray *filteredQuestions = [query getMany];
