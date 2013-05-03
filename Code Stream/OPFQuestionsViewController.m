@@ -245,7 +245,7 @@ Boolean heatMode = NO;
 {
 	__block NSString *searchString = nil;
 	dispatch_sync(dispatch_get_main_queue(), ^{
-		searchString = self.tokenBeingInputted.copy ?: @"";
+		searchString = self.searchString.copy ?: @"";
 	});
 	
 	NSArray *tags = [searchString opf_tagsFromSearchString];
