@@ -42,9 +42,6 @@ typedef enum : NSInteger {
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
 
-@property (copy) NSArray *tags;
-@property (copy) NSArray *users;
-
 @end
 
 
@@ -105,9 +102,6 @@ Boolean heatMode = NO;
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
-    self.tags = OPFTag.all;
-    self.users = OPFUser.all;
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 150.f;
@@ -275,23 +269,41 @@ Boolean heatMode = NO;
 		tokenBeingInputted = self.tokenBeingInputted.copy;
 	});
 	
-	NSArray *allTokens = nil;
-	NSPredicate *tokensPredicate = nil;
-	NSSortDescriptor *tokensSortDescriptor = nil;
+	NSArray *suggestedTokens = nil;
+	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
-		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
-		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-		allTokens = self.tags;
+		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
+		if (tokenBeingInputted.length == 0 && existingTags.count > 0) {
+			NSMutableSet *relatedTags = NSMutableSet.new;
+			for (NSString *tag in existingTags) {
+				NSArray *someRelatedTags = [OPFTag relatedTagsForTagWithName:tag];
+				for (NSString *tagName in someRelatedTags) {
+					OPFTag *aTag = [OPFTag byName:tagName];
+					[relatedTags addObject:aTag];
+				}
+			}
+			suggestedTokens = relatedTags.allObjects;
+		} else if (self.tokenBeingInputted == 0) {
+			suggestedTokens = [OPFTag mostCommonTags];
+		} else {
+			query = [[OPFTag.query whereColumn:@"name" like:tokenBeingInputted] orderBy:@"name" order:kOPFSortOrderAscending];
+		}
+		
+//		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
+//		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
 	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		tokensPredicate = [NSPredicate predicateWithFormat:@"displayName beginswith[cd] %@", tokenBeingInputted];
-		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-		allTokens = self.users;
+		query = OPFUser.query;
+		
+//		tokensPredicate = [NSPredicate predicateWithFormat:@"displayName beginswith[cd] %@", tokenBeingInputted];
+//		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
 	} else {
 		return;
 	}
 	
-	NSArray *suggestedTokens = (tokenBeingInputted.length > 0 ? [allTokens filteredArrayUsingPredicate:tokensPredicate] : allTokens);
-	suggestedTokens = [suggestedTokens sortedArrayUsingDescriptors:@[ tokensSortDescriptor ]];
+	
+	if (query && suggestedTokens.count == 0) {
+		suggestedTokens = [[query limit:@(20)] getMany];
+	}
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.suggestedTokens setArray:suggestedTokens];
