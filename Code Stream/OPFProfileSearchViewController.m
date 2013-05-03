@@ -35,6 +35,7 @@
 #define OPF_PAGE_SIZE 25
 
 static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
+static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
 
 - (id)init
 {
@@ -61,7 +62,9 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFProfileViewCell) bundle:nil] forCellReuseIdentifier:ProfileViewCellIdentifier];
+	
     [self setupRefreshControl];
 }
 
@@ -165,15 +168,8 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *profileViewCellIdentifier = @"OPFProfileViewCell";
+    OPFProfileViewCell *profileViewCell = (OPFProfileViewCell *)[tableView dequeueReusableCellWithIdentifier:ProfileViewCellIdentifier forIndexPath:indexPath];
     
-    OPFProfileViewCell *profileViewCell = (OPFProfileViewCell *)[tableView dequeueReusableCellWithIdentifier:profileViewCellIdentifier];
-    
-    if (profileViewCell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:profileViewCellIdentifier owner:self options:nil];
-        profileViewCell = [nib objectAtIndex:0];
-    }
-        
     profileViewCell.userModel = [self userForIndexPath:indexPath];
     
     [profileViewCell setupFormatters];
@@ -182,6 +178,11 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     profileViewCell.profilesViewController = self;
     
     return profileViewCell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	cell.backgroundColor = UIColor.whiteColor;
 }
 
 #pragma mark - Table view delegate
