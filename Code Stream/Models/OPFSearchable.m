@@ -45,7 +45,9 @@
     NSArray* tokens = [searchString componentsSeparatedByString:@" "];
     NSMutableArray* tokensWithColumnName = [[NSMutableArray alloc] init];
     for(id token in tokens) {
-        [tokensWithColumnName addObject: [NSString stringWithFormat:@"index_string:%@", token]];
+        if ([token length] != 0) {
+            [tokensWithColumnName addObject: [NSString stringWithFormat:@"index_string:%@", token]];
+        }
     }
     return [tokensWithColumnName componentsJoinedByString:@" "];
 }

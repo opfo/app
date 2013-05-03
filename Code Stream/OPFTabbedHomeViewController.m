@@ -34,7 +34,7 @@
 
 @implementation OPFTabbedHomeViewController
 
-const int TabbedBarHeight = 60;
+const int TabbedBarHeight = 44;
 
 - (id)init
 {

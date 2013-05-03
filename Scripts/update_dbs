@@ -13,6 +13,9 @@ if (File.basename(Dir.pwd) == "Scripts")
   Dir.chdir("../Code Stream")
 elsif (File.basename(Dir.pwd) == "Code-Stream")
   Dir.chdir("Code Stream")
+else
+  # Just try it
+  Dir.chdir("Code Stream")
 end
 
 puts "Checking for missing databases".green
