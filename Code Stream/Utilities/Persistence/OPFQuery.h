@@ -68,6 +68,12 @@ typedef enum : NSInteger { kOPFSortOrderAscending, kOPFSortOrderDescending } OPF
 // Create an IS (equals) query and set is as an AND query for this query
 - (instancetype) whereColumn: (NSString*) column is: (id) term;
 
+// Create an IS greater (or equals) query and set is as an AND query for this query
+- (instancetype) whereColumn: (NSString*) column isGreaterThan: (id) term orEqual:(BOOL)equal;
+
+// Create an IS less (or equals) query and set is as an AND query for this query
+- (instancetype) whereColumn: (NSString*) column isLessThan: (id) term orEqual:(BOOL)equal;
+
 // Create an IN query and set is as an AND query for this query
 - (instancetype) whereColumn: (NSString*) column in: (NSArray*) terms;
 

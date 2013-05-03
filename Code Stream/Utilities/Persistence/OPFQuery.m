@@ -71,6 +71,22 @@
     return query;
 }
 
+- (instancetype) whereColumn: (NSString*) column isGreaterThan: (id) term orEqual:(BOOL)equal
+{
+	OPFIsQueryType type = (equal ? kOPFIsQueryGreaterOrEqual : kOPFIsQueryGreater);
+	OPFIsQuery *query = [OPFIsQuery initWithColumn:column term:term type:type rootQuery:self.rootQuery];
+	self.andQuery = query;
+	return query;
+}
+
+- (instancetype) whereColumn: (NSString*) column isLessThan: (id) term orEqual:(BOOL)equal
+{
+	OPFIsQueryType type = (equal ? kOPFIsQueryLessOrEqual : kOPFIsQueryLess);
+	OPFIsQuery *query = [OPFIsQuery initWithColumn:column term:term type:type rootQuery:self.rootQuery];
+	self.andQuery = query;
+	return query;
+}
+
 - (instancetype) whereColumn: (NSString*) column in: (id) terms{
     OPFInQuery* query = [OPFInQuery initWithColumn: column terms: terms rootQuery: self];
     self.andQuery = query;
