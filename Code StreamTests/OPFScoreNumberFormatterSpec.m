@@ -43,7 +43,8 @@ describe(@"converting a score number into a string using _short_ form", ^{
 	it(@"should handle negative scores in the same manner", ^{
 		expect([scoreFormatter stringFromScore:-1]).to.equal(@"-1");
 		expect([scoreFormatter stringFromScore:-2048]).to.equal(@"-2,048");
-		expect([scoreFormatter stringFromScore:-2049]).to.equal(@"-2.1k");
+		expect([scoreFormatter stringFromScore:-2049]).to.equal(@"-2k");
+		expect([scoreFormatter stringFromScore:-2050]).to.equal(@"-2.1k");
 	});
 	
 	it(@"should not be nil", ^{
