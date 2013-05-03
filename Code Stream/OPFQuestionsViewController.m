@@ -254,7 +254,7 @@ Boolean heatMode = NO;
 	
 	OPFQuery *query = nil;
 	if (keywords.length > 0 || tags.count > 0) {
-		query = [[OPFQuestion searchFor:keywords inTags:tags] limit:@(100)];
+		query = [[[OPFQuestion searchFor:keywords inTags:tags] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
 	} else {
 		query = [[[OPFQuestion query] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
 	}
