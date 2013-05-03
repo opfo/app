@@ -1,7 +1,7 @@
 PODS:
   - AFNetworking (1.2.1)
   - AGMedallionView (1.2.0)
-  - AKTabBarController (1.0.1.1)
+  - AKTabBarController (1.0.1.2)
   - Expecta (0.2.1)
   - FMDB (2.0)
   - GCTagList (0.2pre)
@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
   AGMedallionView: 5eeb9e90035d8da77c7ffcce83bd480b1503c1bd
-  AKTabBarController: 0777250975eae6a64ea3ba8f91a3e8fef885f04e
+  AKTabBarController: 7c67c1b401f9ad49031a67b68ccd6193227985ae
   Expecta: d46fb1bd78c90a83da0158b9b1e108de106e369f
   FMDB: 2fe05139e2cde6557d32282a541eba685583222e
   GCTagList: f2fb0d56eeee4ebd3505bd9cdb6b3628d73b133d
