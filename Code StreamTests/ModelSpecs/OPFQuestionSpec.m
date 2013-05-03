@@ -73,6 +73,18 @@ describe(@"searching", ^{
             expect(q).to.beKindOf([OPFQuestion class]);
         }
     });
+    
+    describe(@"searching for tags", ^{
+        it(@"should be possible to search questions by tags", ^{
+            NSArray* questions = [[OPFQuestion withTags:@[@"playframework"]] getMany];
+            expect(questions.count).to.equal(@(10));
+        });
+        
+        it(@"should be possible to combine tags", ^{
+            NSArray* questions = [[OPFQuestion withTags:@[@"playframework", @"jobs"]] getMany];
+            expect(questions.count).to.equal(@(1));
+        });
+    });
 });
 
 SpecEnd
