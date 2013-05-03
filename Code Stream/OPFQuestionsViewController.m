@@ -426,7 +426,7 @@ Boolean heatMode = NO;
 	
 	if (tokenStartRange.location != NSNotFound) {
 		CGFloat location = tokenStartRange.location + tokenStartRange.length;
-		CGFloat length = (tokenEndRange.location != NSNotFound ? tokenEndRange.location - location : searchString.length - location);
+		CGFloat length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
 		NSRange replacementRange = NSMakeRange(location, length);
 		
 		if (replacementRange.location < searchString.length) {
@@ -483,9 +483,6 @@ Boolean heatMode = NO;
 
 - (void)updateSearchBarWithTokens
 {
-	// 1. Get all complete tokens (tags and users) and their location
-	// 2. Get any incomplete token at the end of the string
-	
 	NSMutableArray *tokens = NSMutableArray.new;
 	
 	// 3 is the shortest possible tag.
@@ -568,6 +565,8 @@ Boolean heatMode = NO;
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
+		self.tokenBeingInputted = nil;
+		self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
 		[self changeSearchBarInputViewToButtonsView];
 	}
 }
@@ -669,6 +668,7 @@ Boolean heatMode = NO;
 			self.searchBarInputView.completionsView.frame = completionsFrame;
 		} completion:^(BOOL finished) {
 			if (finished && state == kOPFQuestionsSearchBarInputStateCompletions) {
+				[self.searchBarInputView.completionsView setContentOffset:CGPointZero animated:NO];
 				[self.searchBarInputView.completionsView reloadData];
 			}
 		}];
