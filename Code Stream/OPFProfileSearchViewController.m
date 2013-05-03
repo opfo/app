@@ -212,11 +212,37 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [self.tableView reloadData];
 }
 
+#pragma mark - UISearchBarDelegate Methods
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:YES animated:YES];
+	return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:NO animated:YES];
+	return YES;
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
     self.hasLoaded = self.isSearching = NO;
+    [self updateSearchWithString:@""];
+    
     [self performInitialDatabaseFetch];
     [searchBar resignFirstResponder];
+    [self.tableView reloadData];
+}
+
+- (void)updateSearchWithString:(NSString *)searchString
+{
+	self.profileSearchBar.text = searchString;
 }
 
 #pragma mark - UIRefreshControl delegates
