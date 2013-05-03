@@ -126,6 +126,8 @@ Boolean heatMode = NO;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
+    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -154,10 +156,6 @@ Boolean heatMode = NO;
 			}
 		}];
 	});
-	
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
