@@ -79,8 +79,12 @@ describe(@"display name search", ^{
     });
     
     it(@"should be possible to find Bryan Lyttle", ^{
-        OPFUser* user = [[OPFUser searchFor:@"brian lyttle"] getOne];
+        NSArray* users = [[OPFUser searchFor:@"brian lyttle"] getMany];
+        expect(users.count).to.equal(1);
+        OPFUser* user = [users objectAtIndex:0];
         expect(user.displayName).to.equal(@"Brian Lyttle");
+        expect(user.downVotes).to.equal(@(153));
+        expect(user.reputation).to.equal(@(7174));
     });
 });
 
