@@ -147,14 +147,14 @@ Boolean heatMode = NO;
 		return evaluatedObject.score.integerValue >= 8;
 	}]];
 	
+	if (_isFirstTimeAppearing) {
+		_isFirstTimeAppearing = NO;
+		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBar.frame));
+		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
+	}
 	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-		[self updateFilteredQuestionsCompletion:^{
-			if (_isFirstTimeAppearing) {
-				_isFirstTimeAppearing = NO;
-				[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-			}
-		}];
+		[self updateFilteredQuestionsCompletion:nil];
 	});
 }
 
