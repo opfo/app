@@ -8,6 +8,8 @@
 
 #import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarTokenView.h"
+#import "UIColor+OPFHEX.h"
+#import "SSLineView.h"
 
 #import <objc/runtime.h>
 
@@ -41,7 +43,9 @@
 @end
 
 
-@implementation OPFQuestionsSearchBar
+@implementation OPFQuestionsSearchBar {
+	SSLineView *_topLineView;
+}
 
 - (void)sharedQuestionsSearchBarInit
 {
@@ -51,8 +55,14 @@
 			break;
 		}
 	}
-	
 	_tokens = NSArray.new;
+	
+	SSLineView *topLineView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 2.f)];
+	topLineView.lineColor = [UIColor opf_colorWithHexValue:0xa0adb7];
+	topLineView.insetColor = [UIColor opf_colorWithHexValue:0xe3e9ed];
+	topLineView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	_topLineView = topLineView;
+	[self addSubview:topLineView];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -101,7 +111,11 @@
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
-	   
+	
+	CGRect topLineViewFrame = _topLineView.frame;
+	topLineViewFrame.size.width = CGRectGetWidth(self.bounds);
+	_topLineView.frame = topLineViewFrame;
+	
 	CGFloat insetTop = 4.f;
 	CGFloat baseInsetLeft = 30.f;
 	
