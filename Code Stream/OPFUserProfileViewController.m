@@ -160,7 +160,7 @@ static CGFloat userAboutMeInset = 20.0;
 	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
 	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
     
-    self.views.text = [self.scoreFormatter stringFromScore:self.user.views];
+    self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
