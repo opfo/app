@@ -44,7 +44,7 @@
 // Setting the image of the tab.
 - (NSString *)tabImageName
 {
-    return @"tab-activity";
+    return @"tab-latestactivity";
 }
 
 // Setting the title of the tab.
