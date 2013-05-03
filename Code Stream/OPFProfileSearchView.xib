@@ -168,6 +168,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">OPFProfileSearchViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">didSelectUserWebsite:</string>
+						<string key="NS.object.0">UIButton</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">didSelectUserWebsite:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">didSelectUserWebsite:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">profileSearchBar</string>
 						<string key="NS.object.0">UISearchBar</string>
