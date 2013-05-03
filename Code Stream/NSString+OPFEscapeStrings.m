@@ -25,8 +25,8 @@
 			replaceWith = @[@"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e", @"\\\"", @"<pre class=\\\"prettyprint\\\">"];
 			break;
 		case OPFEscapeHtml:
-			toReplace = @[@"\\n"];
-			replaceWith = @[@"<br>\n"];
+			toReplace = @[@"\\n", @"\"\""];
+			replaceWith = @[@"\n ", @"\" "];
 			break;
 		default:
 			@throw @"Unknown escape scheme. Have you defined in the OPFEscapeStrings method?";
