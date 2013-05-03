@@ -34,7 +34,7 @@ extern const CGFloat kOPFTokenPaddingTop;
 
 
 #pragma mark - Style
-@property (assign, nonatomic, readonly) OPFQuestionsSearchBarTokenStyle style;
+@property (assign, nonatomic) OPFQuestionsSearchBarTokenStyle style;
 
 
 #pragma mark - Border
