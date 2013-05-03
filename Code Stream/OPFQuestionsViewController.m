@@ -7,6 +7,8 @@
 //
 
 #import "OPFQuestionsViewController.h"
+#import "OPFTag.h"
+#import "OPFUser.h"
 #import "OPFQuestion.h"
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
@@ -40,6 +42,9 @@ typedef enum : NSInteger {
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
 
+@property (copy) NSArray *tags;
+@property (copy) NSArray *users;
+
 @end
 
 
@@ -59,6 +64,7 @@ Boolean heatMode = NO;
 	_searchString = @"";
 	_isFirstTimeAppearing = YES;
 	_filteredQuestions = NSMutableArray.new;
+	_suggestedTokens = NSMutableArray.new;
 }
 
 - (id)init
@@ -98,9 +104,13 @@ Boolean heatMode = NO;
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
 {
-	self.suggestedTokens = @[ @"java", @"javafx", @"javascript", @"jaq", @"outside", @"even further outside" ].mutableCopy;
-	
 	[super viewDidLoad];
+	
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		self.tags = OPFTag.all;
+		self.users = OPFUser.all;
+	});
+	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
@@ -138,14 +148,16 @@ Boolean heatMode = NO;
 	}]];
 	
 	
-	[self updateFilteredQuestionsCompletion:^{
-		if (_isFirstTimeAppearing) {
-			_isFirstTimeAppearing = NO;
-			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-		}
-	}];
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat"
-                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+		[self updateFilteredQuestionsCompletion:^{
+			if (_isFirstTimeAppearing) {
+				_isFirstTimeAppearing = NO;
+				[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			}
+		}];
+	});
+	
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
 }
@@ -231,7 +243,11 @@ Boolean heatMode = NO;
 #pragma mark - Update Filtered Questions
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
-	NSString *searchString = self.searchString ?: @"";
+	__block NSString *searchString = nil;
+	dispatch_sync(dispatch_get_main_queue(), ^{
+		searchString = self.tokenBeingInputted.copy ?: @"";
+	});
+	
 	NSArray *tags = [searchString opf_tagsFromSearchString];
 	NSArray *users = [searchString opf_usersFromSearchString];
 	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
@@ -245,7 +261,7 @@ Boolean heatMode = NO;
 	
 	NSArray *filteredQuestions = [query getMany];
 	
-	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
 		if (completionBlock) {
@@ -261,6 +277,42 @@ Boolean heatMode = NO;
 }
 
 
+#pragma mark - Update Suggested Tokens
+- (void)updateSuggestedTokensCompletion:(void (^)())completionBlock
+{
+	__block NSString *tokenBeingInputted = nil;
+	dispatch_sync(dispatch_get_main_queue(), ^{
+		tokenBeingInputted = self.tokenBeingInputted.copy;
+	});
+	
+	NSArray *allTokens = nil;
+	NSPredicate *tokensPredicate = nil;
+	NSSortDescriptor *tokensSortDescriptor = nil;
+	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
+		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
+		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+		allTokens = self.tags;
+	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
+		tokensPredicate = [NSPredicate predicateWithFormat:@"displayName beginswith[cd] %@", tokenBeingInputted];
+		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+		allTokens = self.users;
+	} else {
+		return;
+	}
+	
+	NSArray *suggestedTokens = (tokenBeingInputted.length > 0 ? [allTokens filteredArrayUsingPredicate:tokensPredicate] : allTokens);
+	suggestedTokens = [suggestedTokens sortedArrayUsingDescriptors:@[ tokensSortDescriptor ]];
+	
+	[NSOperationQueue.mainQueue addOperationWithBlock:^{
+		[self.suggestedTokens setArray:suggestedTokens];
+		[self.searchBarInputView.completionsView reloadData];
+		if (completionBlock) {
+			completionBlock();
+		}
+	}];
+}
+
+
 #pragma mark - Key Value Obseravation
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -273,8 +325,6 @@ Boolean heatMode = NO;
 				[self updateFilteredQuestionsCompletion:nil];
 			});
 		}
-	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
 
@@ -301,6 +351,25 @@ Boolean heatMode = NO;
 }
 
 
+#pragma mark - 
+- (NSString *)tokenTextFromSuggestedTokenAtIndexPath:(NSIndexPath *)indexPath
+{
+	NSString *token = nil;
+	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
+		OPFTag *tag = self.suggestedTokens[indexPath.row];
+		token = tag.name;
+	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
+		OPFUser *user = self.suggestedTokens[indexPath.row];
+		token = user.displayName;
+	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedNone) {
+		token = @"";
+	} else {
+		ZAssert(NO, @"Unkown type of token being inputted, got: %d", self.tokenBeingInputtedType);
+	}
+	return token;
+}
+
+
 #pragma mark - UICollectionViewDataSource Methods
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -316,7 +385,8 @@ Boolean heatMode = NO;
 {
 	NSString *cellIdentifier = (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser ? SuggestedUserCellIdentifier : SuggestedTagCellIdentifier);
 	OPFTokenCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-	cell.tokenView.text = self.suggestedTokens[indexPath.row];
+	NSString *token = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
+	cell.tokenView.text = token;
 	return cell;
 }
 
@@ -324,11 +394,11 @@ Boolean heatMode = NO;
 #pragma mark - UICollectionViewFlowLayout Methods
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGFloat height = kOPFTokenHeight;
-	
-	NSString *token = self.suggestedTokens[indexPath.row];
+	NSString *token = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
 	CGSize tokenSize = [token sizeWithFont:[UIFont systemFontOfSize:kOPFTokenTextFontSize]];
+	
 	CGFloat width = kOPFTokenPaddingLeft + tokenSize.width + kOPFTokenPaddingRight;
+	CGFloat height = kOPFTokenHeight;
 	
 	CGSize size = CGSizeMake(width, height);
 	return size;
@@ -338,7 +408,7 @@ Boolean heatMode = NO;
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *token = self.suggestedTokens[indexPath.row];
+	NSString *token = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
 	[self didSelectToken:token];
 }
 
@@ -378,11 +448,15 @@ Boolean heatMode = NO;
 
 - (void)startTokenInputOfType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
-	self.tokenBeingInputted = NSMutableString.new;
+	self.tokenBeingInputted = [NSMutableString stringWithCapacity:20];
 	self.tokenBeingInputtedType = type;
 	
 	NSString *tokenChar = [self tokenCharacterForType:type end:NO];
 	[self updateSearchWithString:[self.searchString stringByAppendingString:tokenChar]];
+	
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self updateSuggestedTokensCompletion:nil];
+	});
 	
 	[self changeSearchBarInputViewToCompletionsView];
 }
@@ -394,6 +468,7 @@ Boolean heatMode = NO;
 	
 	self.tokenBeingInputted = nil;
 	self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
+	[self.suggestedTokens removeAllObjects];
 	
 	[self changeSearchBarInputViewToButtonsView];
 }
@@ -503,13 +578,32 @@ Boolean heatMode = NO;
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-	if (self.tokenBeingInputted != nil && text.length > 0) {
-		NSString *tokenEndChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:YES];
-		NSRange tokenEndRange = [text rangeOfString:tokenEndChar options:NSBackwardsSearch];
+	if (self.tokenBeingInputted != nil) {
+		if (text.length > 0) {
+			NSString *tokenEndChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:YES];
+			NSRange tokenEndRange = [text rangeOfString:tokenEndChar options:NSBackwardsSearch];
+			
+			NSUInteger substringIdx = (tokenEndRange.location != NSNotFound ? tokenEndRange.location : text.length);
+			NSString *tokenText = [text substringToIndex:substringIdx];
+			[self.tokenBeingInputted appendString:tokenText];
+		} else if (text.length == 0 && range.length > 0) {
+			NSString *replacedText = [self.searchBar.text substringWithRange:range];
+			NSString *tokenChar = [self tokenCharacterForType:self.tokenBeingInputtedType end:NO];
+			if ([replacedText opf_containsString:tokenChar]) {
+				[self.tokenBeingInputted setString:@""];
+				[self endTokenInput];
+			} else {
+				NSUInteger tokenLength = self.tokenBeingInputted.length;
+				if (tokenLength > 0) {
+					NSRange deleteRange = NSMakeRange(tokenLength - range.length, range.length);
+					[self.tokenBeingInputted deleteCharactersInRange:deleteRange];
+				}
+			}
+		}
 		
-		NSUInteger substringIdx = (tokenEndRange.location != NSNotFound ? tokenEndRange.location : text.length);
-		NSString *tokenText = [text substringToIndex:substringIdx];
-		[self.tokenBeingInputted appendString:tokenText];
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			[self updateSuggestedTokensCompletion:nil];
+		});
 	}
 	
 	return YES;
