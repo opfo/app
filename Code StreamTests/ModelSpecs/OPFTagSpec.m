@@ -57,4 +57,15 @@ describe(@"get tags by name", ^{
     });
 });
 
+describe(@"get related tags", ^{
+    __block NSArray* tags = [OPFTag relatedTagsForTagWithName:@"css"];
+    it(@"should number 10", ^{
+        expect(tags.count).to.equal(@(10));
+    });
+    it(@"should have the correct tags", ^{
+        NSArray* expected = @[@"html", @"jquery", @"javascript", @"css3",@"internet-explorer", @"css-float", @"internet-explorer-7", @"html5", @"div", @"firefox"];
+        expect(tags).to.equal(expected);
+    });
+});
+
 SpecEnd
