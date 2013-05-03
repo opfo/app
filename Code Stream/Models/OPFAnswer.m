@@ -34,5 +34,20 @@
     }
 }
 
++(OPFSearchQuery*) searchFor:(NSString *)searchTerms
+{
+    return [[super searchFor:searchTerms] whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_ANSWER)];
+}
+
++ (OPFQuery*) withTags:(NSArray *)tags
+{
+    return [[super withTags:tags] whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_ANSWER)];
+}
+
++ (OPFQuery*) searchFor:(NSString *)searchTerms inTags:(NSArray *)tags
+{
+    return [[super searchFor:searchTerms inTags:tags] whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_ANSWER)];
+}
+
 
 @end

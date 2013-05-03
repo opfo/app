@@ -11,6 +11,7 @@
 #import "Expecta.h"
 #import "OPFUser.h"
 #import "OPFAnswer.h"
+#import "OPFComment.h"
 #include <objc/runtime.h>
 
 SpecBegin(OPFUser)
@@ -76,6 +77,11 @@ describe(@"display name search", ^{
         expect([[users objectAtIndex:0] identifier]).to.equal(@(797));
         expect([[users objectAtIndex:36] identifier]).to.equal(@(1091105));
     });
+    
+    it(@"should be possible to find Bryan Lyttle", ^{
+        OPFUser* user = [[OPFUser searchFor:@"brian lyttle"] getOne];
+        expect(user.displayName).to.equal(@"Brian Lyttle");
+    });
 });
 
 describe(@"fetching related objects", ^{
@@ -94,6 +100,14 @@ describe(@"fetching related objects", ^{
         expect(questions.count).to.equal(3);
         for(id question in questions) {
             expect([question ownerId]).to.equal(userWithQuestions.identifier);
+        }
+    });
+    
+    it(@"is possible to get all comments", ^{
+        NSArray* comments = [[user comments] getMany];
+        expect([comments count]).to.equal(@(37));
+        for(id c in comments) {
+            expect(c).to.beKindOf([OPFComment class]);
         }
     });
 });

@@ -65,4 +65,14 @@ describe(@"Fetching", ^{
     });
 });
 
+describe(@"searching", ^{
+    it(@"should return only question objects", ^{
+        NSArray* questions = [[OPFQuestion searchFor:@"division"] getMany];
+        expect(questions.count).to.beGreaterThan(@(0));
+        for(id q in questions){
+            expect(q).to.beKindOf([OPFQuestion class]);
+        }
+    });
+});
+
 SpecEnd

@@ -35,7 +35,7 @@
 {
     NSMutableString* output = [NSMutableString stringWithString: [self baseSQL]];
     [output appendString:@" "];
-    [output appendString: [NSString stringWithFormat:@" %@", [[self andQuery] toSQLString]]];
+    [output appendString: [NSString stringWithFormat:@" AND %@", [[self andQuery] toSQLString]]];
     return output;
 }
 
