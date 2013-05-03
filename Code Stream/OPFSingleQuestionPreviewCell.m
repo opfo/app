@@ -63,7 +63,7 @@
 #pragma mark Object Lifecycle
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
-	self.acceptedAnswer = question.acceptedAnswer != nil;
+	self.acceptedAnswer = question.acceptedAnswerId != nil;
 	self.score = [question.score integerValue];
 	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
