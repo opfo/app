@@ -110,6 +110,7 @@ Boolean heatMode = NO;
     self.users = OPFUser.all;
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
+	self.tableView.rowHeight = 150.f;
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
