@@ -426,7 +426,7 @@ Boolean heatMode = NO;
 	
 	if (tokenStartRange.location != NSNotFound) {
 		CGFloat location = tokenStartRange.location + tokenStartRange.length;
-		CGFloat length = (tokenEndRange.location != NSNotFound ? tokenEndRange.location - location : searchString.length - location);
+		CGFloat length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
 		NSRange replacementRange = NSMakeRange(location, length);
 		
 		if (replacementRange.location < searchString.length) {
