@@ -48,6 +48,7 @@
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
 		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
 		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
 		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
@@ -76,7 +77,6 @@
 		1A8848E61726BBD200082B00 /* OPFCommentViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8848E51726BBD200082B00 /* OPFCommentViewHeaderView.m */; };
 		1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */; };
 		1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CEF172FD3A300E19525 /* tab-home@2x.png */; };
-		1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF0172FD3A300E19525 /* tab-activity@2x.png */; };
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
@@ -234,6 +234,7 @@
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
 		1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFFavoritesViewController.h; sourceTree = "<group>"; };
 		1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFFavoritesViewController.m; sourceTree = "<group>"; };
 		1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFFavoritesViewController.xib; sourceTree = "<group>"; };
@@ -272,7 +273,6 @@
 		1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityViewController.m; sourceTree = "<group>"; };
 		1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityViewController.xib; sourceTree = "<group>"; };
 		1A896CEF172FD3A300E19525 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home@2x.png"; sourceTree = "<group>"; };
-		1A896CF0172FD3A300E19525 /* tab-activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-activity@2x.png"; sourceTree = "<group>"; };
 		1A896CF1172FD3A300E19525 /* tab-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-me@2x.png"; sourceTree = "<group>"; };
 		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
@@ -614,9 +614,9 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */,
 				1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */,
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
-				1A896CF0172FD3A300E19525 /* tab-activity@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
@@ -1232,13 +1232,13 @@
 				9CE68EB3172FDD2400131D38 /* OPFQuestionsSearchBarInputButtonsView.xib in Resources */,
 				1A896CEC172FD03A00E19525 /* OPFActivityViewController.xib in Resources */,
 				1A896CF3172FD3A300E19525 /* tab-home@2x.png in Resources */,
-				1A896CF4172FD3A300E19525 /* tab-activity@2x.png in Resources */,
 				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
 				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
 				1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */,
 				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
 				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
+				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
