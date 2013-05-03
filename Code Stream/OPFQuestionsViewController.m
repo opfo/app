@@ -568,6 +568,8 @@ Boolean heatMode = NO;
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
+		self.tokenBeingInputted = nil;
+		self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
 		[self changeSearchBarInputViewToButtonsView];
 	}
 }
