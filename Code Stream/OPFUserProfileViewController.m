@@ -15,6 +15,7 @@
 #import "OPFScoreNumberFormatter.h"
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
+#import "NSString+OPFEscapeStrings.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -147,16 +148,19 @@ static CGFloat userAboutMeInset = 20.0;
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", self.user.aboutMe] baseURL:nil];
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", [self.user.aboutMe OPF_escapeWithScheme:OPFEscapeHtml]] baseURL:nil];
     }
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
-        
+	
+	self.userBio.delegate = self;
     
-    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@" / "] stringByAppendingString:[self.user.downVotes stringValue]];
+	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
+	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
+	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
     
-    self.views.text = [self.user.views stringValue];
+    self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,6 +236,13 @@ static CGFloat userAboutMeInset = 20.0;
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return NO;
+	} else return YES;
 }
 
 
