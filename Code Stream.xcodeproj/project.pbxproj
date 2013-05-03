@@ -46,6 +46,7 @@
 		14DA81311729D48400DAFE49 /* prettify.css in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81111729D48400DAFE49 /* prettify.css */; };
 		14DA81321729D48400DAFE49 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81121729D48400DAFE49 /* prettify.js */; };
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
+		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
 		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
 		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
@@ -228,6 +229,8 @@
 		14DA81111729D48400DAFE49 /* prettify.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify.css; sourceTree = "<group>"; };
 		14DA81121729D48400DAFE49 /* prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = prettify.js; sourceTree = "<group>"; };
 		14DA81131729D48400DAFE49 /* run_prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = run_prettify.js; sourceTree = "<group>"; };
+		14E018DA172FBA0200CA2763 /* OPFUserPreviewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserPreviewButton.h; sourceTree = "<group>"; };
+		14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserPreviewButton.m; sourceTree = "<group>"; };
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
@@ -512,6 +515,16 @@
 			path = "Vendor/google-code-prettify";
 			sourceTree = "<group>";
 		};
+		14E018D9172FB36E00CA2763 /* Question View Header */ = {
+			isa = PBXGroup;
+			children = (
+				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
+				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
+			);
+			name = "Question View Header";
+			sourceTree = "<group>";
+		};
 		1A40DFDD17326B5A00B9AA00 /* Favorites View */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +554,7 @@
 		1A639ECF17269C01009EB280 /* Table View Headers */ = {
 			isa = PBXGroup;
 			children = (
+				14E018D9172FB36E00CA2763 /* Question View Header */,
 				1A6833461726A15800E3A687 /* Comment View Header */,
 				1A639ED017269C19009EB280 /* Profile Search Header */,
 			);
@@ -858,6 +872,7 @@
 			children = (
 				1A72197C17271A1C002B43CD /* Storyboard */,
 				1A639ECF17269C01009EB280 /* Table View Headers */,
+				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				1A639EC91726821A009EB280 /* Profile Search View */,
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
@@ -1018,6 +1033,8 @@
 				9C7F6E10171FE171008F6473 /* OPFPostTagsTableViewCell.h */,
 				9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */,
 				9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */,
+				14E018DA172FBA0200CA2763 /* OPFUserPreviewButton.h */,
+				14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */,
 			);
 			name = "Post Table View Cells";
 			sourceTree = "<group>";
@@ -1358,6 +1375,7 @@
 				9C8619AB17328BC5004CA0DC /* NSString+OPFContains.m in Sources */,
 				9C8619AE1732976B004CA0DC /* NSString+OPFSearchString.m in Sources */,
 				9CB0DF971732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m in Sources */,
+				14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */,
 				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
 				813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */,
 				1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */,

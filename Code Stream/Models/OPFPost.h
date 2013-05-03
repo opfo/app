@@ -40,7 +40,7 @@ typedef enum : NSInteger {
 //  Allows for SQLite full text index search queries to be performed simultaneously on tags and free text
 //  Example
 //  Searches for posts with contains apa and bepa at least once and contains mysql and css tags:
-//  [OPFQuery searchFor: @"apa bepa" inTags: @[@"mysql", @"css"]
+//  [OPFQuery searchFor: @"apa bepa" inTags: @[@"mysql", @"css"]]
 + (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
-
++ (OPFQuery*) withTags: (NSArray*) tags;
 @end

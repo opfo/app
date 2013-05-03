@@ -137,22 +137,29 @@
 
 + (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
 {
+    NSString* combinedTerms = [NSString stringWithFormat:@"%@ %@", [self matchClauseFromSearchString:searchTerms], [self tagSearchStringFromArray:tags]];
+    return [self _searchForPreProcessedSearchTerms:combinedTerms];
+}
+
+//  Passes the argument along to FTS without processing it at all.
++ (OPFQuery*) _searchForPreProcessedSearchTerms: (NSString*)searchTerms
+{
     OnGetOne singleModelCallback = ^(NSDictionary* attributes){
         return [self parseDictionary:attributes];
     };
     OnGetMany multipleModelCallback = ^(FMResultSet* result) {
         return [self parseMultipleResult:result];
     };
-    NSString* combinedTerms = [NSString stringWithFormat:@"%@ %@", [self matchClauseFromSearchString:searchTerms], [self tagSearchStringFromArray:tags]];
     OPFSearchQuery* query = [OPFSearchQuery searchQueryWithTableName:[self modelTableName]
                                                               dbName:[self dbName]
                                                          oneCallback:singleModelCallback
                                                         manyCallback:multipleModelCallback
                                                             pageSize:@([self defaultPageSize])
                                                       indexTableName:[self indexTableName]
-                                                          searchTerm: combinedTerms];
+                                                          searchTerm: searchTerms];
     return query;
 }
+
 
 //  Transforms an array of tags into a string suitable for a MATCH query
 //  Example:
@@ -171,6 +178,11 @@
     }
     NSString* tagsString = [tagStrings componentsJoinedByString:@" "];
     return tagsString;
+}
+
++ (OPFQuery*) withTags:(NSArray *)tags
+{
+    return [self _searchForPreProcessedSearchTerms:[self tagSearchStringFromArray:tags]];
 }
 
 @end

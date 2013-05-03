@@ -11,6 +11,8 @@
 #import "GCTagList.h"
 #import "OPFScoreNumberFormatter.h"
 
+@class OPFUserPreviewButton;
+
 @class OPFSingleQuestionPreviewCell;
 @protocol OPFSingleQuestionPreviewCellDelegate <NSObject>
 @optional
