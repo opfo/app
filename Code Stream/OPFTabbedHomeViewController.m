@@ -13,6 +13,7 @@
 #import "OPFActivityViewController.h"
 #import "OPFFavoritesViewController.h"
 #import "OPFAppState.h"
+#import "UIColor+OPFHEX.h"
 
 @interface OPFTabbedHomeViewController ()
 
@@ -76,6 +77,8 @@ const int TabbedBarHeight = 44;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	
+	self.view.backgroundColor = [UIColor opf_colorWithHexValue:0xe2e7ed];
 }
 
 - (void)didReceiveMemoryWarning
