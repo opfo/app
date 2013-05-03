@@ -26,4 +26,7 @@
 //  Takes a string and returns an array of tags as strings ordered by the amount of posts with both tags in them.
 + (NSArray*) relatedTagsForTagWithName: (NSString*) name;
 
+// The 20 most common tags.
++ (NSArray *)mostCommonTags;
+
 @end

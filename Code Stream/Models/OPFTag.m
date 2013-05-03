@@ -79,4 +79,10 @@
     return tags;
 }
 
++ (NSArray *)mostCommonTags
+{
+#warning FIXME: This should actually get the 20 most common tags.
+	return [[[self.query orderBy:@"name" order:kOPFSortOrderAscending] limit:@(20)] getMany];
+}
+
 @end
