@@ -141,13 +141,6 @@ Boolean heatMode = NO;
 		self.searchBar.text = self.searchString;
 	}
 	
-	// Fetch all questions matching our current search limits.
-	// TEMP:
-	NSMutableArray *questions = [[[OPFQuestion query] whereColumn:@"tags" like:@"%c#%"] getMany].mutableCopy;
-	[questions filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(OPFQuestion* evaluatedObject, NSDictionary *bindings) {
-		return evaluatedObject.score.integerValue >= 8;
-	}]];
-	
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
 		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBar.frame));
