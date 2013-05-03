@@ -671,6 +671,7 @@ Boolean heatMode = NO;
 			self.searchBarInputView.completionsView.frame = completionsFrame;
 		} completion:^(BOOL finished) {
 			if (finished && state == kOPFQuestionsSearchBarInputStateCompletions) {
+				[self.searchBarInputView.completionsView setContentOffset:CGPointZero animated:NO];
 				[self.searchBarInputView.completionsView reloadData];
 			}
 		}];
