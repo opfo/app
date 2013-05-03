@@ -50,9 +50,8 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 
 - (instancetype)initWithStyle:(OPFQuestionsSearchBarTokenStyle)style
 {
-	self = [super init];
+	self = [self initWithFrame:CGRectZero];
 	if (self) {
-		[self sharedQuestionsSearchBarTokenViewInit];
 		[self setUpQuestionsSearchBarStyle:style];
 	}
 	return self;
@@ -219,6 +218,14 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 	return self.textLabel.text;
 }
 
+- (void)setStyle:(OPFQuestionsSearchBarTokenStyle)style
+{
+	if (_style != style) {
+		_style = style;
+		[self setUpQuestionsSearchBarStyle:_style];
+		[self setNeedsDisplay];
+	}
+}
 
 
 @end
