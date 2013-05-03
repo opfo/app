@@ -80,7 +80,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p id = %@; title = %@>", self.class, self, self.identifier, self.title];
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; title = \"%@\"; }>", self.class, self, self.identifier, self.title];
 }
 
 @end

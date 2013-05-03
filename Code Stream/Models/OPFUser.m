@@ -74,7 +74,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p id = %@; display name = %@>", self.class, self, self.identifier, self.displayName];
+	return [NSString stringWithFormat:@"<%@: %p id = %@; display name = \"%@\">", self.class, self, self.identifier, self.displayName];
 }
 
 

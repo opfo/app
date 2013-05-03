@@ -67,7 +67,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p id = %@; post id = %@>", self.class, self, self.identifier, self.postId];
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; post = %@; }>", self.class, self, self.identifier, self.post];
 }
 
 

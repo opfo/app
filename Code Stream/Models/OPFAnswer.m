@@ -51,7 +51,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@: %p id = %@; parent id = %@>", self.class, self, self.identifier, self.parentId];
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; parent = %@; }>", self.class, self, self.identifier, self.parent];
 }
 
 
