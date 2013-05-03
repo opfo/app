@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OPFUser.h"
 
-@interface OPFUserProfileViewController : UITableViewController
+@interface OPFUserProfileViewController : UITableViewController <UIWebViewDelegate>
 
 
 + (instancetype)newFromStoryboard;
