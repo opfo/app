@@ -52,12 +52,13 @@ static CGFloat userAboutMeInset = 20.0;
 	return userProfileViewController;
 }
 
--(id) init
+- (void)viewDidLoad
 {
-	self = [super init];
-    if (self) {
-    }
-    return self;
+    [super viewDidLoad];
+	
+	self.scoreFormatter = [OPFScoreNumberFormatter new];
+    self.numberFormatter = [NSNumberFormatter new];
+    self.dateFormatter = [NSDateFormatter new];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -67,28 +68,6 @@ static CGFloat userAboutMeInset = 20.0;
     [self configureView];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - TabbedViewController methods
 
@@ -124,10 +103,6 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    self.scoreFormatter = [OPFScoreNumberFormatter new];
-    self.numberFormatter = [NSNumberFormatter new];
-    self.dateFormatter = [NSDateFormatter new];
-    
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
@@ -185,21 +160,6 @@ static CGFloat userAboutMeInset = 20.0;
     return height;
 }
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return NO;
-}
-
 // Indentify which cell the user clicked on
 -(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
 {
@@ -208,9 +168,9 @@ static CGFloat userAboutMeInset = 20.0;
     if(indexPath.section==4){
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
-    }
-    else if(indexPath.section==1 && indexPath.row==3)
+    } else if(indexPath.section==1 && indexPath.row==3) {
         cellIdentifier = UserWebsiteViewCell;
+	}
     
     return cellIdentifier;
 }
