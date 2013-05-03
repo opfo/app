@@ -62,6 +62,7 @@ static CGFloat userAboutMeInset = 20.0;
 
 - (void) viewWillAppear:(BOOL)animated
 {
+	[super viewWillAppear:animated];
     // Configure the view according to the userdata
     [self configureView];
 }
