@@ -1,5 +1,5 @@
 //
-//  NSString+NSString_OPFMD5Hash.h
+//  NSString+OPFMD5Hash.h
 //  Code Stream
 //
 //  Created by Tobias Deekens on 04.05.13.
@@ -10,6 +10,6 @@
 
 @interface NSString (OPFMD5Hash)
 
-- (NSString*)opf_md5hash:(NSString *) unhashed;
+- (NSString *)opf_md5hash;
 
 @end

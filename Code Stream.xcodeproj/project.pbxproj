@@ -81,6 +81,7 @@
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
+		1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */; };
 		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
 		1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */; };
 		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
@@ -93,7 +94,6 @@
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
 		1AD5D24417292A4A00B99352 /* avatar-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */; };
-		1AF1F26C1735A89F0090FC00 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1F26B1735A89F0090FC00 /* NSString+OPFMD5Hash.m */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
@@ -288,6 +288,8 @@
 		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
 		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
+		1A8BE1641735ACC000F16882 /* NSString+OPFMD5Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFMD5Hash.h"; sourceTree = "<group>"; };
+		1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFMD5Hash.m"; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
 		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
@@ -305,8 +307,6 @@
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-empty@2x.png"; sourceTree = "<group>"; };
-		1AF1F26A1735A89F0090FC00 /* NSString+OPFMD5Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFMD5Hash.h"; sourceTree = "<group>"; };
-		1AF1F26B1735A89F0090FC00 /* NSString+OPFMD5Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFMD5Hash.m"; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Code StreamTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1052,8 +1052,8 @@
 				1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */,
 				14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */,
 				14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */,
-				1AF1F26A1735A89F0090FC00 /* NSString+OPFMD5Hash.h */,
-				1AF1F26B1735A89F0090FC00 /* NSString+OPFMD5Hash.m */,
+				1A8BE1641735ACC000F16882 /* NSString+OPFMD5Hash.h */,
+				1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1440,7 +1440,7 @@
 				9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */,
 				9C3768761733292D00719F2A /* OPFActivityViewController.m in Sources */,
 				1A414A1717358A4A00F87F71 /* OPFProfileContainerController.m in Sources */,
-				1AF1F26C1735A89F0090FC00 /* NSString+OPFMD5Hash.m in Sources */,
+				1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

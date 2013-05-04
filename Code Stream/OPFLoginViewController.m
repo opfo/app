@@ -82,7 +82,7 @@
         UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 200, 35)];
         inputField.delegate = self;
         if (indexPath.row == 0) {
-            self.userNameField = inputField;
+            self.eMailField = inputField;
             inputField.tag = 0;
         }
         else {
@@ -99,7 +99,7 @@
 
 - (void)userRequestsLogin:(id)sender
 {
-    BOOL loginReponse = [OPFAppState loginWithUsername:self.userNameField.text andPassword:self.passwordField.text];
+    BOOL loginReponse = [OPFAppState loginWithEMail:self.eMailField.text andPassword:self.passwordField.text];
     
     if(loginReponse == YES) {
         

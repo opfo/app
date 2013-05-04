@@ -8,6 +8,7 @@
 
 #import "OPFAppState.h"
 #import "OPFUser.h"
+#import "NSString+OPFMD5Hash.h"
 
 @implementation OPFAppState
 
@@ -26,9 +27,9 @@ static OPFUser *userModel;
     self.userModel = userModel;
 }
 
-+ (BOOL)loginWithUsername :(NSString *)userName andPassword :(NSString *)password;
++ (BOOL)loginWithEMail :(NSString *)eMail andPassword :(NSString *)password;
 {
-    __strong OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"display_name" is:userName] getOne];
+    __strong OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"email_hash" is:eMail.opf_md5hash] getOne];
     
     if (loggedInUserModel) {
         userModel = loggedInUserModel;
