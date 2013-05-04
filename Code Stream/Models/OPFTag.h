@@ -26,8 +26,11 @@ extern NSInteger kOPFPopularTagsLimit;
 //  Get a tag by name
 + (instancetype) byName: (NSString*) name;
 
-//  Takes a string and returns an array of tags as strings ordered by the amount of posts with both tags in them.
+//  Takes a string and returns an array of OPFTags ordered by the amount of posts with both tags in them.
 + (NSArray*) relatedTagsForTagWithName: (NSString*) name;
+
+//  Return related tags for the current OPFTag
+- (NSArray*) relatedTags;
 
 // The 20 most common tags.
 + (NSArray *)mostCommonTags;

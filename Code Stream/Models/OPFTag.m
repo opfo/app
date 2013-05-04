@@ -73,13 +73,18 @@ NSInteger kOPFPopularTagsLimit = 20;
 {
     __block NSMutableArray* tags = [[NSMutableArray alloc] init];
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet* result = [db executeQuery:@"SELECT 'tag_frequencies'.'second_tag' FROM 'auxDB'.'tag_frequencies' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'counter' DESC LIMIT 10" withArgumentsInArray:@[name]];
+        FMResultSet* result = [db executeQuery:@"SELECT 'tags'.*, 'tag_frequencies'.'counter' FROM 'auxDB'.'tags' INNER JOIN 'auxDB'.'tag_frequencies' ON 'tag_frequencies'.'second_tag' = 'tags'.'name' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'counter' DESC LIMIT 10" withArgumentsInArray:@[name]];
         while([result next]) {
-            [tags addObject:[result stringForColumn:@"second_tag"]];
+            [tags addObject:[self parseDictionary:result.resultDictionary]];
         }
         [result close];
     }];
     return tags;
+}
+
+- (NSArray*) relatedTags
+{
+    return [OPFTag relatedTagsForTagWithName:self.name];
 }
 
 + (NSArray *)mostCommonTags

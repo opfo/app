@@ -62,9 +62,19 @@ describe(@"get related tags", ^{
     it(@"should number 10", ^{
         expect(tags.count).to.equal(@(10));
     });
+    
+    it(@"should be OPFTags", ^{
+        expect(tags.count).notTo.equal(0);
+        for(id object in tags) {
+            expect(object).to.beKindOf([OPFTag class]);
+        }
+    });
+    
     it(@"should have the correct tags", ^{
         NSArray* expected = @[@"html", @"jquery", @"javascript", @"css3",@"internet-explorer", @"css-float", @"internet-explorer-7", @"html5", @"div", @"firefox"];
-        expect(tags).to.equal(expected);
+        for(int i = 0; i < expected.count; i++) {
+            expect([[tags objectAtIndex: i] name]).to.equal([expected objectAtIndex:i]);
+        }
     });
 });
 
