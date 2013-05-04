@@ -64,6 +64,13 @@
     return query;
 }
 
+- (instancetype) whereColumn:(NSString *)column like:(id)term  exact:(BOOL)exact
+{
+    OPFLikeQuery* query = [OPFLikeQuery initWithColumn: column term:term rootQuery: self.rootQuery exact:exact];
+    self.andQuery = query;
+    return query;
+}
+
 - (instancetype) whereColumn: (NSString*) column is: (id) term
 {
     OPFIsQuery* query = [OPFIsQuery initWithColumn: column term: term rootQuery: self.rootQuery];
