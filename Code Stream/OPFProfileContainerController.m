@@ -61,6 +61,7 @@ static const int TransitionDuration = .5f;
         [self.view addSubview:self.loginViewController.view];
     } else {
         [self transitionToLoginViewControllerFromViewController:self.profileViewController];
+        self.profileViewController.user = [OPFAppState userModel];
         [self.view addSubview:self.profileViewController.view];
     }
 }
@@ -106,6 +107,8 @@ static const int TransitionDuration = .5f;
 {
     self.title = NSLocalizedString(@"Profile", @"Profile View controller title");
     
+    self.profileViewController.user = [OPFAppState userModel];
+    
     [self transitionFromViewController:viewController
                       toViewController:self.profileViewController
                               duration:TransitionDuration
@@ -119,13 +122,13 @@ static const int TransitionDuration = .5f;
 // Setting the image of the tab.
 - (NSString *)tabImageName
 {
-    return [OPFAppState isLoggedIn] ? @"tab-me" : @"tab-login";
+    return @"tab-me";
 }
 
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return [OPFAppState isLoggedIn] ? NSLocalizedString(@"My Profile", @"Profile View Controller tab title") : NSLocalizedString(@"Login", @"Login View Controller tab title");
+    return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
 }
 
 @end
