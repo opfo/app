@@ -19,14 +19,14 @@
 @property(strong, nonatomic) OPFUserProfileViewController *profileViewController;
 
 - (void)transitionToLoginViewControllerFromViewController :(UIViewController *) viewController;
-- (void)transitionToSignupViewController :(UIViewController *) viewController;
-- (void)transitionToProfileViewController :(UIViewController *) viewController;
+- (void)transitionToSignupViewControllerFromViewController :(UIViewController *) viewController;
+- (void)transitionToProfileViewControllerFromViewController :(UIViewController *) viewController;
 
 @end
 
 @implementation OPFProfileContainerController
 
-static const int transitionDuration = .5f;
+static const int TransitionDuration = .5f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,6 +55,14 @@ static const int transitionDuration = .5f;
     [self.loginViewController didMoveToParentViewController:self];
     [self.signupViewController didMoveToParentViewController:self];
     [self.profileViewController didMoveToParentViewController:self];
+    
+    if (![OPFAppState isLoggedIn]) {
+        [self transitionToProfileViewControllerFromViewController:self.loginViewController];
+        [self.view addSubview:self.loginViewController.view];
+    } else {
+        [self transitionToLoginViewControllerFromViewController:self.profileViewController];
+        [self.view addSubview:self.profileViewController.view];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,37 +78,37 @@ static const int transitionDuration = .5f;
 
 #pragma mark - Transition methods
 
-- (void)transitionToLoginController :(UIViewController *) viewController;
+- (void)transitionToLoginViewControllerFromViewController :(UIViewController *) viewController;
 {
     self.title = NSLocalizedString(@"Login", @"Login View controller title");
     
     [self transitionFromViewController:viewController
                       toViewController:self.loginViewController
-                              duration:transitionDuration
+                              duration:TransitionDuration
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:nil
                             completion:nil];
 }
 
-- (void)transitionToSignupController :(UIViewController *) viewController;
+- (void)transitionToSignupViewControllerFromViewController :(UIViewController *) viewController;
 {
     self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
     
     [self transitionFromViewController:viewController
                       toViewController:self.signupViewController
-                              duration:transitionDuration
+                              duration:TransitionDuration
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:nil
                             completion:nil];
 }
 
-- (void)transitionToProfileController :(UIViewController *) viewController;
+- (void)transitionToProfileViewControllerFromViewController :(UIViewController *) viewController;
 {
     self.title = NSLocalizedString(@"Profile", @"Profile View controller title");
     
     [self transitionFromViewController:viewController
                       toViewController:self.profileViewController
-                              duration:transitionDuration
+                              duration:TransitionDuration
                                options:UIViewAnimationOptionTransitionCrossDissolve
                             animations:nil
                             completion:nil];
