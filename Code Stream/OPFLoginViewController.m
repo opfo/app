@@ -80,7 +80,7 @@
         
         [cell.contentView addSubview:startLabel];
         
-        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 200, 35)];
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 160, 35)];
         inputField.delegate = self;
         if (indexPath.row == 0) {
             self.eMailField = inputField;
