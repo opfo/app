@@ -78,4 +78,9 @@
     return [[super searchFor:searchTerms inTags:tags] whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_QUESTION)];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; title = \"%@\"; }>", self.class, self, self.identifier, self.title];
+}
+
 @end
