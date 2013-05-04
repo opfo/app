@@ -273,35 +273,28 @@ Boolean heatMode = NO;
 	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
-		if (tokenBeingInputted.length == 0 && existingTags.count > 0) {
-			NSMutableSet *relatedTags = NSMutableSet.new;
-			for (NSString *tag in existingTags) {
-				NSArray *someRelatedTags = [OPFTag relatedTagsForTagWithName:tag];
-				for (NSString *relatedTag in someRelatedTags) {
-					[relatedTags addObject: relatedTag];
+		if (tokenBeingInputted.length == 0) {
+			if (existingTags.count > 0) {
+				NSMutableSet *relatedTags = NSMutableSet.new;
+				for (NSString *tag in existingTags) {
+					NSArray *relatedTagsSubset = [OPFTag relatedTagsForTagWithName:tag];
+					[relatedTags addObjectsFromArray:relatedTagsSubset];
 				}
+				suggestedTokens = relatedTags.allObjects;
+			} else {
+				suggestedTokens = [OPFTag mostCommonTags];
 			}
-			suggestedTokens = relatedTags.allObjects;
-		} else if (self.tokenBeingInputted == 0) {
-			suggestedTokens = [OPFTag mostCommonTags];
 		} else {
             NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
 			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
 		}
-		
-//		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
-//		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
 	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		query = OPFUser.query;
-		
-//		tokensPredicate = [NSPredicate predicateWithFormat:@"displayName beginswith[cd] %@", tokenBeingInputted];
-//		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+		query = [OPFUser.query limit:@(20)];
 	} else {
 		return;
 	}
 	
-	
-	if (query && suggestedTokens.count == 0) {
+	if (query != nil && suggestedTokens.count == 0) {
 		suggestedTokens = [[query limit:@(20)] getMany];
 	}
 	
