@@ -277,16 +277,16 @@ Boolean heatMode = NO;
 			NSMutableSet *relatedTags = NSMutableSet.new;
 			for (NSString *tag in existingTags) {
 				NSArray *someRelatedTags = [OPFTag relatedTagsForTagWithName:tag];
-				for (NSString *tagName in someRelatedTags) {
-					OPFTag *aTag = [OPFTag byName:tagName];
-					[relatedTags addObject:aTag];
+				for (NSString *relatedTag in someRelatedTags) {
+					[relatedTags addObject: relatedTag];
 				}
 			}
 			suggestedTokens = relatedTags.allObjects;
 		} else if (self.tokenBeingInputted == 0) {
 			suggestedTokens = [OPFTag mostCommonTags];
 		} else {
-			query = [[OPFTag.query whereColumn:@"name" like:tokenBeingInputted] orderBy:@"name" order:kOPFSortOrderAscending];
+            NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
+			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
 		}
 		
 //		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
