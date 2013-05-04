@@ -62,7 +62,13 @@ const int TabbedBarHeight = 44;
     self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
     self.profileContainerViewController = [[UINavigationController new] initWithRootViewController:self.profileContainerController];
     
-    [self initWithDefaultTabs];
+    [self setViewControllers:[NSMutableArray arrayWithObjects:
+        self.questionsViewNavigationController,
+        self.activityViewNavigationController,
+        self.favoritesViewNavigationController,
+        self.profileSearchViewNavigationController,
+        self.profileContainerViewController,
+    nil]];
 }
 
 - (void)viewDidLoad

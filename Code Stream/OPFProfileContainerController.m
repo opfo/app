@@ -32,7 +32,7 @@ static const int transitionDuration = .5f;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self opfSetupView];
     }
     return self;
 }
@@ -63,10 +63,17 @@ static const int transitionDuration = .5f;
     // Dispose of any resources that can be recreated.
 }
 
+- (void)opfSetupView
+{
+    self.title = NSLocalizedString(@"Login", @"Login View controller title");
+}
+
 #pragma mark - Transition methods
 
 - (void)transitionToLoginController :(UIViewController *) viewController;
 {
+    self.title = NSLocalizedString(@"Login", @"Login View controller title");
+    
     [self transitionFromViewController:viewController
                       toViewController:self.loginViewController
                               duration:transitionDuration
@@ -77,6 +84,8 @@ static const int transitionDuration = .5f;
 
 - (void)transitionToSignupController :(UIViewController *) viewController;
 {
+    self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
+    
     [self transitionFromViewController:viewController
                       toViewController:self.signupViewController
                               duration:transitionDuration
@@ -87,6 +96,8 @@ static const int transitionDuration = .5f;
 
 - (void)transitionToProfileController :(UIViewController *) viewController;
 {
+    self.title = NSLocalizedString(@"Profile", @"Profile View controller title");
+    
     [self transitionFromViewController:viewController
                       toViewController:self.profileViewController
                               duration:transitionDuration
