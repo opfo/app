@@ -128,6 +128,11 @@
     }
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; }>", self.class, self, self.identifier];
+}
+
 # pragma mark - Full text search methods
 
 + (NSString*) indexTableName

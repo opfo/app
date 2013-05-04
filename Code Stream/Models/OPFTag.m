@@ -105,4 +105,10 @@ NSInteger kOPFPopularTagsLimit = 20;
 	return value;
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; name = \"%@\"; }>", self.class, self, self.identifier, self.name];
+}
+
+
 @end
