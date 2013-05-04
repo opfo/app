@@ -43,9 +43,7 @@
 @end
 
 
-@implementation OPFQuestionsSearchBar {
-	SSLineView *_topLineView;
-}
+@implementation OPFQuestionsSearchBar
 
 - (void)sharedQuestionsSearchBarInit
 {
@@ -56,13 +54,6 @@
 		}
 	}
 	_tokens = NSArray.new;
-	
-	SSLineView *topLineView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 2.f)];
-	topLineView.lineColor = [UIColor opf_colorWithHexValue:0xa0adb7];
-	topLineView.insetColor = [UIColor opf_colorWithHexValue:0xe3e9ed];
-	topLineView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	_topLineView = topLineView;
-	[self addSubview:topLineView];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -112,10 +103,6 @@
 {
 	[super layoutSubviews];
 	
-	CGRect topLineViewFrame = _topLineView.frame;
-	topLineViewFrame.size.width = CGRectGetWidth(self.bounds);
-	_topLineView.frame = topLineViewFrame;
-	
 	CGFloat insetTop = 4.f;
 	CGFloat baseInsetLeft = 30.f;
 	
@@ -127,20 +114,6 @@
 		token.view.frame = tokenFrame;
 	}
 }
-
-/*
- Le idea #1
- 
- 1. Take in search text (in some way, either programatically by setting
-	`self.text` or by the user entering stuff via the UI).
- 2. Parse search text for tags
- 3. Add each tag to a buffer to be rendered.
- 4. 
- 
- 
- Le idea #2
- 
- */
 
 
 @end
