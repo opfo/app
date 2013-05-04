@@ -97,4 +97,12 @@ NSInteger kOPFPopularTagsLimit = 20;
     return [self.query orderBy: @"counter" order: kOPFSortOrderDescending];
 }
 
+//  We need to override hash so that we don't fetch all related question when generating a hash code (see hash in MTLModel)
+- (NSUInteger)hash {
+	NSUInteger value = 0;
+    value ^= [self.identifier hash];
+    value ^= [self.name hash];
+	return value;
+}
+
 @end
