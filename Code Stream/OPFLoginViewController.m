@@ -9,6 +9,7 @@
 #import "OPFLoginViewController.h"
 #import "OPFAppState.h"
 #import "OPFAppDelegate.h"
+#import "OPFProfileContainerController.h"
 
 @interface OPFLoginViewController ()
 
@@ -102,7 +103,7 @@
     BOOL loginReponse = [OPFAppState loginWithEMail:self.eMailField.text andPassword:self.passwordField.text];
     
     if(loginReponse == YES) {
-        
+        [(OPFProfileContainerController *) self.parentViewController transitionToProfileViewControllerFromViewController:self];
     }
 }
 

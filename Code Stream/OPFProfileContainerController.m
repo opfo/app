@@ -44,7 +44,7 @@ static const int TransitionDuration = .5f;
     //Alloc init the contained view controllers
     self.loginViewController = [OPFLoginViewController new];
     self.signupViewController = [OPFSignupViewController new];
-    self.profileViewController = [OPFUserProfileViewController new];
+    self.profileViewController = [OPFUserProfileViewController newFromStoryboard];
     
     //Add them to self (container) as child
     [self addChildViewController:self.loginViewController];

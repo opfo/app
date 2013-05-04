@@ -10,4 +10,8 @@
 
 @interface OPFProfileContainerController : UIViewController
 
+- (void)transitionToLoginViewControllerFromViewController :(UIViewController *) viewController;
+- (void)transitionToSignupViewControllerFromViewController :(UIViewController *) viewController;
+- (void)transitionToProfileViewControllerFromViewController :(UIViewController *) viewController;
+
 @end
