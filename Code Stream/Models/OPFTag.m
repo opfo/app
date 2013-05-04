@@ -9,6 +9,8 @@
 #import "OPFTag.h"
 #import "OPFQuestion.h"
 
+NSInteger kOPFPopularTagsLimit = 20;
+
 @implementation OPFTag
 
 + (NSString*) dbName
@@ -21,7 +23,8 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"identifier": @"id",
-             @"name": @"name"
+             @"name": @"name",
+             @"counter":@"counter"
              };
 }
 
@@ -70,7 +73,7 @@
 {
     __block NSMutableArray* tags = [[NSMutableArray alloc] init];
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet* result = [db executeQuery:@"SELECT 'tag_frequencies'.'second_tag' FROM 'auxDB'.'tag_frequencies' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'count' DESC LIMIT 10" withArgumentsInArray:@[name]];
+        FMResultSet* result = [db executeQuery:@"SELECT 'tag_frequencies'.'second_tag' FROM 'auxDB'.'tag_frequencies' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'counter' DESC LIMIT 10" withArgumentsInArray:@[name]];
         while([result next]) {
             [tags addObject:[result stringForColumn:@"second_tag"]];
         }
@@ -81,8 +84,12 @@
 
 + (NSArray *)mostCommonTags
 {
-#warning FIXME: This should actually get the 20 most common tags.
-	return [[[self.query orderBy:@"name" order:kOPFSortOrderAscending] limit:@(20)] getMany];
+	return [[[self.query orderBy:@"counter" order:kOPFSortOrderDescending] limit:@(20)] getMany];
+}
+
++ (OPFQuery*) mostCommonTagsQuery
+{
+    return [self.query orderBy: @"counter" order: kOPFSortOrderDescending];
 }
 
 @end

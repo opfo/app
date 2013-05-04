@@ -68,4 +68,35 @@ describe(@"get related tags", ^{
     });
 });
 
+describe(@"most common tags", ^{
+    __block NSArray* tags = [OPFTag mostCommonTags];
+    it(@"should get correct tags", ^{
+        NSArray* expected = @[
+                              @"android",
+                              @"java",
+                              @"c#",
+                              @"javascript",
+                              @"php",
+                              @"jquery",
+                              @"ios",
+                              @"c++",
+                              @"iphone",
+                              @"asp.net",
+                              @"html",
+                              @"python",
+                              @"mysql",
+                              @"css",
+                              @"objective-c",
+                              @".net",
+                              @"sql",
+                              @"ruby-on-rails",
+                              @"c",
+                              @"ruby"];
+        expect(tags.count).to.equal(kOPFPopularTagsLimit);
+        for(int i = 0; i < tags.count; i++) {
+            expect([[tags objectAtIndex:i] name]).to.equal([expected objectAtIndex:i]);
+        }
+    });
+});
+
 SpecEnd

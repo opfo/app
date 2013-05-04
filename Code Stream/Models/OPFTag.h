@@ -8,10 +8,13 @@
 
 #import "OPFModel.h"
 
+extern NSInteger kOPFPopularTagsLimit;
+
 @interface OPFTag : OPFModel
 
 @property (strong) NSNumber* identifier;
 @property (copy) NSString* name;
+@property (strong) NSNumber* counter;
 @property (strong, readonly)NSArray* questions;
 
 //  Transforms an array of strings into a string of tags
@@ -28,5 +31,8 @@
 
 // The 20 most common tags.
 + (NSArray *)mostCommonTags;
+
+//  Get a query for the most common tags
++ (OPFQuery*) mostCommonTagsQuery;
 
 @end
