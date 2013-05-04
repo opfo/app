@@ -69,7 +69,7 @@ Boolean heatMode = NO;
 
 - (id)init
 {
-	self = [super initWithNibName:CDStringFromClass(self) bundle:nil];
+	self = [super initWithNibName:CDStringFromInstance(self) bundle:nil];
 	if (self) [self sharedQuestionsViewControllerInit];
 	return self;
 }
