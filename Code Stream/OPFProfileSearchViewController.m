@@ -182,7 +182,7 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	cell.backgroundColor = UIColor.whiteColor;
+	cell.contentView.backgroundColor = UIColor.whiteColor;
 }
 
 #pragma mark - Table view delegate
