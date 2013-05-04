@@ -8,7 +8,7 @@
 
 #import "MTLModel.h"
 #import "OPFUser.h"
-#import "OPFModel.h"
+#import "OPFSearchable.h"
 #import "OPFRecordProtocol.h"
 
 typedef enum : NSInteger {
@@ -16,7 +16,7 @@ typedef enum : NSInteger {
     KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
-@interface OPFPost : OPFModel <OPFRecordProtocol>
+@interface OPFPost : OPFSearchable <OPFRecordProtocol>
 
 @property (strong, readonly) NSNumber* identifier;
 @property (strong, readonly) NSDate* creationDate;
@@ -37,4 +37,10 @@ typedef enum : NSInteger {
 @property (strong) NSNumber* favoriteCount;
 @property (strong, readonly) NSArray* comments;
 
+//  Allows for SQLite full text index search queries to be performed simultaneously on tags and free text
+//  Example
+//  Searches for posts with contains apa and bepa at least once and contains mysql and css tags:
+//  [OPFQuery searchFor: @"apa bepa" inTags: @[@"mysql", @"css"]]
++ (OPFQuery*) searchFor: (NSString*) searchTerms inTags: (NSArray*) tags;
++ (OPFQuery*) withTags: (NSArray*) tags;
 @end

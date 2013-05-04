@@ -37,7 +37,7 @@
 
 - (NSString*) baseSQL
 {
-    NSString* output = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@'", [self tableName], [self tableName]];
+    NSString* output = [NSString stringWithFormat:@"SELECT '%@'.* FROM '%@'.'%@'", [self tableName], [self dbName], [self tableName]];
     return output;
 }
 

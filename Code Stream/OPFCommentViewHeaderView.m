@@ -56,7 +56,7 @@ static NSString *const NoCountInformationPlaceholder = @"0";
     self.postUserName.text = self.postModel.owner.displayName;
     self.postDate.text = [self.dateFormatter stringFromDate:self.postModel.creationDate];
     self.postTime.text = [self.timeFormatter stringFromDate:self.postModel.creationDate];
-    self.postCommentCount.text = (! [self.postModel.commentCount stringValue] == 0 ) ? [self.postModel.commentCount stringValue] : NoCountInformationPlaceholder;
+    self.postCommentCount.text = (self.postModel.commentCount.unsignedIntegerValue > 0) ? [self.postModel.commentCount stringValue] : NoCountInformationPlaceholder;
 
     [self loadUserGravatar];
 }

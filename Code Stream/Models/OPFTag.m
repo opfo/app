@@ -66,4 +66,17 @@
     return [[[self query] whereColumn:@"name" is: name] getOne];
 }
 
++ (NSArray*) relatedTagsForTagWithName:(NSString *)name
+{
+    __block NSMutableArray* tags = [[NSMutableArray alloc] init];
+    [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+        FMResultSet* result = [db executeQuery:@"SELECT 'tag_frequencies'.'second_tag' FROM 'auxDB'.'tag_frequencies' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'count' DESC LIMIT 10" withArgumentsInArray:@[name]];
+        while([result next]) {
+            [tags addObject:[result stringForColumn:@"second_tag"]];
+        }
+        [result close];
+    }];
+    return tags;
+}
+
 @end

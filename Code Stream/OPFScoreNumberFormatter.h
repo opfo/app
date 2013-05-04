@@ -23,6 +23,7 @@
 @property (assign) BOOL shouldUseLongForm;
 
 - (NSUInteger)scoreFromString:(NSString *)string;
-- (NSString *)stringFromScore:(NSUInteger)score;
+- (NSString *)stringFromScore:(NSInteger)score;
+- (NSString *)stringFromScoreNumber:(NSNumber *)scoreNumber;
 
 @end

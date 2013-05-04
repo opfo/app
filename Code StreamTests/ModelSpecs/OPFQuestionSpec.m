@@ -65,4 +65,26 @@ describe(@"Fetching", ^{
     });
 });
 
+describe(@"searching", ^{
+    it(@"should return only question objects", ^{
+        NSArray* questions = [[OPFQuestion searchFor:@"division"] getMany];
+        expect(questions.count).to.beGreaterThan(@(0));
+        for(id q in questions){
+            expect(q).to.beKindOf([OPFQuestion class]);
+        }
+    });
+    
+    describe(@"searching for tags", ^{
+        it(@"should be possible to search questions by tags", ^{
+            NSArray* questions = [[OPFQuestion withTags:@[@"playframework"]] getMany];
+            expect(questions.count).to.equal(@(10));
+        });
+        
+        it(@"should be possible to combine tags", ^{
+            NSArray* questions = [[OPFQuestion withTags:@[@"playframework", @"jobs"]] getMany];
+            expect(questions.count).to.equal(@(1));
+        });
+    });
+});
+
 SpecEnd

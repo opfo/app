@@ -12,20 +12,18 @@
 #import "OPFLikeQuery.h"
 #import "OPFRootQuery.h"
 
-static NSString* defaultDB = @"baseDB";
-
 @implementation OPFQuery
 
 @synthesize rootQuery = _rootQuery;
 
 - (FMResultSet*) getResultSetOne {
     [[self rootQuery] setLimit: @(1)];
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
 }
 
 - (FMResultSet*) getResultSetMany {
-    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString] withDatabase: self.dbName];
+    FMResultSet* result = [[OPFDatabaseAccess getDBAccess] executeSQL: [self.rootQuery toSQLString]];
     return result;
 }
 
@@ -71,6 +69,22 @@ static NSString* defaultDB = @"baseDB";
     OPFIsQuery* query = [OPFIsQuery initWithColumn: column term: term rootQuery: self.rootQuery];
     self.andQuery = query;
     return query;
+}
+
+- (instancetype) whereColumn: (NSString*) column isGreaterThan: (id) term orEqual:(BOOL)equal
+{
+	OPFIsQueryType type = (equal ? kOPFIsQueryGreaterOrEqual : kOPFIsQueryGreater);
+	OPFIsQuery *query = [OPFIsQuery initWithColumn:column term:term type:type rootQuery:self.rootQuery];
+	self.andQuery = query;
+	return query;
+}
+
+- (instancetype) whereColumn: (NSString*) column isLessThan: (id) term orEqual:(BOOL)equal
+{
+	OPFIsQueryType type = (equal ? kOPFIsQueryLessOrEqual : kOPFIsQueryLess);
+	OPFIsQuery *query = [OPFIsQuery initWithColumn:column term:term type:type rootQuery:self.rootQuery];
+	self.andQuery = query;
+	return query;
 }
 
 - (instancetype) whereColumn: (NSString*) column in: (id) terms{
@@ -144,42 +158,15 @@ static NSString* defaultDB = @"baseDB";
 }
 
 # pragma mark - Factory methods
-
-+ (instancetype) queryWithTableName: (NSString*) tableName
-{
-    id query = [[self alloc] init];
-    [query setTableName: tableName];
-    [query setDbName:defaultDB];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName
-{
-    id query = [self queryWithTableName:tableName];
-    [query setDbName:dbName];
-    [query setPaged: NO];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
-{
-    id query = [self queryWithTableName:tableName];
-    [query setOnGetOne: oneCallback];
-    [query setOnGetMany:manyCallback];
-    return query;
-}
-
-+ (instancetype) queryWithTableName:(NSString *)tableName dbName:(NSString *)dbName oneCallback:(OnGetOne)oneCallback manyCallback:(OnGetMany)manyCallback
-{
-    id query = [self queryWithTableName:tableName oneCallback:oneCallback manyCallback:manyCallback];
-    [query setDbName:dbName];
-    return query;
-}
-
 + (instancetype) queryWithTableName:(NSString *)tableName dbName: (NSString *) dbName oneCallback: (OnGetOne) oneCallback manyCallback: (OnGetMany) manyCallback pageSize: (NSNumber*)pageSize
 {
-    id query = [self queryWithTableName:tableName dbName:dbName oneCallback:oneCallback manyCallback:manyCallback];
+    id query = [[self alloc] init];
+    [query setTableName:tableName];
+    [query setDbName:dbName];
+    [query setOnGetOne:oneCallback];
+    [query setOnGetMany:manyCallback];
     [query setPageSize:pageSize];
+    [query setPaged:NO];
     return query;
 }
 

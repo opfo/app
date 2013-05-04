@@ -29,14 +29,6 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	// Insert html from database and run prettify
 	[self reloadHTMLWithString:_htmlString];
-	
-	// Resize the cell accordingly
-	CGRect frame = webView.frame;
-    frame.size.height = 1;
-    webView.frame = frame;
-    CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
-    frame.size = fittingSize;
-    webView.frame = frame;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -50,14 +42,14 @@
 	} else return YES;
 }
 
-
-
 - (void)awakeFromNib {
 	self.bodyTextView.keyboardDisplayRequiresUserAction = NO;
 	self.bodyTextView.mediaPlaybackAllowsAirPlay = NO;
 	self.bodyTextView.mediaPlaybackRequiresUserAction = NO;
 	self.bodyTextView.dataDetectorTypes = UIDataDetectorTypeNone;
 	self.bodyTextView.delegate = self;
+	self.bodyTextView.scrollView.scrollEnabled = NO;
+	self.bodyTextView.scrollView.bounces = NO;
 	
 	NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"bodytemplate" ofType:@"html"];
 	NSURL *bundle = [[NSBundle mainBundle] bundleURL];
@@ -67,6 +59,7 @@
         [self.bodyTextView loadData:htmlData MIMEType:@"text/html"
 						textEncodingName:@"utf-8" baseURL:bundle];
     }
+	
 }
 
 @end

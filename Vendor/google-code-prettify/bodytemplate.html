@@ -10,7 +10,7 @@
 		document.body.innerHTML = string;
         prettyPrint();
 		
-		return "Works";
+		return document.body.offsetHeight;
     }
     </script>
 <link href="prettify.css" type="text/css" rel="stylesheet" />
@@ -29,6 +29,7 @@ body{
     -webkit-text-size-adjust:100%;
     background-color: #fff;
     margin: 10px;
+	overflow:hidden;
 }
 
 code {

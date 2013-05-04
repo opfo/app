@@ -30,7 +30,7 @@ describe(@"fetching and SQL-strings", ^{
     });
     
     it(@"returns correct SQL for total query", ^{
-        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'comments' WHERE 'comments'.'score' = '1'");
+        expect([rootQuery toSQLString]).to.equal(@"SELECT 'comments'.* FROM 'main'.'comments' WHERE 'comments'.'score' = '1'");
     });
     
     it(@"fetches correct number of results when fetching multiple", ^{
@@ -59,7 +59,7 @@ describe(@"fetching and SQL-strings", ^{
         [isQuery whereColumn:@"post_id" is:@"1"];
         expect([rootQuery toSQLString])
             .to
-            .equal(@"SELECT 'comments'.* FROM 'comments' WHERE ('comments'.'score' = '1' AND 'comments'.'post_id' = '1')");
+            .equal(@"SELECT 'comments'.* FROM 'main'.'comments' WHERE ('comments'.'score' = '1' AND 'comments'.'post_id' = '1')");
     });
     
     it(@"returns model objects ", ^{
@@ -69,6 +69,26 @@ describe(@"fetching and SQL-strings", ^{
             expect(obj).to.beKindOf([OPFComment class]);
         }
     });
+	
+	it(@"should fetch object with a score greater than the given term", ^{
+		NSInteger term = 5;
+		expect([[[[[rootQuery whereColumn:@"score" isGreaterThan:@(term) orEqual:NO] limit:@(10)] getMany] valueForKeyPath:@"@min.score"] integerValue]).to.beGreaterThan(term);
+	});
+	
+	it(@"should fetch object with a score greater than or equal to the given term", ^{
+		NSInteger term = 5;
+		expect([[[[[rootQuery whereColumn:@"score" isGreaterThan:@(term) orEqual:YES] limit:@(10)] getMany] valueForKeyPath:@"@min.score"] integerValue]).to.beGreaterThanOrEqualTo(term);
+	});
+	
+	it(@"should fetch object with a score less than the given term", ^{
+		NSInteger term = 5;
+		expect([[[[[rootQuery whereColumn:@"score" isLessThan:@(term) orEqual:NO] limit:@(10)] getMany] valueForKeyPath:@"@max.score"] integerValue]).to.beLessThan(term);
+	});
+	
+	it(@"should fetch object with a score less than or equal to the given term", ^{
+		NSInteger term = 5;
+		expect([[[[[rootQuery whereColumn:@"score" isLessThan:@(term) orEqual:YES] limit:@(10)] getMany] valueForKeyPath:@"@max.score"] integerValue]).to.beLessThanOrEqualTo(term);
+	});
 });
 
 SpecEnd

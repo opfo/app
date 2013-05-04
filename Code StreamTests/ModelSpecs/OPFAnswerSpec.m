@@ -45,4 +45,13 @@ describe(@"Fetching", ^{
     });
 });
 
+describe(@"searching", ^{
+    it(@"should return only answer objects", ^{
+        NSArray* answers = [[OPFAnswer searchFor:@"division"] getMany];
+        expect(answers.count).to.beGreaterThan(@(0));
+        for(id a in answers){
+            expect(a).to.beKindOf([OPFAnswer class]);
+        }
+    });
+});
 SpecEnd

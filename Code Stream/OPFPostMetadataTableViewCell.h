@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class OPFUserPreviewButton;
 
 @interface OPFPostMetadataTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *voteUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *voteDownButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorScoreLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *authorAvatarImageView;
+@property (weak, nonatomic) IBOutlet OPFUserPreviewButton *userPreviewButton;
+
 
 @end

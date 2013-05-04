@@ -8,6 +8,7 @@
 
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFUserPreviewButton.h"
 
 
 @implementation OPFSingleQuestionPreviewCell
@@ -19,6 +20,9 @@
 @synthesize title = _title;
 @synthesize answers = _answers;
 
+- (void)pressedUser:(OPFUserPreviewButton *)sender {
+	NSLog(@"Pressed on %@", sender.user.displayName);
+}
 
 - (void)setAcceptedAnswer:(BOOL)acceptedAnswer {
 	self.acceptedAnswerImage.hidden = !acceptedAnswer;
@@ -59,12 +63,11 @@
 #pragma mark Object Lifecycle
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
-	self.acceptedAnswer = question.acceptedAnswer != nil;
+	self.acceptedAnswer = question.acceptedAnswerId != nil;
 	self.score = [question.score integerValue];
 	self.answers = [question.answerCount integerValue];
 	self.title = question.title;
 	self.tags = question.tags;
-    
 
 }
 
@@ -143,6 +146,7 @@
    
     [self setBackgroundView:bgview];
 }
+
 
 
 @end

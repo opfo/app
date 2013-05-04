@@ -57,16 +57,21 @@ static NSInteger kOPFScoreNumberMaxShortForm = 2048;
 	return score;
 }
 
-- (NSString *)stringFromScore:(NSUInteger)score
+- (NSString *)stringFromScore:(NSInteger)score
 {
 	NSString *string = nil;
-	if (self.shouldUseLongForm == YES || score <= kOPFScoreNumberMaxShortForm) {
+	if (self.shouldUseLongForm == YES || labs(score) <= kOPFScoreNumberMaxShortForm) {
 		string = [self.numberFormatter stringFromNumber:@(score)];
 	} else {
 		double shortFormScore = ((double)score) / 1000.f;
 		string = [[self.numberFormatter stringFromNumber:@(shortFormScore)] stringByAppendingString:@"k"];
 	}
 	return string;
+}
+
+- (NSString *)stringFromScoreNumber:(NSNumber *)scoreNumber
+{
+	return [self stringFromScore:scoreNumber.integerValue];
 }
 
 

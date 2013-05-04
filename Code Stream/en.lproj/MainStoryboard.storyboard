@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -15,22 +15,18 @@
                         <sections>
                             <tableViewSection id="u8i-Vr-RDh">
                                 <cells>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="53" id="LIk-Tl-Egd">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="53" id="LIk-Tl-Egd">
                                         <rect key="frame" x="0.0" y="10" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLZ-RL-x7D">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="55" id="fOX-nm-nxN"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="QLZ-RL-x7D">
+                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="53"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pTf-e3-68B">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="228" id="UWD-Gv-2P5"/>
-                                                    </constraints>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pTf-e3-68B">
+                                                    <rect key="frame" x="61" y="16" width="229" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,13 +34,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="pTf-e3-68B" firstAttribute="leading" secondItem="QLZ-RL-x7D" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7Tz-U3-c6T"/>
-                                            <constraint firstItem="pTf-e3-68B" firstAttribute="top" secondItem="LIk-Tl-Egd" secondAttribute="top" constant="12" id="NOe-Q5-QIs"/>
-                                            <constraint firstItem="QLZ-RL-x7D" firstAttribute="bottom" secondItem="LIk-Tl-Egd" secondAttribute="bottom" type="default" id="cqu-Sb-ngt"/>
-                                            <constraint firstItem="QLZ-RL-x7D" firstAttribute="centerY" secondItem="LIk-Tl-Egd" secondAttribute="centerY" type="default" id="i4b-G4-G3C"/>
-                                            <constraint firstItem="QLZ-RL-x7D" firstAttribute="leading" secondItem="LIk-Tl-Egd" secondAttribute="leading" constant="10" id="kbR-4s-sll"/>
-                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -57,19 +46,15 @@
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <webView autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MMN-kM-TB8">
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <webView autoresizesSubviews="NO" contentMode="scaleToFill" id="MMN-kM-TB8">
+                                                    <rect key="frame" x="0.0" y="5" width="300" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </webView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="MMN-kM-TB8" secondAttribute="trailing" constant="10" type="user" id="3pO-MU-sGL"/>
-                                            <constraint firstItem="MMN-kM-TB8" firstAttribute="top" secondItem="CGd-pM-AkO" secondAttribute="top" constant="6" type="user" id="Veq-LK-ATr"/>
-                                            <constraint firstItem="MMN-kM-TB8" firstAttribute="leading" secondItem="CGd-pM-AkO" secondAttribute="leading" constant="10" type="user" id="hS0-73-a01"/>
-                                            <constraint firstAttribute="bottom" secondItem="MMN-kM-TB8" secondAttribute="bottom" constant="3" type="user" id="hxS-nM-57t"/>
-                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" textLabel="KJr-sh-bgS" detailTextLabel="Opi-oZ-ih4" style="IBUITableViewCellStyleValue1" id="MXo-ja-34T">
                                         <rect key="frame" x="0.0" y="156" width="320" height="44"/>
@@ -164,7 +149,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="1337" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58F-pF-AKh">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="1337" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="58F-pF-AKh">
+                                                    <rect key="frame" x="252" y="11" width="38" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -257,12 +243,14 @@
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Seen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xw-l9-FMz">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Seen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Xw-l9-FMz">
+                                                    <rect key="frame" x="10" y="11" width="41" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="lastAccess" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-gl-F4P">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="lastAccess" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rqb-gl-F4P">
+                                                    <rect key="frame" x="208" y="11" width="82" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.2196078431372549" green="0.32941176470588235" blue="0.52941176470588236" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -321,6 +309,24 @@
             <point key="canvasLocation" x="694" y="332"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="OPFUserProfileViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userBio" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="views" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

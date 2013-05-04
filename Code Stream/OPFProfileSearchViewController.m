@@ -35,6 +35,7 @@
 #define OPF_PAGE_SIZE 25
 
 static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
+static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
 
 - (id)init
 {
@@ -61,7 +62,9 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFProfileViewCell) bundle:nil] forCellReuseIdentifier:ProfileViewCellIdentifier];
+	
     [self setupRefreshControl];
 }
 
@@ -72,10 +75,11 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
 		
-		BOOL isSearchingAndHasRows = (self.hasLoaded || self.isSearching) && self.mutableUserModels.count > 0;
-		BOOL isNotSearchingAndHasRows = (self.hasLoaded || self.isSearching) == NO && self.rootUserModels.count > 0;
+		BOOL isSearchingAndHasRows = (self.isSearching) && self.mutableUserModels.count > 0;
+		BOOL isNotSearchingAndHasRows = (self.isSearching) == NO && self.mutableUserModels.count > 0;
 		if (isSearchingAndHasRows || isNotSearchingAndHasRows) {
-			[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			CGPoint offsetPoint = CGPointMake(0, CGRectGetHeight(self.profileSearchBar.bounds));
+			[self.tableView setContentOffset:offsetPoint animated:NO];
 		}
 	}
 }
@@ -106,8 +110,7 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.atPage = [NSNumber numberWithInt:0];
 
-    self.rootUserModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
-    self.mutableUserModels = [NSMutableArray arrayWithArray:self.rootUserModels];
+    self.mutableUserModels = [NSMutableArray arrayWithArray:[OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE]];
 }
 
 - (void)setupRefreshControl
@@ -128,15 +131,9 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     OPFUser *userModel = nil;
     
-    if(self.hasLoaded || self.isSearching) {
-        int index = self.mutableUserModels.count - indexPath.row - 1;
+    int index = self.mutableUserModels.count - indexPath.row - 1;
         
-        userModel = index > 0 ? self.mutableUserModels[index]: nil;
-    } else {
-        int index = self.rootUserModels.count - indexPath.row - 1;
-
-        userModel = self.rootUserModels[index];
-    }
+    userModel = index >= 0 ? self.mutableUserModels[index]: nil;
 
     return userModel;
 }
@@ -166,20 +163,13 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.hasLoaded ? self.mutableUserModels.count : self.rootUserModels.count;
+    return self.mutableUserModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *profileViewCellIdentifier = @"OPFProfileViewCell";
+    OPFProfileViewCell *profileViewCell = (OPFProfileViewCell *)[tableView dequeueReusableCellWithIdentifier:ProfileViewCellIdentifier forIndexPath:indexPath];
     
-    OPFProfileViewCell *profileViewCell = (OPFProfileViewCell *)[tableView dequeueReusableCellWithIdentifier:profileViewCellIdentifier];
-    
-    if (profileViewCell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:profileViewCellIdentifier owner:self options:nil];
-        profileViewCell = [nib objectAtIndex:0];
-    }
-        
     profileViewCell.userModel = [self userForIndexPath:indexPath];
     
     [profileViewCell setupFormatters];
@@ -190,11 +180,15 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     return profileViewCell;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	cell.backgroundColor = UIColor.whiteColor;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
 	OPFUser *userModel = [self userForIndexPath:indexPath];
 	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
     userProfileViewController.user = userModel;
@@ -207,16 +201,11 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
     
-    self.databaseUserModels = [[[OPFUser query] whereColumn:@"display_name" is:searchText] getMany];
+    self.databaseUserModels =  [[OPFUser searchFor:searchText] getMany];
     
     if(self.isSearching) {
         self.hasLoaded = NO;
-        
-        [self.mutableUserModels removeAllObjects];
-        
-        //self.profilePredicate = [NSPredicate predicateWithFormat:@"displayName BEGINSWITH[cd] %@", searchText];
-        //self.mutableUserModels = [NSMutableArray arrayWithArray:[self.databaseUserModels filteredArrayUsingPredicate:self.profilePredicate]];
-        
+                
         self.mutableUserModels = [NSMutableArray arrayWithArray:self.databaseUserModels];
     } else {
         [self searchBarSearchButtonClicked:searchBar];
@@ -225,9 +214,37 @@ static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderVie
     [self.tableView reloadData];
 }
 
+#pragma mark - UISearchBarDelegate Methods
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:YES animated:YES];
+	return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:NO animated:YES];
+	return YES;
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.hasLoaded = self.isSearching = NO;
+    [self updateSearchWithString:@""];
+    
+    [self performInitialDatabaseFetch];
+    [searchBar resignFirstResponder];
+    [self.tableView reloadData];
+}
+
+- (void)updateSearchWithString:(NSString *)searchString
+{
+	self.profileSearchBar.text = searchString;
 }
 
 #pragma mark - UIRefreshControl delegates

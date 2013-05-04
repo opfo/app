@@ -16,7 +16,6 @@
 
 @property (copy, readonly) NSString* modelName;
 
-+(OPFDatabaseAccess *) getDBAccess;
 +(NSDateFormatter*) dateFormatter;
 +(NSInteger) defaultPageSize;
 +(OPFRootQuery*) query;
