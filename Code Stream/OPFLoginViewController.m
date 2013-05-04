@@ -111,13 +111,13 @@
 // Setting the image of the tab.
 - (NSString *)tabImageName
 {
-    return [OPFAppState isLoggedIn] ? @"tab-me" : @"tab-login";
+    return @"tab-login";
 }
 
 // Setting the title of the tab.
 - (NSString *)tabTitle
 {
-    return [OPFAppState isLoggedIn] ? NSLocalizedString(@"My Profile", @"Profile View Controller tab title") : NSLocalizedString(@"Login", @"Login View Controller tab title");
+    return NSLocalizedString(@"Login", @"Login View Controller tab title");
 }
 
 #pragma mark - Container Controller methods

@@ -9,10 +9,9 @@
 #import "OPFTabbedHomeViewController.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFProfileSearchViewController.h"
-#import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
 #import "OPFFavoritesViewController.h"
-#import "OPFLoginViewController.h"
+#import "OPFProfileContainerController.h"
 #import "OPFAppState.h"
 #import "UIColor+OPFHEX.h"
 
@@ -20,17 +19,15 @@
 
 @property(strong, nonatomic) UINavigationController *questionsViewNavigationController;
 @property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
-@property(strong, nonatomic) UINavigationController *userProfileNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
 @property(strong, nonatomic) UINavigationController *favoritesViewNavigationController;
-@property(strong, nonatomic) UINavigationController *loginViewNavigationController;
+@property(strong, nonatomic) UINavigationController *profileContainerViewController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
-@property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
 @property(strong, nonatomic) OPFActivityViewController *activityViewController;
 @property(strong, nonatomic) OPFFavoritesViewController *favoritesViewController;
-@property(strong, nonatomic) OPFLoginViewController *loginViewController;
+@property(strong, nonatomic) OPFProfileContainerController *profileContainerController;
 
 - (void)opfSetupView;
 
@@ -55,19 +52,15 @@ const int TabbedBarHeight = 44;
 {
     self.questionsViewController = [OPFQuestionsViewController new];
     self.profileSearchViewController = [OPFProfileSearchViewController new];
-    self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
     self.favoritesViewController = [OPFFavoritesViewController new];
-    self.loginViewController = [OPFLoginViewController new];
+    self.profileContainerController = [OPFProfileContainerController new];
     
-    self.userProfileViewController.user = [OPFAppState userModel];
-
     self.questionsViewNavigationController = [[UINavigationController new] initWithRootViewController:self.questionsViewController];
     self.profileSearchViewNavigationController = [[UINavigationController new] initWithRootViewController:self.profileSearchViewController];
-    self.userProfileNavigationController = [[UINavigationController new] initWithRootViewController:self.userProfileViewController];
     self.activityViewNavigationController = [[UINavigationController new] initWithRootViewController:self.activityViewController];
     self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
-    self.loginViewNavigationController = [[UINavigationController new] initWithRootViewController:self.loginViewController];
+    self.profileContainerViewController = [[UINavigationController new] initWithRootViewController:self.profileContainerController];
     
     [self initWithDefaultTabs];
 }
@@ -84,28 +77,6 @@ const int TabbedBarHeight = 44;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)initWithDefaultTabs
-{
-    [self setViewControllers:[NSMutableArray arrayWithObjects:
-                              self.questionsViewNavigationController,
-                              self.activityViewNavigationController,
-                              self.favoritesViewNavigationController,
-                              self.profileSearchViewNavigationController,
-                              self.loginViewNavigationController,
-                              nil]];
-}
-
-- (void)initWithProfileTab
-{
-    [self setViewControllers:[NSMutableArray arrayWithObjects:
-                              self.questionsViewNavigationController,
-                              self.activityViewNavigationController,
-                              self.favoritesViewNavigationController,
-                              self.profileSearchViewNavigationController,
-                              self.profileSearchViewNavigationController,
-                              nil]];
 }
 
 @end
