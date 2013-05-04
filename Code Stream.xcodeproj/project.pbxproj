@@ -128,6 +128,7 @@
 		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
+		9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C04A16F1735B00700971D2F /* OPFSearchBar.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
 		9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
 		9C0C4F6D17221B550025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
@@ -361,6 +362,8 @@
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
+		9C04A16E1735B00700971D2F /* OPFSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBar.h; sourceTree = "<group>"; };
+		9C04A16F1735B00700971D2F /* OPFSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBar.m; sourceTree = "<group>"; };
 		9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9C18D57C1730888400553128 /* OPFQuestionsSearchBarInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFQuestionsSearchBarInputView.h; sourceTree = "<group>"; };
 		9C18D57D1730888400553128 /* OPFQuestionsSearchBarInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsSearchBarInputView.m; sourceTree = "<group>"; };
@@ -920,6 +923,8 @@
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
+				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
+				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
 			);
@@ -1441,6 +1446,7 @@
 				9C3768761733292D00719F2A /* OPFActivityViewController.m in Sources */,
 				1A414A1717358A4A00F87F71 /* OPFProfileContainerController.m in Sources */,
 				1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */,
+				9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
