@@ -40,4 +40,16 @@
     self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
 }
 
+#pragma mark - Container Controller methods
+
+- (void)willMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"%@ %@", self.class, @" WILL move to parent view controller");
+}
+
+- (void)didMoveToParentViewController:(UIViewController *)parent
+{
+    NSLog(@"%@ %@", self.class, @" DID move to parent view controller");
+}
+
 @end
