@@ -89,7 +89,7 @@ NSInteger kOPFPopularTagsLimit = 20;
 
 + (NSArray *)mostCommonTags
 {
-	return [[[self.query orderBy:@"counter" order:kOPFSortOrderDescending] limit:@(20)] getMany];
+	return [[self.mostCommonTagsQuery limit:@(20)] getMany];
 }
 
 + (OPFQuery*) mostCommonTagsQuery
