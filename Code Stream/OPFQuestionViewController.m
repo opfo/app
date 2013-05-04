@@ -106,6 +106,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	self.title = NSLocalizedString(@"Question", @"Question view controller title");
 	
+	self.view.backgroundColor = UIColor.clearColor;
+	
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostBodyTableViewCell) bundle:nil] forCellReuseIdentifier:BodyCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostMetadataTableViewCell) bundle:nil] forCellReuseIdentifier:MetadataCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostTagsTableViewCell) bundle:nil] forCellReuseIdentifier:TagsCellIdentifier];
