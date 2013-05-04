@@ -272,8 +272,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {
 	OPFQuestionHeaderView *headerView = (OPFQuestionHeaderView *)view;
-	headerView.backgroundView = [UIView new];
-	headerView.backgroundView.backgroundColor = UIColor.lightGrayColor;
+	headerView.contentView.backgroundColor = UIColor.lightGrayColor;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
