@@ -11,6 +11,8 @@
 
 @implementation OPFActivityQuestionViewCell
 
+@synthesize questionModel = _questionModel;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -45,9 +47,14 @@
 
 - (void)setQuestionModel:(OPFQuestion *)questionModel
 {
-    self.questionModel = questionModel;
+    _questionModel = questionModel;
     
     [self setModelValuesInView];
+}
+
+- (OPFQuestion *)questionModel
+{
+    return _questionModel;
 }
 
 - (void)setModelValuesInView

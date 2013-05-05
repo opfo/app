@@ -11,6 +11,8 @@
 
 @implementation OPFActivityAnswerViewCell
 
+@synthesize answerModel = _answerModel;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -45,15 +47,20 @@
 
 - (void)setAnswerModel:(OPFAnswer *)answerModel
 {
-    self.answerModel = answerModel;
+    _answerModel = answerModel;
     
     [self setModelValuesInView];
+}
+
+- (OPFAnswer *)answerModel
+{
+    return _answerModel;
 }
 
 - (void)setModelValuesInView
 {
     self.answerTitle.text = self.answerModel.parent.title;
-    self.answerTitle.text = self.answerModel.body;
+    self.answerBody.text = self.answerModel.body;
 }
 
 @end

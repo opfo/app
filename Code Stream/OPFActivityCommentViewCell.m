@@ -11,6 +11,8 @@
 
 @implementation OPFActivityCommentViewCell
 
+@synthesize commentModel = _commentModel;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -45,9 +47,14 @@
 
 - (void)setCommentModel:(OPFComment *)commentModel
 {
-    self.commentModel = commentModel;
+    self->_commentModel = commentModel;
     
     [self setModelValuesInView];
+}
+
+- (OPFComment *)commentModel
+{
+    return _commentModel;
 }
 
 - (void)setModelValuesInView

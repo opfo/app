@@ -90,7 +90,7 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
     
     self.questionModels = [questionsQuery getMany];
     self.answerModels = [answersQuery getMany];
-    self.answerModels = [commentsQuery getMany];
+    self.commentModels = [commentsQuery getMany];
 }
 
 #pragma mark - TabbedViewController methods
@@ -135,28 +135,32 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     if (indexPath.section == kOPFActivityQuestionSection) {
         
         OPFActivityQuestionViewCell *cell = (OPFActivityQuestionViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityQuestionViewCellIdentifier forIndexPath:indexPath];
         
         cell.questionModel = (OPFQuestion *)[self modelForIndexPath:indexPath];
         
+        return cell;
+        
     } else if (indexPath.section == kOPFActivityAnswerSection) {
         
         OPFActivityAnswerViewCell *cell = (OPFActivityAnswerViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityAnswerViewCellIdentifier forIndexPath:indexPath];
-        
+                
         cell.answerModel = (OPFAnswer *)[self modelForIndexPath:indexPath];
         
-    } else if (indexPath.section == kOPFActivityCommentSection) {
+        return cell;
+        
+    } else /*(indexPath.section == kOPFActivityCommentSection)*/ {
         
         OPFActivityCommentViewCell *cell = (OPFActivityCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityCommentViewCellIdentifier forIndexPath:indexPath];
         
         cell.commentModel = (OPFComment *)[self modelForIndexPath:indexPath];
         
+        return cell;
+        
     }
-    
-    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -172,11 +176,19 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == kOPFActivityQuestionSection || indexPath.section == kOPFActivityAnswerSection) {
+    if (indexPath.section == kOPFActivityQuestionSection) {
         
         OPFQuestion *questionModel = (OPFQuestion *)[self modelForIndexPath:indexPath];
         OPFQuestionViewController *questionViewController = [OPFQuestionViewController new];
         questionViewController.question = questionModel;
+        
+        [self.navigationController pushViewController:questionViewController animated:YES];
+        
+    } else if (indexPath.section == kOPFActivityAnswerSection) {
+        
+        OPFAnswer *answerModel = (OPFAnswer *)[self modelForIndexPath:indexPath];
+        OPFQuestionViewController *questionViewController = [OPFQuestionViewController new];
+        questionViewController.question = answerModel.parent;
         
         [self.navigationController pushViewController:questionViewController animated:YES];
         
