@@ -10,4 +10,7 @@
 
 @interface OPFActivityAnswerViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *answerTitle;
+@property (weak, nonatomic) IBOutlet UITextView *answerBody;
+
 @end

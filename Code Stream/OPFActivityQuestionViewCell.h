@@ -10,4 +10,7 @@
 
 @interface OPFActivityQuestionViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextView *questionTitle;
+@property (weak, nonatomic) IBOutlet UITextView *questionBody;
+
 @end

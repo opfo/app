@@ -10,4 +10,6 @@
 
 @interface OPFActivityCommentViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextView *commentBody;
+
 @end
