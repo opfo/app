@@ -12,6 +12,9 @@
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
 #import "OPFComment.h"
+#import "OPFActivityQuestionViewCell.h"
+#import "OPFActivityAnswerViewCell.h"
+#import "OPFActivityCommentViewCell.h"
 
 @interface OPFActivityViewController ()
 
@@ -28,6 +31,10 @@ enum {
 @end
 
 @implementation OPFActivityViewController
+
+static NSString *const OPFActivityQuestionViewCellIdentifier = @"OPFActivityQuestionViewCell";
+static NSString *const OPFActivityAnswerViewCellIdentifier = @"OPFActivityAnswerViewCell";
+static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityCommentViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -90,6 +97,15 @@ enum {
     return NSLocalizedString(@"Activity", @"Activity View controller tab title");
 }
 
+- (OPFModel *)modelForIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == kOPFActivityQuestionSection) { return [self.questionModels objectAtIndex:indexPath.row]; }
+    else if (indexPath.section == kOPFActivityAnswerSection) { return [self.answerModels objectAtIndex:indexPath.row]; }
+    else if (indexPath.section == kOPFActivityCommentSection) { return [self.commentModels objectAtIndex:indexPath.row]; }
+    
+    else { return nil; }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -108,15 +124,27 @@ enum {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (indexPath.section == kOPFActivityQuestionSection) {
+        
+        OPFActivityQuestionViewCell *cell = (OPFActivityQuestionViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityQuestionViewCellIdentifier forIndexPath:indexPath];
+        
+        cell.questionModel = (OPFQuestion *)[self modelForIndexPath:indexPath];
+        
+    } else if (indexPath.section == kOPFActivityAnswerSection) {
+        
+        OPFActivityAnswerViewCell *cell = (OPFActivityAnswerViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityAnswerViewCellIdentifier forIndexPath:indexPath];
+        
+        cell.answerModel = (OPFAnswer *)[self modelForIndexPath:indexPath];
+        
+    } else if (indexPath.section == kOPFActivityCommentSection) {
+        
+        OPFActivityCommentViewCell *cell = (OPFActivityCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFActivityCommentViewCellIdentifier forIndexPath:indexPath];
+        
+        cell.commentModel = (OPFComment *)[self modelForIndexPath:indexPath];
+        
     }
     
-    // Configure the cell...
-    
-    return cell;
+    return nil;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
