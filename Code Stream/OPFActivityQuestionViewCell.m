@@ -8,6 +8,7 @@
 
 #import "OPFActivityQuestionViewCell.h"
 #import "OPFQuestion.h"
+#import "NSString+OPFStripCharacters.h"
 
 @implementation OPFActivityQuestionViewCell
 
@@ -60,7 +61,7 @@
 - (void)setModelValuesInView
 {
     self.questionTitle.text = self.questionModel.title;
-    self.questionBody.text = self.questionModel.body;
+    self.questionBody.text = self.questionModel.body.opf_stringByStrippingHTML;
 }
 
 @end
