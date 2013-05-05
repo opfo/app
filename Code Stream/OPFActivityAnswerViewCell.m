@@ -9,6 +9,7 @@
 #import "OPFActivityAnswerViewCell.h"
 #import "OPFAnswer.h"
 #import "NSString+OPFStripCharacters.h"
+#import "NSString+OPFEscapeStrings.h"
 
 @implementation OPFActivityAnswerViewCell
 
@@ -61,7 +62,7 @@
 - (void)setModelValuesInView
 {
     self.answerTitle.text = self.answerModel.parent.title;
-    self.answerBody.text = self.answerModel.body.opf_stringByStrippingHTML;
+    self.answerBody.text = [self.answerModel.body.opf_stringByStrippingHTML OPF_escapeWithScheme:OPFStripAscii];
 }
 
 @end

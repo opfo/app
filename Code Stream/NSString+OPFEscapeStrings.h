@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum escapeSchemes { OPFEscapePrettify, OPFEscapeHtml } OPFEscapeScheme;
+typedef enum escapeSchemes { OPFEscapePrettify, OPFEscapeHtml, OPFStripAscii } OPFEscapeScheme;
 
 @interface NSString (OPFEscapeStrings)
 
