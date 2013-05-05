@@ -27,7 +27,7 @@
 enum {
 	kOPFActivityQuestionSection = 0,
 	kOPFActivityAnswerSection = 1,
-	kOPFActivityCommentSection = 3
+	kOPFActivityCommentSection = 2
 };
 
 @end
@@ -35,7 +35,7 @@ enum {
 @implementation OPFActivityViewController
 
 static NSString *const OPFActivityQuestionViewCellIdentifier = @"OPFActivityQuestionViewCell";
-static NSString *const OPFActivityAnswerViewCellIdentifier = @"OPFActivityAnswerViewCell";
+static NSString *const OPFActivityAnswerViewCellIdentifier = @"OPFActitityAnswerViewCell";
 static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityCommentViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -50,6 +50,10 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFActivityQuestionViewCell) bundle:nil] forCellReuseIdentifier:OPFActivityQuestionViewCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFActivityAnswerViewCell) bundle:nil] forCellReuseIdentifier:OPFActivityAnswerViewCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentsViewController) bundle:nil] forCellReuseIdentifier:OPFActivityCommentViewCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,19 +74,23 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 
 - (void)fetchModels
 {
-    if (![OPFAppState isLoggedIn]) { return; }
+    //if (![OPFAppState isLoggedIn]) { return; }
     
     OPFQuery *questionsQuery = nil;
     OPFQuery *answersQuery = nil;
     OPFQuery *commentsQuery = nil;
     
-    questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    /*questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
     answersQuery = [[[OPFAnswer.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
-    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:[OPFAppState userModel].identifier] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];
+    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:[OPFAppState userModel].identifier] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];*/
     
-    self.questionModels = [self.questionModels initWithArray:[questionsQuery getMany]];
-    self.answerModels = [self.answerModels initWithArray:[answersQuery getMany]];
-    self.answerModels = [self.answerModels initWithArray:[commentsQuery getMany]];
+    questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:@(350858)] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    answersQuery = [[[OPFAnswer.query whereColumn:@"owner_user_id" is:@(350858)] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:@(350858)] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];
+    
+    self.questionModels = [questionsQuery getMany];
+    self.answerModels = [answersQuery getMany];
+    self.answerModels = [commentsQuery getMany];
 }
 
 #pragma mark - TabbedViewController methods
@@ -117,11 +125,13 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == kOPFActivityQuestionSection) { return [self.questionModels count]; }
-    else if (section == kOPFActivityAnswerSection) { return [self.answerModels count]; }
-    else if (section == kOPFActivityCommentSection) { return [self.commentModels count]; }
+    NSInteger count = 0;
     
-    else { return 0; }
+    if (section == kOPFActivityQuestionSection) { count = [self.questionModels count]; }
+    else if (section == kOPFActivityAnswerSection) { count = [self.answerModels count]; }
+    else if (section == kOPFActivityCommentSection) { count = [self.commentModels count]; }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,7 +160,7 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+{    
     if (section == kOPFActivityQuestionSection) { return NSLocalizedString(@"Questions", @"Question section header in activity table view"); }
     else if (section == kOPFActivityAnswerSection) { return NSLocalizedString(@"Answers", @"Answer section header in activity table view"); }
     else if (section == kOPFActivityCommentSection) { return NSLocalizedString(@"Comments", @"Comment section header in activity table view"); }
