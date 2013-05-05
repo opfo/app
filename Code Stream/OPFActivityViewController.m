@@ -15,6 +15,8 @@
 #import "OPFActivityQuestionViewCell.h"
 #import "OPFActivityAnswerViewCell.h"
 #import "OPFActivityCommentViewCell.h"
+#import "OPFQuestionViewController.h"
+#import "OPFCommentsViewController.h"
 
 @interface OPFActivityViewController ()
 
@@ -160,7 +162,23 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (indexPath.section == kOPFActivityQuestionSection || indexPath.section == kOPFActivityAnswerSection) {
+        
+        OPFQuestion *questionModel = (OPFQuestion *)[self modelForIndexPath:indexPath];
+        OPFQuestionViewController *questionViewController = [OPFQuestionViewController new];
+        questionViewController.question = questionModel;
+        
+        [self.navigationController pushViewController:questionViewController animated:YES];
+        
+    }  else if (indexPath.section == kOPFActivityCommentSection) {
+        
+        OPFComment *commentModel = (OPFComment *)[self modelForIndexPath:indexPath];
+        OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
+        commentViewController.postModel = commentModel.post;
+        
+        [self.navigationController pushViewController:commentViewController animated:YES];
+        
+    }
 }
 
 @end
