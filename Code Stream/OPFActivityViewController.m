@@ -53,7 +53,7 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
     
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFActivityQuestionViewCell) bundle:nil] forCellReuseIdentifier:OPFActivityQuestionViewCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFActivityAnswerViewCell) bundle:nil] forCellReuseIdentifier:OPFActivityAnswerViewCellIdentifier];
-    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentsViewController) bundle:nil] forCellReuseIdentifier:OPFActivityCommentViewCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFActivityCommentViewCell) bundle:nil] forCellReuseIdentifier:OPFActivityCommentViewCellIdentifier];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -117,6 +117,11 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
