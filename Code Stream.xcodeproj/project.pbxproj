@@ -55,6 +55,9 @@
 		1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */; };
 		1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */; };
 		1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */; };
+		1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */; };
+		1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */; };
+		1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2951736D0BB0049DB67 /* activity-question@2x.png */; };
 		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
 		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
 		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
@@ -260,6 +263,9 @@
 		1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityQuestionViewCell.xib; sourceTree = "<group>"; };
 		1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityAnswerViewCell.xib; sourceTree = "<group>"; };
 		1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityCommentViewCell.xib; sourceTree = "<group>"; };
+		1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-answer@2x.png"; sourceTree = "<group>"; };
+		1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-comment@2x.png"; sourceTree = "<group>"; };
+		1A39C2951736D0BB0049DB67 /* activity-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-question@2x.png"; sourceTree = "<group>"; };
 		1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFFavoritesViewController.h; sourceTree = "<group>"; };
 		1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFFavoritesViewController.m; sourceTree = "<group>"; };
 		1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFFavoritesViewController.xib; sourceTree = "<group>"; };
@@ -678,6 +684,9 @@
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
+				1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */,
+				1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */,
+				1A39C2951736D0BB0049DB67 /* activity-question@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
 				1A639EC117267AB6009EB280 /* location@2x.png */,
@@ -1328,6 +1337,9 @@
 				1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */,
 				1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */,
 				1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */,
+				1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */,
+				1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */,
+				1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
