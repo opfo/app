@@ -56,11 +56,11 @@ const int TabbedBarHeight = 44;
     self.favoritesViewController = [OPFFavoritesViewController new];
     self.profileContainerController = [OPFProfileContainerController new];
     
-    self.questionsViewNavigationController = [[UINavigationController new] initWithRootViewController:self.questionsViewController];
-    self.profileSearchViewNavigationController = [[UINavigationController new] initWithRootViewController:self.profileSearchViewController];
-    self.activityViewNavigationController = [[UINavigationController new] initWithRootViewController:self.activityViewController];
-    self.favoritesViewNavigationController = [[UINavigationController new] initWithRootViewController:self.favoritesViewController];
-    self.profileContainerViewController = [[UINavigationController new] initWithRootViewController:self.profileContainerController];
+    self.questionsViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.questionsViewController];
+    self.profileSearchViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.profileSearchViewController];
+    self.profileContainerViewController = [[UINavigationController alloc] initWithRootViewController:self.profileContainerController];
+    self.activityViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.activityViewController];
+    self.favoritesViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.favoritesViewController];
     
     [self setViewControllers:[NSMutableArray arrayWithObjects:
         self.questionsViewNavigationController,
