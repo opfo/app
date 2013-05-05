@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFAnswer;
+
 @interface OPFActivityAnswerViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *answerTitle;
 @property (weak, nonatomic) IBOutlet UITextView *answerBody;
+
+@property(nonatomic, strong) OPFAnswer *answerModel;
+
+- (void)setModelValuesInView;
 
 @end

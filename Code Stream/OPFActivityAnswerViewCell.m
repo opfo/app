@@ -7,6 +7,7 @@
 //
 
 #import "OPFActivityAnswerViewCell.h"
+#import "OPFAnswer.h"
 
 @implementation OPFActivityAnswerViewCell
 
@@ -40,6 +41,19 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setAnswerModel:(OPFAnswer *)answerModel
+{
+    self.answerModel = answerModel;
+    
+    [self setModelValuesInView];
+}
+
+- (void)setModelValuesInView
+{
+    self.answerTitle.text = self.answerModel.parent.title;
+    self.answerTitle.text = self.answerModel.body;
 }
 
 @end

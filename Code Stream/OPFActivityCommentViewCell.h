@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFComment;
+
 @interface OPFActivityCommentViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextView *commentBody;
+
+@property(nonatomic, strong) OPFComment *commentModel;
+
+- (void)setModelValuesInView;
 
 @end

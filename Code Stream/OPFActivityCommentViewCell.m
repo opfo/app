@@ -7,6 +7,7 @@
 //
 
 #import "OPFActivityCommentViewCell.h"
+#import "OPFComment.h"
 
 @implementation OPFActivityCommentViewCell
 
@@ -40,6 +41,18 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setCommentModel:(OPFComment *)commentModel
+{
+    self.commentModel = commentModel;
+    
+    [self setModelValuesInView];
+}
+
+- (void)setModelValuesInView
+{
+    self.commentBody.text = self.commentModel.text;
 }
 
 @end

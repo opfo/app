@@ -7,6 +7,7 @@
 //
 
 #import "OPFActivityQuestionViewCell.h"
+#import "OPFQuestion.h"
 
 @implementation OPFActivityQuestionViewCell
 
@@ -40,6 +41,19 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setQuestionModel:(OPFQuestion *)questionModel
+{
+    self.questionModel = questionModel;
+    
+    [self setModelValuesInView];
+}
+
+- (void)setModelValuesInView
+{
+    self.questionTitle.text = self.questionModel.title;
+    self.questionBody.text = self.questionModel.body;
 }
 
 @end

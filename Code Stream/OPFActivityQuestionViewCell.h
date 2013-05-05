@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFQuestion;
+
 @interface OPFActivityQuestionViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextView *questionTitle;
 @property (weak, nonatomic) IBOutlet UITextView *questionBody;
+
+@property(nonatomic, strong) OPFQuestion *questionModel;
+
+- (void)setModelValuesInView;
 
 @end
