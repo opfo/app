@@ -49,6 +49,12 @@
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
 		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
+		1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */; };
+		1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */; };
+		1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */; };
+		1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */; };
+		1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */; };
+		1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */; };
 		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
 		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
 		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
@@ -245,6 +251,15 @@
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
 		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
+		1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityCommentViewCell.h; sourceTree = "<group>"; };
+		1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityCommentViewCell.m; sourceTree = "<group>"; };
+		1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityQuestionViewCell.h; sourceTree = "<group>"; };
+		1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityQuestionViewCell.m; sourceTree = "<group>"; };
+		1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityAnswerViewCell.h; sourceTree = "<group>"; };
+		1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityAnswerViewCell.m; sourceTree = "<group>"; };
+		1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityQuestionViewCell.xib; sourceTree = "<group>"; };
+		1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityAnswerViewCell.xib; sourceTree = "<group>"; };
+		1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityCommentViewCell.xib; sourceTree = "<group>"; };
 		1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFFavoritesViewController.h; sourceTree = "<group>"; };
 		1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFFavoritesViewController.m; sourceTree = "<group>"; };
 		1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFFavoritesViewController.xib; sourceTree = "<group>"; };
@@ -550,6 +565,22 @@
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 			);
 			name = "Question View Header";
+			sourceTree = "<group>";
+		};
+		1A39C2831736C5F50049DB67 /* Activity View Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */,
+				1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */,
+				1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */,
+				1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */,
+				1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */,
+				1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */,
+				1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */,
+				1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */,
+				1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */,
+			);
+			name = "Activity View Table View Cells";
 			sourceTree = "<group>";
 		};
 		1A40DFDD17326B5A00B9AA00 /* Favorites View */ = {
@@ -1111,6 +1142,7 @@
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1A39C2831736C5F50049DB67 /* Activity View Table View Cells */,
 				1A639EBB172671FA009EB280 /* Profile Search Table View Cells */,
 				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
@@ -1293,6 +1325,9 @@
 				1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */,
 				1A9D3F301732962200EEF9D1 /* tab-login@2x.png in Resources */,
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
+				1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */,
+				1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */,
+				1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1447,6 +1482,9 @@
 				1A414A1717358A4A00F87F71 /* OPFProfileContainerController.m in Sources */,
 				1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */,
 				9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */,
+				1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */,
+				1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */,
+				1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
