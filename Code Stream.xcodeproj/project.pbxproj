@@ -52,9 +52,9 @@
 		1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */; };
 		1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */; };
 		1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */; };
-		1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */; };
-		1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */; };
-		1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */; };
+		1A39C28E1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */; };
+		1A39C2901736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */; };
+		1A39C2921736C8BD0049DB67 /* OPFActivityCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */; };
 		1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */; };
 		1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */; };
 		1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2951736D0BB0049DB67 /* activity-question@2x.png */; };
@@ -260,9 +260,9 @@
 		1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityQuestionViewCell.m; sourceTree = "<group>"; };
 		1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityAnswerViewCell.h; sourceTree = "<group>"; };
 		1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityAnswerViewCell.m; sourceTree = "<group>"; };
-		1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityQuestionViewCell.xib; sourceTree = "<group>"; };
-		1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityAnswerViewCell.xib; sourceTree = "<group>"; };
-		1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActitityCommentViewCell.xib; sourceTree = "<group>"; };
+		1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityQuestionViewCell.xib; sourceTree = "<group>"; };
+		1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityAnswerViewCell.xib; sourceTree = "<group>"; };
+		1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityCommentViewCell.xib; sourceTree = "<group>"; };
 		1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-answer@2x.png"; sourceTree = "<group>"; };
 		1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-comment@2x.png"; sourceTree = "<group>"; };
 		1A39C2951736D0BB0049DB67 /* activity-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-question@2x.png"; sourceTree = "<group>"; };
@@ -578,13 +578,13 @@
 			children = (
 				1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */,
 				1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */,
-				1A39C28D1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib */,
+				1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */,
 				1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */,
 				1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */,
-				1A39C28F1736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib */,
+				1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */,
 				1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */,
 				1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */,
-				1A39C2911736C8BD0049DB67 /* OPFActitityCommentViewCell.xib */,
+				1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */,
 			);
 			name = "Activity View Table View Cells";
 			sourceTree = "<group>";
@@ -1334,9 +1334,9 @@
 				1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */,
 				1A9D3F301732962200EEF9D1 /* tab-login@2x.png in Resources */,
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
-				1A39C28E1736C89A0049DB67 /* OPFActitityQuestionViewCell.xib in Resources */,
-				1A39C2901736C8AB0049DB67 /* OPFActitityAnswerViewCell.xib in Resources */,
-				1A39C2921736C8BD0049DB67 /* OPFActitityCommentViewCell.xib in Resources */,
+				1A39C28E1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib in Resources */,
+				1A39C2901736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib in Resources */,
+				1A39C2921736C8BD0049DB67 /* OPFActivityCommentViewCell.xib in Resources */,
 				1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */,
 				1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */,
 				1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */,

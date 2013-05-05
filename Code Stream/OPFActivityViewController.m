@@ -35,7 +35,7 @@ enum {
 @implementation OPFActivityViewController
 
 static NSString *const OPFActivityQuestionViewCellIdentifier = @"OPFActivityQuestionViewCell";
-static NSString *const OPFActivityAnswerViewCellIdentifier = @"OPFActitityAnswerViewCell";
+static NSString *const OPFActivityAnswerViewCellIdentifier = @"OPFActivityAnswerViewCell";
 static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityCommentViewCell";
 
 - (id)initWithStyle:(UITableViewStyle)style
