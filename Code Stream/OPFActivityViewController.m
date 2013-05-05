@@ -7,8 +7,23 @@
 //
 
 #import "OPFActivityViewController.h"
+#import "OPFAppState.h"
+#import "OPFQuery.h"
+#import "OPFQuestion.h"
+#import "OPFAnswer.h"
+#import "OPFComment.h"
 
 @interface OPFActivityViewController ()
+
+@property(strong, nonatomic) NSArray *questionModels;
+@property(strong, nonatomic) NSArray *answerModels;
+@property(strong, nonatomic) NSArray *commentModels;
+
+enum {
+	kOPFActivityQuestionSection = 0,
+	kOPFActivityAnswerSection = 1,
+	kOPFActivityCommentSection = 3
+};
 
 @end
 
@@ -28,6 +43,11 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self fetchModels];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -37,6 +57,23 @@
 - (void)opfSetupView
 {
     self.title = NSLocalizedString(@"Latest activity", @"Activity View controller title");
+}
+
+- (void)fetchModels
+{
+    if (![OPFAppState isLoggedIn]) { return; }
+    
+    OPFQuery *questionsQuery = nil;
+    OPFQuery *answersQuery = nil;
+    OPFQuery *commentsQuery = nil;
+    
+    questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    answersQuery = [[[OPFAnswer.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:[OPFAppState userModel].identifier] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];
+    
+    self.questionModels = [self.questionModels initWithArray:[questionsQuery getMany]];
+    self.answerModels = [self.answerModels initWithArray:[answersQuery getMany]];
+    self.answerModels = [self.answerModels initWithArray:[commentsQuery getMany]];
 }
 
 #pragma mark - TabbedViewController methods
@@ -57,12 +94,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    if (section == kOPFActivityQuestionSection) { return [self.questionModels count]; }
+    else if (section == kOPFActivityAnswerSection) { return [self.answerModels count]; }
+    else if (section == kOPFActivityCommentSection) { return [self.commentModels count]; }
+    
+    else { return 0; }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,56 +119,20 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (section == kOPFActivityQuestionSection) { return NSLocalizedString(@"Questions", @"Question section header in activity table view"); }
+    else if (section == kOPFActivityAnswerSection) { return NSLocalizedString(@"Answers", @"Answer section header in activity table view"); }
+    else if (section == kOPFActivityCommentSection) { return NSLocalizedString(@"Comments", @"Comment section header in activity table view"); }
+    
+    else { return NSLocalizedString(@"", @"Unknown section in activity table view"); }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    
 }
 
 @end
