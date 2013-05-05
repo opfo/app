@@ -275,12 +275,12 @@ Boolean heatMode = NO;
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
 		if (tokenBeingInputted.length == 0) {
 			if (existingTags.count > 0) {
-				NSMutableSet *relatedTags = NSMutableSet.new;
+				NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
 				for (NSString *tag in existingTags) {
 					NSArray *relatedTagsSubset = [OPFTag relatedTagsForTagWithName:tag];
 					[relatedTags addObjectsFromArray:relatedTagsSubset];
 				}
-				suggestedTokens = relatedTags.allObjects;
+				suggestedTokens = relatedTags.array;
 			} else {
 				suggestedTokens = [OPFTag mostCommonTags];
 			}
