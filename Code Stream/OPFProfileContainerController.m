@@ -58,13 +58,10 @@ static const int TransitionDuration = .5f;
     [self.signupViewController didMoveToParentViewController:self];
     [self.profileViewController didMoveToParentViewController:self];
     
-    if (![OPFAppState isLoggedIn]) {
-        [self transitionToProfileViewControllerFromViewController:self.loginViewController];
-        [self.view addSubview:self.loginViewController.view];
-    } else {
-        [self transitionToLoginViewControllerFromViewController:self.profileViewController];
-        self.profileViewController.user = [OPFAppState userModel];
+    if ([OPFAppState isLoggedIn]) {
         [self.view addSubview:self.profileViewController.view];
+    } else {
+        [self.view addSubview:self.loginViewController.view];
     }
 }
 
@@ -136,9 +133,7 @@ static const int TransitionDuration = .5f;
 #pragma mark - IBOutlet responder chain catches
 
 - (void)userRequestsLogin:(id)sender
-{
-    NSLog(@"%@", @"login");
-    
+{    
     NSString* email = self.loginViewController.eMailField.text;
     NSString* password = self.loginViewController.passwordField.text;
     
