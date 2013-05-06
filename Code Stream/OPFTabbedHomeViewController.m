@@ -11,7 +11,7 @@
 #import "OPFProfileSearchViewController.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
-#import "OPFFavoritesViewController.h"
+#import "OPFTagBrowserViewController.h"
 #import "OPFAppState.h"
 #import "UIColor+OPFHEX.h"
 
@@ -21,13 +21,13 @@
 @property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
 @property(strong, nonatomic) UINavigationController *userProfileNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
-@property(strong, nonatomic) UINavigationController *favoritesViewNavigationController;
+@property(strong, nonatomic) UINavigationController *tagBrowserViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
 @property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
 @property(strong, nonatomic) OPFActivityViewController *activityViewController;
-@property(strong, nonatomic) OPFFavoritesViewController *favoritesViewController;
+@property(strong, nonatomic) OPFTagBrowserViewController *tagBrowserViewController;
 
 - (void)opfSetupView;
 
@@ -54,7 +54,7 @@ const int TabbedBarHeight = 44;
     self.profileSearchViewController = [OPFProfileSearchViewController new];
     self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
-    self.favoritesViewController = [OPFFavoritesViewController new];
+    self.tagBrowserViewController = [OPFTagBrowserViewController new];
     
     self.userProfileViewController.user = [OPFAppState userModel];
 
@@ -62,12 +62,12 @@ const int TabbedBarHeight = 44;
     self.profileSearchViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.profileSearchViewController];
     self.userProfileNavigationController = [[UINavigationController alloc] initWithRootViewController:self.userProfileViewController];
     self.activityViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.activityViewController];
-    self.favoritesViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.favoritesViewController];
+    self.tagBrowserViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.tagBrowserViewController];
     
     [self setViewControllers:[NSMutableArray arrayWithObjects:
                               self.questionsViewNavigationController,
+                              self.tagBrowserViewNavigationController,
                               self.activityViewNavigationController,
-                              self.favoritesViewNavigationController,
                               self.profileSearchViewNavigationController,
                               self.userProfileNavigationController,
                             nil]];
