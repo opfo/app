@@ -67,7 +67,7 @@ const int TabbedBarHeight = 44;
         self.tagBrowserViewNavigationController,
         self.activityViewNavigationController,
         self.profileSearchViewNavigationController,
-        self.userProfileNavigationController,
+        self.profileContainerViewController,
     nil]];
 }
 
