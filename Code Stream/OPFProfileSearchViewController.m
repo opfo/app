@@ -196,7 +196,13 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
-#pragma mark - SearchBar Delegate -
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.profileSearchBar resignFirstResponder];
+}
+
+#pragma mark - UISearchBarDelegate Methods
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     self.isSearching = (searchText.length == 0) ? NO : YES;
@@ -214,7 +220,6 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
     [self.tableView reloadData];
 }
 
-#pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
 	[searchBar setShowsCancelButton:YES animated:YES];
