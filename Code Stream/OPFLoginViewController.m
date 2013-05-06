@@ -82,29 +82,20 @@
         
         UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 160, 35)];
         inputField.delegate = self;
+        
         if (indexPath.row == 0) {
             self.eMailField = inputField;
+            self.eMailField.text = @"thomas.j.owens@gmail.com";
             inputField.tag = 0;
-        }
-        else {
+        } else {
             self.passwordField = inputField;
             inputField.secureTextEntry = YES;
             inputField.tag = 1;
         }
+        
         [cell.contentView addSubview:inputField];
     }
     return cell;
-}
-
-#pragma mark - IBActions
-
-- (void)userRequestsLogin:(id)sender
-{
-    BOOL loginReponse = [OPFAppState loginWithEMail:self.eMailField.text andPassword:self.passwordField.text];
-    
-    if(loginReponse == YES) {
-        [(OPFProfileContainerController *) self.parentViewController transitionToProfileViewControllerFromViewController:self];
-    }
 }
 
 #pragma mark - TabbedViewController methods

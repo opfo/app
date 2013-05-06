@@ -46,6 +46,8 @@ static const int TransitionDuration = .5f;
     self.signupViewController = [OPFSignupViewController new];
     self.profileViewController = [OPFUserProfileViewController newFromStoryboard];
     
+    //self.profileViewController.nextResponder = self;
+    
     //Add them to self (container) as child
     [self addChildViewController:self.loginViewController];
     [self addChildViewController:self.signupViewController];
@@ -131,4 +133,22 @@ static const int TransitionDuration = .5f;
     return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
 }
 
+#pragma mark - IBOutlet responder chain catches
+
+- (void)userRequestsLogin:(id)sender
+{
+    NSLog(@"%@", @"login");
+    
+    NSString* email = self.loginViewController.eMailField.text;
+    NSString* password = self.loginViewController.passwordField.text;
+    
+    BOOL loginReponse = [OPFAppState loginWithEMail:email andPassword:password];
+    
+    if(loginReponse == YES) {
+        [self transitionToProfileViewControllerFromViewController:self.loginViewController];
+    } else {
+        self.loginViewController.loginMessageLabel.text = NSLocalizedString(@"Wrong username or password!", @"Login failure message");
+    }
+}
+    
 @end
