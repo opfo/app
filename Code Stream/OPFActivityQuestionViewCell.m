@@ -78,8 +78,8 @@
     self.questionTitle.text = self.questionModel.title;
     self.questionBody.text = [self.questionModel.body.opf_stringByStrippingHTML OPF_escapeWithScheme:OPFStripAscii];
 
-    if(self.questionModel.acceptedAnswerId == nil) {
-        self.acceptedAnswer.hidden = YES;
+    if(self.questionModel.acceptedAnswerId != nil) {
+        self.acceptedAnswer.image = [UIImage imageNamed:@"acceptedAnswer"];
     }
 }
 

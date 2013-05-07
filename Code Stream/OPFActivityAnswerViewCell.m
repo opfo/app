@@ -78,7 +78,7 @@
     self.answerBody.text = [self.answerModel.body.opf_stringByStrippingHTML OPF_escapeWithScheme:OPFStripAscii];
     
     if(self.answerModel.identifier == self.answerModel.parent.acceptedAnswerId) {
-        self.acceptedAnswer.hidden = YES;
+        self.acceptedAnswer.image = [UIImage imageNamed:@"acceptedAnswer"];
     }
 }
 
