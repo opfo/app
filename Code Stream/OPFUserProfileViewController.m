@@ -58,7 +58,7 @@ static CGFloat userAboutMeInset = 20.0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+	
 	self.scoreFormatter = [OPFScoreNumberFormatter new];
     self.numberFormatter = [NSNumberFormatter new];
     self.dateFormatter = [NSDateFormatter new];
@@ -90,13 +90,13 @@ static CGFloat userAboutMeInset = 20.0;
 - (void)loadUserGravatar
 {
     __weak OPFUserProfileViewController *weakSelf = self;
-
+    
     [self.userAvatar setImageWithGravatarEmailHash:self.user.emailHash placeholderImage:weakSelf.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX
-        success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                [weakSelf setAvatarWithGravatar:image];
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-
-    }];
+										   success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+											   [weakSelf setAvatarWithGravatar:image];
+										   } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+											   
+										   }];
 }
 
 - (void)setAvatarWithGravatar :(UIImage*) gravatar
@@ -106,19 +106,19 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    UIBarButtonItem *logoutStyle= [UIBarButtonItem new];
-    logoutStyle.tintColor = [UIColor redColor];
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
-
+    UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
+    
+    logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
+    
+    self.navigationItem.rightBarButtonItem = logoutStyle;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
     self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
     self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
-
+	
     [self loadUserGravatar];
-
+    
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
     if(self.user.age!=nil){
@@ -130,29 +130,29 @@ static CGFloat userAboutMeInset = 20.0;
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
-
+    
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", [self.user.aboutMe OPF_escapeWithScheme:OPFEscapeHtml]] baseURL:nil];
     }
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
-
+	
 	self.userBio.delegate = self;
-
+    
 	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
 	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
 	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
-
+    
     self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     //Autoresize the "About Me" textview
     CGFloat height = 0.f;
-
+    
     if(indexPath.section==1 && indexPath.row == 0){
         NSString *aboutUser = _user.aboutMe;
         UIFont *aboutUserFont = [UIFont systemFontOfSize:14.f];
@@ -172,14 +172,14 @@ static CGFloat userAboutMeInset = 20.0;
 -(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
 {
     NSString *cellIdentifier = nil;
-
+    
     if(indexPath.section==4){
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
     } else if(indexPath.section==1 && indexPath.row==3) {
         cellIdentifier = UserWebsiteViewCell;
 	}
-
+    
     return cellIdentifier;
 }
 
@@ -188,22 +188,23 @@ static CGFloat userAboutMeInset = 20.0;
 {
     UIViewController *detailViewController = nil;
     if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserQuestionsViewCell]){
-
+		
         OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
 		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
-
+		
         questionsViewController.query = questionsQuery;
-
+		
         detailViewController = questionsViewController;
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
-        NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
-        OPFWebViewController *webview = [OPFWebViewController new];
-        webview.page = url;
-        [self.navigationController pushViewController:webview animated:YES];
-        //[[UIApplication sharedApplication] openURL:url];
+        if(![self.userWebsite.text isEqualToString:@"-"]){
+            NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
+            OPFWebViewController *webview = [OPFWebViewController new];
+            webview.page = url;
+            [self.navigationController pushViewController:webview animated:YES];
+        }
     }
-
+    
     // Pass the selected object to the new view controller.
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
@@ -217,21 +218,11 @@ static CGFloat userAboutMeInset = 20.0;
 	} else return YES;
 }
 
-#pragma mark - Container Controller methods
-
 // Todo
 - (void) logOutToRootView: (id) paramSender {
     NSLog(@"Logging out...");
 }
 
-- (void)willMoveToParentViewController:(UIViewController *)parent
-{
-    NSLog(@"%@ %@", self.class, @" WILL move to parent view controller");
-}
 
-- (void)didMoveToParentViewController:(UIViewController *)parent
-{
-    NSLog(@"%@ %@", self.class, @" DID move to parent view controller");
-}
 
 @end
