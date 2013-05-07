@@ -16,6 +16,7 @@
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "OPFWebViewController.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -43,6 +44,8 @@ static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
+
+
 
 + (instancetype)newFromStoryboard
 {
@@ -103,6 +106,11 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
+    UIBarButtonItem *logoutStyle= [UIBarButtonItem new];
+    logoutStyle.tintColor = [UIColor redColor];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
+    
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
@@ -190,7 +198,10 @@ static CGFloat userAboutMeInset = 20.0;
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
         NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
-        [[UIApplication sharedApplication] openURL:url];
+        OPFWebViewController *webview = [OPFWebViewController new];
+        webview.page = url;
+        [self.navigationController pushViewController:webview animated:YES];
+        //[[UIApplication sharedApplication] openURL:url];
     }
     
     // Pass the selected object to the new view controller.
@@ -202,8 +213,13 @@ static CGFloat userAboutMeInset = 20.0;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
 		[[UIApplication sharedApplication] openURL:request.URL];
-		return NO;
+        return NO;
 	} else return YES;
+}
+
+// Todo
+- (void) logOutToRootView: (id) paramSender {
+    NSLog(@"Logging out...");
 }
 
 

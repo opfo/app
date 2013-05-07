@@ -12,6 +12,7 @@
 
 @property (copy, nonatomic) NSString *htmlString;
 @property (weak, nonatomic) IBOutlet UIWebView *bodyTextView;
+@property (weak, nonatomic) UINavigationController *navigationcontroller;
 
 
 

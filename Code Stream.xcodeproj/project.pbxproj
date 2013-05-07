@@ -120,6 +120,9 @@
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
+		8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2725D51738562D0068D89C /* OPFWebViewController.m */; };
+		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
+		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C04A16F1735B00700971D2F /* OPFSearchBar.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
@@ -341,6 +344,10 @@
 		81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPostSpec.m; path = ModelSpecs/OPFPostSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
+		8C2725D41738562D0068D89C /* OPFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFWebViewController.h; sourceTree = "<group>"; };
+		8C2725D51738562D0068D89C /* OPFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFWebViewController.m; sourceTree = "<group>"; };
+		8C2725D61738562D0068D89C /* OPFWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFWebView.xib; sourceTree = "<group>"; };
+		8C66EF3E173850AB00B29435 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
 		9C04A16E1735B00700971D2F /* OPFSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBar.h; sourceTree = "<group>"; };
@@ -817,6 +824,7 @@
 			children = (
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
+				8C66EF3E173850AB00B29435 /* backArrow.png */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
 				8128DF95171D832C00C44410 /* so.sqlite */,
@@ -893,6 +901,9 @@
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
+				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
+				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
+				8C2725D61738562D0068D89C /* OPFWebView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1249,6 +1260,8 @@
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
 				1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */,
 				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
+				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
+				8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1398,6 +1411,7 @@
 				9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */,
 				1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */,
 				1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */,
+				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

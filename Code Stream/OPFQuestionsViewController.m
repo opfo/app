@@ -126,9 +126,14 @@ Boolean heatMode = NO;
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
+	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
+    self.navigationItem.leftBarButtonItem = leftButton;*/
+    
+    UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
+    UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
+    
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:writeButton, heatButton, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
