@@ -16,5 +16,7 @@
 
 - (void)userRequestsLogin:(id)sender;
 - (void)userRequestsLogout:(id)sender;
+- (void)userRequestsSignup:(id)sender;
+- (void)userFinishedSignup:(id)sender;
 
 @end

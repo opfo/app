@@ -114,7 +114,10 @@ static CGFloat userAboutMeInset = 20.0;
     // Hide logout-button if user to be shown is not the user that is logged in
     if([OPFAppState userModel].identifier != self.user.identifier){
         [self.logOut setHidden:YES];
+        [self cell:self.logoutCell setHidden:YES];
     }
+    
+    [self loadUserGravatar];
     
     // Set the textFields in the userInterface
     // Set User Display Name
@@ -129,7 +132,7 @@ static CGFloat userAboutMeInset = 20.0;
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
     
-    self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  @"-";
+    self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  NotSpecifiedInformationPlaceholder;
        
     
     // Set date-fields by using a NSDateFormatter
@@ -219,8 +222,10 @@ static CGFloat userAboutMeInset = 20.0;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
-		[[UIApplication sharedApplication] openURL:request.URL];
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {;
+        OPFWebViewController *webview = [OPFWebViewController new];
+        webview.page = request.URL;
+        [self.navigationController pushViewController:webview animated:YES];
         return NO;
 	} else return YES;
 }

@@ -7,12 +7,21 @@
 //
 
 #import "OPFSignupViewController.h"
+#import "OPFAppDelegate.h"
 
 @interface OPFSignupViewController ()
 
 @end
 
 @implementation OPFSignupViewController
+
++ (instancetype)newFromStoryboard
+{
+	// This be a hack, do not ship stuff like this!
+	NSAssert(OPFAppDelegate.sharedAppDelegate.storyboard != nil, @"Our hack to instantiate OPFUserProfileViewController from the storyboard failed as the root view controller wasn’t from the storyboard.");
+	OPFSignupViewController *signupViewController = [OPFAppDelegate.sharedAppDelegate.storyboard instantiateViewControllerWithIdentifier:@"UserSignupViewController"];
+	return signupViewController;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

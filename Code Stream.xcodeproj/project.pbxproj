@@ -94,7 +94,6 @@
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
 		1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */; };
 		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
-		1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */; };
 		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
 		1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */; };
 		1A9D3F2B17327E3500EEF9D1 /* OPFSignupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2A17327E3500EEF9D1 /* OPFSignupView.m */; };
@@ -146,6 +145,9 @@
 		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
 		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
+		8CF371C817398D68009B6425 /* forwardArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C717398D68009B6425 /* forwardArrow.png */; };
+		8CF371CA17398E48009B6425 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C917398E48009B6425 /* cancel.png */; };
+		8CF371CC173993CC009B6425 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CB173993CC009B6425 /* reload.png */; };
 		9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C04A16F1735B00700971D2F /* OPFSearchBar.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
 		9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -326,7 +328,6 @@
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
 		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
-		1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFSignupView.xib; sourceTree = "<group>"; };
 		1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFLoginViewController.h; sourceTree = "<group>"; };
 		1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFLoginViewController.m; sourceTree = "<group>"; };
 		1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFLoginView.xib; sourceTree = "<group>"; };
@@ -404,6 +405,9 @@
 		8C66EF3E173850AB00B29435 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
+		8CF371C717398D68009B6425 /* forwardArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardArrow.png; sourceTree = "<group>"; };
+		8CF371C917398E48009B6425 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		8CF371CB173993CC009B6425 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
 		9C04A16E1735B00700971D2F /* OPFSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBar.h; sourceTree = "<group>"; };
 		9C04A16F1735B00700971D2F /* OPFSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBar.m; sourceTree = "<group>"; };
 		9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -732,7 +736,6 @@
 		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
 			isa = PBXGroup;
 			children = (
-				1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */,
 				1A9D3F2917327E3500EEF9D1 /* OPFSignupView.h */,
 				1A9D3F2A17327E3500EEF9D1 /* OPFSignupView.m */,
 				1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */,
@@ -915,8 +918,11 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8CF371CB173993CC009B6425 /* reload.png */,
+				8CF371C717398D68009B6425 /* forwardArrow.png */,
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
+				8CF371C917398E48009B6425 /* cancel.png */,
 				8C66EF3E173850AB00B29435 /* backArrow.png */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
@@ -999,8 +1005,6 @@
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
-				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
-				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8C2725D61738562D0068D89C /* OPFWebView.xib */,
 			);
 			name = Views;
@@ -1009,6 +1013,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
+				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
 				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
@@ -1366,7 +1372,6 @@
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
 				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
 				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
-				1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */,
 				1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */,
 				1A9D3F301732962200EEF9D1 /* tab-login@2x.png in Resources */,
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
@@ -1384,6 +1389,9 @@
 				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
 				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
 				8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */,
+				8CF371C817398D68009B6425 /* forwardArrow.png in Resources */,
+				8CF371CA17398E48009B6425 /* cancel.png in Resources */,
+				8CF371CC173993CC009B6425 /* reload.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
