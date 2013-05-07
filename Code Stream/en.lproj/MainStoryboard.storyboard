@@ -283,6 +283,28 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="JxN-n1-Gcg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserQuestionsViewCell" textLabel="TYj-RK-D8D" style="IBUITableViewCellStyleDefault" id="nqx-l8-sP6">
+                                        <rect key="frame" x="0.0" y="691" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TYj-RK-D8D">
+                                                    <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="aBZ-q2-boG" id="gpB-KN-fYn"/>
@@ -291,6 +313,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="User Profile" id="dtW-5Y-zGQ"/>
                     <connections>
+                        <outlet property="logOut" destination="nqx-l8-sP6" id="bGR-3D-mzZ"/>
                         <outlet property="userAge" destination="Opi-oZ-ih4" id="SJ9-ar-EMN"/>
                         <outlet property="userAvatar" destination="QLZ-RL-x7D" id="pcX-Ne-aDQ"/>
                         <outlet property="userBio" destination="MMN-kM-TB8" id="2aQ-Xt-Ma5"/>
@@ -313,6 +336,7 @@
         <class className="OPFUserProfileViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="logOut" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="userBio" candidateClass="UIWebView"/>
