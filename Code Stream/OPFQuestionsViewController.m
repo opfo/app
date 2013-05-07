@@ -271,9 +271,7 @@ Boolean heatMode = NO;
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -334,9 +332,7 @@ Boolean heatMode = NO;
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.suggestedTokens setArray:suggestedTokens];
 		[self.searchBarInputView.completionsView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
