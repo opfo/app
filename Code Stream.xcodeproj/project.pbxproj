@@ -48,6 +48,9 @@
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A08F5411738F4E300D232D2 /* answer-count.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53E1738F4E300D232D2 /* answer-count.png */; };
+		1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53F1738F4E300D232D2 /* comment-count@2x.png */; };
+		1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F5401738F4E300D232D2 /* view-count@2x.png */; };
 		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
 		1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */; };
 		1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */; };
@@ -253,6 +256,9 @@
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A08F53E1738F4E300D232D2 /* answer-count.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answer-count.png"; sourceTree = "<group>"; };
+		1A08F53F1738F4E300D232D2 /* comment-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-count@2x.png"; sourceTree = "<group>"; };
+		1A08F5401738F4E300D232D2 /* view-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-count@2x.png"; sourceTree = "<group>"; };
 		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
 		1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityCommentViewCell.h; sourceTree = "<group>"; };
 		1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityCommentViewCell.m; sourceTree = "<group>"; };
@@ -684,6 +690,9 @@
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
+				1A08F53E1738F4E300D232D2 /* answer-count.png */,
+				1A08F53F1738F4E300D232D2 /* comment-count@2x.png */,
+				1A08F5401738F4E300D232D2 /* view-count@2x.png */,
 				1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */,
 				1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */,
 				1A39C2951736D0BB0049DB67 /* activity-question@2x.png */,
@@ -1340,6 +1349,9 @@
 				1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */,
 				1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */,
 				1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */,
+				1A08F5411738F4E300D232D2 /* answer-count.png in Resources */,
+				1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */,
+				1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
