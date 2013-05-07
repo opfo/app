@@ -241,6 +241,8 @@ Boolean heatMode = NO;
 	NSArray *tags = [searchString opf_tagsFromSearchString];
 	NSArray *users = [searchString opf_usersFromSearchString];
 	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
+	NSString *usersAsString = [users componentsJoinedByString:@" "];
+	keywords = [keywords stringByAppendingString:usersAsString];
 	
 	OPFQuery *query = nil;
 	if (keywords.length > 0 || tags.count > 0) {

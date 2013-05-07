@@ -33,7 +33,8 @@
     self.storyboard =[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 
     //Set tabbed home screen as rootview controller
-    [_window setRootViewController:[OPFTabbedHomeViewController new]];
+    self.tabbedHomeViewController = [OPFTabbedHomeViewController new];
+    [_window setRootViewController:self.tabbedHomeViewController];
     [_window makeKeyAndVisible];
     
     return YES;
