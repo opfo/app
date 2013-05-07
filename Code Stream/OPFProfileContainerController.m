@@ -11,6 +11,7 @@
 #import "OPFLoginViewController.h"
 #import "OPFSignupViewController.h"
 #import "OPFUserProfileViewController.h"
+#import "NSString+OPFMD5Hash.h"
 
 @interface OPFProfileContainerController ()
 
@@ -57,8 +58,13 @@ static const int TransitionDuration = .5f;
     [self.loginViewController didMoveToParentViewController:self];
     [self.signupViewController didMoveToParentViewController:self];
     [self.profileViewController didMoveToParentViewController:self];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     if ([OPFAppState isLoggedIn]) {
+        self.profileViewController.user = [OPFAppState userModel];
+        
         [self.view addSubview:self.profileViewController.view];
     } else {
         [self.view addSubview:self.loginViewController.view];
@@ -136,8 +142,9 @@ static const int TransitionDuration = .5f;
 {    
     NSString* email = self.loginViewController.eMailField.text;
     NSString* password = self.loginViewController.passwordField.text;
+    BOOL persistFlag = self.loginViewController.rememberUser.isOn;
     
-    BOOL loginReponse = [OPFAppState loginWithEMail:email andPassword:password];
+    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
     
     if(loginReponse == YES) {
         [self transitionToProfileViewControllerFromViewController:self.loginViewController];
