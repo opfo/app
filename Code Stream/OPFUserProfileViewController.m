@@ -15,6 +15,8 @@
 #import "OPFScoreNumberFormatter.h"
 #import "OPFQuestion.h"
 #import "OPFAnswer.h"
+#import "NSString+OPFEscapeStrings.h"
+#import "OPFWebViewController.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -43,6 +45,8 @@ static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
 
+
+
 + (instancetype)newFromStoryboard
 {
 	// This be a hack, do not ship stuff like this!
@@ -51,42 +55,22 @@ static CGFloat userAboutMeInset = 20.0;
 	return userProfileViewController;
 }
 
--(id) init
+- (void)viewDidLoad
 {
-	self = [super init];
-    if (self) {
-    }
-    return self;
+    [super viewDidLoad];
+	
+	self.scoreFormatter = [OPFScoreNumberFormatter new];
+    self.numberFormatter = [NSNumberFormatter new];
+    self.dateFormatter = [NSDateFormatter new];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
+	[super viewWillAppear:animated];
     // Configure the view according to the userdata
     [self configureView];
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - TabbedViewController methods
 
@@ -122,10 +106,11 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    self.scoreFormatter = [OPFScoreNumberFormatter new];
-    self.numberFormatter = [NSNumberFormatter new];
-    self.dateFormatter = [NSDateFormatter new];
+    UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
     
+    logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
+    
+    self.navigationItem.rightBarButtonItem = logoutStyle;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
@@ -147,16 +132,19 @@ static CGFloat userAboutMeInset = 20.0;
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", self.user.aboutMe] baseURL:nil];
+        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", [self.user.aboutMe OPF_escapeWithScheme:OPFEscapeHtml]] baseURL:nil];
     }
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
-        
+	
+	self.userBio.delegate = self;
     
-    self.userVotes.text = [[[self.user.upVotes stringValue] stringByAppendingString:@" / "] stringByAppendingString:[self.user.downVotes stringValue]];
+	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
+	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
+	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
     
-    self.views.text = [self.user.views stringValue];
+    self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,21 +168,6 @@ static CGFloat userAboutMeInset = 20.0;
     return height;
 }
 
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
-}
-
-
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return NO;
-}
-
 // Indentify which cell the user clicked on
 -(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
 {
@@ -203,9 +176,9 @@ static CGFloat userAboutMeInset = 20.0;
     if(indexPath.section==4){
         if(indexPath.row==0)
             cellIdentifier = UserQuestionsViewCell;
-    }
-    else if(indexPath.section==1 && indexPath.row==3)
+    } else if(indexPath.section==1 && indexPath.row==3) {
         cellIdentifier = UserWebsiteViewCell;
+	}
     
     return cellIdentifier;
 }
@@ -224,14 +197,30 @@ static CGFloat userAboutMeInset = 20.0;
         detailViewController = questionsViewController;
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
-        NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
-        [[UIApplication sharedApplication] openURL:url];
+        if(![self.userWebsite.text isEqualToString:@"-"]){
+            NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
+            OPFWebViewController *webview = [OPFWebViewController new];
+            webview.page = url;
+            [self.navigationController pushViewController:webview animated:YES];
+        }
     }
     
     // Pass the selected object to the new view controller.
     if(detailViewController!=nil){
         [self.navigationController pushViewController:detailViewController animated:YES];
     }
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
+	} else return YES;
+}
+
+// Todo
+- (void) logOutToRootView: (id) paramSender {
+    NSLog(@"Logging out...");
 }
 
 
