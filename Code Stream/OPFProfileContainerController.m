@@ -41,8 +41,7 @@ static const int TransitionDuration = .5f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    CGRect rect = CGRectMake(0, 44, 320, 568);
+    CGRect rect = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-108);
 	
     //Alloc init the contained view controllers
     self.loginViewController = [OPFLoginViewController new];
