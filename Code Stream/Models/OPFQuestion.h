@@ -21,4 +21,7 @@
 
 + (NSValueTransformer*) closedDateJSONTransformer;
 
++ (NSArray *)hotQuestions;
++ (OPFQuery *)hotQuestionsQuery;
+
 @end

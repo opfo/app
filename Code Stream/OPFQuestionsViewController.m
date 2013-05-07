@@ -252,28 +252,27 @@ Boolean heatMode = NO;
 		searchString = self.searchString.copy ?: @"";
 	});
 	
-	NSArray *tags = [searchString opf_tagsFromSearchString];
-	NSArray *users = [searchString opf_usersFromSearchString];
-	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
-	NSString *usersAsString = [users componentsJoinedByString:@" "];
-	keywords = [keywords stringByAppendingString:usersAsString];
-	
-	OPFQuery *query = nil;
-	if (keywords.length > 0 || tags.count > 0) {
-		NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
-		query = [[[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
-	} else {
-		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+	OPFQuery *query = self.query;
+	if (searchString.length > 0) {
+		NSArray *tags = [searchString opf_tagsFromSearchString];
+		NSArray *users = [searchString opf_usersFromSearchString];
+		NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
+		NSString *usersAsString = [users componentsJoinedByString:@" "];
+		keywords = [keywords stringByAppendingString:usersAsString];
+		
+		if (keywords.length > 0 || tags.count > 0) {
+			NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+			query = [[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending];
+		}
 	}
 	
-	NSArray *filteredQuestions = [query getMany];
+	query = query ?: OPFQuestion.hotQuestionsQuery;
+	NSArray *filteredQuestions = [[query limit:@(100)] getMany];
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -334,9 +333,7 @@ Boolean heatMode = NO;
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.suggestedTokens setArray:suggestedTokens];
 		[self.searchBarInputView.completionsView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
