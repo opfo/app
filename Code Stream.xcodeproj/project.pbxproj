@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142AAA93173928E5000610CC /* OPFSearchBarHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */; };
+		142AAA96173928FE000610CC /* OPFSearchBarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AAA95173928FE000610CC /* OPFSearchBarHeader.m */; };
 		14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */; };
 		14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */; };
 		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
@@ -193,6 +195,9 @@
 
 /* Begin PBXFileReference section */
 		0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code StreamTests.xcconfig"; path = "Pods/Pods-Code StreamTests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFSearchBarHeader.xib; sourceTree = "<group>"; };
+		142AAA94173928FE000610CC /* OPFSearchBarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBarHeader.h; sourceTree = "<group>"; };
+		142AAA95173928FE000610CC /* OPFSearchBarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBarHeader.m; sourceTree = "<group>"; };
 		14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFJavaScriptParserSpec.m; path = UtilitySpecs/OPFJavaScriptParserSpec.m; sourceTree = "<group>"; };
 		14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFEscapeStrings.h"; sourceTree = "<group>"; };
 		14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFEscapeStrings.m"; sourceTree = "<group>"; };
@@ -760,6 +765,9 @@
 				9CE68EB2172FDD2400131D38 /* OPFQuestionsSearchBarInputButtonsView.xib */,
 				9CE68EB4172FDD8000131D38 /* OPFQuestionsSearchBarInputButtonsView.h */,
 				9CE68EB5172FDD8000131D38 /* OPFQuestionsSearchBarInputButtonsView.m */,
+				142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */,
+				142AAA94173928FE000610CC /* OPFSearchBarHeader.h */,
+				142AAA95173928FE000610CC /* OPFSearchBarHeader.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1262,6 +1270,7 @@
 				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
 				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
 				8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */,
+				142AAA93173928E5000610CC /* OPFSearchBarHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1421,7 @@
 				1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */,
 				1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */,
 				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
+				142AAA96173928FE000610CC /* OPFSearchBarHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
