@@ -116,11 +116,6 @@ static CGFloat userAboutMeInset = 20.0;
         [self.logOut setHidden:YES];
     }
     
-    UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
-    
-    logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
-    
-    self.navigationItem.rightBarButtonItem = logoutStyle;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
