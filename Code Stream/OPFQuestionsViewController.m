@@ -21,6 +21,7 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
 
 
@@ -29,6 +30,16 @@ typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedTag = kOPFQuestionsSearchBarTokenTag,
 	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
+
+
+typedef enum ScrollDirection : NSInteger {
+    kOPFQuestionsViewControllerScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -42,6 +53,9 @@ typedef enum : NSInteger {
 @property (assign) OPFQuestionsViewControllerTokenBeingInputtedType tokenBeingInputtedType;
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
+
+#pragma mark - Scrolling
+@property (assign, nonatomic) CGFloat lastContentOffset;
 
 @end
 
@@ -702,7 +716,15 @@ Boolean heatMode = NO;
 #pragma mark - UIScrollBarDelegate methods
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-	[self selectBestTokenMatchAndEndSearch];
+//	if (scrollView)
+//	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+		[self selectBestTokenMatchAndEndSearch];
+	}
 }
 
 
