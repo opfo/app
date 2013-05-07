@@ -10,6 +10,15 @@
 #import "OPFAnswer.h"
 #import "NSString+OPFStripCharacters.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "OPFScoreNumberFormatter.h"
+
+@interface OPFActivityAnswerViewCell()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+
+- (void)opfSetupView;
+
+@end
 
 @implementation OPFActivityAnswerViewCell
 
@@ -61,8 +70,16 @@
 
 - (void)setModelValuesInView
 {
+    self.commentCount.text = [self.scoreFormatter stringFromScore:[self.answerModel.commentCount integerValue]];
+    self.viewCount.text = [self.scoreFormatter stringFromScore:[self.answerModel.viewCount integerValue]];
+    self.scoreCount.text = [self.scoreFormatter stringFromScore:[self.answerModel.score integerValue]];
+    
     self.answerTitle.text = self.answerModel.parent.title;
     self.answerBody.text = [self.answerModel.body.opf_stringByStrippingHTML OPF_escapeWithScheme:OPFStripAscii];
+    
+    if(self.answerModel.identifier == self.answerModel.parent.acceptedAnswerId) {
+        self.acceptedAnswer.hidden = YES;
+    }
 }
 
 @end
