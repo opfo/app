@@ -105,6 +105,15 @@ NSInteger kOPFPopularTagsLimit = 20;
 	return value;
 }
 
+- (BOOL)isEqual:(id)object
+{
+	if (object == self) { return YES; }
+	if ([object isKindOfClass:self.class] == NO) { return NO; }
+	
+	OPFTag *lhTag = (OPFTag *)object;
+	return [lhTag.identifier isEqualToNumber:self.identifier];
+}
+
 - (NSString *)description
 {
 	return [NSString stringWithFormat:@"<%@: %p { id = %@; name = \"%@\"; }>", self.class, self, self.identifier, self.name];
