@@ -278,26 +278,30 @@ Boolean heatMode = NO;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
 		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
-		if (tokenBeingInputted.length == 0) {
-			if (existingTags.count > 0) {
-				NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
-				[existingTags each:^(OPFTag *tag) {
-					[relatedTags addObjectsFromArray:tag.relatedTags];
-				}];
-				[relatedTags removeObjectsInArray:existingTags];
-				
-				NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
-				NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
-				suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
-			} else {
-				suggestedTokens = [OPFTag mostCommonTags];
-			}
-		} else {
-            NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
+		if (tokenBeingInputted.length > 0) {
+			NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
 			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
+		} else if (existingTags.count > 0) {
+			NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
+			[existingTags each:^(OPFTag *tag) {
+				[relatedTags addObjectsFromArray:tag.relatedTags];
+			}];
+			[relatedTags removeObjectsInArray:existingTags];
+			
+			NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+			NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
+			suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
+		} else {
+			suggestedTokens = [OPFTag mostCommonTags];
 		}
 	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		query = [OPFUser.query limit:@(20)];
+		query = OPFUser.query;
+		if (tokenBeingInputted.length > 0) {
+			NSString *fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
+			query = [[query whereColumn:@"display_name" like:fuzzyToken exact:YES] orderBy:@"display_name" order:kOPFSortOrderAscending];
+		} else {
+			query = [query orderBy:@"reputation" order:kOPFSortOrderDescending];
+		}
 	} else {
 		return;
 	}
