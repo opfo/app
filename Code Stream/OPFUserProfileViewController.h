@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFUser.h"
+#import "StaticDataTableViewController.h"
 
-@interface OPFUserProfileViewController : UITableViewController <UIWebViewDelegate>
+@interface OPFUserProfileViewController : StaticDataTableViewController <UIWebViewDelegate>
 
 
 + (instancetype)newFromStoryboard;
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
-
 
 @property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userVotes;

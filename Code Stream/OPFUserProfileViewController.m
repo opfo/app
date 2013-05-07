@@ -17,6 +17,10 @@
 #import "OPFAnswer.h"
 #import "NSString+OPFEscapeStrings.h"
 #import "OPFWebViewController.h"
+#import "StaticDataTableViewController.h"
+#import "OPFAppState.h"
+#import "OPFProfileContainerController.h"
+#import "OPFLoginViewController.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -42,6 +46,7 @@ static NSString *const NotSpecifiedInformationPlaceholder = @"-";
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
+static NSString *const LogoutUserViewCell = @"LogoutUserViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
 
@@ -106,6 +111,11 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
+    // Hide logout-button if user to be shown is not the user that is logged in
+    if([OPFAppState userModel].identifier != self.user.identifier){
+        [self cell:self.logOut setHidden:YES];
+    }
+    
     UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
     
     logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
@@ -179,7 +189,9 @@ static CGFloat userAboutMeInset = 20.0;
     } else if(indexPath.section==1 && indexPath.row==3) {
         cellIdentifier = UserWebsiteViewCell;
 	}
-    
+    else if(indexPath.section==2 && indexPath.row==3){
+        cellIdentifier = LogoutUserViewCell;
+    }
     return cellIdentifier;
 }
 
@@ -193,8 +205,11 @@ static CGFloat userAboutMeInset = 20.0;
 		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
 		
         questionsViewController.query = questionsQuery;
-		
         detailViewController = questionsViewController;
+        // Pass the selected object to the new view controller.
+        if(detailViewController!=nil){
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
         if(![self.userWebsite.text isEqualToString:@"-"]){
@@ -204,11 +219,16 @@ static CGFloat userAboutMeInset = 20.0;
             [self.navigationController pushViewController:webview animated:YES];
         }
     }
-    
-    // Pass the selected object to the new view controller.
-    if(detailViewController!=nil){
-        [self.navigationController pushViewController:detailViewController animated:YES];
+    else if([[self cellIdentifierForIndexPath:indexPath] isEqualToString:LogoutUserViewCell]){
+        OPFLoginViewController *loginView = [OPFLoginViewController new];
+        
+        [self transitionFromViewController:self toViewController:loginView duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
+        /* OPFProfileContainerController *container = [OPFProfileContainerController new];
+        [container transitionToLoginViewControllerFromViewController:self];
+        NSLog(@"Should log out");*/
     }
+    
+
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -218,10 +238,13 @@ static CGFloat userAboutMeInset = 20.0;
 	} else return YES;
 }
 
+
 // Todo
 - (void) logOutToRootView: (id) paramSender {
     NSLog(@"Logging out...");
 }
+
+
 
 
 
