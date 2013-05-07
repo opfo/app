@@ -41,11 +41,18 @@ static const int TransitionDuration = .5f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGRect rect = CGRectMake(0, 44, 320, 568);
 	
     //Alloc init the contained view controllers
     self.loginViewController = [OPFLoginViewController new];
     self.signupViewController = [OPFSignupViewController new];
     self.profileViewController = [OPFUserProfileViewController newFromStoryboard];
+    
+    //Set the frame sizes
+    self.loginViewController.view.frame = rect;
+    self.signupViewController.view.frame = rect;
+    self.profileViewController.view.frame = rect;
     
     //self.profileViewController.nextResponder = self;
     
