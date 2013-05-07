@@ -113,7 +113,7 @@ static CGFloat userAboutMeInset = 20.0;
 {
     // Hide logout-button if user to be shown is not the user that is logged in
     if([OPFAppState userModel].identifier != self.user.identifier){
-        [self cell:self.logOut setHidden:YES];
+        [self.logOut setHidden:YES];
     }
     
     UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
@@ -219,16 +219,6 @@ static CGFloat userAboutMeInset = 20.0;
             [self.navigationController pushViewController:webview animated:YES];
         }
     }
-    else if([[self cellIdentifierForIndexPath:indexPath] isEqualToString:LogoutUserViewCell]){
-        OPFLoginViewController *loginView = [OPFLoginViewController new];
-        
-        [self transitionFromViewController:self toViewController:loginView duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:nil];
-        /* OPFProfileContainerController *container = [OPFProfileContainerController new];
-        [container transitionToLoginViewControllerFromViewController:self];
-        NSLog(@"Should log out");*/
-    }
-    
-
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -237,15 +227,5 @@ static CGFloat userAboutMeInset = 20.0;
         return NO;
 	} else return YES;
 }
-
-
-// Todo
-- (void) logOutToRootView: (id) paramSender {
-    NSLog(@"Logging out...");
-}
-
-
-
-
 
 @end
