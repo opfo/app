@@ -11,5 +11,6 @@
 @interface NSString (OPFStripCharacters)
 
 - (NSString *)opf_stringByTrimmingWhitespace;
+- (NSString *)opf_stringByStrippingHTML;
 
 @end
