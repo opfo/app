@@ -10,6 +10,7 @@
 #import "OPFDatabaseAccess.h"
 #import "OPFStyleController.h"
 #import "OPFTabbedHomeViewController.h"
+#import "OPFAppState.h"
 
 @implementation OPFAppDelegate
 
@@ -36,6 +37,9 @@
     self.tabbedHomeViewController = [OPFTabbedHomeViewController new];
     [_window setRootViewController:self.tabbedHomeViewController];
     [_window makeKeyAndVisible];
+    
+    //Try auto login for user
+    [OPFAppState tryAutoLogin];
     
     return YES;
 }

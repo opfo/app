@@ -12,7 +12,9 @@
 
 @property(strong, nonatomic) UITextField *eMailField;
 @property(strong, nonatomic) UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UILabel *loginMessageLabel;
+@property(weak, nonatomic) IBOutlet UILabel *loginMessageLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *rememberUser;
+
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;

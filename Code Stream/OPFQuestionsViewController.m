@@ -21,6 +21,7 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
 
 
@@ -29,6 +30,16 @@ typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedTag = kOPFQuestionsSearchBarTokenTag,
 	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
+
+
+typedef enum ScrollDirection : NSInteger {
+    kOPFQuestionsViewControllerScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -42,6 +53,9 @@ typedef enum : NSInteger {
 @property (assign) OPFQuestionsViewControllerTokenBeingInputtedType tokenBeingInputtedType;
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
+
+#pragma mark - Scrolling
+@property (assign, nonatomic) CGFloat lastContentOffset;
 
 @end
 
@@ -624,6 +638,18 @@ Boolean heatMode = NO;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[self dismissSearchBarExtras];
+	[self changeSearchBarInputViewToButtonsView];
+	[self updateSearchWithString:@""];
+}
+
+- (void)selectBestTokenMatchAndEndSearch
+{
 	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
 		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
 		self.suggestedTokens.count > 0) {
@@ -632,13 +658,6 @@ Boolean heatMode = NO;
 	}
 	
 	[self dismissSearchBarExtras];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-	[self dismissSearchBarExtras];
-	[self changeSearchBarInputViewToButtonsView];
-	[self updateSearchWithString:@""];
 }
 
 - (void)dismissSearchBarExtras
@@ -690,6 +709,21 @@ Boolean heatMode = NO;
 				[self.searchBarInputView.completionsView reloadData];
 			}
 		}];
+	}
+}
+
+
+#pragma mark - UIScrollBarDelegate methods
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+//	if (scrollView)
+//	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+		[self selectBestTokenMatchAndEndSearch];
 	}
 }
 
