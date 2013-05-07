@@ -21,6 +21,8 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "UIScrollView+OPFScrollDirection.h"
+#import <BlocksKit.h>
 
 
 typedef enum : NSInteger {
@@ -28,6 +30,16 @@ typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedTag = kOPFQuestionsSearchBarTokenTag,
 	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
+
+
+typedef enum ScrollDirection : NSInteger {
+    kOPFQuestionsViewControllerScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -42,8 +54,8 @@ typedef enum : NSInteger {
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
 
-@property (copy) NSArray *tags;
-@property (copy) NSArray *users;
+#pragma mark - Scrolling
+@property (assign, nonatomic) CGFloat lastContentOffset;
 
 @end
 
@@ -69,7 +81,7 @@ Boolean heatMode = NO;
 
 - (id)init
 {
-	self = [super initWithNibName:CDStringFromClass(self) bundle:nil];
+	self = [super initWithNibName:CDStringFromInstance(self) bundle:nil];
 	if (self) [self sharedQuestionsViewControllerInit];
 	return self;
 }
@@ -106,9 +118,6 @@ Boolean heatMode = NO;
 {
 	[super viewDidLoad];
 	
-    self.tags = OPFTag.all;
-    self.users = OPFUser.all;
-	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 150.f;
 	
@@ -126,9 +135,14 @@ Boolean heatMode = NO;
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
+	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
+    self.navigationItem.leftBarButtonItem = leftButton;*/
+    
+    UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
+    UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
+    
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:writeButton, heatButton, nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -238,25 +252,27 @@ Boolean heatMode = NO;
 		searchString = self.searchString.copy ?: @"";
 	});
 	
-	NSArray *tags = [searchString opf_tagsFromSearchString];
-	NSArray *users = [searchString opf_usersFromSearchString];
-	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
-	
-	OPFQuery *query = nil;
-	if (keywords.length > 0 || tags.count > 0) {
-		query = [[[OPFQuestion searchFor:keywords inTags:tags] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
-	} else {
-		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+	OPFQuery *query = self.query;
+	if (searchString.length > 0) {
+		NSArray *tags = [searchString opf_tagsFromSearchString];
+		NSArray *users = [searchString opf_usersFromSearchString];
+		NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
+		NSString *usersAsString = [users componentsJoinedByString:@" "];
+		keywords = [keywords stringByAppendingString:usersAsString];
+		
+		if (keywords.length > 0 || tags.count > 0) {
+			NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+			query = [[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending];
+		}
 	}
 	
-	NSArray *filteredQuestions = [query getMany];
+	query = query ?: OPFQuestion.hotQuestionsQuery;
+	NSArray *filteredQuestions = [[query limit:@(100)] getMany];
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -275,30 +291,49 @@ Boolean heatMode = NO;
 		tokenBeingInputted = self.tokenBeingInputted.copy;
 	});
 	
-	NSArray *allTokens = nil;
-	NSPredicate *tokensPredicate = nil;
-	NSSortDescriptor *tokensSortDescriptor = nil;
+	NSArray *suggestedTokens = nil;
+	NSInteger queryLimit = 20;
+	CGFloat queryLimitWizardOfTheOZFactor = 1;
+	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
-		tokensPredicate = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", tokenBeingInputted];
-		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
-		allTokens = self.tags;
+		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
+		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
+		if (tokenBeingInputted.length > 0) {
+			NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
+			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
+		} else if (existingTags.count > 0) {
+			NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
+			[existingTags each:^(OPFTag *tag) {
+				[relatedTags addObjectsFromArray:tag.relatedTags];
+			}];
+			[relatedTags removeObjectsInArray:existingTags];
+			
+			NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+			NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
+			suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
+		} else {
+			suggestedTokens = [OPFTag mostCommonTags];
+		}
 	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		tokensPredicate = [NSPredicate predicateWithFormat:@"displayName beginswith[cd] %@", tokenBeingInputted];
-		tokensSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-		allTokens = self.users;
+		query = OPFUser.query;
+		if (tokenBeingInputted.length > 0) {
+			NSString *fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
+			query = [[query whereColumn:@"display_name" like:fuzzyToken exact:YES] orderBy:@"display_name" order:kOPFSortOrderAscending];
+		} else {
+			query = [query orderBy:@"reputation" order:kOPFSortOrderDescending];
+		}
 	} else {
 		return;
 	}
 	
-	NSArray *suggestedTokens = (tokenBeingInputted.length > 0 ? [allTokens filteredArrayUsingPredicate:tokensPredicate] : allTokens);
-	suggestedTokens = [suggestedTokens sortedArrayUsingDescriptors:@[ tokensSortDescriptor ]];
+	if (query != nil && suggestedTokens.count == 0) {
+		suggestedTokens = [[query limit:@(queryLimit * queryLimitWizardOfTheOZFactor)] getMany];
+	}
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.suggestedTokens setArray:suggestedTokens];
 		[self.searchBarInputView.completionsView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -600,6 +635,18 @@ Boolean heatMode = NO;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[self dismissSearchBarExtras];
+	[self changeSearchBarInputViewToButtonsView];
+	[self updateSearchWithString:@""];
+}
+
+- (void)selectBestTokenMatchAndEndSearch
+{
 	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
 		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
 		self.suggestedTokens.count > 0) {
@@ -608,13 +655,6 @@ Boolean heatMode = NO;
 	}
 	
 	[self dismissSearchBarExtras];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-	[self dismissSearchBarExtras];
-	[self changeSearchBarInputViewToButtonsView];
-	[self updateSearchWithString:@""];
 }
 
 - (void)dismissSearchBarExtras
@@ -666,6 +706,21 @@ Boolean heatMode = NO;
 				[self.searchBarInputView.completionsView reloadData];
 			}
 		}];
+	}
+}
+
+
+#pragma mark - UIScrollBarDelegate methods
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+//	if (scrollView)
+//	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+		[self selectBestTokenMatchAndEndSearch];
 	}
 }
 

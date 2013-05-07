@@ -8,10 +8,13 @@
 
 #import "OPFModel.h"
 
+extern NSInteger kOPFPopularTagsLimit;
+
 @interface OPFTag : OPFModel
 
 @property (strong) NSNumber* identifier;
 @property (copy) NSString* name;
+@property (strong) NSNumber* counter;
 @property (strong, readonly)NSArray* questions;
 
 //  Transforms an array of strings into a string of tags
@@ -23,7 +26,16 @@
 //  Get a tag by name
 + (instancetype) byName: (NSString*) name;
 
-//  Takes a string and returns an array of tags as strings ordered by the amount of posts with both tags in them.
+//  Takes a string and returns an array of OPFTags ordered by the amount of posts with both tags in them.
 + (NSArray*) relatedTagsForTagWithName: (NSString*) name;
+
+//  Return related tags for the current OPFTag
+- (NSArray*) relatedTags;
+
+// The 20 most common tags.
++ (NSArray *)mostCommonTags;
+
+//  Get a query for the most common tags
++ (OPFQuery*) mostCommonTagsQuery;
 
 @end

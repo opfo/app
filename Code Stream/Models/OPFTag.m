@@ -9,6 +9,8 @@
 #import "OPFTag.h"
 #import "OPFQuestion.h"
 
+NSInteger kOPFPopularTagsLimit = 20;
+
 @implementation OPFTag
 
 + (NSString*) dbName
@@ -21,7 +23,8 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
              @"identifier": @"id",
-             @"name": @"name"
+             @"name": @"name",
+             @"counter":@"counter"
              };
 }
 
@@ -70,13 +73,51 @@
 {
     __block NSMutableArray* tags = [[NSMutableArray alloc] init];
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet* result = [db executeQuery:@"SELECT 'tag_frequencies'.'second_tag' FROM 'auxDB'.'tag_frequencies' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'count' DESC LIMIT 10" withArgumentsInArray:@[name]];
+        FMResultSet* result = [db executeQuery:@"SELECT 'tags'.*, 'tag_frequencies'.'counter' FROM 'auxDB'.'tags' INNER JOIN 'auxDB'.'tag_frequencies' ON 'tag_frequencies'.'second_tag' = 'tags'.'name' WHERE 'tag_frequencies'.'first_tag' = ? ORDER BY 'tag_frequencies'.'counter' DESC LIMIT 10" withArgumentsInArray:@[name]];
         while([result next]) {
-            [tags addObject:[result stringForColumn:@"second_tag"]];
+            [tags addObject:[self parseDictionary:result.resultDictionary]];
         }
         [result close];
     }];
     return tags;
 }
+
+- (NSArray*) relatedTags
+{
+    return [OPFTag relatedTagsForTagWithName:self.name];
+}
+
++ (NSArray *)mostCommonTags
+{
+	return [[self.mostCommonTagsQuery limit:@(20)] getMany];
+}
+
++ (OPFQuery*) mostCommonTagsQuery
+{
+    return [self.query orderBy: @"counter" order: kOPFSortOrderDescending];
+}
+
+//  We need to override hash so that we don't fetch all related question when generating a hash code (see hash in MTLModel)
+- (NSUInteger)hash {
+	NSUInteger value = 0;
+    value ^= [self.identifier hash];
+    value ^= [self.name hash];
+	return value;
+}
+
+- (BOOL)isEqual:(id)object
+{
+	if (object == self) { return YES; }
+	if ([object isKindOfClass:self.class] == NO) { return NO; }
+	
+	OPFTag *lhTag = (OPFTag *)object;
+	return [lhTag.identifier isEqualToNumber:self.identifier];
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; name = \"%@\"; }>", self.class, self, self.identifier, self.name];
+}
+
 
 @end

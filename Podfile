@@ -11,3 +11,5 @@ pod 'AFNetworking', '1.2.1'
 pod 'KHGravatar', :git => "https://github.com/opfo/KHGravatar.git"
 pod 'AGMedallionView', :git => "https://github.com/opfo/AGMedallionView.git"
 pod 'AKTabBarController', :podspec => "https://raw.github.com/opfo/resources/master/Pods/AKTabBarController.podspec"
+pod 'BlocksKit'
+pod 'StaticDataTableViewController', :podspec => "https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec"

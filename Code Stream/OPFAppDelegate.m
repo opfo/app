@@ -10,6 +10,7 @@
 #import "OPFDatabaseAccess.h"
 #import "OPFStyleController.h"
 #import "OPFTabbedHomeViewController.h"
+#import "OPFAppState.h"
 
 @implementation OPFAppDelegate
 
@@ -33,8 +34,12 @@
     self.storyboard =[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
 
     //Set tabbed home screen as rootview controller
-    [_window setRootViewController:[OPFTabbedHomeViewController new]];
+    self.tabbedHomeViewController = [OPFTabbedHomeViewController new];
+    [_window setRootViewController:self.tabbedHomeViewController];
     [_window makeKeyAndVisible];
+    
+    //Try auto login for user
+    [OPFAppState tryAutoLogin];
     
     return YES;
 }

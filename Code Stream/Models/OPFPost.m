@@ -25,6 +25,11 @@
     return @"posts";
 }
 
++ (NSString *) indexStringName
+{
+    return @"main_index_string";
+}
+
 //  Takes a dictionary and returns a populated model class
 + (instancetype) parseDictionary: (NSDictionary*) attributes {
     NSError* error;
@@ -128,6 +133,11 @@
     }
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; }>", self.class, self, self.identifier];
+}
+
 # pragma mark - Full text search methods
 
 + (NSString*) indexTableName
@@ -183,6 +193,19 @@
 + (OPFQuery*) withTags:(NSArray *)tags
 {
     return [self _searchForPreProcessedSearchTerms:[self tagSearchStringFromArray:tags]];
+}
+
+//  Override to duplicate search strings for both answers and questions
++ (NSString*) matchClauseFromSearchString: (NSString*) searchString
+{
+    NSArray* tokens = [searchString componentsSeparatedByString:@" "];
+    NSMutableArray* tokensWithColumnName = [[NSMutableArray alloc] init];
+    for(id token in tokens) {
+        if ([token length] != 0) {
+            [tokensWithColumnName addObject: [NSString stringWithFormat:@"(main_index_string:%@ OR aux_index_string:%@)", token, token]];
+        }
+    }
+    return [tokensWithColumnName componentsJoinedByString:@" "];
 }
 
 @end

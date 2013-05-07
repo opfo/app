@@ -78,4 +78,19 @@
     return [[super searchFor:searchTerms inTags:tags] whereColumn:@"post_type_id" is: @(KOPF_POST_TYPE_QUESTION)];
 }
 
++ (NSArray *)hotQuestions
+{
+	return [self.hotQuestionsQuery getMany];
+}
+
++ (OPFQuery *)hotQuestionsQuery
+{
+	return [[[self.query whereColumn:@"score" isGreaterThan:@(0) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+}
+
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<%@: %p { id = %@; title = \"%@\"; }>", self.class, self, self.identifier, self.title];
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFSearchBar.h"
 
 
 typedef enum : NSInteger {
@@ -26,7 +27,7 @@ typedef enum : NSInteger {
 @end
 
 
-@interface OPFQuestionsSearchBar : UISearchBar
+@interface OPFQuestionsSearchBar : OPFSearchBar
 
 @property (copy, nonatomic) NSArray *tokens;
 

@@ -1,5 +1,5 @@
 //
-//  OPFFavoritesViewController.h
+//  OPFSignupView.h
 //  Code Stream
 //
 //  Created by Tobias Deekens on 02.05.13.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFFavoritesViewController : UITableViewController
-
-- (NSString *)tabImageName;
-- (NSString *)tabTitle;
+@interface OPFSignupView : UIView
 
 @end

@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFUser.h"
+#import "StaticDataTableViewController.h"
 
-@interface OPFUserProfileViewController : UITableViewController <UIWebViewDelegate>
+@interface OPFUserProfileViewController : StaticDataTableViewController <UIWebViewDelegate>
 
 
 + (instancetype)newFromStoryboard;
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
-
 
 @property (strong, nonatomic) OPFUser *user;
 @property (weak, nonatomic) IBOutlet UILabel *userVotes;
@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLastAccess;
 @property (weak, nonatomic) IBOutlet UILabel *userAge;
 @property (weak, nonatomic) IBOutlet UILabel *userWebsite;
+@property (weak, nonatomic) IBOutlet UIButton *logOut;
 
 
 @end
