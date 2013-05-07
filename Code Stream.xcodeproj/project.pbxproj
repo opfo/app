@@ -865,23 +865,23 @@
 		9C1C516F1716FE85004CC9E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8134D025171FE25000E5386D /* Protocols */,
+				81FDFF39172039A00060DBC6 /* OPFModel.h */,
+				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
+				813F5CD817328AD100F71CD6 /* OPFSearchable.h */,
+				813F5CD917328AD100F71CD6 /* OPFSearchable.m */,
 				815261FA171D62FA00B5EF2D /* OPFUser.h */,
 				815261FB171D62FA00B5EF2D /* OPFUser.m */,
-				81C1846C171FD687008273A6 /* OPFQuestion.h */,
-				81C1846D171FD687008273A6 /* OPFQuestion.m */,
 				81C1846F171FD8B3008273A6 /* OPFPost.h */,
 				81C18470171FD8B3008273A6 /* OPFPost.m */,
 				81C18475171FD908008273A6 /* OPFAnswer.h */,
 				81C18476171FD908008273A6 /* OPFAnswer.m */,
-				8134D025171FE25000E5386D /* Protocols */,
+				81C1846C171FD687008273A6 /* OPFQuestion.h */,
+				81C1846D171FD687008273A6 /* OPFQuestion.m */,
 				81C1C74017202A83004AB177 /* OPFComment.h */,
 				81C1C74117202A83004AB177 /* OPFComment.m */,
-				81FDFF39172039A00060DBC6 /* OPFModel.h */,
-				81FDFF3A172039A00060DBC6 /* OPFModel.m */,
 				8161DD2A172854F100806493 /* OPFTag.h */,
 				8161DD2B172854F100806493 /* OPFTag.m */,
-				813F5CD817328AD100F71CD6 /* OPFSearchable.h */,
-				813F5CD917328AD100F71CD6 /* OPFSearchable.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1542,17 +1542,6 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1567,17 +1556,6 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1603,19 +1581,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1636,19 +1601,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

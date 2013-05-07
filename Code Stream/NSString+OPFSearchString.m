@@ -9,6 +9,7 @@
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
 #import "NSRegularExpression+OPFSearchString.h"
+#import "OPFTag.h"
 
 // Tag syntax:  [some tag]
 NSString *const kOPFTokenTagStartCharacter = @"[";
@@ -25,14 +26,16 @@ NSString *const kOPFTokenUserEndCharacter = @"@";
 - (NSArray *)opf_tagsFromSearchString
 {
 	NSRegularExpression *regularExpression = NSRegularExpression.opf_tagsFromSearchStringRegularExpression;
-	NSArray *tags = [self opf_tokensFromSearchStringUsingRegularExpression:regularExpression];
+	NSArray *tags = [self opf_tokensFromSearchStringUsingRegularExpression:regularExpression creation:^id(NSString *token) {
+		return [OPFTag byName:token];
+	}];
 	return tags;
 }
 
 - (NSArray *)opf_usersFromSearchString
 {
 	NSRegularExpression *regularExpression = NSRegularExpression.opf_usersFromSearchStringRegularExpression;
-	NSArray *users = [self opf_tokensFromSearchStringUsingRegularExpression:regularExpression];
+	NSArray *users = [self opf_tokensFromSearchStringUsingRegularExpression:regularExpression creation:nil];
 	return users;
 }
 
@@ -51,18 +54,26 @@ NSString *const kOPFTokenUserEndCharacter = @"@";
 
 
 #pragma mark - Private Token Parser
-- (NSArray *)opf_tokensFromSearchStringUsingRegularExpression:(NSRegularExpression *)regularExpression
+- (NSArray *)opf_tokensFromSearchStringUsingRegularExpression:(NSRegularExpression *)regularExpression creation:(id (^)(NSString *token))creationBlock
 {
 	NSParameterAssert(regularExpression != nil);
 	
 	NSMutableSet *tokens = NSMutableSet.new;
 	// The shortest possible tag is `[a]`, i.e. three (3) chars.
 	if (self.length >= 3) {
+		if (creationBlock == nil) {
+			creationBlock = ^(NSString *token) { return token; };
+		}
+		
 		[regularExpression enumerateMatchesInString:self options:0 range:NSMakeRange(0, self.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
 			if ([result numberOfRanges] >= 2) {
 				NSRange caputerRange = [result rangeAtIndex:1];
 				NSString *capture = [self substringWithRange:caputerRange];
-				[tokens addObject:capture.opf_stringByTrimmingWhitespace];
+				
+				id token = creationBlock(capture.opf_stringByTrimmingWhitespace);
+				if (token != nil) {
+					[tokens addObject:token];
+				}
 			}
 		}];
 	}

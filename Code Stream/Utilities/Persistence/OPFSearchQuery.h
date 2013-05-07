@@ -21,4 +21,5 @@
                            indexTableName: (NSString*) indexTableName
                                searchTerm: (NSString*) searchTerm;
 
++ (NSString *) indexString;
 @end
