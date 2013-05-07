@@ -116,6 +116,8 @@ static CGFloat userAboutMeInset = 20.0;
         [self.logOut setHidden:YES];
     }
     
+    [self loadUserGravatar];
+    
     // Set the textFields in the userInterface
     // Set User Display Name
     self.userName.text = self.user.displayName;
