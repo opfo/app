@@ -169,5 +169,10 @@ static const int TransitionDuration = .5f;
 {
     [self transitionToSignupViewControllerFromViewController:self.loginViewController];
 }
+
+- (void)userFinishedSignup:(id)sender
+{
+    [self transitionToLoginViewControllerFromViewController:self.signupViewController];
+}
     
 @end
