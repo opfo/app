@@ -148,6 +148,8 @@
 		8CF371C817398D68009B6425 /* forwardArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C717398D68009B6425 /* forwardArrow.png */; };
 		8CF371CA17398E48009B6425 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C917398E48009B6425 /* cancel.png */; };
 		8CF371CC173993CC009B6425 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CB173993CC009B6425 /* reload.png */; };
+		8CF371CE17399E4A009B6425 /* button_negative.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CD17399E4A009B6425 /* button_negative.png */; };
+		8CF371D01739A855009B6425 /* button_negative1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CF1739A855009B6425 /* button_negative1.png */; };
 		9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C04A16F1735B00700971D2F /* OPFSearchBar.m */; };
 		9C0C4F6B17221B480025FDC0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */; };
 		9C0C4F6C17221B4F0025FDC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51381716FBE0004CC9E3 /* CoreGraphics.framework */; };
@@ -408,6 +410,8 @@
 		8CF371C717398D68009B6425 /* forwardArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardArrow.png; sourceTree = "<group>"; };
 		8CF371C917398E48009B6425 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		8CF371CB173993CC009B6425 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
+		8CF371CD17399E4A009B6425 /* button_negative.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_negative.png; sourceTree = "<group>"; };
+		8CF371CF1739A855009B6425 /* button_negative1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_negative1.png; sourceTree = "<group>"; };
 		9C04A16E1735B00700971D2F /* OPFSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBar.h; sourceTree = "<group>"; };
 		9C04A16F1735B00700971D2F /* OPFSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBar.m; sourceTree = "<group>"; };
 		9C0C4F6A17221B480025FDC0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -918,11 +922,13 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8CF371CD17399E4A009B6425 /* button_negative.png */,
 				8CF371CB173993CC009B6425 /* reload.png */,
 				8CF371C717398D68009B6425 /* forwardArrow.png */,
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				8CF371C917398E48009B6425 /* cancel.png */,
+				8CF371CF1739A855009B6425 /* button_negative1.png */,
 				8C66EF3E173850AB00B29435 /* backArrow.png */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
@@ -1392,6 +1398,8 @@
 				8CF371C817398D68009B6425 /* forwardArrow.png in Resources */,
 				8CF371CA17398E48009B6425 /* cancel.png in Resources */,
 				8CF371CC173993CC009B6425 /* reload.png in Resources */,
+				8CF371CE17399E4A009B6425 /* button_negative.png in Resources */,
+				8CF371D01739A855009B6425 /* button_negative1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

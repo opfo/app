@@ -285,7 +285,7 @@
                             </tableViewSection>
                             <tableViewSection id="XMK-BP-9kQ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserQuestionsViewCell" id="PsS-Ve-NPG">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserQuestionsViewCell" id="PsS-Ve-NPG">
                                         <rect key="frame" x="0.0" y="691" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -296,8 +296,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Logout">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="Logout" backgroundImage="button_negative.png">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <state key="highlighted">
@@ -351,21 +351,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ite-km-tiU">
-                            <rect key="frame" x="0.0" y="592" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <state key="normal" title="Sign me up!">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="highlighted">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="userFinishedSignup:" destination="44U-JD-Us8" eventType="touchUpInside" id="cpM-o5-Ich"/>
-                            </connections>
-                        </button>
                         <sections>
                             <tableViewSection headerTitle="Credentials" id="eaV-EI-E2V">
                                 <cells>
@@ -572,6 +557,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="ye6-kK-Ga6">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rlq-c1-iFr">
+                                        <rect key="frame" x="0.0" y="602" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ite-km-tiU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Sign me up!">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="userFinishedSignup:" destination="44U-JD-Us8" eventType="touchUpInside" id="cpM-o5-Ich"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="age" destination="5M3-i8-suL" id="Gjp-xK-DQ2"/>
@@ -595,6 +610,9 @@
             <point key="canvasLocation" x="1087" y="335"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button_negative.png" width="320" height="44"/>
+    </resources>
     <classes>
         <class className="FirstResponder">
             <source key="sourceIdentifier" type="user"/>
@@ -603,6 +621,43 @@
                 <relationship kind="action" name="userRequestsLogout:"/>
                 <relationship kind="action" name="userRequestsSignup:"/>
             </relationships>
+        </class>
+        <class className="OPFSignupView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFSignupView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="age" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="bio" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="eMail" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="location" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="password" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="repeatedPassword" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="username" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="website" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="OPFSignupViewController" superclassName="StaticDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFSignupViewController.h"/>
+        </class>
+        <class className="OPFUserProfileViewController" superclassName="StaticDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="logOut" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userBio" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="views" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="StaticDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StaticDataTableViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
