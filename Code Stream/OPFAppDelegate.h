@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFTabbedHomeViewController;
+
 @interface OPFAppDelegate : UIResponder <UIApplicationDelegate>
 
 + (instancetype)sharedAppDelegate;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIStoryboard *storyboard;
+@property (strong, nonatomic) OPFTabbedHomeViewController *tabbedHomeViewController;
 
 @end

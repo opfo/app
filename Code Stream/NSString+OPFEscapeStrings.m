@@ -10,8 +10,6 @@
 
 @implementation NSString (OPFEscapeStrings)
 
-
-
 - (NSString *)OPF_escapeWithScheme:(OPFEscapeScheme)scheme {
 	NSMutableString *myRepr = self.mutableCopy;
 	NSRange myRange = NSMakeRange(0, [self length]);
@@ -27,6 +25,10 @@
 		case OPFEscapeHtml:
 			toReplace = @[@"\\n", @"\"\""];
 			replaceWith = @[@"\n ", @"\" "];
+			break;
+        case OPFStripAscii:
+			toReplace = @[@"\\n", @"\"\""];
+			replaceWith = @[@"\" ", @"\" "];
 			break;
 		default:
 			@throw @"Unknown escape scheme. Have you defined in the OPFEscapeStrings method?";

@@ -48,8 +48,22 @@
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
+		1A08F5411738F4E300D232D2 /* answer-count.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53E1738F4E300D232D2 /* answer-count.png */; };
+		1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53F1738F4E300D232D2 /* comment-count@2x.png */; };
+		1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F5401738F4E300D232D2 /* view-count@2x.png */; };
+		1A08F5451739095C00D232D2 /* acceptedAnswer-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */; };
 		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
+		1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */; };
+		1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */; };
+		1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */; };
+		1A39C28E1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */; };
+		1A39C2901736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */; };
+		1A39C2921736C8BD0049DB67 /* OPFActivityCommentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */; };
+		1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */; };
+		1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */; };
+		1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A39C2951736D0BB0049DB67 /* activity-question@2x.png */; };
 		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
+		1A414A1717358A4A00F87F71 /* OPFProfileContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */; };
 		1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */; };
 		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
 		1A639EC217267AB6009EB280 /* location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A639EC117267AB6009EB280 /* location@2x.png */; };
@@ -78,6 +92,14 @@
 		1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF1172FD3A300E19525 /* tab-me@2x.png */; };
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
+		1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */; };
+		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
+		1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */; };
+		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
+		1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */; };
+		1A9D3F2B17327E3500EEF9D1 /* OPFSignupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2A17327E3500EEF9D1 /* OPFSignupView.m */; };
+		1A9D3F2E17327E4400EEF9D1 /* OPFLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2D17327E4400EEF9D1 /* OPFLoginView.m */; };
+		1A9D3F301732962200EEF9D1 /* tab-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2F1732962200EEF9D1 /* tab-login@2x.png */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -240,8 +262,26 @@
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
+		1A08F53E1738F4E300D232D2 /* answer-count.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "answer-count.png"; sourceTree = "<group>"; };
+		1A08F53F1738F4E300D232D2 /* comment-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-count@2x.png"; sourceTree = "<group>"; };
+		1A08F5401738F4E300D232D2 /* view-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-count@2x.png"; sourceTree = "<group>"; };
+		1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer-grey@2x.png"; sourceTree = "<group>"; };
 		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
+		1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityCommentViewCell.h; sourceTree = "<group>"; };
+		1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityCommentViewCell.m; sourceTree = "<group>"; };
+		1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityQuestionViewCell.h; sourceTree = "<group>"; };
+		1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityQuestionViewCell.m; sourceTree = "<group>"; };
+		1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityAnswerViewCell.h; sourceTree = "<group>"; };
+		1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityAnswerViewCell.m; sourceTree = "<group>"; };
+		1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityQuestionViewCell.xib; sourceTree = "<group>"; };
+		1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityAnswerViewCell.xib; sourceTree = "<group>"; };
+		1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFActivityCommentViewCell.xib; sourceTree = "<group>"; };
+		1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-answer@2x.png"; sourceTree = "<group>"; };
+		1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-comment@2x.png"; sourceTree = "<group>"; };
+		1A39C2951736D0BB0049DB67 /* activity-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity-question@2x.png"; sourceTree = "<group>"; };
 		1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-favorites@2x.png"; sourceTree = "<group>"; };
+		1A414A1517358A4A00F87F71 /* OPFProfileContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileContainerController.h; sourceTree = "<group>"; };
+		1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileContainerController.m; sourceTree = "<group>"; };
 		1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
 		1A639EBD17267384009EB280 /* OPFProfileViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFProfileViewCell.m; sourceTree = "<group>"; };
@@ -280,7 +320,20 @@
 		1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-searchprofiles@2x.png"; sourceTree = "<group>"; };
 		1A896CF7172FD72D00E19525 /* OPFAppState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFAppState.h; sourceTree = "<group>"; };
 		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
+		1A8BE1641735ACC000F16882 /* NSString+OPFMD5Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFMD5Hash.h"; sourceTree = "<group>"; };
+		1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFMD5Hash.m"; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
+		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
+		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
+		1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFSignupView.xib; sourceTree = "<group>"; };
+		1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFLoginViewController.h; sourceTree = "<group>"; };
+		1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFLoginViewController.m; sourceTree = "<group>"; };
+		1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFLoginView.xib; sourceTree = "<group>"; };
+		1A9D3F2917327E3500EEF9D1 /* OPFSignupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupView.h; sourceTree = "<group>"; };
+		1A9D3F2A17327E3500EEF9D1 /* OPFSignupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupView.m; sourceTree = "<group>"; };
+		1A9D3F2C17327E4400EEF9D1 /* OPFLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFLoginView.h; sourceTree = "<group>"; };
+		1A9D3F2D17327E4400EEF9D1 /* OPFLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFLoginView.m; sourceTree = "<group>"; };
+		1A9D3F2F1732962200EEF9D1 /* tab-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-login@2x.png"; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
@@ -540,6 +593,22 @@
 			name = "Question View Header";
 			sourceTree = "<group>";
 		};
+		1A39C2831736C5F50049DB67 /* Activity View Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */,
+				1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */,
+				1A39C28D1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib */,
+				1A39C28A1736C8500049DB67 /* OPFActivityAnswerViewCell.h */,
+				1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */,
+				1A39C28F1736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib */,
+				1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */,
+				1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */,
+				1A39C2911736C8BD0049DB67 /* OPFActivityCommentViewCell.xib */,
+			);
+			name = "Activity View Table View Cells";
+			sourceTree = "<group>";
+		};
 		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,11 +690,19 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				1A9D3F2F1732962200EEF9D1 /* tab-login@2x.png */,
 				1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */,
 				1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */,
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
+				1A08F53E1738F4E300D232D2 /* answer-count.png */,
+				1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */,
+				1A08F53F1738F4E300D232D2 /* comment-count@2x.png */,
+				1A08F5401738F4E300D232D2 /* view-count@2x.png */,
+				1A39C2931736D0BB0049DB67 /* activity-answer@2x.png */,
+				1A39C2941736D0BB0049DB67 /* activity-comment@2x.png */,
+				1A39C2951736D0BB0049DB67 /* activity-question@2x.png */,
 				1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
@@ -647,6 +724,19 @@
 				1A896CEA172FD03A00E19525 /* OPFActivityViewController.xib */,
 			);
 			name = "Activity View";
+			sourceTree = "<group>";
+		};
+		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
+			isa = PBXGroup;
+			children = (
+				1A9D3F2117327D9C00EEF9D1 /* OPFSignupView.xib */,
+				1A9D3F2917327E3500EEF9D1 /* OPFSignupView.h */,
+				1A9D3F2A17327E3500EEF9D1 /* OPFSignupView.m */,
+				1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */,
+				1A9D3F2C17327E4400EEF9D1 /* OPFLoginView.h */,
+				1A9D3F2D17327E4400EEF9D1 /* OPFLoginView.m */,
+			);
+			name = "Signup Login View";
 			sourceTree = "<group>";
 		};
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
@@ -896,6 +986,11 @@
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				1A896CE7172FD00800E19525 /* Activity View */,
+				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
+				1AD7629C1737EA77002F157C /* Tag Browser View */,
+				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
+				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 				1AD7629C1737EA77002F157C /* Tag Browser View */,
 				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
@@ -925,6 +1020,12 @@
 				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
 				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
 				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
+				1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */,
+				1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */,
+				1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */,
+				1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */,
+				1A414A1517358A4A00F87F71 /* OPFProfileContainerController.h */,
+				1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */,
 				1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */,
 				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
 			);
@@ -1028,6 +1129,8 @@
 				1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */,
 				14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */,
 				14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */,
+				1A8BE1641735ACC000F16882 /* NSString+OPFMD5Hash.h */,
+				1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1080,6 +1183,7 @@
 		9C9BF2E7171DF5080057BF46 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1A39C2831736C5F50049DB67 /* Activity View Table View Cells */,
 				1A639EBB172671FA009EB280 /* Profile Search Table View Cells */,
 				1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */,
 				9C7F6E16171FE185008F6473 /* Post Table View Cells */,
@@ -1257,7 +1361,20 @@
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
 				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
 				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
+				1A9D3F2317327D9C00EEF9D1 /* OPFSignupView.xib in Resources */,
+				1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */,
+				1A9D3F301732962200EEF9D1 /* tab-login@2x.png in Resources */,
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
+				1A39C28E1736C89A0049DB67 /* OPFActivityQuestionViewCell.xib in Resources */,
+				1A39C2901736C8AB0049DB67 /* OPFActivityAnswerViewCell.xib in Resources */,
+				1A39C2921736C8BD0049DB67 /* OPFActivityCommentViewCell.xib in Resources */,
+				1A39C2961736D0BB0049DB67 /* activity-answer@2x.png in Resources */,
+				1A39C2971736D0BB0049DB67 /* activity-comment@2x.png in Resources */,
+				1A39C2981736D0BB0049DB67 /* activity-question@2x.png in Resources */,
+				1A08F5411738F4E300D232D2 /* answer-count.png in Resources */,
+				1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */,
+				1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */,
+				1A08F5451739095C00D232D2 /* acceptedAnswer-grey@2x.png in Resources */,
 				1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */,
 				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
 				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
@@ -1402,13 +1519,22 @@
 				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
 				813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */,
 				14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */,
+				1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */,
+				1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */,
+				1A9D3F2B17327E3500EEF9D1 /* OPFSignupView.m in Sources */,
+				1A9D3F2E17327E4400EEF9D1 /* OPFLoginView.m in Sources */,
 				9CFF61791733264900D96980 /* SSLineView.m in Sources */,
 				9CE7006A173326DC0092FF22 /* SSGradientView.m in Sources */,
 				9C3768711733277800719F2A /* SSBorderedView.m in Sources */,
 				9C3768721733277800719F2A /* SSDrawingUtilities.m in Sources */,
 				9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */,
 				9C3768761733292D00719F2A /* OPFActivityViewController.m in Sources */,
+				1A414A1717358A4A00F87F71 /* OPFProfileContainerController.m in Sources */,
+				1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */,
 				9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */,
+				1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */,
+				1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */,
+				1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */,
 				1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */,
 				1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */,
 				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
