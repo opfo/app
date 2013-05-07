@@ -9,8 +9,8 @@
 #import "OPFTabbedHomeViewController.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFProfileSearchViewController.h"
-#import "OPFUserProfileViewController.h"
 #import "OPFActivityViewController.h"
+#import "OPFProfileContainerController.h"
 #import "OPFTagBrowserViewController.h"
 #import "OPFAppState.h"
 #import "UIColor+OPFHEX.h"
@@ -19,14 +19,14 @@
 
 @property(strong, nonatomic) UINavigationController *questionsViewNavigationController;
 @property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
-@property(strong, nonatomic) UINavigationController *userProfileNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
+@property(strong, nonatomic) UINavigationController *profileContainerNavigationViewController;
 @property(strong, nonatomic) UINavigationController *tagBrowserViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
 @property(strong, nonatomic) OPFProfileSearchViewController *profileSearchViewController;
-@property(strong, nonatomic) OPFUserProfileViewController *userProfileViewController;
 @property(strong, nonatomic) OPFActivityViewController *activityViewController;
+@property(strong, nonatomic) OPFProfileContainerController *profileContainerController;
 @property(strong, nonatomic) OPFTagBrowserViewController *tagBrowserViewController;
 
 - (void)opfSetupView;
@@ -40,11 +40,11 @@ const int TabbedBarHeight = 44;
 - (id)init
 {
     self = [super initWithTabBarHeight:TabbedBarHeight];
-    
+
     if (self) {
         [self opfSetupView];
     }
-    
+
     return self;
 }
 
@@ -52,24 +52,22 @@ const int TabbedBarHeight = 44;
 {
     self.questionsViewController = [OPFQuestionsViewController new];
     self.profileSearchViewController = [OPFProfileSearchViewController new];
-    self.userProfileViewController = [OPFUserProfileViewController newFromStoryboard];
     self.activityViewController = [OPFActivityViewController new];
+    self.profileContainerController = [OPFProfileContainerController new];
     self.tagBrowserViewController = [OPFTagBrowserViewController new];
-    
-    self.userProfileViewController.user = [OPFAppState userModel];
 
     self.questionsViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.questionsViewController];
     self.profileSearchViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.profileSearchViewController];
-    self.userProfileNavigationController = [[UINavigationController alloc] initWithRootViewController:self.userProfileViewController];
+    self.profileContainerNavigationViewController = [[UINavigationController alloc] initWithRootViewController:self.profileContainerController];
     self.activityViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.activityViewController];
     self.tagBrowserViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.tagBrowserViewController];
-    
+
     [self setViewControllers:[NSMutableArray arrayWithObjects:
                               self.questionsViewNavigationController,
                               self.tagBrowserViewNavigationController,
                               self.activityViewNavigationController,
                               self.profileSearchViewNavigationController,
-                              self.userProfileNavigationController,
+                              self.profileContainerNavigationViewController,
                             nil]];
 }
 
@@ -77,7 +75,7 @@ const int TabbedBarHeight = 44;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-	
+
 	self.view.backgroundColor = [UIColor opf_colorWithHexValue:0xe2e7ed];
 }
 
