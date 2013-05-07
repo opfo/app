@@ -221,6 +221,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{297, 39}, {8, 10}}</string>
 								<reference key="NSSuperview" ref="873995702"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -406,7 +407,7 @@
 							<reference ref="547667595"/>
 							<reference ref="635606728"/>
 							<reference ref="164216700"/>
-							<object class="IBNSLayoutConstraint" id="859236465">
+							<object class="IBNSLayoutConstraint" id="1065630030">
 								<reference key="firstItem" ref="164216700"/>
 								<int key="firstAttribute">5</int>
 								<int key="relation">0</int>
@@ -1170,7 +1171,7 @@
 						<int key="objectID">21</int>
 						<reference key="object" ref="164216700"/>
 						<array class="NSMutableArray" key="children">
-							<object class="IBNSLayoutConstraint" id="457275598">
+							<object class="IBNSLayoutConstraint" id="101955588">
 								<reference key="firstItem" ref="164216700"/>
 								<int key="firstAttribute">7</int>
 								<int key="relation">0</int>
@@ -1487,12 +1488,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">335</int>
-						<reference key="object" ref="457275598"/>
+						<reference key="object" ref="101955588"/>
 						<reference key="parent" ref="164216700"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">336</int>
-						<reference key="object" ref="859236465"/>
+						<reference key="object" ref="1065630030"/>
 						<reference key="parent" ref="485981105"/>
 					</object>
 				</array>
@@ -1592,7 +1593,7 @@
 					<reference ref="922846868"/>
 					<reference ref="522811274"/>
 					<reference ref="437098350"/>
-					<reference ref="859236465"/>
+					<reference ref="1065630030"/>
 				</array>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array class="NSMutableArray" key="20.IBViewMetadataConstraints">
@@ -1606,7 +1607,7 @@
 				<string key="208.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="21.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array class="NSMutableArray" key="21.IBViewMetadataConstraints">
-					<reference ref="457275598"/>
+					<reference ref="101955588"/>
 				</array>
 				<boolean value="NO" key="21.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="211.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

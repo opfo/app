@@ -46,7 +46,7 @@
 
 - (void)opfSetupView
 {
-    
+     self.scoreFormatter = [OPFScoreNumberFormatter new];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
