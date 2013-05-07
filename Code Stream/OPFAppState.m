@@ -40,6 +40,11 @@ static OPFUser *userModel;
     return NO;
 }
 
++ (void)logout
+{
+    userModel = nil;
+}
+
 + (BOOL)isLoggedIn
 {
     return userModel != nil ? true : false;

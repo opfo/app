@@ -15,6 +15,7 @@
 + (OPFUser *)userModel;
 + (void) setUserModel:(OPFUser *)userModel;
 + (BOOL)loginWithEMail :(NSString *)eMail andPassword :(NSString *)password;
++ (void)logout;
 + (BOOL)isLoggedIn;
 
 @end
