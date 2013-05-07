@@ -284,6 +284,7 @@ Boolean heatMode = NO;
 				[existingTags each:^(OPFTag *tag) {
 					[relatedTags addObjectsFromArray:tag.relatedTags];
 				}];
+				[relatedTags removeObjectsInArray:existingTags];
 				
 				NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
 				NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
