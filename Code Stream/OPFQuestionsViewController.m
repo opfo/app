@@ -624,6 +624,18 @@ Boolean heatMode = NO;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+	[self dismissSearchBarExtras];
+	[self changeSearchBarInputViewToButtonsView];
+	[self updateSearchWithString:@""];
+}
+
+- (void)selectBestTokenMatchAndEndSearch
+{
 	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
 		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
 		self.suggestedTokens.count > 0) {
@@ -632,13 +644,6 @@ Boolean heatMode = NO;
 	}
 	
 	[self dismissSearchBarExtras];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-	[self dismissSearchBarExtras];
-	[self changeSearchBarInputViewToButtonsView];
-	[self updateSearchWithString:@""];
 }
 
 - (void)dismissSearchBarExtras
@@ -691,6 +696,13 @@ Boolean heatMode = NO;
 			}
 		}];
 	}
+}
+
+
+#pragma mark - UIScrollBarDelegate methods
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	[self selectBestTokenMatchAndEndSearch];
 }
 
 
