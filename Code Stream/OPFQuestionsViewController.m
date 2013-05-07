@@ -118,8 +118,11 @@ Boolean heatMode = NO;
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
 	
+	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
+	
+	self.searchBar.scopeButtonTitles = @[@"Activity",@"Created",@"Score"];
 	
 	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
@@ -325,7 +328,7 @@ Boolean heatMode = NO;
 }
 
 
-#pragma mark - Key Value Obseravation
+#pragma mark - Key Value Observation
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
@@ -566,13 +569,11 @@ Boolean heatMode = NO;
 #pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-	[searchBar setShowsCancelButton:YES animated:YES];
 	return YES;
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-	[searchBar setShowsCancelButton:NO animated:YES];
 	return YES;
 }
 
