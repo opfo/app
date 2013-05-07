@@ -221,8 +221,10 @@ static CGFloat userAboutMeInset = 20.0;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
-		[[UIApplication sharedApplication] openURL:request.URL];
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {;
+        OPFWebViewController *webview = [OPFWebViewController new];
+        webview.page = request.URL;
+        [self.navigationController pushViewController:webview animated:YES];
         return NO;
 	} else return YES;
 }

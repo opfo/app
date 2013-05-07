@@ -999,8 +999,6 @@
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
-				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
-				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8C2725D61738562D0068D89C /* OPFWebView.xib */,
 			);
 			name = Views;
@@ -1009,6 +1007,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
+				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
 				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
 				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
