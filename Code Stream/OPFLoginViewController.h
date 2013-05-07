@@ -14,7 +14,7 @@
 @property(strong, nonatomic) UITextField *passwordField;
 @property(weak, nonatomic) IBOutlet UILabel *loginMessageLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *rememberUser;
-
+@property (weak, nonatomic) IBOutlet UIButton *registerUser;
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;

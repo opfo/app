@@ -45,7 +45,7 @@ static const int TransitionDuration = .5f;
 	
     //Alloc init the contained view controllers
     self.loginViewController = [OPFLoginViewController new];
-    self.signupViewController = [OPFSignupViewController new];
+    self.signupViewController = [OPFSignupViewController newFromStoryboard];
     self.profileViewController = [OPFUserProfileViewController newFromStoryboard];
     
     //Set the frame sizes
@@ -163,6 +163,16 @@ static const int TransitionDuration = .5f;
 {
     [OPFAppState logout];
     [self transitionToLoginViewControllerFromViewController:self.profileViewController];
+}
+
+- (void)userRequestsSignup:(id)sender
+{
+    [self transitionToSignupViewControllerFromViewController:self.loginViewController];
+}
+
+- (void)userFinishedSignup:(id)sender
+{
+    [self transitionToLoginViewControllerFromViewController:self.signupViewController];
 }
     
 @end
