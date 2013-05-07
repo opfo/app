@@ -8,6 +8,15 @@
 
 #import "OPFActivityCommentViewCell.h"
 #import "OPFComment.h"
+#import "OPFScoreNumberFormatter.h"
+
+@interface OPFActivityCommentViewCell()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+
+- (void)opfSetupView;
+
+@end
 
 @implementation OPFActivityCommentViewCell
 
@@ -60,6 +69,7 @@
 - (void)setModelValuesInView
 {
     self.commentBody.text = self.commentModel.text;
+    self.scoreCount.text = [self.scoreFormatter stringFromScore:[self.commentModel.score integerValue]];
 }
 
 @end
