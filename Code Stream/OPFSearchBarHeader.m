@@ -19,7 +19,7 @@
 			target = self.searchBar.frame;
 			break;
 		case SortControl:
-			target = self.searchBar.frame;
+			target = CGRectMake(320, 0, 320, 44);
 			break;
 		default:
 			@throw @"Display Header not found. Define enum in OPFQuestionSearchBar.h";
@@ -50,16 +50,9 @@
 	self.headerDisplayed = SearchBar;
 }
 
-
-
-- (void)configureView {
-	self.scrollsToTop = NO;
-	self.canCancelContentTouches = NO;
-	self.alwaysBounceHorizontal = YES;
-	
-}
-
 - (IBAction)handleSwitchEvent:(UIButton *)sender {
 	self.headerDisplayed = (DisplayHeader)sender.tag;
 }
+
+
 @end

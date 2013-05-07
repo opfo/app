@@ -13,11 +13,7 @@ typedef enum {SearchBar = 2, SortControl = 1} DisplayHeader;
 
 @interface OPFSearchBarHeader : UIScrollView <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortOrderControl;
-@property (weak, nonatomic) IBOutlet UIButton *switchToSearchButton;
-@property (weak, nonatomic) IBOutlet UIButton *switchToSortButton;
 @property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
-
-- (void)configureView;
 
 - (IBAction)handleSwitchEvent:(UIButton *)sender;
 @property (nonatomic) DisplayHeader headerDisplayed;

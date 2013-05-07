@@ -108,7 +108,6 @@ Boolean heatMode = NO;
 	[super viewDidLoad];
 	
 	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
-	[self.searchBarHeader configureView];
 	
 	self.tableView.tableHeaderView = self.searchBarHeader;
 	self.searchBar.delegate = self;
