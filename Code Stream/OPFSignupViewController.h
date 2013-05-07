@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StaticDataTableViewController.h"
 
-@interface OPFSignupViewController : UIViewController
+@interface OPFSignupViewController  : StaticDataTableViewController
+
++ (instancetype)newFromStoryboard;
 
 @end
