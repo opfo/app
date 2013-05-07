@@ -117,20 +117,21 @@ static CGFloat userAboutMeInset = 20.0;
     }
     
     // Set the textFields in the userInterface
+    // Set User Display Name
     self.userName.text = self.user.displayName;
-    //self.userAboutMe.text = self.user.aboutMe;
+    
+    // Set user location
     self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
+    
+    // Set user bio
     self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
-	
-    [self loadUserGravatar];
     
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
-    if(self.user.age!=nil){
-        self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
-    }
-    else
-        self.userAge.text = @"-";
+    
+    self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  @"-";
+       
+    
     // Set date-fields by using a NSDateFormatter
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
@@ -142,13 +143,14 @@ static CGFloat userAboutMeInset = 20.0;
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
-	
 	self.userBio.delegate = self;
     
+    // Set up/downvotes
 	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
 	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
 	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
     
+    // Set number of visitors
     self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 

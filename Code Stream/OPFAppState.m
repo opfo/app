@@ -52,6 +52,10 @@ static OPFUser *userModel;
 
 + (void)logout
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults removeObjectForKey:@"eMailHash"];
+    
     userModel = nil;
 }
 
