@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFSignupView : UIView
+@interface OPFSignupView : UITableView
 
 @end

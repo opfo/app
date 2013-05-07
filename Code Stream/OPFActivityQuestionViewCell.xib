@@ -192,6 +192,7 @@
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{56, 22}, {20, 21}}</string>
 										<reference key="NSSuperview" ref="74209811"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -566,11 +567,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="acceptedAnswer-grey@2x.png">{16, 16}</string>
-			<string key="answer-count.png">{16, 16}</string>
-			<string key="comment-count@2x.png">{16, 16}</string>
-			<string key="score@2x.png">{16, 16}</string>
-			<string key="view-count@2x.png">{16, 16}</string>
+			<string key="acceptedAnswer-grey@2x.png">{26, 28}</string>
+			<string key="answer-count.png">{30, 30}</string>
+			<string key="comment-count@2x.png">{60, 60}</string>
+			<string key="score@2x.png">{30, 30}</string>
+			<string key="view-count@2x.png">{30, 30}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
