@@ -270,9 +270,12 @@ Boolean heatMode = NO;
 	});
 	
 	NSArray *suggestedTokens = nil;
+	NSInteger queryLimit = 20;
+	CGFloat queryLimitWizardOfTheOZFactor = 1;
 	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
+		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
 		if (tokenBeingInputted.length == 0) {
 			if (existingTags.count > 0) {
 				NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
@@ -281,6 +284,9 @@ Boolean heatMode = NO;
 					[relatedTags addObjectsFromArray:relatedTagsSubset];
 				}
 				suggestedTokens = relatedTags.array;
+				NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+				NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
+				suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
 			} else {
 				suggestedTokens = [OPFTag mostCommonTags];
 			}
@@ -295,7 +301,7 @@ Boolean heatMode = NO;
 	}
 	
 	if (query != nil && suggestedTokens.count == 0) {
-		suggestedTokens = [[query limit:@(20)] getMany];
+		suggestedTokens = [[query limit:@(queryLimit * queryLimitWizardOfTheOZFactor)] getMany];
 	}
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
