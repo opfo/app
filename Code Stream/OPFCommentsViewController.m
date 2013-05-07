@@ -51,7 +51,7 @@
 
 - (void)opfSetupView
 {
-    
+    self.title = NSLocalizedString(@"Comments", @"Comments view controller title");
 }
 
 - (void)viewDidLoad

@@ -243,6 +243,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
     if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
 		((OPFPostBodyTableViewCell*)cell).htmlString = post.body;
+        ((OPFPostBodyTableViewCell*)cell).navigationcontroller = self.navigationController;
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;

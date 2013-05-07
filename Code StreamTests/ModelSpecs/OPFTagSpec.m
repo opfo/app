@@ -62,9 +62,50 @@ describe(@"get related tags", ^{
     it(@"should number 10", ^{
         expect(tags.count).to.equal(@(10));
     });
+    
+    it(@"should be OPFTags", ^{
+        expect(tags.count).notTo.equal(0);
+        for(id object in tags) {
+            expect(object).to.beKindOf([OPFTag class]);
+        }
+    });
+    
     it(@"should have the correct tags", ^{
         NSArray* expected = @[@"html", @"jquery", @"javascript", @"css3",@"internet-explorer", @"css-float", @"internet-explorer-7", @"html5", @"div", @"firefox"];
-        expect(tags).to.equal(expected);
+        for(int i = 0; i < expected.count; i++) {
+            expect([[tags objectAtIndex: i] name]).to.equal([expected objectAtIndex:i]);
+        }
+    });
+});
+
+describe(@"most common tags", ^{
+    __block NSArray* tags = [OPFTag mostCommonTags];
+    it(@"should get correct tags", ^{
+        NSArray* expected = @[
+                              @"android",
+                              @"java",
+                              @"c#",
+                              @"javascript",
+                              @"php",
+                              @"jquery",
+                              @"ios",
+                              @"c++",
+                              @"iphone",
+                              @"asp.net",
+                              @"html",
+                              @"python",
+                              @"mysql",
+                              @"css",
+                              @"objective-c",
+                              @".net",
+                              @"sql",
+                              @"ruby-on-rails",
+                              @"c",
+                              @"ruby"];
+        expect(tags.count).to.equal(kOPFPopularTagsLimit);
+        for(int i = 0; i < tags.count; i++) {
+            expect([[tags objectAtIndex:i] name]).to.equal([expected objectAtIndex:i]);
+        }
     });
 });
 

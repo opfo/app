@@ -10,6 +10,8 @@
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
 
+@class OPFDatabaseQueue;
+
 @interface OPFDatabaseAccess : NSObject
 
 + (instancetype) getDBAccess;
@@ -18,8 +20,12 @@
 - (void) attachAuxDB;
 - (void) close;
 
-@property(strong, readonly) FMDatabaseQueue* combinedQueue;
+@property(strong, readonly) OPFDatabaseQueue* combinedQueue;
 @property(assign) BOOL auxAttached;
 
 
+@end
+
+@interface OPFDatabaseQueue : FMDatabaseQueue
+@property (strong, readonly) dispatch_queue_t queue;
 @end
