@@ -13,6 +13,7 @@
 @interface OPFActivityCommentViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextView *commentBody;
+@property (weak, nonatomic) IBOutlet UILabel *scoreCount;
 
 @property(nonatomic, strong) OPFComment *commentModel;
 

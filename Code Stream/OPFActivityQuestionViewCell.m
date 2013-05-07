@@ -10,6 +10,15 @@
 #import "OPFQuestion.h"
 #import "NSString+OPFStripCharacters.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "OPFScoreNumberFormatter.h"
+
+@interface OPFActivityQuestionViewCell()
+
+@property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
+
+- (void)opfSetupView;
+
+@end
 
 @implementation OPFActivityQuestionViewCell
 
@@ -37,7 +46,7 @@
 
 - (void)opfSetupView
 {
-    
+     self.scoreFormatter = [OPFScoreNumberFormatter new];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -61,8 +70,17 @@
 
 - (void)setModelValuesInView
 {
+    self.commentCount.text = [self.scoreFormatter stringFromScore:[self.questionModel.commentCount integerValue]];
+    self.answerCount.text = [self.scoreFormatter stringFromScore:[self.questionModel.answerCount integerValue]];
+    self.viewCount.text = [self.scoreFormatter stringFromScore:[self.questionModel.viewCount integerValue]];
+    self.scoreCount.text = [self.scoreFormatter stringFromScore:[self.questionModel.score integerValue]];
+    
     self.questionTitle.text = self.questionModel.title;
     self.questionBody.text = [self.questionModel.body.opf_stringByStrippingHTML OPF_escapeWithScheme:OPFStripAscii];
+
+    if(self.questionModel.acceptedAnswerId != nil) {
+        self.acceptedAnswer.image = [UIImage imageNamed:@"acceptedAnswer"];
+    }
 }
 
 @end

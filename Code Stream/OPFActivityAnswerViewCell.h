@@ -14,6 +14,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *answerTitle;
 @property (weak, nonatomic) IBOutlet UITextView *answerBody;
+@property (weak, nonatomic) IBOutlet UIImageView *acceptedAnswer;
+@property (weak, nonatomic) IBOutlet UILabel *viewCount;
+@property (weak, nonatomic) IBOutlet UILabel *commentCount;
+@property (weak, nonatomic) IBOutlet UILabel *scoreCount;
 
 @property(nonatomic, strong) OPFAnswer *answerModel;
 

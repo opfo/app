@@ -20,7 +20,7 @@
 @property(strong, nonatomic) UINavigationController *questionsViewNavigationController;
 @property(strong, nonatomic) UINavigationController *profileSearchViewNavigationController;
 @property(strong, nonatomic) UINavigationController *activityViewNavigationController;
-@property(strong, nonatomic) UINavigationController *profileContainerViewController;
+@property(strong, nonatomic) UINavigationController *profileContainerNavigationViewController;
 @property(strong, nonatomic) UINavigationController *tagBrowserViewNavigationController;
 
 @property(strong, nonatomic) OPFQuestionsViewController *questionsViewController;
@@ -58,17 +58,17 @@ const int TabbedBarHeight = 44;
 
     self.questionsViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.questionsViewController];
     self.profileSearchViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.profileSearchViewController];
-    self.profileContainerViewController = [[UINavigationController alloc] initWithRootViewController:self.profileContainerController];
+    self.profileContainerNavigationViewController = [[UINavigationController alloc] initWithRootViewController:self.profileContainerController];
     self.activityViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.activityViewController];
     self.tagBrowserViewNavigationController = [[UINavigationController alloc] initWithRootViewController:self.tagBrowserViewController];
 
     [self setViewControllers:[NSMutableArray arrayWithObjects:
-        self.questionsViewNavigationController,
-        self.tagBrowserViewNavigationController,
-        self.activityViewNavigationController,
-        self.profileSearchViewNavigationController,
-        self.profileContainerViewController,
-    nil]];
+                              self.questionsViewNavigationController,
+                              self.tagBrowserViewNavigationController,
+                              self.activityViewNavigationController,
+                              self.profileSearchViewNavigationController,
+                              self.profileContainerNavigationViewController,
+                            nil]];
 }
 
 - (void)viewDidLoad
