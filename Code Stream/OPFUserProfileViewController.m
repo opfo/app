@@ -106,11 +106,11 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    UIBarButtonItem *logoutStyle= [UIBarButtonItem new];
-    logoutStyle.tintColor = [UIColor redColor];
+    UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
+    logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
     
+    self.navigationItem.rightBarButtonItem = logoutStyle;
     // Set the textFields in the userInterface
     self.userName.text = self.user.displayName;
     //self.userAboutMe.text = self.user.aboutMe;
@@ -197,11 +197,12 @@ static CGFloat userAboutMeInset = 20.0;
         detailViewController = questionsViewController;
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
-        NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
-        OPFWebViewController *webview = [OPFWebViewController new];
-        webview.page = url;
-        [self.navigationController pushViewController:webview animated:YES];
-        //[[UIApplication sharedApplication] openURL:url];
+        if(![self.userWebsite.text isEqualToString:@"-"]){
+            NSURL *url = [[NSURL alloc] initWithString:self.userWebsite.text];
+            OPFWebViewController *webview = [OPFWebViewController new];
+            webview.page = url;
+            [self.navigationController pushViewController:webview animated:YES];
+        }
     }
     
     // Pass the selected object to the new view controller.
