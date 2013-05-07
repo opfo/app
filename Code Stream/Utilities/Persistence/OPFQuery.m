@@ -31,13 +31,18 @@
 {
     if([self isKindOfClass: [OPFRootQuery class]]) {
         FMResultSet* result = [self getResultSetOne];
-        if(self.onGetOne != nil && [result next]) {
-            NSDictionary* attributes = [result resultDictionary];
-            [result close];
-            return self.onGetOne(attributes);
-        } else {
-            return nil;
-        }
+		
+		__block id resultObject = nil;
+		if(self.onGetOne != nil) {
+			dispatch_sync(OPFDatabaseAccess.getDBAccess.combinedQueue.queue, ^{
+				if ([result next]) {
+					NSDictionary* attributes = [result resultDictionary];
+					[result close];
+					resultObject = self.onGetOne(attributes);
+				}
+			});
+		}
+		return resultObject;
     } else {
         return [self.rootQuery getOne];
     }
@@ -45,21 +50,32 @@
 
 - (NSArray*) getMany
 {
-    if([self isKindOfClass: [OPFRootQuery class]]) {
-        FMResultSet* result = [self getResultSetMany];
-        if(self.onGetMany != nil) {
-            return self.onGetMany(result);
-        } else {
-            return nil;
-        }
-    } else {
-       return [self.rootQuery getMany];
-    }
+	if([self isKindOfClass: [OPFRootQuery class]]) {
+		FMResultSet* result = [self getResultSetMany];
+		if(self.onGetMany != nil) {
+			__block NSArray *results = nil;
+			dispatch_sync(OPFDatabaseAccess.getDBAccess.combinedQueue.queue, ^{
+				results = self.onGetMany(result);
+			});
+			return results;
+		} else {
+			return nil;
+		}
+	} else {
+		return [self.rootQuery getMany];
+	}
 }
 
 - (instancetype) whereColumn: (NSString*) column like: (id) term
 {
     OPFLikeQuery* query = [OPFLikeQuery initWithColumn: column term: term rootQuery: self.rootQuery];
+    self.andQuery = query;
+    return query;
+}
+
+- (instancetype) whereColumn:(NSString *)column like:(id)term  exact:(BOOL)exact
+{
+    OPFLikeQuery* query = [OPFLikeQuery initWithColumn: column term:term rootQuery: self.rootQuery exact:exact];
     self.andQuery = query;
     return query;
 }

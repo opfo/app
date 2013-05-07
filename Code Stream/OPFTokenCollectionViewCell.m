@@ -22,8 +22,8 @@
 	_tokenView = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:_style];
 	_tokenView.layer.shadowColor = UIColor.blackColor.CGColor;
 	_tokenView.layer.shadowOffset = CGSizeMake(0.f, 1.f);
-	_tokenView.layer.shadowOpacity = .40f;
-	_tokenView.layer.shadowRadius = 2.f;
+	_tokenView.layer.shadowOpacity = .55f;
+	_tokenView.layer.shadowRadius = 1.f;
 	[self opf_addFillingAutoresizedSubview:_tokenView];
 }
 

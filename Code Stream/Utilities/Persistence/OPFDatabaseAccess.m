@@ -76,7 +76,7 @@ static NSString* OPFWritableAuxDBPath;
     _auxAttached = NO;
     [OPFDatabaseAccess setDBPaths];
     [OPFDatabaseAccess copyDatabaseIfNeeded];
-    _combinedQueue = [FMDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
+    _combinedQueue = [OPFDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
     [self attachAuxDB];
     return self;
 }
@@ -119,3 +119,13 @@ static NSString* OPFWritableAuxDBPath;
 }
 
 @end
+
+@implementation OPFDatabaseQueue
+
+- (dispatch_queue_t)queue
+{
+	return _queue;
+}
+
+@end
+

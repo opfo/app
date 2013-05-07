@@ -25,7 +25,7 @@ describe(@"searching", ^{
             NSArray* posts = [[[OPFPost searchFor: @"injection"] page:0] getMany];
             expect([posts count]).to.equal([OPFPost defaultPageSize]);
             expect([[posts objectAtIndex:0] identifier]).to.equal(@(8414287));
-            expect([[posts objectAtIndex:9] identifier]).to.equal(@(8469386));
+            expect([[posts objectAtIndex:9] identifier]).to.equal(@(8416767));
         });
         
         it(@"works with ordering", ^{

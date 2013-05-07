@@ -8,6 +8,9 @@
 
 #import "OPFPostBodyTableViewCell.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "OPFQuestion.h"
+#import "OPFQuestionViewController.h"
+#import "OPFWebViewController.h"
 
 @implementation OPFPostBodyTableViewCell
 @synthesize htmlString = _htmlString;
@@ -37,9 +40,44 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
-		[[UIApplication sharedApplication] openURL:request.URL];
-		return NO;
-	} else return YES;
+        NSLog(@"Button clicked");
+        // If the link is to a stackoverflow question
+		if([[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location != NSNotFound){
+           
+            // Strip out the questionID
+            NSUInteger n = [[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location + 28;
+            NSString *questionId = [[request.URL absoluteString] substringFromIndex:n];
+            questionId = [questionId substringToIndex:[questionId rangeOfString:@"/"].location];
+            
+            //Query question and see if it exist in the database
+            OPFQuestion *question = [[OPFQuestion.query whereColumn:@"id" is:questionId] getOne];
+            
+            // If our question exist in our local DB
+            if(question != nil){
+                OPFQuestionViewController *questionView = [OPFQuestionViewController new];
+                questionView.question = question;
+                [self.navigationcontroller pushViewController:questionView animated:YES];
+            }
+            // Oterwise open the stackoverflow webpage
+            else{
+                OPFWebViewController *webBrowser = [OPFWebViewController new];
+                webBrowser.page=request.URL;
+                [self.navigationcontroller pushViewController:webBrowser animated:YES];
+            }
+            
+            return NO;
+            
+        }
+        else{
+            OPFWebViewController *webBrowser = [OPFWebViewController new];
+            webBrowser.page = request.URL;
+            [self.navigationcontroller pushViewController:webBrowser animated:YES];
+            return NO;
+        }
+        
+	}
+    else
+        return YES;
 }
 
 - (void)awakeFromNib {
