@@ -49,8 +49,6 @@
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
 		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
-		1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */; };
-		1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */; };
 		1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */; };
 		1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */; };
 		1A639EBE17267384009EB280 /* OPFProfileViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A639EBD17267384009EB280 /* OPFProfileViewCell.m */; };
@@ -85,6 +83,10 @@
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
 		1AD5D24417292A4A00B99352 /* avatar-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */; };
+		1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */; };
+		1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */; };
+		1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */; };
+		1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
@@ -236,9 +238,6 @@
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
 		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
-		1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFFavoritesViewController.h; sourceTree = "<group>"; };
-		1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFFavoritesViewController.m; sourceTree = "<group>"; };
-		1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFFavoritesViewController.xib; sourceTree = "<group>"; };
 		1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-favorites@2x.png"; sourceTree = "<group>"; };
 		1A5891A91731A9C6000D37B3 /* OPFProfileViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFProfileViewCell.xib; sourceTree = "<group>"; };
 		1A639EBC17267384009EB280 /* OPFProfileViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFProfileViewCell.h; sourceTree = "<group>"; };
@@ -284,6 +283,12 @@
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
 		1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-empty@2x.png"; sourceTree = "<group>"; };
+		1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserViewController.h; sourceTree = "<group>"; };
+		1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserViewController.m; sourceTree = "<group>"; };
+		1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionView.xib; sourceTree = "<group>"; };
+		1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tagbrowser@2x.png"; sourceTree = "<group>"; };
+		1AD7629F1737ECF5002F157C /* OPFTagBrowserCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionView.h; sourceTree = "<group>"; };
+		1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionView.m; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Code StreamTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,14 +533,6 @@
 			name = "Question View Header";
 			sourceTree = "<group>";
 		};
-		1A40DFDD17326B5A00B9AA00 /* Favorites View */ = {
-			isa = PBXGroup;
-			children = (
-				1A40DFDA17326B5000B9AA00 /* OPFFavoritesViewController.xib */,
-			);
-			name = "Favorites View";
-			sourceTree = "<group>";
-		};
 		1A639EBB172671FA009EB280 /* Profile Search Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +619,7 @@
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
+				1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */,
 				1ABA0A5A172976310007BBFE /* url@2x.png */,
 				1ABA0A5817296D330007BBFE /* score@2x.png */,
 				1A639EC117267AB6009EB280 /* location@2x.png */,
@@ -652,6 +650,16 @@
 				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
 			);
 			name = "Comment Table View Cells";
+			sourceTree = "<group>";
+		};
+		1AD7629C1737EA77002F157C /* Tag Browser View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */,
+				1AD7629F1737ECF5002F157C /* OPFTagBrowserCollectionView.h */,
+				1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */,
+			);
+			name = "Tag Browser View";
 			sourceTree = "<group>";
 		};
 		8128DF90171D81DA00C44410 /* Utilities */ = {
@@ -880,7 +888,7 @@
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				1A896CE7172FD00800E19525 /* Activity View */,
-				1A40DFDD17326B5A00B9AA00 /* Favorites View */,
+				1AD7629C1737EA77002F157C /* Tag Browser View */,
 				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
@@ -906,8 +914,8 @@
 				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
 				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
 				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
-				1A40DFD817326B5000B9AA00 /* OPFFavoritesViewController.h */,
-				1A40DFD917326B5000B9AA00 /* OPFFavoritesViewController.m */,
+				1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */,
+				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1236,10 +1244,11 @@
 				1A896CF5172FD3A300E19525 /* tab-me@2x.png in Resources */,
 				1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */,
 				9C4D48A8173096B800C0C48A /* OPFQuestionsViewController.xib in Resources */,
-				1A40DFDC17326B5000B9AA00 /* OPFFavoritesViewController.xib in Resources */,
 				1A40DFDF17326BC900B9AA00 /* tab-favorites@2x.png in Resources */,
 				1A5891AA1731A9C6000D37B3 /* OPFProfileViewCell.xib in Resources */,
 				1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */,
+				1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */,
+				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1379,7 +1388,6 @@
 				14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */,
 				813F5CDA17328AD100F71CD6 /* OPFSearchable.m in Sources */,
 				813F5CDD17329E2B00F71CD6 /* OPFSearchQuery.m in Sources */,
-				1A40DFDB17326B5000B9AA00 /* OPFFavoritesViewController.m in Sources */,
 				14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */,
 				9CFF61791733264900D96980 /* SSLineView.m in Sources */,
 				9CE7006A173326DC0092FF22 /* SSGradientView.m in Sources */,
@@ -1388,6 +1396,8 @@
 				9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */,
 				9C3768761733292D00719F2A /* OPFActivityViewController.m in Sources */,
 				9C04A1701735B00700971D2F /* OPFSearchBar.m in Sources */,
+				1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */,
+				1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1518,17 +1528,6 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1543,17 +1542,6 @@
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -1579,19 +1567,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -1612,19 +1587,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-framework",
-					Foundation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					SystemConfiguration,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;

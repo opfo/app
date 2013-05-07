@@ -21,6 +21,7 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import <BlocksKit.h>
 
 
 typedef enum : NSInteger {
@@ -238,7 +239,8 @@ Boolean heatMode = NO;
 	
 	OPFQuery *query = nil;
 	if (keywords.length > 0 || tags.count > 0) {
-		query = [[[OPFQuestion searchFor:keywords inTags:tags] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
+		NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+		query = [[[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
 	} else {
 		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
 	}
@@ -270,17 +272,23 @@ Boolean heatMode = NO;
 	});
 	
 	NSArray *suggestedTokens = nil;
+	NSInteger queryLimit = 20;
+	CGFloat queryLimitWizardOfTheOZFactor = 1;
 	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
+		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
 		if (tokenBeingInputted.length == 0) {
 			if (existingTags.count > 0) {
 				NSMutableOrderedSet *relatedTags = NSMutableOrderedSet.new;
-				for (NSString *tag in existingTags) {
-					NSArray *relatedTagsSubset = [OPFTag relatedTagsForTagWithName:tag];
-					[relatedTags addObjectsFromArray:relatedTagsSubset];
-				}
-				suggestedTokens = relatedTags.array;
+				[existingTags each:^(OPFTag *tag) {
+					[relatedTags addObjectsFromArray:tag.relatedTags];
+				}];
+				[relatedTags removeObjectsInArray:existingTags];
+				
+				NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+				NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
+				suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
 			} else {
 				suggestedTokens = [OPFTag mostCommonTags];
 			}
@@ -295,7 +303,7 @@ Boolean heatMode = NO;
 	}
 	
 	if (query != nil && suggestedTokens.count == 0) {
-		suggestedTokens = [[query limit:@(20)] getMany];
+		suggestedTokens = [[query limit:@(queryLimit * queryLimitWizardOfTheOZFactor)] getMany];
 	}
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
