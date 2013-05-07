@@ -377,21 +377,28 @@ Boolean heatMode = NO;
 
 
 #pragma mark - 
-- (NSString *)tokenTextFromSuggestedTokenAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
-	NSString *token = nil;
-	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
-		OPFTag *tag = self.suggestedTokens[indexPath.row];
-		token = tag.name;
-	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		OPFUser *user = self.suggestedTokens[indexPath.row];
-		token = user.displayName;
-	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedNone) {
-		token = @"";
+	NSString *tokenText = nil;
+	if (type == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
+		OPFTag *tag = (OPFTag *)token;
+		tokenText = tag.name;
+	} else if (type == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
+		OPFUser *user = (OPFUser *)token;
+		tokenText = user.displayName;
+	} else if (type == kOPFQuestionsViewControllerTokenBeingInputtedNone) {
+		tokenText = @"";
 	} else {
 		ZAssert(NO, @"Unkown type of token being inputted, got: %d", self.tokenBeingInputtedType);
 	}
-	return token;
+	return tokenText;
+}
+
+- (NSString *)tokenTextFromSuggestedTokenAtIndexPath:(NSIndexPath *)indexPath
+{
+	id token = self.suggestedTokens[indexPath.row];
+	NSString *tokenText = [self tokenTextFromSuggestedToken:token ofType:self.tokenBeingInputtedType];
+	return tokenText;
 }
 
 
@@ -433,15 +440,15 @@ Boolean heatMode = NO;
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *token = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
-	[self didSelectToken:token];
+	NSString *tokenText = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
+	[self didSelectToken:tokenText];
 }
 
 
 #pragma mark - Token Handling
-- (void)didSelectToken:(NSString *)token
+- (void)didSelectToken:(NSString *)tokenString
 {
-	[self.tokenBeingInputted setString:token];
+	[self.tokenBeingInputted setString:tokenString];
 	[self endTokenInput];
 }
 
