@@ -152,5 +152,11 @@ static const int TransitionDuration = .5f;
         self.loginViewController.loginMessageLabel.text = NSLocalizedString(@"Wrong username or password!", @"Login failure message");
     }
 }
+
+- (void)userRequestsLogout:(id)sender
+{
+    [OPFAppState logout];
+    [self transitionToLoginViewControllerFromViewController:self.profileViewController];
+}
     
 @end
