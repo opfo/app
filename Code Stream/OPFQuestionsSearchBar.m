@@ -13,8 +13,6 @@
 
 #import <objc/runtime.h>
 
-#define sortButtonSize 24
-#define padding 5
 
 @interface OPFQuestionsSearchBarToken ()
 @property (strong) UIView *view;
@@ -49,25 +47,6 @@
 
 - (void)sharedQuestionsSearchBarInit
 {
-	// Add sort Button
-	self.sortButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	self.sortButton.frame = CGRectMake(
-									   CGRectGetWidth(self.bounds)-sortButtonSize-5,
-									   10,
-									   sortButtonSize, sortButtonSize);
-	self.sortButton.titleLabel.text = @"Sort";
-	
-	[self addSubview:self.sortButton];
-	
-	// Add sort order selector
-	self.sortOrder = [[UISegmentedControl alloc] initWithItems:@[@"Score",@"Activity",@"Created"]];
-	self.sortOrder.selectedSegmentIndex = 0;
-					  
-	self.sortOrder.frame = CGRectMake(padding,
-																		 padding,
-																		 CGRectGetWidth(self.bounds) - 2*padding,
-																		 CGRectGetHeight(self.bounds) - 2*padding);
-	[self addSubview:self.sortOrder];
 
 	for (UIView *subview in self.subviews) {
 		if ([subview isKindOfClass:UITextField.class]) {
@@ -128,9 +107,6 @@
 	CGFloat insetTop = 4.f;
 	CGFloat baseInsetLeft = 30.f;
 	
-	CGRect searchBarFrame = self.textField.frame;
-	searchBarFrame.size.width = CGRectGetWidth(self.bounds) - sortButtonSize - 15; // Insert width of button
-	self.textField.frame = searchBarFrame;
 	
 	for (OPFQuestionsSearchBarToken *token in _tokens) {
 		CGRect tokenFrame = token.view.frame;

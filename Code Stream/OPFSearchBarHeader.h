@@ -9,10 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "OPFQuestionsSearchBar.h"
 
-@interface OPFSearchBarHeader : UIView
+typedef enum {SearchBar = 2, SortControl = 1} DisplayHeader;
+
+@interface OPFSearchBarHeader : UIScrollView <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortOrderControl;
-@property (weak, nonatomic) IBOutlet UIButton *searchBarButton;
-@property (weak, nonatomic) IBOutlet UIButton *sortButton;
+@property (weak, nonatomic) IBOutlet UIButton *switchToSearchButton;
+@property (weak, nonatomic) IBOutlet UIButton *switchToSortButton;
 @property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
+
+- (void)configureView;
+
+- (IBAction)handleSwitchEvent:(UIButton *)sender;
+@property (nonatomic) DisplayHeader headerDisplayed;
 
 @end

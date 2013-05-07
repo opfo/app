@@ -21,6 +21,8 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "OPFSearchBarHeader.h"
+#import "UIView+OPFViewLoading.h"
 #import <BlocksKit.h>
 
 
@@ -36,7 +38,8 @@ typedef enum : NSInteger {
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
-@property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
+@property (readonly, nonatomic) OPFQuestionsSearchBar *searchBar;
+@property (strong) OPFSearchBarHeader *searchBarHeader;
 @property (strong, nonatomic) OPFQuestionsSearchBarInputView *searchBarInputView;
 
 @property (assign) OPFQuestionsViewControllerTokenBeingInputtedType tokenBeingInputtedType;
@@ -103,6 +106,12 @@ Boolean heatMode = NO;
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
+	[self.searchBarHeader configureView];
+	
+	self.tableView.tableHeaderView = self.searchBarHeader;
+	self.searchBar.delegate = self;
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 150.f;
@@ -714,6 +723,12 @@ Boolean heatMode = NO;
         heatMode = NO;
         [self.tableView reloadData];
     }
+}
+
+
+#pragma mark Custom property getters
+- (OPFQuestionsSearchBar *)searchBar {
+	return self.searchBarHeader.searchBar;
 }
 
 

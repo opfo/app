@@ -7,25 +7,59 @@
 //
 
 #import "OPFSearchBarHeader.h"
+#import <BlocksKit.h>
 
 @implementation OPFSearchBarHeader
+@synthesize headerDisplayed = _headerDisplayed;
+
+- (void)setHeaderDisplayed:(DisplayHeader)headerDisplayed {
+	CGRect target = CGRectNull;
+	switch (headerDisplayed) {
+		case SearchBar:
+			target = self.searchBar.frame;
+			break;
+		case SortControl:
+			target = self.searchBar.frame;
+			break;
+		default:
+			@throw @"Display Header not found. Define enum in OPFQuestionSearchBar.h";
+			break;
+	}
+	[self scrollRectToVisible:target animated:YES];
+	_headerDisplayed = headerDisplayed;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self sharedInit];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		[self sharedInit];
+	}
+	return self;
 }
-*/
 
+- (void)sharedInit {
+	self.headerDisplayed = SearchBar;
+}
+
+
+
+- (void)configureView {
+	self.scrollsToTop = NO;
+	self.canCancelContentTouches = NO;
+	self.alwaysBounceHorizontal = YES;
+	
+}
+
+- (IBAction)handleSwitchEvent:(UIButton *)sender {
+	self.headerDisplayed = (DisplayHeader)sender.tag;
+}
 @end
