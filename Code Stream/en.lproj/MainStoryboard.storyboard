@@ -325,6 +325,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="logOut" destination="6zz-4I-1Qc" id="2li-W9-ctf"/>
+                        <outlet property="logoutCell" destination="PsS-Ve-NPG" id="oTJ-c3-DgK"/>
                         <outlet property="userAge" destination="Opi-oZ-ih4" id="SJ9-ar-EMN"/>
                         <outlet property="userAvatar" destination="QLZ-RL-x7D" id="pcX-Ne-aDQ"/>
                         <outlet property="userBio" destination="MMN-kM-TB8" id="2aQ-Xt-Ma5"/>
@@ -602,42 +603,6 @@
                 <relationship kind="action" name="userRequestsLogout:"/>
                 <relationship kind="action" name="userRequestsSignup:"/>
             </relationships>
-        </class>
-        <class className="OPFSignupView" superclassName="UITableView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFSignupView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="age" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="bio" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="eMail" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="location" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="password" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="repeatedPassword" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="username" candidateClass="UITableViewCell"/>
-                <relationship kind="outlet" name="website" candidateClass="UITableViewCell"/>
-            </relationships>
-        </class>
-        <class className="OPFSignupViewController" superclassName="StaticDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFSignupViewController.h"/>
-        </class>
-        <class className="OPFUserProfileViewController" superclassName="StaticDataTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="logOut" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userBio" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="userCreationDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userLastAccess" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userLocation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userReputation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userVotes" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userWebsite" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="views" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="StaticDataTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StaticDataTableViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

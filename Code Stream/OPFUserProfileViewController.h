@@ -31,5 +31,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userAge;
 @property (weak, nonatomic) IBOutlet UILabel *userWebsite;
 @property (weak, nonatomic) IBOutlet UIButton *logOut;
+@property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 
 @end
