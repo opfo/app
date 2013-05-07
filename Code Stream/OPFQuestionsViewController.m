@@ -582,6 +582,20 @@ Boolean heatMode = NO;
 	return token;
 }
 
+- (void)selectBestTokenMatchAndEndSearch
+{
+	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
+		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
+		self.tokenBeingInputted.length > 0 &&
+		self.suggestedTokens.count > 0) {
+		id token = self.suggestedTokens[0];
+		NSString *tokenText = [self tokenTextFromSuggestedToken:token ofType:self.tokenBeingInputtedType];
+		[self didSelectToken:tokenText];
+	}
+	
+	[self dismissSearchBarExtras];
+}
+
 
 #pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -650,18 +664,6 @@ Boolean heatMode = NO;
 	[self dismissSearchBarExtras];
 	[self changeSearchBarInputViewToButtonsView];
 	[self updateSearchWithString:@""];
-}
-
-- (void)selectBestTokenMatchAndEndSearch
-{
-	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
-		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
-		self.suggestedTokens.count > 0) {
-		NSString *token = self.suggestedTokens[0];
-		[self didSelectToken:token];
-	}
-	
-	[self dismissSearchBarExtras];
 }
 
 - (void)dismissSearchBarExtras
