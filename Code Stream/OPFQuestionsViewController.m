@@ -23,7 +23,7 @@
 #import "NSString+OPFStripCharacters.h"
 #import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
-
+#import "OPFPostQuestionViewController.h"
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
@@ -363,22 +363,24 @@ Boolean heatMode = NO;
 {
 	DLog(@"Asking new questions has not been implemtend.");
 	
-	UIViewController *askQuestionsViewController = UIViewController.new;
-	askQuestionsViewController.view.backgroundColor = UIColor.redColor;
+	/*OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
+    postview.title = @"Post a question";
 	
-	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:askQuestionsViewController];
-	
-	__weak typeof(self) weakSelf = self;
-	[self presentViewController:askQuestionsNavigationController animated:YES completion:^{
-		double delayInSeconds = .5f;
+	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:postview];
+
+	[self presentViewController:askQuestionsNavigationController animated:YES completion: nil];*/
+    
+    //	__weak typeof(self) weakSelf = self;
+    //^{
+		
+        /*double delayInSeconds = .5f;
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
 		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
 			UIViewController *self = weakSelf;
 			[self dismissViewControllerAnimated:YES completion:nil];
 		});
-	}];
+	}];*/
 }
-
 
 #pragma mark - 
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
