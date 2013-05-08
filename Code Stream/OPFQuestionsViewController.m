@@ -69,6 +69,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
 Boolean heatMode = NO;
+UINavigationController *askQuestionsNavigationController;
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -168,7 +169,15 @@ Boolean heatMode = NO;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Questionsview will disappear");
+    NSLog(@"Present view %@", self.presentedViewController);
+	
+    if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
+        NSLog(@"YES IT*S THE SAME VIEW");
+    }
+    [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
@@ -363,23 +372,19 @@ Boolean heatMode = NO;
 {
 	DLog(@"Asking new questions has not been implemtend.");
 	
-	/*OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
+	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
     postview.title = @"Post a question";
-	
-	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:postview];
-
-	[self presentViewController:askQuestionsNavigationController animated:YES completion: nil];*/
     
-    //	__weak typeof(self) weakSelf = self;
-    //^{
-		
-        /*double delayInSeconds = .5f;
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-			UIViewController *self = weakSelf;
-			[self dismissViewControllerAnimated:YES completion:nil];
-		});
-	}];*/
+    /*CATransition *transition = [CATransition animation];
+    transition.duration = 1.f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromTop;
+    transition.delegate = self;
+    [self.navigationController.navigationBar.layer addAnimation:transition forKey:nil];
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];*/
+    
+    [self.navigationController pushViewController:postview animated:YES];
 }
 
 #pragma mark - 

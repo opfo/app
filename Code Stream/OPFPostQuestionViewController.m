@@ -68,7 +68,7 @@
     }
     else{
         if([self updateDatabase]){
-            [self.parentViewController dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -80,7 +80,7 @@
 
 -(BOOL) updateDatabase{
     
-    return NO;
+    return YES;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
