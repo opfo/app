@@ -44,7 +44,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     //set the position of the button
-    button.frame = CGRectMake(20, 463, 280, 44);
+    button.frame = CGRectMake(20, 375, 280, 44);
     
     //set the button's title
     [button setTitle:@"Post" forState:UIControlStateNormal];
@@ -77,10 +77,17 @@
         
     }
 }
-    
+
 -(BOOL) updateDatabase{
     
     return NO;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField){
+        [textField resignFirstResponder];
+    }
+    return YES;
 }
 
 

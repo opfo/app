@@ -359,15 +359,14 @@ Boolean heatMode = NO;
 {
 	DLog(@"Asking new questions has not been implemtend.");
 	
-	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
-    
+	/*OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
+    postview.title = @"Post a question";
 	
 	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:postview];
-	
-	__weak typeof(self) weakSelf = self;
-	[self presentViewController:askQuestionsNavigationController animated:YES completion: nil];
+
+	[self presentViewController:askQuestionsNavigationController animated:YES completion: nil];*/
     
-    
+    //	__weak typeof(self) weakSelf = self;
     //^{
 		
         /*double delayInSeconds = .5f;
@@ -377,11 +376,6 @@ Boolean heatMode = NO;
 			[self dismissViewControllerAnimated:YES completion:nil];
 		});
 	}];*/
-}
-
--(void) dismissPostView:(id) sender{
-    NSLog(@"Dismiss view");
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OPFQuestionsViewController.h"
 
-@interface OPFPostQuestionViewController : UIViewController
+@interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *bodyField;
