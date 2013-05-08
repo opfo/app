@@ -245,6 +245,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Filtered Questions
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	__block NSString *searchString = nil;
@@ -284,6 +286,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Suggested Tokens
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateSuggestedTokensCompletion:(void (^)())completionBlock
 {
 	__block NSString *tokenBeingInputted = nil;
