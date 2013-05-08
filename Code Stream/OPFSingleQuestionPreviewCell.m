@@ -68,12 +68,25 @@
 
 }
 
+- (void)sharedSingleQuestionPreviewCellInit
+{
+	[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
+	
+	UIView *backgroundView = UIView.new;
+	backgroundView.backgroundColor = UIColor.whiteColor;
+	self.backgroundView = backgroundView;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
-	if (self) {
-		// Add KVO-Observer for self.observeValueForKeyPath
-		[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
-	}
+	if (self) [self sharedSingleQuestionPreviewCellInit];
+	return self;
+}
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+	if (self) [self sharedSingleQuestionPreviewCellInit];
 	return self;
 }
 
