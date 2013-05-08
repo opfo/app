@@ -68,7 +68,6 @@ typedef enum ScrollDirection : NSInteger {
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
-Boolean heatMode = NO;
 UINavigationController *askQuestionsNavigationController;
 
 #pragma mark - Object Lifecycle
@@ -135,15 +134,9 @@ UINavigationController *askQuestionsNavigationController;
 	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-	
-	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;*/
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:writeButton, heatButton, nil];
+	self.navigationItem.rightBarButtonItem = writeButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -198,9 +191,6 @@ UINavigationController *askQuestionsNavigationController;
 	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
     OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	[cell configureWithQuestionData:question];
-    
-    //If Heat Mode is turned on, color the cell according to it's score
-    [cell heatMode:heatMode];
 	
     return cell;
 }
@@ -211,9 +201,6 @@ UINavigationController *askQuestionsNavigationController;
 	return 150;
 }
 
-- (void)setQuestions:(NSArray *)questions {
-	NSLog(@"Questions View has recieved %lu questions to insert",(unsigned long)questions.count);
-}
 
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -754,18 +741,6 @@ UINavigationController *askQuestionsNavigationController;
 - (NSString *)tabTitle
 {
     return NSLocalizedString(@"Questions", @"Questions view controller tab title");
-}
-
-// Turn on/off heat mode when the "Heat Mode"-button is clicked.
--(void) switchHeatMode:(id) paramSender{
-    if(!heatMode){
-        heatMode = YES;
-        [self.tableView reloadData];
-    }
-    else{
-        heatMode = NO;
-        [self.tableView reloadData];
-    }
 }
 
 
