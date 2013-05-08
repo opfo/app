@@ -111,6 +111,7 @@ Boolean heatMode = NO;
 	
 	self.tableView.tableHeaderView = self.searchBarHeader;
 	self.searchBar.delegate = self;
+	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 150.f;
@@ -250,7 +251,7 @@ Boolean heatMode = NO;
 	});
 	
 	NSArray *tags = [searchString opf_tagsFromSearchString];
-	NSArray *users = [searchString opf_usersFromSearchString];
+	//NSArray *users = [searchString opf_usersFromSearchString];
 	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
 	
 	OPFQuery *query = nil;
@@ -276,6 +277,22 @@ Boolean heatMode = NO;
 {
 	self.searchString = searchString;
 	self.searchBar.text = self.searchString;
+}
+
+- (void)updateSorting:(UISegmentedControl *) sender {
+	switch ((SortOrder)sender.selectedSegmentIndex) {
+		case Score:
+			NSLog(@"Score");
+			break;
+		case Activity:
+			NSLog(@"Activity");
+			break;
+		case Created:
+			NSLog(@"Created");
+			break;
+		default:
+			break;
+	}
 }
 
 

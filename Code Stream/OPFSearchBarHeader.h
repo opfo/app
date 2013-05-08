@@ -11,6 +11,8 @@
 
 typedef enum {SearchBar = 2, SortControl = 1} DisplayHeader;
 
+typedef enum {Score, Activity, Created} SortOrder;
+
 @interface OPFSearchBarHeader : UIScrollView <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortOrderControl;
 @property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
