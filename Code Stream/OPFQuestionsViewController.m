@@ -7,23 +7,31 @@
 //
 
 #import "OPFQuestionsViewController.h"
+
 #import "OPFTag.h"
 #import "OPFUser.h"
 #import "OPFQuestion.h"
+
+#import "OPFPostQuestionViewController.h"
+
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
+
 #import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "OPFQuestionsSearchBarTokenView.h"
 #import "OPFTokenCollectionViewCell.h"
+
 #import "NSRegularExpression+OPFSearchString.h"
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
 #import "UIScrollView+OPFScrollDirection.h"
+#import "UIColor+OPFAppColors.h"
+
 #import <BlocksKit.h>
-#import "OPFPostQuestionViewController.h"
+
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
@@ -179,10 +187,10 @@ UINavigationController *askQuestionsNavigationController;
 - (void)presentViewControllerForQuestion:(OPFQuestion *)question animated:(BOOL)animated
 {
 	NSParameterAssert(question != nil);
-
+	
 	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
 	questionViewController.question = question;
-
+	
 	[self.navigationController pushViewController:questionViewController animated:animated];
 }
 
@@ -366,21 +374,28 @@ UINavigationController *askQuestionsNavigationController;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	DLog(@"Asking new questions has not been implemtend.");
+	OPFPostQuestionViewController *postQuestionViewController = OPFPostQuestionViewController.new;
+    postQuestionViewController.title = @"Post a question";
+	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
+	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
 	
-	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
-    postview.title = @"Post a question";
-    
-    /*CATransition *transition = [CATransition animation];
-    transition.duration = 1.f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    transition.delegate = self;
-    [self.navigationController.navigationBar.layer addAnimation:transition forKey:nil];
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];*/
-    
-    [self.navigationController pushViewController:postview animated:YES];
+	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id sender) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}];
+	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
+		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
+		
+		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
+		
+		[self dismissViewControllerAnimated:YES completion:^{
+			if (newQuestion != nil) {
+				[self presentViewControllerForQuestion:newQuestion animated:YES];
+			}
+		}];
+		DCLog(newQuestion == nil, @"Expected to get a new question from the post question view controller but got nil.");
+	}];
+	
+	[self presentViewController:postQuestionNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - 
