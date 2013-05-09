@@ -72,10 +72,10 @@
 				<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="760718201">
 					<reference key="IBUICollectionView" ref="272337640"/>
 					<string key="IBUIItemSize">{50, 50}</string>
-					<string key="IBUIFooterReferenceSize">{50, 50}</string>
+					<string key="IBUIHeaderReferenceSize">{320, 40}</string>
 					<float key="IBUIMinimumLineSpacing">15</float>
 					<float key="IBUIMinimumInteritemSpacing">15</float>
-					<double key="IBUISectionInset.top">25</double>
+					<double key="IBUISectionInset.top">0.0</double>
 					<double key="IBUISectionInset.bottom">25</double>
 					<double key="IBUISectionInset.left">25</double>
 					<double key="IBUISectionInset.right">25</double>

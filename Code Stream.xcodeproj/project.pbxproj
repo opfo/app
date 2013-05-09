@@ -95,6 +95,8 @@
 		1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */; };
 		1A942409173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A942407173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m */; };
 		1A94240A173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A942408173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib */; };
+		1A94240E173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A94240D173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m */; };
+		1A942410173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A94240F173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib */; };
 		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
 		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
 		1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */; };
@@ -330,6 +332,9 @@
 		1A942406173BC8E800DE9D9B /* OPFTagBrowserCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionView.h; sourceTree = "<group>"; };
 		1A942407173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionView.m; sourceTree = "<group>"; };
 		1A942408173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionView.xib; sourceTree = "<group>"; };
+		1A94240C173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionViewHeaderInitial.h; sourceTree = "<group>"; };
+		1A94240D173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionViewHeaderInitial.m; sourceTree = "<group>"; };
+		1A94240F173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionViewHeaderInitial.xib; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
 		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
@@ -747,6 +752,16 @@
 			name = "Tag Browser View";
 			sourceTree = "<group>";
 		};
+		1A94240B173BCD5100DE9D9B /* Collection View Headers */ = {
+			isa = PBXGroup;
+			children = (
+				1A94240C173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.h */,
+				1A94240D173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m */,
+				1A94240F173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib */,
+			);
+			name = "Collection View Headers";
+			sourceTree = "<group>";
+		};
 		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
 			isa = PBXGroup;
 			children = (
@@ -996,6 +1011,7 @@
 			children = (
 				1A72197C17271A1C002B43CD /* Storyboard */,
 				1A639ECF17269C01009EB280 /* Table View Headers */,
+				1A94240B173BCD5100DE9D9B /* Collection View Headers */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				1A639EC91726821A009EB280 /* Profile Search View */,
 				1A6833471726A23600E3A687 /* Comments View */,
@@ -1399,6 +1415,7 @@
 				8CF371CE17399E4A009B6425 /* button_negative.png in Resources */,
 				8CF371D01739A855009B6425 /* button_negative1.png in Resources */,
 				1A94240A173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib in Resources */,
+				1A942410173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1576,7 @@
 				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
 				1A942409173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m in Sources */,
+				1A94240E173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

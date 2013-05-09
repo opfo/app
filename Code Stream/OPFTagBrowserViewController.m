@@ -9,6 +9,7 @@
 #import "OPFTagBrowserViewController.h"
 #import "OPFTag.h"
 #import "OPFTokenCollectionViewCell.h"
+#import "OPFTagBrowserCollectionViewHeaderInitial.h"
 
 @interface OPFTagBrowserViewController ()
 
@@ -22,6 +23,8 @@
 @implementation OPFTagBrowserViewController
 
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
+static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
+static NSInteger const TagSuggestionLimit = 100;
 
 - (id)init
 {
@@ -58,8 +61,13 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 {
     self.title = NSLocalizedString(@"Tag Browser", @"Tag Browser View controller title");
     
-    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];
-    self.suggestedTokens = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(100)] getMany]];
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    
+    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];    
+    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TagBrowserHeaderViewIdenfifier];
+    
+    self.suggestedTokens = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
 }
 
 - (void)viewDidLoad
@@ -120,6 +128,21 @@ static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier
 	cell.tokenView.text = token;
     
 	return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    OPFTagBrowserCollectionViewHeaderInitial * headerView = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                             withReuseIdentifier:TagBrowserHeaderViewIdenfifier
+                                                                    forIndexPath:indexPath];
+        
+        headerView.tagCount.text = [NSString stringWithFormat:@"%ld", (long)TagSuggestionLimit];
+    }
+    
+    return headerView;
 }
 
 
