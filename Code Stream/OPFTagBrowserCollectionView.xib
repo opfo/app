@@ -39,7 +39,12 @@
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -61,13 +66,19 @@
 					<int key="IBUIType">2</int>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUIIndicatorStyle">2</int>
 				<float key="IBUIMinimumZoomScale">0.0</float>
 				<float key="IBUIMaximumZoomScale">0.0</float>
 				<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="760718201">
 					<reference key="IBUICollectionView" ref="272337640"/>
 					<string key="IBUIItemSize">{50, 50}</string>
-					<float key="IBUIMinimumLineSpacing">10</float>
-					<float key="IBUIMinimumInteritemSpacing">10</float>
+					<string key="IBUIFooterReferenceSize">{50, 50}</string>
+					<float key="IBUIMinimumLineSpacing">15</float>
+					<float key="IBUIMinimumInteritemSpacing">15</float>
+					<double key="IBUISectionInset.top">25</double>
+					<double key="IBUISectionInset.bottom">25</double>
+					<double key="IBUISectionInset.left">25</double>
+					<double key="IBUISectionInset.right">25</double>
 				</object>
 				<array key="IBUICells" id="0"/>
 			</object>

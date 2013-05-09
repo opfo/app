@@ -93,6 +93,8 @@
 		1A896CF6172FD3A300E19525 /* tab-searchprofiles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */; };
 		1A896CF9172FD72D00E19525 /* OPFAppState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CF8172FD72D00E19525 /* OPFAppState.m */; };
 		1A8BE1661735ACC000F16882 /* NSString+OPFMD5Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */; };
+		1A942409173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A942407173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m */; };
+		1A94240A173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A942408173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib */; };
 		1A9D3F2217327D9C00EEF9D1 /* OPFSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */; };
 		1A9D3F2717327DD000EEF9D1 /* OPFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */; };
 		1A9D3F2817327DD000EEF9D1 /* OPFLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9D3F2617327DD000EEF9D1 /* OPFLoginView.xib */; };
@@ -105,9 +107,7 @@
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
 		1AD5D24417292A4A00B99352 /* avatar-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */; };
 		1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */; };
-		1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */; };
 		1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */; };
-		1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */; };
 		1AFCD1AC171F010C006B54E7 /* OPFCommentsViewTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */; };
 		32D4FF3BADFE477AB70A0692 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AB99B427B42F19DD7A6B9 /* libPods.a */; };
 		33DE4BF369CD474BA5432441 /* libPods-Code StreamTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */; };
@@ -327,6 +327,9 @@
 		1A896CF8172FD72D00E19525 /* OPFAppState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFAppState.m; sourceTree = "<group>"; };
 		1A8BE1641735ACC000F16882 /* NSString+OPFMD5Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFMD5Hash.h"; sourceTree = "<group>"; };
 		1A8BE1651735ACC000F16882 /* NSString+OPFMD5Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFMD5Hash.m"; sourceTree = "<group>"; };
+		1A942406173BC8E800DE9D9B /* OPFTagBrowserCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionView.h; sourceTree = "<group>"; };
+		1A942407173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionView.m; sourceTree = "<group>"; };
+		1A942408173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionView.xib; sourceTree = "<group>"; };
 		1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentViewHeaderView.xib; sourceTree = "<group>"; };
 		1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSignupViewController.h; sourceTree = "<group>"; };
 		1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSignupViewController.m; sourceTree = "<group>"; };
@@ -345,10 +348,7 @@
 		1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-empty@2x.png"; sourceTree = "<group>"; };
 		1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserViewController.h; sourceTree = "<group>"; };
 		1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserViewController.m; sourceTree = "<group>"; };
-		1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionView.xib; sourceTree = "<group>"; };
 		1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tagbrowser@2x.png"; sourceTree = "<group>"; };
-		1AD7629F1737ECF5002F157C /* OPFTagBrowserCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionView.h; sourceTree = "<group>"; };
-		1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionView.m; sourceTree = "<group>"; };
 		1AFCD1AB171F010C006B54E7 /* OPFCommentsViewTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFCommentsViewTable.xib; sourceTree = "<group>"; };
 		2D8AB99B427B42F19DD7A6B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4410D0B9FD1043EFA5A233CA /* libPods-Code StreamTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Code StreamTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -737,6 +737,16 @@
 			name = "Activity View";
 			sourceTree = "<group>";
 		};
+		1A942405173BC8D700DE9D9B /* Tag Browser View */ = {
+			isa = PBXGroup;
+			children = (
+				1A942406173BC8E800DE9D9B /* OPFTagBrowserCollectionView.h */,
+				1A942407173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m */,
+				1A942408173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib */,
+			);
+			name = "Tag Browser View";
+			sourceTree = "<group>";
+		};
 		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,16 +767,6 @@
 				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
 			);
 			name = "Comment Table View Cells";
-			sourceTree = "<group>";
-		};
-		1AD7629C1737EA77002F157C /* Tag Browser View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD762991737EA64002F157C /* OPFTagBrowserCollectionView.xib */,
-				1AD7629F1737ECF5002F157C /* OPFTagBrowserCollectionView.h */,
-				1AD762A01737ECF5002F157C /* OPFTagBrowserCollectionView.m */,
-			);
-			name = "Tag Browser View";
 			sourceTree = "<group>";
 		};
 		8128DF90171D81DA00C44410 /* Utilities */ = {
@@ -1002,11 +1002,10 @@
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				1A896CE7172FD00800E19525 /* Activity View */,
 				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
-				1AD7629C1737EA77002F157C /* Tag Browser View */,
+				1A942405173BC8D700DE9D9B /* Tag Browser View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
-				1AD7629C1737EA77002F157C /* Tag Browser View */,
 				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
@@ -1391,7 +1390,6 @@
 				1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */,
 				1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */,
 				1A08F5451739095C00D232D2 /* acceptedAnswer-grey@2x.png in Resources */,
-				1AD7629B1737EA64002F157C /* OPFTagBrowserCollectionView.xib in Resources */,
 				1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */,
 				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
 				8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */,
@@ -1400,6 +1398,7 @@
 				8CF371CC173993CC009B6425 /* reload.png in Resources */,
 				8CF371CE17399E4A009B6425 /* button_negative.png in Resources */,
 				8CF371D01739A855009B6425 /* button_negative1.png in Resources */,
+				1A94240A173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1557,9 +1556,9 @@
 				1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */,
 				1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */,
 				1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */,
-				1AD762A11737ECF5002F157C /* OPFTagBrowserCollectionView.m in Sources */,
 				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
+				1A942409173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
