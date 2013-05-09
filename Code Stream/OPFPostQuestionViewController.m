@@ -60,11 +60,11 @@
     [self.view addSubview:button];
     
     
-    NSLog(@"Configured");
+    DLog(@"Configured");
 }
 
 -(void) postButtonPressed{
-    NSLog(@"Button pressed");
+    DLog(@"Button pressed");
     if([self.titleField.text isEqualToString:@""] || [self.bodyField.text isEqualToString:@""] || [self.tagsField.text isEqualToString:@""]){
         UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Please fill in empty fields" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [emptyField show];
@@ -88,7 +88,7 @@
     int totalCount=0;
     if ([result next]) {
         totalCount = [result intForColumnIndex:0];
-        NSLog(@"Just testing so DB access is correct");
+        DLog(@"Just testing so DB access is correct");
     }
     
     return YES;

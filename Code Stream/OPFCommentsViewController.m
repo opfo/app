@@ -77,7 +77,7 @@
 {
     NSString *commentText = self.inputTextField.text;
     
-    NSLog(@"%@%@", @"NOP of saving comment: ", commentText);
+    DLog(@"%@%@", @"NOP of saving comment: ", commentText);
     
     [self.inputTextField setText:nil];
     [self.inputTextField resignFirstResponder];

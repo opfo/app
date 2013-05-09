@@ -172,11 +172,11 @@ UINavigationController *askQuestionsNavigationController;
 {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Questionsview will disappear");
-    NSLog(@"Present view %@", self.presentedViewController);
+    DLog(@"Questionsview will disappear");
+    DLog(@"Present view %@", self.presentedViewController);
 	
     if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
-        NSLog(@"YES IT*S THE SAME VIEW");
+        DLog(@"YES IT*S THE SAME VIEW");
     }
     [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
