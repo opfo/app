@@ -107,6 +107,8 @@
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
 		1AC64EB517213DAA00E9A984 /* submit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC64EB417213DAA00E9A984 /* submit@2x.png */; };
+		1AC6A5ED173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC6A5EC173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m */; };
+		1AC6A5EF173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AC6A5EE173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib */; };
 		1AD5D24417292A4A00B99352 /* avatar-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */; };
 		1AD7629A1737EA64002F157C /* OPFTagBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */; };
 		1AD7629E1737EC4D002F157C /* tab-tagbrowser@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AD7629D1737EC4D002F157C /* tab-tagbrowser@2x.png */; };
@@ -350,6 +352,9 @@
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
 		1AC64EB417213DAA00E9A984 /* submit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "submit@2x.png"; sourceTree = "<group>"; };
+		1AC6A5EB173BDFCC0006243B /* OPFTagBrowserCollectionViewHeaderTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserCollectionViewHeaderTag.h; sourceTree = "<group>"; };
+		1AC6A5EC173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserCollectionViewHeaderTag.m; sourceTree = "<group>"; };
+		1AC6A5EE173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserCollectionViewHeaderTag.xib; sourceTree = "<group>"; };
 		1AD5D24317292A4A00B99352 /* avatar-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar-empty@2x.png"; sourceTree = "<group>"; };
 		1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserViewController.h; sourceTree = "<group>"; };
 		1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserViewController.m; sourceTree = "<group>"; };
@@ -758,6 +763,9 @@
 				1A94240C173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.h */,
 				1A94240D173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m */,
 				1A94240F173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib */,
+				1AC6A5EB173BDFCC0006243B /* OPFTagBrowserCollectionViewHeaderTag.h */,
+				1AC6A5EC173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m */,
+				1AC6A5EE173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib */,
 			);
 			name = "Collection View Headers";
 			sourceTree = "<group>";
@@ -1416,6 +1424,7 @@
 				8CF371D01739A855009B6425 /* button_negative1.png in Resources */,
 				1A94240A173BC8E800DE9D9B /* OPFTagBrowserCollectionView.xib in Resources */,
 				1A942410173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib in Resources */,
+				1AC6A5EF173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1577,6 +1586,7 @@
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
 				1A942409173BC8E800DE9D9B /* OPFTagBrowserCollectionView.m in Sources */,
 				1A94240E173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m in Sources */,
+				1AC6A5ED173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
