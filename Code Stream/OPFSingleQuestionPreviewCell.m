@@ -61,7 +61,6 @@
 	self.answers = [question.answerCount integerValue];
 	self.tags = question.tags;
 	self.title = question.title;
-	[self.questionTextLabel sizeToFit];
 	
 	UIImage *answersIndicatorImage = nil;
 	if (question.acceptedAnswerId.unsignedIntegerValue != 0) {
@@ -86,6 +85,14 @@
 		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-normal-background@2x"];
 	}
 	self.metadataBackgroundImageView.image = metadataBackgroundImage;
+	
+	CGSize selfSize = self.bounds.size;
+	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
+	CGSize questionTextLabelBoundingSize = CGSizeMake(selfSize.width - metadataSize.width - 20, selfSize.height - 10);
+	CGSize questionTextLabelSize = [self.questionTextLabel sizeThatFits:questionTextLabelBoundingSize];
+	CGRect questionTextLabelFrame = self.questionTextLabel.frame;
+	questionTextLabelFrame.size = questionTextLabelSize;
+	self.questionTextLabel.frame = questionTextLabelFrame;
 }
 
 - (void)sharedSingleQuestionPreviewCellInit
