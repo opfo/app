@@ -58,13 +58,12 @@
 						<string key="NSFrame">{{367, 7}, {263, 30}}</string>
 						<reference key="NSSuperview" ref="954857491"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBSegmentControlStyle">2</int>
 						<int key="IBNumberOfSegments">3</int>
-						<int key="IBSelectedSegmentIndex">2</int>
+						<int key="IBSelectedSegmentIndex">1</int>
 						<array key="IBSegmentTitles">
 							<string>Score</string>
 							<string>Activity</string>
@@ -100,7 +99,6 @@
 						<reference key="NSNextKeyView" ref="913015958"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">2</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -158,6 +156,10 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="348043587"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MSAwLjUgMAA</bytes>
+				</object>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
@@ -165,6 +167,7 @@
 					<string key="IBUIDisplayName">Freeform</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<bool key="IBUIPagingEnabled">YES</bool>
 				<bool key="IBUIShowsHorizontalScrollIndicator">NO</bool>
 				<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 				<bool key="IBUIBouncesZoom">NO</bool>
@@ -421,21 +424,6 @@
 						<reference key="parent" ref="954857491"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">93</int>
-						<reference key="object" ref="768479045"/>
-						<reference key="parent" ref="954857491"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">96</int>
-						<reference key="object" ref="704065343"/>
-						<reference key="parent" ref="954857491"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">101</int>
-						<reference key="object" ref="888436623"/>
-						<reference key="parent" ref="954857491"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">169</int>
 						<reference key="object" ref="913015958"/>
 						<array class="NSMutableArray" key="children">
@@ -572,11 +560,6 @@
 						<reference key="parent" ref="789067579"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">229</int>
-						<reference key="object" ref="503818587"/>
-						<reference key="parent" ref="954857491"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">233</int>
 						<reference key="object" ref="527101507"/>
 						<reference key="parent" ref="954857491"/>
@@ -597,8 +580,28 @@
 						<reference key="parent" ref="913015958"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">93</int>
+						<reference key="object" ref="768479045"/>
+						<reference key="parent" ref="954857491"/>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">249</int>
 						<reference key="object" ref="156836216"/>
+						<reference key="parent" ref="954857491"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">101</int>
+						<reference key="object" ref="888436623"/>
+						<reference key="parent" ref="954857491"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">96</int>
+						<reference key="object" ref="704065343"/>
+						<reference key="parent" ref="954857491"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">229</int>
+						<reference key="object" ref="503818587"/>
 						<reference key="parent" ref="954857491"/>
 					</object>
 				</array>
@@ -613,7 +616,7 @@
 					<reference ref="201565583"/>
 				</array>
 				<boolean value="NO" key="169.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
-				<integer value="2" key="169.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
+				<integer value="1" key="169.IUISegmentedControlInspectorSelectedSegmentMetadataKey"/>
 				<string key="191.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<array key="191.IBViewMetadataConstraints">
 					<reference ref="502324871"/>
@@ -684,7 +687,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">249</int>
+			<int key="maxID">266</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

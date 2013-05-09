@@ -46,6 +46,10 @@ typedef enum : NSInteger {
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
 
+#pragma mark - Sorting
+@property (strong) NSString *sortCriterion;
+@property OPFSortOrder sortOrder;
+
 @end
 
 
@@ -64,6 +68,8 @@ Boolean heatMode = NO;
 {
 	_searchString = @"";
 	_isFirstTimeAppearing = YES;
+	_sortCriterion = @"last_activity_date";
+	_sortOrder = kOPFSortOrderDescending;
 	_filteredQuestions = NSMutableArray.new;
 	_suggestedTokens = NSMutableArray.new;
 }
@@ -109,8 +115,12 @@ Boolean heatMode = NO;
 	
 	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
 	
+	
 	self.tableView.tableHeaderView = self.searchBarHeader;
 	self.searchBar.delegate = self;
+	self.searchBarHeader.delegate = self;
+	
+	
 	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
@@ -148,6 +158,8 @@ Boolean heatMode = NO;
 	[super viewWillAppear:animated];
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
+	[self addObserver:self forKeyPath:CDStringFromSelector(sortCriterion) options:NSKeyValueObservingOptionOld context:NULL];
+	[self addObserver:self forKeyPath:CDStringFromSelector(sortOrder) options:NSKeyValueObservingOptionOld context:NULL];
 	
 	if (self.searchString.length > 0) {
 		self.searchBar.text = self.searchString;
@@ -257,9 +269,9 @@ Boolean heatMode = NO;
 	OPFQuery *query = nil;
 	if (keywords.length > 0 || tags.count > 0) {
 		NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
-		query = [[[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
+		query = [[[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:self.sortCriterion order:self.sortOrder] limit:@(100)];
 	} else {
-		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:self.sortCriterion order:self.sortOrder] limit:@(50)];
 	}
 	
 	NSArray *filteredQuestions = [query getMany];
@@ -279,21 +291,33 @@ Boolean heatMode = NO;
 	self.searchBar.text = self.searchString;
 }
 
-- (void)updateSorting:(UISegmentedControl *) sender {
+- (IBAction)updateSorting:(UISegmentedControl *) sender {
 	switch ((SortOrder)sender.selectedSegmentIndex) {
 		case Score:
-			NSLog(@"Score");
+			self.sortCriterion = @"score";
 			break;
 		case Activity:
-			NSLog(@"Activity");
+			self.sortCriterion = @"last_activity_date";
 			break;
 		case Created:
-			NSLog(@"Created");
+			self.sortCriterion = @"creation_date";
 			break;
 		default:
+			@throw @"Undefined sort Order. Please enhance the enum sortOrder and add segment in segmented Control";
 			break;
 	}
+	
+	self.sortOrder = kOPFSortOrderDescending;
 }
+
+
+#pragma mark - ScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	if (self.searchBarHeader.displayedHeader != SearchBar) {
+		[self dismissSearchBarExtras];
+	}
+}
+
 
 
 #pragma mark - Update Suggested Tokens
@@ -356,8 +380,13 @@ Boolean heatMode = NO;
 #pragma mark - Key Value Observation
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
-		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == NO) {
+	if (object == self &&
+		([keyPath isEqualToString:CDStringFromSelector(searchString)] ||
+		 [keyPath isEqualToString:CDStringFromSelector(sortCriterion)] ||
+		 [keyPath isEqualToString:CDStringFromSelector(sortOrder)])) {
+		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == YES)
+			return;
+		else {
 			[NSOperationQueue.mainQueue addOperationWithBlock:^{
 				[self updateSearchBarWithTokens];
 			}];
@@ -592,6 +621,11 @@ Boolean heatMode = NO;
 
 
 #pragma mark - UISearchBarDelegate Methods
+
+- (OPFQuestionsSearchBar *)searchBar {
+	return self.searchBarHeader.searchBar;
+}
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
 	return YES;
@@ -604,6 +638,8 @@ Boolean heatMode = NO;
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+	if (!self.searchString.length && searchText.length > 0)
+		self.searchBarHeader.sortOrderControl.selectedSegmentIndex = Score;
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
@@ -741,11 +777,6 @@ Boolean heatMode = NO;
     }
 }
 
-
-#pragma mark Custom property getters
-- (OPFQuestionsSearchBar *)searchBar {
-	return self.searchBarHeader.searchBar;
-}
 
 
 @end
