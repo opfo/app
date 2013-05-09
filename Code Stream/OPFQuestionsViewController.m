@@ -175,6 +175,18 @@ UINavigationController *askQuestionsNavigationController;
 }
 
 
+#pragma mark - Presenting View Controllers
+- (void)presentViewControllerForQuestion:(OPFQuestion *)question animated:(BOOL)animated
+{
+	NSParameterAssert(question != nil);
+
+	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
+	questionViewController.question = question;
+
+	[self.navigationController pushViewController:questionViewController animated:animated];
+}
+
+
 #pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -207,11 +219,8 @@ UINavigationController *askQuestionsNavigationController;
 {
 	[self dismissSearchBarExtras];
 	
-	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
 	OPFQuestion *question = self.filteredQuestions[indexPath.row];
-	questionViewController.question = question;
-	
-	[self.navigationController pushViewController:questionViewController animated:YES];
+	[self presentViewControllerForQuestion:question animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
