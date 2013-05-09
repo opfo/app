@@ -13,7 +13,8 @@
 #import "OPFProfileContainerController.h"
 #import "OPFTagBrowserViewController.h"
 #import "OPFAppState.h"
-#import "UIColor+OPFHEX.h"
+#import "UIColor+OPFAppColors.h"
+
 
 @interface OPFTabbedHomeViewController ()
 
@@ -76,7 +77,7 @@ const int TabbedBarHeight = 44;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-	self.view.backgroundColor = [UIColor opf_colorWithHexValue:0xe2e7ed];
+	self.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
 }
 
 - (void)didReceiveMemoryWarning

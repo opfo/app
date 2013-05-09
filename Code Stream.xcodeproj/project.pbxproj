@@ -195,6 +195,7 @@
 		9C235FF6173A9E9200907558 /* vote-up-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FE7173A9E9200907558 /* vote-up-highlighted@2x.png */; };
 		9C235FF7173A9E9200907558 /* vote-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FE8173A9E9200907558 /* vote-up@2x.png */; };
 		9C235FFA173AAAE800907558 /* UIFont+OPFAppFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C235FF9173AAAE800907558 /* UIFont+OPFAppFonts.m */; };
+		9C235FFD173C511800907558 /* UIColor+OPFAppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */; };
 		9C3768711733277800719F2A /* SSBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37686E1733277800719F2A /* SSBorderedView.m */; };
 		9C3768721733277800719F2A /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3768701733277800719F2A /* SSDrawingUtilities.m */; };
 		9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
@@ -504,6 +505,8 @@
 		9C235FE8173A9E9200907558 /* vote-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vote-up@2x.png"; path = "Images/vote-up@2x.png"; sourceTree = "<group>"; };
 		9C235FF8173AAAE800907558 /* UIFont+OPFAppFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+OPFAppFonts.h"; sourceTree = "<group>"; };
 		9C235FF9173AAAE800907558 /* UIFont+OPFAppFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OPFAppFonts.m"; sourceTree = "<group>"; };
+		9C235FFB173C511800907558 /* UIColor+OPFAppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFAppColors.h"; sourceTree = "<group>"; };
+		9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OPFAppColors.m"; sourceTree = "<group>"; };
 		9C37686D1733277800719F2A /* SSBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBorderedView.h; sourceTree = "<group>"; };
 		9C37686E1733277800719F2A /* SSBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBorderedView.m; sourceTree = "<group>"; };
 		9C37686F1733277800719F2A /* SSDrawingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDrawingUtilities.h; sourceTree = "<group>"; };
@@ -1230,6 +1233,8 @@
 			children = (
 				9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */,
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
+				9C235FFB173C511800907558 /* UIColor+OPFAppColors.h */,
+				9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */,
 				9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */,
 				9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */,
 				9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */,
@@ -1692,6 +1697,7 @@
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
 				9C235FFA173AAAE800907558 /* UIFont+OPFAppFonts.m in Sources */,
+				9C235FFD173C511800907558 /* UIColor+OPFAppColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
