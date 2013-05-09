@@ -1652,11 +1652,11 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="location@2x.png">{22, 30}</string>
-			<string key="score@2x.png">{30, 30}</string>
-			<string key="url@2x.png">{30, 30}</string>
-			<string key="votes-down@2x.png">{30, 30}</string>
-			<string key="votes-up@2x.png">{30, 30}</string>
+			<string key="location@2x.png">{16, 16}</string>
+			<string key="score@2x.png">{16, 16}</string>
+			<string key="url@2x.png">{16, 16}</string>
+			<string key="votes-down@2x.png">{16, 16}</string>
+			<string key="votes-up@2x.png">{16, 16}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

@@ -23,7 +23,7 @@
 #import "NSString+OPFStripCharacters.h"
 #import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
-
+#import "OPFPostQuestionViewController.h"
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
@@ -69,6 +69,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
 Boolean heatMode = NO;
+UINavigationController *askQuestionsNavigationController;
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -168,7 +169,15 @@ Boolean heatMode = NO;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Questionsview will disappear");
+    NSLog(@"Present view %@", self.presentedViewController);
+	
+    if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
+        NSLog(@"YES IT*S THE SAME VIEW");
+    }
+    [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
@@ -245,6 +254,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Filtered Questions
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	__block NSString *searchString = nil;
@@ -284,6 +295,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Suggested Tokens
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateSuggestedTokensCompletion:(void (^)())completionBlock
 {
 	__block NSString *tokenBeingInputted = nil;
@@ -359,22 +372,20 @@ Boolean heatMode = NO;
 {
 	DLog(@"Asking new questions has not been implemtend.");
 	
-	UIViewController *askQuestionsViewController = UIViewController.new;
-	askQuestionsViewController.view.backgroundColor = UIColor.redColor;
-	
-	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:askQuestionsViewController];
-	
-	__weak typeof(self) weakSelf = self;
-	[self presentViewController:askQuestionsNavigationController animated:YES completion:^{
-		double delayInSeconds = .5f;
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-			UIViewController *self = weakSelf;
-			[self dismissViewControllerAnimated:YES completion:nil];
-		});
-	}];
+	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
+    postview.title = @"Post a question";
+    
+    /*CATransition *transition = [CATransition animation];
+    transition.duration = 1.f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromTop;
+    transition.delegate = self;
+    [self.navigationController.navigationBar.layer addAnimation:transition forKey:nil];
+    [self.navigationController.view.layer addAnimation:transition forKey:nil];*/
+    
+    [self.navigationController pushViewController:postview animated:YES];
 }
-
 
 #pragma mark - 
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
