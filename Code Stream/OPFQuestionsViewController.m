@@ -596,16 +596,16 @@ UINavigationController *askQuestionsNavigationController;
 
 
 #pragma mark - UISearchBarDelegate Methods
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
 	[searchBar setShowsCancelButton:YES animated:YES];
-	return YES;
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
 	[searchBar setShowsCancelButton:NO animated:YES];
-	return YES;
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
