@@ -7,10 +7,12 @@
 //
 
 #import "OPFTagBrowserCollectionViewHeaderTag.h"
+#import "OPFTag.h"
 
 @interface OPFTagBrowserCollectionViewHeaderTag()
 
 - (void)opfSetupView;
+- (void)setModelValuesInView;
 
 @end
 
@@ -38,11 +40,21 @@
     return self;
 }
 
+- (void)setTagModel:(OPFTag *)tagModel
+{
+    _tagModel = tagModel;
+}
+
 #pragma mark - Private methods
 
 - (void)opfSetupView
 {
     
+}
+
+- (void)setModelValuesInView
+{
+    self.tagName.text = self.tagModel.name;
 }
 
 @end

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFTag;
+
 @interface OPFTagBrowserCollectionViewHeaderTag : UICollectionReusableView
+
+@property (strong, nonatomic) OPFTag *tagModel;
 
 @property (weak, nonatomic) IBOutlet UILabel *tagName;
 
