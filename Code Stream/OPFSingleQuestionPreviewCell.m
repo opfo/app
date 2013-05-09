@@ -9,9 +9,12 @@
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFUserPreviewButton.h"
+#import "UIFont+OPFAppFonts.h"
 
 
-@implementation OPFSingleQuestionPreviewCell
+@implementation OPFSingleQuestionPreviewCell {
+	OPFScoreNumberFormatter *_numberFormatter;
+}
 
 
 #pragma mark Properties
@@ -21,38 +24,31 @@
 @synthesize answers = _answers;
 
 
-- (void)setAcceptedAnswer:(BOOL)acceptedAnswer {
-	self.acceptedAnswerImage.hidden = !acceptedAnswer;
+- (void)setScore:(NSInteger)score {
+	if (_score != score) {
+		_score = score;
+		self.scoreLabel.text = [_numberFormatter stringFromScore:score];
+	}
 }
 
-- (BOOL)acceptedAnswer {
-	return !self.acceptedAnswerImage.hidden;
+- (void)setAnswers:(NSInteger)answers {
+	if (_answers != answers) {
+		_answers = answers;
+		self.answersLabel.text = [_numberFormatter stringFromScore:answers];
+	}
 }
 
-- (void)setScore:(NSInteger)Score {
-	_score = Score;
-	
-	OPFScoreNumberFormatter *format = [OPFScoreNumberFormatter new];
-	
-	self.scoreLabel.text = [format stringFromScore:Score];
-}
-
-- (void)setAnswers:(NSInteger)Answers {
-	_answers = Answers;
-	self.answersLabel.text = [NSNumber numberWithInteger:Answers].stringValue;
-}
-
-- (void)setTitle:(NSString *)Title {
-	_title = Title;
-	self.questionLabel.text = Title;
+- (void)setTitle:(NSString *)title {
+	if (_title != title) {
+		_title = title;
+		self.questionTextLabel.text = title;
+	}
 }
 
 // KVO method for updating the tag view on change of the public property
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual: @"tags"] && self.tags) {
 		[self.tagList reloadData];
-	} else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
 }
 
@@ -60,21 +56,47 @@
 #pragma mark Object Lifecycle
 
 - (void)configureWithQuestionData:(OPFQuestion *)question {
-	self.acceptedAnswer = question.acceptedAnswerId != nil;
-	self.score = [question.score integerValue];
+	NSInteger questionScore = question.score.integerValue;
+	self.score = questionScore;
 	self.answers = [question.answerCount integerValue];
-	self.title = question.title;
 	self.tags = question.tags;
-
+	self.title = question.title;
+	[self.questionTextLabel sizeToFit];
+	
+	UIImage *answersIndicatorImage = nil;
+	if (question.acceptedAnswerId.unsignedIntegerValue != 0) {
+		answersIndicatorImage = [UIImage imageNamed:@"post-accepted@2x"];
+	} else if (question.score.integerValue < 0) {
+		answersIndicatorImage = [UIImage imageNamed:@"post-negative@2x"];
+	} else {
+		answersIndicatorImage = [UIImage imageNamed:@"post-normal@2x"];
+	}
+	self.answersIndicatorImageView.image = answersIndicatorImage;
+	
+	UIImage *metadataBackgroundImage = nil;
+	if (questionScore > 100) {
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-accepted-background@2x"];
+	} else if (questionScore > 25) {
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-cool-background@2x"];
+	} else if (questionScore < -5) {
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-horrible-background@2x"];
+	} else if (questionScore < 0) {
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-bad-background@2x"];
+	} else {
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-normal-background@2x"];
+	}
+	self.metadataBackgroundImageView.image = metadataBackgroundImage;
 }
 
 - (void)sharedSingleQuestionPreviewCellInit
 {
-	[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
+	_numberFormatter = OPFScoreNumberFormatter.new;
 	
 	UIView *backgroundView = UIView.new;
 	backgroundView.backgroundColor = UIColor.whiteColor;
 	self.backgroundView = backgroundView;
+	
+	[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -96,6 +118,18 @@
 	
 	self.tagList.dataSource = self;
 	self.tagList.delegate = self;
+	
+	CGFloat textShadowOpacity = .7f;
+	CGFloat textShadowRadius = 2.f;
+	CGSize textShadowOffset = CGSizeMake(0, 1.f);
+	self.scoreLabel.layer.shadowColor = UIColor.blackColor.CGColor;
+	self.scoreLabel.layer.shadowOffset = textShadowOffset;
+	self.scoreLabel.layer.shadowRadius = textShadowRadius;
+	self.scoreLabel.layer.shadowOpacity = textShadowOpacity;
+	self.answersLabel.layer.shadowColor = UIColor.blackColor.CGColor;
+	self.answersLabel.layer.shadowOffset = textShadowOffset;
+	self.answersLabel.layer.shadowRadius = textShadowRadius;
+	self.answersLabel.layer.shadowOpacity = textShadowOpacity;
 }
 
 - (void)prepareForReuse
