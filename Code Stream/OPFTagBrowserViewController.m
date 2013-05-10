@@ -8,24 +8,31 @@
 
 #import "OPFTagBrowserViewController.h"
 #import "OPFTag.h"
+#import "OPFQuestion.h"
+#import "OPFQuery.h"
 #import "OPFTokenCollectionViewCell.h"
 #import "OPFTagBrowserCollectionViewHeaderInitial.h"
 #import "OPFTagBrowserCollectionView.h"
 
 @interface OPFTagBrowserViewController ()
 
-@property (strong) NSMutableArray *suggestedTokens;
+@property (strong) NSMutableArray *suggestedTags;
+@property (strong) NSMutableArray *questionsByTag;
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
-- (void)didSelectToken:(OPFTag *)tag;
+- (void)didSelectTag:(OPFTag *)tag;
+- (void)loadQuestionsForTag:(OPFTag *)tag;
+- (void)setResultCountInView;
 
 @end
 
 @implementation OPFTagBrowserViewController
 
 static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
+static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
 static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
 static NSInteger const TagSuggestionLimit = 100;
+static NSInteger const TagLoadingByTagLimit = 50;
 
 - (id)init
 {
@@ -65,9 +72,7 @@ static NSInteger const TagSuggestionLimit = 100;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-   
-    
-    self.suggestedTokens = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
+    self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
 }
 
 - (void)viewDidLoad
@@ -85,12 +90,29 @@ static NSInteger const TagSuggestionLimit = 100;
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.suggestedTokens objectAtIndex:indexPath.row];
+    return [self.suggestedTags objectAtIndex:indexPath.row];
 }
 
-- (void)didSelectToken:(OPFTag *)tag
+- (void)didSelectTag:(OPFTag *)tag
 {
-	
+	[self loadQuestionsForTag:tag];
+}
+
+- (void)loadQuestionsForTag:(OPFTag *)tag
+{
+    OPFQuery *query = [[OPFQuestion searchFor:@"" inTags:@[tag.name]] orderBy:@"score" order:kOPFSortOrderDescending];
+    
+    self.questionsByTag = [NSMutableArray arrayWithArray:[[query limit:@(TagLoadingByTagLimit)] getMany]];
+    
+    [self setResultCountInView];
+}
+
+- (void)setResultCountInView
+{
+    self.footerTagCount.text = (self.questionsByTag.count >= TagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)TagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
+    self.footerTagCountLabel.titleLabel.text = TagCountLabel;
+    
+    self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
 }
 
 #pragma mark - TabbedViewController methods
@@ -116,7 +138,7 @@ static NSInteger const TagSuggestionLimit = 100;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	return self.suggestedTokens.count;
+	return self.suggestedTags.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -162,7 +184,7 @@ static NSInteger const TagSuggestionLimit = 100;
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self didSelectToken:[self tagFromIndexPath:indexPath]];
+	[self didSelectTag:[self tagFromIndexPath:indexPath]];
 }
 
 @end
