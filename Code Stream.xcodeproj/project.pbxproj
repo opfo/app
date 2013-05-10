@@ -53,6 +53,9 @@
 		1A08F5431738F4E300D232D2 /* view-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F5401738F4E300D232D2 /* view-count@2x.png */; };
 		1A08F5451739095C00D232D2 /* acceptedAnswer-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */; };
 		1A0FEF7F1733DFF1002EB5AE /* tab-latestactivity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */; };
+		1A2FAEF1173CF8DA00ABAE13 /* OPFTagBrowserFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FAEF0173CF8DA00ABAE13 /* OPFTagBrowserFooter.m */; };
+		1A2FAEF3173CF8EA00ABAE13 /* OPFTagBrowserFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A2FAEF2173CF8EA00ABAE13 /* OPFTagBrowserFooter.xib */; };
+		1A2FAEF5173CF9F700ABAE13 /* arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A2FAEF4173CF9F700ABAE13 /* arrow-right.png */; };
 		1A39C2861736C7ED0049DB67 /* OPFActivityCommentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */; };
 		1A39C2891736C8380049DB67 /* OPFActivityQuestionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C2881736C8380049DB67 /* OPFActivityQuestionViewCell.m */; };
 		1A39C28C1736C8500049DB67 /* OPFActivityAnswerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A39C28B1736C8500049DB67 /* OPFActivityAnswerViewCell.m */; };
@@ -278,6 +281,10 @@
 		1A08F5401738F4E300D232D2 /* view-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view-count@2x.png"; sourceTree = "<group>"; };
 		1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer-grey@2x.png"; sourceTree = "<group>"; };
 		1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-latestactivity@2x.png"; sourceTree = "<group>"; };
+		1A2FAEEF173CF8DA00ABAE13 /* OPFTagBrowserFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserFooter.h; sourceTree = "<group>"; };
+		1A2FAEF0173CF8DA00ABAE13 /* OPFTagBrowserFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserFooter.m; sourceTree = "<group>"; };
+		1A2FAEF2173CF8EA00ABAE13 /* OPFTagBrowserFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFTagBrowserFooter.xib; sourceTree = "<group>"; };
+		1A2FAEF4173CF9F700ABAE13 /* arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-right.png"; sourceTree = "<group>"; };
 		1A39C2841736C7ED0049DB67 /* OPFActivityCommentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityCommentViewCell.h; sourceTree = "<group>"; };
 		1A39C2851736C7ED0049DB67 /* OPFActivityCommentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFActivityCommentViewCell.m; sourceTree = "<group>"; };
 		1A39C2871736C8380049DB67 /* OPFActivityQuestionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFActivityQuestionViewCell.h; sourceTree = "<group>"; };
@@ -722,6 +729,7 @@
 				1A896CEF172FD3A300E19525 /* tab-home@2x.png */,
 				1A896CF1172FD3A300E19525 /* tab-me@2x.png */,
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
+				1A2FAEF4173CF9F700ABAE13 /* arrow-right.png */,
 				1A08F53E1738F4E300D232D2 /* answer-count.png */,
 				1A08F5441739095C00D232D2 /* acceptedAnswer-grey@2x.png */,
 				1A08F53F1738F4E300D232D2 /* comment-count@2x.png */,
@@ -762,7 +770,7 @@
 			name = "Tag Browser View";
 			sourceTree = "<group>";
 		};
-		1A94240B173BCD5100DE9D9B /* Collection View Headers */ = {
+		1A94240B173BCD5100DE9D9B /* Collection View Headers & Footers */ = {
 			isa = PBXGroup;
 			children = (
 				1A94240C173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.h */,
@@ -771,8 +779,11 @@
 				1AC6A5EB173BDFCC0006243B /* OPFTagBrowserCollectionViewHeaderTag.h */,
 				1AC6A5EC173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m */,
 				1AC6A5EE173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib */,
+				1A2FAEEF173CF8DA00ABAE13 /* OPFTagBrowserFooter.h */,
+				1A2FAEF0173CF8DA00ABAE13 /* OPFTagBrowserFooter.m */,
+				1A2FAEF2173CF8EA00ABAE13 /* OPFTagBrowserFooter.xib */,
 			);
-			name = "Collection View Headers";
+			name = "Collection View Headers & Footers";
 			sourceTree = "<group>";
 		};
 		1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */ = {
@@ -1024,7 +1035,7 @@
 			children = (
 				1A72197C17271A1C002B43CD /* Storyboard */,
 				1A639ECF17269C01009EB280 /* Table View Headers */,
-				1A94240B173BCD5100DE9D9B /* Collection View Headers */,
+				1A94240B173BCD5100DE9D9B /* Collection View Headers & Footers */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				1A639EC91726821A009EB280 /* Profile Search View */,
 				1A6833471726A23600E3A687 /* Comments View */,
@@ -1434,6 +1445,8 @@
 				1A942410173BCDC900DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.xib in Resources */,
 				1AC6A5EF173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib in Resources */,
 				8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */,
+				1A2FAEF3173CF8EA00ABAE13 /* OPFTagBrowserFooter.xib in Resources */,
+				1A2FAEF5173CF9F700ABAE13 /* arrow-right.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,6 +1610,7 @@
 				1A94240E173BCDB400DE9D9B /* OPFTagBrowserCollectionViewHeaderInitial.m in Sources */,
 				1AC6A5ED173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m in Sources */,
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
+				1A2FAEF1173CF8DA00ABAE13 /* OPFTagBrowserFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
