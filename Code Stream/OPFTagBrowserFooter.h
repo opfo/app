@@ -10,7 +10,8 @@
 
 @interface OPFTagBrowserFooter : UIView
 
-@property (weak, nonatomic) IBOutlet UILabel *questionCount;
-@property (weak, nonatomic) IBOutlet UILabel *questionsLabel;
+@property (weak, nonatomic) IBOutlet UIButton *questionsCount;
+
+- (IBAction)showMatchingQuestions:(UIButton *)sender;
 
 @end
