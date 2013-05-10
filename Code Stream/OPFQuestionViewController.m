@@ -117,6 +117,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(postNewAnswer:)];
+    self.navigationItem.rightBarButtonItem = composeAnswer;
+    
+    
     OPFUser *user = [[OPFUser alloc] init];
     [user setReputation:@(351)];
     [user setDisplayName:@"Aron"];
@@ -359,6 +363,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 }
 
+#pragma mark - Post a new answer
+-(void) postNewAnswer:(id) sender{
+    
+}
 
 
 

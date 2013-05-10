@@ -256,4 +256,9 @@
      */
 }
 
+#pragma mark - Post a new comment
+-(void) postNewComment{
+    
+}
+
 @end
