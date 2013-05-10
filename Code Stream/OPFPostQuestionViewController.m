@@ -7,9 +7,10 @@
 //
 
 #import "OPFPostQuestionViewController.h"
-#import "OPFDatabaseAccess.h"
-//#import "FMDatabase.h"
+#import "OPFUpdateQuery.h"
 #import "FMResultSet.h"
+#import "OPFAppState.h"
+#import "OPFUser.h"
 
 @interface OPFPostQuestionViewController ()
 
@@ -82,7 +83,17 @@
 }
 
 -(BOOL) updateDatabase{
-    return YES;
+    
+    NSString *title = self.titleField.text;
+    NSString *body = self.bodyField.text;
+    NSString *tags = self.tagsField.text;
+    
+    OPFUser *user = [OPFAppState userModel];
+    NSString *userName = user.displayName;
+    NSInteger userID = [user.identifier integerValue];
+    
+    
+    return [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tags ByUser:userName userID:userID];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

@@ -10,4 +10,6 @@
 
 @interface OPFUpdateQuery : NSObject
 
++(BOOL) updateWithQuestionTitle: (NSString *) title Body: (NSString *) body Tags: (NSString *) tags ByUser: (NSString *) userName userID: (NSInteger) userID;
+
 @end
