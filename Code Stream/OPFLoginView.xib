@@ -72,7 +72,7 @@
 						<string key="NSFrame">{{9, 229}, {300, 44}}</string>
 						<reference key="NSSuperview" ref="893805147"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="638827058"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -138,7 +138,7 @@
 						<string key="NSFrame">{{217, 179}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="893805147"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="638827058"/>
+						<reference key="NSNextKeyView" ref="649956353"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -207,7 +207,7 @@
 						<string key="NSFrame">{{187, 281}, {73, 19}}</string>
 						<reference key="NSSuperview" ref="893805147"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="649956353"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -299,6 +299,14 @@
 						<reference key="destination" ref="90236039"/>
 					</object>
 					<int key="connectionID">355</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">headerLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="16198738"/>
+					</object>
+					<int key="connectionID">383</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -986,7 +994,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">382</int>
+			<int key="maxID">383</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1031,11 +1039,16 @@
 					<string key="className">OPFLoginViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="headerLabel">UILabel</string>
 						<string key="loginMessageLabel">UILabel</string>
 						<string key="registerUser">UIButton</string>
 						<string key="rememberUser">UISwitch</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="headerLabel">
+							<string key="name">headerLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="loginMessageLabel">
 							<string key="name">loginMessageLabel</string>
 							<string key="candidateClassName">UILabel</string>

@@ -856,6 +856,14 @@
 			name = UtilitySpecs;
 			sourceTree = "<group>";
 		};
+		8C35A3EC173D514200392377 /* PostViews */ = {
+			isa = PBXGroup;
+			children = (
+				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
+			);
+			name = PostViews;
+			sourceTree = "<group>";
+		};
 		9C18D579173087D500553128 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1022,7 @@
 				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
 				1AD7629C1737EA77002F157C /* Tag Browser View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+				8C35A3EC173D514200392377 /* PostViews */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 				1AD7629C1737EA77002F157C /* Tag Browser View */,
@@ -1022,9 +1031,6 @@
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
 				8C2725D61738562D0068D89C /* OPFWebView.xib */,
-				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
-				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
-				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1032,6 +1038,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
+				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
 				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
 				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,

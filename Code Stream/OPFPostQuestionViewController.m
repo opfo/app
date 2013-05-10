@@ -11,6 +11,7 @@
 #import "FMResultSet.h"
 #import "OPFAppState.h"
 #import "OPFUser.h"
+#import "OPFLoginViewController.h"
 
 @interface OPFPostQuestionViewController ()
 
@@ -40,6 +41,14 @@
 }
 
 -(void) configureView{
+        /*[self transitionFromViewController:self
+                          toViewController:loginViewController
+                                  duration:0.5f
+                                   options:UIViewAnimationOptionTransitionCrossDissolve
+                                animations:nil
+                                completion:nil];*/
+    
+    
     [self.postButton addTarget:self action:@selector(postButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.hidesBackButton = YES;
@@ -68,12 +77,22 @@
 
 -(void) postButtonPressed{
     NSLog(@"Button pressed");
-    if([self.titleField.text isEqualToString:@""] || [self.bodyField.text isEqualToString:@""] || [self.tagsField.text isEqualToString:@""]){
-        UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Please fill in empty fields" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [emptyField show];
+    if([self.titleField.text isEqualToString:@""]){
+        self.titleWarning.text = @"Title is missing";
+        self.titleWarning.textColor = [UIColor redColor];
+        self.titleWarning.hidden = NO;
     }
-    else{
+    if([self.bodyField.text isEqualToString:@""]){
+        self.bodyTextWarning.text = @"Postbody is missing";
+        self.bodyTextWarning.textColor = [UIColor redColor];
+        self.bodyTextWarning.hidden = NO;
+        self.generalWarningLabel.text = @"You forgot to fill in one textfield...";
+        self.generalWarningLabel.hidden = NO;
+    }
+    if(![self.titleField.text isEqualToString:@""] && ![self.bodyField.text isEqualToString:@""]){
         if([self updateDatabase]){
+            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question have been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [success show];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         else{
@@ -88,14 +107,18 @@
     
     NSString *title = self.titleField.text;
     NSString *body = self.bodyField.text;
-    NSString *tags = self.tagsField.text;
     
     OPFUser *user = [OPFAppState userModel];
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
+    NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
+    NSMutableString *tagsString=[[NSMutableString alloc]initWithString:@""];
     
+    for(NSString *s __strong in tags){
+        [tagsString appendFormat:@"<%@>",s];
+    }
     
-    return [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tags ByUser:userName userID:userID];
+    return [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tagsString ByUser:userName userID:userID];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
