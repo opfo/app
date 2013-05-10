@@ -28,6 +28,7 @@
 - (void)didSelectTag:(OPFTag *)tag;
 - (void)loadQuestionsForTag:(OPFTag *)tag;
 - (void)setResultCountInView;
+- (NSArray *)getTagNames;
 
 @end
 
@@ -114,7 +115,7 @@ static NSInteger const TagSelectionLimit = 20;
 
 - (void)loadQuestionsForTag:(OPFTag *)tag
 {
-    self.questionsQuery = [[OPFQuestion searchFor:@"" inTags:@[tag.name]] orderBy:@"score" order:kOPFSortOrderDescending];
+    self.questionsQuery = [[OPFQuestion searchFor:@"" inTags:[self getTagNames]] orderBy:@"score" order:kOPFSortOrderDescending];
     
     self.questionsByTag = [NSMutableArray arrayWithArray:[[self.questionsQuery limit:@(TagLoadingByTagLimit)] getMany]];
     
@@ -127,6 +128,14 @@ static NSInteger const TagSelectionLimit = 20;
     self.footerTagCountLabel.titleLabel.text = TagCountLabel;
     
     self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
+}
+
+- (NSArray *)getTagNames
+{
+    NSArray *tags = [NSArray arrayWithArray:[self.selectedTags allObjects]];
+    NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+    
+    return tagNames;
 }
 
 #pragma mark - TabbedViewController methods
@@ -206,10 +215,7 @@ static NSInteger const TagSelectionLimit = 20;
 {
     OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
     
-    NSArray *tags = [NSArray arrayWithArray:[self.selectedTags allObjects]];
-    NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
-    
-    NSString *searchString = [NSString stringWithFormat:@"[%@]", [tagNames componentsJoinedByString:@"] ["]];
+    NSString *searchString = [NSString stringWithFormat:@"[%@]", [[self getTagNames] componentsJoinedByString:@"] ["]];
     
     questionsViewController.query = self.questionsQuery;
     questionsViewController.searchString = searchString;
