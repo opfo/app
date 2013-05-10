@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Opposing Force. All rights reserved.
 //
 
+#import <BlocksKit.h>
+
 #import "OPFTagBrowserViewController.h"
 #import "OPFTag.h"
 #import "OPFQuestion.h"
@@ -13,11 +15,14 @@
 #import "OPFTokenCollectionViewCell.h"
 #import "OPFTagBrowserCollectionViewHeaderInitial.h"
 #import "OPFTagBrowserCollectionView.h"
+#import "OPFQuestionsViewController.h"
 
 @interface OPFTagBrowserViewController ()
 
 @property (strong) NSMutableArray *suggestedTags;
 @property (strong) NSMutableArray *questionsByTag;
+@property (nonatomic, strong) NSMutableSet *selectedTags;
+@property (strong) OPFQuery *questionsQuery;
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
@@ -33,6 +38,7 @@ static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
 static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
 static NSInteger const TagSuggestionLimit = 100;
 static NSInteger const TagLoadingByTagLimit = 50;
+static NSInteger const TagSelectionLimit = 20;
 
 - (id)init
 {
@@ -73,6 +79,7 @@ static NSInteger const TagLoadingByTagLimit = 50;
     self.collectionView.delegate = self;
     
     self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
+    self.selectedTags = [NSMutableSet setWithCapacity:TagSelectionLimit];
 }
 
 - (void)viewDidLoad
@@ -86,6 +93,11 @@ static NSInteger const TagLoadingByTagLimit = 50;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setSelectedTags:(NSMutableSet *)selectedTags
+{
+    _selectedTags = selectedTags;
+}
+
 #pragma mark - Private methods
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath
@@ -95,14 +107,16 @@ static NSInteger const TagLoadingByTagLimit = 50;
 
 - (void)didSelectTag:(OPFTag *)tag
 {
+    [self.selectedTags addObject:tag];
+    
 	[self loadQuestionsForTag:tag];
 }
 
 - (void)loadQuestionsForTag:(OPFTag *)tag
 {
-    OPFQuery *query = [[OPFQuestion searchFor:@"" inTags:@[tag.name]] orderBy:@"score" order:kOPFSortOrderDescending];
+    self.questionsQuery = [[OPFQuestion searchFor:@"" inTags:@[tag.name]] orderBy:@"score" order:kOPFSortOrderDescending];
     
-    self.questionsByTag = [NSMutableArray arrayWithArray:[[query limit:@(TagLoadingByTagLimit)] getMany]];
+    self.questionsByTag = [NSMutableArray arrayWithArray:[[self.questionsQuery limit:@(TagLoadingByTagLimit)] getMany]];
     
     [self setResultCountInView];
 }
@@ -185,6 +199,22 @@ static NSInteger const TagLoadingByTagLimit = 50;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self didSelectTag:[self tagFromIndexPath:indexPath]];
+}
+
+#pragma mark - IBActions
+- (IBAction)showQuestionsByTags:(id)sender
+{
+    OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
+    
+    NSArray *tags = [NSArray arrayWithArray:[self.selectedTags allObjects]];
+    NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+    
+    NSString *searchString = [NSString stringWithFormat:@"[%@]", [tagNames componentsJoinedByString:@"] ["]];
+    
+    questionsViewController.query = self.questionsQuery;
+    questionsViewController.searchString = searchString;
+    
+    [self.navigationController pushViewController:questionsViewController animated:YES];
 }
 
 @end

@@ -21,4 +21,6 @@ UICollectionViewDelegate>
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
 
+- (IBAction)showQuestionsByTags:(id)sender;
+
 @end
