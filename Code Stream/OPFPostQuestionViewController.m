@@ -42,7 +42,9 @@
 -(void) configureView{
     [self.postButton addTarget:self action:@selector(postButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.navigationItem.hidesBackButton = YES;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView:)];
     
     //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -101,6 +103,18 @@
         [textField resignFirstResponder];
     }
     return YES;
+}
+
+-(IBAction)cancelView:(id)sender{
+    [UIView
+     transitionWithView:self.navigationController.view
+     duration:1.0
+     options:UIViewAnimationOptionTransitionCurlDown
+     animations:^{
+         [self.navigationController
+          popViewControllerAnimated:NO];
+     }
+     completion:NULL];
 }
 
 

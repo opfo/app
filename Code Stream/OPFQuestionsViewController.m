@@ -135,10 +135,6 @@ UINavigationController *askQuestionsNavigationController;
 	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-	
-	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;*/
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
@@ -371,21 +367,13 @@ UINavigationController *askQuestionsNavigationController;
 - (IBAction)askQuestions:(id)sender
 {
 	DLog(@"Asking new questions has not been implemtend.");
-	
+    
 	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
     postview.title = @"Post a question";
-    
-    /*CATransition *transition = [CATransition animation];
-    transition.duration = 1.f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    transition.delegate = self;
-    [self.navigationController.navigationBar.layer addAnimation:transition forKey:nil];
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];*/
-    
+
     [self.navigationController pushViewController:postview animated:YES];
 }
+
 
 #pragma mark - 
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
