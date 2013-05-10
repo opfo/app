@@ -82,15 +82,6 @@
 }
 
 -(BOOL) updateDatabase{
-    OPFDatabaseAccess *db = [[OPFDatabaseAccess alloc] init];
-    FMResultSet *result =  [db executeSQL:@"SELECT COUNT(*) FROM posts"];
-    
-    int totalCount=0;
-    if ([result next]) {
-        totalCount = [result intForColumnIndex:0];
-        NSLog(@"Just testing so DB access is correct");
-    }
-    
     return YES;
 }
 
