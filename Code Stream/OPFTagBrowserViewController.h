@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFTagBrowserViewController : UICollectionViewController <UICollectionViewDataSource,
+@class OPFTagBrowserCollectionView;
+
+@interface OPFTagBrowserViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet OPFTagBrowserCollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *footerTagCount;
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;

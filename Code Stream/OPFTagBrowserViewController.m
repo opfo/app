@@ -10,6 +10,7 @@
 #import "OPFTag.h"
 #import "OPFTokenCollectionViewCell.h"
 #import "OPFTagBrowserCollectionViewHeaderInitial.h"
+#import "OPFTagBrowserCollectionView.h"
 
 @interface OPFTagBrowserViewController ()
 
@@ -22,7 +23,7 @@
 
 @implementation OPFTagBrowserViewController
 
-static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
+static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
 static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
 static NSInteger const TagSuggestionLimit = 100;
 
@@ -64,8 +65,7 @@ static NSInteger const TagSuggestionLimit = 100;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
-    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:SuggestedTagCellIdentifier];    
-    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TagBrowserHeaderViewIdenfifier];
+   
     
     self.suggestedTokens = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
 }
@@ -121,8 +121,7 @@ static NSInteger const TagSuggestionLimit = 100;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *cellIdentifier = SuggestedTagCellIdentifier;
-	OPFTokenCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+	OPFTokenCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:TagBrowserCellViewIdenfifier forIndexPath:indexPath];
 	NSString *token = [self tagFromIndexPath:indexPath].name;
     
 	cell.tokenView.text = token;
