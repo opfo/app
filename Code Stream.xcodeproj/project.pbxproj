@@ -143,6 +143,7 @@
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
 		8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2725D51738562D0068D89C /* OPFWebViewController.m */; };
 		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
+		8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C420190173CE3F100329C6D /* OPFUpdateQuery.m */; };
 		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
@@ -406,6 +407,8 @@
 		8C2725D41738562D0068D89C /* OPFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFWebViewController.h; sourceTree = "<group>"; };
 		8C2725D51738562D0068D89C /* OPFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFWebViewController.m; sourceTree = "<group>"; };
 		8C2725D61738562D0068D89C /* OPFWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFWebView.xib; sourceTree = "<group>"; };
+		8C42018F173CE3F100329C6D /* OPFUpdateQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUpdateQuery.h; sourceTree = "<group>"; };
+		8C420190173CE3F100329C6D /* OPFUpdateQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUpdateQuery.m; sourceTree = "<group>"; };
 		8C66EF3E173850AB00B29435 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostQuestionViewController.h; sourceTree = "<group>"; };
 		8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostQuestionViewController.m; sourceTree = "<group>"; };
@@ -800,6 +803,8 @@
 				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
 				813F5CDB17329E2B00F71CD6 /* OPFSearchQuery.h */,
 				813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */,
+				8C42018F173CE3F100329C6D /* OPFUpdateQuery.h */,
+				8C420190173CE3F100329C6D /* OPFUpdateQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -1570,6 +1575,7 @@
 				8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */,
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
+				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
