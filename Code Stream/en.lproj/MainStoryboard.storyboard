@@ -377,6 +377,13 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Required" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZeQ-i9-vka">
+                                                    <rect key="frame" x="12" y="0.0" width="105" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -401,6 +408,13 @@
                                                     <rect key="frame" x="12" y="16" width="81" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Required" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P5x-Gw-tjv">
+                                                    <rect key="frame" x="12" y="2" width="92" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -428,6 +442,13 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Required" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0zy-cw-ubh">
+                                                    <rect key="frame" x="12" y="2" width="148" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -458,6 +479,13 @@
                                                     <rect key="frame" x="12" y="16" width="70" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Required" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8zA-7x-lNu">
+                                                    <rect key="frame" x="12" y="2" width="92" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                             </subviews>
@@ -591,6 +619,13 @@
                                                         <action selector="userFinishedSignup:" destination="44U-JD-Us8" eventType="touchUpInside" id="cpM-o5-Ich"/>
                                                     </connections>
                                                 </button>
+                                                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Some fields are not filled correctly..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7ZY-2N-o2r">
+                                                    <rect key="frame" x="0.0" y="-2" width="300" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -619,10 +654,15 @@
                         <outlet property="age" destination="a8I-Lv-WXw" id="y0z-N4-uhN"/>
                         <outlet property="bio" destination="xMK-Rt-cIX" id="OTk-Iz-QtY"/>
                         <outlet property="email" destination="jyk-mT-M31" id="1zo-HO-pgZ"/>
+                        <outlet property="emailFieldNotification" destination="ZeQ-i9-vka" id="LTH-bh-aQX"/>
                         <outlet property="location" destination="Vpc-57-WSf" id="JNs-gU-z9e"/>
                         <outlet property="name" destination="hJ0-k9-wZl" id="b9d-pb-8x5"/>
+                        <outlet property="nameFieldNotification" destination="8zA-7x-lNu" id="AhX-ld-2MR"/>
                         <outlet property="password" destination="HC6-sO-ZlR" id="le9-tJ-oUy"/>
+                        <outlet property="passwordFieldNotification" destination="P5x-Gw-tjv" id="VcO-cH-adu"/>
                         <outlet property="repeatedPassword" destination="y7R-zr-DNy" id="FDX-t1-qE5"/>
+                        <outlet property="repeatedPasswordFieldNotification" destination="0zy-cw-ubh" id="DvL-Ih-s3w"/>
+                        <outlet property="signUpNotification" destination="7ZY-2N-o2r" id="Zr9-kM-SFg"/>
                         <outlet property="website" destination="JFV-BH-agH" id="pv4-2V-zkw"/>
                     </connections>
                 </tableViewController>
@@ -663,10 +703,15 @@
                 <relationship kind="outlet" name="age" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="bio" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="emailFieldNotification" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="location" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameFieldNotification" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordFieldNotification" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="repeatedPassword" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="repeatedPasswordFieldNotification" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="signUpNotification" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="website" candidateClass="UITextField"/>
             </relationships>
         </class>

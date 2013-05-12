@@ -20,5 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *location;
 @property (weak, nonatomic) IBOutlet UITextField *website;
 @property (weak, nonatomic) IBOutlet UITextView *bio;
+@property (weak, nonatomic) IBOutlet UILabel *emailFieldNotification;
+@property (weak, nonatomic) IBOutlet UILabel *passwordFieldNotification;
+@property (weak, nonatomic) IBOutlet UILabel *repeatedPasswordFieldNotification;
+@property (weak, nonatomic) IBOutlet UILabel *nameFieldNotification;
+@property (weak, nonatomic) IBOutlet UILabel *signUpNotification;
 
 @end

@@ -57,9 +57,32 @@
     return YES;
 }
 
+-(void) viewWillDisappear:(BOOL)animated{
+    // View will reset so no text will remain if user switch from registerview
+    // to another view and then back again
+    [self resetView];
+}
+
+-(void) resetView{
+    self.email.text=@"";
+    self.password.text=@"";
+    self.repeatedPassword.text=@"";
+    self.name.text=@"";
+    self.age.text=@"";
+    self.location.text=@"";
+    self.website.text=@"";
+    self.bio.text=@"";
+    self.emailFieldNotification.hidden=YES;
+    self.passwordFieldNotification.hidden=YES;
+    self.repeatedPasswordFieldNotification.hidden=YES;
+    self.nameFieldNotification.hidden=YES;
+    self.signUpNotification.hidden=YES;
+}
+
 -(void) dismissKeyboard{
     [self.bio resignFirstResponder];
 }
+
 
 #pragma mark - Container Controller methods
 
