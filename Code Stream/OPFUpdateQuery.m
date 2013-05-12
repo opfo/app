@@ -19,7 +19,7 @@
     
     int randomID = abs(arc4random())%(NSIntegerMax-1);
     
-    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM Posts WHERE id=%d",randomID]] next]){
+    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM posts WHERE id=%d",randomID]] next]){
         randomID = arc4random();
     }
     NSString *stringTags;
@@ -51,7 +51,7 @@
     
     int randomID = abs(arc4random())%(NSIntegerMax-1);
     
-    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM Posts WHERE id=%d",randomID]] next]){
+    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM posts WHERE id=%d",randomID]] next]){
         randomID = arc4random();
     }
     
@@ -60,7 +60,7 @@
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query];
     
     // Temporary code to test if update was as intended
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM posts WHERE id=%d",randomID];
+    /*NSString *sql = [NSString stringWithFormat:@"SELECT * FROM posts WHERE id=%d",randomID];
      
      FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
      
@@ -70,10 +70,42 @@
          NSInteger post_type_id  = [results intForColumn:@"post_type_id"];
          NSInteger parent = [results intForColumn:@"parent_id"];
          NSLog(@"Post ID: %d \nPosttype: %d \nParent Question: %d \nbody: %@", postID, post_type_id, parent, body);
-     }
+     }*/
     
     
     return succeeded;
+}
+
++(BOOL) updateWithCommentText: (NSString *) commentText PostID: (NSInteger) postID ByUser: (NSInteger) userID{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+    
+    int randomID = abs(arc4random())%(NSIntegerMax-1);
+    
+    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM comments WHERE id=%d",randomID]] next]){
+        randomID = arc4random();
+    }
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO comments(id, post_id, score, text, creation_date, user_id) values (%d,%d,%d,'%@','%@',%d);", randomID, postID, 0, commentText, currentDate, userID];
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query];
+    
+    // Temporary code to test if update was as intended
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM comments WHERE id=%d",randomID];
+     
+     FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
+     
+     while([results next]) {
+         NSString *comment = [results stringForColumn:@"text"];
+         NSString *creationDate = [results stringForColumn:@"creation_date"];
+         NSInteger commentID  = [results intForColumn:@"id"];
+         NSInteger post_id  = [results intForColumn:@"post_id"];
+     NSLog(@"ID: %d \nPostID: %d \nCreation Date: %@ \nComment: %@", commentID, post_id, creationDate, comment);
+     }
+    
+    return succeeded;
+
 }
 
 @end
