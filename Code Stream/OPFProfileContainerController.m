@@ -12,6 +12,7 @@
 #import "OPFSignupViewController.h"
 #import "OPFUserProfileViewController.h"
 #import "NSString+OPFMD5Hash.h"
+#import "OPFUpdateQuery.h"
 
 @interface OPFProfileContainerController ()
 
@@ -172,6 +173,16 @@ static const int TransitionDuration = .5f;
 
 - (void)userFinishedSignup:(id)sender
 {
+   // NSString *userName = self.signupViewController.view.;
+ /*   NSString *email;
+    NSString *website;
+    NSString *location;
+    NSInteger age;
+    NSString *bio;
+    
+    
+    
+    //[OPFUpdateQuery updateWithUserName:<#(NSString *)#> EmailHash:<#(NSString *)#> Website:<#(NSString *)#> Location:<#(NSString *)#> Age:<#(NSInteger)#> Bio:<#(NSString *)#>]*/
     [self transitionToLoginViewControllerFromViewController:self.signupViewController];
 }
     

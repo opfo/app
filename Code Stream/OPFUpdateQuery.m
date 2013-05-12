@@ -92,7 +92,7 @@
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query];
     
     // Temporary code to test if update was as intended
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM comments WHERE id=%d",randomID];
+    /*NSString *sql = [NSString stringWithFormat:@"SELECT * FROM comments WHERE id=%d",randomID];
      
      FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
      
@@ -102,10 +102,43 @@
          NSInteger commentID  = [results intForColumn:@"id"];
          NSInteger post_id  = [results intForColumn:@"post_id"];
      NSLog(@"ID: %d \nPostID: %d \nCreation Date: %@ \nComment: %@", commentID, post_id, creationDate, comment);
-     }
+     }*/
     
     return succeeded;
 
+}
+
++(BOOL) updateWithUserName: (NSString *) name EmailHash: (NSString *) email Website: (NSString *) website Location: (NSString *) location Age: (NSInteger) age Bio: (NSString *) bio{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+    
+    int randomID = abs(arc4random())%(NSIntegerMax-1);
+    
+    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM users WHERE id=%d",randomID]] next]){
+        randomID = arc4random();
+    }
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO users(id, reputation, creation_date, display_name, email_hash, last_access_date, website_url, location, age, about_me, views, up_votes, down_votes) values (%d,%d,'%@','%@','%@','%@', '%@', '%@', %d, '%@', '%d', %d, %d);", randomID, 0, currentDate, name, email, currentDate, website, location, age, bio, 0, 0, 0];
+    
+    
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query];
+    
+    // Temporary code to test if update was as intended
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM users WHERE id=%d",randomID];
+     
+     FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
+     
+     while([results next]) {
+     NSString *name = [results stringForColumn:@"display_name"];
+     NSString *creationDate = [results stringForColumn:@"creation_date"];
+     NSInteger userID  = [results intForColumn:@"id"];
+     NSLog(@"UserID: %d \nUserName: %@ \nCreation Date: %@", userID, name, creationDate);
+     }
+
+    
+    return succeeded;
 }
 
 @end

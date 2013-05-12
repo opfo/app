@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *location;
 @property (weak, nonatomic) IBOutlet UITableViewCell *website;
 @property (weak, nonatomic) IBOutlet UITableViewCell *bio;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 - (BOOL)validateSignup;
 - (OPFUser *)deserializeSignup;

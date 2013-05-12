@@ -117,15 +117,7 @@
 }
 
 -(IBAction)cancelView:(id)sender{
-    [UIView
-     transitionWithView:self.navigationController.view
-     duration:1.0
-     options:UIViewAnimationOptionTransitionCurlDown
-     animations:^{
-         [self.navigationController
-          popViewControllerAnimated:NO];
-     }
-     completion:NULL];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
