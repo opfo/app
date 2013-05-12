@@ -173,16 +173,17 @@ static const int TransitionDuration = .5f;
 
 - (void)userFinishedSignup:(id)sender
 {
-   // NSString *userName = self.signupViewController.view.;
- /*   NSString *email;
-    NSString *website;
-    NSString *location;
-    NSInteger age;
-    NSString *bio;
+    NSString *userName = self.signupViewController.name.text;
+    NSString *email = self.signupViewController.email.text.opf_md5hash;
+    NSString *website = self.signupViewController.website.text;
+    NSString *location = self.signupViewController.location.text;
+    NSInteger age = [self.signupViewController.age.text intValue];
+    NSString *bio = self.signupViewController.bio.text;
     
     
     
-    //[OPFUpdateQuery updateWithUserName:<#(NSString *)#> EmailHash:<#(NSString *)#> Website:<#(NSString *)#> Location:<#(NSString *)#> Age:<#(NSInteger)#> Bio:<#(NSString *)#>]*/
+    BOOL success = [OPFUpdateQuery updateWithUserName:userName EmailHash:email Website:website Location:location Age:age Bio:bio];
+    
     [self transitionToLoginViewControllerFromViewController:self.signupViewController];
 }
     

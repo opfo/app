@@ -35,7 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UITapGestureRecognizer *tapOutsideBioTextView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tapOutsideBioTextView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +48,17 @@
 - (void)opfSetupView
 {
     self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if(textField==self.email ||textField==self.password ||textField==self.repeatedPassword ||textField==self.name ||textField==self.age ||textField==self.location ||textField==self.website){
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
+-(void) dismissKeyboard{
+    [self.bio resignFirstResponder];
 }
 
 #pragma mark - Container Controller methods
