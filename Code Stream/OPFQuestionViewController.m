@@ -22,6 +22,7 @@
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFPostAnswerViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -365,7 +366,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 #pragma mark - Post a new answer
 -(void) postNewAnswer:(id) sender{
-    
+    OPFPostAnswerViewController *postview = [OPFPostAnswerViewController new];
+    postview.title = @"Post a question";
+    postview.parentQuestion = [self.question.identifier integerValue];
+    [self.navigationController pushViewController:postview animated:YES];
+    [self reloadInputViews];
 }
 
 

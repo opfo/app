@@ -148,6 +148,8 @@
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
+		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
+		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
 		8CF371C817398D68009B6425 /* forwardArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C717398D68009B6425 /* forwardArrow.png */; };
 		8CF371CA17398E48009B6425 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C917398E48009B6425 /* cancel.png */; };
 		8CF371CC173993CC009B6425 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CB173993CC009B6425 /* reload.png */; };
@@ -415,6 +417,9 @@
 		8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostQuestionView.xib; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
+		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
+		8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostAnswerViewController.m; sourceTree = "<group>"; };
+		8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostAnswerView.xib; sourceTree = "<group>"; };
 		8CF371C717398D68009B6425 /* forwardArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardArrow.png; sourceTree = "<group>"; };
 		8CF371C917398E48009B6425 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		8CF371CB173993CC009B6425 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
@@ -859,6 +864,7 @@
 		8C35A3EC173D514200392377 /* PostViews */ = {
 			isa = PBXGroup;
 			children = (
+				8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */,
 				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
 			);
 			name = PostViews;
@@ -1038,6 +1044,8 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */,
+				8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */,
 				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
 				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
 				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
@@ -1422,6 +1430,7 @@
 				8CF371CE17399E4A009B6425 /* button_negative.png in Resources */,
 				8CF371D01739A855009B6425 /* button_negative1.png in Resources */,
 				8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */,
+				8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1584,6 +1593,7 @@
 				9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */,
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
 				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
+				8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -41,9 +41,39 @@
     }*/
     
     return succeeded;
+}
+
++ (BOOL) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *currentDate = [dateFormatter stringFromDate:[NSDate date]];
+    
+    int randomID = abs(arc4random())%(NSIntegerMax-1);
+    
+    while([[[OPFDatabaseAccess getDBAccess] executeSQL:[NSString stringWithFormat:@"SELECT id FROM Posts WHERE id=%d",randomID]] next]){
+        randomID = arc4random();
+    }
+    
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO posts(id, post_type_id, parent_id, creation_date, score, view_count, body, owner_user_id, last_activity_date, comment_count) values (%d, %d, %d, '%@', %d, %d, '%@', %d, '%@', %d);", randomID, 2, questionID, currentDate, 0, 0, answerBody, userID, currentDate, 0];
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query];
+    
+    // Temporary code to test if update was as intended
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM posts WHERE id=%d",randomID];
+     
+     FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
+     
+     while([results next]) {
+         NSString *body = [results stringForColumn:@"body"];
+         NSInteger postID  = [results intForColumn:@"id"];
+         NSInteger post_type_id  = [results intForColumn:@"post_type_id"];
+         NSInteger parent = [results intForColumn:@"parent_id"];
+         NSLog(@"Post ID: %d \nPosttype: %d \nParent Question: %d \nbody: %@", postID, post_type_id, parent, body);
+     }
     
     
-    
+    return succeeded;
 }
 
 @end

@@ -366,8 +366,6 @@ UINavigationController *askQuestionsNavigationController;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	DLog(@"Asking new questions has not been implemtend.");
-    
 	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
     postview.title = @"Post a question";
 

@@ -41,15 +41,6 @@
 }
 
 -(void) configureView{
-        /*[self transitionFromViewController:self
-                          toViewController:loginViewController
-                                  duration:0.5f
-                                   options:UIViewAnimationOptionTransitionCrossDissolve
-                                animations:nil
-                                completion:nil];*/
-    
-    
-    [self.postButton addTarget:self action:@selector(postButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.hidesBackButton = YES;
     
@@ -70,9 +61,6 @@
     
     //add the button to the view
     [self.view addSubview:button];
-    
-    
-    NSLog(@"Configured");
 }
 
 -(void) postButtonPressed{
@@ -91,7 +79,7 @@
     }
     if(![self.titleField.text isEqualToString:@""] && ![self.bodyField.text isEqualToString:@""]){
         if([self updateDatabase]){
-            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question have been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [success show];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
