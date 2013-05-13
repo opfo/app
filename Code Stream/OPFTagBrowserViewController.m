@@ -22,7 +22,6 @@
 
 @property (strong) NSMutableArray *suggestedTags;
 @property (strong) NSMutableArray *questionsByTag;
-@property (nonatomic, strong) NSMutableSet *selectedTags;
 @property (strong) OPFQuery *questionsQuery;
 @property (strong) OPFTagBrowserSelectionViewController *selectedTagsController;
 
@@ -80,7 +79,6 @@ static NSInteger const TagSelectionLimit = 20;
     self.title = NSLocalizedString(@"Tag Browser", @"Tag Browser View controller title");
     self.selectedTagsController = [OPFTagBrowserSelectionViewController new];
     
-    self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
     self.selectedTags = [NSMutableSet setWithCapacity:TagSelectionLimit];
     self.selectedTagsController.tags = [NSMutableArray arrayWithCapacity:TagSelectionLimit];
 }
@@ -88,6 +86,13 @@ static NSInteger const TagSelectionLimit = 20;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.adjacentTag != nil) {
+        self.suggestedTags = [NSMutableArray arrayWithArray:[OPFTag relatedTagsForTagWithName:self.adjacentTag.name]];
+        [self loadQuestionsForTags];
+    } else {
+        self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
+    }
     
     self.selectedTagsView.dataSource = self.selectedTagsController;
     self.selectedTagsView.delegate = self.selectedTagsController;
@@ -98,6 +103,21 @@ static NSInteger const TagSelectionLimit = 20;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    
+    //Setup handling of double taps
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapTag:)];
+    NSArray* recognizers = [self.collectionView gestureRecognizers];
+    
+    // Make the default gesture recognizer wait until the custom one fails.
+    for (UIGestureRecognizer* aRecognizer in recognizers) {
+        if ([aRecognizer isKindOfClass:[UITapGestureRecognizer class]])
+            [aRecognizer requireGestureRecognizerToFail:tapGesture];
+    }
+    
+    // Now add the gesture recognizer to the collection view.
+    tapGesture.numberOfTapsRequired = 2;
+    tapGesture.numberOfTouchesRequired = 1;
+    [self.collectionView addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +129,7 @@ static NSInteger const TagSelectionLimit = 20;
 -(void)setSelectedTags:(NSMutableSet *)selectedTags
 {
     _selectedTags = selectedTags;
+    [self.selectedTagsController.tags addObjectsFromArray:[self.selectedTags allObjects]];
 }
 
 - (void)didSelectSelectedTag:(OPFTag *)tag
@@ -143,7 +164,16 @@ static NSInteger const TagSelectionLimit = 20;
 
 - (void)didDoubleTapTag:(id)sender
 {
+    CGPoint point = [sender locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
     
+    OPFTag *tag = [self tagFromIndexPath:indexPath];
+    
+    OPFTagBrowserViewController *nestedTagController = [OPFTagBrowserViewController new];
+    nestedTagController.adjacentTag = tag;
+    nestedTagController.selectedTags = self.selectedTags;
+    
+    [self.navigationController pushViewController:nestedTagController animated:YES];
 }
 
 - (void)loadQuestionsForTags

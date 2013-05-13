@@ -19,6 +19,9 @@ UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *footerTagCountButton;
 @property (strong, nonatomic) IBOutlet UICollectionView *selectedTagsView;
 
+@property (strong, nonatomic) OPFTag *adjacentTag;
+@property (nonatomic, strong) NSMutableSet *selectedTags;
+
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
 - (void)didSelectSelectedTag:(OPFTag *) tag;
