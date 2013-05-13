@@ -17,6 +17,10 @@
 #import "OPFAnswer.h"
 #import "NSString+OPFEscapeStrings.h"
 #import "OPFWebViewController.h"
+#import "StaticDataTableViewController.h"
+#import "OPFAppState.h"
+#import "OPFProfileContainerController.h"
+#import "OPFLoginViewController.h"
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -42,6 +46,7 @@ static NSString *const NotSpecifiedInformationPlaceholder = @"-";
 // Identifiers for the questions and view cells
 static NSString *const UserQuestionsViewCell = @"UsersQuestionsViewCell";
 static NSString *const UserWebsiteViewCell = @"UserWebsiteViewCell";
+static NSString *const LogoutUserViewCell = @"LogoutUserViewCell";
 
 static CGFloat userAboutMeInset = 20.0;
 
@@ -106,26 +111,30 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    UIBarButtonItem *logoutStyle= [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logOutToRootView:)];
+    // Hide logout-button if user to be shown is not the user that is logged in
+    if([OPFAppState userModel].identifier != self.user.identifier){
+        [self.logOut setHidden:YES];
+        [self cell:self.logoutCell setHidden:YES];
+    }
     
-    logoutStyle.tintColor = [[UIColor alloc] initWithRed:179.f/255 green:2.f/255 blue:31.f/255 alpha:1.f];
-    
-    self.navigationItem.rightBarButtonItem = logoutStyle;
-    // Set the textFields in the userInterface
-    self.userName.text = self.user.displayName;
-    //self.userAboutMe.text = self.user.aboutMe;
-    self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
-    self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
-	
     [self loadUserGravatar];
+    
+    // Set the textFields in the userInterface
+    // Set User Display Name
+    self.userName.text = self.user.displayName;
+    
+    // Set user location
+    self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
+    
+    // Set user bio
+    self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
     
     //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
-    if(self.user.age!=nil){
-        self.userAge.text = [self.numberFormatter stringFromNumber:self.user.age];
-    }
-    else
-        self.userAge.text = @"-";
+    
+    self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  NotSpecifiedInformationPlaceholder;
+       
+    
     // Set date-fields by using a NSDateFormatter
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     self.userCreationDate.text = [self.dateFormatter stringFromDate:self.user.creationDate];
@@ -137,13 +146,14 @@ static CGFloat userAboutMeInset = 20.0;
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
     }
-	
 	self.userBio.delegate = self;
     
+    // Set up/downvotes
 	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
 	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
 	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
     
+    // Set number of visitors
     self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
 }
 
@@ -168,6 +178,7 @@ static CGFloat userAboutMeInset = 20.0;
     return height;
 }
 
+
 // Indentify which cell the user clicked on
 -(NSString *) cellIdentifierForIndexPath: (NSIndexPath *) indexPath
 {
@@ -179,7 +190,9 @@ static CGFloat userAboutMeInset = 20.0;
     } else if(indexPath.section==1 && indexPath.row==3) {
         cellIdentifier = UserWebsiteViewCell;
 	}
-    
+    else if(indexPath.section==2 && indexPath.row==3){
+        cellIdentifier = LogoutUserViewCell;
+    }
     return cellIdentifier;
 }
 
@@ -193,8 +206,11 @@ static CGFloat userAboutMeInset = 20.0;
 		OPFQuery *questionsQuery = [[OPFQuestion query] whereColumn:@"owner_user_id" is:self.user.identifier];
 		
         questionsViewController.query = questionsQuery;
-		
         detailViewController = questionsViewController;
+        // Pass the selected object to the new view controller.
+        if(detailViewController!=nil){
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
     }
     else if([[self cellIdentifierForIndexPath:indexPath]isEqualToString:UserWebsiteViewCell]){
         if(![self.userWebsite.text isEqualToString:@"-"]){
@@ -204,25 +220,15 @@ static CGFloat userAboutMeInset = 20.0;
             [self.navigationController pushViewController:webview animated:YES];
         }
     }
-    
-    // Pass the selected object to the new view controller.
-    if(detailViewController!=nil){
-        [self.navigationController pushViewController:detailViewController animated:YES];
-    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
-		[[UIApplication sharedApplication] openURL:request.URL];
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {;
+        OPFWebViewController *webview = [OPFWebViewController new];
+        webview.page = request.URL;
+        [self.navigationController pushViewController:webview animated:YES];
         return NO;
 	} else return YES;
 }
-
-// Todo
-- (void) logOutToRootView: (id) paramSender {
-    NSLog(@"Logging out...");
-}
-
-
 
 @end

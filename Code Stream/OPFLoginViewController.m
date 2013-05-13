@@ -71,9 +71,9 @@
         
         UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 90, 25)];
         if (indexPath.row == 0)
-            startLabel.text = @"User:";
-        else {
-            startLabel.text = @"Password:";
+            startLabel.text = NSLocalizedString(@"User:", @"Login username table view start label");
+        else /*if(indexPath.row == 1)*/ {
+            startLabel.text = NSLocalizedString(@"Password:", @"User password table view start label");
         }
         
         startLabel.backgroundColor = [UIColor clearColor];
@@ -84,16 +84,22 @@
         inputField.delegate = self;
         
         if (indexPath.row == 0) {
+            inputField.tag = 0;
+            
             self.eMailField = inputField;
             self.eMailField.text = @"thomas.j.owens@gmail.com";
-            inputField.tag = 0;
-        } else {
+            
+            [cell.contentView addSubview:inputField];
+        } else /*if(indexPath.row == 1)*/ {
+            inputField.tag = 1;
+            
             self.passwordField = inputField;
             inputField.secureTextEntry = YES;
-            inputField.tag = 1;
+            
+            [cell.contentView addSubview:inputField];
         }
         
-        [cell.contentView addSubview:inputField];
+        
     }
     return cell;
 }
@@ -110,6 +116,13 @@
 - (NSString *)tabTitle
 {
     return NSLocalizedString(@"Login", @"Login View Controller tab title");
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if (textField==self.eMailField || textField==self.passwordField) {
+        [textField resignFirstResponder];
+    }
+    return YES;
 }
 
 #pragma mark - Container Controller methods

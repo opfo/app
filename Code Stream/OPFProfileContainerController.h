@@ -13,6 +13,10 @@
 - (void)transitionToLoginViewControllerFromViewController :(UIViewController *) viewController;
 - (void)transitionToSignupViewControllerFromViewController :(UIViewController *) viewController;
 - (void)transitionToProfileViewControllerFromViewController :(UIViewController *) viewController;
+
 - (void)userRequestsLogin:(id)sender;
+- (void)userRequestsLogout:(id)sender;
+- (void)userRequestsSignup:(id)sender;
+- (void)userFinishedSignup:(id)sender;
 
 @end

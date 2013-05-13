@@ -97,6 +97,12 @@
 #define CDStringFromBOOL(b)	((b) ? @"YES" : @"NO") 
 
 
+#pragma mark - Running Blocks
+#define CDExecutePossibleBlock(b)					if ((b) != nil) { (b)(); }
+#define CDExecutePossibleBlockOnQueue(q, b)			if ((b) != nil) { dispatch_sync((q), (b)); }
+#define CDExecutePossibleBlockOnQueueAsync(q, b)	if ((b) != nil) { dispatch_async((q), (b)); }
+
+
 #pragma mark - Fix QA1490 Static Library Categories Bug
 /** @name Fix QA1490 Static Library Categories Bug */
 /**

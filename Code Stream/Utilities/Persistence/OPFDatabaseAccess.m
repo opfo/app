@@ -96,6 +96,18 @@ static NSString* OPFWritableAuxDBPath;
     return result;
 }
 
+// Execute an SQL-update query
+// Returns YES if update succeeded, NO otherwise
+- (BOOL) executeUpdate:(NSString *) sql
+{
+    [self attachAuxDB];
+    __block BOOL succeeded;
+    [_combinedQueue inDatabase:^(FMDatabase* db){
+        succeeded = [db executeUpdate:sql];
+    }];
+    return succeeded;
+}
+
 -(void) attachAuxDB
 {
     if (!self.auxAttached) {

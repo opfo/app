@@ -11,6 +11,8 @@
 #import "OPFLoginViewController.h"
 #import "OPFSignupViewController.h"
 #import "OPFUserProfileViewController.h"
+#import "NSString+OPFMD5Hash.h"
+#import "OPFUpdateQuery.h"
 
 @interface OPFProfileContainerController ()
 
@@ -40,11 +42,17 @@ static const int TransitionDuration = .5f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect rect = CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-108);
 	
     //Alloc init the contained view controllers
     self.loginViewController = [OPFLoginViewController new];
-    self.signupViewController = [OPFSignupViewController new];
+    self.signupViewController = [OPFSignupViewController newFromStoryboard];
     self.profileViewController = [OPFUserProfileViewController newFromStoryboard];
+    
+    //Set the frame sizes
+    self.loginViewController.view.frame = rect;
+    self.signupViewController.view.frame = rect;
+    self.profileViewController.view.frame = rect;
     
     //self.profileViewController.nextResponder = self;
     
@@ -57,8 +65,13 @@ static const int TransitionDuration = .5f;
     [self.loginViewController didMoveToParentViewController:self];
     [self.signupViewController didMoveToParentViewController:self];
     [self.profileViewController didMoveToParentViewController:self];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     if ([OPFAppState isLoggedIn]) {
+        self.profileViewController.user = [OPFAppState userModel];
+        
         [self.view addSubview:self.profileViewController.view];
     } else {
         [self.view addSubview:self.loginViewController.view];
@@ -136,8 +149,9 @@ static const int TransitionDuration = .5f;
 {    
     NSString* email = self.loginViewController.eMailField.text;
     NSString* password = self.loginViewController.passwordField.text;
+    BOOL persistFlag = self.loginViewController.rememberUser.isOn;
     
-    BOOL loginReponse = [OPFAppState loginWithEMail:email andPassword:password];
+    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
     
     if(loginReponse == YES) {
         [self transitionToProfileViewControllerFromViewController:self.loginViewController];
@@ -145,5 +159,58 @@ static const int TransitionDuration = .5f;
         self.loginViewController.loginMessageLabel.text = NSLocalizedString(@"Wrong username or password!", @"Login failure message");
     }
 }
+
+- (void)userRequestsLogout:(id)sender
+{
+    [OPFAppState logout];
+    [self transitionToLoginViewControllerFromViewController:self.profileViewController];
+}
+
+- (void)userRequestsSignup:(id)sender
+{
+    [self transitionToSignupViewControllerFromViewController:self.loginViewController];
+}
+
+- (void)userFinishedSignup:(id)sender
+{
+    NSString *userName = self.signupViewController.name.text;
+    NSString *email = self.signupViewController.email.text.opf_md5hash;
+    NSString *website = self.signupViewController.website.text;
+    NSString *location = self.signupViewController.location.text;
+    NSInteger age = [self.signupViewController.age.text intValue];
+    NSString *bio = self.signupViewController.bio.text;
+    BOOL emailFilled = ![self.signupViewController.email.text isEqualToString:@""];
+    BOOL passwordFilled = ![self.signupViewController.password.text isEqualToString:@""];
+    BOOL repeatedPasswordFilled = ![self.signupViewController.repeatedPassword.text isEqualToString:@""];
+    BOOL nameFilled = ![self.signupViewController.name.text isEqualToString:@""];
+    BOOL passwordMatch = [self.signupViewController.password.text isEqualToString:self.signupViewController.repeatedPassword.text];
+    NSString *regexpForEmail = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexpForEmail];
+    BOOL correctEmail = [emailPredicate evaluateWithObject:self.signupViewController.email.text];
     
+    if(emailFilled && passwordFilled && repeatedPasswordFilled && nameFilled && passwordMatch && correctEmail){
+        [OPFUpdateQuery updateWithUserName:userName EmailHash:email Website:website Location:location Age:age Bio:bio];
+        [self transitionToLoginViewControllerFromViewController:self.signupViewController];
+    }
+    else{
+        self.signupViewController.signUpNotification.hidden = NO;
+        if(!emailFilled)
+            self.signupViewController.emailFieldNotification.hidden = NO;
+        if(!passwordFilled)
+            self.signupViewController.passwordFieldNotification.hidden = NO;
+        if(!repeatedPasswordFilled)
+            self.signupViewController.repeatedPasswordFieldNotification.hidden = NO;
+        if(!nameFilled)
+            self.signupViewController.nameFieldNotification.hidden = NO;
+        if(!passwordMatch){
+            self.signupViewController.repeatedPasswordFieldNotification.text = @"Passwords don't match";
+            self.signupViewController.repeatedPasswordFieldNotification.hidden = NO;
+        }
+        if(!correctEmail){
+            self.signupViewController.emailFieldNotification.text = @"Not correct email";
+            self.signupViewController.emailFieldNotification.hidden = NO;
+        }
+    }
+}
+
 @end

@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFSignupView : UIView
+@class OPFUser;
+
+@interface OPFSignupView : UITableView
+
+@property (weak, nonatomic) IBOutlet UITableViewCell *eMail;
+@property (weak, nonatomic) IBOutlet UITableViewCell *password;
+@property (weak, nonatomic) IBOutlet UITableViewCell *repeatedPassword;
+@property (weak, nonatomic) IBOutlet UITableViewCell *username;
+@property (weak, nonatomic) IBOutlet UITableViewCell *age;
+@property (weak, nonatomic) IBOutlet UITableViewCell *location;
+@property (weak, nonatomic) IBOutlet UITableViewCell *website;
+@property (weak, nonatomic) IBOutlet UITableViewCell *bio;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+
+- (BOOL)validateSignup;
+- (OPFUser *)deserializeSignup;
 
 @end

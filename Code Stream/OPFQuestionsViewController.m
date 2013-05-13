@@ -21,14 +21,25 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
-
+#import "OPFPostQuestionViewController.h"
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
 	kOPFQuestionsViewControllerTokenBeingInputtedTag = kOPFQuestionsSearchBarTokenTag,
 	kOPFQuestionsViewControllerTokenBeingInputtedUser = kOPFQuestionsSearchBarTokenUser
 } OPFQuestionsViewControllerTokenBeingInputtedType;
+
+
+typedef enum ScrollDirection : NSInteger {
+    kOPFQuestionsViewControllerScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
 
 
 @interface OPFQuestionsViewController (/*Private*/)
@@ -43,6 +54,9 @@ typedef enum : NSInteger {
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
 
+#pragma mark - Scrolling
+@property (assign, nonatomic) CGFloat lastContentOffset;
+
 @end
 
 
@@ -55,6 +69,7 @@ static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
 Boolean heatMode = NO;
+UINavigationController *askQuestionsNavigationController;
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -120,10 +135,6 @@ Boolean heatMode = NO;
 	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-	
-	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;*/
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
@@ -154,7 +165,15 @@ Boolean heatMode = NO;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Questionsview will disappear");
+    NSLog(@"Present view %@", self.presentedViewController);
+	
+    if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
+        NSLog(@"YES IT*S THE SAME VIEW");
+    }
+    [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
 
@@ -231,6 +250,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Filtered Questions
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateFilteredQuestionsCompletion:(void (^)())completionBlock
 {
 	__block NSString *searchString = nil;
@@ -238,28 +259,27 @@ Boolean heatMode = NO;
 		searchString = self.searchString.copy ?: @"";
 	});
 	
-	NSArray *tags = [searchString opf_tagsFromSearchString];
-	NSArray *users = [searchString opf_usersFromSearchString];
-	NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
-	NSString *usersAsString = [users componentsJoinedByString:@" "];
-	keywords = [keywords stringByAppendingString:usersAsString];
-	
-	OPFQuery *query = nil;
-	if (keywords.length > 0 || tags.count > 0) {
-		NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
-		query = [[[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending] limit:@(100)];
-	} else {
-		query = [[[OPFQuestion.query whereColumn:@"score" isGreaterThan:@(8) orEqual:YES] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(50)];
+	OPFQuery *query = self.query;
+	if (searchString.length > 0) {
+		NSArray *tags = [searchString opf_tagsFromSearchString];
+		NSArray *users = [searchString opf_usersFromSearchString];
+		NSString *keywords = [searchString opf_keywordsSearchStringFromSearchString];
+		NSString *usersAsString = [users componentsJoinedByString:@" "];
+		keywords = [keywords stringByAppendingString:usersAsString];
+		
+		if (keywords.length > 0 || tags.count > 0) {
+			NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
+			query = [[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending];
+		}
 	}
 	
-	NSArray *filteredQuestions = [query getMany];
+	query = query ?: OPFQuestion.hotQuestionsQuery;
+	NSArray *filteredQuestions = [[query limit:@(100)] getMany];
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.filteredQuestions setArray:filteredQuestions];
 		[self.tableView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -271,6 +291,8 @@ Boolean heatMode = NO;
 
 
 #pragma mark - Update Suggested Tokens
+// Must NOT be called from the main thread/queue. I.e. call it from a background
+// thread.
 - (void)updateSuggestedTokensCompletion:(void (^)())completionBlock
 {
 	__block NSString *tokenBeingInputted = nil;
@@ -320,9 +342,7 @@ Boolean heatMode = NO;
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
 		[self.suggestedTokens setArray:suggestedTokens];
 		[self.searchBarInputView.completionsView reloadData];
-		if (completionBlock) {
-			completionBlock();
-		}
+		CDExecutePossibleBlock(completionBlock);
 	}];
 }
 
@@ -346,41 +366,36 @@ Boolean heatMode = NO;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	DLog(@"Asking new questions has not been implemtend.");
-	
-	UIViewController *askQuestionsViewController = UIViewController.new;
-	askQuestionsViewController.view.backgroundColor = UIColor.redColor;
-	
-	UINavigationController *askQuestionsNavigationController = [[UINavigationController alloc] initWithRootViewController:askQuestionsViewController];
-	
-	__weak typeof(self) weakSelf = self;
-	[self presentViewController:askQuestionsNavigationController animated:YES completion:^{
-		double delayInSeconds = .5f;
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-			UIViewController *self = weakSelf;
-			[self dismissViewControllerAnimated:YES completion:nil];
-		});
-	}];
+	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
+    postview.title = @"Post a question";
+
+    [self.navigationController pushViewController:postview animated:YES];
 }
 
 
 #pragma mark - 
-- (NSString *)tokenTextFromSuggestedTokenAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
-	NSString *token = nil;
-	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
-		OPFTag *tag = self.suggestedTokens[indexPath.row];
-		token = tag.name;
-	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
-		OPFUser *user = self.suggestedTokens[indexPath.row];
-		token = user.displayName;
-	} else if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedNone) {
-		token = @"";
+	NSString *tokenText = nil;
+	if (type == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
+		OPFTag *tag = (OPFTag *)token;
+		tokenText = tag.name;
+	} else if (type == kOPFQuestionsViewControllerTokenBeingInputtedUser) {
+		OPFUser *user = (OPFUser *)token;
+		tokenText = user.displayName;
+	} else if (type == kOPFQuestionsViewControllerTokenBeingInputtedNone) {
+		tokenText = @"";
 	} else {
 		ZAssert(NO, @"Unkown type of token being inputted, got: %d", self.tokenBeingInputtedType);
 	}
-	return token;
+	return tokenText;
+}
+
+- (NSString *)tokenTextFromSuggestedTokenAtIndexPath:(NSIndexPath *)indexPath
+{
+	id token = self.suggestedTokens[indexPath.row];
+	NSString *tokenText = [self tokenTextFromSuggestedToken:token ofType:self.tokenBeingInputtedType];
+	return tokenText;
 }
 
 
@@ -422,15 +437,15 @@ Boolean heatMode = NO;
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *token = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
-	[self didSelectToken:token];
+	NSString *tokenText = [self tokenTextFromSuggestedTokenAtIndexPath:indexPath];
+	[self didSelectToken:tokenText];
 }
 
 
 #pragma mark - Token Handling
-- (void)didSelectToken:(NSString *)token
+- (void)didSelectToken:(NSString *)tokenString
 {
-	[self.tokenBeingInputted setString:token];
+	[self.tokenBeingInputted setString:tokenString];
 	[self endTokenInput];
 }
 
@@ -564,6 +579,20 @@ Boolean heatMode = NO;
 	return token;
 }
 
+- (void)selectBestTokenMatchAndEndSearch
+{
+	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
+		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
+		self.tokenBeingInputted.length > 0 &&
+		self.suggestedTokens.count > 0) {
+		id token = self.suggestedTokens[0];
+		NSString *tokenText = [self tokenTextFromSuggestedToken:token ofType:self.tokenBeingInputtedType];
+		[self didSelectToken:tokenText];
+	}
+	
+	[self dismissSearchBarExtras];
+}
+
 
 #pragma mark - UISearchBarDelegate Methods
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -634,18 +663,6 @@ Boolean heatMode = NO;
 	[self updateSearchWithString:@""];
 }
 
-- (void)selectBestTokenMatchAndEndSearch
-{
-	if ((self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleTag ||
-		 self.tokenBeingInputtedType == kOPFQuestionsSearchBarTokenStyleUser) &&
-		self.suggestedTokens.count > 0) {
-		NSString *token = self.suggestedTokens[0];
-		[self didSelectToken:token];
-	}
-	
-	[self dismissSearchBarExtras];
-}
-
 - (void)dismissSearchBarExtras
 {
 	[self.searchBar resignFirstResponder];
@@ -702,7 +719,15 @@ Boolean heatMode = NO;
 #pragma mark - UIScrollBarDelegate methods
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-	[self selectBestTokenMatchAndEndSearch];
+//	if (scrollView)
+//	[self selectBestTokenMatchAndEndSearch];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+		[self selectBestTokenMatchAndEndSearch];
+	}
 }
 
 

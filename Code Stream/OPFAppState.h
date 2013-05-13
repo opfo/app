@@ -14,7 +14,9 @@
 
 + (OPFUser *)userModel;
 + (void) setUserModel:(OPFUser *)userModel;
-+ (BOOL)loginWithEMail :(NSString *)eMail andPassword :(NSString *)password;
++ (BOOL)loginWithEMailHash :(NSString *)eMailHash andPassword :(NSString *)password persistLogin:(BOOL)persistFlag;
++ (void)logout;
 + (BOOL)isLoggedIn;
++ (BOOL)tryAutoLogin;
 
 @end

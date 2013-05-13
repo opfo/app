@@ -10,6 +10,12 @@
 #import "OPFUser.h"
 #import "NSString+OPFMD5Hash.h"
 
+@interface OPFAppState()
+
++ (void)peristLoginForEmailHash :(NSString *)eMail;
+
+@end
+
 @implementation OPFAppState
 
 static OPFUser *userModel;
@@ -27,12 +33,16 @@ static OPFUser *userModel;
     self.userModel = userModel;
 }
 
-+ (BOOL)loginWithEMail :(NSString *)eMail andPassword :(NSString *)password;
++ (BOOL)loginWithEMailHash :(NSString *)eMailHash andPassword :(NSString *)password persistLogin:(BOOL)persistFlag
 {
-    __strong OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"email_hash" is:eMail.opf_md5hash] getOne];
+    __strong OPFUser *loggedInUserModel = [[[OPFUser query] whereColumn:@"email_hash" is:eMailHash] getOne];
     
     if (loggedInUserModel) {
         userModel = loggedInUserModel;
+        
+        if (persistFlag == YES) {
+            [self peristLoginForEmailHash:eMailHash];
+        }
         
         return YES;
     }
@@ -40,9 +50,42 @@ static OPFUser *userModel;
     return NO;
 }
 
++ (void)logout
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults removeObjectForKey:@"eMailHash"];
+    
+    userModel = nil;
+}
+
 + (BOOL)isLoggedIn
 {
     return userModel != nil ? true : false;
+}
+
++ (BOOL)tryAutoLogin
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *eMailHash = [userDefaults objectForKey:@"eMailHash"];
+    
+    if (eMailHash != nil) {
+        return [self loginWithEMailHash:eMailHash andPassword:nil persistLogin:NO];
+    } else {
+        return NO;
+    }
+}
+
+#pragma mark - Private methods
+
++ (void)peristLoginForEmailHash :(NSString *)eMailHash
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [userDefaults setObject:eMailHash forKey:@"eMailHash"];
+    
+    [userDefaults synchronize];
 }
 
 @end
