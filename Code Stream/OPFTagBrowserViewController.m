@@ -16,6 +16,7 @@
 #import "OPFTagBrowserCollectionViewHeaderInitial.h"
 #import "OPFTagBrowserCollectionView.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFTagBrowserSelectionViewController.h"
 
 @interface OPFTagBrowserViewController ()
 
@@ -23,6 +24,7 @@
 @property (strong) NSMutableArray *questionsByTag;
 @property (nonatomic, strong) NSMutableSet *selectedTags;
 @property (strong) OPFQuery *questionsQuery;
+@property (strong) OPFTagBrowserSelectionViewController *selectedTagsController;
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
@@ -80,6 +82,10 @@ static NSInteger const TagSelectionLimit = 20;
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     
+    self.selectedTagsView.dataSource = self.selectedTagsController;
+    self.selectedTagsView.delegate = self.selectedTagsController;
+    self.selectedTagsController.collectionView = self.selectedTagsView;
+    
     self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
     self.selectedTags = [NSMutableSet setWithCapacity:TagSelectionLimit];
 }
@@ -108,9 +114,7 @@ static NSInteger const TagSelectionLimit = 20;
 }
 
 - (void)didSelectTag:(OPFTag *)tag
-{
-    [self.selectedTags addObject:tag];
-    
+{    
 	[self loadQuestionsForTag:tag];
 }
 

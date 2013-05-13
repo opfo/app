@@ -47,6 +47,7 @@
 		14DA81321729D48400DAFE49 /* prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81121729D48400DAFE49 /* prettify.js */; };
 		14DA81331729D48400DAFE49 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA81131729D48400DAFE49 /* run_prettify.js */; };
 		14E018DC172FBA0200CA2763 /* OPFUserPreviewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */; };
+		1A021F4E17412A9000A689AA /* OPFTagBrowserSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */; };
 		1A06C21B17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */; };
 		1A08F5411738F4E300D232D2 /* answer-count.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53E1738F4E300D232D2 /* answer-count.png */; };
 		1A08F5421738F4E300D232D2 /* comment-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1A08F53F1738F4E300D232D2 /* comment-count@2x.png */; };
@@ -272,6 +273,8 @@
 		14DA81131729D48400DAFE49 /* run_prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = run_prettify.js; sourceTree = "<group>"; };
 		14E018DA172FBA0200CA2763 /* OPFUserPreviewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserPreviewButton.h; sourceTree = "<group>"; };
 		14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserPreviewButton.m; sourceTree = "<group>"; };
+		1A021F4C17412A8F00A689AA /* OPFTagBrowserSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFTagBrowserSelectionViewController.h; sourceTree = "<group>"; };
+		1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFTagBrowserSelectionViewController.m; sourceTree = "<group>"; };
 		1A06C21917216A470065EDA4 /* UIView+AnimationOptionsForCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AnimationOptionsForCurve.h"; sourceTree = "<group>"; };
 		1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AnimationOptionsForCurve.m"; sourceTree = "<group>"; };
 		1A088E521726A828000EDDBB /* OPFCommentViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentViewHeaderView.h; sourceTree = "<group>"; };
@@ -1082,6 +1085,8 @@
 				1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */,
 				1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */,
 				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
+				1A021F4C17412A8F00A689AA /* OPFTagBrowserSelectionViewController.h */,
+				1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1607,6 +1612,7 @@
 				1AC6A5ED173BDFCD0006243B /* OPFTagBrowserCollectionViewHeaderTag.m in Sources */,
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
 				1A2FAEF1173CF8DA00ABAE13 /* OPFTagBrowserFooter.m in Sources */,
+				1A021F4E17412A9000A689AA /* OPFTagBrowserSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
