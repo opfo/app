@@ -26,6 +26,7 @@
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
+- (void)didDoubleTapTag:(id)sender;
 - (void)loadQuestionsForTag:(OPFTag *)tag;
 - (void)setResultCountInView;
 - (NSArray *)getTagNames;
@@ -111,6 +112,11 @@ static NSInteger const TagSelectionLimit = 20;
     [self.selectedTags addObject:tag];
     
 	[self loadQuestionsForTag:tag];
+}
+
+- (void)didDoubleTapTag:(id)sender
+{
+    
 }
 
 - (void)loadQuestionsForTag:(OPFTag *)tag
