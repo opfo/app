@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFTagBrowserSelectionViewController : UICollectionViewController
+@interface OPFTagBrowserSelectionViewController : UIViewController <UICollectionViewDataSource,
+UICollectionViewDelegate>
 
 @property(strong, nonatomic) NSMutableArray *tags;
 @property (strong, nonatomic) UICollectionView *collectionView;

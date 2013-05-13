@@ -14,12 +14,29 @@
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
+- (void)opfSetupView;
 
 @end
 
 @implementation OPFTagBrowserSelectionViewController
 
 static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
+
+- (id)init
+{
+    self = [super init];
+    
+    if(self) {
+        [self opfSetupView];
+    }
+    
+    return self;
+}
+
+- (void)opfSetupView
+{
+    
+}
 
 - (void)viewDidLoad
 {

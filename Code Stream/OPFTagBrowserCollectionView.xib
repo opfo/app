@@ -155,12 +155,12 @@
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
-					<object class="IBUICollectionView" id="1056891594">
+					<object class="IBUICollectionView" id="137428824">
 						<reference key="NSNextResponder" ref="710409235"/>
 						<int key="NSvFlags">1298</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrameSize">{320, 40}</string>
+						<string key="NSFrameSize">{320, 151}</string>
 						<reference key="NSSuperview" ref="710409235"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="498879946"/>
@@ -178,12 +178,16 @@
 						<int key="IBUIIndicatorStyle">2</int>
 						<float key="IBUIMinimumZoomScale">0.0</float>
 						<float key="IBUIMaximumZoomScale">0.0</float>
-						<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="135499113">
-							<reference key="IBUICollectionView" ref="1056891594"/>
+						<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="60638382">
+							<reference key="IBUICollectionView" ref="137428824"/>
 							<int key="IBUIScrollDirection">1</int>
 							<string key="IBUIItemSize">{50, 50}</string>
 							<float key="IBUIMinimumLineSpacing">10</float>
 							<float key="IBUIMinimumInteritemSpacing">10</float>
+							<double key="IBUISectionInset.top">0.0</double>
+							<double key="IBUISectionInset.bottom">0.0</double>
+							<double key="IBUISectionInset.left">25</double>
+							<double key="IBUISectionInset.right">25</double>
 						</object>
 						<reference key="IBUICells" ref="0"/>
 					</object>
@@ -191,7 +195,7 @@
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1056891594"/>
+				<reference key="NSNextKeyView" ref="137428824"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -266,9 +270,9 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">selectedTagsView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1056891594"/>
+						<reference key="destination" ref="137428824"/>
 					</object>
-					<int key="connectionID">329</int>
+					<int key="connectionID">336</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -323,7 +327,7 @@
 							<reference ref="1063085622"/>
 							<reference ref="680043174"/>
 							<reference ref="498879946"/>
-							<reference ref="1056891594"/>
+							<reference ref="137428824"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Tag Browser Wrapper</string>
@@ -362,18 +366,18 @@
 						<reference key="parent" ref="710409235"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">326</int>
-						<reference key="object" ref="1056891594"/>
+						<int key="objectID">331</int>
+						<reference key="object" ref="137428824"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="135499113"/>
+							<reference ref="60638382"/>
 						</array>
 						<reference key="parent" ref="710409235"/>
 						<string key="objectName">Selected Tags</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">327</int>
-						<reference key="object" ref="135499113"/>
-						<reference key="parent" ref="1056891594"/>
+						<int key="objectID">332</int>
+						<reference key="object" ref="60638382"/>
+						<reference key="parent" ref="137428824"/>
 					</object>
 				</array>
 			</object>
@@ -387,8 +391,8 @@
 				<real value="0.0" key="185.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="186.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="237.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="326.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="327.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="331.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="332.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">OPFTagBrowserCollectionView</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -397,7 +401,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">329</int>
+			<int key="maxID">336</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -428,7 +432,7 @@
 						<string key="footerTagCount">UILabel</string>
 						<string key="footerTagCountButton">UIImageView</string>
 						<string key="footerTagCountLabel">UIButton</string>
-						<string key="selectedTagsCollectionView">UICollectionView</string>
+						<string key="selectedTagsView">UICollectionView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="collectionView">
@@ -447,8 +451,8 @@
 							<string key="name">footerTagCountLabel</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="selectedTagsCollectionView">
-							<string key="name">selectedTagsCollectionView</string>
+						<object class="IBToOneOutletInfo" key="selectedTagsView">
+							<string key="name">selectedTagsView</string>
 							<string key="candidateClassName">UICollectionView</string>
 						</object>
 					</dictionary>

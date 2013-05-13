@@ -78,21 +78,25 @@ static NSInteger const TagSelectionLimit = 20;
 - (void)opfSetupView
 {
     self.title = NSLocalizedString(@"Tag Browser", @"Tag Browser View controller title");
-    
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    
-    self.selectedTagsView.dataSource = self.selectedTagsController;
-    self.selectedTagsView.delegate = self.selectedTagsController;
-    self.selectedTagsController.collectionView = self.selectedTagsView;
+    self.selectedTagsController = [OPFTagBrowserSelectionViewController new];
     
     self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
     self.selectedTags = [NSMutableSet setWithCapacity:TagSelectionLimit];
+    self.selectedTagsController.tags = [NSMutableArray arrayWithCapacity:TagSelectionLimit];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.selectedTagsView.dataSource = self.selectedTagsController;
+    self.selectedTagsView.delegate = self.selectedTagsController;
+    self.selectedTagsController.view = self.selectedTagsView;
+    self.selectedTagsController.collectionView = self.selectedTagsView;
+    [self.selectedTagsController.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
+    
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,7 +118,15 @@ static NSInteger const TagSelectionLimit = 20;
 }
 
 - (void)didSelectTag:(OPFTag *)tag
-{    
+{
+    //I know its a set with unique items but i need to know if its a new tag
+    if (! [self.selectedTags containsObject:tag]) {
+        [self.selectedTagsController.tags addObject:tag];
+        [self.selectedTagsView reloadData];
+    }
+    
+    [self.selectedTags addObject:tag];
+    
 	[self loadQuestionsForTag:tag];
 }
 
