@@ -29,7 +29,7 @@
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
 - (void)didDoubleTapTag:(id)sender;
-- (void)loadQuestionsForTag:(OPFTag *)tag;
+- (void)loadQuestionsForTags;
 - (void)setResultCountInView;
 - (NSArray *)getTagNames;
 
@@ -91,6 +91,7 @@ static NSInteger const TagSelectionLimit = 20;
     
     self.selectedTagsView.dataSource = self.selectedTagsController;
     self.selectedTagsView.delegate = self.selectedTagsController;
+    self.selectedTagsController.parent = self;
     self.selectedTagsController.view = self.selectedTagsView;
     self.selectedTagsController.collectionView = self.selectedTagsView;
     [self.selectedTagsController.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
@@ -110,6 +111,16 @@ static NSInteger const TagSelectionLimit = 20;
     _selectedTags = selectedTags;
 }
 
+- (void)didSelectSelectedTag:(OPFTag *)tag
+{
+    [self.selectedTagsController.tags removeObject:tag];
+    [self.selectedTags removeObject:tag];
+    
+    [self.selectedTagsView reloadData];
+    
+    [self loadQuestionsForTags];
+}
+
 #pragma mark - Private methods
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath
@@ -127,7 +138,7 @@ static NSInteger const TagSelectionLimit = 20;
     
     [self.selectedTags addObject:tag];
     
-	[self loadQuestionsForTag:tag];
+	[self loadQuestionsForTags];
 }
 
 - (void)didDoubleTapTag:(id)sender
@@ -135,7 +146,7 @@ static NSInteger const TagSelectionLimit = 20;
     
 }
 
-- (void)loadQuestionsForTag:(OPFTag *)tag
+- (void)loadQuestionsForTags
 {
     self.questionsQuery = [[OPFQuestion searchFor:@"" inTags:[self getTagNames]] orderBy:@"score" order:kOPFSortOrderDescending];
     

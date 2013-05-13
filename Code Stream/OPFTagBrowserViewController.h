@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class OPFTagBrowserCollectionView;
+@class OPFTagBrowserCollectionView, OPFTag;
 
 @interface OPFTagBrowserViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegate>
@@ -21,6 +21,7 @@ UICollectionViewDelegate>
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
+- (void)didSelectSelectedTag:(OPFTag *) tag;
 
 - (IBAction)showQuestionsByTags:(id)sender;
 

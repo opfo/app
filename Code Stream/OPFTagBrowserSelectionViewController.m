@@ -9,6 +9,7 @@
 #import "OPFTagBrowserSelectionViewController.h"
 #import "OPFTokenCollectionViewCell.h"
 #import "OPFTag.h"
+#import "OPFTagBrowserViewController.h"
 
 @interface OPFTagBrowserSelectionViewController ()
 
@@ -97,6 +98,8 @@ static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionV
 
 - (void)didSelectTag:(OPFTag *)tag
 {
+    //Fix this tobi!
+    [self.parent didSelectSelectedTag:tag];
 }
 
 @end
