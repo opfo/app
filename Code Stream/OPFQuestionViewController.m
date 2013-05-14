@@ -118,7 +118,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(postNewAnswer:)];
+    UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(postNewAnswer:)];
     self.navigationItem.rightBarButtonItem = composeAnswer;
     
     
