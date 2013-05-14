@@ -118,6 +118,13 @@
     return NSLocalizedString(@"Login", @"Login View Controller tab title");
 }
 
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if (textField==self.eMailField || textField==self.passwordField) {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
 #pragma mark - Container Controller methods
 
 - (void)willMoveToParentViewController:(UIViewController *)parent

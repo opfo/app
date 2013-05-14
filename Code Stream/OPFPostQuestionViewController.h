@@ -10,10 +10,12 @@
 #import "OPFQuestionsViewController.h"
 
 @interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *bodyField;
 @property (weak, nonatomic) IBOutlet UITextField *tagsField;
+@property (weak, nonatomic) IBOutlet UILabel *titleWarning;
+@property (weak, nonatomic) IBOutlet UILabel *bodyTextWarning;
+@property (weak, nonatomic) IBOutlet UILabel *generalWarningLabel;
 
 
 @end

@@ -143,10 +143,13 @@
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
 		8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2725D51738562D0068D89C /* OPFWebViewController.m */; };
 		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
+		8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C420190173CE3F100329C6D /* OPFUpdateQuery.m */; };
 		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
+		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
+		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
 		8CF371C817398D68009B6425 /* forwardArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C717398D68009B6425 /* forwardArrow.png */; };
 		8CF371CA17398E48009B6425 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C917398E48009B6425 /* cancel.png */; };
 		8CF371CC173993CC009B6425 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371CB173993CC009B6425 /* reload.png */; };
@@ -431,12 +434,17 @@
 		8C2725D41738562D0068D89C /* OPFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFWebViewController.h; sourceTree = "<group>"; };
 		8C2725D51738562D0068D89C /* OPFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFWebViewController.m; sourceTree = "<group>"; };
 		8C2725D61738562D0068D89C /* OPFWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFWebView.xib; sourceTree = "<group>"; };
+		8C42018F173CE3F100329C6D /* OPFUpdateQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUpdateQuery.h; sourceTree = "<group>"; };
+		8C420190173CE3F100329C6D /* OPFUpdateQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUpdateQuery.m; sourceTree = "<group>"; };
 		8C66EF3E173850AB00B29435 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostQuestionViewController.h; sourceTree = "<group>"; };
 		8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostQuestionViewController.m; sourceTree = "<group>"; };
 		8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostQuestionView.xib; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
+		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
+		8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostAnswerViewController.m; sourceTree = "<group>"; };
+		8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostAnswerView.xib; sourceTree = "<group>"; };
 		8CF371C717398D68009B6425 /* forwardArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forwardArrow.png; sourceTree = "<group>"; };
 		8CF371C917398E48009B6425 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		8CF371CB173993CC009B6425 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reload.png; sourceTree = "<group>"; };
@@ -852,6 +860,8 @@
 				815E1B6317253C1E00FBDFEF /* OPFLikeQuery.m */,
 				813F5CDB17329E2B00F71CD6 /* OPFSearchQuery.h */,
 				813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */,
+				8C42018F173CE3F100329C6D /* OPFUpdateQuery.h */,
+				8C420190173CE3F100329C6D /* OPFUpdateQuery.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -901,6 +911,15 @@
 				14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */,
 			);
 			name = UtilitySpecs;
+			sourceTree = "<group>";
+		};
+		8C35A3EC173D514200392377 /* PostViews */ = {
+			isa = PBXGroup;
+			children = (
+				8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */,
+				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
+			);
+			name = PostViews;
 			sourceTree = "<group>";
 		};
 		9C18D579173087D500553128 /* Search */ = {
@@ -1054,6 +1073,7 @@
 				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
 				1AD7629C1737EA77002F157C /* Tag Browser View */,
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
+				8C35A3EC173D514200392377 /* PostViews */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 				1AD7629C1737EA77002F157C /* Tag Browser View */,
@@ -1062,9 +1082,6 @@
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
 				8C2725D61738562D0068D89C /* OPFWebView.xib */,
-				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
-				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
-				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1072,6 +1089,10 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */,
+				8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */,
+				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
+				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
 				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
 				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
 				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
@@ -1535,6 +1556,7 @@
 				9C235FF5173A9E9200907558 /* vote-down@2x.png in Resources */,
 				9C235FF6173A9E9200907558 /* vote-up-highlighted@2x.png in Resources */,
 				9C235FF7173A9E9200907558 /* vote-up@2x.png in Resources */,
+				8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1698,6 +1720,8 @@
 				8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */,
 				9C235FFA173AAAE800907558 /* UIFont+OPFAppFonts.m in Sources */,
 				9C235FFD173C511800907558 /* UIColor+OPFAppColors.m in Sources */,
+				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
+				8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,7 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
+- (BOOL) executeUpdate:(NSString *) sql;
 - (void) attachAuxDB;
 - (void) close;
 
