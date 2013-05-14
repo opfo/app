@@ -154,7 +154,6 @@
 		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
-		8CC0DD1917429E700001CF4C /* OPFRequireLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC0DD1817429E700001CF4C /* OPFRequireLoginViewController.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
 		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
@@ -434,8 +433,6 @@
 		8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostQuestionViewController.h; sourceTree = "<group>"; };
 		8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostQuestionViewController.m; sourceTree = "<group>"; };
 		8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostQuestionView.xib; sourceTree = "<group>"; };
-		8CC0DD1717429E700001CF4C /* OPFRequireLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFRequireLoginViewController.h; sourceTree = "<group>"; };
-		8CC0DD1817429E700001CF4C /* OPFRequireLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFRequireLoginViewController.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
 		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
@@ -1111,8 +1108,6 @@
 				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
 				1A021F4C17412A8F00A689AA /* OPFTagBrowserSelectionViewController.h */,
 				1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */,
-				8CC0DD1717429E700001CF4C /* OPFRequireLoginViewController.h */,
-				8CC0DD1817429E700001CF4C /* OPFRequireLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1642,7 +1637,6 @@
 				1A021F4E17412A9000A689AA /* OPFTagBrowserSelectionViewController.m in Sources */,
 				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
 				8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */,
-				8CC0DD1917429E700001CF4C /* OPFRequireLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
