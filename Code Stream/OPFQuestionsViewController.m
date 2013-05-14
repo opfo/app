@@ -379,10 +379,10 @@ UINavigationController *askQuestionsNavigationController;
 	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
 	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
 	
-	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id sender) {
+	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(__unused id _) {
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}];
-	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
+	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(__unused  id _) {
 		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
 		
 		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
