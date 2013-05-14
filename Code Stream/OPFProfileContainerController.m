@@ -28,7 +28,7 @@
 
 @implementation OPFProfileContainerController
 
-static const int TransitionDuration = .5f;
+static const NSTimeInterval TransitionDuration = .5f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

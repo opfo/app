@@ -33,21 +33,7 @@
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];
     
-    // Update corresponding tag column in auxiliary db. Imcomplete implementation
-/*  NSString *strippedTagsString = [tags stringByReplacingOccurrencesOfString:@"<" withString:@""];
-    strippedTagsString = [strippedTagsString stringByReplacingOccurrencesOfString:@">" withString:@" "];
-    NSMutableArray *tagsArray = [[strippedTagsString componentsSeparatedByString:@" "] mutableCopy];
-    [tagsArray removeLastObject];
-    
-    BOOL tagAuxUpdate = NO;
-    for(NSString *tag __strong in tagsArray){
-        if(![tag isEqualToString:@" "]){
-            NSString *auxTagQuery = [NSString stringWithFormat: @"INSERT INTO tags(name, counter) values ('%@',%d);",tag, 0];
-            tagAuxUpdate = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxTagQuery auxiliaryUpdate:YES];
-        }
-    }*/
-    
-    return (succeeded && auxSucceeded) ? randomID : 0;
+    return (succeeded && auxSucceeded);
 }
 
 + (NSInteger) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
@@ -110,6 +96,7 @@
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
     
+
     // Query to the auxiliary db to keep it in sync with the SO db
     NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_index(object_id, index_string) values (%d, '%@');",randomID, name];
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];

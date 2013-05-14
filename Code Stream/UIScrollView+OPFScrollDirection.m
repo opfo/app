@@ -29,7 +29,7 @@ static const void *kOPFUIScrollViewDirectionContentOffsetYKey;
 	CGFloat newContentOffsetY = scrollView.contentOffset.y;
 	
 	if (oldContentOffsetXNumber != nil) {
-		CGFloat oldContentOffsetX = oldContentOffsetXNumber.doubleValue;
+		double oldContentOffsetX = oldContentOffsetXNumber.doubleValue;
 		if (oldContentOffsetX > newContentOffsetX) {
 			direction += kOPFUIScrollViewDirectionRight;
 		} else if (oldContentOffsetX < newContentOffsetX) {
@@ -38,7 +38,7 @@ static const void *kOPFUIScrollViewDirectionContentOffsetYKey;
 	}
 		
 	if (oldContentOffsetYNumber != nil) {
-		CGFloat oldContentOffsetY = oldContentOffsetYNumber.doubleValue;
+		double oldContentOffsetY = oldContentOffsetYNumber.doubleValue;
 		if (oldContentOffsetY > newContentOffsetY) {
 			direction += kOPFUIScrollViewDirectionUp;
 		} else if (oldContentOffsetY < newContentOffsetY) {
