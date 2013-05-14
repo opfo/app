@@ -13,6 +13,9 @@
 #import "OPFPost.h"
 #import "OPFComment.h"
 #import "OPFUserProfileViewController.h"
+#import "OPFAppState.h"
+#import "OPFUpdateQuery.h"
+#import "OPFUser.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -75,13 +78,13 @@
 
 - (void)commentSavePressed:(UIButton *)sender
 {
-    NSString *commentText = self.inputTextField.text;
+    if(![self.inputTextField.text isEqualToString:@""]){
+        [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
     
-    NSLog(@"%@%@", @"NOP of saving comment: ", commentText);
-    
-    [self.inputTextField setText:nil];
-    [self.inputTextField resignFirstResponder];
-    [self scrollToBottomAnimated:YES];
+        [self.inputTextField setText:nil];
+        [self.inputTextField resignFirstResponder];
+        [self scrollToBottomAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

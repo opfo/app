@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$1" = "force" ]
+	then
+	FORCE_DB_UPDATE="force"
+fi
+
 SCRIPT_DIR=$(dirname "$0")
 cd "$SCRIPT_DIR/.."
 
@@ -22,4 +27,4 @@ pod install
 
 echo
 echo "*** Get the databases"
-./Scripts/update_dbs
+./Scripts/update_dbs ${FORCE_DB_UPDATE}

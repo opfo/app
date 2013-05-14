@@ -11,8 +11,8 @@
 
 @class OPFQuery;
 
-@interface OPFQuestionsViewController : UITableViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, OPFSingleQuestionPreviewCellDelegate,
-	UIScrollViewDelegate>
+
+@interface OPFQuestionsViewController : UITableViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIScrollViewDelegate, OPFSingleQuestionPreviewCellDelegate>
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;

@@ -12,8 +12,11 @@
 
 @interface OPFAppState : NSObject
 
-@property (strong, nonatomic) OPFUser *userModel;
-
 + (OPFUser *)userModel;
++ (void) setUserModel:(OPFUser *)userModel;
++ (BOOL)loginWithEMailHash :(NSString *)eMailHash andPassword :(NSString *)password persistLogin:(BOOL)persistFlag;
++ (void)logout;
++ (BOOL)isLoggedIn;
++ (BOOL)tryAutoLogin;
 
 @end

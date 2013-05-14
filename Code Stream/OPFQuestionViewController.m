@@ -22,6 +22,7 @@
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
+#import "OPFPostAnswerViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -117,6 +118,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(postNewAnswer:)];
+    self.navigationItem.rightBarButtonItem = composeAnswer;
+    
+    
     OPFUser *user = [[OPFUser alloc] init];
     [user setReputation:@(351)];
     [user setDisplayName:@"Aron"];
@@ -359,6 +364,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 }
 
+#pragma mark - Post a new answer
+-(void) postNewAnswer:(id) sender{
+    OPFPostAnswerViewController *postview = [OPFPostAnswerViewController new];
+    postview.title = @"Post a question";
+    postview.parentQuestion = [self.question.identifier integerValue];
+    [self.navigationController pushViewController:postview animated:YES];
+    [self reloadInputViews];
+}
 
 
 
