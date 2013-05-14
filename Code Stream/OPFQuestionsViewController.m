@@ -135,10 +135,6 @@ UINavigationController *askQuestionsNavigationController;
 	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-	
-	/*self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    self.navigationItem.leftBarButtonItem = leftButton;*/
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
@@ -305,12 +301,12 @@ UINavigationController *askQuestionsNavigationController;
 	});
 	
 	NSArray *suggestedTokens = nil;
-	NSInteger queryLimit = 20;
+	NSUInteger queryLimit = 20;
 	CGFloat queryLimitWizardOfTheOZFactor = 1;
 	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
-		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
+		queryLimitWizardOfTheOZFactor = 1.f / (CGFloat)(existingTags.count ?: 1.f);
 		if (tokenBeingInputted.length > 0) {
 			NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
 			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
@@ -321,7 +317,7 @@ UINavigationController *askQuestionsNavigationController;
 			}];
 			[relatedTags removeObjectsInArray:existingTags];
 			
-			NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+			NSUInteger limit = (NSUInteger)((CGFloat)queryLimit * queryLimitWizardOfTheOZFactor);
 			NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
 			suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
 		} else {
@@ -370,22 +366,12 @@ UINavigationController *askQuestionsNavigationController;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	DLog(@"Asking new questions has not been implemtend.");
-	
 	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
     postview.title = @"Post a question";
-    
-    /*CATransition *transition = [CATransition animation];
-    transition.duration = 1.f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
-    transition.type = kCATransitionMoveIn;
-    transition.subtype = kCATransitionFromTop;
-    transition.delegate = self;
-    [self.navigationController.navigationBar.layer addAnimation:transition forKey:nil];
-    [self.navigationController.view.layer addAnimation:transition forKey:nil];*/
-    
+
     [self.navigationController pushViewController:postview animated:YES];
 }
+
 
 #pragma mark - 
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
@@ -472,8 +458,8 @@ UINavigationController *askQuestionsNavigationController;
 	NSRange tokenEndRange = [searchString rangeOfString:tokenEndChar options:NSBackwardsSearch];
 	
 	if (tokenStartRange.location != NSNotFound) {
-		CGFloat location = tokenStartRange.location + tokenStartRange.length;
-		CGFloat length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
+		NSUInteger location = tokenStartRange.location + tokenStartRange.length;
+		NSUInteger length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
 		NSRange replacementRange = NSMakeRange(location, length);
 		
 		if (replacementRange.location < searchString.length) {
