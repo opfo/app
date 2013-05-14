@@ -31,6 +31,8 @@
 - (void)loadQuestionsForTags;
 - (void)setResultCountInView;
 - (NSArray *)getTagNames;
+- (void) hideFooterLabels;
+- (void) showFooterLabels;
 
 @end
 
@@ -139,6 +141,10 @@ static NSInteger const TagSelectionLimit = 20;
     
     [self.selectedTagsView reloadData];
     
+    if (self.selectedTags.count == 0) {
+        [self hideFooterLabels];
+    }
+    
     [self loadQuestionsForTags];
 }
 
@@ -190,7 +196,7 @@ static NSInteger const TagSelectionLimit = 20;
     self.footerTagCount.text = (self.questionsByTag.count >= TagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)TagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
     self.footerTagCountLabel.titleLabel.text = TagCountLabel;
     
-    self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
+    [self showFooterLabels];
 }
 
 - (NSArray *)getTagNames
@@ -199,6 +205,18 @@ static NSInteger const TagSelectionLimit = 20;
     NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
     
     return tagNames;
+}
+
+- (void)hideFooterLabels
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = YES;
+    });
+}
+
+- (void)showFooterLabels
+{
+    self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
 }
 
 #pragma mark - TabbedViewController methods
