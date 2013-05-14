@@ -23,6 +23,8 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFPostAnswerViewController.h"
+#import "OPFQuestionAnswerSeparatorCell.h"
+
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -30,12 +32,18 @@ enum {
 	kOPFQuestionTagsCell = 2,
 	kOPFQuestionCommentsWithTagsCell = 3,
 	kOPFQuestionCommentsWithoutTagsCell = 2,
+	kOPFQuestionAnswerSeparatorWithTagsCell = 4,
+	kOPFQuestionAnswerSeparatorWithoutTagsCell = 3,
 };
 
 static const NSInteger kOPFQuestionSection = 0;
-static const NSInteger kOPFAnswersSeparatorSection = 1;
+static const CGFloat kOPFQuestionSectionHeight = 44.f;
+static const CGFloat kOPFAnswerSeparatorHeight = 22.f;
 
 static const CGFloat kOPFQuestionBodyInset = 20.f;
+
+static const NSInteger kOPFRowsInQuestionSection = 5;
+static const NSInteger kOPFRowsInAnswerSection = 4;
 
 
 @interface OPFQuestionViewController ()
@@ -55,10 +63,9 @@ static NSString *const BodyCellIdentifier = @"PostBodyCell";
 static NSString *const MetadataCellIdentifier = @"PostMetadataCell";
 static NSString *const TagsCellIdentifier = @"PostTagsCell";
 static NSString *const CommentsCellIdentifier = @"PostCommentsCell";
+static NSString *const AnswerSeparatorCellIdentifier = @"AnswerSeparatorCellIdentifier";
 
 static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
-static NSString *const AnswersSeparatorHeaderView = @"AnswersSeparatorHeaderView";
-static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 #pragma mark - Object Lifecycle
 - (void)questionViewControllerSharedInit
@@ -116,10 +123,9 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostMetadataTableViewCell) bundle:nil] forCellReuseIdentifier:MetadataCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostTagsTableViewCell) bundle:nil] forCellReuseIdentifier:TagsCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:@"OPFPostCommentTableViewCell" bundle:nil] forCellReuseIdentifier:CommentsCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionAnswerSeparatorCell) bundle:nil] forCellReuseIdentifier:AnswerSeparatorCellIdentifier];
 	
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
-	[self.tableView registerNib:[UINib nibWithNibName:@"OPFQuestionAnswersSeparatorView" bundle:nil] forHeaderFooterViewReuseIdentifier:AnswersSeparatorHeaderView];
-	[self.tableView registerClass:UITableViewHeaderFooterView.class forHeaderFooterViewReuseIdentifier:AnswerHeaderView];
 	
 	UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(postNewAnswer:)];
 	self.navigationItem.rightBarButtonItem = composeAnswer;
@@ -162,7 +168,6 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 - (OPFPost *)postForIndexPath:(NSIndexPath *)indexPath
 {
 	NSInteger section = indexPath.section;
-	section = section > kOPFAnswersSeparatorSection ? section - 1 : section;
 	return self.posts[section];
 }
 
@@ -175,23 +180,29 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 #pragma mark -
 - (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath
 {
+	NSParameterAssert(indexPath);
+	
 	NSString *cellIdentifier = nil;
-	if (indexPath.section == kOPFAnswersSeparatorSection) {
-		cellIdentifier = AnswersSeparatorHeaderView;
+	if (indexPath.row == kOPFQuestionBodyCell) {
+		cellIdentifier = BodyCellIdentifier;
+	} else if (indexPath.row == kOPFQuestionMetadataCell) {
+		cellIdentifier = MetadataCellIdentifier;
 	} else {
-		if (indexPath.row == kOPFQuestionBodyCell) {
-			cellIdentifier = BodyCellIdentifier;
-		} else if (indexPath.row == kOPFQuestionMetadataCell) {
-			cellIdentifier = MetadataCellIdentifier;
-		} else {
-			if (indexPath.section == kOPFQuestionSection) {
-				if (indexPath.row == kOPFQuestionTagsCell) {
-					cellIdentifier = TagsCellIdentifier;
-				} else if (indexPath.row == kOPFQuestionCommentsWithTagsCell) {
-					cellIdentifier = CommentsCellIdentifier;
-				}
-			} else if (indexPath.row == kOPFQuestionCommentsWithoutTagsCell) {
+		if (indexPath.section == kOPFQuestionSection) {
+			if (indexPath.row == kOPFQuestionTagsCell) {
+				cellIdentifier = TagsCellIdentifier;
+			} else if (indexPath.row == kOPFQuestionCommentsWithTagsCell) {
 				cellIdentifier = CommentsCellIdentifier;
+			} else if (indexPath.row == kOPFQuestionAnswerSeparatorWithTagsCell) {
+				cellIdentifier = AnswerSeparatorCellIdentifier;
+			}
+		} else {
+			if (indexPath.row == kOPFQuestionCommentsWithoutTagsCell) {
+				cellIdentifier = CommentsCellIdentifier;
+			} else if (indexPath.row == kOPFQuestionAnswerSeparatorWithoutTagsCell) {
+				cellIdentifier = AnswerSeparatorCellIdentifier;
+			} else {
+				NSAssert(NO, @"Unknown section/row combination, no known cell identifier found for %@", indexPath);
 			}
 		}
 	}
@@ -203,19 +214,18 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	// Each post gets its own section and then we have a section for the
-    return self.posts.count + 1;
+    return self.posts.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	// The first section corresponds the question which has an extra row for tags.
-	NSInteger rows = 0;
+	NSInteger rows = kOPFRowsInAnswerSection;
 	if (section == kOPFQuestionSection) {
-		rows = 4;
-	} else if (section == kOPFAnswersSeparatorSection) {
-		rows = 0;
-	} else {
-		rows = 3;
+		rows = kOPFRowsInQuestionSection;
+	} else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
+		// Lets not show the answer separator cell if it’s the last section.
+		rows -= 1;
 	}
     return rows;
 }
@@ -226,17 +236,11 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 	if (section == kOPFQuestionSection) {
 		OPFQuestionHeaderView *questionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
 		
-		NSInteger dataIndex = section > kOPFAnswersSeparatorSection ? section - 1 : section;
-		OPFQuestion *question = self.posts[dataIndex];
+		OPFQuestion *question = self.posts[section];
 		[questionHeaderView configureForQuestion:question];
 		
 		headerView = questionHeaderView;
-	} else if (section == kOPFAnswersSeparatorSection) {
-		headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:AnswersSeparatorHeaderView];
-	} else {
-		headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:AnswerHeaderView];
 	}
-	
 	return headerView;
 }
 
@@ -271,6 +275,8 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 		} else {
 			cell.detailTextLabel.text = NSLocalizedString(@"Add the first comment", @"No comments on post summary label.");
 		}
+	} else if ([cellIdentifier isEqualToString:AnswerSeparatorCellIdentifier]) {
+		cell.textLabel.text = (indexPath.section == kOPFQuestionSection ? NSLocalizedString(@"ANSWERS", @"Question/answers separator label text") : @"");
 	} else {
 		NSAssert(NO, @"Unknonw cell identifier '%@'", cellIdentifier);
 	}
@@ -280,7 +286,9 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	cell.backgroundColor = UIColor.whiteColor;
+	if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:AnswerSeparatorCellIdentifier] == NO) {
+		cell.backgroundColor = UIColor.whiteColor;
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -294,6 +302,8 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 		CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
 		CGSize bodySize = [body sizeWithFont:bodyFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
 		height = bodySize.height + kOPFQuestionBodyInset;
+	} else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:AnswerSeparatorCellIdentifier]) {
+		height = kOPFAnswerSeparatorHeight;
 	} else {
 		height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
 	}
@@ -302,12 +312,7 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	CGFloat height = 44.f;
-	if (section == kOPFQuestionSection) {
-		height = 45.f;
-	} else if (section == kOPFAnswersSeparatorSection) {
-		height = 22.f;
-	}
+	CGFloat height = (section == kOPFQuestionSection ? kOPFQuestionSectionHeight : 0.f);
 	return height;
 }
 
@@ -315,21 +320,9 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:MetadataCellIdentifier]) {
-		OPFPost *post = [self postForIndexPath:indexPath];
-		OPFUserProfileViewController *view = OPFUserProfileViewController.newFromStoryboard;
-		view.user = post.owner;
-		
-		[self.navigationController pushViewController:view animated:YES];
-		
-	}
     if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:CommentsCellIdentifier]) {
-        
-		// Selected cell was comment
-		
+		OPFCommentsViewController *commentViewController = OPFCommentsViewController.new;
 		OPFPost *post = [self postForIndexPath:indexPath];
-		OPFCommentsViewController *commentViewController = [OPFCommentsViewController new];
-		
 		commentViewController.postModel = post;
 		
 		[self.navigationController pushViewController:commentViewController animated:YES];
@@ -346,22 +339,18 @@ static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 #pragma mark - Tag List Delegate
 
+// TODO: Rewrite and fix.
 - (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
-	
-	
-	
 	int views = self.navigationController.viewControllers.count;
 	
 	// See if the previous view controller was a questionS view
-	Boolean reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
+	BOOL reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
 	
 	// Reuse the questionS view if available. Otherwise create new view
-	OPFQuestionsViewController *view = (reuse) ? self.navigationController.viewControllers[views-2] :[OPFQuestionsViewController new] ;
+	OPFQuestionsViewController *view = (reuse ? self.navigationController.viewControllers[views-2] : [OPFQuestionsViewController new]);
 	
 	// Add search string to view
 	view.searchString = [NSString stringWithFormat:@"[%@]", [taglist.dataSource tagList:taglist tagLabelAtIndex:index].text];
-	
-	
 	
 	// Navigate to the view
 	if (reuse)

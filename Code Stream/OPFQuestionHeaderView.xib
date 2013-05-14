@@ -42,7 +42,7 @@
 						<string key="NSFrame">{{10, 4}, {228, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="32164234"/>
+						<reference key="NSNextKeyView" ref="53393481"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -73,10 +73,10 @@
 						</object>
 						<double key="preferredMaxLayoutWidth">228</double>
 					</object>
-					<object class="IBUIImageView" id="32164234">
+					<object class="IBUIImageView" id="53393481">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">297</int>
-						<string key="NSFrame">{{246, 4}, {74, 36}}</string>
+						<string key="NSFrame">{{248, 4}, {72, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="716916610"/>
@@ -87,7 +87,7 @@
 					<object class="IBUILabel" id="716916610">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">297</int>
-						<string key="NSFrame">{{256, 13}, {29, 19}}</string>
+						<string key="NSFrame">{{259, 13}, {26, 19}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="154289030"/>
@@ -104,7 +104,7 @@
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<int key="IBUITextAlignment">1</int>
+						<int key="IBUITextAlignment">2</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">1</int>
 							<double key="pointSize">15</double>
@@ -166,7 +166,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">metadataBackgroundImageView</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="32164234"/>
+						<reference key="destination" ref="53393481"/>
 					</object>
 					<int key="connectionID">71</int>
 				</object>
@@ -192,7 +192,7 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="799742539"/>
-							<reference ref="32164234"/>
+							<reference ref="53393481"/>
 							<reference ref="716916610"/>
 							<reference ref="154289030"/>
 						</array>
@@ -232,7 +232,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">70</int>
-						<reference key="object" ref="32164234"/>
+						<reference key="object" ref="53393481"/>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">Metadata Background Image View</string>
 					</object>
