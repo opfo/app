@@ -21,7 +21,6 @@ PODS:
   - Specta (0.1.8)
   - sqlite3 (3.7.16.1)
   - StaticDataTableViewController (2.0.2)
-  - SwipeView (1.2.9)
 
 DEPENDENCIES:
   - AFNetworking (= 1.2.1)
@@ -36,7 +35,6 @@ DEPENDENCIES:
   - Specta (= 0.1.8)
   - sqlite3 (from `https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec`)
   - StaticDataTableViewController (from `https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec`)
-  - SwipeView (from `https://raw.github.com/CocoaPods/Specs/master/SwipeView/1.2.9/SwipeView.podspec`)
 
 EXTERNAL SOURCES:
   AGMedallionView:
@@ -53,8 +51,6 @@ EXTERNAL SOURCES:
     :podspec: https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec
   StaticDataTableViewController:
     :podspec: https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec
-  SwipeView:
-    :podspec: https://raw.github.com/CocoaPods/Specs/master/SwipeView/1.2.9/SwipeView.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
@@ -71,6 +67,5 @@ SPEC CHECKSUMS:
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
   sqlite3: 19ef78909d086b66226c54b1e7d323556e640ca3
   StaticDataTableViewController: aa2a86d93ae0f592fa209aa4b4ddb753def572e8
-  SwipeView: 4b05b28f0a2ea1c143459257e73a907912794700
 
 COCOAPODS: 0.19.1
