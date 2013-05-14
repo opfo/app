@@ -24,6 +24,7 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFPostAnswerViewController.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "UIWebView+OPFHtmlView.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -282,13 +283,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		htmlCell.bodyTextView.tag = indexPath.section;
 		htmlCell.bodyTextView.delegate = self;
 		
-		id htmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"bodytemplate" ofType:@"html"]];
-		
-		id htmlString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
-		
-		id content = [NSString stringWithFormat:htmlString, [post.body OPF_escapeWithScheme:OPFEscapeHtml]];
 			
-		[htmlCell.bodyTextView loadHTMLString:content baseURL:nil];
+		[htmlCell.bodyTextView opf_loadHTMLString:post.body];
 			
 		htmlCell.navigationcontroller = self.navigationController;
 		
