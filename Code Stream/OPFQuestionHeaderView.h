@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class OPFQuestion;
+
+
 @interface OPFQuestionHeaderView : UITableViewHeaderFooterView
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
+- (void)configureForQuestion:(OPFQuestion *)question;
 
 @end

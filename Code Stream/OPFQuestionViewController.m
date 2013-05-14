@@ -58,6 +58,7 @@ static NSString *const CommentsCellIdentifier = @"PostCommentsCell";
 
 static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 static NSString *const AnswersSeparatorHeaderView = @"AnswersSeparatorHeaderView";
+static NSString *const AnswerHeaderView = @"AnswerHeaderView";
 
 #pragma mark - Object Lifecycle
 - (void)questionViewControllerSharedInit
@@ -118,6 +119,7 @@ static NSString *const AnswersSeparatorHeaderView = @"AnswersSeparatorHeaderView
 	
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:@"OPFQuestionAnswersSeparatorView" bundle:nil] forHeaderFooterViewReuseIdentifier:AnswersSeparatorHeaderView];
+	[self.tableView registerClass:UITableViewHeaderFooterView.class forHeaderFooterViewReuseIdentifier:AnswerHeaderView];
 	
 	UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(postNewAnswer:)];
 	self.navigationItem.rightBarButtonItem = composeAnswer;
@@ -221,21 +223,18 @@ static NSString *const AnswersSeparatorHeaderView = @"AnswersSeparatorHeaderView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	UIView *headerView = nil;
-	if (section != kOPFAnswersSeparatorSection) {
+	if (section == kOPFQuestionSection) {
 		OPFQuestionHeaderView *questionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
 		
-		OPFPost *post = self.posts[section];
-		questionHeaderView.titleLabel.text = [post isKindOfClass:[OPFQuestion class]] ? post.title : @"";
+		NSInteger dataIndex = section > kOPFAnswersSeparatorSection ? section - 1 : section;
+		OPFQuestion *question = self.posts[dataIndex];
+		[questionHeaderView configureForQuestion:question];
 		
-		OPFScoreNumberFormatter *scoreFormatter = self.cache[@"scoreFormatter"];
-		if (scoreFormatter == nil) {
-			scoreFormatter = [OPFScoreNumberFormatter new];
-			self.cache[@"scoreFormatter"] = scoreFormatter;
-		}
-		questionHeaderView.scoreLabel.text = [scoreFormatter stringFromScore:post.score.unsignedIntegerValue];
 		headerView = questionHeaderView;
-	} else {
+	} else if (section == kOPFAnswersSeparatorSection) {
 		headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:AnswersSeparatorHeaderView];
+	} else {
+		headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:AnswerHeaderView];
 	}
 	
 	return headerView;
@@ -303,7 +302,12 @@ static NSString *const AnswersSeparatorHeaderView = @"AnswersSeparatorHeaderView
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	CGFloat height = section != kOPFAnswersSeparatorSection ? 44.f : 22.f;
+	CGFloat height = 44.f;
+	if (section == kOPFQuestionSection) {
+		height = 45.f;
+	} else if (section == kOPFAnswersSeparatorSection) {
+		height = 22.f;
+	}
 	return height;
 }
 
