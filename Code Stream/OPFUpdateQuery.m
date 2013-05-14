@@ -131,11 +131,11 @@
      FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
      
      while([results next]) {
-         NSString *name = [results stringForColumn:@"display_name"];
+         NSString *resultName = [results stringForColumn:@"display_name"];
          NSString *creationDate = [results stringForColumn:@"creation_date"];
          NSInteger userID  = [results intForColumn:@"id"];
          NSString *emailhash = [results stringForColumn:@"email_hash"];
-         NSLog(@"UserID: %d \nUserName: %@ \nCreation Date: %@ \nE-mail: %@", userID, name, creationDate, emailhash);
+         NSLog(@"UserID: %d \nUserName: %@ \nCreation Date: %@ \nE-mail: %@", userID, resultName, creationDate, emailhash);
      }
 
     

@@ -39,4 +39,9 @@
     return output;
 }
 
++ (NSString *)indexString
+{
+	return nil;
+}
+
 @end
