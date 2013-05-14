@@ -15,13 +15,6 @@
 
 @implementation OPFUserPreviewButton
 
-@synthesize iconAlign = _iconAlign;
-
-- (void)setIconAlign:(OPFIconAlign)iconAlign {
-	_iconAlign = iconAlign;
-	[self layoutSubviews];
-}
-
 - (void)setUser:(OPFUser *)user {
 	_user = user;
 	
@@ -95,8 +88,8 @@
 			break;
 		case kOPFIconAlignRight:
 			image.origin.x = frame.size.width-frame.size.height;
-			displayName.origin.x = 0.0;
-			score.origin.x = 0.0;
+			displayName.origin.x = -10.0;
+			score.origin.x = -10.0;
 			
 			self.scoreLabel.textAlignment = NSTextAlignmentRight;
 			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
@@ -116,6 +109,24 @@
 	self.displayNameLabel.frame = displayName;
 	self.scoreLabel.frame = score;
 	self.userAvatar.frame = image;
+}
+
+- (void)setIconAlign:(OPFIconAlign)iconAlign
+{
+	if (_iconAlign != iconAlign) {
+		_iconAlign = iconAlign;
+		
+		if (iconAlign == kOPFIconAlignRight) {
+			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
+			self.scoreLabel.textAlignment = NSTextAlignmentRight;
+		} else {
+			self.displayNameLabel.textAlignment = NSTextAlignmentLeft;
+			self.scoreLabel.textAlignment = NSTextAlignmentLeft;
+		}
+		
+		[self setNeedsLayout];
+		[self setNeedsDisplay];
+	}
 }
 
 
