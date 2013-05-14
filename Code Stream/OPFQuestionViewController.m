@@ -281,10 +281,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		OPFPostBodyTableViewCell* htmlCell = (OPFPostBodyTableViewCell*)cell;
 		htmlCell.bodyTextView.tag = indexPath.section;
 		htmlCell.bodyTextView.delegate = self;
+		
+		id htmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"bodytemplate" ofType:@"html"]];
+		
+		id htmlString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
+		
+		id content = [NSString stringWithFormat:htmlString, [post.body OPF_escapeWithScheme:OPFEscapeHtml]];
 			
-		id htmlString = [NSString stringWithFormat:@"<html><body>%@</body></html>", [post.body OPF_escapeWithScheme:OPFEscapeHtml]];
-			
-		[htmlCell.bodyTextView loadHTMLString:htmlString baseURL:nil];
+		[htmlCell.bodyTextView loadHTMLString:content baseURL:nil];
 			
 		htmlCell.navigationcontroller = self.navigationController;
 		
