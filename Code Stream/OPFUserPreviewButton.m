@@ -51,7 +51,7 @@
 
 -(void)initSubviews {
 	
-	_iconAlign = Left;
+	_iconAlign = kOPFIconAlignLeft;
 	
 	_userAvatar = [UIImageView new];
 	_displayNameLabel = [UILabel new];
@@ -88,12 +88,12 @@
 	image.size.height = frame.size.height;
 	
 	switch (self.iconAlign) {
-		case Left:
+		case kOPFIconAlignLeft:
 			image.origin.x = 0.0;
 			displayName.origin.x = frame.size.height;
 			score.origin.x = frame.size.height;
 			break;
-		case Right:
+		case kOPFIconAlignRight:
 			image.origin.x = frame.size.width-frame.size.height;
 			displayName.origin.x = 0.0;
 			score.origin.x = 0.0;
@@ -101,7 +101,7 @@
 			self.scoreLabel.textAlignment = NSTextAlignmentRight;
 			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
 			break;
-		case None: {
+		case kOPFIconAlignNone: {
 			image = CGRectZero;
 			displayName.origin.x = 0.0;
 			score.origin.x = 0.0;
@@ -118,15 +118,5 @@
 	self.userAvatar.frame = image;
 }
 
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

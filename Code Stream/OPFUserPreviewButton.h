@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 @class OPFUser;
 
-typedef enum iconAlign { Left, Right, None } OPFIconAlign;
+typedef enum : NSInteger {
+	kOPFIconAlignLeft,
+	kOPFIconAlignRight,
+	kOPFIconAlignNone
+} OPFIconAlign;
 
 @interface OPFUserPreviewButton : UIButton
 
