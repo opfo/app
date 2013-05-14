@@ -9,7 +9,6 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFTag.h"
 #import "OPFUser.h"
-#import "OPFQuestion.h"
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
 #import "OPFQuestionsSearchBar.h"
@@ -23,7 +22,6 @@
 #import "NSString+OPFStripCharacters.h"
 #import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
-#import "OPFPostQuestionViewController.h"
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
@@ -167,12 +165,6 @@ UINavigationController *askQuestionsNavigationController;
 {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSLog(@"Questionsview will disappear");
-    NSLog(@"Present view %@", self.presentedViewController);
-	
-    if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
-        NSLog(@"YES IT*S THE SAME VIEW");
-    }
     [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
@@ -368,7 +360,6 @@ UINavigationController *askQuestionsNavigationController;
 {
 	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
     postview.title = @"Post a question";
-
     [self.navigationController pushViewController:postview animated:YES];
 }
 
@@ -753,6 +744,5 @@ UINavigationController *askQuestionsNavigationController;
         [self.tableView reloadData];
     }
 }
-
 
 @end

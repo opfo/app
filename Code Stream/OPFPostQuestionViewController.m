@@ -13,11 +13,13 @@
 #import "OPFUser.h"
 #import "OPFLoginViewController.h"
 
+
 @interface OPFPostQuestionViewController ()
 
 @end
 
 @implementation OPFPostQuestionViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,8 +44,8 @@
 
 -(void) configureView{
     
+    // Configure navigationbar
     self.navigationItem.hidesBackButton = YES;
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView:)];
     
     //create the button
@@ -64,7 +66,7 @@
 }
 
 -(void) postButtonPressed{
-    NSLog(@"Button pressed");
+    // Check if all fields are filled in correctly
     if([self.titleField.text isEqualToString:@""]){
         self.titleWarning.text = @"Title is missing";
         self.titleWarning.textColor = [UIColor redColor];
@@ -77,12 +79,17 @@
         self.generalWarningLabel.text = @"You forgot to fill in one textfield...";
         self.generalWarningLabel.hidden = NO;
     }
+    
+    // If required fields are not empty; update database
     if(![self.titleField.text isEqualToString:@""] && ![self.bodyField.text isEqualToString:@""]){
+        
+        // If update was successful, show UIAlert and go back to teh questionsview
         if([self updateDatabase]){
             UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [success show];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
+        // If update was unsuccessful
         else{
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [emptyField show];
@@ -91,6 +98,7 @@
     }
 }
 
+// Update database with the data
 -(BOOL) updateDatabase{
     
     NSString *title = self.titleField.text;
@@ -116,6 +124,7 @@
     return YES;
 }
 
+// Go back to questionsview if user press cancel
 -(IBAction)cancelView:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }

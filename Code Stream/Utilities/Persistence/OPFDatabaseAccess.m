@@ -77,6 +77,7 @@ static NSString* OPFWritableAuxDBPath;
     [OPFDatabaseAccess setDBPaths];
     [OPFDatabaseAccess copyDatabaseIfNeeded];
     _combinedQueue = [OPFDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
+    _auxCombinedQueue = [OPFDatabaseQueue databaseQueueWithPath:OPFWritableAuxDBPath];
     [self attachAuxDB];
     return self;
 }
@@ -98,13 +99,23 @@ static NSString* OPFWritableAuxDBPath;
 
 // Execute an SQL-update query
 // Returns YES if update succeeded, NO otherwise
-- (BOOL) executeUpdate:(NSString *) sql
+- (BOOL) executeUpdate:(NSString *) sql auxiliaryUpdate: (BOOL) auxUpdate
 {
     [self attachAuxDB];
     __block BOOL succeeded;
-    [_combinedQueue inDatabase:^(FMDatabase* db){
-        succeeded = [db executeUpdate:sql];
-    }];
+    
+    if(auxUpdate){
+        [_auxCombinedQueue inDatabase:^(FMDatabase* db){
+            succeeded = [db executeUpdate:sql];
+        }];
+    }
+    else{
+        [_combinedQueue inDatabase:^(FMDatabase* db){
+            succeeded = [db executeUpdate:sql];
+        }];
+    }
+    
+    
     return succeeded;
 }
 
