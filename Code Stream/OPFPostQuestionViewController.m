@@ -14,7 +14,6 @@
 #import "OPFLoginViewController.h"
 #import "OPFSignupViewController.h"
 #import "NSString+OPFMD5Hash.h"
-#import "OPFRequireLoginViewController.h"
 
 @interface OPFPostQuestionViewController ()
 @end
