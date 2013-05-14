@@ -23,6 +23,7 @@
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFPostAnswerViewController.h"
+#import "NSString+OPFEscapeStrings.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -38,8 +39,8 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 
 
 @interface OPFQuestionViewController ()
+@property (strong) NSMutableArray *rowHeights;
 @property (strong, readonly) NSCache *cache;
-
 // TEMP (start):
 @property (strong, readonly) NSMutableArray *posts;
 - (OPFPost *)questionPost;
@@ -54,7 +55,6 @@ static NSString *const BodyCellIdentifier = @"PostBodyCell";
 static NSString *const MetadataCellIdentifier = @"PostMetadataCell";
 static NSString *const TagsCellIdentifier = @"PostTagsCell";
 static NSString *const CommentsCellIdentifier = @"PostCommentsCell";
-
 static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 #pragma mark - Object Lifecycle
@@ -99,6 +99,30 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	return self;
 }
 
+#pragma mark - WebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+	
+	if (![self.rowHeights[webView.tag] isEqual: @5])
+		return;
+	
+    CGRect frame = webView.frame;
+    frame.size = [webView sizeThatFits:CGSizeZero];
+    webView.frame = frame;
+	
+	[self.rowHeights replaceObjectAtIndex:webView.tag withObject:@(webView.frame.size.height)];
+	
+    /*UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:webView.tag inSection:0]];
+    cell.contentView.frame = frame;
+    [cell setNeedsLayout];*/
+	
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kOPFQuestionBodyCell inSection:webView.tag]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+	
+    // Storing the currently loading webView in case I need to clean it up
+    // before it finishes loading.
+    //self.preloadWebView = nil;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -145,6 +169,12 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		[self.posts addObjectsFromArray:self.question.answers];
 	} else
 		[self.posts addObjectsFromArray:@[ post, post1 ]];
+	
+	self.rowHeights = [NSMutableArray arrayWithCapacity:self.posts.count];
+	for (int i = 0; i < self.posts.count; i++) {
+		[self.rowHeights addObject:@5];
+	}
+	
 	[super viewWillAppear:animated];
 }
 
@@ -242,13 +272,22 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	NSString *cellIdentifier = [self cellIdentifierForIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	
+	
     OPFPost *post = [self postForIndexPath:indexPath];
 	
 	
 	
     if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
-		((OPFPostBodyTableViewCell*)cell).htmlString = post.body;
-        ((OPFPostBodyTableViewCell*)cell).navigationcontroller = self.navigationController;
+		OPFPostBodyTableViewCell* htmlCell = (OPFPostBodyTableViewCell*)cell;
+		htmlCell.bodyTextView.tag = indexPath.section;
+		htmlCell.bodyTextView.delegate = self;
+			
+		id htmlString = [NSString stringWithFormat:@"<html><body>%@</body></html>", [post.body OPF_escapeWithScheme:OPFEscapeHtml]];
+			
+		[htmlCell.bodyTextView loadHTMLString:htmlString baseURL:nil];
+			
+		htmlCell.navigationcontroller = self.navigationController;
+		
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
@@ -282,17 +321,19 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	cell.backgroundColor = UIColor.whiteColor;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	CGFloat height = 0.f;
-	if (indexPath.row == kOPFQuestionBodyCell) {
+	if (indexPath.row == kOPFQuestionBodyCell) {/*
 		OPFPost *post = [self postForIndexPath:indexPath];
 		NSString *body = post.body;
 	
 		UIFont *bodyFont = [UIFont systemFontOfSize:14.f];
 		CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
 		CGSize bodySize = [body sizeWithFont:bodyFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
-		height = bodySize.height + kOPQuestionBodyInset;
+		height = bodySize.height + kOPQuestionBodyInset;*/
+		height = ((NSNumber*)self.rowHeights[indexPath.section]).floatValue;
 	} else {
 		height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
 	}

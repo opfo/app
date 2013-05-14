@@ -13,7 +13,7 @@
 @class OPFPost;
 @class OPFQuestion;
 
-@interface OPFQuestionViewController : UITableViewController <GCTagListDelegate>
+@interface OPFQuestionViewController : UITableViewController <GCTagListDelegate, UIWebViewDelegate>
 
 @property (strong) OPFQuestion *question;
 
