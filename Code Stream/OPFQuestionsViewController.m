@@ -301,12 +301,12 @@ UINavigationController *askQuestionsNavigationController;
 	});
 	
 	NSArray *suggestedTokens = nil;
-	NSInteger queryLimit = 20;
+	NSUInteger queryLimit = 20;
 	CGFloat queryLimitWizardOfTheOZFactor = 1;
 	OPFQuery *query = nil;
 	if (self.tokenBeingInputtedType == kOPFQuestionsViewControllerTokenBeingInputtedTag) {
 		NSArray *existingTags = self.searchString.opf_tagsFromSearchString;
-		queryLimitWizardOfTheOZFactor = 1.f / (double)(existingTags.count ?: 1.f);
+		queryLimitWizardOfTheOZFactor = 1.f / (CGFloat)(existingTags.count ?: 1.f);
 		if (tokenBeingInputted.length > 0) {
 			NSString* fuzzyToken = [NSString stringWithFormat:@"%@%%", tokenBeingInputted];
 			query = [[OPFTag.query whereColumn:@"name" like: fuzzyToken exact: YES] orderBy:@"name" order:kOPFSortOrderAscending];
@@ -317,7 +317,7 @@ UINavigationController *askQuestionsNavigationController;
 			}];
 			[relatedTags removeObjectsInArray:existingTags];
 			
-			NSInteger limit = queryLimit * queryLimitWizardOfTheOZFactor;
+			NSUInteger limit = (NSUInteger)((CGFloat)queryLimit * queryLimitWizardOfTheOZFactor);
 			NSRange suggestedTokensLimitRange = NSMakeRange(0, relatedTags.count <= limit ? relatedTags.count : limit);
 			suggestedTokens = [relatedTags.array subarrayWithRange:suggestedTokensLimitRange];
 		} else {
@@ -458,8 +458,8 @@ UINavigationController *askQuestionsNavigationController;
 	NSRange tokenEndRange = [searchString rangeOfString:tokenEndChar options:NSBackwardsSearch];
 	
 	if (tokenStartRange.location != NSNotFound) {
-		CGFloat location = tokenStartRange.location + tokenStartRange.length;
-		CGFloat length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
+		NSUInteger location = tokenStartRange.location + tokenStartRange.length;
+		NSUInteger length = ((tokenEndRange.location != NSNotFound && tokenEndRange.location > tokenStartRange.location) ? tokenEndRange.location - location : searchString.length - location);
 		NSRange replacementRange = NSMakeRange(location, length);
 		
 		if (replacementRange.location < searchString.length) {
