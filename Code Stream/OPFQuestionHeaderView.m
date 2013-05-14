@@ -10,6 +10,7 @@
 #import "OPFQuestion.h"
 #import "OPFScoreNumberFormatter.h"
 #import "UIImage+OPFScalingAndResizing.h"
+#import "UIFont+OPFAppFonts.h"
 #import <QuartzCore/QuartzCore.h>
 #import <SSLineView.h>
 
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) SSLineView *topBorderView;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *metadataBackgroundImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *metadataAcceptedAnswerImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *metadataAnswerStatusImageView;
 @end
 
 
@@ -56,6 +57,16 @@
 	return self;
 }
 
+- (void)awakeFromNib
+{
+	self.metadataBackgroundImageView.image = [UIImage opf_resizableImageNamed:@"question-score-background" withCapInsets:UIEdgeInsetsMake(8.f, 16.f, 8.f, 0.f) resizingMode:UIImageResizingModeTile];
+	
+	[self applyPropertiesOnLabel:self.titleLabel];
+	self.titleLabel.font = [UIFont opf_boldAppFontOfSize:16.f];
+	[self applyPropertiesOnLabel:self.scoreLabel];
+	self.scoreLabel.font = [UIFont opf_boldAppFontOfSize:15.f];
+}
+
 - (void)configureForQuestion:(OPFQuestion *)question
 {
 	NSParameterAssert([question isKindOfClass:OPFQuestion.class]);
@@ -64,7 +75,7 @@
 	self.questionScore = score;
 	self.hasAcceptedAnswer = question.acceptedAnswerId != nil;
 	
-	self.textLabel.text = question.title;
+	self.titleLabel.text = question.title;
 	self.scoreLabel.text = [self.scoreFormatter stringFromScore:score];
 	
 	[self updateBackgroundViewForScore];
@@ -72,6 +83,20 @@
 	
 	[self setNeedsDisplay];
 	[self setNeedsLayout];
+}
+
+- (void)applyShadowToView:(UIView *)view
+{
+	view.layer.shadowColor = UIColor.blackColor.CGColor;
+	view.layer.shadowOffset = CGSizeMake(0, 1);
+	view.layer.shadowRadius = 1;
+	view.layer.shadowOpacity = .75f;
+}
+
+- (void)applyPropertiesOnLabel:(UILabel *)label
+{
+	[self applyShadowToView:label];
+	label.textColor = UIColor.whiteColor;
 }
 
 - (void)updateBackgroundViewForScore

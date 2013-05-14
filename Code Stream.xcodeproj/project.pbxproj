@@ -669,7 +669,7 @@
 			path = "Vendor/google-code-prettify";
 			sourceTree = "<group>";
 		};
-		14E018D9172FB36E00CA2763 /* Question View Header */ = {
+		14E018D9172FB36E00CA2763 /* Question View Headers */ = {
 			isa = PBXGroup;
 			children = (
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
@@ -677,7 +677,7 @@
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
 				9CA03251174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib */,
 			);
-			name = "Question View Header";
+			name = "Question View Headers";
 			sourceTree = "<group>";
 		};
 		1A39C2831736C5F50049DB67 /* Activity View Table View Cells */ = {
@@ -717,7 +717,7 @@
 		1A639ECF17269C01009EB280 /* Table View Headers */ = {
 			isa = PBXGroup;
 			children = (
-				14E018D9172FB36E00CA2763 /* Question View Header */,
+				14E018D9172FB36E00CA2763 /* Question View Headers */,
 				1A6833461726A15800E3A687 /* Comment View Header */,
 				1A639ED017269C19009EB280 /* Profile Search Header */,
 			);

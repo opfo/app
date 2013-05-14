@@ -38,11 +38,11 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="799742539">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{10, 0}, {263, 44}}</string>
+						<int key="NSvFlags">302</int>
+						<string key="NSFrame">{{10, 4}, {228, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="716916610"/>
+						<reference key="NSNextKeyView" ref="32164234"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -51,40 +51,43 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">Label</string>
 						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumScaleFactor">0.70588237047195435</float>
+						<float key="IBUIMinimumScaleFactor">0.5</float>
 						<bool key="IBUIAdjustsLetterSpacingToFitWidth">YES</bool>
 						<int key="IBUINumberOfLines">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
-							<int key="type">1</int>
+							<string key="name">AvenirNext-Bold</string>
+							<string key="family">Avenir Next</string>
+							<int key="traits">2</int>
 							<double key="pointSize">17</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
-							<string key="NSName">Helvetica</string>
+							<string key="NSName">AvenirNext-Heavy</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<double key="preferredMaxLayoutWidth">263</double>
+						<double key="preferredMaxLayoutWidth">228</double>
 					</object>
-					<object class="IBUIImageView" id="434149318">
+					<object class="IBUIImageView" id="32164234">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{246, 0}, {74, 44}}</string>
+						<int key="NSvFlags">297</int>
+						<string key="NSFrame">{{246, 4}, {74, 36}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="716916610"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUILabel" id="716916610">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{256, 12}, {29, 19}}</string>
+						<int key="NSvFlags">297</int>
+						<string key="NSFrame">{{256, 13}, {29, 19}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="154289030"/>
@@ -115,8 +118,8 @@
 					</object>
 					<object class="IBUIImageView" id="154289030">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{293, 14}, {16, 16}}</string>
+						<int key="NSvFlags">297</int>
+						<string key="NSFrame">{{290, 12}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -131,10 +134,7 @@
 				<reference key="NSNextKeyView" ref="799742539"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace">
-						<int key="NSID">2</int>
-					</object>
+					<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 				</object>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
@@ -166,17 +166,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">metadataBackgroundImageView</string>
 						<reference key="source" ref="191373211"/>
-						<reference key="destination" ref="434149318"/>
+						<reference key="destination" ref="32164234"/>
 					</object>
 					<int key="connectionID">71</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">metadataAcceptedAnswerImageView</string>
+						<string key="label">metadataAnswerStatusImageView</string>
 						<reference key="source" ref="191373211"/>
 						<reference key="destination" ref="154289030"/>
 					</object>
-					<int key="connectionID">72</int>
+					<int key="connectionID">73</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -192,9 +192,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="799742539"/>
-							<reference ref="434149318"/>
-							<reference ref="154289030"/>
+							<reference ref="32164234"/>
 							<reference ref="716916610"/>
+							<reference ref="154289030"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -228,11 +228,13 @@
 						<reference key="object" ref="154289030"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Answers Status Image View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">70</int>
-						<reference key="object" ref="434149318"/>
+						<reference key="object" ref="32164234"/>
 						<reference key="parent" ref="191373211"/>
+						<string key="objectName">Metadata Background Image View</string>
 					</object>
 				</array>
 			</object>
@@ -251,7 +253,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">72</int>
+			<int key="maxID">73</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -259,14 +261,14 @@
 					<string key="className">OPFQuestionHeaderView</string>
 					<string key="superclassName">UITableViewHeaderFooterView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="metadataAcceptedAnswerImageView">UIImageView</string>
+						<string key="metadataAnswerStatusImageView">UIImageView</string>
 						<string key="metadataBackgroundImageView">UIImageView</string>
 						<string key="scoreLabel">UILabel</string>
 						<string key="titleLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="metadataAcceptedAnswerImageView">
-							<string key="name">metadataAcceptedAnswerImageView</string>
+						<object class="IBToOneOutletInfo" key="metadataAnswerStatusImageView">
+							<string key="name">metadataAnswerStatusImageView</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="metadataBackgroundImageView">
