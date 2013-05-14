@@ -127,7 +127,7 @@
 	self.tagList.delegate = self;
 	
 	CGFloat textShadowOpacity = .7f;
-	CGFloat textShadowRadius = 2.f;
+	CGFloat textShadowRadius = 1.f;
 	CGSize textShadowOffset = CGSizeMake(0, 1.f);
 	self.scoreLabel.layer.shadowColor = UIColor.blackColor.CGColor;
 	self.scoreLabel.layer.shadowOffset = textShadowOffset;
