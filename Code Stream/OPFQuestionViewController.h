@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "OPFUserPreviewButton.h"
 #import "GCTagList.h"
+#import "OPFPostAnswerViewController.h"
 
 @class OPFPost;
 @class OPFQuestion;
 
-@interface OPFQuestionViewController : UITableViewController <GCTagListDelegate>
+@interface OPFQuestionViewController : UITableViewController <GCTagListDelegate,PostAnswerDelegate>
 
 @property (strong) OPFQuestion *question;
 
