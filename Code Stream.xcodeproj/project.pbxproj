@@ -228,6 +228,8 @@
 		9C9B79D01726A24400E5333B /* OPFPostCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */; };
 		9C9B79DB1726DCBB00E5333B /* NSString+OPFStripCharacters.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */; };
 		9C9BF2E6171DF0DC0057BF46 /* OPFDatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8128DF93171D82C300C44410 /* OPFDatabaseAccess.m */; };
+		9CA03252174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA03251174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib */; };
+		9CA03254174273FF00996DE0 /* question-answers-separator-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA03253174273FE00996DE0 /* question-answers-separator-background@2x.png */; };
 		9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2F244173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m */; };
 		9CB0DF971732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
@@ -563,6 +565,8 @@
 		9C9B79D91726DCBB00E5333B /* NSString+OPFStripCharacters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFStripCharacters.h"; sourceTree = "<group>"; };
 		9C9B79DA1726DCBB00E5333B /* NSString+OPFStripCharacters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFStripCharacters.m"; sourceTree = "<group>"; };
 		9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		9CA03251174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFQuestionAnswersSeparatorView.xib; sourceTree = "<group>"; };
+		9CA03253174273FE00996DE0 /* question-answers-separator-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "question-answers-separator-background@2x.png"; path = "Images/question-answers-separator-background@2x.png"; sourceTree = "<group>"; };
 		9CA2F243173926BB00A39D6D /* UIScrollView+OPFScrollDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+OPFScrollDirection.h"; sourceTree = "<group>"; };
 		9CA2F244173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+OPFScrollDirection.m"; sourceTree = "<group>"; };
 		9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+OPFSearchString.h"; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 				9C4DD47A171FF6C2002D5238 /* OPFQuestionHeaderView.xib */,
 				9C4DD47C171FF820002D5238 /* OPFQuestionHeaderView.h */,
 				9C4DD47D171FF820002D5238 /* OPFQuestionHeaderView.m */,
+				9CA03251174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib */,
 			);
 			name = "Question View Header";
 			sourceTree = "<group>";
@@ -1227,6 +1232,7 @@
 		9C235FD9173A9E7A00907558 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				9CA03253174273FE00996DE0 /* question-answers-separator-background@2x.png */,
 				9C235FD3173A9E7300907558 /* post-accepted@2x.png */,
 				9C235FD4173A9E7300907558 /* post-negative@2x.png */,
 				9C235FD5173A9E7300907558 /* post-normal@2x.png */,
@@ -1557,6 +1563,8 @@
 				9C235FF6173A9E9200907558 /* vote-up-highlighted@2x.png in Resources */,
 				9C235FF7173A9E9200907558 /* vote-up@2x.png in Resources */,
 				8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */,
+				9CA03252174272DD00996DE0 /* OPFQuestionAnswersSeparatorView.xib in Resources */,
+				9CA03254174273FF00996DE0 /* question-answers-separator-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
