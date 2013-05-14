@@ -67,15 +67,15 @@
 	
 	UIImage *metadataBackgroundImage = nil;
 	if (questionScore > 100) {
-		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-accepted-background@2x"];
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-accepted-background"];
 	} else if (questionScore > 25) {
-		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-cool-background@2x"];
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-cool-background"];
 	} else if (questionScore < -5) {
-		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-horrible-background@2x"];
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-horrible-background"];
 	} else if (questionScore < 0) {
-		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-bad-background@2x"];
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-bad-background"];
 	} else {
-		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-normal-background@2x"];
+		metadataBackgroundImage = [UIImage imageNamed:@"question-row-metadata-normal-background"];
 	}
 	self.metadataBackgroundImageView.image = metadataBackgroundImage;
 	
