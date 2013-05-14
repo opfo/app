@@ -105,7 +105,7 @@
 }
 
 // Return current date
--(NSString *) currentDateAsStringWithDateFormat: (NSString *) format{
++(NSString *) currentDateAsStringWithDateFormat: (NSString *) format{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:format];
     return [dateFormatter stringFromDate:[NSDate date]];
