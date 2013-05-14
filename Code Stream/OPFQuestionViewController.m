@@ -254,7 +254,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
-		metadataCell.userPreviewButton.iconAlign = Right;
+		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
 												   
