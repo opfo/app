@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OPFQuestionsViewController.h"
+#import "OPFQuestion.h"
 
 @interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
@@ -16,6 +16,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleWarning;
 @property (weak, nonatomic) IBOutlet UILabel *bodyTextWarning;
 @property (weak, nonatomic) IBOutlet UILabel *generalWarningLabel;
-
-
 @end

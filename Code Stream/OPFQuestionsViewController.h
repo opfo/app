@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFSingleQuestionPreviewCell.h"
+#import "OPFQuestion.h"
+#import "OPFPostQuestionViewController.h"
 
 @class OPFQuery;
 
