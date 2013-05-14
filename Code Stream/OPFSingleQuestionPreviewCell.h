@@ -26,7 +26,6 @@
 @property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
 
 
-@property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger score;
 @property (nonatomic, assign) NSInteger answers;
 

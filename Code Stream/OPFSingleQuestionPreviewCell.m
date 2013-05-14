@@ -11,6 +11,7 @@
 #import "OPFUserPreviewButton.h"
 #import "UIFont+OPFAppFonts.h"
 #import "UIImage+OPFScoreImages.h"
+#import "NSString+OPFStripCharacters.h"
 
 
 @implementation OPFSingleQuestionPreviewCell {
@@ -21,7 +22,6 @@
 #pragma mark Properties
 
 @synthesize score = _score;
-@synthesize title = _title;
 @synthesize answers = _answers;
 
 
@@ -39,13 +39,6 @@
 	}
 }
 
-- (void)setTitle:(NSString *)title {
-	if (_title != title) {
-		_title = title;
-		self.questionTextLabel.text = title;
-	}
-}
-
 // KVO method for updating the tag view on change of the public property
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual: @"tags"] && self.tags) {
@@ -56,12 +49,12 @@
 
 #pragma mark Object Lifecycle
 
-- (void)configureWithQuestionData:(OPFQuestion *)question {
+- (void)configureWithQuestionData:(OPFQuestion *)question
+{
 	NSInteger questionScore = question.score.integerValue;
 	self.score = questionScore;
 	self.answers = [question.answerCount integerValue];
 	self.tags = question.tags;
-	self.title = question.title;
 	
 	self.answersIndicatorImageView.image = [UIImage opf_postStatusImageForScore:questionScore hasAcceptedAnswer:(question.acceptedAnswerId != nil)];
 	
@@ -79,6 +72,9 @@
 	}
 	self.metadataBackgroundImageView.image = metadataBackgroundImage;
 	
+	NSAttributedString *questionText = [self attributedTextForQuestion:question];
+	self.questionTextLabel.attributedText = questionText;
+	
 	CGSize selfSize = self.bounds.size;
 	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
 	CGSize questionTextLabelBoundingSize = CGSizeMake(selfSize.width - metadataSize.width - 20, selfSize.height - 10);
@@ -86,6 +82,36 @@
 	CGRect questionTextLabelFrame = self.questionTextLabel.frame;
 	questionTextLabelFrame.size = questionTextLabelSize;
 	self.questionTextLabel.frame = questionTextLabelFrame;
+}
+
+- (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question
+{
+	NSDictionary *questionTitleAttributes = @{
+		NSFontAttributeName: [UIFont opf_boldAppFontOfSize:15.f],
+		NSForegroundColorAttributeName: UIColor.blackColor,
+		NSParagraphStyleAttributeName: NSParagraphStyle.defaultParagraphStyle
+	};
+	NSAttributedString *questionTitleString = [[NSAttributedString alloc] initWithString:question.title attributes:questionTitleAttributes];
+	
+	// Body text disabled at the moment as we would need to strip every single
+	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
+	// got time for that!
+//	NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+//	bodyParagraphStyle.alignment = NSTextAlignmentLeft;
+//	bodyParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+//	NSDictionary *questionBodyAttributes = @{
+//		NSFontAttributeName: [UIFont opf_appFontOfSize:15.f],
+//		NSForegroundColorAttributeName: UIColor.darkGrayColor,
+//		NSParagraphStyleAttributeName: bodyParagraphStyle
+//	};
+//	NSString *body = question.body.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace.opf_stringByStrippingNewlines;
+//	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
+	
+	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
+	[questionText appendAttributedString:questionTitleString];
+//	[questionText appendAttributedString:questionBodyString];
+	
+	return questionText;
 }
 
 - (void)sharedSingleQuestionPreviewCellInit
