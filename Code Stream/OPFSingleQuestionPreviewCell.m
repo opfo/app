@@ -10,6 +10,7 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFUserPreviewButton.h"
 #import "UIFont+OPFAppFonts.h"
+#import "UIImage+OPFScoreImages.h"
 
 
 @implementation OPFSingleQuestionPreviewCell {
@@ -62,15 +63,7 @@
 	self.tags = question.tags;
 	self.title = question.title;
 	
-	UIImage *answersIndicatorImage = nil;
-	if (question.acceptedAnswerId.unsignedIntegerValue != 0) {
-		answersIndicatorImage = [UIImage imageNamed:@"post-accepted@2x"];
-	} else if (question.score.integerValue < 0) {
-		answersIndicatorImage = [UIImage imageNamed:@"post-negative@2x"];
-	} else {
-		answersIndicatorImage = [UIImage imageNamed:@"post-normal@2x"];
-	}
-	self.answersIndicatorImageView.image = answersIndicatorImage;
+	self.answersIndicatorImageView.image = [UIImage opf_postStatusImageForScore:questionScore hasAcceptedAnswer:(question.acceptedAnswerId != nil)];
 	
 	UIImage *metadataBackgroundImage = nil;
 	if (questionScore > 100) {
