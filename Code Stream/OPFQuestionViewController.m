@@ -114,14 +114,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFPostTagsTableViewCell) bundle:nil] forCellReuseIdentifier:TagsCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:@"OPFPostCommentTableViewCell" bundle:nil] forCellReuseIdentifier:CommentsCellIdentifier];
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
+	
+	UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(postNewAnswer:)];
+	self.navigationItem.rightBarButtonItem = composeAnswer;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(postNewAnswer:)];
-    self.navigationItem.rightBarButtonItem = composeAnswer;
-    
-    
     OPFUser *user = [[OPFUser alloc] init];
     [user setReputation:@(351)];
     [user setDisplayName:@"Aron"];
