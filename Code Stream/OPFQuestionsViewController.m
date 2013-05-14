@@ -76,7 +76,7 @@ typedef enum ScrollDirection : NSInteger {
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
-UINavigationController *askQuestionsNavigationController;
+
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -170,14 +170,6 @@ UINavigationController *askQuestionsNavigationController;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    DLog(@"Questionsview will disappear");
-    DLog(@"Present view %@", self.presentedViewController);
-	
-    if(self.presentedViewController==askQuestionsNavigationController && self.presentedViewController!=NULL){
-        DLog(@"YES IT*S THE SAME VIEW");
-    }
     [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
 }
@@ -192,6 +184,32 @@ UINavigationController *askQuestionsNavigationController;
 	questionViewController.question = question;
 	
 	[self.navigationController pushViewController:questionViewController animated:animated];
+}
+
+- (void)presentAskQuestionViewControllerAnimated:(BOOL)animated
+{
+	OPFPostQuestionViewController *postQuestionViewController = OPFPostQuestionViewController.new;
+    postQuestionViewController.title = @"Post a question";
+	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
+	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
+	
+	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(__unused id _) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}];
+	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(__unused  id _) {
+		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
+		
+		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
+		
+		[self dismissViewControllerAnimated:YES completion:^{
+			if (newQuestion != nil) {
+				[self presentViewControllerForQuestion:newQuestion animated:YES];
+			}
+		}];
+		DCLog(newQuestion == nil, @"Expected to get a new question from the post question view controller but got nil.");
+	}];
+	
+	[self presentViewController:postQuestionNavigationController animated:animated completion:nil];
 }
 
 
@@ -374,28 +392,7 @@ UINavigationController *askQuestionsNavigationController;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	OPFPostQuestionViewController *postQuestionViewController = OPFPostQuestionViewController.new;
-    postQuestionViewController.title = @"Post a question";
-	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
-	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
-	
-	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(__unused id _) {
-		[self dismissViewControllerAnimated:YES completion:nil];
-	}];
-	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(__unused  id _) {
-		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
-		
-		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
-		
-		[self dismissViewControllerAnimated:YES completion:^{
-			if (newQuestion != nil) {
-				[self presentViewControllerForQuestion:newQuestion animated:YES];
-			}
-		}];
-		DCLog(newQuestion == nil, @"Expected to get a new question from the post question view controller but got nil.");
-	}];
-	
-	[self presentViewController:postQuestionNavigationController animated:YES completion:nil];
+	[self presentAskQuestionViewControllerAnimated:YES];
 }
 
 
