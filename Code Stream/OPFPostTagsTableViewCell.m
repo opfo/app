@@ -8,11 +8,36 @@
 
 #import "OPFPostTagsTableViewCell.h"
 #import "OPFTokenCollectionViewCell.h"
-#import <BlocksKit.h>
+#import "UIColor+OPFHEX.h"
+#import <SSLineView.h>
+
+
+@interface OPFPostTagsTableViewCell (/*Private*/)
+@property (strong, nonatomic) SSLineView *bottomBorderView;
+@end
+
 
 @implementation OPFPostTagsTableViewCell
 
 static NSString *const TagCellIdentifier = @"TagCellIdentifier";
+
+static OPFPostTagsTableViewCell *sharedInit(OPFPostTagsTableViewCell *self) {
+	if (self) {
+		SSLineView *bottomBorderView = [[SSLineView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 1.f)];
+		bottomBorderView.lineColor = [UIColor opf_colorWithHexValue:0xe0e0e0];
+		bottomBorderView.insetColor = nil;
+		bottomBorderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+		self->_bottomBorderView = bottomBorderView;
+		[self addSubview:self->_bottomBorderView];
+	}
+	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	return sharedInit(self);
+}
 
 - (void)awakeFromNib
 {
@@ -41,6 +66,11 @@ static NSString *const TagCellIdentifier = @"TagCellIdentifier";
 	tagsCollectionFrame.size.width = width;
 	tagsCollectionFrame.origin.x = 0.f;
 	self.tagsCollectionView.frame = tagsCollectionFrame;
+	
+	CGRect bottomBorderFrame = self.bottomBorderView.frame;
+	bottomBorderFrame.size.width = width;
+	bottomBorderFrame.origin.y = CGRectGetHeight(bounds) - CGRectGetHeight(bottomBorderFrame);
+	self.bottomBorderView.frame = bottomBorderFrame;
 }
 
 - (void)setTags:(NSArray *)tags
