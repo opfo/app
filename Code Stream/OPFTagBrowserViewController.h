@@ -8,10 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFTagBrowserViewController : UICollectionViewController <UICollectionViewDataSource,
+@class OPFTagBrowserCollectionView, OPFTag;
+
+@interface OPFTagBrowserViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegate>
+
+@property (weak, nonatomic) IBOutlet OPFTagBrowserCollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *footerTagCount;
+@property (weak, nonatomic) IBOutlet UIButton *footerTagCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *footerTagCountButton;
+@property (strong, nonatomic) IBOutlet UICollectionView *selectedTagsView;
+
+@property (strong, nonatomic) OPFTag *adjacentTag;
+@property (nonatomic, strong) NSMutableSet *selectedTags;
 
 - (NSString *)tabImageName;
 - (NSString *)tabTitle;
+- (void)didSelectSelectedTag:(OPFTag *) tag;
+
+- (IBAction)showQuestionsByTags:(id)sender;
 
 @end

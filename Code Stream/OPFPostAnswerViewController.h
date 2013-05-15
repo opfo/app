@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFAnswer.h"
+
+@protocol PostAnswerDelegate <NSObject>
+
+-(void) updateViewWithAnswer:(OPFAnswer *) answer;
+
+@end
 
 @interface OPFPostAnswerViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *answerBody;
 @property (weak, nonatomic) IBOutlet UILabel *answerBodyWarning;
 @property (nonatomic) NSInteger parentQuestion;
-
+@property (assign) id <PostAnswerDelegate> delegate;
 @end
+
+

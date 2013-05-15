@@ -17,11 +17,12 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
-- (BOOL) executeUpdate:(NSString *) sql;
+- (BOOL) executeUpdate:(NSString *) sql auxiliaryUpdate: (BOOL) auxUpdate;
 - (void) attachAuxDB;
 - (void) close;
 
 @property(strong, readonly) OPFDatabaseQueue* combinedQueue;
+@property(strong, readonly) OPFDatabaseQueue* auxCombinedQueue;
 @property(assign) BOOL auxAttached;
 
 

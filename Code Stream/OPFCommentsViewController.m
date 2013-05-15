@@ -79,12 +79,20 @@
 - (void)commentSavePressed:(UIButton *)sender
 {
     if(![self.inputTextField.text isEqualToString:@""]){
-        [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
-    
+        NSInteger commentID = [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
+        
+        // Get the inputed comment and update the commentsview
+        __strong OPFComment *comment = [[[OPFComment query] whereColumn:@"id" is:[NSString stringWithFormat:@"%d",commentID]] getOne];
+        NSMutableArray *comments = [self.commentModels mutableCopy];
+        [comments addObject:comment];
+        self.commentModels = [[NSArray alloc] initWithArray:comments];
+        
+        
         [self.inputTextField setText:nil];
         [self.inputTextField resignFirstResponder];
         [self scrollToBottomAnimated:YES];
     }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

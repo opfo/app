@@ -22,9 +22,12 @@
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
+<<<<<<< HEAD
 #import "OPFPostAnswerViewController.h"
 #import "NSString+OPFEscapeStrings.h"
 #import "UIWebView+OPFHtmlView.h"
+=======
+>>>>>>> master
 
 enum {
 	kOPFQuestionBodyCell = 0,
