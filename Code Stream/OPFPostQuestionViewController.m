@@ -12,14 +12,13 @@
 #import "OPFAppState.h"
 #import "OPFUser.h"
 #import "OPFLoginViewController.h"
-
+#import "OPFSignupViewController.h"
+#import "NSString+OPFMD5Hash.h"
 
 @interface OPFPostQuestionViewController ()
-
 @end
 
 @implementation OPFPostQuestionViewController
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,7 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated{    
+    if([OPFAppState isLoggedIn]==NO){
+        self.loginView.hidden = NO;
+        self.email.text = @"thomas.j.owens@gmail.com";
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,6 +49,14 @@
 }
 
 -(void) configureView{
+    //listen for clicks
+    [self.loginButton addTarget:self action:@selector(postButtonPressed)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    // Configure navigationbar
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView:)];
+    
     //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
@@ -58,6 +72,22 @@
 
     //add the button to the view
     [self.view addSubview:button];
+    
+    
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    //set the position of the button
+    loginButton.frame = CGRectMake(20, 247, 280, 44);
+    
+    //set the button's title
+    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    
+    //listen for clicks
+    [loginButton addTarget:self action:@selector(userRequestLogin)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    //add the button to the view
+    [self.loginView addSubview:loginButton];
 }
 
 -(void) postButtonPressed{
@@ -113,10 +143,29 @@
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField){
+    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField || textField==self.email || textField==self.password){
         [textField resignFirstResponder];
     }
     return YES;
+}
+
+// Go back to questionsview if user press cancel
+-(IBAction)cancelView:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) userRequestLogin{
+    NSString* email = self.email.text;
+    NSString* password = self.password.text;
+    BOOL persistFlag = self.rememberUser.isOn;
+    
+    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
+    
+    if(loginReponse == YES) {
+        self.loginView.hidden=YES;
+    } else {
+        self.wrongPasswordLabel.hidden = NO;
+    }
 }
 
 
