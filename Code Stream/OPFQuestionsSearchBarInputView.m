@@ -8,6 +8,7 @@
 
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
+#import "OPFTokenCollectionViewCell.h"
 #import "UIView+OPFViewLoading.h"
 #import "SSLineView.h"
 #import <QuartzCore/QuartzCore.h>
@@ -50,6 +51,7 @@
 	completionsViewLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 	completionsViewLayout.minimumInteritemSpacing = 10.f;
 	completionsViewLayout.sectionInset = UIEdgeInsetsMake(0.f, 10.f, 0.f, 10.f);
+	completionsViewLayout.itemSize = CGSizeMake(kOPFTokenPaddingLeft + kOPFTokenPaddingRight, kOPFTokenHeight);
 	
 	UICollectionView *searchBarInputCompletionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0.f, 0.f, 0.f, 44.f) collectionViewLayout:completionsViewLayout];
 	searchBarInputCompletionView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
