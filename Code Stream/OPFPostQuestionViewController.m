@@ -12,9 +12,10 @@
 #import "OPFAppState.h"
 #import "OPFUser.h"
 #import "OPFLoginViewController.h"
+#import "OPFSignupViewController.h"
+#import "NSString+OPFMD5Hash.h"
 
 @interface OPFPostQuestionViewController ()
-
 @end
 
 @implementation OPFPostQuestionViewController
@@ -31,7 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+}
+
+- (void) viewWillAppear:(BOOL)animated{    
+    if([OPFAppState isLoggedIn]==NO){
+        self.loginView.hidden = NO;
+        self.email.text = @"thomas.j.owens@gmail.com";
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,9 +49,12 @@
 }
 
 -(void) configureView{
+    //listen for clicks
+    [self.loginButton addTarget:self action:@selector(postButtonPressed)
+     forControlEvents:UIControlEventTouchUpInside];
     
+    // Configure navigationbar
     self.navigationItem.hidesBackButton = YES;
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView:)];
     
     //create the button
@@ -61,10 +72,26 @@
     
     //add the button to the view
     [self.view addSubview:button];
+    
+    
+    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    //set the position of the button
+    loginButton.frame = CGRectMake(20, 247, 280, 44);
+    
+    //set the button's title
+    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
+    
+    //listen for clicks
+    [loginButton addTarget:self action:@selector(userRequestLogin)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    //add the button to the view
+    [self.loginView addSubview:loginButton];
 }
 
 -(void) postButtonPressed{
-    NSLog(@"Button pressed");
+    // Check if all fields are filled in correctly
     if([self.titleField.text isEqualToString:@""]){
         self.titleWarning.text = @"Title is missing";
         self.titleWarning.textColor = [UIColor redColor];
@@ -77,12 +104,17 @@
         self.generalWarningLabel.text = @"You forgot to fill in one textfield...";
         self.generalWarningLabel.hidden = NO;
     }
+    
+    // If required fields are not empty; update database
     if(![self.titleField.text isEqualToString:@""] && ![self.bodyField.text isEqualToString:@""]){
+        
+        // If update was successful, show UIAlert and go back to teh questionsview
         if([self updateDatabase]){
             UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [success show];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
+        // If update was unsuccessful
         else{
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [emptyField show];
@@ -91,6 +123,7 @@
     }
 }
 
+// Update database with the data
 -(BOOL) updateDatabase{
     
     NSString *title = self.titleField.text;
@@ -110,15 +143,32 @@
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField){
+    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField || textField==self.email || textField==self.password){
         [textField resignFirstResponder];
     }
     return YES;
 }
 
+// Go back to questionsview if user press cancel
 -(IBAction)cancelView:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void) userRequestLogin{
+    NSString* email = self.email.text;
+    NSString* password = self.password.text;
+    BOOL persistFlag = self.rememberUser.isOn;
+    
+    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
+    
+    if(loginReponse == YES) {
+        self.loginView.hidden=YES;
+    } else {
+        self.wrongPasswordLabel.hidden = NO;
+    }
+}
+
+
 
 
 @end
