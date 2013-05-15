@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		141700CE173BCB6A00DE7244 /* Sort.png in Resources */ = {isa = PBXBuildFile; fileRef = 141700CC173BCB6A00DE7244 /* Sort.png */; };
-		141700CF173BCB6A00DE7244 /* Sort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141700CD173BCB6A00DE7244 /* Sort@2x.png */; };
+		141700CF173BCB6A00DE7244 /* search-sort@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141700CD173BCB6A00DE7244 /* search-sort@2x.png */; };
 		142AAA93173928E5000610CC /* OPFSearchBarHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */; };
 		142AAA96173928FE000610CC /* OPFSearchBarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AAA95173928FE000610CC /* OPFSearchBarHeader.m */; };
 		14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */; };
+		143FBBDE17431E4200EE2E71 /* search-loupe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 143FBBDD17431E4200EE2E71 /* search-loupe@2x.png */; };
 		14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */; };
-		145C3C1A1741023700B78E85 /* SearchBarGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C3C191741023700B78E85 /* SearchBarGradient.png */; };
+		145C3C1A1741023700B78E85 /* search-headergradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C3C191741023700B78E85 /* search-headergradient@2x.png */; };
 		1478B5F1171FD9500033DFA8 /* SingleQuestionPreviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */; };
 		1478B5F4171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */; };
 		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
@@ -237,15 +237,15 @@
 
 /* Begin PBXFileReference section */
 		0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Code StreamTests.xcconfig"; path = "Pods/Pods-Code StreamTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		141700CC173BCB6A00DE7244 /* Sort.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sort.png; sourceTree = "<group>"; };
-		141700CD173BCB6A00DE7244 /* Sort@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sort@2x.png"; sourceTree = "<group>"; };
+		141700CD173BCB6A00DE7244 /* search-sort@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-sort@2x.png"; sourceTree = "<group>"; };
 		142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFSearchBarHeader.xib; sourceTree = "<group>"; };
 		142AAA94173928FE000610CC /* OPFSearchBarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBarHeader.h; sourceTree = "<group>"; };
 		142AAA95173928FE000610CC /* OPFSearchBarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBarHeader.m; sourceTree = "<group>"; };
 		14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFJavaScriptParserSpec.m; path = UtilitySpecs/OPFJavaScriptParserSpec.m; sourceTree = "<group>"; };
+		143FBBDD17431E4200EE2E71 /* search-loupe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-loupe@2x.png"; sourceTree = "<group>"; };
 		14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFEscapeStrings.h"; sourceTree = "<group>"; };
 		14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFEscapeStrings.m"; sourceTree = "<group>"; };
-		145C3C191741023700B78E85 /* SearchBarGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchBarGradient.png; sourceTree = "<group>"; };
+		145C3C191741023700B78E85 /* search-headergradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search-headergradient@2x.png"; path = "../search-headergradient@2x.png"; sourceTree = "<group>"; };
 		1478B5F0171FD9500033DFA8 /* SingleQuestionPreviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleQuestionPreviewCell.xib; sourceTree = "<group>"; };
 		1478B5F2171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSingleQuestionPreviewCell.h; sourceTree = "<group>"; };
 		1478B5F3171FE9670033DFA8 /* OPFSingleQuestionPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSingleQuestionPreviewCell.m; sourceTree = "<group>"; };
@@ -743,6 +743,9 @@
 		1A816AC3171DF7EC00964AF2 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				143FBBDD17431E4200EE2E71 /* search-loupe@2x.png */,
+				145C3C191741023700B78E85 /* search-headergradient@2x.png */,
+				141700CD173BCB6A00DE7244 /* search-sort@2x.png */,
 				1A9D3F2F1732962200EEF9D1 /* tab-login@2x.png */,
 				1A0FEF7E1733DFF1002EB5AE /* tab-latestactivity@2x.png */,
 				1A40DFDE17326BC900B9AA00 /* tab-favorites@2x.png */,
@@ -994,9 +997,6 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				145C3C191741023700B78E85 /* SearchBarGradient.png */,
-				141700CC173BCB6A00DE7244 /* Sort.png */,
-				141700CD173BCB6A00DE7244 /* Sort@2x.png */,
 				8CF371CD17399E4A009B6425 /* button_negative.png */,
 				8CF371CB173993CC009B6425 /* reload.png */,
 				8CF371C717398D68009B6425 /* forwardArrow.png */,
@@ -1477,9 +1477,8 @@
 				8C66EF3F173850AB00B29435 /* backArrow.png in Resources */,
 				8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */,
 				142AAA93173928E5000610CC /* OPFSearchBarHeader.xib in Resources */,
-				141700CE173BCB6A00DE7244 /* Sort.png in Resources */,
-				141700CF173BCB6A00DE7244 /* Sort@2x.png in Resources */,
-				145C3C1A1741023700B78E85 /* SearchBarGradient.png in Resources */,
+				141700CF173BCB6A00DE7244 /* search-sort@2x.png in Resources */,
+				145C3C1A1741023700B78E85 /* search-headergradient@2x.png in Resources */,
 				8CF371C817398D68009B6425 /* forwardArrow.png in Resources */,
 				8CF371CA17398E48009B6425 /* cancel.png in Resources */,
 				8CF371CC173993CC009B6425 /* reload.png in Resources */,
@@ -1491,6 +1490,7 @@
 				8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */,
 				1A2FAEF5173CF9F700ABAE13 /* arrow-right.png in Resources */,
 				8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */,
+				143FBBDE17431E4200EE2E71 /* search-loupe@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
