@@ -12,6 +12,7 @@
 #import "OPFPostTagsTableViewCell.h"
 #import "OPFQuestionHeaderView.h"
 #import "NSCache+OPFSubscripting.h"
+#import "OPFTag.h"
 #import "OPFPost.h"
 #import "OPFQuestion.h"
 #import "OPFComment.h"
@@ -24,6 +25,7 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFPostAnswerViewController.h"
 #import "OPFQuestionAnswerSeparatorCell.h"
+#import "NSString+OPFSearchString.h"
 
 
 enum {
@@ -266,10 +268,9 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
 		tagsCell.tags = self.question.tags;
-		tagsCell.tagsView.delegate = self;
-		tagsCell.tagsView.dataSource = tagsCell;
-		[tagsCell.tagsView reloadData];
-		
+		tagsCell.didSelectTagBlock = ^(NSString *tagName) {
+			[self didSelectTagNamed:tagName];
+		};
 	} else if ([cellIdentifier isEqualToString:CommentsCellIdentifier]) {
 		if (post.comments.count > 0) { 
 			cell.detailTextLabel.text = ((OPFComment*)post.comments[0]).text;
@@ -339,6 +340,27 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 #pragma mark - Tag List Delegate
+// TODO: Rewrite and fix.
+- (void)didSelectTagNamed:(NSString *)tagName
+{
+	int views = self.navigationController.viewControllers.count;
+	
+	// See if the previous view controller was a questionS view
+	BOOL reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
+	
+	// Reuse the questionS view if available. Otherwise create new view
+	OPFQuestionsViewController *view = (reuse ? self.navigationController.viewControllers[views-2] : [OPFQuestionsViewController new]);
+	
+	// Add search string to view
+	view.searchString = tagName.opf_stringAsTagTokenString;
+	
+	// Navigate to the view
+	if (reuse)
+		[self.navigationController popViewControllerAnimated:YES];
+	else
+		[self.navigationController pushViewController:view animated:YES];
+}
+
 
 // TODO: Rewrite and fix.
 - (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
