@@ -20,6 +20,8 @@
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
 #import "NSString+OPFStripCharacters.h"
+#import "OPFSearchBarHeader.h"
+#import "UIView+OPFViewLoading.h"
 #import "UIScrollView+OPFScrollDirection.h"
 #import <BlocksKit.h>
 
@@ -45,12 +47,17 @@ typedef enum ScrollDirection : NSInteger {
 @property (strong) NSMutableArray *filteredQuestions;
 
 #pragma mark - Searching
-@property (weak, nonatomic) IBOutlet OPFQuestionsSearchBar *searchBar;
+@property (readonly, nonatomic) OPFQuestionsSearchBar *searchBar;
+@property (strong) OPFSearchBarHeader *searchBarHeader;
 @property (strong, nonatomic) OPFQuestionsSearchBarInputView *searchBarInputView;
 
 @property (assign) OPFQuestionsViewControllerTokenBeingInputtedType tokenBeingInputtedType;
 @property (strong) NSMutableString *tokenBeingInputted;
 @property (strong) NSMutableArray *suggestedTokens;
+
+#pragma mark - Sorting
+@property (strong) NSString *sortCriterion;
+@property OPFSortOrder sortOrder;
 
 #pragma mark - Scrolling
 @property (assign, nonatomic) CGFloat lastContentOffset;
@@ -74,6 +81,8 @@ UINavigationController *askQuestionsNavigationController;
 {
 	_searchString = @"";
 	_isFirstTimeAppearing = YES;
+	_sortCriterion = @"last_activity_date";
+	_sortOrder = kOPFSortOrderDescending;
 	_filteredQuestions = NSMutableArray.new;
 	_suggestedTokens = NSMutableArray.new;
 }
@@ -117,6 +126,16 @@ UINavigationController *askQuestionsNavigationController;
 {
 	[super viewDidLoad];
 	
+	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
+	
+	
+	self.tableView.tableHeaderView = self.searchBarHeader;
+	self.searchBar.delegate = self;
+	self.searchBarHeader.delegate = self;
+	
+	
+	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
+	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 150.f;
 	
@@ -131,8 +150,10 @@ UINavigationController *askQuestionsNavigationController;
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
 	
+	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
+
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
     UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
@@ -145,6 +166,8 @@ UINavigationController *askQuestionsNavigationController;
 	[super viewWillAppear:animated];
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
+	[self addObserver:self forKeyPath:CDStringFromSelector(sortCriterion) options:NSKeyValueObservingOptionOld context:NULL];
+	[self addObserver:self forKeyPath:CDStringFromSelector(sortOrder) options:NSKeyValueObservingOptionOld context:NULL];
 	
 	if (self.searchString.length > 0) {
 		self.searchBar.text = self.searchString;
@@ -250,7 +273,8 @@ UINavigationController *askQuestionsNavigationController;
 	dispatch_sync(dispatch_get_main_queue(), ^{
 		searchString = self.searchString.copy ?: @"";
 	});
-	
+		
+		
 	OPFQuery *query = self.query;
 	if (searchString.length > 0) {
 		NSArray *tags = [searchString opf_tagsFromSearchString];
@@ -261,11 +285,11 @@ UINavigationController *askQuestionsNavigationController;
 		
 		if (keywords.length > 0 || tags.count > 0) {
 			NSArray *tagNames = [tags map:^(OPFTag *tag) { return tag.name; }];
-			query = [[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:@"score" order:kOPFSortOrderDescending];
+			query = [[OPFQuestion searchFor:keywords inTags:tagNames] orderBy:self.sortCriterion order:self.sortOrder];
 		}
 	}
 	
-	query = query ?: OPFQuestion.hotQuestionsQuery;
+	query = query ?: [OPFQuestion.hotQuestionsQuery orderBy:self.sortCriterion order:self.sortOrder];
 	NSArray *filteredQuestions = [[query limit:@(100)] getMany];
 	
 	[NSOperationQueue.mainQueue addOperationWithBlock:^{
@@ -279,6 +303,25 @@ UINavigationController *askQuestionsNavigationController;
 {
 	self.searchString = searchString;
 	self.searchBar.text = self.searchString;
+}
+
+- (IBAction)updateSorting:(UISegmentedControl *) sender {
+	switch ((SortOrder)sender.selectedSegmentIndex) {
+		case Score:
+			self.sortCriterion = @"score";
+			break;
+		case Activity:
+			self.sortCriterion = @"last_activity_date";
+			break;
+		case Created:
+			self.sortCriterion = @"creation_date";
+			break;
+		default:
+			@throw @"Undefined sort Order. Please enhance the enum sortOrder and add segment in segmented Control";
+			break;
+	}
+	
+	self.sortOrder = kOPFSortOrderDescending;
 }
 
 
@@ -339,11 +382,16 @@ UINavigationController *askQuestionsNavigationController;
 }
 
 
-#pragma mark - Key Value Obseravation
+#pragma mark - Key Value Observation
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if (object == self && [keyPath isEqualToString:CDStringFromSelector(searchString)]) {
-		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == NO) {
+	if (object == self &&
+		([keyPath isEqualToString:CDStringFromSelector(searchString)] ||
+		 [keyPath isEqualToString:CDStringFromSelector(sortCriterion)] ||
+		 [keyPath isEqualToString:CDStringFromSelector(sortOrder)])) {
+		if ([change[NSKeyValueChangeOldKey] isEqual:self.searchString] == YES)
+			return;
+		else {
 			[NSOperationQueue.mainQueue addOperationWithBlock:^{
 				[self updateSearchBarWithTokens];
 			}];
@@ -586,20 +634,25 @@ UINavigationController *askQuestionsNavigationController;
 
 
 #pragma mark - UISearchBarDelegate Methods
+
+- (OPFQuestionsSearchBar *)searchBar {
+	return self.searchBarHeader.searchBar;
+}
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-	[searchBar setShowsCancelButton:YES animated:YES];
 	return YES;
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-	[searchBar setShowsCancelButton:NO animated:YES];
 	return YES;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+	if (!self.searchString.length && searchText.length > 0)
+		self.searchBarHeader.sortOrderControl.selectedSegmentIndex = Score;
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
@@ -708,12 +761,6 @@ UINavigationController *askQuestionsNavigationController;
 
 
 #pragma mark - UIScrollBarDelegate methods
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-//	if (scrollView)
-//	[self selectBestTokenMatchAndEndSearch];
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
@@ -744,5 +791,4 @@ UINavigationController *askQuestionsNavigationController;
         [self.tableView reloadData];
     }
 }
-
 @end
