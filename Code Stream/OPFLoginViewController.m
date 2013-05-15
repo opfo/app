@@ -10,6 +10,7 @@
 #import "OPFAppState.h"
 #import "OPFAppDelegate.h"
 #import "OPFProfileContainerController.h"
+#import "UIFont+OPFAppFonts.h"
 
 @interface OPFLoginViewController ()
 
@@ -70,6 +71,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 90, 25)];
+		startLabel.font = [UIFont opf_boldAppFontOfSize:UIFont.systemFontSize];
+		startLabel.textColor = UIColor.darkGrayColor;
+		startLabel.textAlignment = NSTextAlignmentRight;
         if (indexPath.row == 0)
             startLabel.text = NSLocalizedString(@"User:", @"Login username table view start label");
         else /*if(indexPath.row == 1)*/ {
@@ -80,7 +84,10 @@
         
         [cell.contentView addSubview:startLabel];
         
-        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 10, 160, 35)];
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 12, 160, 35)];
+		inputField.font = [UIFont opf_appFontOfSize:15.f];
+		inputField.adjustsFontSizeToFitWidth = YES;
+		inputField.minimumFontSize = 10.f;
         inputField.delegate = self;
         
         if (indexPath.row == 0) {
