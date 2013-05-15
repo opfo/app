@@ -33,7 +33,6 @@
 	[UIBarButtonItem.appearance setTitleTextAttributes:@{ UITextAttributeFont: boldFont } forState:0];
 	[UINavigationBar.appearance setTitleTextAttributes:@{ UITextAttributeFont: boldFont }];
 	
-	// Search bars
 	[[UITextField appearanceWhenContainedIn:UISearchBar.class , nil] setFont:[regularFont fontWithSize:UIFont.systemFontSize]];
 }
 
