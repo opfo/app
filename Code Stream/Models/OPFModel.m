@@ -121,4 +121,31 @@
                                    pageSize: @([self defaultPageSize])];
 }
 
+- (BOOL) isEqual:(id)other
+{
+    if(self == other) {
+        return YES;
+    }
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToModel: other];
+}
+
+- (BOOL) isEqualToModel:(OPFModel*) other
+{
+    if (self == other)
+        return YES;
+    if (![self.identifier isEqual: other.identifier])
+        return NO;
+    return YES;
+}
+
+- (NSUInteger) hash
+{
+    NSUInteger hash = 0;
+    hash += [[self.class modelTableName] hash];
+    hash += [[self identifier] integerValue];
+    return hash;
+}
+
 @end
