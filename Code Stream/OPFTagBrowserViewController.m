@@ -40,7 +40,6 @@
 
 static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
 static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
-static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
 static NSInteger const TagSuggestionLimit = 100;
 static NSInteger const TagLoadingByTagLimit = 50;
 static NSInteger const TagSelectionLimit = 20;
@@ -89,6 +88,10 @@ static NSInteger const TagSelectionLimit = 20;
 {
     [super viewDidLoad];
     
+	self.footerTagCountButton.hidden = YES;
+	self.footerTagCountLabel.enabled = NO;
+	[self.footerTagCountLabel setTitle:NSLocalizedString(@"No tags selected", @"No tags selected button title") forState:UIControlStateDisabled];
+	
     [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
     
     [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TagBrowserHeaderViewIdenfifier];
@@ -197,9 +200,18 @@ static NSInteger const TagSelectionLimit = 20;
 
 - (void)setResultCountInView
 {
-    self.footerTagCount.text = (self.questionsByTag.count >= TagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)TagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
-    self.footerTagCountLabel.titleLabel.text = TagCountLabel;
-    
+	NSUInteger questionsCount = self.questionsByTag.count;
+	NSUInteger tagsCount = self.selectedTags.count;
+	
+	NSString *questionCountText = (questionsCount >= TagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)TagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
+	NSString *questionsText = (questionsCount != 1 ? @"questions" : @"question");
+	NSString *tagsText = (tagsCount != 1 ? @"tags" : @"tag");
+	
+	NSString *title = [NSString localizedStringWithFormat:@"%@ %@ matching %d %@", questionCountText, questionsText, tagsCount, tagsText];
+	[self.footerTagCountLabel setTitle:title forState:UIControlStateNormal];
+//	self.footerTagCountLabel.titleLabel.text = title;
+	[self.footerTagCountLabel setNeedsDisplay];
+	
     [self showFooterLabels];
 }
 
@@ -214,13 +226,19 @@ static NSInteger const TagSelectionLimit = 20;
 - (void)hideFooterLabels
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = YES;
+        //self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = YES;
+		
+		self.footerTagCountButton.hidden = YES;
+		self.footerTagCountLabel.enabled = NO;
     });
 }
 
 - (void)showFooterLabels
 {
-    self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
+	//self.footerTagCountLabel.hidden = self.footerTagCountButton.hidden = self.footerTagCount.hidden = NO;
+	
+	self.footerTagCountButton.hidden = NO;
+	self.footerTagCountLabel.enabled = YES;
 }
 
 #pragma mark - TabbedViewController methods
