@@ -23,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UISwitch *rememberUser;
 
+-(OPFQuestion *) postButtonPressed;
+
 @end

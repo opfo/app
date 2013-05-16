@@ -24,16 +24,17 @@
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
     
+    
     // Update the auxiliary db so it become in sync with the SO db
     NSString *auxQuery = @"INSERT INTO posts_index(object_id, main_index_string, tags) values (?,?,?);";
     NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [self removeHTMLTags:body], title, userName];
     args = @[@(id), index_string, tags];
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
-    
+
     return (succeeded && auxSucceeded);
 }
 
-+ (NSInteger) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
++ (BOOL) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
     
     // Current date
     NSString *date = [self currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
@@ -52,10 +53,10 @@
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray: args auxiliaryUpdate:YES];
     
-    return succeeded && auxSucceeded ? id : 0;
+    return succeeded && auxSucceeded;
 }
 
-+(NSInteger) updateWithCommentText: (NSString *) commentText PostID: (NSInteger) postID ByUser: (NSInteger) userID{
++(BOOL) updateWithCommentText: (NSString *) commentText PostID: (NSInteger) postID ByUser: (NSInteger) userID{
     
     // Current date
     NSString *date = [self currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
@@ -69,7 +70,7 @@
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray: args auxiliaryUpdate:NO];
     
-    return succeeded ? id:0;
+    return succeeded;
 
 }
 
@@ -103,13 +104,11 @@
     
     NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;
     
-    args=@[@(postID),@(totalVotes)];
+    args=@[@(totalVotes),@(postID)];
     
     NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
-    
-    OPFPost *post = [OPFPost find:postID];
     
     FMResultSet *result = [[OPFDatabaseAccess getDBAccess] executeSQL:@"SELECT * FROM posts WHERE id=postID"];
     

@@ -46,8 +46,8 @@
 {
 	UIColor *baseColor = self.tintColor;
 	
-	UIColor *backgroundStartColor = [baseColor opf_colorWithBrightness:.8f];
-	UIColor *backgroundEndColor = [baseColor opf_colorWithBrightness:.6f];
+	UIColor *backgroundStartColor = [baseColor opf_colorWithBrightness:.90f];
+	UIColor *backgroundEndColor = [baseColor opf_colorWithBrightness:.70f];
 	self.backgroundView.colors = @[ backgroundStartColor, backgroundEndColor ];
 	
 	[self setNeedsDisplay];

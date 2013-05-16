@@ -53,26 +53,6 @@
     [self.loginButton addTarget:self action:@selector(postButtonPressed)
      forControlEvents:UIControlEventTouchUpInside];
     
-    // Configure navigationbar
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView:)];
-    
-    //create the button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-
-    //set the position of the button
-    button.frame = CGRectMake(20, 375, 280, 44);
-
-    //set the button's title
-    [button setTitle:@"Post" forState:UIControlStateNormal];
-
-    //listen for clicks
-    [button addTarget:self action:@selector(postButtonPressed)
-     forControlEvents:UIControlEventTouchUpInside];
-
-    //add the button to the view
-    [self.view addSubview:button];
-    
     
     UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
@@ -90,7 +70,7 @@
     [self.loginView addSubview:loginButton];
 }
 
--(void) postButtonPressed{
+-(OPFQuestion *) postButtonPressed{
     // Check if all fields are filled in correctly
     if([self.titleField.text isEqualToString:@""]){
         self.titleWarning.text = @"Title is missing";
@@ -107,37 +87,47 @@
     
     // If required fields are not empty; update database
     if(![self.titleField.text isEqualToString:@""] && ![self.bodyField.text isEqualToString:@""]){
-        
-        // If update was successful, show UIAlert and go back to teh questionsview
-        if([self updateDatabase]){
-            [self.navigationController popToRootViewControllerAnimated:YES];
+        OPFQuestion *question= [self updateDatabase];
+        if(question!=nil){
+            return question;
         }
         // If update was unsuccessful
         else{
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [emptyField show];
         }
-
     }
+    return nil;
 }
 
 // Update database with the data
--(BOOL) updateDatabase{
-
+-(OPFQuestion *) updateDatabase{
+    
+    NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
+    NSMutableString *tagsString=[[NSMutableString alloc]initWithString:@""];
+    
+    for(NSString *s __strong in tags){
+        [tagsString appendFormat:@"<%@>",s];
+    }
+    
+    OPFQuestion *question = [OPFQuestion new];
+    question.title=self.titleField.text;
+    question.body=[NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
+    question.owner=[OPFAppState userModel];
+    question.tags=tags;
+    
+    
     NSString *title = self.titleField.text;
-    NSString *body = self.bodyField.text;
+    NSString *body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
 
     OPFUser *user = [OPFAppState userModel];
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
-    NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
-    NSMutableString *tagsString=[[NSMutableString alloc]initWithString:@""];
+   
 
-    for(NSString *s __strong in tags){
-        [tagsString appendFormat:@"<%@>",s];
-    }
-
-    return [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tagsString ByUser:userName userID:userID];
+    [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tagsString ByUser:userName userID:userID];
+    
+    return question;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
