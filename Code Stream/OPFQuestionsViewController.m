@@ -166,6 +166,8 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewWillAppear:animated];
 	
+	[self.searchBarHeader setDisplayedHeader:SearchBar WithAnimation:NO];
+	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
 	[self addObserver:self forKeyPath:CDStringFromSelector(sortCriterion) options:NSKeyValueObservingOptionOld context:NULL];
 	[self addObserver:self forKeyPath:CDStringFromSelector(sortOrder) options:NSKeyValueObservingOptionOld context:NULL];
