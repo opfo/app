@@ -11,6 +11,7 @@
 		142AAA93173928E5000610CC /* OPFSearchBarHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142AAA92173928E5000610CC /* OPFSearchBarHeader.xib */; };
 		142AAA96173928FE000610CC /* OPFSearchBarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AAA95173928FE000610CC /* OPFSearchBarHeader.m */; };
 		14314EA9172ED24C00C134CB /* OPFJavaScriptParserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */; };
+		143B39F91742F3A300C42B77 /* UIWebView+OPFHtmlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 143B39F81742F3A300C42B77 /* UIWebView+OPFHtmlView.m */; };
 		143FBBDE17431E4200EE2E71 /* search-loupe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 143FBBDD17431E4200EE2E71 /* search-loupe@2x.png */; };
 		14449CE017326B4E009C552C /* NSString+OPFEscapeStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */; };
 		145C3C1A1741023700B78E85 /* search-headergradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 145C3C191741023700B78E85 /* search-headergradient@2x.png */; };
@@ -275,6 +276,8 @@
 		142AAA94173928FE000610CC /* OPFSearchBarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSearchBarHeader.h; sourceTree = "<group>"; };
 		142AAA95173928FE000610CC /* OPFSearchBarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSearchBarHeader.m; sourceTree = "<group>"; };
 		14314EA8172ED24C00C134CB /* OPFJavaScriptParserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFJavaScriptParserSpec.m; path = UtilitySpecs/OPFJavaScriptParserSpec.m; sourceTree = "<group>"; };
+		143B39F71742F3A300C42B77 /* UIWebView+OPFHtmlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+OPFHtmlView.h"; sourceTree = "<group>"; };
+		143B39F81742F3A300C42B77 /* UIWebView+OPFHtmlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+OPFHtmlView.m"; sourceTree = "<group>"; };
 		143FBBDD17431E4200EE2E71 /* search-loupe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-loupe@2x.png"; sourceTree = "<group>"; };
 		14449CDE17326B4E009C552C /* NSString+OPFEscapeStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OPFEscapeStrings.h"; sourceTree = "<group>"; };
 		14449CDF17326B4E009C552C /* NSString+OPFEscapeStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OPFEscapeStrings.m"; sourceTree = "<group>"; };
@@ -1439,6 +1442,8 @@
 				1A06C21A17216A470065EDA4 /* UIView+AnimationOptionsForCurve.m */,
 				9CA2F243173926BB00A39D6D /* UIScrollView+OPFScrollDirection.h */,
 				9CA2F244173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m */,
+				143B39F71742F3A300C42B77 /* UIWebView+OPFHtmlView.h */,
+				143B39F81742F3A300C42B77 /* UIWebView+OPFHtmlView.m */,
 			);
 			name = UIKit;
 			sourceTree = "<group>";
@@ -1846,6 +1851,7 @@
 				1A021F4E17412A9000A689AA /* OPFTagBrowserSelectionViewController.m in Sources */,
 				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
 				8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */,
+				143B39F91742F3A300C42B77 /* UIWebView+OPFHtmlView.m in Sources */,
 				8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */,
 				9CA03257174279A600996DE0 /* UIImage+OPFScoreImages.m in Sources */,
 				9CA0325A1742869900996DE0 /* UIImage+OPFScalingAndResizing.m in Sources */,
