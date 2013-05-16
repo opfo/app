@@ -53,7 +53,7 @@ EXTERNAL SOURCES:
     :podspec: https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: 616da0028916ce296f5c3cef74e5552eb4e10e13
+  AFNetworking: d1ba5908b233189e424e101721acef7905b58efb
   AGMedallionView: 5eeb9e90035d8da77c7ffcce83bd480b1503c1bd
   AKTabBarController: 7c67c1b401f9ad49031a67b68ccd6193227985ae
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
