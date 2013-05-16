@@ -166,6 +166,8 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewWillAppear:animated];
 	
+	[self.searchBarHeader setDisplayedHeader:kOPFSearchBar WithAnimation:NO];
+	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
 	[self addObserver:self forKeyPath:CDStringFromSelector(sortCriterion) options:NSKeyValueObservingOptionOld context:NULL];
 	[self addObserver:self forKeyPath:CDStringFromSelector(sortOrder) options:NSKeyValueObservingOptionOld context:NULL];
@@ -339,14 +341,14 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 }
 
 - (IBAction)updateSorting:(UISegmentedControl *) sender {
-	switch ((SortOrder)sender.selectedSegmentIndex) {
-		case Score:
+	switch ((kOPFSortOrder)sender.selectedSegmentIndex) {
+		case kOPFScore:
 			self.sortCriterion = @"score";
 			break;
-		case Activity:
+		case kOPFActivity:
 			self.sortCriterion = @"last_activity_date";
 			break;
-		case Created:
+		case kOPFCreated:
 			self.sortCriterion = @"creation_date";
 			break;
 		default:
@@ -683,7 +685,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
 	if (!self.searchString.length && searchText.length > 0)
-		self.searchBarHeader.sortOrderControl.selectedSegmentIndex = Score;
+		self.searchBarHeader.sortOrderControl.selectedSegmentIndex = kOPFScore;
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
