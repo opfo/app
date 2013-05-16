@@ -194,6 +194,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    // If user is logged out, disable button, otherwise enable it
+    self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
+    
 	[self updatePostsFromQuestion];
 }
 

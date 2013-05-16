@@ -14,11 +14,16 @@
 #import "OPFLoginViewController.h"
 #import "OPFSignupViewController.h"
 #import "NSString+OPFMD5Hash.h"
+#import "UIColor+OPFAppColors.h"
+
+#import <BlocksKit.h>
 
 @interface OPFPostQuestionViewController ()
+@property (strong, nonatomic) OPFLoginViewController *loginViewController;
 @end
 
 @implementation OPFPostQuestionViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,11 +40,8 @@
     
 }
 
-- (void) viewWillAppear:(BOOL)animated{    
-    if([OPFAppState isLoggedIn]==NO){
-        self.loginView.hidden = NO;
-        self.email.text = @"thomas.j.owens@gmail.com";
-    }
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -155,6 +157,5 @@
         self.wrongPasswordLabel.hidden = NO;
     }
 }
-
 
 @end

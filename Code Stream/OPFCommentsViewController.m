@@ -181,8 +181,17 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    if([OPFAppState isLoggedIn]){
+        self.inputTextField.enabled=YES;
+        self.inputSendButton.enabled=YES;
+    }
+    else{
+        self.inputTextField.enabled=NO;
+        self.inputSendButton.enabled=NO;
+    }
+    
     [self scrollToBottomAnimated:NO];
-
+    
 	[[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(handleWillShowKeyboard:)
 		name:UIKeyboardWillShowNotification

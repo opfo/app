@@ -13,7 +13,7 @@
 #import "OPFQuestion.h"
 
 #import "OPFPostQuestionViewController.h"
-
+#import "OPFAppState.h"
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
 
@@ -166,6 +166,9 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewWillAppear:animated];
 	
+    // If user is logged out, disable button, otherwise enable it
+    self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
+    
 	[self.searchBarHeader setDisplayedHeader:kOPFSearchBar WithAnimation:NO];
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
