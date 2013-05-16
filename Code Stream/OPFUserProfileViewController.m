@@ -133,7 +133,7 @@ static CGFloat userAboutMeInset = 20.0;
     self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
     
     self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  NotSpecifiedInformationPlaceholder;
-       
+    
     
     // Set date-fields by using a NSDateFormatter
     [self.dateFormatter setDateStyle:NSDateFormatterMediumStyle];
