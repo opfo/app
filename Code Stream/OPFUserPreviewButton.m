@@ -11,6 +11,7 @@
 #import "OPFScoreNumberFormatter.h"
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImage+OPFScalingAndResizing.h"
 #import "OPFUserProfileViewController.h"
 #import "UIFont+OPFAppFonts.h"
 
@@ -63,6 +64,15 @@
 	[self addSubview:self.userAvatar];
 	[self addSubview:self.displayNameLabel];
 	[self addSubview:self.scoreLabel];
+}
+
+- (UIImage *)backgroundImageForState:(UIControlState)state
+{
+	UIImage *image = nil;
+	if (state & UIControlStateHighlighted) {
+		image = [UIImage opf_resizableImageNamed:@"comment-header-normal-background" withCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
+	}
+	return image;
 }
 
 -(void)layoutSubviews {
