@@ -25,6 +25,7 @@
 #import "OPFPostAnswerViewController.h"
 #import "NSString+OPFEscapeStrings.h"
 #import "UIWebView+OPFHtmlView.h"
+#import "OPFWebViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -112,17 +113,51 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	[self.rowHeights replaceObjectAtIndex:webView.tag withObject:@(webView.frame.size.height)];
 	
-    /*UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:webView.tag inSection:0]];
-    cell.contentView.frame = frame;
-    [cell setNeedsLayout];*/
-	
     [self.tableView beginUpdates];
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kOPFQuestionBodyCell inSection:webView.tag]] withRowAnimation:UITableViewRowAnimationNone];
     [self.tableView endUpdates];
-	
-    // Storing the currently loading webView in case I need to clean it up
-    // before it finishes loading.
-    //self.preloadWebView = nil;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
+        NSLog(@"Button clicked");
+        // If the link is to a stackoverflow question
+		if([[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location != NSNotFound){
+			
+            // Strip out the questionID
+            NSUInteger n = [[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location + 28;
+            NSString *questionId = [[request.URL absoluteString] substringFromIndex:n];
+            questionId = [questionId substringToIndex:[questionId rangeOfString:@"/"].location];
+            
+            //Query question and see if it exist in the database
+            OPFQuestion *question = [[OPFQuestion.query whereColumn:@"id" is:questionId] getOne];
+            
+            // If our question exist in our local DB
+            if(question != nil){
+                OPFQuestionViewController *questionView = [OPFQuestionViewController new];
+                questionView.question = question;
+                [self.navigationController pushViewController:questionView animated:YES];
+            }
+            // Oterwise open the stackoverflow webpage
+            else{
+                OPFWebViewController *webBrowser = [OPFWebViewController new];
+                webBrowser.page=request.URL;
+                [self.navigationController pushViewController:webBrowser animated:YES];
+            }
+            
+            return NO;
+            
+        }
+        else{
+            OPFWebViewController *webBrowser = [OPFWebViewController new];
+            webBrowser.page = request.URL;
+            [self.navigationController pushViewController:webBrowser animated:YES];
+            return NO;
+        }
+        
+	}
+    else
+        return YES;
 }
 
 #pragma mark - View Lifecycle
@@ -285,12 +320,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		OPFPostBodyTableViewCell* htmlCell = (OPFPostBodyTableViewCell*)cell;
 		htmlCell.bodyTextView.tag = indexPath.section;
 		htmlCell.bodyTextView.delegate = self;
-		
-			
 		[htmlCell.bodyTextView opf_loadHTMLString:post.body];
-			
-		htmlCell.navigationcontroller = self.navigationController;
-		
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
