@@ -135,17 +135,13 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewDidLoad];
 	
-	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
-	
-	self.tableView.tableHeaderView = self.searchBarHeader;
-	self.searchBar.delegate = self;
-	self.searchBarHeader.delegate = self;
-	
-	
-	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
-	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 74.f;
+	
+	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
+	self.searchBarHeader.delegate = self;
+	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
+	self.tableView.tableHeaderView = self.searchBarHeader;
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
@@ -158,10 +154,9 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
 	
-	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-
+	self.searchBar.delegate = self;
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
 	self.navigationItem.rightBarButtonItem = writeButton;
