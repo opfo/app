@@ -35,6 +35,8 @@
 
 static NSString *const NoCountInformationPlaceholder = @"0";
 static CGFloat const LabelOpacity = .7f;
+static const CGFloat kMetadataPaddingRight = 10.f;
+static const CGFloat kMetadataPaddingLeft = 12.f;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -94,7 +96,6 @@ static CGFloat const LabelOpacity = .7f;
     [self loadUserGravatar];
     
 	[self updateBackgroundView];
-	[self updateMetadataForCommentCount];
 	
 	[self setNeedsDisplay];
 	[self setNeedsLayout];
@@ -135,22 +136,34 @@ static CGFloat const LabelOpacity = .7f;
 	[self setNeedsLayout];
 }
 
-- (void)updateMetadataForCommentCount
-{
-	[self setNeedsLayout];
-}
-
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
 	
-	CGPathRef shadowPath = CGPathCreateWithRect(self.bounds, NULL);
+	CGRect bounds = self.bounds;
+	CGFloat width = CGRectGetWidth(bounds);
+	
+	CGPathRef shadowPath = CGPathCreateWithRect(bounds, NULL);
 	self.layer.shadowPath = shadowPath;
 	CGPathRelease(shadowPath);
 	
 	CGRect topBorderViewFrame = self.topBorderView.frame;
 	topBorderViewFrame.size.width = CGRectGetWidth(self.bounds);
 	self.topBorderView.frame = topBorderViewFrame;
+	
+	[self.postCommentCount sizeToFit];
+	CGRect countFrame = self.postCommentCount.frame;
+	CGFloat countWidth = CGRectGetWidth(countFrame);
+	countFrame.origin.x = width - (countWidth + kMetadataPaddingRight);
+	countFrame.origin.y = CGRectGetMidY(bounds) - CGRectGetHeight(countFrame) / 2;
+	self.postCommentCount.frame = CGRectIntegral(countFrame);
+	
+	CGRect metadataBackgroundFrame = self.metadataBackgroundImageView.frame;
+	CGFloat metadataBackgroundWidth = kMetadataPaddingLeft + countWidth + kMetadataPaddingRight;
+	CGFloat metadataBackgroundOriginX = width - metadataBackgroundWidth;
+	metadataBackgroundFrame.size.width = metadataBackgroundWidth;
+	metadataBackgroundFrame.origin.x = metadataBackgroundOriginX;
+	self.metadataBackgroundImageView.frame = metadataBackgroundFrame;
 }
 
 - (void)loadUserGravatar
