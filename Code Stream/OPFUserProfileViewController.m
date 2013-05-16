@@ -21,6 +21,8 @@
 #import "OPFAppState.h"
 #import "OPFProfileContainerController.h"
 #import "OPFLoginViewController.h"
+#import "UIWebView+OPFHtmlView.h"
+#import <QuartzCore/QuartzCore.h>
 
 enum  {
     kOPFUserQuestionsViewCell = 4,
@@ -67,6 +69,23 @@ static CGFloat userAboutMeInset = 20.0;
 	self.scoreFormatter = [OPFScoreNumberFormatter new];
     self.numberFormatter = [NSNumberFormatter new];
     self.dateFormatter = [NSDateFormatter new];
+	
+	self.userBio.layer.cornerRadius = 10.f;
+	self.userBio.layer.masksToBounds = YES;
+	self.userBio.keyboardDisplayRequiresUserAction = NO;
+	self.userBio.mediaPlaybackAllowsAirPlay = NO;
+	self.userBio.mediaPlaybackRequiresUserAction = NO;
+	self.userBio.dataDetectorTypes = UIDataDetectorTypeNone;
+	self.userBio.scrollView.scrollEnabled = NO;
+	self.userBio.scrollView.bounces = NO;
+	self.userBio.suppressesIncrementalRendering = YES;
+	
+	
+	
+	self.userAvatar.layer.cornerRadius = 6.f;
+	self.userAvatar.layer.masksToBounds = YES;
+	
+	[self.logOut addTarget:nil action:@selector(userRequestsLogout:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -114,6 +133,8 @@ static CGFloat userAboutMeInset = 20.0;
     // Hide logout-button if user to be shown is not the user that is logged in
     if([OPFAppState userModel].identifier != self.user.identifier){
         [self.logOut setHidden:YES];
+		self.logOut.layer.cornerRadius = 6.f;
+		self.logOut.layer.masksToBounds = YES;
         [self cell:self.logoutCell setHidden:YES];
     }
     
@@ -141,7 +162,7 @@ static CGFloat userAboutMeInset = 20.0;
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>%@</body>", [self.user.aboutMe OPF_escapeWithScheme:OPFEscapeHtml]] baseURL:nil];
+        [self.userBio opf_loadHTMLString:self.user.aboutMe];
     }
     else{
         [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
@@ -149,9 +170,8 @@ static CGFloat userAboutMeInset = 20.0;
 	self.userBio.delegate = self;
     
     // Set up/downvotes
-	NSString *upVotes = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
-	NSString *dowVotes = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
-	self.userVotes.text = [NSString stringWithFormat:@"%@ / %@", upVotes, dowVotes];
+	self.userUpVotes.text = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
+	self.userDownVotes.text = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
     
     // Set number of visitors
     self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
@@ -219,7 +239,9 @@ static CGFloat userAboutMeInset = 20.0;
             webview.page = url;
             [self.navigationController pushViewController:webview animated:YES];
         }
-    }
+    } /*else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:LogoutUserViewCell]) {
+		[self.nextResponder @selector(userRequestLogout)];
+	}*/
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

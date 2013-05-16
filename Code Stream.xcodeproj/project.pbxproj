@@ -20,6 +20,7 @@
 		1478B5FC171FF9150033DFA8 /* OPFQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */; };
 		1478B5FF17201A000033DFA8 /* acceptedAnswer.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FD17201A000033DFA8 /* acceptedAnswer.png */; };
 		1478B60017201A000033DFA8 /* acceptedAnswer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */; };
+		14B6C81F1745474600B4F0AD /* profile-logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B6C81E1745474600B4F0AD /* profile-logout@2x.png */; };
 		14DA81141729D48400DAFE49 /* bodytemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14DA80F41729D48400DAFE49 /* bodytemplate.html */; };
 		14DA81151729D48400DAFE49 /* lang-apollo.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA80F51729D48400DAFE49 /* lang-apollo.js */; };
 		14DA81161729D48400DAFE49 /* lang-basic.js in Resources */ = {isa = PBXBuildFile; fileRef = 14DA80F61729D48400DAFE49 /* lang-basic.js */; };
@@ -289,6 +290,7 @@
 		1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionsViewController.m; sourceTree = "<group>"; };
 		1478B5FD17201A000033DFA8 /* acceptedAnswer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = acceptedAnswer.png; sourceTree = "<group>"; };
 		1478B5FE17201A000033DFA8 /* acceptedAnswer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acceptedAnswer@2x.png"; sourceTree = "<group>"; };
+		14B6C81E1745474600B4F0AD /* profile-logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile-logout@2x.png"; path = "Images/profile-logout@2x.png"; sourceTree = "<group>"; };
 		14DA80F41729D48400DAFE49 /* bodytemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = bodytemplate.html; sourceTree = "<group>"; };
 		14DA80F51729D48400DAFE49 /* lang-apollo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-apollo.js"; sourceTree = "<group>"; };
 		14DA80F61729D48400DAFE49 /* lang-basic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "lang-basic.js"; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 		9C235FC7173A9E0800907558 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				14B6C81E1745474600B4F0AD /* profile-logout@2x.png */,
 				9C235FC8173A9E4F00907558 /* Question Cell */,
 				9C235FD9173A9E7A00907558 /* Post */,
 				8CF371CD17399E4A009B6425 /* button_negative.png */,
@@ -1681,6 +1684,7 @@
 				9CA03252174272DD00996DE0 /* OPFQuestionAnswerSeparatorCell.xib in Resources */,
 				9CA03254174273FF00996DE0 /* question-answers-separator-background@2x.png in Resources */,
 				143FBBDE17431E4200EE2E71 /* search-loupe@2x.png in Resources */,
+				14B6C81F1745474600B4F0AD /* profile-logout@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

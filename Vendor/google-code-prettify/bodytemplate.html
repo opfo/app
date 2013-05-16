@@ -16,7 +16,7 @@
 
 body{
     color: #000;
-    font-family: Helvetica Neue, Helvetica;
+    font-family: Avenir Next;
     font-size:14px;
     -webkit-text-size-adjust:100%;
     background-color: #fff;
@@ -24,19 +24,35 @@ body{
 	overflow:hidden;
 }
 
-code {
-    font-family: Monaco;
+pre code {
     font-size:12px;
 }
 
 pre {
     padding: 10px;
     margin-bottom: 5px;
+	margin-left:-10px;
 	margin-right:-10px;
-    background-color: #eee;
+    background-color: #eef;
 	overflow-x:scroll;
+	border-style:none;
 }
+		
+	ul {
+		list-style: circle;
+		-webkit-padding-start: 30px;
+	}
+	
+	a {
+		color:#0069bf;
+		text-decoration: none;
+		max-width: 100%;
+		overflow-x: hidden;
+		display: inline-block;
+		text-overflow: ellipsis;
+	}
 
+	
 img {
     max-width: 100%;
     height: auto;
@@ -46,7 +62,7 @@ img {
 </style>
 </head>
 <body>
-<p>%@</p>
+<!-- content -->
 		
 	<!-- Load the prettify scripts after the body was build, so that the height calculation is correct -->
 	<script type="text/javascript" src="prettify.js"></script>

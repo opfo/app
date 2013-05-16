@@ -15,7 +15,7 @@
 - (void)opf_loadHTMLString:(NSString *)string {
 	
 	NSString *template = [[NSString alloc] initWithData:opf_template() encoding:NSUTF8StringEncoding];
-	NSString *command = [NSString stringWithFormat:template, [string OPF_escapeWithScheme:OPFEscapeHtmlPrettify]];
+	NSString *command = [template stringByReplacingOccurrencesOfString:@"<!-- content -->" withString:[string OPF_escapeWithScheme:OPFEscapeHtmlPrettify]];
 	
 	
 	[self loadHTMLString:command baseURL:[[NSBundle mainBundle] bundleURL]];

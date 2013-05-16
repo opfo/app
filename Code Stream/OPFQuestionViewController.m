@@ -126,7 +126,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	NSNumberFormatter *format = NSNumberFormatter.new;
 	[format setNumberStyle:NSNumberFormatterDecimalStyle];
-	NSString* height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
+	NSString* height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
 	
 	[self.rowHeights replaceObjectAtIndex:webView.tag withObject:[format numberFromString:height]];
 	
