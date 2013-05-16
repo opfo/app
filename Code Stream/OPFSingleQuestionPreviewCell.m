@@ -54,14 +54,6 @@
 	self.questionBody = question.body;
 	NSAttributedString *questionText = [self attributedTextForQuestion:question highlighted:self.highlighted];
 	self.questionTextLabel.attributedText = questionText;
-	
-	CGSize selfSize = self.bounds.size;
-	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
-	CGSize questionTextLabelBoundingSize = CGSizeMake(selfSize.width - metadataSize.width - 20, selfSize.height - 10);
-	CGSize questionTextLabelSize = [self.questionTextLabel sizeThatFits:questionTextLabelBoundingSize];
-	CGRect questionTextLabelFrame = self.questionTextLabel.frame;
-	questionTextLabelFrame.size = questionTextLabelSize;
-	self.questionTextLabel.frame = questionTextLabelFrame;
 }
 
 - (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question highlighted:(BOOL)highlighted
@@ -89,6 +81,19 @@
 //	[questionText appendAttributedString:questionBodyString];
 	
 	return questionText;
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
+
+	CGSize selfSize = self.bounds.size;
+	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
+	CGSize questionTextLabelBoundingSize = CGSizeMake(selfSize.width - metadataSize.width - 20, selfSize.height - 10);
+	CGSize questionTextLabelSize = [self.questionTextLabel sizeThatFits:questionTextLabelBoundingSize];
+	CGRect questionTextLabelFrame = self.questionTextLabel.frame;
+	questionTextLabelFrame.size = questionTextLabelSize;
+	self.questionTextLabel.frame = questionTextLabelFrame;
 }
 
 - (void)sharedSingleQuestionPreviewCellInit
