@@ -35,12 +35,12 @@
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-	NSLog(@"%@",error);
+	DLog(@"%@",error);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
-        NSLog(@"Button clicked");
+        DLog(@"Button clicked");
         // If the link is to a stackoverflow question
 		if([[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location != NSNotFound){
            

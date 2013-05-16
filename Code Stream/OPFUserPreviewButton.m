@@ -12,23 +12,17 @@
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
 #import "OPFUserProfileViewController.h"
+#import "UIFont+OPFAppFonts.h"
 
-@implementation OPFUserPreviewButton
-
-@synthesize iconAlign = _iconAlign;
-
-- (void)setIconAlign:(OPFIconAlign)iconAlign {
-	_iconAlign = iconAlign;
-	[self layoutSubviews];
+@implementation OPFUserPreviewButton {
+	OPFScoreNumberFormatter *_scoreFormatter;
 }
 
 - (void)setUser:(OPFUser *)user {
 	_user = user;
 	
-	OPFScoreNumberFormatter *format = [OPFScoreNumberFormatter new];
-	
 	self.displayNameLabel.text = user.displayName;
-	self.scoreLabel.text = [format stringFromScore:user.reputation.integerValue];
+	self.scoreLabel.text = [_scoreFormatter stringFromScore:user.reputation.integerValue];
 	[self.userAvatar setImageWithGravatarEmailHash:user.emailHash placeholderImage:self.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX];
 }
 
@@ -49,7 +43,9 @@
 	return self;
 }
 
--(void)initSubviews {
+-(void)initSubviews
+{
+	_scoreFormatter = OPFScoreNumberFormatter.new;
 	
 	_iconAlign = kOPFIconAlignLeft;
 	
@@ -58,10 +54,11 @@
 	_scoreLabel = [UILabel new];
 	
 	_displayNameLabel.textAlignment = NSTextAlignmentLeft;
+	_displayNameLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1.000];
+	_displayNameLabel.font = [UIFont opf_appFontOfSize:15.f];
 	_scoreLabel.textAlignment = NSTextAlignmentLeft;
-	_scoreLabel.textColor = [UIColor grayColor];
-	
-
+	_scoreLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.000];
+	_scoreLabel.font = [UIFont opf_appFontOfSize:15.f];
 	
 	[self addSubview:self.userAvatar];
 	[self addSubview:self.displayNameLabel];
@@ -75,7 +72,7 @@
 	CGRect displayName, score, image;
 	
 	
-	score.origin.y = frame.size.height / 2;
+	score.origin.y = frame.size.height / 2 - 2;
 	score.size.width = frame.size.width - frame.size.height;
 	score.size.height = frame.size.height / 2;
 	
@@ -95,8 +92,8 @@
 			break;
 		case kOPFIconAlignRight:
 			image.origin.x = frame.size.width-frame.size.height;
-			displayName.origin.x = 0.0;
-			score.origin.x = 0.0;
+			displayName.origin.x = -10.0;
+			score.origin.x = -10.0;
 			
 			self.scoreLabel.textAlignment = NSTextAlignmentRight;
 			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
@@ -116,6 +113,24 @@
 	self.displayNameLabel.frame = displayName;
 	self.scoreLabel.frame = score;
 	self.userAvatar.frame = image;
+}
+
+- (void)setIconAlign:(OPFIconAlign)iconAlign
+{
+	if (_iconAlign != iconAlign) {
+		_iconAlign = iconAlign;
+		
+		if (iconAlign == kOPFIconAlignRight) {
+			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
+			self.scoreLabel.textAlignment = NSTextAlignmentRight;
+		} else {
+			self.displayNameLabel.textAlignment = NSTextAlignmentLeft;
+			self.scoreLabel.textAlignment = NSTextAlignmentLeft;
+		}
+		
+		[self setNeedsLayout];
+		[self setNeedsDisplay];
+	}
 }
 
 
