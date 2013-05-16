@@ -64,6 +64,7 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
     [super viewDidLoad];
 	
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFProfileViewCell) bundle:nil] forCellReuseIdentifier:ProfileViewCellIdentifier];
+    self.profileSearchBar.placeholder = NSLocalizedString(@"Search users by display name", @"Search users placeholder text");
 	
     [self setupRefreshControl];
 }
