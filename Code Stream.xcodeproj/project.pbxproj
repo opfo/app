@@ -1213,36 +1213,11 @@
 		9C1C51711716FE90004CC9E3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */,
-				8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */,
-				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
-				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
-				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
-				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
-				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
-				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
-				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
-				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
-				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
-				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
-				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
-				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
-				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
-				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
-				1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */,
-				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
-				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
-				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
-				1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */,
-				1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */,
-				1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */,
-				1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */,
-				1A414A1517358A4A00F87F71 /* OPFProfileContainerController.h */,
-				1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */,
-				1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */,
-				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
-				1A021F4C17412A8F00A689AA /* OPFTagBrowserSelectionViewController.h */,
-				1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */,
+				9CA65D391745A1C200F6D46A /* Global */,
+				9CA65D381745A1A200F6D46A /* Questions */,
+				9CA65D371745A19300F6D46A /* Activity */,
+				9CA65D351745A16900F6D46A /* Tag Browser */,
+				9CA65D361745A17700F6D46A /* User and Profile */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1529,6 +1504,71 @@
 				9CA65D3017459A0F00F6D46A /* comments-compose@2x.png */,
 			);
 			name = Comments;
+			sourceTree = "<group>";
+		};
+		9CA65D351745A16900F6D46A /* Tag Browser */ = {
+			isa = PBXGroup;
+			children = (
+				1AD762971737EA64002F157C /* OPFTagBrowserViewController.h */,
+				1AD762981737EA64002F157C /* OPFTagBrowserViewController.m */,
+				1A021F4C17412A8F00A689AA /* OPFTagBrowserSelectionViewController.h */,
+				1A021F4D17412A9000A689AA /* OPFTagBrowserSelectionViewController.m */,
+			);
+			name = "Tag Browser";
+			sourceTree = "<group>";
+		};
+		9CA65D361745A17700F6D46A /* User and Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1A639ECC172683D4009EB280 /* OPFProfileSearchViewController.h */,
+				1A639ECD172683D4009EB280 /* OPFProfileSearchViewController.m */,
+				8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */,
+				8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */,
+				1A414A1517358A4A00F87F71 /* OPFProfileContainerController.h */,
+				1A414A1617358A4A00F87F71 /* OPFProfileContainerController.m */,
+				1A9D3F1F17327D9C00EEF9D1 /* OPFSignupViewController.h */,
+				1A9D3F2017327D9C00EEF9D1 /* OPFSignupViewController.m */,
+				1A9D3F2417327DD000EEF9D1 /* OPFLoginViewController.h */,
+				1A9D3F2517327DD000EEF9D1 /* OPFLoginViewController.m */,
+			);
+			name = "User and Profile";
+			sourceTree = "<group>";
+		};
+		9CA65D371745A19300F6D46A /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				1A896CE8172FD03A00E19525 /* OPFActivityViewController.h */,
+				1A896CE9172FD03A00E19525 /* OPFActivityViewController.m */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		9CA65D381745A1A200F6D46A /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				9C5F8C17171D9C960075A1C4 /* OPFQuestionViewController.h */,
+				9C5F8C18171D9C960075A1C4 /* OPFQuestionViewController.m */,
+				1A816AB4171DE0BF00964AF2 /* OPFCommentsViewController.h */,
+				1A816AB5171DE0C000964AF2 /* OPFCommentsViewController.m */,
+				8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */,
+				8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */,
+				8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */,
+				8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */,
+				1478B5FA171FF9150033DFA8 /* OPFQuestionsViewController.h */,
+				1478B5FB171FF9150033DFA8 /* OPFQuestionsViewController.m */,
+			);
+			name = Questions;
+			sourceTree = "<group>";
+		};
+		9CA65D391745A1C200F6D46A /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				8C2725D41738562D0068D89C /* OPFWebViewController.h */,
+				8C2725D51738562D0068D89C /* OPFWebViewController.m */,
+				1A896CE4172FB79000E19525 /* OPFTabbedHomeViewController.h */,
+				1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 		9CFF61761733263B00D96980 /* SSToolkit */ = {
