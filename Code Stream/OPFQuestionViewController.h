@@ -13,7 +13,8 @@
 @class OPFPost;
 @class OPFQuestion;
 
-@interface OPFQuestionViewController : UITableViewController <PostAnswerDelegate>
+
+@interface OPFQuestionViewController : UITableViewController <UIWebViewDelegate, PostAnswerDelegate>
 
 @property (strong) OPFQuestion *question;
 - (void)refreshQuestion;

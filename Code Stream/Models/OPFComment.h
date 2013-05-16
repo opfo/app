@@ -13,7 +13,6 @@
 
 @interface OPFComment : OPFModel
 
-@property (strong, readonly) NSNumber* identifier;
 @property (strong) NSNumber* postId;
 @property (strong) OPFPost* post;
 @property (strong) NSNumber* score;

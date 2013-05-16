@@ -14,7 +14,6 @@
 
 @interface OPFUser : OPFSearchable
 
-@property (strong, readonly) NSNumber* identifier;
 @property (strong) NSNumber* reputation;
 @property (strong, readonly) NSDate* creationDate;
 @property (copy) NSString* displayName;

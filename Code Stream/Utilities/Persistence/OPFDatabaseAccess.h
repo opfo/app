@@ -21,9 +21,10 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
-- (BOOL) executeUpdate:(NSString *) sql auxiliaryUpdate: (BOOL) auxUpdate;
+- (BOOL) executeUpdate:(NSString *) sql withArgumentsInArray:(NSArray *)arguments auxiliaryUpdate: (BOOL) auxUpdate;
 - (void) attachAuxDB;
 - (void) close;
+- (int) lastInsertRowId;
 
 @property(strong, readonly) OPFDatabaseQueue* combinedQueue;
 @property(strong, readonly) OPFDatabaseQueue* auxCombinedQueue;
