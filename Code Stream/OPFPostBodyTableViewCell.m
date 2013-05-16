@@ -88,6 +88,7 @@
 	self.bodyTextView.delegate = self;
 	self.bodyTextView.scrollView.scrollEnabled = NO;
 	self.bodyTextView.scrollView.bounces = NO;
+	self.bodyTextView.suppressesIncrementalRendering = YES;
 	
 	NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"bodytemplate" ofType:@"html"];
 	NSURL *bundle = [[NSBundle mainBundle] bundleURL];
