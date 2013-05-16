@@ -39,8 +39,8 @@
 @implementation OPFTagBrowserViewController
 
 static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
-static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
 static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
+static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
 static NSInteger const TagSuggestionLimit = 100;
 static NSInteger const TagLoadingByTagLimit = 50;
 static NSInteger const TagSelectionLimit = 20;
@@ -88,6 +88,10 @@ static NSInteger const TagSelectionLimit = 20;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
+    
+    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TagBrowserHeaderViewIdenfifier];
     
     if (self.adjacentTag != nil) {
         self.suggestedTags = [NSMutableArray arrayWithArray:[OPFTag relatedTagsForTagWithName:self.adjacentTag.name]];
