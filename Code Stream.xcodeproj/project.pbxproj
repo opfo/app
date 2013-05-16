@@ -112,6 +112,10 @@
 		1AA6C8AA1744DE5F000ACC6E /* comment-header-horrible-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8A41744DE5F000ACC6E /* comment-header-horrible-background@2x.png */; };
 		1AA6C8AB1744DE5F000ACC6E /* comment-header-normal-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8A51744DE5F000ACC6E /* comment-header-normal-background@2x.png */; };
 		1AA6C8AD1744E189000ACC6E /* vote-down-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8AC1744E188000ACC6E /* vote-down-highlighted@2x.png */; };
+		1AA6C8B01744EB2F000ACC6E /* calendar-dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8AE1744EB2F000ACC6E /* calendar-dark@2x.png */; };
+		1AA6C8B11744EB2F000ACC6E /* clock-dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8AF1744EB2F000ACC6E /* clock-dark@2x.png */; };
+		1AA6C8B41744EF3B000ACC6E /* calendar-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8B21744EF3B000ACC6E /* calendar-grey@2x.png */; };
+		1AA6C8B51744EF3B000ACC6E /* clock-grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AA6C8B31744EF3B000ACC6E /* clock-grey@2x.png */; };
 		1AB5CA71172C1134009FD9B7 /* app-icon@2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AB5CA70172C1134009FD9B7 /* app-icon@2.png */; };
 		1ABA0A5917296D330007BBFE /* score@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5817296D330007BBFE /* score@2x.png */; };
 		1ABA0A5B172976310007BBFE /* url@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA0A5A172976310007BBFE /* url@2x.png */; };
@@ -402,6 +406,10 @@
 		1AA6C8A41744DE5F000ACC6E /* comment-header-horrible-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-header-horrible-background@2x.png"; sourceTree = "<group>"; };
 		1AA6C8A51744DE5F000ACC6E /* comment-header-normal-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment-header-normal-background@2x.png"; sourceTree = "<group>"; };
 		1AA6C8AC1744E188000ACC6E /* vote-down-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vote-down-highlighted@2x.png"; sourceTree = "<group>"; };
+		1AA6C8AE1744EB2F000ACC6E /* calendar-dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-dark@2x.png"; sourceTree = "<group>"; };
+		1AA6C8AF1744EB2F000ACC6E /* clock-dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-dark@2x.png"; sourceTree = "<group>"; };
+		1AA6C8B21744EF3B000ACC6E /* calendar-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-grey@2x.png"; sourceTree = "<group>"; };
+		1AA6C8B31744EF3B000ACC6E /* clock-grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-grey@2x.png"; sourceTree = "<group>"; };
 		1AB5CA70172C1134009FD9B7 /* app-icon@2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-icon@2.png"; sourceTree = "<group>"; };
 		1ABA0A5817296D330007BBFE /* score@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "score@2x.png"; sourceTree = "<group>"; };
 		1ABA0A5A172976310007BBFE /* url@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "url@2x.png"; sourceTree = "<group>"; };
@@ -830,6 +838,10 @@
 				1A639EC717267F0B009EB280 /* activity@2x.png */,
 				1A639EC417267D29009EB280 /* votes-up@2x.png */,
 				1A816AC8171DFBBC00964AF2 /* arrow-up@2x.png */,
+				1AA6C8AE1744EB2F000ACC6E /* calendar-dark@2x.png */,
+				1AA6C8AF1744EB2F000ACC6E /* clock-dark@2x.png */,
+				1AA6C8B21744EF3B000ACC6E /* calendar-grey@2x.png */,
+				1AA6C8B31744EF3B000ACC6E /* clock-grey@2x.png */,
 				1AA6C8911744CC32000ACC6E /* calendar@2x.png */,
 			);
 			path = Icons;
@@ -1671,6 +1683,10 @@
 				1AA6C8AA1744DE5F000ACC6E /* comment-header-horrible-background@2x.png in Resources */,
 				1AA6C8AB1744DE5F000ACC6E /* comment-header-normal-background@2x.png in Resources */,
 				1AA6C8AD1744E189000ACC6E /* vote-down-highlighted@2x.png in Resources */,
+				1AA6C8B01744EB2F000ACC6E /* calendar-dark@2x.png in Resources */,
+				1AA6C8B11744EB2F000ACC6E /* clock-dark@2x.png in Resources */,
+				1AA6C8B41744EF3B000ACC6E /* calendar-grey@2x.png in Resources */,
+				1AA6C8B51744EF3B000ACC6E /* clock-grey@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

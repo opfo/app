@@ -16,6 +16,7 @@
 #import "OPFAppState.h"
 #import "OPFUpdateQuery.h"
 #import "OPFUser.h"
+#import "UIFont+OPFAppFonts.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -30,8 +31,10 @@
 
 @implementation OPFCommentsViewController
 
-static NSString *const CommentTableCell = @"CommentTableCell";
-static NSString *const CommentTableHeader = @"CommentTableHeader";
+static NSString *const OPFCommentTableCell = @"OPFCommentTableCell";
+static NSString *const OPFCommentTableHeader = @"OPFCommentTableHeader";
+static CGFloat const OPFCommentTableCellOffset = 60.0f;
+static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
 - (id)init
 {
@@ -64,7 +67,8 @@ static NSString *const CommentTableHeader = @"CommentTableHeader";
 {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:CommentTableHeader];
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:OPFCommentTableHeader];
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewCell) bundle:nil] forCellReuseIdentifier:OPFCommentTableCell];
 }
 
 - (void)setPostModel:(OPFPost *)postModel
@@ -124,23 +128,13 @@ static NSString *const CommentTableHeader = @"CommentTableHeader";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *commentViewCellIdentifier = @"OPFCommentViewCell";
+    OPFCommentViewCell *cell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFCommentTableCell forIndexPath:indexPath];
     
-    OPFCommentViewCell *commentViewCell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:commentViewCellIdentifier];
+    [cell configureForComment:[self.commentModels objectAtIndex:indexPath.row]];
     
-    if (commentViewCell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:commentViewCellIdentifier owner:self options:nil];
-        commentViewCell = [nib objectAtIndex:0];
-    }
+    cell.commentsViewController = self;
     
-    commentViewCell.commentModel = [self.commentModels objectAtIndex:indexPath.row];
-    
-    [commentViewCell setupDateformatters];
-    [commentViewCell setModelValuesInView];
-    
-    commentViewCell.commentsViewController = self;
-    
-    return commentViewCell;
+    return cell;
 }
 
 - (void)voteUpComment:(UIButton *)sender
@@ -161,7 +155,7 @@ static NSString *const CommentTableHeader = @"CommentTableHeader";
 {
     UIView *headerView = nil;
     
-    OPFCommentViewHeaderView *commentHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:CommentTableHeader];
+    OPFCommentViewHeaderView *commentHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:OPFCommentTableHeader];
 		
     [commentHeaderView configureForPost:self.postModel];
 		
@@ -177,7 +171,12 @@ static NSString *const CommentTableHeader = @"CommentTableHeader";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 120;
+	OPFComment *commentModel = [self.commentModels objectAtIndex:indexPath.row];
+    NSString *text = commentModel.text;
+    CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(267.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
+    CGFloat offset = textSize.height > 120.f ?  OPFCommentTableCellOffsetExtra : OPFCommentTableCellOffset;
+    
+    return textSize.height + offset;
 }
 
 - (void)viewWillAppear:(BOOL)animated
