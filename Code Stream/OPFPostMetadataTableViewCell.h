@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFPostVoteButton.h"
 @class OPFUserPreviewButton;
 
 @interface OPFPostMetadataTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIButton *voteUpButton;
-@property (weak, nonatomic) IBOutlet UIButton *voteDownButton;
+@property (weak, nonatomic) IBOutlet OPFPostVoteButton *voteUpButton;
+@property (weak, nonatomic) IBOutlet OPFPostVoteButton *voteDownButton;
 
 @property (weak, nonatomic) IBOutlet OPFUserPreviewButton *userPreviewButton;
 

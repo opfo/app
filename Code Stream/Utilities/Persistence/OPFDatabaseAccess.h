@@ -10,6 +10,10 @@
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
 
+
+#define OPF_DATABASE_ACCESS_DEBUG (DEBUG && 0)
+
+
 @class OPFDatabaseQueue;
 
 @interface OPFDatabaseAccess : NSObject
@@ -17,10 +21,13 @@
 + (instancetype) getDBAccess;
 
 - (FMResultSet *) executeSQL: (NSString *) sql;
+- (BOOL) executeUpdate:(NSString *) sql withArgumentsInArray:(NSArray *)arguments auxiliaryUpdate: (BOOL) auxUpdate;
 - (void) attachAuxDB;
 - (void) close;
+- (int) lastInsertRowId;
 
 @property(strong, readonly) OPFDatabaseQueue* combinedQueue;
+@property(strong, readonly) OPFDatabaseQueue* auxCombinedQueue;
 @property(assign) BOOL auxAttached;
 
 

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 @class OPFUser;
 
-typedef enum iconAlign { Left, Right, None } OPFIconAlign;
+typedef enum : NSInteger {
+	kOPFIconAlignLeft,
+	kOPFIconAlignRight,
+	kOPFIconAlignNone
+} OPFIconAlign;
 
 @interface OPFUserPreviewButton : UIButton
 
@@ -17,7 +21,7 @@ typedef enum iconAlign { Left, Right, None } OPFIconAlign;
 @property (strong) UILabel *scoreLabel;
 @property (strong) UIImageView *userAvatar;
 @property (nonatomic, copy) OPFUser *user;
-@property (nonatomic) OPFIconAlign iconAlign;
+@property (nonatomic, assign) OPFIconAlign iconAlign;
 
 
 @end

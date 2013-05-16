@@ -47,6 +47,7 @@
 
 - (void)sharedQuestionsSearchBarInit
 {
+
 	for (UIView *subview in self.subviews) {
 		if ([subview isKindOfClass:UITextField.class]) {
 			_textField = (UITextField *)subview;
@@ -105,6 +106,7 @@
 	
 	CGFloat insetTop = 4.f;
 	CGFloat baseInsetLeft = 30.f;
+	
 	
 	for (OPFQuestionsSearchBarToken *token in _tokens) {
 		CGRect tokenFrame = token.view.frame;

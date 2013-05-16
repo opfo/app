@@ -5,16 +5,8 @@
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <meta content="yes" name="apple-mobile-web-app-capable" />
     <meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
-    <script type="text/javascript">
-    function loadBody(string) {
-		document.body.innerHTML = string;
-        prettyPrint();
-		
-		return document.body.offsetHeight;
-    }
-    </script>
-<link href="prettify.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="prettify.js"></script>
+	
+<link href="prettify.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 <!--
 
@@ -54,6 +46,10 @@ img {
 </style>
 </head>
 <body>
-<p>Loading...</p>
+<p>%@</p>
+		
+	<!-- Load the prettify scripts after the body was build, so that the height calculation is correct -->
+	<script type="text/javascript" src="prettify.js"></script>
+	<script type="text/javascript">prettyPrint()</script>
 </body>
 </html>

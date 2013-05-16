@@ -116,4 +116,16 @@ describe(@"fetching related objects", ^{
     });
 });
 
+describe(@"equals and hash", ^{
+    __block OPFUser *userWithQuestions = [OPFUser find: 1127616];
+    __block OPFUser *sameUser = [OPFUser find: 1127616];
+    it(@"should be possible to do equals without stuff exploding in your face", ^{
+        expect([userWithQuestions isEqual:sameUser]).to.beTruthy();
+    });
+    
+    it(@"should be possible to do hash without stuff exploding in your face", ^{
+        expect([userWithQuestions hash]).to.equal([[OPFUser modelTableName] hash] + [userWithQuestions.identifier integerValue]);
+    });
+});
+
 SpecEnd

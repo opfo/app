@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GCTagList.h"
 
 
-@class GCTagList;
+typedef void (^OPFPostTagsDidSelectTagBlock)(NSString *tagName);
 
-@interface OPFPostTagsTableViewCell : UITableViewCell <GCTagListDataSource>
 
-@property (copy) NSArray *tags;
-@property (weak, nonatomic) IBOutlet GCTagList *tagsView;
+@interface OPFPostTagsTableViewCell : UITableViewCell <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (copy, nonatomic) NSArray *tags;
+@property (weak, nonatomic) IBOutlet UICollectionView *tagsCollectionView;
+
+@property (copy, nonatomic) OPFPostTagsDidSelectTagBlock didSelectTagBlock;
 
 @end

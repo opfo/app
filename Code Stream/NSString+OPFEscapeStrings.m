@@ -30,6 +30,10 @@
 			toReplace = @[@"\\n", @"\"\""];
 			replaceWith = @[@"\" ", @"\" "];
 			break;
+		case OPFEscapeHtmlPrettify:
+			toReplace = @[@"\\n", @"\"\"", @"<pre>"];
+			replaceWith = @[@"\n ", @"\" ", @"<pre class=\"prettyprint\">"];
+			break;
 		default:
 			@throw @"Unknown escape scheme. Have you defined in the OPFEscapeStrings method?";
 			break;

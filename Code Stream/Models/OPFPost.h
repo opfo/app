@@ -18,7 +18,6 @@ typedef enum : NSInteger {
 
 @interface OPFPost : OPFSearchable <OPFRecordProtocol>
 
-@property (strong, readonly) NSNumber* identifier;
 @property (strong, readonly) NSDate* creationDate;
 @property (assign) OPFPostType postType;
 @property (strong) NSNumber* score;

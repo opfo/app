@@ -11,24 +11,19 @@
 #import "OPFScoreNumberFormatter.h"
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImage+OPFScalingAndResizing.h"
 #import "OPFUserProfileViewController.h"
+#import "UIFont+OPFAppFonts.h"
 
-@implementation OPFUserPreviewButton
-
-@synthesize iconAlign = _iconAlign;
-
-- (void)setIconAlign:(OPFIconAlign)iconAlign {
-	_iconAlign = iconAlign;
-	[self layoutSubviews];
+@implementation OPFUserPreviewButton {
+	OPFScoreNumberFormatter *_scoreFormatter;
 }
 
 - (void)setUser:(OPFUser *)user {
 	_user = user;
 	
-	OPFScoreNumberFormatter *format = [OPFScoreNumberFormatter new];
-	
 	self.displayNameLabel.text = user.displayName;
-	self.scoreLabel.text = [format stringFromScore:user.reputation.integerValue];
+	self.scoreLabel.text = [_scoreFormatter stringFromScore:user.reputation.integerValue];
 	[self.userAvatar setImageWithGravatarEmailHash:user.emailHash placeholderImage:self.userAvatar.image defaultImageType:KHGravatarDefaultImageMysteryMan rating:KHGravatarRatingX];
 }
 
@@ -49,23 +44,41 @@
 	return self;
 }
 
--(void)initSubviews {
+-(void)initSubviews
+{
+	_scoreFormatter = OPFScoreNumberFormatter.new;
 	
-	_iconAlign = Left;
+	_iconAlign = kOPFIconAlignLeft;
 	
 	_userAvatar = [UIImageView new];
 	_displayNameLabel = [UILabel new];
 	_scoreLabel = [UILabel new];
 	
 	_displayNameLabel.textAlignment = NSTextAlignmentLeft;
+	_displayNameLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1.000];
+	_displayNameLabel.highlightedTextColor = UIColor.whiteColor;
+	_displayNameLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_displayNameLabel.backgroundColor = UIColor.clearColor;
 	_scoreLabel.textAlignment = NSTextAlignmentLeft;
-	_scoreLabel.textColor = [UIColor grayColor];
-	
-
+	_scoreLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.000];
+	_scoreLabel.highlightedTextColor = UIColor.whiteColor;
+	_scoreLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_scoreLabel.backgroundColor = UIColor.clearColor;
 	
 	[self addSubview:self.userAvatar];
 	[self addSubview:self.displayNameLabel];
 	[self addSubview:self.scoreLabel];
+	
+	[self setTitle:@"" forState:0];
+	[self setBackgroundImage:[UIImage imageNamed:@"user-preview-background-selected"] forState:UIControlStateHighlighted];
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+	[super setHighlighted:highlighted];
+	
+	self.displayNameLabel.highlighted = highlighted;
+	self.scoreLabel.highlighted = highlighted;
 }
 
 -(void)layoutSubviews {
@@ -75,7 +88,7 @@
 	CGRect displayName, score, image;
 	
 	
-	score.origin.y = frame.size.height / 2;
+	score.origin.y = frame.size.height / 2 - 2;
 	score.size.width = frame.size.width - frame.size.height;
 	score.size.height = frame.size.height / 2;
 	
@@ -88,20 +101,20 @@
 	image.size.height = frame.size.height;
 	
 	switch (self.iconAlign) {
-		case Left:
+		case kOPFIconAlignLeft:
 			image.origin.x = 0.0;
 			displayName.origin.x = frame.size.height;
 			score.origin.x = frame.size.height;
 			break;
-		case Right:
+		case kOPFIconAlignRight:
 			image.origin.x = frame.size.width-frame.size.height;
-			displayName.origin.x = 0.0;
-			score.origin.x = 0.0;
+			displayName.origin.x = -10.0;
+			score.origin.x = -10.0;
 			
 			self.scoreLabel.textAlignment = NSTextAlignmentRight;
 			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
 			break;
-		case None: {
+		case kOPFIconAlignNone: {
 			image = CGRectZero;
 			displayName.origin.x = 0.0;
 			score.origin.x = 0.0;
@@ -118,15 +131,23 @@
 	self.userAvatar.frame = image;
 }
 
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setIconAlign:(OPFIconAlign)iconAlign
 {
-    // Drawing code
+	if (_iconAlign != iconAlign) {
+		_iconAlign = iconAlign;
+		
+		if (iconAlign == kOPFIconAlignRight) {
+			self.displayNameLabel.textAlignment = NSTextAlignmentRight;
+			self.scoreLabel.textAlignment = NSTextAlignmentRight;
+		} else {
+			self.displayNameLabel.textAlignment = NSTextAlignmentLeft;
+			self.scoreLabel.textAlignment = NSTextAlignmentLeft;
+		}
+		
+		[self setNeedsLayout];
+		[self setNeedsDisplay];
+	}
 }
-*/
+
 
 @end

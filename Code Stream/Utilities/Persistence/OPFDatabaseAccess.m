@@ -61,10 +61,10 @@ static NSString* OPFWritableAuxDBPath;
         successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
     }
     if(!successBase) {
-        NSLog(@"Failed to copy base db to documents directory");
+        DLogError(@"Failed to copy base db to documents directory");
     }
     if(!successAux) {
-        NSLog(@"Failed to copy aux db to documents directory");
+        DLogError(@"Failed to copy aux db to documents directory");
     }
 }
 
@@ -77,6 +77,7 @@ static NSString* OPFWritableAuxDBPath;
     [OPFDatabaseAccess setDBPaths];
     [OPFDatabaseAccess copyDatabaseIfNeeded];
     _combinedQueue = [OPFDatabaseQueue databaseQueueWithPath:OPFWritableBaseDBPath];
+    _auxCombinedQueue = [OPFDatabaseQueue databaseQueueWithPath:OPFWritableAuxDBPath];
     [self attachAuxDB];
     return self;
 }
@@ -90,10 +91,31 @@ static NSString* OPFWritableAuxDBPath;
     [self attachAuxDB];
     __block FMResultSet* result;
     [_combinedQueue inDatabase: ^(FMDatabase* db) {
-        NSLog(@"Executing query %@", sql);
+        DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Executing query %@", sql);
         result = [db executeQuery:sql];
     }];
     return result;
+}
+
+// Execute an SQL-update query
+// Returns YES if update succeeded, NO otherwise
+- (BOOL) executeUpdate:(NSString *) sql withArgumentsInArray: (NSArray*) array auxiliaryUpdate: (BOOL) auxUpdate
+{
+    [self attachAuxDB];
+    __block BOOL succeeded;
+    
+    if(auxUpdate){
+        [_auxCombinedQueue inDatabase:^(FMDatabase* db){
+            succeeded = [db executeUpdate:sql withArgumentsInArray:array];
+        }];
+    }
+    else{
+        [_combinedQueue inDatabase:^(FMDatabase* db){
+            succeeded = [db executeUpdate:sql withArgumentsInArray:array];
+        }];
+    }
+    
+    return succeeded;
 }
 
 -(void) attachAuxDB
@@ -102,10 +124,10 @@ static NSString* OPFWritableAuxDBPath;
         [_combinedQueue inDatabase:^(FMDatabase* db){
             BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
             if (result) {
-                NSLog(@"Successfully attached aux db");
+                DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Successfully attached aux db");
                 self.auxAttached = YES;
             } else {
-                NSLog(@"Failed to attach aux db");
+                DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Failed to attach aux db");
                 self.auxAttached = NO;
             }
         }];
@@ -116,6 +138,15 @@ static NSString* OPFWritableAuxDBPath;
 {
     self.auxAttached = NO;
     [_combinedQueue close];
+}
+
+- (int) lastInsertRowId
+{
+    __block NSNumber* id;
+    [_combinedQueue inDatabase:^(FMDatabase* db){
+        id = @([db lastInsertRowId]);
+    }];
+    return [id integerValue];
 }
 
 @end
