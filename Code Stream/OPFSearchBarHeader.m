@@ -46,7 +46,7 @@
 
 - (void)sharedInit {
 	self.displayedHeader = SearchBar;
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SearchBarGradient"]];
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"search-headergradient"]];
 }
 
 - (void)handleSwitchEvent:(UIButton *)sender {
