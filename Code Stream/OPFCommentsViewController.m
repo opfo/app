@@ -17,6 +17,7 @@
 #import "OPFUpdateQuery.h"
 #import "OPFUser.h"
 #import "UIFont+OPFAppFonts.h"
+#import "OPFAppState.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -39,22 +40,22 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (id)init
 {
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
-    
+
     if(self) {
         [self opfSetupView];
     }
-    
+
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-    
+
     if(self) {
         [self opfSetupView];
     }
-    
+
     return self;
 }
 
@@ -66,7 +67,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:OPFCommentTableHeader];
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewCell) bundle:nil] forCellReuseIdentifier:OPFCommentTableCell];
 }
@@ -74,9 +75,9 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (void)setPostModel:(OPFPost *)postModel
 {
     _postModel = postModel;
-        
+
     [self performInitialDatabaseFetch];
-    
+
     [self.tableView reloadData];
 }
 
@@ -87,15 +88,14 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
 - (void)commentSavePressed:(UIButton *)sender
 {
+    // Comment is inserted into db and view is updated
+    // I will change how the OPFUpdateQuery works, so some things are going to be changed here
     if(![self.inputTextField.text isEqualToString:@""]){
-        NSInteger commentID = [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
-        
-        // Get the inputed comment and update the commentsview
-        __strong OPFComment *comment = [[[OPFComment query] whereColumn:@"id" is:[NSString stringWithFormat:@"%d",commentID]] getOne];
-        NSMutableArray *comments = [self.commentModels mutableCopy];
-        [comments addObject:comment];
-        self.commentModels = [[NSArray alloc] initWithArray:comments];
-        
+       [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
+
+        __strong OPFPost *post = [[[OPFPost query] whereColumn:@"id" is:self.postModel.identifier] getOne];
+        self.postModel=post;
+
         [self.inputTextField setText:nil];
         [self.inputTextField resignFirstResponder];
         [self scrollToBottomAnimated:YES];
@@ -109,7 +109,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 }
 
 - (void)performInitialDatabaseFetch
-{    
+{
     self.commentModels = self.postModel.comments;
 }
 
@@ -129,38 +129,38 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OPFCommentViewCell *cell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFCommentTableCell forIndexPath:indexPath];
-    
+
     [cell configureForComment:[self.commentModels objectAtIndex:indexPath.row]];
-    
+
     cell.commentsViewController = self;
-    
+
     return cell;
 }
 
 - (void)voteUpComment:(UIButton *)sender
 {
 //    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
-//    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];    
+//    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];
 }
 
 - (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
 {
 	OPFUserProfileViewController *userProfileViewController = OPFUserProfileViewController.newFromStoryboard;
     userProfileViewController.user = userModel;
-    
+
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *headerView = nil;
-    
+
     OPFCommentViewHeaderView *commentHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:OPFCommentTableHeader];
-		
+
     [commentHeaderView configureForPost:self.postModel];
-		
+
     headerView = commentHeaderView;
-    
+
 	return headerView;
 }
 
@@ -175,19 +175,19 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
     NSString *text = commentModel.text;
     CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(267.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat offset = textSize.height > 120.f ?  OPFCommentTableCellOffsetExtra : OPFCommentTableCellOffset;
-    
+
     return textSize.height + offset;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self scrollToBottomAnimated:NO];
-    
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(handleWillShowKeyboard:)
 		name:UIKeyboardWillShowNotification
         object:nil];
-    
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
 		selector:@selector(handleWillHideKeyboard:)
 		name:UIKeyboardWillHideNotification
@@ -216,21 +216,21 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
     CGRect keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
 	UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
 	double duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
+
     [UIView animateWithDuration:duration delay:0.0f options:[UIView animationOptionsForCurve:curve]
         animations:^{
             CGFloat keyboardY = [self.view convertRect:keyboardRect fromView:nil].origin.y;
-                         
+
             CGRect inputViewFrame = self.inputView.frame;
             CGFloat inputViewFrameY = keyboardY - inputViewFrame.size.height;
-                         
+
             // for ipad modal form presentations
             CGFloat messageViewFrameBottom = self.view.frame.size.height - INPUT_HEIGHT;
             if(inputViewFrameY > messageViewFrameBottom)
                 inputViewFrameY = messageViewFrameBottom;
-                         
+
             self.inputView.frame = CGRectMake(inputViewFrame.origin.x, inputViewFrameY, inputViewFrame.size.width, inputViewFrame.size.height);
-                         
+
             UIEdgeInsets insets = UIEdgeInsetsMake(0.0f, 0.0f, self.view.frame.size.height - self.inputView.frame.origin.y - INPUT_HEIGHT, 0.0f);
 
             self.tableView.contentInset = insets;
@@ -243,7 +243,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (void)scrollToBottomAnimated:(BOOL)animated
 {
     NSInteger rows = [self.tableView numberOfRowsInSection:0];
-    
+
     if(rows > 0) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
                         atScrollPosition:UITableViewScrollPositionBottom
@@ -254,7 +254,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self commentSavePressed:self.inputSendButton];
-    
+
     return YES;
 }
 

@@ -110,8 +110,6 @@
         
         // If update was successful, show UIAlert and go back to teh questionsview
         if([self updateDatabase]){
-            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your question has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [success show];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
         // If update was unsuccessful

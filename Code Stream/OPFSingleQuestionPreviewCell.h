@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
-#import "GCTagList.h"
 #import "OPFScoreNumberFormatter.h"
 
 @class OPFUserPreviewButton;
@@ -21,18 +20,9 @@
 @end
 
 
-@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource, GCTagListDelegate>
+@interface OPFSingleQuestionPreviewCell : UITableViewCell
 
 @property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
-
-
-@property (nonatomic, assign) NSInteger score;
-@property (nonatomic, assign) NSInteger answers;
-
-// Array of NSStrings displayed as bubble tags
-// Tag view is updated, when this array gets changed.
-@property (nonatomic, copy) NSArray *tags;
-
 
 // Public: Configure a preview cell with question data
 //
@@ -47,6 +37,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answersLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *answersIndicatorImageView;
-@property (weak, nonatomic) IBOutlet GCTagList *tagList;
 
 @end

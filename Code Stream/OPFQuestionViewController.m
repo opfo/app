@@ -23,6 +23,9 @@
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
+#import "NSString+OPFEscapeStrings.h"
+#import "UIWebView+OPFHtmlView.h"
+#import "OPFWebViewController.h"
 #import "OPFPostAnswerViewController.h"
 #import "OPFQuestionAnswerSeparatorCell.h"
 #import "NSString+OPFSearchString.h"
@@ -49,8 +52,8 @@ static const NSInteger kOPFRowsInAnswerSection = 4;
 
 
 @interface OPFQuestionViewController ()
+@property (strong) NSMutableArray *rowHeights;
 @property (strong, readonly) NSCache *cache;
-
 // TEMP (start):
 @property (strong) NSMutableArray *posts;
 - (OPFPost *)questionPost;
@@ -111,6 +114,59 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	return self;
 }
 
+#pragma mark - WebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+	
+	if (![self.rowHeights[webView.tag] isEqual: @5])
+		return;
+	
+    /*CGRect frame = webView.frame;
+    frame.size = [webView sizeThatFits:CGSizeZero];
+    webView.frame = frame;*/
+	
+	NSNumberFormatter *format = NSNumberFormatter.new;
+	[format setNumberStyle:NSNumberFormatterDecimalStyle];
+	NSString* height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
+	
+	[self.rowHeights replaceObjectAtIndex:webView.tag withObject:[format numberFromString:height]];
+	
+    [self.tableView beginUpdates];
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:kOPFQuestionBodyCell inSection:webView.tag]] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if(navigationType==UIWebViewNavigationTypeLinkClicked) {
+        // If the link is to a stackoverflow question
+		if([[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location != NSNotFound){
+			
+            // Strip out the questionID
+            NSUInteger n = [[request.URL absoluteString] rangeOfString:@"stackoverflow.com/questions/"].location + 28;
+            NSString *questionId = [[request.URL absoluteString] substringFromIndex:n];
+            questionId = [questionId substringToIndex:[questionId rangeOfString:@"/"].location];
+            
+            //Query question and see if it exist in the database
+            OPFQuestion *question = [[OPFQuestion.query whereColumn:@"id" is:questionId] getOne];
+            
+            // If our question exist in our local DB
+            if(question != nil){
+                OPFQuestionViewController *questionView = OPFQuestionViewController.new;
+                questionView.question = question;
+                [self.navigationController pushViewController:questionView animated:YES];
+            }
+			return NO;
+		}
+		
+		// Link is another website or a SO Answer not found in our DB
+		
+		OPFWebViewController *webBrowser = [OPFWebViewController new];
+        webBrowser.page = request.URL;
+        [self.navigationController pushViewController:webBrowser animated:YES];
+        return NO;
+	}
+    else
+        return YES;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -133,18 +189,34 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	self.navigationItem.rightBarButtonItem = composeAnswer;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
-	[self.posts addObject:self.question];
-	[self.posts addObjectsFromArray:self.question.answers];
-	[self.tableView reloadData];
+	[self updatePostsFromQuestion];
 }
 
 
 #pragma mark - 
+- (void)refreshQuestion
+{
+	OPFQuestion *question = [OPFQuestion find:self.question.identifier.integerValue];
+	self.question = question;
+}
+
+- (void)updatePostsFromQuestion
+{
+	[self.posts removeAllObjects];
+	[self.posts addObject:self.question];
+	[self.posts addObjectsFromArray:self.question.answers];
+	
+	self.rowHeights = [NSMutableArray arrayWithCapacity:self.posts.count];
+	for (NSUInteger i = 0; i < self.posts.count; i++) {
+		[self.rowHeights addObject:@5];
+	}
+	
+	[self.tableView reloadData];
+}
+
 - (OPFPost *)questionPost
 {
 	return self.posts.count > 0 ? self.posts[0] : nil;
@@ -252,18 +324,25 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	NSString *cellIdentifier = [self cellIdentifierForIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 	
+	
     OPFPost *post = [self postForIndexPath:indexPath];
 	
     if ([cellIdentifier isEqualToString:BodyCellIdentifier]) {
-		((OPFPostBodyTableViewCell*)cell).htmlString = post.body;
-        ((OPFPostBodyTableViewCell*)cell).navigationcontroller = self.navigationController;
+		OPFPostBodyTableViewCell* htmlCell = (OPFPostBodyTableViewCell*)cell;
+		htmlCell.bodyTextView.tag = indexPath.section;
+		htmlCell.bodyTextView.delegate = self;
+		[htmlCell.bodyTextView opf_loadHTMLString:post.body];
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
 		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-												   
+        metadataCell.voteUpButton.post=post;
+        metadataCell.voteDownButton.post=post;
+        [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
@@ -293,17 +372,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	}
 }
 
+
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	CGFloat height = 0.f;
 	if (indexPath.row == kOPFQuestionBodyCell) {
-		OPFPost *post = [self postForIndexPath:indexPath];
-		NSString *body = post.body;
-	
-		UIFont *bodyFont = [UIFont systemFontOfSize:14.f];
-		CGSize constrainmentSize = CGSizeMake(CGRectGetWidth(tableView.bounds), 99999999.f);
-		CGSize bodySize = [body sizeWithFont:bodyFont constrainedToSize:constrainmentSize lineBreakMode:NSLineBreakByWordWrapping];
-		height = bodySize.height + kOPFQuestionBodyInset;
+		height = ((NSNumber*)self.rowHeights[indexPath.section]).floatValue;
 	} else if ([[self cellIdentifierForIndexPath:indexPath] isEqualToString:AnswerSeparatorCellIdentifier]) {
 		height = kOPFAnswerSeparatorHeight;
 	} else {
@@ -339,6 +415,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
+-(void) pressedUserVoteButton:(id) sender{
+    OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
+    NSInteger i = [vote.post.identifier integerValue];
+    vote.selected=YES;
+    NSLog(@"User upvote: %d",i);
+}
+
 #pragma mark - Tag List Delegate
 // TODO: Rewrite and fix.
 - (void)didSelectTagNamed:(NSString *)tagName
@@ -362,27 +445,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 
-// TODO: Rewrite and fix.
-- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
-	int views = self.navigationController.viewControllers.count;
-	
-	// See if the previous view controller was a questionS view
-	BOOL reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
-	
-	// Reuse the questionS view if available. Otherwise create new view
-	OPFQuestionsViewController *view = (reuse ? self.navigationController.viewControllers[views-2] : [OPFQuestionsViewController new]);
-	
-	// Add search string to view
-	view.searchString = [NSString stringWithFormat:@"[%@]", [taglist.dataSource tagList:taglist tagLabelAtIndex:index].text];
-	
-	// Navigate to the view
-	if (reuse)
-		[self.navigationController popViewControllerAnimated:YES];
-	else
-		[self.navigationController pushViewController:view animated:YES];
-	
-}
-
 #pragma mark - Post a new answer
 -(void) postNewAnswer:(id) sender{
     OPFPostAnswerViewController *postview = [OPFPostAnswerViewController new];
@@ -393,14 +455,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self reloadInputViews];
 }
 
--(void) updateViewWithAnswer:(OPFAnswer *) answer{
-    [self.posts addObject:answer];
-    [self.tableView reloadData];
+-(void) updateQuestionView{
+    [self refreshQuestion];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
 
 
 @end

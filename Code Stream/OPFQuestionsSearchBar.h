@@ -30,7 +30,6 @@ typedef enum : NSInteger {
 @interface OPFQuestionsSearchBar : OPFSearchBar
 
 @property (copy, nonatomic) NSArray *tokens;
-
 @property (strong, readonly) UITextField *textField;
 
 @end

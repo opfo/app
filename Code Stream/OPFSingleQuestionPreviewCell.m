@@ -12,49 +12,27 @@
 #import "UIFont+OPFAppFonts.h"
 #import "UIImage+OPFScoreImages.h"
 #import "NSString+OPFStripCharacters.h"
+#import <QuartzCore/QuartzCore.h>
+
+
+@interface OPFSingleQuestionPreviewCell (/*Private*/)
+@property (copy, nonatomic) NSString *questionTitle;
+@property (copy, nonatomic) NSString *questionBody;
+@end
 
 
 @implementation OPFSingleQuestionPreviewCell {
 	OPFScoreNumberFormatter *_numberFormatter;
 }
 
-
-#pragma mark Properties
-
-@synthesize score = _score;
-@synthesize answers = _answers;
-
-
-- (void)setScore:(NSInteger)score {
-	if (_score != score) {
-		_score = score;
-		self.scoreLabel.text = [_numberFormatter stringFromScore:score];
-	}
-}
-
-- (void)setAnswers:(NSInteger)answers {
-	if (_answers != answers) {
-		_answers = answers;
-		self.answersLabel.text = [_numberFormatter stringFromScore:answers];
-	}
-}
-
-// KVO method for updating the tag view on change of the public property
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual: @"tags"] && self.tags) {
-		[self.tagList reloadData];
-	}
-}
-
-
 #pragma mark Object Lifecycle
-
 - (void)configureWithQuestionData:(OPFQuestion *)question
 {
+	NSParameterAssert(question != nil);
+	
 	NSInteger questionScore = question.score.integerValue;
-	self.score = questionScore;
-	self.answers = [question.answerCount integerValue];
-	self.tags = question.tags;
+	self.scoreLabel.text = [_numberFormatter stringFromScore:questionScore];
+	self.answersLabel.text = [_numberFormatter stringFromScore:question.answerCount.integerValue];
 	
 	self.answersIndicatorImageView.image = [UIImage opf_postStatusImageForScore:questionScore hasAcceptedAnswer:(question.acceptedAnswerId != nil)];
 	
@@ -72,8 +50,42 @@
 	}
 	self.metadataBackgroundImageView.image = metadataBackgroundImage;
 	
-	NSAttributedString *questionText = [self attributedTextForQuestion:question];
+	self.questionTitle = question.title;
+	self.questionBody = question.body;
+	NSAttributedString *questionText = [self attributedTextForQuestion:question highlighted:self.highlighted];
 	self.questionTextLabel.attributedText = questionText;
+}
+
+- (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question highlighted:(BOOL)highlighted
+{
+	return [self attributedTextForQuestionTitle:question.title questionBody:question.body highlighted:highlighted];
+}
+
+- (NSAttributedString *)attributedTextForQuestionTitle:(NSString *)questionTitle questionBody:(NSString *)questionBody highlighted:(BOOL)highlighted
+{
+	NSParameterAssert(questionTitle != nil);
+	NSParameterAssert(questionBody != nil);
+	
+	NSDictionary *questionTitleAttributes = (highlighted == NO ? self.class.questionTitleAttributes : self.class.highlightedQuestionTitleAttributes);
+	NSAttributedString *questionTitleString = [[NSAttributedString alloc] initWithString:questionTitle attributes:questionTitleAttributes];
+	
+	// Body text disabled at the moment as we would need to strip every single
+	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
+	// got time for that!
+	NSDictionary *questionBodyAttributes = (highlighted == NO ? self.class.questionBodyAttributes : self.class.highlightedQuestionBodyAttributes);
+	NSString *body = questionBody.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
+
+	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
+	[questionText appendAttributedString:questionTitleString];
+	[questionText appendAttributedString:questionBodyString];
+	
+	return questionText;
+}
+
+- (void)layoutSubviews
+{
+	[super layoutSubviews];
 	
 	CGSize selfSize = self.bounds.size;
 	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
@@ -84,45 +96,15 @@
 	self.questionTextLabel.frame = questionTextLabelFrame;
 }
 
-- (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question
-{
-	NSDictionary *questionTitleAttributes = @{
-		NSFontAttributeName: [UIFont opf_boldAppFontOfSize:15.f],
-		NSForegroundColorAttributeName: UIColor.blackColor,
-		NSParagraphStyleAttributeName: NSParagraphStyle.defaultParagraphStyle
-	};
-	NSAttributedString *questionTitleString = [[NSAttributedString alloc] initWithString:question.title attributes:questionTitleAttributes];
-	
-	// Body text disabled at the moment as we would need to strip every single
-	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
-	// got time for that!
-//	NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-//	bodyParagraphStyle.alignment = NSTextAlignmentLeft;
-//	bodyParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-//	NSDictionary *questionBodyAttributes = @{
-//		NSFontAttributeName: [UIFont opf_appFontOfSize:15.f],
-//		NSForegroundColorAttributeName: UIColor.darkGrayColor,
-//		NSParagraphStyleAttributeName: bodyParagraphStyle
-//	};
-//	NSString *body = question.body.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace.opf_stringByStrippingNewlines;
-//	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
-	
-	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
-	[questionText appendAttributedString:questionTitleString];
-//	[questionText appendAttributedString:questionBodyString];
-	
-	return questionText;
-}
-
 - (void)sharedSingleQuestionPreviewCellInit
 {
+	_questionTitle = @"";
+	_questionBody = @"";
 	_numberFormatter = OPFScoreNumberFormatter.new;
 	
 	UIView *backgroundView = UIView.new;
 	backgroundView.backgroundColor = UIColor.whiteColor;
 	self.backgroundView = backgroundView;
-	
-	[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -142,9 +124,6 @@
 {
 	[super awakeFromNib];
 	
-	self.tagList.dataSource = self;
-	self.tagList.delegate = self;
-	
 	CGFloat textShadowOpacity = .7f;
 	CGFloat textShadowRadius = 1.f;
 	CGSize textShadowOffset = CGSizeMake(0, 1.f);
@@ -163,40 +142,81 @@
 	self.delegate = nil;
 }
 
--(void)dealloc{
-	[self removeObserver:self forKeyPath:@"tags"];
-}
-
-
-#pragma mark GCTagListDataSource
-
-- (NSInteger)numberOfTagLabelInTagList:(GCTagList *)tagList {
-	return self.tags.count;
-}
-
-// Initialization of the tags according to protocol
-- (GCTagLabel *)tagList:(GCTagList *)tagList tagLabelAtIndex:(NSInteger)index {
-	
-	static NSString* identifier = @"TagLabelIdentifier";
-    GCTagLabel* tag = [tagList dequeueReusableTagLabelWithIdentifier:identifier];
-    if(!tag) {
-        tag = [GCTagLabel tagLabelWithReuseIdentifier:identifier];
-    }
-	
-    [tag setLabelText:self.tags[index] accessoryType:GCTagLabelAccessoryNone];
-	return tag;
-}
-
-
-#pragma mark - CGTagListDelegate
-- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)idx
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-	if ([self.delegate respondsToSelector:@selector(singleQuestionPreviewCell:didSelectTag:)]) {
-		NSString *tag = self.tags[idx];
-		[self.delegate singleQuestionPreviewCell:self didSelectTag:tag];
-	}
+	[super setHighlighted:highlighted animated:animated];
+	[self updateQuestionTextLabelForHightlightState:highlighted];
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+	[super setSelected:selected animated:animated];
+	[self updateQuestionTextLabelForHightlightState:selected];
+}
+
+- (void)updateQuestionTextLabelForHightlightState:(BOOL)highlight
+{
+	NSAttributedString *questionText = [self attributedTextForQuestionTitle:self.questionTitle questionBody:self.questionBody highlighted:highlight];
+	self.questionTextLabel.attributedText = questionText;
+}
+
+
+#pragma mark - Question Label Attributes
++ (NSDictionary *)questionTitleAttributes
+{
+	static NSDictionary *attributes = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		attributes = @{
+			NSFontAttributeName: [UIFont opf_boldAppFontOfSize:15.f],
+			NSForegroundColorAttributeName: UIColor.blackColor,
+			NSParagraphStyleAttributeName: NSParagraphStyle.defaultParagraphStyle
+		};
+	});
+	return attributes;
+}
+
++ (NSDictionary *)highlightedQuestionTitleAttributes
+{
+	static NSDictionary *attributes = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSMutableDictionary *questionTitleAttributes = self.questionTitleAttributes.mutableCopy;
+		questionTitleAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor;
+		attributes = questionTitleAttributes.copy;
+	});
+	return attributes;
+}
+
++ (NSDictionary *)questionBodyAttributes
+{
+	static NSDictionary *attributes = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+		bodyParagraphStyle.alignment = NSTextAlignmentLeft;
+		bodyParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+		
+		attributes = @{
+			NSFontAttributeName: [UIFont opf_appFontOfSize:15.f],
+			NSForegroundColorAttributeName: UIColor.darkGrayColor,
+			NSParagraphStyleAttributeName: bodyParagraphStyle
+		};
+	});
+	return attributes;
+}
+
++ (NSDictionary *)highlightedQuestionBodyAttributes
+{
+	static NSDictionary *attributes = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		NSMutableDictionary *questionBodyAttributes = self.questionBodyAttributes.mutableCopy;
+		questionBodyAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor;
+		attributes = questionBodyAttributes.copy;
+	});
+	return attributes;
+}
 
 
 @end
