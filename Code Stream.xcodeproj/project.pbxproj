@@ -261,6 +261,7 @@
 		9CA0325A1742869900996DE0 /* UIImage+OPFScalingAndResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA032591742869900996DE0 /* UIImage+OPFScalingAndResizing.m */; };
 		9CA03260174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0325F174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m */; };
 		9CA2F245173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA2F244173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m */; };
+		9CA65D22174548D000F6D46A /* user-preview-background-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA65D21174548D000F6D46A /* user-preview-background-selected@2x.png */; };
 		9CB0DF971732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */; };
 		9CB2F185172196A400F6F644 /* OPFScoreNumberFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */; };
 		9CDF5FA0172D36FB001B8A64 /* OPFCommentViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A97782A171F20310061DA85 /* OPFCommentViewHeaderView.xib */; };
@@ -641,6 +642,7 @@
 		9CA0325F174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFQuestionAnswerSeparatorCell.m; sourceTree = "<group>"; };
 		9CA2F243173926BB00A39D6D /* UIScrollView+OPFScrollDirection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+OPFScrollDirection.h"; sourceTree = "<group>"; };
 		9CA2F244173926BB00A39D6D /* UIScrollView+OPFScrollDirection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+OPFScrollDirection.m"; sourceTree = "<group>"; };
+		9CA65D21174548D000F6D46A /* user-preview-background-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-preview-background-selected@2x.png"; sourceTree = "<group>"; };
 		9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRegularExpression+OPFSearchString.h"; sourceTree = "<group>"; };
 		9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRegularExpression+OPFSearchString.m"; sourceTree = "<group>"; };
 		9CB2F184172196A400F6F644 /* OPFScoreNumberFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFScoreNumberFormatterSpec.m; sourceTree = "<group>"; };
@@ -1343,6 +1345,7 @@
 		9C235FD9173A9E7A00907558 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				9CA65D21174548D000F6D46A /* user-preview-background-selected@2x.png */,
 				9CA03253174273FE00996DE0 /* question-answers-separator-background@2x.png */,
 				9C235FD3173A9E7300907558 /* post-accepted@2x.png */,
 				9C235FD4173A9E7300907558 /* post-negative@2x.png */,
@@ -1733,6 +1736,7 @@
 				9C2977BB17451722005F140E /* vote-down-selected@2x.png in Resources */,
 				9C2977BC17451722005F140E /* vote-up-selected@2x.png in Resources */,
 				1A1DC538174533CB00E1A01A /* vote-down-highlighted@2x.png in Resources */,
+				9CA65D22174548D000F6D46A /* user-preview-background-selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

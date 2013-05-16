@@ -56,23 +56,29 @@
 	
 	_displayNameLabel.textAlignment = NSTextAlignmentLeft;
 	_displayNameLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1.000];
+	_displayNameLabel.highlightedTextColor = UIColor.whiteColor;
 	_displayNameLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_displayNameLabel.backgroundColor = UIColor.clearColor;
 	_scoreLabel.textAlignment = NSTextAlignmentLeft;
 	_scoreLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.000];
+	_scoreLabel.highlightedTextColor = UIColor.whiteColor;
 	_scoreLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_scoreLabel.backgroundColor = UIColor.clearColor;
 	
 	[self addSubview:self.userAvatar];
 	[self addSubview:self.displayNameLabel];
 	[self addSubview:self.scoreLabel];
+	
+	[self setTitle:@"" forState:0];
+	[self setBackgroundImage:[UIImage imageNamed:@"user-preview-background-selected"] forState:UIControlStateHighlighted];
 }
 
-- (UIImage *)backgroundImageForState:(UIControlState)state
+- (void)setHighlighted:(BOOL)highlighted
 {
-	UIImage *image = nil;
-	if (state & UIControlStateHighlighted) {
-		image = [UIImage opf_resizableImageNamed:@"comment-header-normal-background" withCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
-	}
-	return image;
+	[super setHighlighted:highlighted];
+	
+	self.displayNameLabel.highlighted = highlighted;
+	self.scoreLabel.highlighted = highlighted;
 }
 
 -(void)layoutSubviews {
