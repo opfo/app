@@ -316,7 +316,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	UIView *headerView = nil;
 	if (section == kOPFQuestionSection) {
 		OPFQuestionHeaderView *questionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
-		NSLog(@"Section: %d",section);
 		OPFQuestion *question = self.posts[section];
 		[questionHeaderView configureForQuestion:question];
 		headerView = questionHeaderView;

@@ -105,6 +105,7 @@
     args=@[@(totalVotes),@(postID)];
     NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
+
     return auxSucceeded && succeeded;
 }
 
