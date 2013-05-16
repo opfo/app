@@ -257,7 +257,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-												   
+        metadataCell.voteUpButton.post=post;
+        metadataCell.voteDownButton.post=post;
+        [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
@@ -339,6 +343,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
+-(void) pressedUserVoteButton:(id) sender{
+    OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
+    NSInteger i = [vote.post.identifier integerValue];
+    vote.selected=YES;
+    NSLog(@"User upvote: %d",i);
+}
+
 #pragma mark - Tag List Delegate
 
 - (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
@@ -377,7 +388,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 -(void) updateViewWithAnswer:(OPFAnswer *) answer{
-    [self.posts addObject:answer];
+    //[self.posts addObject:answer];
+    __strong OPFQuestion *post = [[[OPFQuestion query] whereColumn:@"id" is:self.question.identifier] getOne];
+    self.question=post;
+    [self.posts addObject:self.question.answers.lastObject];
     [self.tableView reloadData];
 }
 

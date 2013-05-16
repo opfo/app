@@ -16,6 +16,7 @@
 #import "OPFAppState.h"
 #import "OPFUpdateQuery.h"
 #import "OPFUser.h"
+#import "OPFAppState.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -78,15 +79,13 @@
 
 - (void)commentSavePressed:(UIButton *)sender
 {
+    // Comment is inserted into db and view is updated
+    // I will change how the OPFUpdateQuery works, so some things are going to be changed here
     if(![self.inputTextField.text isEqualToString:@""]){
         NSInteger commentID = [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
         
-        // Get the inputed comment and update the commentsview
-        __strong OPFComment *comment = [[[OPFComment query] whereColumn:@"id" is:[NSString stringWithFormat:@"%d",commentID]] getOne];
-        NSMutableArray *comments = [self.commentModels mutableCopy];
-        [comments addObject:comment];
-        self.commentModels = [[NSArray alloc] initWithArray:comments];
-        
+        __strong OPFPost *post = [[[OPFPost query] whereColumn:@"id" is:self.postModel.identifier] getOne];
+        self.postModel=post;
         
         [self.inputTextField setText:nil];
         [self.inputTextField resignFirstResponder];
