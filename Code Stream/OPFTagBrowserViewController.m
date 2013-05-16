@@ -296,7 +296,7 @@ static NSInteger const TagSelectionLimit = 20;
 }
 
 #pragma mark - IBActions
-- (IBAction)showQuestionsByTags:(id)sender
+- (IBAction)showQuestionsByTags:(UIControl *)sender
 {
     OPFQuestionsViewController *questionsViewController = [OPFQuestionsViewController new];
     

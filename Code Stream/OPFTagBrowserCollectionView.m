@@ -26,6 +26,7 @@
 {
     [self applyPropertiesOnLabel:self.questionCountLabel];
 	[self applyPropertiesOnLabel:self.questionInfoLabel.titleLabel];
+	[self applyShadowToView:self.questionArrowImageView];
     
     self.footerGradientView.shouldDrawBottomBorder = NO;
     self.headerGradientView.shouldDrawTopBorder = NO;
@@ -43,7 +44,6 @@
 - (void)applyPropertiesOnLabel:(UILabel *)label
 {
 	[self applyShadowToView:label];
-	label.textColor = UIColor.blackColor;
 }
 
 @end

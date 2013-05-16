@@ -17,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet OPFBarGradientView *headerGradientView;
 @property (strong, nonatomic) IBOutlet UIButton *questionInfoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *questionCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *questionArrowImageView;
 
 @end
