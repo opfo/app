@@ -32,7 +32,7 @@
 @implementation OPFQuestionHeaderView
 
 static const CGFloat kMetadataPaddingRight = 10.f;
-static const CGFloat kMetadataPaddingLeft = 10.f;
+static const CGFloat kMetadataPaddingLeft = 12.f;
 static const CGFloat kMetadataMargin = 6.f;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
