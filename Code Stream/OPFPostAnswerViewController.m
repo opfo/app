@@ -77,11 +77,7 @@
         
         // If update was successful; show an UIAlert, get the answer from db and put it into the answerview
         if(lastAnswer!=0){
-            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your answer has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [success show];
-            __strong OPFAnswer *answer = [[[OPFAnswer query] whereColumn:@"id" is:[NSString stringWithFormat:@"%d",lastAnswer]] getOne];
-            [self.delegate updateViewWithAnswer:answer];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.delegate updateQuestionView];
         }
         else{
             // If insert was unsuccessful

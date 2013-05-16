@@ -135,17 +135,13 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewDidLoad];
 	
-	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
-	
-	self.tableView.tableHeaderView = self.searchBarHeader;
-	self.searchBar.delegate = self;
-	self.searchBarHeader.delegate = self;
-	
-	
-	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
-	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
 	self.tableView.rowHeight = 74.f;
+	
+	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
+	self.searchBarHeader.delegate = self;
+	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
+	self.tableView.tableHeaderView = self.searchBarHeader;
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
@@ -158,10 +154,9 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 	[searchBarInputView.buttonsView.insertNewUserButton addTarget:self action:@selector(insertNewUser:) forControlEvents:UIControlEventTouchUpInside];
 	self.searchBarInputView = searchBarInputView;
 	
-	
 	self.searchBar.inputAccessoryView = searchBarInputView;
 	self.searchBar.placeholder = NSLocalizedString(@"Search questions and answers…", @"Search questions and answers placeholder text");
-
+	self.searchBar.delegate = self;
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
 	self.navigationItem.rightBarButtonItem = writeButton;
@@ -179,15 +174,20 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 		self.searchBar.text = self.searchString;
 	}
 	
-	if (_isFirstTimeAppearing) {
-		_isFirstTimeAppearing = NO;
-		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBarHeader.bounds));
-		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
-	}
-	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 		[self updateFilteredQuestionsCompletion:nil];
 	});
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	if (_isFirstTimeAppearing) {
+		_isFirstTimeAppearing = NO;
+		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.tableView.tableHeaderView.frame));
+		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -443,7 +443,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 }
 
 
-#pragma mark - 
+#pragma mark - Token Text From Suggested Token
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
 	NSString *tokenText = nil;
@@ -794,7 +794,8 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 #pragma mark - UIScrollBarDelegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+	OPFUIScrollViewDirection direction = scrollView.opf_scrollViewScrollingDirection;
+	if (direction & kOPFUIScrollViewDirectionDown) {
 		[self selectBestTokenMatchAndEndSearch];
 	}
 }

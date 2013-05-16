@@ -133,18 +133,30 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	self.navigationItem.rightBarButtonItem = composeAnswer;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	[self.posts addObject:self.question];
-	[self.posts addObjectsFromArray:self.question.answers];
-	[self.tableView reloadData];
+	[self updatePostsFromQuestion];
 }
 
 
 #pragma mark - 
+- (void)refreshQuestion
+{
+	OPFQuestion *question = [OPFQuestion find:self.question.identifier.integerValue];
+	self.question = question;
+}
+
+- (void)updatePostsFromQuestion
+{
+	[self.posts removeAllObjects];
+	[self.posts addObject:self.question];
+	[self.posts addObjectsFromArray:self.question.answers];
+	
+	[self.tableView reloadData];
+}
+
 - (OPFPost *)questionPost
 {
 	return self.posts.count > 0 ? self.posts[0] : nil;
@@ -263,7 +275,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-												   
+        metadataCell.voteUpButton.post=post;
+        metadataCell.voteDownButton.post=post;
+        [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
@@ -339,6 +355,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
+-(void) pressedUserVoteButton:(id) sender{
+    OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
+    NSInteger i = [vote.post.identifier integerValue];
+    vote.selected=YES;
+    NSLog(@"User upvote: %d",i);
+}
+
 #pragma mark - Tag List Delegate
 // TODO: Rewrite and fix.
 - (void)didSelectTagNamed:(NSString *)tagName
@@ -372,14 +395,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self reloadInputViews];
 }
 
--(void) updateViewWithAnswer:(OPFAnswer *) answer{
-    [self.posts addObject:answer];
-    [self.tableView reloadData];
+-(void) updateQuestionView{
+    [self refreshQuestion];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
 
 
 @end
