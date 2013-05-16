@@ -29,6 +29,8 @@
 #import "OPFPostAnswerViewController.h"
 #import "OPFQuestionAnswerSeparatorCell.h"
 #import "NSString+OPFSearchString.h"
+#import "OPFUpdateQuery.h"
+#import "OPFAppState.h"
 
 
 enum {
@@ -192,6 +194,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    // If user is logged out, disable button, otherwise enable it
+    self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
+    
 	[self updatePostsFromQuestion];
 }
 
@@ -310,10 +316,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	UIView *headerView = nil;
 	if (section == kOPFQuestionSection) {
 		OPFQuestionHeaderView *questionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
-		
 		OPFQuestion *question = self.posts[section];
 		[questionHeaderView configureForQuestion:question];
-		
 		headerView = questionHeaderView;
 	}
 	return headerView;
@@ -339,9 +343,19 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
         metadataCell.voteUpButton.post=post;
+        metadataCell.voteUpButton.buttonTypeUp=YES;
         metadataCell.voteDownButton.post=post;
+        metadataCell.voteDownButton.buttonTypeUp=NO;
         [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        if([OPFAppState isLoggedIn]){
+            metadataCell.voteDownButton.enabled=YES;
+            metadataCell.voteUpButton.enabled=YES;
+        }
+        else{
+            metadataCell.voteDownButton.enabled=NO;
+            metadataCell.voteUpButton.enabled=NO;
+        }
 								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
@@ -417,9 +431,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 -(void) pressedUserVoteButton:(id) sender{
     OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
-    NSInteger i = [vote.post.identifier integerValue];
     vote.selected=YES;
-    NSLog(@"User upvote: %d",i);
+    [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 1 : -1];
+    [self refreshQuestion];
+    [self updatePostsFromQuestion];
+    
 }
 
 #pragma mark - Tag List Delegate
@@ -452,7 +468,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     postview.parentQuestion = [self.question.identifier integerValue];
     postview.delegate = self;
     [self.navigationController pushViewController:postview animated:YES];
-    [self reloadInputViews];
 }
 
 -(void) updateQuestionView{

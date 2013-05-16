@@ -11,4 +11,5 @@
 
 @interface OPFPostVoteButton : UIButton
 @property (weak, nonatomic) OPFPost *post;
+@property (nonatomic) BOOL buttonTypeUp;
 @end

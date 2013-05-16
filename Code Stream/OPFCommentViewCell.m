@@ -73,9 +73,6 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 40.0f;
 {
 	[self applyPropertiesOnLabel:self.commentVoteCount];
 	[self applyPropertiesOnLabel:self.commentVoteCountSubHeader];
-    
-    self.sidebarBackground.tintColor = [UIColor colorWithHue:206.f/360.f saturation:.25f brightness:1.f alpha:1.f];
-    self.sidebarBackground.shouldDrawBorders = NO;
 }
 
 - (void)voteUpComment:(UIButton *)sender

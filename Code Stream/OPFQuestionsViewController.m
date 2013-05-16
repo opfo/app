@@ -13,7 +13,7 @@
 #import "OPFQuestion.h"
 
 #import "OPFPostQuestionViewController.h"
-
+#import "OPFAppState.h"
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
 
@@ -166,6 +166,9 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewWillAppear:animated];
 	
+    // If user is logged out, disable button, otherwise enable it
+    self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
+    
 	[self.searchBarHeader setDisplayedHeader:kOPFSearchBar WithAnimation:NO];
 	
 	[self addObserver:self forKeyPath:CDStringFromSelector(searchString) options:NSKeyValueObservingOptionOld context:NULL];
@@ -195,7 +198,10 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+	
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
+	[self removeObserver:self forKeyPath:CDStringFromSelector(sortCriterion) context:NULL];
+	[self removeObserver:self forKeyPath:CDStringFromSelector(sortOrder) context:NULL];
 }
 
 
@@ -221,16 +227,17 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 		[self dismissViewControllerAnimated:YES completion:nil];
 	}];
 	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(__unused  id _) {
-		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
+       
+        OPFQuestion *newQuestion = postQuestionViewController.postButtonPressed;
 		
-		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
 		
-		[self dismissViewControllerAnimated:YES completion:^{
-			if (newQuestion != nil) {
-				[self presentViewControllerForQuestion:newQuestion animated:YES];
-			}
-		}];
-		DCLog(newQuestion == nil, @"Expected to get a new question from the post question view controller but got nil.");
+        if(newQuestion!=nil){
+            [self dismissViewControllerAnimated:YES completion:^{
+                if (newQuestion != nil) {
+                    [self presentViewControllerForQuestion:newQuestion animated:YES];
+                }
+            }];
+		}
 	}];
 	
 	[self presentViewController:postQuestionNavigationController animated:animated completion:nil];

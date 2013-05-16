@@ -10,6 +10,7 @@
 #import "OPFQuestion.h"
 #import "OPFScoreNumberFormatter.h"
 #import "UIImage+OPFScalingAndResizing.h"
+#import "UIImage+OPFScoreImages.h"
 #import "UIFont+OPFAppFonts.h"
 #import <QuartzCore/QuartzCore.h>
 #import <SSLineView.h>
@@ -30,6 +31,10 @@
 
 @implementation OPFQuestionHeaderView
 
+static const CGFloat kMetadataPaddingRight = 10.f;
+static const CGFloat kMetadataPaddingLeft = 12.f;
+static const CGFloat kMetadataMargin = 6.f;
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];
@@ -37,7 +42,6 @@
 		_scoreFormatter = OPFScoreNumberFormatter.new;
 		_questionScore = 0;
 		_backgroundImageView = [[UIImageView alloc] init];
-		self.backgroundColor = UIColor.clearColor;
 		
 		self.layer.shadowColor = UIColor.blackColor.CGColor;
 		self.layer.shadowOffset = CGSizeMake(0.f, 0.f);
@@ -116,11 +120,14 @@
 	
 	self.backgroundImageView.image = backgroundImage;
 	self.backgroundView = self.backgroundImageView;
+	
 	[self setNeedsLayout];
 }
 
 - (void)updateMetadataForScoreAndAccptedAnswer
 {
+	self.metadataAnswerStatusImageView.image = [UIImage opf_postStatusImageForScore:1000 hasAcceptedAnswer:self.hasAcceptedAnswer];
+	
 	[self setNeedsLayout];
 }
 
@@ -128,13 +135,37 @@
 {
 	[super layoutSubviews];
 	
-	CGPathRef shadowPath = CGPathCreateWithRect(self.bounds, NULL);
+	CGRect bounds = self.bounds;
+	CGFloat width = CGRectGetWidth(bounds);
+	
+	CGPathRef shadowPath = CGPathCreateWithRect(bounds, NULL);
 	self.layer.shadowPath = shadowPath;
 	CGPathRelease(shadowPath);
 	
 	CGRect topBorderViewFrame = self.topBorderView.frame;
-	topBorderViewFrame.size.width = CGRectGetWidth(self.bounds);
+	topBorderViewFrame.size.width = width;
 	self.topBorderView.frame = topBorderViewFrame;
+	
+	CGRect statusFrame = self.metadataAnswerStatusImageView.frame;
+	CGFloat statusSize = 20.f;
+	CGFloat statusOriginX = width - (statusSize + kMetadataPaddingRight);
+	statusFrame.size = CGSizeMake(statusSize, statusSize);
+	statusFrame.origin.x = statusOriginX;
+	self.metadataAnswerStatusImageView.frame = statusFrame;
+	
+	[self.scoreLabel sizeToFit];
+	CGRect scoreFrame = self.scoreLabel.frame;
+	CGFloat scoreWidth = CGRectGetWidth(scoreFrame);
+	scoreFrame.origin.x = statusOriginX - (scoreWidth + kMetadataMargin);
+	scoreFrame.origin.y = CGRectGetMidY(bounds) - CGRectGetHeight(scoreFrame) / 2;
+	self.scoreLabel.frame = CGRectIntegral(scoreFrame);
+	
+	CGRect metadataBackgroundFrame = self.metadataBackgroundImageView.frame;
+	CGFloat metadataBackgroundWidth = kMetadataPaddingLeft + scoreWidth + kMetadataMargin + statusSize + kMetadataPaddingRight;
+	CGFloat metadataBackgroundOriginX = width - metadataBackgroundWidth;
+	metadataBackgroundFrame.size.width = metadataBackgroundWidth;
+	metadataBackgroundFrame.origin.x = metadataBackgroundOriginX;
+	self.metadataBackgroundImageView.frame = metadataBackgroundFrame;
 }
 
 @end

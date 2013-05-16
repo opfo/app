@@ -104,7 +104,7 @@
 									<object class="IBUILabel" id="647097931">
 										<reference key="NSNextResponder" ref="879417002"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{10, 38}, {27, 21}}</string>
+										<string key="NSFrame">{{11, 38}, {27, 21}}</string>
 										<reference key="NSSuperview" ref="879417002"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="564247230"/>
@@ -138,7 +138,7 @@
 									<object class="IBUILabel" id="564247230">
 										<reference key="NSNextResponder" ref="879417002"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{11, 18}, {28, 23}}</string>
+										<string key="NSFrame">{{12, 18}, {28, 23}}</string>
 										<reference key="NSSuperview" ref="879417002"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="891502747"/>
@@ -170,7 +170,7 @@
 										<reference key="NSNextResponder" ref="879417002"/>
 										<int key="NSvFlags">1320</int>
 										<object class="NSPSMatrix" key="NSFrameMatrix"/>
-										<string key="NSFrame">{{10, -7}, {30, 30}}</string>
+										<string key="NSFrame">{{11, -7}, {30, 30}}</string>
 										<reference key="NSSuperview" ref="879417002"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="647097931"/>
@@ -206,7 +206,7 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{272, 44}, {50, 59}}</string>
+								<string key="NSFrame">{{272, 44}, {52, 59}}</string>
 								<reference key="NSSuperview" ref="766514421"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="180038885"/>
@@ -1852,7 +1852,7 @@
 				<string key="1927.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1932.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1933.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="1934.CustomClassName">OPFSidebarView</string>
+				<string key="1934.CustomClassName">OPFBarGradientView</string>
 				<string key="1934.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<boolean value="NO" key="1934.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
 				<string key="1935.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1946,6 +1946,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">OPFBarGradientView</string>
+					<string key="superclassName">SSGradientView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/OPFBarGradientView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">OPFCommentViewCell</string>
 					<string key="superclassName">UITableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -2027,6 +2035,22 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/OPFSidebarView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SSBorderedView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SSBorderedView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SSGradientView</string>
+					<string key="superclassName">SSBorderedView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SSGradientView.h</string>
 					</object>
 				</object>
 			</array>

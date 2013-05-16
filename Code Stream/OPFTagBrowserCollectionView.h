@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFTagBrowserCollectionView : UICollectionView;
+@class OPFBarGradientView;
+
+@interface OPFTagBrowserCollectionView : UIView;
+@property (strong, nonatomic) IBOutlet UICollectionView *headerCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet OPFBarGradientView *footerGradientView;
+@property (strong, nonatomic) IBOutlet OPFBarGradientView *headerGradientView;
+@property (strong, nonatomic) IBOutlet UIButton *questionInfoLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *questionArrowImageView;
 
 @end
