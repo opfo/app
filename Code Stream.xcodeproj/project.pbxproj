@@ -214,6 +214,8 @@
 		9C235FFD173C511800907558 /* UIColor+OPFAppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */; };
 		9C2977B51744F0B9005F140E /* OPFSidebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2977B41744F0B9005F140E /* OPFSidebarView.m */; };
 		9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */; };
+		9C2977BB17451722005F140E /* vote-down-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2977B917451722005F140E /* vote-down-selected@2x.png */; };
+		9C2977BC17451722005F140E /* vote-up-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2977BA17451722005F140E /* vote-up-selected@2x.png */; };
 		9C3768711733277800719F2A /* SSBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37686E1733277800719F2A /* SSBorderedView.m */; };
 		9C3768721733277800719F2A /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3768701733277800719F2A /* SSDrawingUtilities.m */; };
 		9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
@@ -558,6 +560,8 @@
 		9C2977B41744F0B9005F140E /* OPFSidebarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSidebarView.m; sourceTree = "<group>"; };
 		9C2977B61744F622005F140E /* UIColor+OPFColorAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFColorAdjustment.h"; sourceTree = "<group>"; };
 		9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OPFColorAdjustment.m"; sourceTree = "<group>"; };
+		9C2977B917451722005F140E /* vote-down-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vote-down-selected@2x.png"; path = "Images/vote-down-selected@2x.png"; sourceTree = "<group>"; };
+		9C2977BA17451722005F140E /* vote-up-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vote-up-selected@2x.png"; path = "Images/vote-up-selected@2x.png"; sourceTree = "<group>"; };
 		9C37686D1733277800719F2A /* SSBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBorderedView.h; sourceTree = "<group>"; };
 		9C37686E1733277800719F2A /* SSBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBorderedView.m; sourceTree = "<group>"; };
 		9C37686F1733277800719F2A /* SSDrawingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDrawingUtilities.h; sourceTree = "<group>"; };
@@ -1318,8 +1322,10 @@
 				9C235FDE173A9E9100907558 /* answer-header-normal-background@2x.png */,
 				9C235FE6173A9E9200907558 /* vote-down@2x.png */,
 				9C235FE5173A9E9200907558 /* vote-down-highlighted@2x.png */,
+				9C2977B917451722005F140E /* vote-down-selected@2x.png */,
 				9C235FE8173A9E9200907558 /* vote-up@2x.png */,
 				9C235FE7173A9E9200907558 /* vote-up-highlighted@2x.png */,
+				9C2977BA17451722005F140E /* vote-up-selected@2x.png */,
 			);
 			name = Post;
 			sourceTree = "<group>";
@@ -1676,6 +1682,8 @@
 				9CA03252174272DD00996DE0 /* OPFQuestionAnswerSeparatorCell.xib in Resources */,
 				9CA03254174273FF00996DE0 /* question-answers-separator-background@2x.png in Resources */,
 				143FBBDE17431E4200EE2E71 /* search-loupe@2x.png in Resources */,
+				9C2977BB17451722005F140E /* vote-down-selected@2x.png in Resources */,
+				9C2977BC17451722005F140E /* vote-up-selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2045,6 +2053,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code Stream/Code Stream-Prefix.pch";
 				INFOPLIST_FILE = "Code StreamTests/Code StreamTests-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
