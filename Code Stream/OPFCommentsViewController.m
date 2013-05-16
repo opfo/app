@@ -30,6 +30,9 @@
 
 @implementation OPFCommentsViewController
 
+static NSString *const CommentTableCell = @"CommentTableCell";
+static NSString *const CommentTableHeader = @"CommentTableHeader";
+
 - (id)init
 {
     self = [super initWithNibName:@"OPFCommentsViewTable" bundle:nil];
@@ -60,6 +63,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:CommentTableHeader];
 }
 
 - (void)setPostModel:(OPFPost *)postModel
@@ -154,14 +159,15 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    OPFCommentViewHeaderView *commentViewHeader = [OPFCommentViewHeaderView new];
+    UIView *headerView = nil;
     
-    commentViewHeader.postModel = self.postModel;
+    OPFCommentViewHeaderView *commentHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:CommentTableHeader];
+		
+    [commentHeaderView configureForPost:self.postModel];
+		
+    headerView = commentHeaderView;
     
-    [commentViewHeader setupDateformatters];
-    [commentViewHeader setModelValuesInView];
-    
-    return commentViewHeader;
+	return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -257,13 +263,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+
 }
 
 @end
