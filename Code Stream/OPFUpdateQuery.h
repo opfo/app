@@ -23,4 +23,8 @@
 +(BOOL) updateWithUserName: (NSString *) name EmailHash: (NSString *) email Website: (NSString *) website Location: (NSString *) location Age: (NSInteger) age Bio: (NSString *) bio;
 
 +(NSString *) currentDateAsStringWithDateFormat:(NSString *) format;
+
++(NSString *) removeHTMLTags: (NSString*) input;
+
++(int) getNextPostId;
 @end
