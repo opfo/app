@@ -21,7 +21,7 @@
 
 @implementation OPFTagBrowserSelectionViewController
 
-static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
+static NSString *const OPFTagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
 
 - (id)init
 {
@@ -62,7 +62,7 @@ static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionV
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	OPFTokenCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:TagBrowserCellViewIdenfifier forIndexPath:indexPath];
+	OPFTokenCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:OPFTagBrowserCellViewIdenfifier forIndexPath:indexPath];
 	NSString *token = [self tagFromIndexPath:indexPath].name;
     
 	cell.tokenView.text = token;

@@ -1067,7 +1067,6 @@
 						<string key="headerCollectionView">UICollectionView</string>
 						<string key="headerGradientView">OPFBarGradientView</string>
 						<string key="questionArrowImageView">UIImageView</string>
-						<string key="questionCountLabel">UILabel</string>
 						<string key="questionInfoLabel">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -1090,10 +1089,6 @@
 						<object class="IBToOneOutletInfo" key="questionArrowImageView">
 							<string key="name">questionArrowImageView</string>
 							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="questionCountLabel">
-							<string key="name">questionCountLabel</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="questionInfoLabel">
 							<string key="name">questionInfoLabel</string>
@@ -1121,7 +1116,6 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="collectionView">UICollectionView</string>
-						<string key="footerTagCount">UILabel</string>
 						<string key="footerTagCountButton">UIImageView</string>
 						<string key="footerTagCountLabel">UIButton</string>
 						<string key="selectedTagsView">UICollectionView</string>
@@ -1130,10 +1124,6 @@
 						<object class="IBToOneOutletInfo" key="collectionView">
 							<string key="name">collectionView</string>
 							<string key="candidateClassName">UICollectionView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="footerTagCount">
-							<string key="name">footerTagCount</string>
-							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="footerTagCountButton">
 							<string key="name">footerTagCountButton</string>
@@ -1175,6 +1165,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/UICollectionViewFlowLayout.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UICollectionViewLayout</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/UICollectionViewLayout.h</string>
 					</object>
 				</object>
 			</array>
