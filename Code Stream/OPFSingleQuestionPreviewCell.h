@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
-#import "GCTagList.h"
 #import "OPFScoreNumberFormatter.h"
 
 @class OPFUserPreviewButton;
@@ -21,7 +20,7 @@
 @end
 
 
-@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource, GCTagListDelegate>
+@interface OPFSingleQuestionPreviewCell : UITableViewCell
 
 @property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
 
@@ -47,6 +46,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answersLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *answersIndicatorImageView;
-@property (weak, nonatomic) IBOutlet GCTagList *tagList;
 
 @end

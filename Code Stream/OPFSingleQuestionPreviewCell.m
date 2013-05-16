@@ -12,6 +12,7 @@
 #import "UIFont+OPFAppFonts.h"
 #import "UIImage+OPFScoreImages.h"
 #import "NSString+OPFStripCharacters.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation OPFSingleQuestionPreviewCell {
@@ -39,13 +40,6 @@
 	}
 }
 
-// KVO method for updating the tag view on change of the public property
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual: @"tags"] && self.tags) {
-		[self.tagList reloadData];
-	}
-}
-
 
 #pragma mark Object Lifecycle
 
@@ -54,7 +48,6 @@
 	NSInteger questionScore = question.score.integerValue;
 	self.score = questionScore;
 	self.answers = [question.answerCount integerValue];
-	self.tags = question.tags;
 	
 	self.answersIndicatorImageView.image = [UIImage opf_postStatusImageForScore:questionScore hasAcceptedAnswer:(question.acceptedAnswerId != nil)];
 	
@@ -121,8 +114,6 @@
 	UIView *backgroundView = UIView.new;
 	backgroundView.backgroundColor = UIColor.whiteColor;
 	self.backgroundView = backgroundView;
-	
-	[self addObserver:self forKeyPath:@"tags" options:0 context:nil];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -142,9 +133,6 @@
 {
 	[super awakeFromNib];
 	
-	self.tagList.dataSource = self;
-	self.tagList.delegate = self;
-	
 	CGFloat textShadowOpacity = .7f;
 	CGFloat textShadowRadius = 1.f;
 	CGSize textShadowOffset = CGSizeMake(0, 1.f);
@@ -162,41 +150,6 @@
 {
 	self.delegate = nil;
 }
-
--(void)dealloc{
-	[self removeObserver:self forKeyPath:@"tags"];
-}
-
-
-#pragma mark GCTagListDataSource
-
-- (NSInteger)numberOfTagLabelInTagList:(GCTagList *)tagList {
-	return self.tags.count;
-}
-
-// Initialization of the tags according to protocol
-- (GCTagLabel *)tagList:(GCTagList *)tagList tagLabelAtIndex:(NSInteger)index {
-	
-	static NSString* identifier = @"TagLabelIdentifier";
-    GCTagLabel* tag = [tagList dequeueReusableTagLabelWithIdentifier:identifier];
-    if(!tag) {
-        tag = [GCTagLabel tagLabelWithReuseIdentifier:identifier];
-    }
-	
-    [tag setLabelText:self.tags[index] accessoryType:GCTagLabelAccessoryNone];
-	return tag;
-}
-
-
-#pragma mark - CGTagListDelegate
-- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)idx
-{
-	if ([self.delegate respondsToSelector:@selector(singleQuestionPreviewCell:didSelectTag:)]) {
-		NSString *tag = self.tags[idx];
-		[self.delegate singleQuestionPreviewCell:self didSelectTag:tag];
-	}
-}
-
 
 
 @end

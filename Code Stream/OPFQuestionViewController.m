@@ -362,27 +362,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 
-// TODO: Rewrite and fix.
-- (void)tagList:(GCTagList *)taglist didSelectedLabelAtIndex:(NSInteger)index {
-	int views = self.navigationController.viewControllers.count;
-	
-	// See if the previous view controller was a questionS view
-	BOOL reuse = (views >= 1) && [self.navigationController.viewControllers[views-2] isKindOfClass:[OPFQuestionsViewController class]];
-	
-	// Reuse the questionS view if available. Otherwise create new view
-	OPFQuestionsViewController *view = (reuse ? self.navigationController.viewControllers[views-2] : [OPFQuestionsViewController new]);
-	
-	// Add search string to view
-	view.searchString = [NSString stringWithFormat:@"[%@]", [taglist.dataSource tagList:taglist tagLabelAtIndex:index].text];
-	
-	// Navigate to the view
-	if (reuse)
-		[self.navigationController popViewControllerAnimated:YES];
-	else
-		[self.navigationController pushViewController:view animated:YES];
-	
-}
-
 #pragma mark - Post a new answer
 -(void) postNewAnswer:(id) sender{
     OPFPostAnswerViewController *postview = [OPFPostAnswerViewController new];
