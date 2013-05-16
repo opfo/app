@@ -7,15 +7,22 @@
 //
 
 #import "OPFQuestionsViewController.h"
+
 #import "OPFTag.h"
 #import "OPFUser.h"
+#import "OPFQuestion.h"
+
+#import "OPFPostQuestionViewController.h"
+
 #import "OPFQuestionViewController.h"
 #import "OPFSingleQuestionPreviewCell.h"
+
 #import "OPFQuestionsSearchBar.h"
 #import "OPFQuestionsSearchBarInputView.h"
 #import "OPFQuestionsSearchBarInputButtonsView.h"
 #import "OPFQuestionsSearchBarTokenView.h"
 #import "OPFTokenCollectionViewCell.h"
+
 #import "NSRegularExpression+OPFSearchString.h"
 #import "NSString+OPFContains.h"
 #import "NSString+OPFSearchString.h"
@@ -23,7 +30,10 @@
 #import "OPFSearchBarHeader.h"
 #import "UIView+OPFViewLoading.h"
 #import "UIScrollView+OPFScrollDirection.h"
+#import "UIColor+OPFAppColors.h"
+
 #import <BlocksKit.h>
+
 
 typedef enum : NSInteger {
 	kOPFQuestionsViewControllerTokenBeingInputtedNone = kOPFQuestionsSearchBarTokenCustom,
@@ -73,8 +83,7 @@ typedef enum ScrollDirection : NSInteger {
 static NSString *const QuestionCellIdentifier = @"QuestionCell";
 static NSString *const SuggestedTagCellIdentifier = @"SuggestedTagCellIdentifier";
 static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifier";
-Boolean heatMode = NO;
-UINavigationController *askQuestionsNavigationController;
+
 
 #pragma mark - Object Lifecycle
 - (void)sharedQuestionsViewControllerInit
@@ -128,7 +137,6 @@ UINavigationController *askQuestionsNavigationController;
 	
 	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
 	
-	
 	self.tableView.tableHeaderView = self.searchBarHeader;
 	self.searchBar.delegate = self;
 	self.searchBarHeader.delegate = self;
@@ -137,7 +145,7 @@ UINavigationController *askQuestionsNavigationController;
 	[self.searchBarHeader.sortOrderControl addTarget:self action:@selector(updateSorting:) forControlEvents:UIControlEventValueChanged];
 	
 	[self.tableView registerNib:[UINib nibWithNibName:@"SingleQuestionPreviewCell" bundle:nil] forCellReuseIdentifier:QuestionCellIdentifier];
-	self.tableView.rowHeight = 150.f;
+	self.tableView.rowHeight = 74.f;
 	
 	self.title = NSLocalizedString(@"Questions", @"Questions view controller title");
 	
@@ -156,9 +164,7 @@ UINavigationController *askQuestionsNavigationController;
 
     
     UIBarButtonItem *writeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(askQuestions:)];
-    UIBarButtonItem *heatButton = [[UIBarButtonItem alloc] initWithTitle:@"Heat" style:UIBarButtonItemStylePlain target:self action:@selector(switchHeatMode:)];
-    
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:writeButton, heatButton, nil];
+	self.navigationItem.rightBarButtonItem = writeButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -175,7 +181,7 @@ UINavigationController *askQuestionsNavigationController;
 	
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
-		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBar.frame));
+		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBarHeader.bounds));
 		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
 	}
 	
@@ -186,10 +192,46 @@ UINavigationController *askQuestionsNavigationController;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
     [super viewWillDisappear:animated];
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
+}
+
+
+#pragma mark - Presenting View Controllers
+- (void)presentViewControllerForQuestion:(OPFQuestion *)question animated:(BOOL)animated
+{
+	NSParameterAssert(question != nil);
+	
+	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
+	questionViewController.question = question;
+	
+	[self.navigationController pushViewController:questionViewController animated:animated];
+}
+
+- (void)presentAskQuestionViewControllerAnimated:(BOOL)animated
+{
+	OPFPostQuestionViewController *postQuestionViewController = OPFPostQuestionViewController.new;
+    postQuestionViewController.title = @"Post a question";
+	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
+	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
+	
+	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(__unused id _) {
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}];
+	postQuestionViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(__unused  id _) {
+		OPFQuestion *newQuestion = nil;//[postQuestionViewController createQuestion]; // Or something along those lines. The method (createQuestion) should also validate that a valid question can be presented.
+		
+		newQuestion = [[OPFQuestion.query limit:@(1)] getOne];
+		
+		[self dismissViewControllerAnimated:YES completion:^{
+			if (newQuestion != nil) {
+				[self presentViewControllerForQuestion:newQuestion animated:YES];
+			}
+		}];
+		DCLog(newQuestion == nil, @"Expected to get a new question from the post question view controller but got nil.");
+	}];
+	
+	[self presentViewController:postQuestionNavigationController animated:animated completion:nil];
 }
 
 
@@ -209,9 +251,6 @@ UINavigationController *askQuestionsNavigationController;
 	OPFSingleQuestionPreviewCell *cell = [tableView dequeueReusableCellWithIdentifier:QuestionCellIdentifier forIndexPath:indexPath];
     OPFQuestion *question = self.filteredQuestions[indexPath.row];
 	[cell configureWithQuestionData:question];
-    
-    //If Heat Mode is turned on, color the cell according to it's score
-    [cell heatMode:heatMode];
 	
     return cell;
 }
@@ -219,23 +258,17 @@ UINavigationController *askQuestionsNavigationController;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 150;
+	return 74.f;
 }
 
-- (void)setQuestions:(NSArray *)questions {
-	NSLog(@"Questions View has recieved %lu questions to insert",(unsigned long)questions.count);
-}
 
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self dismissSearchBarExtras];
 	
-	OPFQuestionViewController *questionViewController = OPFQuestionViewController.new;
 	OPFQuestion *question = self.filteredQuestions[indexPath.row];
-	questionViewController.question = question;
-	
-	[self.navigationController pushViewController:questionViewController animated:YES];
+	[self presentViewControllerForQuestion:question animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -406,13 +439,11 @@ UINavigationController *askQuestionsNavigationController;
 #pragma mark - Asking New Questions
 - (IBAction)askQuestions:(id)sender
 {
-	OPFPostQuestionViewController *postview = [OPFPostQuestionViewController new];
-    postview.title = @"Post a question";
-    [self.navigationController pushViewController:postview animated:YES];
+	[self presentAskQuestionViewControllerAnimated:YES];
 }
 
 
-#pragma mark - 
+#pragma mark - Token Text From Suggested Token
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
 	NSString *tokenText = nil;
@@ -634,19 +665,19 @@ UINavigationController *askQuestionsNavigationController;
 
 
 #pragma mark - UISearchBarDelegate Methods
-
-- (OPFQuestionsSearchBar *)searchBar {
+- (OPFQuestionsSearchBar *)searchBar
+{
 	return self.searchBarHeader.searchBar;
 }
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-	return YES;
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-	return YES;
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -780,15 +811,4 @@ UINavigationController *askQuestionsNavigationController;
     return NSLocalizedString(@"Questions", @"Questions view controller tab title");
 }
 
-// Turn on/off heat mode when the "Heat Mode"-button is clicked.
--(void) switchHeatMode:(id) paramSender{
-    if(!heatMode){
-        heatMode = YES;
-        [self.tableView reloadData];
-    }
-    else{
-        heatMode = NO;
-        [self.tableView reloadData];
-    }
-}
 @end

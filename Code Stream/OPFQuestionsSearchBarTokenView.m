@@ -8,6 +8,7 @@
 
 #import "OPFQuestionsSearchBarTokenView.h"
 #import "UIColor+OPFHEX.h"
+#import "UIFont+OPFAppFonts.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -86,7 +87,7 @@ const CGFloat kOPFTokenPaddingTop = (NSInteger)(kOPFTokenHeight - kOPFTokenTextF
 	_textLabel.backgroundColor = UIColor.clearColor;
 //	_textLabel.shadowColor = [UIColor.blackColor colorWithAlphaComponent:.5f];
 //	_textLabel.shadowOffset = CGSizeMake(0.f, -1.f);
-	_textLabel.font = [UIFont systemFontOfSize:kOPFTokenTextFontSize];
+	_textLabel.font = [UIFont opf_appFontOfSize:kOPFTokenTextFontSize];
 	[self addSubview:_textLabel];
 }
 

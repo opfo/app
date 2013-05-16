@@ -10,6 +10,10 @@
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
 
+
+#define OPF_DATABASE_ACCESS_DEBUG (DEBUG && 0)
+
+
 @class OPFDatabaseQueue;
 
 @interface OPFDatabaseAccess : NSObject

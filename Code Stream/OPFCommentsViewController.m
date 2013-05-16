@@ -87,7 +87,6 @@
         [comments addObject:comment];
         self.commentModels = [[NSArray alloc] initWithArray:comments];
         
-        
         [self.inputTextField setText:nil];
         [self.inputTextField resignFirstResponder];
         [self scrollToBottomAnimated:YES];

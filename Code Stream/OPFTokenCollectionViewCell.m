@@ -19,11 +19,9 @@
 
 - (void)sharedTokenCollectionViewCellInit
 {
+	_shouldDrawShadow = YES;
 	_tokenView = [[OPFQuestionsSearchBarTokenView alloc] initWithStyle:_style];
-	_tokenView.layer.shadowColor = UIColor.blackColor.CGColor;
-	_tokenView.layer.shadowOffset = CGSizeMake(0.f, 1.f);
-	_tokenView.layer.shadowOpacity = .55f;
-	_tokenView.layer.shadowRadius = 1.f;
+	[self setShadowVisible:_shouldDrawShadow];
 	[self opf_addFillingAutoresizedSubview:_tokenView];
 }
 
@@ -46,6 +44,28 @@
 	self = [super initWithCoder:aDecoder];
 	if (self) [self sharedTokenCollectionViewCellInit];
 	return self;
+}
+
+- (void)setShouldDrawShadow:(BOOL)shouldDrawShadow
+{
+	if (_shouldDrawShadow != shouldDrawShadow) {
+		_shouldDrawShadow = shouldDrawShadow;
+		[self setShadowVisible:_shouldDrawShadow];
+		[self setNeedsDisplay];
+	}
+}
+
+- (void)setShadowVisible:(BOOL)visible
+{
+	if (visible) {
+		self.tokenView.layer.shadowColor = UIColor.blackColor.CGColor;
+		self.tokenView.layer.shadowOffset = CGSizeMake(0.f, 1.f);
+		self.tokenView.layer.shadowOpacity = .55f;
+		self.tokenView.layer.shadowRadius = 1.f;
+	} else {
+		self.tokenView.layer.shadowColor = nil;
+		self.tokenView.layer.shadowOpacity = 0.f;
+	}
 }
 
 @end
