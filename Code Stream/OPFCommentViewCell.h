@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class OPFCommentsViewController, OPFComment;
+@class OPFCommentsViewController, OPFComment, OPFSidebarView;
 
 @interface OPFCommentViewCell : UITableViewCell
 
 @property(nonatomic, weak) OPFCommentsViewController *commentsViewController;
 
+@property (strong, nonatomic) IBOutlet OPFSidebarView *sidebarBackground;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *commentBodyHeight;
 @property(weak, nonatomic) IBOutlet UITextView *commentBody;
 @property(weak, nonatomic) IBOutlet UIButton *commentUserName;
