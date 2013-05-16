@@ -11,7 +11,7 @@
 
 @protocol PostAnswerDelegate <NSObject>
 
--(void) updateViewWithAnswer:(OPFAnswer *) answer;
+-(void) updateQuestionView;
 
 @end
 

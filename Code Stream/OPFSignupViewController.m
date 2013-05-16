@@ -88,12 +88,12 @@
 
 - (void)willMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"%@ %@", self.class, @" WILL move to parent view controller");
+    DLog(@"%@ %@", self.class, @" WILL move to parent view controller");
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent
 {
-    NSLog(@"%@ %@", self.class, @" DID move to parent view controller");
+    DLog(@"%@ %@", self.class, @" DID move to parent view controller");
 }
 
 @end

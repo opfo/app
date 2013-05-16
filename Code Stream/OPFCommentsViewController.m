@@ -82,7 +82,7 @@
     // Comment is inserted into db and view is updated
     // I will change how the OPFUpdateQuery works, so some things are going to be changed here
     if(![self.inputTextField.text isEqualToString:@""]){
-        NSInteger commentID = [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
+       [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[[OPFAppState userModel].identifier integerValue]];
         
         __strong OPFPost *post = [[[OPFPost query] whereColumn:@"id" is:self.postModel.identifier] getOne];
         self.postModel=post;
