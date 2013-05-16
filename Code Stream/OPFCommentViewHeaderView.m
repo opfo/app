@@ -44,7 +44,6 @@ static CGFloat const LabelOpacity = .7f;
 		_dateFormatter = NSDateFormatter.new;
         [_dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
 		_backgroundImageView = [[UIImageView alloc] init];
-		self.backgroundColor = UIColor.clearColor;
 		
 		self.layer.shadowColor = UIColor.blackColor.CGColor;
 		self.layer.shadowOffset = CGSizeMake(0.f, 0.f);

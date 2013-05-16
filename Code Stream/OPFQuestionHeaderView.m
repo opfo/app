@@ -42,7 +42,6 @@ static const CGFloat kMetadataMargin = 6.f;
 		_scoreFormatter = OPFScoreNumberFormatter.new;
 		_questionScore = 0;
 		_backgroundImageView = [[UIImageView alloc] init];
-		self.backgroundColor = UIColor.clearColor;
 		
 		self.layer.shadowColor = UIColor.blackColor.CGColor;
 		self.layer.shadowOffset = CGSizeMake(0.f, 0.f);
