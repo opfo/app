@@ -133,18 +133,32 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	self.navigationItem.rightBarButtonItem = composeAnswer;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	[self.posts addObject:self.question];
-	[self.posts addObjectsFromArray:self.question.answers];
-	[self.tableView reloadData];
+	[self updatePostsFromQuestion];
 }
 
 
 #pragma mark - 
+- (void)refreshQuestion
+{
+	OPFQuestion *question = [OPFQuestion find:self.question.identifier.integerValue];
+	self.question = question;
+	
+	[self updatePostsFromQuestion];
+}
+
+- (void)updatePostsFromQuestion
+{
+	[self.posts removeAllObjects];
+	[self.posts addObject:self.question];
+	[self.posts addObjectsFromArray:self.question.answers];
+	
+	[self.tableView reloadData];
+}
+
 - (OPFPost *)questionPost
 {
 	return self.posts.count > 0 ? self.posts[0] : nil;
@@ -372,14 +386,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self reloadInputViews];
 }
 
--(void) updateViewWithAnswer:(OPFAnswer *) answer{
-    [self.posts addObject:answer];
+-(void) updateViewWithAnswer:(OPFAnswer *) answer
+{
+	[self refreshQuestion];
     [self.tableView reloadData];
 }
-
-
-
-
 
 
 @end
