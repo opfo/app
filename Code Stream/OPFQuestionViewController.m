@@ -146,8 +146,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 {
 	OPFQuestion *question = [OPFQuestion find:self.question.identifier.integerValue];
 	self.question = question;
-	
-	[self updatePostsFromQuestion];
 }
 
 - (void)updatePostsFromQuestion
@@ -277,7 +275,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-												   
+        metadataCell.voteUpButton.post=post;
+        metadataCell.voteDownButton.post=post;
+        [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
@@ -353,6 +355,13 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
+-(void) pressedUserVoteButton:(id) sender{
+    OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
+    NSInteger i = [vote.post.identifier integerValue];
+    vote.selected=YES;
+    NSLog(@"User upvote: %d",i);
+}
+
 #pragma mark - Tag List Delegate
 // TODO: Rewrite and fix.
 - (void)didSelectTagNamed:(NSString *)tagName
@@ -386,10 +395,9 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self reloadInputViews];
 }
 
--(void) updateViewWithAnswer:(OPFAnswer *) answer
-{
-	[self refreshQuestion];
-    [self.tableView reloadData];
+-(void) updateQuestionView{
+    [self refreshQuestion];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

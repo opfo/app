@@ -24,12 +24,12 @@
     }
     
     // Query for the SO db
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO posts(id, post_type_id, creation_date, score, view_count, body, owner_user_id, last_activity_date, title, tags, answer_count, comment_count, favorite_count) values (%d, %d, '%@', %d, %d, '%@', %d, '%@', '%@', '%@', %d, %d, %d);", randomID, 1, date, 0, 0, body, userID, date, title, tags, 0, 0, 0];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO posts(post_type_id, creation_date, score, view_count, body, owner_user_id, last_activity_date, title, tags, answer_count, comment_count, favorite_count) values (%d, '%@', %d, %d, '%@', %d, '%@', '%@', '%@', %d, %d, %d);", 1, date, 0, 0, body, userID, date, title, tags, 0, 0, 0];
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
     
     // Update the auxiliary db so it become in sync with the SO db
-    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO posts_index(object_id, main_index_string, aux_index_string, tags) values (%d, '%@', '%@', '%@');",randomID, body, @"" ,tags];
+    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO posts_index(main_index_string, aux_index_string, tags) values ('%@', '%@', '%@');",body, @"" ,tags];
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];
     
@@ -48,12 +48,12 @@
     }
     
     // Query to the SO db
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO posts(id, post_type_id, parent_id, creation_date, score, view_count, body, owner_user_id, last_activity_date, comment_count) values (%d, %d, %d, '%@', %d, %d, '%@', %d, '%@', %d);", randomID, 2, questionID, date, 0, 0, answerBody, userID, date, 0];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO posts(post_type_id, parent_id, creation_date, score, view_count, body, owner_user_id, last_activity_date, comment_count) values (%d, %d, '%@', %d, %d, '%@', %d, '%@', %d);", 2, questionID, date, 0, 0, answerBody, userID, date, 0];
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
     
     // Query to the auxiliary db so it will be in sync with the SO db
-    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO posts_index(object_id, main_index_string) values (%d, '%@');",randomID, answerBody];
+    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO posts_index(main_index_string) values ('%@');",answerBody];
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];
     
@@ -72,7 +72,7 @@
     }
     
     // Query to the SO db
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO comments(id, post_id, score, text, creation_date, user_id) values (%d,%d,%d,'%@','%@',%d);", randomID, postID, 0, commentText, date, userID];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO comments(post_id, score, text, creation_date, user_id) values (%d,%d,'%@','%@',%d);",postID, 0, commentText, date, userID];
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
     
@@ -92,13 +92,13 @@
     }
     
     // Query to the SO db
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO users(id, reputation, creation_date, display_name, email_hash, last_access_date, website_url, location, age, about_me, views, up_votes, down_votes) values (%d,%d,'%@','%@','%@','%@', '%@', '%@', %d, '%@', '%d', %d, %d);", randomID, 0, date, name, email, date, website, location, age, bio, 0, 0, 0];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO users(reputation, creation_date, display_name, email_hash, last_access_date, website_url, location, age, about_me, views, up_votes, down_votes) values (%d,'%@','%@','%@','%@', '%@', '%@', %d, '%@', '%d', %d, %d);",0, date, name, email, date, website, location, age, bio, 0, 0, 0];
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
     
 
     // Query to the auxiliary db to keep it in sync with the SO db
-    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_index(object_id, index_string) values (%d, '%@');",randomID, name];
+    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_index(index_string) values ('%@');",name];
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];
 
     return succeeded && auxSucceeded;
@@ -112,16 +112,3 @@
 }
 
 @end
-
-
-// Temporary code to test if update was as intended
-/*NSString *sql = [NSString stringWithFormat:@"SELECT * FROM posts WHERE title='%@'",title];
- 
- FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
- 
- while([results next]) {
- NSString *title = [results stringForColumn:@"title"];
- NSInteger postID  = [results intForColumn:@"id"];
- NSInteger post_type_id  = [results intForColumn:@"post_type_id"];
- NSLog(@"Post ID: %d \nPosttype: %d \ntitle: %@", postID, post_type_id, title);
- }*/
