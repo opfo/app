@@ -198,7 +198,10 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+	
 	[self removeObserver:self forKeyPath:CDStringFromSelector(searchString) context:NULL];
+	[self removeObserver:self forKeyPath:CDStringFromSelector(sortCriterion) context:NULL];
+	[self removeObserver:self forKeyPath:CDStringFromSelector(sortOrder) context:NULL];
 }
 
 

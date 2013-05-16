@@ -316,7 +316,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	UIView *headerView = nil;
 	if (section == kOPFQuestionSection) {
 		OPFQuestionHeaderView *questionHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:QuestionHeaderViewIdentifier];
-		NSLog(@"Section: %d",section);
 		OPFQuestion *question = self.posts[section];
 		[questionHeaderView configureForQuestion:question];
 		headerView = questionHeaderView;
@@ -349,6 +348,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
         metadataCell.voteDownButton.buttonTypeUp=NO;
         [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+        if([OPFAppState isLoggedIn]){
+            metadataCell.voteDownButton.enabled=YES;
+            metadataCell.voteUpButton.enabled=YES;
+        }
+        else{
+            metadataCell.voteDownButton.enabled=NO;
+            metadataCell.voteUpButton.enabled=NO;
+        }
 								
 											   
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {

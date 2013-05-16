@@ -101,19 +101,11 @@
     NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_votes(user_id,post_id,upvote) values (?,?,?);"];
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
-    
     NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;
-    
     args=@[@(totalVotes),@(postID)];
-    
     NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
-    
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
-    
-    FMResultSet *result = [[OPFDatabaseAccess getDBAccess] executeSQL:@"SELECT * FROM posts WHERE id=postID"];
-    
-    NSLog(@"Score: %d for query: %@", [result intForColumnIndex:5],query);
-    
+
     return auxSucceeded && succeeded;
 }
 

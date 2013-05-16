@@ -200,8 +200,6 @@
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
 		9C235FCE173A9E6800907558 /* question-row-metadata-accepted-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FC9173A9E6800907558 /* question-row-metadata-accepted-background@2x.png */; };
-		9C235FCF173A9E6800907558 /* question-row-metadata-bad-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCA173A9E6800907558 /* question-row-metadata-bad-background@2x.png */; };
-		9C235FD0173A9E6800907558 /* question-row-metadata-cool-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCB173A9E6800907558 /* question-row-metadata-cool-background@2x.png */; };
 		9C235FD1173A9E6800907558 /* question-row-metadata-horrible-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCC173A9E6800907558 /* question-row-metadata-horrible-background@2x.png */; };
 		9C235FD2173A9E6800907558 /* question-row-metadata-normal-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCD173A9E6800907558 /* question-row-metadata-normal-background@2x.png */; };
 		9C235FD6173A9E7300907558 /* post-accepted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FD3173A9E7300907558 /* post-accepted@2x.png */; };
@@ -1701,8 +1699,6 @@
 				1AC6A5EF173BE0030006243B /* OPFTagBrowserCollectionViewHeaderTag.xib in Resources */,
 				8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */,
 				9C235FCE173A9E6800907558 /* question-row-metadata-accepted-background@2x.png in Resources */,
-				9C235FCF173A9E6800907558 /* question-row-metadata-bad-background@2x.png in Resources */,
-				9C235FD0173A9E6800907558 /* question-row-metadata-cool-background@2x.png in Resources */,
 				9C235FD1173A9E6800907558 /* question-row-metadata-horrible-background@2x.png in Resources */,
 				9C235FD2173A9E6800907558 /* question-row-metadata-normal-background@2x.png in Resources */,
 				9C235FD6173A9E7300907558 /* post-accepted@2x.png in Resources */,
