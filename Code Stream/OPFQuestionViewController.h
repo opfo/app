@@ -16,5 +16,6 @@
 @interface OPFQuestionViewController : UITableViewController <PostAnswerDelegate>
 
 @property (strong) OPFQuestion *question;
+- (void)refreshQuestion;
 
 @end

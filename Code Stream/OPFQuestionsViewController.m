@@ -443,7 +443,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 }
 
 
-#pragma mark - 
+#pragma mark - Token Text From Suggested Token
 - (NSString *)tokenTextFromSuggestedToken:(id)token ofType:(OPFQuestionsViewControllerTokenBeingInputtedType)type
 {
 	NSString *tokenText = nil;

@@ -77,8 +77,6 @@
         
         // If update was successful; show an UIAlert, get the answer from db and put it into the answerview
         if(lastAnswer!=0){
-            UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your answer has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [success show];
             [self.delegate updateQuestionView];
         }
         else{
