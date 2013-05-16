@@ -79,9 +79,7 @@ static const NSTimeInterval TransitionDuration = .5f;
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    [self.loginViewController removeFromParentViewController];
-    [self.signupViewController removeFromParentViewController];
-    [self.profileViewController removeFromParentViewController];
+    
 }
 
 - (void)didReceiveMemoryWarning
