@@ -11,8 +11,17 @@
 #import "OPFComment.h"
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIFont+OPFAppFonts.h"
+#import <QuartzCore/QuartzCore.h>
+#import <SSLineView.h>
+#import "UIFont+OPFAppFonts.h"
+#import "OPFSidebarView.h"
 
 @interface OPFCommentViewCell()
+
+@property(strong, nonatomic) OPFComment *commentModel;
+@property(strong, nonatomic) NSDateFormatter *dateFormatter;
+@property(strong, nonatomic) NSDateFormatter *timeFormatter;
 
 - (void)loadUserGravatar;
 - (void)setAvatarWithGravatar :(UIImage*) gravatar;
@@ -20,6 +29,21 @@
 @end
 
 @implementation OPFCommentViewCell
+
+static CGFloat const OPFCommentTableCellOffset = 20.0f;
+static CGFloat const OPFCommentTableCellOffsetExtra = 40.0f;
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		_dateFormatter = NSDateFormatter.new;
+        [_dateFormatter setDateFormat:@"dd.MM.yyyy"];
+		_timeFormatter = NSDateFormatter.new;
+        [_timeFormatter setDateFormat:@"HH:mm"];
+	}
+	return self;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -45,6 +69,15 @@
     self.userAvatar.image = gravatar;
 }
 
+- (void)awakeFromNib
+{
+	[self applyPropertiesOnLabel:self.commentVoteCount];
+	[self applyPropertiesOnLabel:self.commentVoteCountSubHeader];
+    
+    self.sidebarBackground.tintColor = [UIColor colorWithHue:206.f/360.f saturation:.25f brightness:1.f alpha:1.f];
+    self.sidebarBackground.shouldDrawBorders = NO;
+}
+
 - (void)voteUpComment:(UIButton *)sender
 {
     [self.commentsViewController voteUpComment:sender];
@@ -56,24 +89,48 @@
     [self.commentsViewController didSelectDisplayName:self.commentUserName :self.commentModel.author];
 }
 
-- (void)setModelValuesInView
-{    
+- (void)configureForComment:(OPFComment *)comment
+{
+    self.commentModel = comment;
+    
     self.commentBody.text = self.commentModel.text;
     self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.creationDate];
     self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.creationDate];
-    self.commentVoteUp.titleLabel.text =
-        [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
+    self.commentVoteCount.text =
+    [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
     self.commentUserName.titleLabel.text = self.commentModel.author.displayName;
         
     [self loadUserGravatar];
 }
 
-- (void)setupDateformatters
+- (void)applyShadowToView:(UIView *)view
 {
-    self.dateFormatter = [NSDateFormatter new];
-    self.timeFormatter = [NSDateFormatter new];
-    
-    [self.dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    [self.timeFormatter setDateFormat:@"HH:mm"];
+	view.layer.shadowColor = UIColor.blackColor.CGColor;
+	view.layer.shadowOffset = CGSizeMake(0, 1);
+	view.layer.shadowRadius = 1;
+	view.layer.shadowOpacity = .75f;
 }
+
+- (void)applyPropertiesOnLabel:(UILabel *)label
+{
+	[self applyShadowToView:label];
+	label.textColor = UIColor.whiteColor;
+}
+
+- (void)updateConstraints
+{
+    [super updateConstraints];
+    
+    NSString *text = self.commentModel.text;
+    
+    CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(267.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGSize constrainedSize = [self.commentBody sizeThatFits:textSize];
+    CGFloat offset = constrainedSize.height > 120.f ?  OPFCommentTableCellOffsetExtra : OPFCommentTableCellOffset;
+
+    CGRect fittingTextFrame = CGRectMake(self.commentBody.frame.origin.x, self.commentBody.frame.origin.y, self.commentBody.frame.size.width, constrainedSize.height + offset);
+    
+    self.commentBodyHeight.constant = fittingTextFrame.size.height;
+}
+
 @end

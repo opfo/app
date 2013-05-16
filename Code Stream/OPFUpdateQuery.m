@@ -25,7 +25,7 @@
     
     // Update the auxiliary db so it become in sync with the SO db
     NSString *auxQuery = @"INSERT INTO posts_index(object_id, main_index_string, tags) values (?,?,?);";
-    NSString* index_string = [NSString stringWithFormat:@"%@ %@", [self removeHTMLTags:body], title];
+    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [self removeHTMLTags:body], title, userName];
     args = @[@(id), index_string, tags];
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
     

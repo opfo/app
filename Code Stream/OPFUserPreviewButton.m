@@ -11,6 +11,7 @@
 #import "OPFScoreNumberFormatter.h"
 #import "UIImageView+KHGravatar.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIImage+OPFScalingAndResizing.h"
 #import "OPFUserProfileViewController.h"
 #import "UIFont+OPFAppFonts.h"
 
@@ -55,14 +56,29 @@
 	
 	_displayNameLabel.textAlignment = NSTextAlignmentLeft;
 	_displayNameLabel.textColor = [UIColor colorWithWhite:0.25 alpha:1.000];
+	_displayNameLabel.highlightedTextColor = UIColor.whiteColor;
 	_displayNameLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_displayNameLabel.backgroundColor = UIColor.clearColor;
 	_scoreLabel.textAlignment = NSTextAlignmentLeft;
 	_scoreLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.000];
+	_scoreLabel.highlightedTextColor = UIColor.whiteColor;
 	_scoreLabel.font = [UIFont opf_appFontOfSize:15.f];
+	_scoreLabel.backgroundColor = UIColor.clearColor;
 	
 	[self addSubview:self.userAvatar];
 	[self addSubview:self.displayNameLabel];
 	[self addSubview:self.scoreLabel];
+	
+	[self setTitle:@"" forState:0];
+	[self setBackgroundImage:[UIImage imageNamed:@"user-preview-background-selected"] forState:UIControlStateHighlighted];
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+	[super setHighlighted:highlighted];
+	
+	self.displayNameLabel.highlighted = highlighted;
+	self.scoreLabel.highlighted = highlighted;
 }
 
 -(void)layoutSubviews {
