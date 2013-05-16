@@ -8,6 +8,7 @@
 
 #import "OPFUpdateQuery.h"
 #import "OPFDatabaseAccess.h"
+#import "OPFQuestion.h"
 #import <stdlib.h>
 
 @implementation OPFUpdateQuery
@@ -104,6 +105,26 @@
     return succeeded && auxSucceeded;
 }
 
++(BOOL) updateVoteWithUserID: (NSInteger) userID PostID: (NSInteger) postID Vote: (NSInteger) vote{
+    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_votes(user_id,post_id,upvote) values (%d,%d,%d);",userID,postID,vote];
+    
+    BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery auxiliaryUpdate:YES];
+    
+    NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;
+    
+    NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=%d WHERE id=%d;",totalVotes,postID];
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query auxiliaryUpdate:NO];
+    
+    OPFPost *post = [OPFPost find:postID];
+    
+    FMResultSet *result = [[OPFDatabaseAccess getDBAccess] executeSQL:@"SELECT * FROM posts WHERE id=postID"];
+    
+    NSLog(@"Score: %d for query: %@", [result intForColumnIndex:5],query);
+    
+    return auxSucceeded && succeeded;
+}
+
 // Return current date
 +(NSString *) currentDateAsStringWithDateFormat: (NSString *) format{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -112,3 +133,4 @@
 }
 
 @end
+
