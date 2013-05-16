@@ -8,6 +8,7 @@
 
 #import "OPFUpdateQuery.h"
 #import "OPFDatabaseAccess.h"
+#import "OPFQuestion.h"
 #import <stdlib.h>
 
 @implementation OPFUpdateQuery
@@ -23,16 +24,17 @@
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
     
+    
     // Update the auxiliary db so it become in sync with the SO db
     NSString *auxQuery = @"INSERT INTO posts_index(object_id, main_index_string, tags) values (?,?,?);";
     NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [self removeHTMLTags:body], title, userName];
     args = @[@(id), index_string, tags];
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
-    
+
     return (succeeded && auxSucceeded);
 }
 
-+ (NSInteger) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
++ (BOOL) updateWithAnswerText: (NSString *) answerBody ByUser: (NSString *) userName UserID: (NSInteger) userID ParentQuestion: (NSInteger) questionID{
     
     // Current date
     NSString *date = [self currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
@@ -51,10 +53,10 @@
     
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray: args auxiliaryUpdate:YES];
     
-    return succeeded && auxSucceeded ? id : 0;
+    return succeeded && auxSucceeded;
 }
 
-+(NSInteger) updateWithCommentText: (NSString *) commentText PostID: (NSInteger) postID ByUser: (NSInteger) userID{
++(BOOL) updateWithCommentText: (NSString *) commentText PostID: (NSInteger) postID ByUser: (NSInteger) userID{
     
     // Current date
     NSString *date = [self currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
@@ -68,7 +70,7 @@
     
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray: args auxiliaryUpdate:NO];
     
-    return succeeded ? id:0;
+    return succeeded;
 
 }
 
@@ -92,6 +94,27 @@
     BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
 
     return succeeded && auxSucceeded;
+}
+
++(BOOL) updateVoteWithUserID: (NSInteger) userID PostID: (NSInteger) postID Vote: (NSInteger) vote{
+    NSArray *args = @[@(userID),@(postID),@(vote)];
+    NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_votes(user_id,post_id,upvote) values (?,?,?);"];
+    
+    BOOL auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+    
+    NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;
+    
+    args=@[@(totalVotes),@(postID)];
+    
+    NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
+    
+    FMResultSet *result = [[OPFDatabaseAccess getDBAccess] executeSQL:@"SELECT * FROM posts WHERE id=postID"];
+    
+    NSLog(@"Score: %d for query: %@", [result intForColumnIndex:5],query);
+    
+    return auxSucceeded && succeeded;
 }
 
 // Return current date
@@ -122,16 +145,3 @@
 }
 
 @end
-
-
-// Temporary code to test if update was as intended
-/*NSString *sql = [NSString stringWithFormat:@"SELECT * FROM posts WHERE title='%@'",title];
- 
- FMResultSet *results =  [[OPFDatabaseAccess getDBAccess] executeSQL:sql];
- 
- while([results next]) {
- NSString *title = [results stringForColumn:@"title"];
- NSInteger postID  = [results intForColumn:@"id"];
- NSInteger post_type_id  = [results intForColumn:@"post_type_id"];
- NSLog(@"Post ID: %d \nPosttype: %d \ntitle: %@", postID, post_type_id, title);
- }*/
