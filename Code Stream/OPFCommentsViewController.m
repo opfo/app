@@ -18,6 +18,7 @@
 #import "OPFUser.h"
 #import "UIFont+OPFAppFonts.h"
 #import "OPFAppState.h"
+#import "OPFBarGradientView.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -70,6 +71,8 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:OPFCommentTableHeader];
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewCell) bundle:nil] forCellReuseIdentifier:OPFCommentTableCell];
+	
+	self.inputView.shouldDrawBottomBorder = NO;
 }
 
 - (void)setPostModel:(OPFPost *)postModel
