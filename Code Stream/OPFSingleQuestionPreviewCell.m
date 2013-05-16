@@ -72,13 +72,13 @@
 	// Body text disabled at the moment as we would need to strip every single
 	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
 	// got time for that!
-//	NSDictionary *questionBodyAttributes = (highlighted == NO ? self.class.questionBodyAttributes : self.class.highlightedQuestionBodyAttributes);
-//	NSString *body = questionBody.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace.opf_stringByStrippingNewlines;
-//	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
+	NSDictionary *questionBodyAttributes = (highlighted == NO ? self.class.questionBodyAttributes : self.class.highlightedQuestionBodyAttributes);
+	NSString *body = questionBody.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
 
 	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
 	[questionText appendAttributedString:questionTitleString];
-//	[questionText appendAttributedString:questionBodyString];
+	[questionText appendAttributedString:questionBodyString];
 	
 	return questionText;
 }
@@ -86,7 +86,7 @@
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
-
+	
 	CGSize selfSize = self.bounds.size;
 	CGSize metadataSize = self.metadataBackgroundImageView.bounds.size;
 	CGSize questionTextLabelBoundingSize = CGSizeMake(selfSize.width - metadataSize.width - 20, selfSize.height - 10);
@@ -198,7 +198,7 @@
 		bodyParagraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
 		
 		attributes = @{
-			NSFontAttributeName: [UIFont opf_boldAppFontOfSize:15.f],
+			NSFontAttributeName: [UIFont opf_appFontOfSize:15.f],
 			NSForegroundColorAttributeName: UIColor.darkGrayColor,
 			NSParagraphStyleAttributeName: bodyParagraphStyle
 		};
