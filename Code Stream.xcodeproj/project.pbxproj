@@ -974,13 +974,13 @@
 			name = UtilitySpecs;
 			sourceTree = "<group>";
 		};
-		8C35A3EC173D514200392377 /* PostViews */ = {
+		8C35A3EC173D514200392377 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
 				8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */,
 				8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */,
 			);
-			name = PostViews;
+			name = "Post Views";
 			sourceTree = "<group>";
 		};
 		9C18D579173087D500553128 /* Search */ = {
@@ -1128,8 +1128,8 @@
 			isa = PBXGroup;
 			children = (
 				1A72197C17271A1C002B43CD /* Storyboard */,
-				1A639ECF17269C01009EB280 /* Table View Headers */,
 				1A94240B173BCD5100DE9D9B /* Collection View Headers & Footers */,
+				1A639ECF17269C01009EB280 /* Table View Headers */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
 				1A639EC91726821A009EB280 /* Profile Search View */,
 				1A6833471726A23600E3A687 /* Comments View */,
@@ -1137,7 +1137,7 @@
 				1A896CE7172FD00800E19525 /* Activity View */,
 				1A9D3F1E17327C6C00EEF9D1 /* Signup Login View */,
 				1A942405173BC8D700DE9D9B /* Tag Browser View */,
-				8C35A3EC173D514200392377 /* PostViews */,
+				8C35A3EC173D514200392377 /* Post Views */,
 				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
