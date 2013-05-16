@@ -384,10 +384,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 -(void) updateQuestionView{
-    OPFQuestion *post = [[[OPFQuestion query] whereColumn:@"id" is:self.question.identifier] getOne];
-    self.question=post;
+   // OPFQuestion *post = [[[OPFQuestion query] whereColumn:@"id" is:self.question.identifier] getOne];
+    //[self.posts addObject:post.answers.lastObject];
     [self.navigationController popViewControllerAnimated:YES];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 
