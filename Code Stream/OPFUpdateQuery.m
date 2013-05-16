@@ -112,7 +112,7 @@
     
     FMResultSet *result = [[OPFDatabaseAccess getDBAccess] executeSQL:@"SELECT * FROM posts WHERE id=postID"];
     
-    NSLog(@"Score: %d for query: %@", [result intForColumnIndex:5],query);
+    DLog(@"Score: %d for query: %@", [result intForColumnIndex:5],query);
     
     return auxSucceeded && succeeded;
 }
