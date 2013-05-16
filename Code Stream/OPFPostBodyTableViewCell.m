@@ -35,4 +35,8 @@
 	
 }
 
+-(void)dealloc {
+	self.bodyTextView.delegate = nil;
+}
+
 @end

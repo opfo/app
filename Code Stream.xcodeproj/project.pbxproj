@@ -160,6 +160,7 @@
 		8C66EF3F173850AB00B29435 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C66EF3E173850AB00B29435 /* backArrow.png */; };
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
+		8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
 		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
@@ -212,6 +213,8 @@
 		9C235FF7173A9E9200907558 /* vote-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FE8173A9E9200907558 /* vote-up@2x.png */; };
 		9C235FFA173AAAE800907558 /* UIFont+OPFAppFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C235FF9173AAAE800907558 /* UIFont+OPFAppFonts.m */; };
 		9C235FFD173C511800907558 /* UIColor+OPFAppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */; };
+		9C2977B51744F0B9005F140E /* OPFSidebarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2977B41744F0B9005F140E /* OPFSidebarView.m */; };
+		9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */; };
 		9C3768711733277800719F2A /* SSBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37686E1733277800719F2A /* SSBorderedView.m */; };
 		9C3768721733277800719F2A /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3768701733277800719F2A /* SSDrawingUtilities.m */; };
 		9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
@@ -477,6 +480,8 @@
 		8C7D112F173A4AC700E8149D /* OPFPostQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostQuestionViewController.h; sourceTree = "<group>"; };
 		8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostQuestionViewController.m; sourceTree = "<group>"; };
 		8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostQuestionView.xib; sourceTree = "<group>"; };
+		8C974B971743A63900D9E6E9 /* OPFPostVoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostVoteButton.h; sourceTree = "<group>"; };
+		8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostVoteButton.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
 		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
@@ -552,6 +557,10 @@
 		9C235FF9173AAAE800907558 /* UIFont+OPFAppFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+OPFAppFonts.m"; sourceTree = "<group>"; };
 		9C235FFB173C511800907558 /* UIColor+OPFAppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFAppColors.h"; sourceTree = "<group>"; };
 		9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OPFAppColors.m"; sourceTree = "<group>"; };
+		9C2977B31744F0B9005F140E /* OPFSidebarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFSidebarView.h; sourceTree = "<group>"; };
+		9C2977B41744F0B9005F140E /* OPFSidebarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFSidebarView.m; sourceTree = "<group>"; };
+		9C2977B61744F622005F140E /* UIColor+OPFColorAdjustment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+OPFColorAdjustment.h"; sourceTree = "<group>"; };
+		9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+OPFColorAdjustment.m"; sourceTree = "<group>"; };
 		9C37686D1733277800719F2A /* SSBorderedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSBorderedView.h; sourceTree = "<group>"; };
 		9C37686E1733277800719F2A /* SSBorderedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSBorderedView.m; sourceTree = "<group>"; };
 		9C37686F1733277800719F2A /* SSDrawingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDrawingUtilities.h; sourceTree = "<group>"; };
@@ -1143,6 +1152,8 @@
 				8C35A3EC173D514200392377 /* Post Views */,
 				9C04A16E1735B00700971D2F /* OPFSearchBar.h */,
 				9C04A16F1735B00700971D2F /* OPFSearchBar.m */,
+				9C2977B31744F0B9005F140E /* OPFSidebarView.h */,
+				9C2977B41744F0B9005F140E /* OPFSidebarView.m */,
 				9C3AB6FD172C7E4F0060F46D /* OPFStyleController.h */,
 				9C3AB6FE172C7E4F0060F46D /* OPFStyleController.m */,
 				8C2725D61738562D0068D89C /* OPFWebView.xib */,
@@ -1349,6 +1360,8 @@
 				9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */,
 				14E018DA172FBA0200CA2763 /* OPFUserPreviewButton.h */,
 				14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */,
+				8C974B971743A63900D9E6E9 /* OPFPostVoteButton.h */,
+				8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */,
 				9CA03251174272DD00996DE0 /* OPFQuestionAnswerSeparatorCell.xib */,
 				9CA0325E174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.h */,
 				9CA0325F174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m */,
@@ -1411,6 +1424,8 @@
 			children = (
 				9C235FFB173C511800907558 /* UIColor+OPFAppColors.h */,
 				9C235FFC173C511800907558 /* UIColor+OPFAppColors.m */,
+				9C2977B61744F622005F140E /* UIColor+OPFColorAdjustment.h */,
+				9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */,
 				9C610E60172ED70100664B94 /* UIColor+OPFHEX.h */,
 				9C610E61172ED70100664B94 /* UIColor+OPFHEX.m */,
 				9CA03255174279A600996DE0 /* UIImage+OPFScoreImages.h */,
@@ -1837,9 +1852,12 @@
 				8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */,
 				8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */,
 				143B39F91742F3A300C42B77 /* UIWebView+OPFHtmlView.m in Sources */,
+				8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */,
 				9CA03257174279A600996DE0 /* UIImage+OPFScoreImages.m in Sources */,
 				9CA0325A1742869900996DE0 /* UIImage+OPFScalingAndResizing.m in Sources */,
 				9CA03260174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m in Sources */,
+				9C2977B51744F0B9005F140E /* OPFSidebarView.m in Sources */,
+				9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
