@@ -13,18 +13,18 @@
 
 @implementation OPFSearchBarHeader
 
--(void)setDisplayedHeader:(DisplayHeader)page WithAnimation:(BOOL) animated {
+-(void)setDisplayedHeader:(kOPFDisplayHeader)page WithAnimation:(BOOL) animated {
 	CGRect target = self.frame;
 	target.origin.x = self.frame.size.width * (int)page;
 	[self scrollRectToVisible:target animated:animated];
 }
 
-- (void)setDisplayedHeader:(DisplayHeader)displayedHeader {
+- (void)setDisplayedHeader:(kOPFDisplayHeader)displayedHeader {
 	[self setDisplayedHeader:displayedHeader WithAnimation:YES];
 }
 
-- (DisplayHeader)displayedHeader {
-	return (DisplayHeader)self.contentOffset.x / self.frame.size.width;
+- (kOPFDisplayHeader)displayedHeader {
+	return (kOPFDisplayHeader)self.contentOffset.x / self.frame.size.width;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -45,12 +45,12 @@
 }
 
 - (void)sharedInit {
-	self.displayedHeader = SearchBar;
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"SearchBarGradient"]];
+	self.displayedHeader = kOPFSearchBar;
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"search-headergradient"]];
 }
 
 - (void)handleSwitchEvent:(UIButton *)sender {
-	self.displayedHeader = (DisplayHeader)sender.tag;
+	self.displayedHeader = (kOPFDisplayHeader)sender.tag;
 }
 
 

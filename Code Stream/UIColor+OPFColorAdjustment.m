@@ -38,11 +38,16 @@ static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* 
 	}
 	NSAssert(couldConvertToHSB == YES, @"The color (%@) must convertable into the HSB color space.", self);
 	
-	saturation = (saturation == -1.f ? currentSaturation : saturation);
-	brightness = (brightness == -1.f ? currentBrightness : brightness);
-	alpha = (alpha == -1.f ? currentAlpha : alpha);
+	UIColor *color = nil;
+	if (couldConvertToHSB == YES) {
+		saturation = (saturation == -1.f ? currentSaturation : saturation);
+		brightness = (brightness == -1.f ? currentBrightness : brightness);
+		alpha = (alpha == -1.f ? currentAlpha : alpha);
+		
+		color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+	}
 	
-	return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+	return color;
 }
 
 - (instancetype)opf_HSBColor

@@ -95,7 +95,7 @@
 #pragma mark - Init
 static OPFSidebarView *sharedInit(OPFSidebarView *self) {
 	if (self) {
-		self->_tintColor = UIColor.redColor;
+		self->_tintColor = UIColor.grayColor;
 		self->_shouldDrawBorders = YES;
 		
 		SSGradientView *backgroundView = SSGradientView.new;

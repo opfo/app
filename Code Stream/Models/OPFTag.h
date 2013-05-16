@@ -12,7 +12,6 @@ extern NSInteger kOPFPopularTagsLimit;
 
 @interface OPFTag : OPFModel
 
-@property (strong) NSNumber* identifier;
 @property (copy) NSString* name;
 @property (strong) NSNumber* counter;
 @property (strong, readonly)NSArray* questions;

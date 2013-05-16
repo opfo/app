@@ -99,22 +99,21 @@ static NSString* OPFWritableAuxDBPath;
 
 // Execute an SQL-update query
 // Returns YES if update succeeded, NO otherwise
-- (BOOL) executeUpdate:(NSString *) sql auxiliaryUpdate: (BOOL) auxUpdate
+- (BOOL) executeUpdate:(NSString *) sql withArgumentsInArray: (NSArray*) array auxiliaryUpdate: (BOOL) auxUpdate
 {
     [self attachAuxDB];
     __block BOOL succeeded;
     
     if(auxUpdate){
         [_auxCombinedQueue inDatabase:^(FMDatabase* db){
-            succeeded = [db executeUpdate:sql];
+            succeeded = [db executeUpdate:sql withArgumentsInArray:array];
         }];
     }
     else{
         [_combinedQueue inDatabase:^(FMDatabase* db){
-            succeeded = [db executeUpdate:sql];
+            succeeded = [db executeUpdate:sql withArgumentsInArray:array];
         }];
     }
-    
     
     return succeeded;
 }
@@ -139,6 +138,15 @@ static NSString* OPFWritableAuxDBPath;
 {
     self.auxAttached = NO;
     [_combinedQueue close];
+}
+
+- (int) lastInsertRowId
+{
+    __block NSNumber* id;
+    [_combinedQueue inDatabase:^(FMDatabase* db){
+        id = @([db lastInsertRowId]);
+    }];
+    return [id integerValue];
 }
 
 @end
