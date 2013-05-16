@@ -16,6 +16,8 @@
 @end
 
 @implementation OPFPostAnswerViewController
+@synthesize delegate;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,12 +28,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -39,8 +35,8 @@
 }
 
 - (void) configureView{
+    // Configure navigationbar
     self.navigationItem.hidesBackButton = YES;
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView)];
     
     //create the button
@@ -60,25 +56,35 @@
     [self.view addSubview:button];
 }
 
+
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
+
 -(void) postButtonPressed{
-    NSLog(@"Button pressed");
+    
+    // Check that the required fields are not empty
     if([self.answerBody.text isEqualToString:@""]){
         self.answerBodyWarning.text = @"Title is missing";
         self.answerBodyWarning.textColor = [UIColor redColor];
         self.answerBodyWarning.hidden = NO;
     }
     else{
-        if([self updateDatabase]){
+        // Update database and store the id for the post
+        NSInteger lastAnswer=[self updateDatabase];
+        
+        // If update was successful; show an UIAlert, get the answer from db and put it into the answerview
+        if(lastAnswer!=0){
             UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your answer has been posted." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [success show];
+            __strong OPFAnswer *answer = [[[OPFAnswer query] whereColumn:@"id" is:[NSString stringWithFormat:@"%d",lastAnswer]] getOne];
+            [self.delegate updateViewWithAnswer:answer];
             [self.navigationController popViewControllerAnimated:YES];
         }
         else{
+            // If insert was unsuccessful
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [emptyField show];
         }
@@ -86,7 +92,8 @@
     }
 }
 
--(BOOL) updateDatabase{
+// Update database with the filled in data
+-(NSInteger) updateDatabase{
     OPFUser *user = [OPFAppState userModel];
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
@@ -94,6 +101,7 @@
     return [OPFUpdateQuery updateWithAnswerText:self.answerBody.text ByUser:userName UserID:userID ParentQuestion:self.parentQuestion];
 }
 
+// Go to previous view if user press cancel
 -(void) cancelView{
     [self.navigationController popViewControllerAnimated:YES];
 }

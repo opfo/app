@@ -22,7 +22,6 @@
 #import "OPFUserPreviewButton.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFQuestionsViewController.h"
-#import "OPFPostAnswerViewController.h"
 
 enum {
 	kOPFQuestionBodyCell = 0,
@@ -41,7 +40,7 @@ static const CGFloat kOPQuestionBodyInset = 20.f;
 @property (strong, readonly) NSCache *cache;
 
 // TEMP (start):
-@property (strong, readonly) NSMutableArray *posts;
+@property (strong) NSMutableArray *posts;
 - (OPFPost *)questionPost;
 - (NSArray *)answerPosts;
 // TEMP (end)
@@ -116,11 +115,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	[self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFQuestionHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:QuestionHeaderViewIdentifier];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     UIBarButtonItem *composeAnswer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(postNewAnswer:)];
     self.navigationItem.rightBarButtonItem = composeAnswer;
     
+    NSLog(@"View Will Appear!!!");
+    [self.tableView reloadData];
     
     OPFUser *user = [[OPFUser alloc] init];
     [user setReputation:@(351)];
@@ -252,7 +254,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
-		metadataCell.userPreviewButton.iconAlign = Right;
+		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
 												   
@@ -369,8 +371,14 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     OPFPostAnswerViewController *postview = [OPFPostAnswerViewController new];
     postview.title = @"Post a question";
     postview.parentQuestion = [self.question.identifier integerValue];
+    postview.delegate = self;
     [self.navigationController pushViewController:postview animated:YES];
     [self reloadInputViews];
+}
+
+-(void) updateViewWithAnswer:(OPFAnswer *) answer{
+    [self.posts addObject:answer];
+    [self.tableView reloadData];
 }
 
 

@@ -7,15 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OPFQuestionsViewController.h"
+#import "OPFQuestion.h"
 
 @interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *bodyField;
 @property (weak, nonatomic) IBOutlet UITextField *tagsField;
 @property (weak, nonatomic) IBOutlet UILabel *titleWarning;
+@property (weak, nonatomic) IBOutlet UILabel *wrongPasswordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bodyTextWarning;
 @property (weak, nonatomic) IBOutlet UILabel *generalWarningLabel;
-
+@property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIView *loginView;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UISwitch *rememberUser;
 
 @end

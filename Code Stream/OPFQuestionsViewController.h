@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFSingleQuestionPreviewCell.h"
+#import "OPFQuestion.h"
+#import "OPFPostQuestionViewController.h"
 
 @class OPFQuery;
+
 
 @interface OPFQuestionsViewController : UITableViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIScrollViewDelegate, OPFSingleQuestionPreviewCellDelegate>
 
