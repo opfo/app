@@ -174,15 +174,20 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 		self.searchBar.text = self.searchString;
 	}
 	
-	if (_isFirstTimeAppearing) {
-		_isFirstTimeAppearing = NO;
-		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBarHeader.bounds));
-		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
-	}
-	
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 		[self updateFilteredQuestionsCompletion:nil];
 	});
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	if (_isFirstTimeAppearing) {
+		_isFirstTimeAppearing = NO;
+		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.tableView.tableHeaderView.frame));
+		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -789,7 +794,8 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 #pragma mark - UIScrollBarDelegate methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-	if (scrollView.opf_scrollViewScrollingDirection & kOPFUIScrollViewDirectionDown) {
+	OPFUIScrollViewDirection direction = scrollView.opf_scrollViewScrollingDirection;
+	if (direction & kOPFUIScrollViewDirectionDown) {
 		[self selectBestTokenMatchAndEndSearch];
 	}
 }
