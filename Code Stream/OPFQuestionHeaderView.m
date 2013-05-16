@@ -138,12 +138,12 @@ static const CGFloat kMetadataMargin = 6.f;
 	CGRect bounds = self.bounds;
 	CGFloat width = CGRectGetWidth(bounds);
 	
-	CGPathRef shadowPath = CGPathCreateWithRect(self.bounds, NULL);
+	CGPathRef shadowPath = CGPathCreateWithRect(bounds, NULL);
 	self.layer.shadowPath = shadowPath;
 	CGPathRelease(shadowPath);
 	
 	CGRect topBorderViewFrame = self.topBorderView.frame;
-	topBorderViewFrame.size.width = CGRectGetWidth(self.bounds);
+	topBorderViewFrame.size.width = width;
 	self.topBorderView.frame = topBorderViewFrame;
 	
 	CGRect statusFrame = self.metadataAnswerStatusImageView.frame;
