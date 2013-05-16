@@ -102,6 +102,7 @@
 						<reference key="IBUITextColor" ref="1011299158"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumScaleFactor">0.5</float>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">AvenirNext-Bold</string>
 							<string key="family">Avenir Next</string>
@@ -113,7 +114,6 @@
 							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 40}</string>
@@ -128,20 +128,12 @@
 						<int key="NSID">2</int>
 					</object>
 				</object>
-				<string key="IBUIRestorationIdentifier">OPFTagBrowserCollectionViewHeaderTag</string>
+				<string key="IBUIRestorationIdentifier">OPFTagBrowserCollectionViewTag</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tagCount</string>
-						<reference key="source" ref="575870235"/>
-						<reference key="destination" ref="879695569"/>
-					</object>
-					<int key="connectionID">45</int>
-				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tagName</string>

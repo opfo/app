@@ -92,6 +92,7 @@
 						<string key="NSFrame">{{124, 10}, {166, 21}}</string>
 						<reference key="NSSuperview" ref="272894412"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -149,7 +150,7 @@
 						<int key="NSID">2</int>
 					</object>
 				</object>
-				<string key="IBUIRestorationIdentifier">OPFTagBrowserCollectionViewHeaderInitial</string>
+				<string key="IBUIRestorationIdentifier">OPFTagBrowserCollectionViewInitial</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>

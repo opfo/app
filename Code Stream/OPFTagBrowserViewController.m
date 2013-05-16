@@ -14,6 +14,7 @@
 #import "OPFQuery.h"
 #import "OPFTokenCollectionViewCell.h"
 #import "OPFTagBrowserCollectionViewHeaderInitial.h"
+#import "OPFTagBrowserCollectionViewHeaderTag.h"
 #import "OPFTagBrowserCollectionView.h"
 #import "OPFQuestionsViewController.h"
 #import "OPFTagBrowserSelectionViewController.h"
@@ -38,12 +39,13 @@
 
 @implementation OPFTagBrowserViewController
 
-static NSString *const TagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
-static NSString *const TagBrowserHeaderViewIdenfifier = @"OPFTagBrowserCollectionViewInitial";
-static NSString *const TagCountLabel = @"Question(s) matching tag(s)";
-static NSInteger const TagSuggestionLimit = 100;
-static NSInteger const TagLoadingByTagLimit = 50;
-static NSInteger const TagSelectionLimit = 20;
+static NSString *const OPFTagBrowserCellViewIdenfifier = @"OPFTagBrowserCollectionViewCell";
+static NSString *const OPFTagBrowserHeaderViewInitialIdenfifier = @"OPFTagBrowserCollectionViewInitial";
+static NSString *const OPFTagBrowserHeaderViewTagIdenfifier = @"OPFTagBrowserCollectionViewTag";
+static NSString *const OPFTagCountLabel = @"Question(s) matching tag(s)";
+static NSInteger const OPFTagSuggestionLimit = 100;
+static NSInteger const OPFTagLoadingByTagLimit = 50;
+static NSInteger const OPFTagSelectionLimit = 20;
 
 - (id)init
 {
@@ -81,23 +83,23 @@ static NSInteger const TagSelectionLimit = 20;
     self.title = NSLocalizedString(@"Tag Browser", @"Tag Browser View controller title");
     self.selectedTagsController = [OPFTagBrowserSelectionViewController new];
     
-    self.selectedTags = [NSMutableSet setWithCapacity:TagSelectionLimit];
-    self.selectedTagsController.tags = [NSMutableArray arrayWithCapacity:TagSelectionLimit];
+    self.selectedTags = [NSMutableSet setWithCapacity:OPFTagSuggestionLimit];
+    self.selectedTagsController.tags = [NSMutableArray arrayWithCapacity:OPFTagSuggestionLimit];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
-    
-    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:TagBrowserHeaderViewIdenfifier];
+    [self.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:OPFTagBrowserCellViewIdenfifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderInitial) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:OPFTagBrowserHeaderViewInitialIdenfifier];
+    [self.collectionView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFTagBrowserCollectionViewHeaderTag) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:OPFTagBrowserHeaderViewTagIdenfifier];
     
     if (self.adjacentTag != nil) {
         self.suggestedTags = [NSMutableArray arrayWithArray:[OPFTag relatedTagsForTagWithName:self.adjacentTag.name]];
         [self loadQuestionsForTags];
     } else {
-        self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(TagSuggestionLimit)] getMany]];
+        self.suggestedTags = [NSMutableArray arrayWithArray:[[[OPFTag mostCommonTagsQuery] limit:@(OPFTagSuggestionLimit)] getMany]];
     }
     
     self.selectedTagsView.dataSource = self.selectedTagsController;
@@ -105,7 +107,7 @@ static NSInteger const TagSelectionLimit = 20;
     self.selectedTagsController.parent = self;
     self.selectedTagsController.view = self.selectedTagsView;
     self.selectedTagsController.collectionView = self.selectedTagsView;
-    [self.selectedTagsController.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:TagBrowserCellViewIdenfifier];
+    [self.selectedTagsController.collectionView registerClass:OPFTagTokenCollectionViewCell.class forCellWithReuseIdentifier:OPFTagBrowserCellViewIdenfifier];
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -190,15 +192,16 @@ static NSInteger const TagSelectionLimit = 20;
 {
     self.questionsQuery = [[OPFQuestion searchFor:@"" inTags:[self getTagNames]] orderBy:@"score" order:kOPFSortOrderDescending];
     
-    self.questionsByTag = [NSMutableArray arrayWithArray:[[self.questionsQuery limit:@(TagLoadingByTagLimit)] getMany]];
+    self.questionsByTag = [NSMutableArray arrayWithArray:[[self.questionsQuery limit:@(OPFTagSuggestionLimit)] getMany]];
     
     [self setResultCountInView];
 }
 
 - (void)setResultCountInView
 {
-    self.footerTagCount.text = (self.questionsByTag.count >= TagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)TagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
-    self.footerTagCountLabel.titleLabel.text = TagCountLabel;
+    self.footerTagCount.text = (self.questionsByTag.count >= OPFTagLoadingByTagLimit) ? [NSString stringWithFormat:@"%lu+", (long)OPFTagLoadingByTagLimit] : [NSString stringWithFormat:@"%lu", (unsigned long)self.questionsByTag.count];
+    
+    self.footerTagCountLabel.titleLabel.text = OPFTagCountLabel;
     
     [self showFooterLabels];
 }
@@ -251,7 +254,7 @@ static NSInteger const TagSelectionLimit = 20;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	OPFTokenCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:TagBrowserCellViewIdenfifier forIndexPath:indexPath];
+	OPFTokenCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:OPFTagBrowserCellViewIdenfifier forIndexPath:indexPath];
 	NSString *token = [self tagFromIndexPath:indexPath].name;
     
 	cell.tokenView.text = token;
@@ -261,14 +264,24 @@ static NSInteger const TagSelectionLimit = 20;
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    OPFTagBrowserCollectionViewHeaderInitial * headerView = nil;
+    UICollectionReusableView * headerView = nil;
     
-    if (kind == UICollectionElementKindSectionHeader) {
-        headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-                                                             withReuseIdentifier:TagBrowserHeaderViewIdenfifier
-                                                                    forIndexPath:indexPath];
+    if (kind == UICollectionElementKindSectionHeader && self.adjacentTag == nil) {
+        OPFTagBrowserCollectionViewHeaderInitial *initialHeaderView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                                              withReuseIdentifier:OPFTagBrowserHeaderViewInitialIdenfifier
+                                                                                                                     forIndexPath:indexPath];
         
-        headerView.tagCount.text = [NSString stringWithFormat:@"%ld", (long)TagSuggestionLimit];
+        initialHeaderView.tagCount.text = [NSString stringWithFormat:@"%ld", (long)OPFTagSuggestionLimit];
+        
+        headerView = initialHeaderView;
+    } else if (kind == UICollectionElementKindSectionHeader && [self.adjacentTag isKindOfClass:OPFTag.class]) {
+        OPFTagBrowserCollectionViewHeaderTag *tagHeaderView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                                      withReuseIdentifier:OPFTagBrowserHeaderViewTagIdenfifier
+                                                                                                             forIndexPath:indexPath];
+        
+        tagHeaderView.tagName.text = self.adjacentTag.name;
+        
+        headerView = tagHeaderView;
     }
     
     return headerView;
