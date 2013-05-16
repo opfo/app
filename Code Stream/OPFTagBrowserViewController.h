@@ -13,7 +13,7 @@
 @interface OPFTagBrowserViewController : UIViewController <UICollectionViewDataSource,
 UICollectionViewDelegate>
 
-@property (weak, nonatomic) IBOutlet OPFTagBrowserCollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *footerTagCount;
 @property (weak, nonatomic) IBOutlet UIButton *footerTagCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *footerTagCountButton;
