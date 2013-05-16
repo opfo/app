@@ -24,15 +24,6 @@
 
 @property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
 
-
-@property (nonatomic, assign) NSInteger score;
-@property (nonatomic, assign) NSInteger answers;
-
-// Array of NSStrings displayed as bubble tags
-// Tag view is updated, when this array gets changed.
-@property (nonatomic, copy) NSArray *tags;
-
-
 // Public: Configure a preview cell with question data
 //
 // question - The data model that should be represented by the preview cell

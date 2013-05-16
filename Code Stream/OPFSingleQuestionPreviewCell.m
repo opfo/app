@@ -19,35 +19,12 @@
 	OPFScoreNumberFormatter *_numberFormatter;
 }
 
-
-#pragma mark Properties
-
-@synthesize score = _score;
-@synthesize answers = _answers;
-
-
-- (void)setScore:(NSInteger)score {
-	if (_score != score) {
-		_score = score;
-		self.scoreLabel.text = [_numberFormatter stringFromScore:score];
-	}
-}
-
-- (void)setAnswers:(NSInteger)answers {
-	if (_answers != answers) {
-		_answers = answers;
-		self.answersLabel.text = [_numberFormatter stringFromScore:answers];
-	}
-}
-
-
 #pragma mark Object Lifecycle
-
 - (void)configureWithQuestionData:(OPFQuestion *)question
 {
 	NSInteger questionScore = question.score.integerValue;
-	self.score = questionScore;
-	self.answers = [question.answerCount integerValue];
+	self.scoreLabel.text = [_numberFormatter stringFromScore:questionScore];
+	self.answersLabel.text = [_numberFormatter stringFromScore:question.answerCount.integerValue];
 	
 	self.answersIndicatorImageView.image = [UIImage opf_postStatusImageForScore:questionScore hasAcceptedAnswer:(question.acceptedAnswerId != nil)];
 	
@@ -75,6 +52,8 @@
 	CGRect questionTextLabelFrame = self.questionTextLabel.frame;
 	questionTextLabelFrame.size = questionTextLabelSize;
 	self.questionTextLabel.frame = questionTextLabelFrame;
+	
+	[self.questionTextLabel setNeedsDisplay];
 }
 
 - (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question
@@ -144,12 +123,20 @@
 	self.answersLabel.layer.shadowOffset = textShadowOffset;
 	self.answersLabel.layer.shadowRadius = textShadowRadius;
 	self.answersLabel.layer.shadowOpacity = textShadowOpacity;
+	
+	self.questionTextLabel.highlightedTextColor = UIColor.whiteColor;
 }
 
 - (void)prepareForReuse
 {
 	self.delegate = nil;
 }
+
+- (UILabel *)textLabel
+{
+	return self.questionTextLabel;
+}
+
 
 
 @end
