@@ -137,7 +137,6 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 	
 	self.searchBarHeader = [OPFSearchBarHeader opf_loadViewFromNIB];
 	
-	
 	self.tableView.tableHeaderView = self.searchBarHeader;
 	self.searchBar.delegate = self;
 	self.searchBarHeader.delegate = self;
@@ -182,7 +181,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 	
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
-		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBar.frame));
+		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.searchBarHeader.bounds));
 		[self.tableView setContentOffset:tableViewContentOffset animated:NO];
 	}
 	
@@ -666,32 +665,19 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 
 
 #pragma mark - UISearchBarDelegate Methods
-// <<<<<<< HEAD
-// - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-// {
-// 	[searchBar setShowsCancelButton:YES animated:YES];
-// 	[self.navigationController setNavigationBarHidden:YES animated:YES];
-// =======
-
 - (OPFQuestionsSearchBar *)searchBar
 {
 	return self.searchBarHeader.searchBar;
 }
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-	return YES;
-// >>>>>>> master
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-// <<<<<<< HEAD
-	[searchBar setShowsCancelButton:NO animated:YES];
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
-// =======
-	// return YES;
-// >>>>>>> master
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
