@@ -740,7 +740,7 @@
 						<string key="data">OPFBarGradientView</string>
 						<string key="inputSendButton">UIButton</string>
 						<string key="inputTextField">UITextField</string>
-						<string key="inputView">UIView</string>
+						<string key="inputView">OPFBarGradientView</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -758,7 +758,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="inputView">
 							<string key="name">inputView</string>
-							<string key="candidateClassName">UIView</string>
+							<string key="candidateClassName">OPFBarGradientView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableView">
 							<string key="name">tableView</string>
