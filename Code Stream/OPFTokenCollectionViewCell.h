@@ -13,6 +13,7 @@
 
 - (instancetype)initWithStyle:(OPFQuestionsSearchBarTokenStyle)style;
 @property (strong, readonly) OPFQuestionsSearchBarTokenView *tokenView;
+@property (assign, nonatomic) BOOL shouldDrawShadow;
 
 @end
 

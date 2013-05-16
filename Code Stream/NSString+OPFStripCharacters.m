@@ -17,7 +17,7 @@
 
 - (NSString *)opf_stringByStrippingHTML
 {
-    NSMutableString *outString;
+    NSMutableString *outString = nil;
     
     if (self)
     {

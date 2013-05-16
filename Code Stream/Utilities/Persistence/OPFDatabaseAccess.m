@@ -61,10 +61,10 @@ static NSString* OPFWritableAuxDBPath;
         successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
     }
     if(!successBase) {
-        NSLog(@"Failed to copy base db to documents directory");
+        DLogError(@"Failed to copy base db to documents directory");
     }
     if(!successAux) {
-        NSLog(@"Failed to copy aux db to documents directory");
+        DLogError(@"Failed to copy aux db to documents directory");
     }
 }
 
@@ -91,7 +91,7 @@ static NSString* OPFWritableAuxDBPath;
     [self attachAuxDB];
     __block FMResultSet* result;
     [_combinedQueue inDatabase: ^(FMDatabase* db) {
-        NSLog(@"Executing query %@", sql);
+        DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Executing query %@", sql);
         result = [db executeQuery:sql];
     }];
     return result;
@@ -125,10 +125,10 @@ static NSString* OPFWritableAuxDBPath;
         [_combinedQueue inDatabase:^(FMDatabase* db){
             BOOL result = [db executeUpdate:@"ATTACH DATABASE ? AS 'auxDB'" withArgumentsInArray:@[OPFWritableAuxDBPath]];
             if (result) {
-                NSLog(@"Successfully attached aux db");
+                DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Successfully attached aux db");
                 self.auxAttached = YES;
             } else {
-                NSLog(@"Failed to attach aux db");
+                DCLog(OPF_DATABASE_ACCESS_DEBUG, @"Failed to attach aux db");
                 self.auxAttached = NO;
             }
         }];

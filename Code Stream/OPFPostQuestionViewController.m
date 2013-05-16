@@ -59,17 +59,17 @@
     
     //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
+
     //set the position of the button
     button.frame = CGRectMake(20, 375, 280, 44);
-    
+
     //set the button's title
     [button setTitle:@"Post" forState:UIControlStateNormal];
-    
+
     //listen for clicks
     [button addTarget:self action:@selector(postButtonPressed)
      forControlEvents:UIControlEventTouchUpInside];
-    
+
     //add the button to the view
     [self.view addSubview:button];
     
@@ -119,26 +119,26 @@
             UIAlertView *emptyField = [[UIAlertView alloc] initWithTitle:@"Empty Field" message:@"Something terrible has happened" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
             [emptyField show];
         }
-        
+
     }
 }
 
 // Update database with the data
 -(BOOL) updateDatabase{
-    
+
     NSString *title = self.titleField.text;
     NSString *body = self.bodyField.text;
-    
+
     OPFUser *user = [OPFAppState userModel];
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
     NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
     NSMutableString *tagsString=[[NSMutableString alloc]initWithString:@""];
-    
+
     for(NSString *s __strong in tags){
         [tagsString appendFormat:@"<%@>",s];
     }
-    
+
     return [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tagsString ByUser:userName userID:userID];
 }
 
@@ -167,8 +167,6 @@
         self.wrongPasswordLabel.hidden = NO;
     }
 }
-
-
 
 
 @end

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
-#import "GCTagList.h"
 #import "OPFScoreNumberFormatter.h"
 
 @class OPFUserPreviewButton;
@@ -21,32 +20,31 @@
 @end
 
 
-@interface OPFSingleQuestionPreviewCell : UITableViewCell <GCTagListDataSource, GCTagListDelegate>
+@interface OPFSingleQuestionPreviewCell : UITableViewCell
 
 @property (weak) id<OPFSingleQuestionPreviewCellDelegate> delegate;
 
 
-@property (nonatomic, copy) NSString *title;
 @property (nonatomic, assign) NSInteger score;
 @property (nonatomic, assign) NSInteger answers;
 
 // Array of NSStrings displayed as bubble tags
 // Tag view is updated, when this array gets changed.
 @property (nonatomic, copy) NSArray *tags;
-@property (nonatomic, assign) BOOL acceptedAnswer;
 
 
 // Public: Configure a preview cell with question data
 //
 // question - The data model that should be represented by the preview cell
 - (void) configureWithQuestionData:(OPFQuestion *)question;
-- (void) heatMode:(Boolean) modeOn;
 
 // IBOutlet properties linked to SingleQuestionPreviewCell.xib
-@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *questionTextLabel;
+//@property (weak, nonatomic) IBOutlet UITextView *questionTextView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *metadataBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answersLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *acceptedAnswerImage;
-@property (weak, nonatomic) IBOutlet GCTagList *tagList;
+@property (weak, nonatomic) IBOutlet UIImageView *answersIndicatorImageView;
 
 @end

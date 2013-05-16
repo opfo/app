@@ -21,7 +21,7 @@ typedef enum : NSInteger {
 @property (strong) UILabel *scoreLabel;
 @property (strong) UIImageView *userAvatar;
 @property (nonatomic, copy) OPFUser *user;
-@property (nonatomic) OPFIconAlign iconAlign;
+@property (nonatomic, assign) OPFIconAlign iconAlign;
 
 
 @end

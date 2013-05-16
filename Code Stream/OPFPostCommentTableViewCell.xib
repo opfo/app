@@ -43,7 +43,7 @@
 								<reference key="NSNextResponder" ref="629749706"/>
 								<int key="NSvFlags">1320</int>
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
-								<string key="NSFrame">{{10, 15}, {91, 15}}</string>
+								<string key="NSFrame">{{10, 14}, {91, 17}}</string>
 								<reference key="NSSuperview" ref="629749706"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="459285412"/>
@@ -54,8 +54,11 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Comments</string>
 								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMjE1Njg2Mjc1IDAuNCAwLjU2ODYyNzQ1MQA</bytes>
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC41AA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="764098167">
+										<int key="NSID">2</int>
+									</object>
 								</object>
 								<object class="NSColor" key="IBUIHighlightedColor" id="938689145">
 									<int key="NSColorSpace">1</int>
@@ -64,11 +67,13 @@
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">2</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
+									<string key="name">AvenirNext-Bold</string>
+									<string key="family">Avenir Next</string>
+									<int key="traits">2</int>
 									<double key="pointSize">12</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
+									<string key="NSName">AvenirNext-Heavy</string>
 									<double key="NSSize">12</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -78,7 +83,7 @@
 								<reference key="NSNextResponder" ref="629749706"/>
 								<int key="NSvFlags">1320</int>
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
-								<string key="NSFrame">{{107, 12}, {100, 19}}</string>
+								<string key="NSFrame">{{107, 12}, {143, 21}}</string>
 								<reference key="NSSuperview" ref="629749706"/>
 								<reference key="NSWindow"/>
 								<bool key="IBUIOpaque">NO</bool>
@@ -86,20 +91,22 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">No comments</string>
+								<string key="IBUIText">No comments yet…</string>
 								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MC4yNQA</bytes>
+									<reference key="NSCustomColorSpace" ref="764098167"/>
 								</object>
 								<reference key="IBUIHighlightedColor" ref="938689145"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
+									<string key="name">AvenirNext-Regular</string>
+									<string key="family">Avenir Next</string>
+									<int key="traits">0</int>
 									<double key="pointSize">15</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
+									<string key="NSName">AvenirNext-UltraLight</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
