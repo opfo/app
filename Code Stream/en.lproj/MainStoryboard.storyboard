@@ -309,33 +309,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="XMK-BP-9kQ">
-                                <cells>
-                                    <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserQuestionsViewCell" id="PsS-Ve-NPG">
-                                        <rect key="frame" x="0.0" y="730" width="320" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6zz-4I-1Qc" userLabel="Logout Button">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="46"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                                    <state key="normal" title="Logout" backgroundImage="profile-logout@2x.png">
-                                                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="userRequestsLogout:" destination="rYG-jP-wVn" eventType="touchUpInside" id="XZJ-xA-BWu"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="aBZ-q2-boG" id="gpB-KN-fYn"/>
@@ -347,8 +320,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="logOut" destination="6zz-4I-1Qc" id="2li-W9-ctf"/>
-                        <outlet property="logoutCell" destination="PsS-Ve-NPG" id="oTJ-c3-DgK"/>
                         <outlet property="userAge" destination="Opi-oZ-ih4" id="SJ9-ar-EMN"/>
                         <outlet property="userAvatar" destination="QLZ-RL-x7D" id="pcX-Ne-aDQ"/>
                         <outlet property="userBio" destination="MMN-kM-TB8" id="2aQ-Xt-Ma5"/>
@@ -695,9 +666,6 @@
             <point key="canvasLocation" x="1087" y="335"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="profile-logout@2x.png" width="556" height="92"/>
-    </resources>
     <classes>
         <class className="FirstResponder">
             <source key="sourceIdentifier" type="user"/>
@@ -742,7 +710,6 @@
         <class className="OPFUserProfileViewController" superclassName="StaticDataTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OPFUserProfileViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="logOut" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="logoutCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="userAge" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="userAvatar" candidateClass="UIImageView"/>

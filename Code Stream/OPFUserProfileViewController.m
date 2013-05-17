@@ -21,6 +21,7 @@
 #import "OPFAppState.h"
 #import "OPFProfileContainerController.h"
 #import "OPFLoginViewController.h"
+#import "OPFSignOutTableFooterView.h"
 #import "UIWebView+OPFHtmlView.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -29,7 +30,10 @@ enum  {
     kOPFUserAnswersViewCell = 5
 };
 
-@interface OPFUserProfileViewController ()
+@interface OPFUserProfileViewController (/*Private*/)
+
+@property (strong, nonatomic) OPFSignOutTableFooterView *signOutTableViewFooter;
+@property (strong, nonatomic, readonly) UIButton *logoutButton;
 
 @property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
 @property(nonatomic, strong) NSNumberFormatter *numberFormatter;
@@ -80,12 +84,11 @@ static CGFloat userAboutMeInset = 20.0;
 	self.userBio.scrollView.bounces = NO;
 	self.userBio.suppressesIncrementalRendering = YES;
 	
-	
-	
 	self.userAvatar.layer.cornerRadius = 6.f;
 	self.userAvatar.layer.masksToBounds = YES;
 	
-	[self.logOut addTarget:nil action:@selector(userRequestsLogout:) forControlEvents:UIControlEventTouchUpInside];
+	self.signOutTableViewFooter = OPFSignOutTableFooterView.new;
+	self.signOutTableViewFooter.padding = UIEdgeInsetsMake(50.f, kOPFSignOutTableFooterViewPaddingLeft, kOPFSignOutTableFooterViewPaddingBottom, kOPFSignOutTableFooterViewPaddingRight);
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -110,6 +113,10 @@ static CGFloat userAboutMeInset = 20.0;
     return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
 }
 
+- (UIButton *)logoutButton
+{
+	return self.signOutTableViewFooter.signOutButton;
+}
 
 - (void)loadUserGravatar
 {
@@ -132,11 +139,12 @@ static CGFloat userAboutMeInset = 20.0;
 {
     // Hide logout-button if user to be shown is not the user that is logged in
     if([OPFAppState userModel].identifier != self.user.identifier){
-        [self.logOut setHidden:YES];
-		self.logOut.layer.cornerRadius = 6.f;
-		self.logOut.layer.masksToBounds = YES;
-        [self cell:self.logoutCell setHidden:YES];
-    }
+		self.tableView.tableFooterView = nil;
+		self.tableView.contentInset = UIEdgeInsetsZero;
+    } else {
+		self.tableView.tableFooterView = self.signOutTableViewFooter;
+		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.f, 0);
+	}
     
     [self loadUserGravatar];
     
