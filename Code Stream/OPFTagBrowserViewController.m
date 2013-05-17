@@ -19,12 +19,17 @@
 #import "OPFQuestionsViewController.h"
 #import "OPFTagBrowserSelectionViewController.h"
 
+#import <THIn.h>
+
 @interface OPFTagBrowserViewController ()
 
 @property (strong) NSMutableArray *suggestedTags;
 @property (strong) NSMutableArray *questionsByTag;
 @property (strong) OPFQuery *questionsQuery;
 @property (strong) OPFTagBrowserSelectionViewController *selectedTagsController;
+
+@property (strong) NSIndexPath *lastTappedIndexPath;
+@property (strong) THInWeakTimer *singleTapDelayTimer;
 
 - (OPFTag *)tagFromIndexPath:(NSIndexPath *)indexPath;
 - (void)didSelectTag:(OPFTag *)tag;
@@ -45,6 +50,7 @@ static NSString *const OPFTagBrowserHeaderViewTagIdenfifier = @"OPFTagBrowserCol
 static NSInteger const OPFTagSuggestionLimit = 100;
 static NSInteger const OPFTagLoadingByTagLimit = 50;
 static NSInteger const OPFTagSelectionLimit = 20;
+static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 
 - (id)init
 {
@@ -114,21 +120,6 @@ static NSInteger const OPFTagSelectionLimit = 20;
     
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
-    
-    //Setup handling of double taps
-    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapTag:)];
-    NSArray* recognizers = [self.collectionView gestureRecognizers];
-    
-    // Make the default gesture recognizer wait until the custom one fails.
-    for (UIGestureRecognizer* aRecognizer in recognizers) {
-        if ([aRecognizer isKindOfClass:[UITapGestureRecognizer class]])
-            [aRecognizer requireGestureRecognizerToFail:tapGesture];
-    }
-    
-    // Now add the gesture recognizer to the collection view.
-    tapGesture.numberOfTapsRequired = 2;
-    tapGesture.numberOfTouchesRequired = 1;
-    [self.collectionView addGestureRecognizer:tapGesture];
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,6 +159,14 @@ static NSInteger const OPFTagSelectionLimit = 20;
     return [self.suggestedTags objectAtIndex:indexPath.row];
 }
 
+- (void)selectTagAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self didSelectTag:[self tagFromIndexPath:indexPath]];
+	
+	[self.suggestedTags removeObject:[self tagFromIndexPath:indexPath]];
+	[self.collectionView deleteItemsAtIndexPaths:@[ indexPath ]];
+}
+
 - (void)didSelectTag:(OPFTag *)tag
 {
     //I know its a set with unique items but i need to know if its a new tag
@@ -182,13 +181,9 @@ static NSInteger const OPFTagSelectionLimit = 20;
 	[self loadQuestionsForTags];
 }
 
-- (void)didDoubleTapTag:(id)sender
+
+- (void)didDoubleTapTag:(OPFTag *)tag
 {
-    CGPoint point = [sender locationInView:self.collectionView];
-    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-    
-    OPFTag *tag = [self tagFromIndexPath:indexPath];
-    
     OPFTagBrowserViewController *nestedTagController = [OPFTagBrowserViewController new];
     nestedTagController.adjacentTag = tag;
     nestedTagController.selectedTags = self.selectedTags;
@@ -322,11 +317,29 @@ static NSInteger const OPFTagSelectionLimit = 20;
 #pragma mark - UICollectionViewDelegate Methods
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self didSelectTag:[self tagFromIndexPath:indexPath]];
-	
-	[self.suggestedTags removeObject:[self tagFromIndexPath:indexPath]];
-	[self.collectionView deleteItemsAtIndexPaths:@[ indexPath ]];
+	if ([self.lastTappedIndexPath isEqual:indexPath]) {
+		[self.singleTapDelayTimer invalidate];
+		self.singleTapDelayTimer = nil;
+		self.lastTappedIndexPath = nil;
+		
+		[self didDoubleTapTag:[self tagFromIndexPath:indexPath]];
+	} else {
+		if (self.lastTappedIndexPath != nil) {
+			[self.singleTapDelayTimer invalidate];
+			self.singleTapDelayTimer = nil;
+			
+			[self selectTagAtIndexPath:indexPath];
+		}
+		
+		self.lastTappedIndexPath = indexPath;
+		self.singleTapDelayTimer = [[THInWeakTimer alloc] initWithDelay:OPFDoubleTapDelay do:^{
+			self.lastTappedIndexPath = nil;
+			
+			[self selectTagAtIndexPath:indexPath];
+		}];
+	}
 }
+
 
 #pragma mark - IBActions
 - (IBAction)showQuestionsByTags:(UIControl *)sender
