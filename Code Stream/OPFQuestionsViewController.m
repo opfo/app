@@ -165,7 +165,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
+    
     // If user is logged out, disable button, otherwise enable it
     self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
     
@@ -188,6 +188,7 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	[super viewDidAppear:animated];
 	
+
 	if (_isFirstTimeAppearing) {
 		_isFirstTimeAppearing = NO;
 		CGPoint tableViewContentOffset = CGPointMake(0.f, CGRectGetHeight(self.tableView.tableHeaderView.frame));

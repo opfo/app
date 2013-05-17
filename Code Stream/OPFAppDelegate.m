@@ -30,16 +30,16 @@
     // Initialize DatabaseAccess
     [OPFDatabaseAccess getDBAccess];
     
+    //Try auto login for user
+    [OPFAppState tryAutoLogin];
+    
     //Load storyboard as bundle by name
     self.storyboard =[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-
+    
     //Set tabbed home screen as rootview controller
     self.tabbedHomeViewController = [OPFTabbedHomeViewController new];
     [_window setRootViewController:self.tabbedHomeViewController];
     [_window makeKeyAndVisible];
-    
-    //Try auto login for user
-    [OPFAppState tryAutoLogin];
     
     return YES;
 }
