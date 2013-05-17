@@ -18,26 +18,11 @@
 @implementation OPFPostAnswerViewController
 @synthesize delegate;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)awakeFromNib
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        [self configureView];
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void) configureView{
-    // Configure navigationbar
+	// Configure navigationbar
     self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView)];
     
     //create the button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -56,17 +41,18 @@
     [self.view addSubview:button];
 }
 
-
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return YES;
 }
 
 
--(void) postButtonPressed{
+- (void)postButtonPressed
+{
     
     // Check that the required fields are not empty
-    if([self.answerBody.text isEqualToString:@""]){
+    if([self.answerBody.text isEqualToString:@""]) {
         self.answerBodyWarning.text = @"Title is missing";
         self.answerBodyWarning.textColor = [UIColor redColor];
         self.answerBodyWarning.hidden = NO;
@@ -89,8 +75,9 @@
 }
 
 // Update database with the filled in data
--(NSInteger) updateDatabase{
-    OPFUser *user = [OPFAppState userModel];
+- (NSInteger)updateDatabase
+{
+    OPFUser *user = OPFAppState.sharedAppState.user;
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
     
@@ -98,8 +85,9 @@
 }
 
 // Go to previous view if user press cancel
--(void) cancelView{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)cancelView
+{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -138,7 +138,7 @@ static CGFloat userAboutMeInset = 20.0;
 -(void) configureView
 {
     // Hide logout-button if user to be shown is not the user that is logged in
-    if([OPFAppState userModel].identifier != self.user.identifier){
+    if(OPFAppState.sharedAppState.user.identifier != self.user.identifier){
 		self.tableView.tableFooterView = nil;
 		self.tableView.contentInset = UIEdgeInsetsZero;
     } else {
