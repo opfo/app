@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class OPFPost, OPFUser;
+@class OPFBarGradientView;
 
 @interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic, strong) OPFPost *postModel;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *inputView;
+@property (weak, nonatomic) IBOutlet OPFBarGradientView *inputView;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet UIButton *inputSendButton;
 

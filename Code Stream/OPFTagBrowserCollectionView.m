@@ -24,8 +24,7 @@
 
 - (void)awakeFromNib
 {
-    [self applyPropertiesOnLabel:self.questionCountLabel];
-	[self applyPropertiesOnLabel:self.questionInfoLabel.titleLabel];
+	[self applyShadowToView:self.questionArrowImageView];
     
     self.footerGradientView.shouldDrawBottomBorder = NO;
     self.headerGradientView.shouldDrawTopBorder = NO;
@@ -36,14 +35,13 @@
 {
 	view.layer.shadowColor = UIColor.whiteColor.CGColor;
 	view.layer.shadowOffset = CGSizeMake(0, 1);
-	view.layer.shadowRadius = 1;
-	view.layer.shadowOpacity = .75f;
+	view.layer.shadowRadius = 0.f;
+	view.layer.shadowOpacity = 1.f;
 }
 
 - (void)applyPropertiesOnLabel:(UILabel *)label
 {
 	[self applyShadowToView:label];
-	label.textColor = UIColor.blackColor;
 }
 
 @end
