@@ -1,8 +1,13 @@
 #!/bin/bash
 
-if [ "$1" = "force" ]
+if [[ "$1" = "force" || "$2" == "force" ]]
 	then
 	FORCE_DB_UPDATE="force"
+fi
+
+if [[ "$1" = "update" || "$2" == "update" ]]
+	then
+	POD_COMMAND="update"
 fi
 
 SCRIPT_DIR=$(dirname "$0")
@@ -23,7 +28,12 @@ bundle install
 
 echo
 echo "*** Updating CocoaPods…"
-pod install
+if [ "$POD_COMMAND" == "update" ]
+	then
+	pod update
+else
+	pod install
+fi
 
 echo
 echo "*** Get the databases"
