@@ -20,6 +20,7 @@ PODS:
   - Specta (0.1.8)
   - sqlite3 (3.7.16.1)
   - StaticDataTableViewController (2.0.2)
+  - THIn (0.0.0)
 
 DEPENDENCIES:
   - AFNetworking (= 1.2.1)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - Specta (= 0.1.8)
   - sqlite3 (from `https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec`)
   - StaticDataTableViewController (from `https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec`)
+  - THIn (from `https://raw.github.com/opfo/resources/master/Pods/THIn.podspec`)
 
 EXTERNAL SOURCES:
   AGMedallionView:
@@ -47,6 +49,8 @@ EXTERNAL SOURCES:
     :podspec: https://raw.github.com/opfo/resources/master/Pods/sqlite3.podspec
   StaticDataTableViewController:
     :podspec: https://raw.github.com/xelvenone/StaticDataTableViewController/master/StaticDataTableViewController.podspec
+  THIn:
+    :podspec: https://raw.github.com/opfo/resources/master/Pods/THIn.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: d1ba5908b233189e424e101721acef7905b58efb
@@ -62,5 +66,6 @@ SPEC CHECKSUMS:
   Specta: 8a215d36842f2d29e888786937d1bf7f8725f780
   sqlite3: 19ef78909d086b66226c54b1e7d323556e640ca3
   StaticDataTableViewController: aa2a86d93ae0f592fa209aa4b4ddb753def572e8
+  THIn: f8dfd49ea3cab0280dc37199b13a17f07661d89e
 
 COCOAPODS: 0.19.1
