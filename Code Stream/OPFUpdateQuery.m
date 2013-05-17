@@ -99,25 +99,29 @@
 +(BOOL) updateVoteWithUserID: (NSInteger) userID PostID: (NSInteger) postID Vote: (NSInteger) vote{
     
     __block int voteNum;
+    __block int exist;
     
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[@(userID)]];
+        FMResultSet *result = [db executeQuery:@"SELECT COUNT(0) AS existens FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[@(userID)]];
+        [result next];
+        exist = [result intForColumn:@"existens"];
+        result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[@(userID)]];
         [result next];
         voteNum = [result intForColumn:@"upvote"];
     }];
-    
+    [[OPFDatabaseAccess getDBAccess] close];
     
     BOOL auxSucceeded;
     
-    if(voteNum==0){
+    if(exist==0){
         NSArray *args = @[@(userID),@(postID),@(vote)];
         NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_votes(user_id,post_id,upvote) values (?,?,?);"];
         auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
     }
     else{
-        //NSArray *args = @[[NSNumber numberWithInteger:vote],[NSNumber numberWithInteger:userID],[NSNumber numberWithInteger:postID]];
-        NSString *auxQuery = [NSString stringWithFormat: @"UPDATE users_votes SET upvote = ?  WHERE user_id = ? AND post_id = ?;"];
-        auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:@[@(voteNum),@(userID),@(postID)] auxiliaryUpdate:YES];
+        NSArray *args = @[@(vote+voteNum),@(userID),@(postID)];
+        NSString *auxQuery = [NSString stringWithFormat: @"UPDATE users_votes SET upvote=?  WHERE user_id=? AND post_id=?;"];
+        auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
     }
     
     NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;

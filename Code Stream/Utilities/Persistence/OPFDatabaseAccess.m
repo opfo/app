@@ -138,6 +138,7 @@ static NSString* OPFWritableAuxDBPath;
 {
     self.auxAttached = NO;
     [_combinedQueue close];
+    [_auxCombinedQueue close];
 }
 
 - (int) lastInsertRowId

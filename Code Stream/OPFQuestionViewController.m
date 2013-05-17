@@ -350,6 +350,32 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
         [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         
+        __block int voteNum;
+        
+        [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[[OPFAppState userModel].identifier,metadataCell.voteUpButton.post.identifier]];
+            [result next];
+            voteNum = [result intForColumn:@"upvote"];
+        }];
+        
+        switch (voteNum) {
+            case 0:
+                metadataCell.voteUpButton.selected=false;
+                metadataCell.voteDownButton.selected=false;
+                break;
+            case -1:
+                metadataCell.voteUpButton.selected=false;
+                metadataCell.voteDownButton.selected=true;
+                break;
+            case 1:
+                metadataCell.voteUpButton.selected=true;
+                metadataCell.voteDownButton.selected=false;
+                break;
+            default:
+                break;
+        }
+
+        
         if([OPFAppState isLoggedIn]){
             metadataCell.voteDownButton.enabled=YES;
             metadataCell.voteUpButton.enabled=YES;
@@ -436,7 +462,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     __block int voteNum;
     
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[[OPFAppState userModel].identifier]];
+        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[[OPFAppState userModel].identifier,vote.post.identifier]];
         [result next];
         voteNum = [result intForColumn:@"upvote"];
     }];
@@ -444,15 +470,12 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     switch (voteNum) {
         case 0:
             [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 1 : -1];
-            vote.selected=true;
             break;
         case 1:
             [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 0 : -1];
-            vote.selected=true;
             break;
         case -1:
             [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 1 : 0];
-            vote.selected=true;
             break;
             
         default:

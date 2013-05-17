@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet OPFPostVoteButton *voteUpButton;
 @property (weak, nonatomic) IBOutlet OPFPostVoteButton *voteDownButton;
-
 @property (weak, nonatomic) IBOutlet OPFUserPreviewButton *userPreviewButton;
 
 
