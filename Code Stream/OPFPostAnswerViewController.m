@@ -77,7 +77,7 @@
 // Update database with the filled in data
 - (NSInteger)updateDatabase
 {
-    OPFUser *user = [OPFAppState userModel];
+    OPFUser *user = OPFAppState.sharedAppState.user;
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
     
