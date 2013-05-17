@@ -374,15 +374,17 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.voteDownButton.siblingVoteButton = metadataCell.voteUpButton;
 		metadataCell.voteUpButton.siblingVoteButton = metadataCell.voteDownButton;
         
-        __block int voteNum;
-        [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[ OPFAppState.sharedAppState.user.identifier, post.identifier]];
-            [result next];
-            voteNum = [result intForColumn:@"upvote"];
-        }];
+		__block int voteNum = kOPFPostUserVoteStateNone;
+		if (OPFAppState.sharedAppState.isLoggedIn) {
+			[[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+				FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[ OPFAppState.sharedAppState.user.identifier, post.identifier ]];
+				[result next];
+				voteNum = [result intForColumn:@"upvote"];
+			}];
+		}
         
-		metadataCell.voteUpButton.selected = voteNum == 1;
-		metadataCell.voteDownButton.selected = voteNum == -1;
+		metadataCell.voteUpButton.selected = voteNum == kOPFPostUserVoteStateUp;
+		metadataCell.voteDownButton.selected = voteNum == kOPFPostUserVoteStateDown;
 		metadataCell.voteDownButton.enabled = OPFAppState.sharedAppState.isLoggedIn;
 		metadataCell.voteUpButton.enabled = OPFAppState.sharedAppState.isLoggedIn;
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
