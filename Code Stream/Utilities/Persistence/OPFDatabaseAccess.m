@@ -45,19 +45,25 @@ static NSString* OPFWritableAuxDBPath;
     BOOL successBase;
     BOOL successAux;
     NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString* defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFDefaultDBFilename];
+	NSString* auxDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFAuxDBFilename];
     NSError *error;
+	
     if (OPFDBOverwriteDBs) {
-        [fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
-        [fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
+		if ([self isFileAtPath:defaultDBPath newerThanFileAtPath:OPFWritableBaseDBPath usingFileManager:fileManager]) {
+			[fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
+		}
+		if ([self isFileAtPath:auxDBPath newerThanFileAtPath:OPFWritableAuxDBPath usingFileManager:fileManager]) {
+			[fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
+		}
     }
+	
     successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
     successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
     if (!successBase) {
-        NSString* defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFDefaultDBFilename];
         successBase = [fileManager copyItemAtPath:defaultDBPath toPath: OPFWritableBaseDBPath error: &error];
     }
     if (!successAux) {
-        NSString* auxDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFAuxDBFilename];
         successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
     }
     if(!successBase) {
@@ -66,6 +72,14 @@ static NSString* OPFWritableAuxDBPath;
     if(!successAux) {
         DLogError(@"Failed to copy aux db to documents directory");
     }
+}
+
++ (BOOL)isFileAtPath:(NSString *)path newerThanFileAtPath:(NSString *)otherPath usingFileManager:(NSFileManager *)fileManager
+{
+	NSDictionary *pathAttributes = [fileManager attributesOfItemAtPath:path error:nil];
+	NSDictionary *otherPathAttributes = [fileManager attributesOfItemAtPath:otherPath error:nil];
+	
+	return (pathAttributes.fileCreationDate != nil && otherPathAttributes.fileCreationDate != nil && ([pathAttributes.fileCreationDate isEqualToDate:otherPathAttributes.fileCreationDate] == NO));
 }
 
 //
