@@ -187,6 +187,8 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
     OPFTagBrowserViewController *nestedTagController = [OPFTagBrowserViewController new];
     nestedTagController.adjacentTag = tag;
     nestedTagController.selectedTags = self.selectedTags;
+    [nestedTagController.selectedTags addObject:tag];
+    [nestedTagController.selectedTagsController.tags addObject:tag];
     
     [self.navigationController pushViewController:nestedTagController animated:YES];
 }
@@ -322,7 +324,6 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 		self.singleTapDelayTimer = nil;
 		self.lastTappedIndexPath = nil;
 		
-        [self selectTagAtIndexPath:indexPath];
 		[self didDoubleTapTag:[self tagFromIndexPath:indexPath]];
 	} else {
 		if (self.lastTappedIndexPath != nil && self.singleTapDelayTimer != nil) {
