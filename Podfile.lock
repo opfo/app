@@ -53,7 +53,7 @@ EXTERNAL SOURCES:
     :podspec: https://raw.github.com/opfo/resources/master/Pods/THIn.podspec
 
 SPEC CHECKSUMS:
-  AFNetworking: d1ba5908b233189e424e101721acef7905b58efb
+  AFNetworking: 02a1b682b3c3fa39afd22e725ab8f4a65cb157b6
   AGMedallionView: 5eeb9e90035d8da77c7ffcce83bd480b1503c1bd
   AKTabBarController: 7c67c1b401f9ad49031a67b68ccd6193227985ae
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
