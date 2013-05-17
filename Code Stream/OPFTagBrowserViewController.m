@@ -148,8 +148,12 @@ static NSInteger const OPFTagSelectionLimit = 20;
     [self.selectedTagsController.tags removeObject:tag];
     [self.selectedTags removeObject:tag];
     
-    [self.selectedTagsView reloadData];
-    
+	[self.suggestedTags addObject:tag];
+	[self.suggestedTags sortUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"counter" ascending:NO] ]];
+	NSUInteger tagIndex = [self.suggestedTags indexOfObject:tag];
+	NSIndexPath *insertedTagIndexPath = [NSIndexPath indexPathForItem:tagIndex inSection:0];
+	[self.collectionView insertItemsAtIndexPaths:@[ insertedTagIndexPath ]];
+	
     if (self.selectedTags.count == 0) {
         [self hideFooterLabels];
     }
@@ -169,11 +173,12 @@ static NSInteger const OPFTagSelectionLimit = 20;
     //I know its a set with unique items but i need to know if its a new tag
     if (! [self.selectedTags containsObject:tag]) {
         [self.selectedTagsController.tags addObject:tag];
-        [self.selectedTagsView reloadData];
+		NSIndexPath *insertedTagIndexPath = [NSIndexPath indexPathForItem:self.selectedTagsController.tags.count - 1 inSection:0];
+		[self.selectedTagsView insertItemsAtIndexPaths:@[ insertedTagIndexPath ]];
     }
     
     [self.selectedTags addObject:tag];
-    
+	
 	[self loadQuestionsForTags];
 }
 
@@ -318,6 +323,9 @@ static NSInteger const OPFTagSelectionLimit = 20;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self didSelectTag:[self tagFromIndexPath:indexPath]];
+	
+	[self.suggestedTags removeObject:[self tagFromIndexPath:indexPath]];
+	[self.collectionView deleteItemsAtIndexPaths:@[ indexPath ]];
 }
 
 #pragma mark - IBActions
