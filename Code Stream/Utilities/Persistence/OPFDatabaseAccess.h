@@ -11,7 +11,7 @@
 #import "FMDatabaseQueue.h"
 
 
-#define OPF_DATABASE_ACCESS_DEBUG ((DEBUG && 1) == 1)
+#define OPF_DATABASE_ACCESS_DEBUG ((DEBUG && 0) == 1)
 
 
 @class OPFDatabaseQueue;
