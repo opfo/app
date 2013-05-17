@@ -344,43 +344,43 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
         metadataCell.voteUpButton.post=post;
-        metadataCell.voteUpButton.buttonTypeUp=YES;
+        metadataCell.voteUpButton.buttonTypeUp = YES;
         metadataCell.voteDownButton.post=post;
-        metadataCell.voteDownButton.buttonTypeUp=NO;
+        metadataCell.voteDownButton.buttonTypeUp = NO;
         [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
         
         __block int voteNum;
         
         [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[@(OPFAppState.sharedAppState.user.identifier.integerValue),metadataCell.voteUpButton.post.identifier]];
+            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[@(OPFAppState.sharedAppState.user.identifier.integerValue), metadataCell.voteUpButton.post.identifier]];
             [result next];
             voteNum = [result intForColumn:@"upvote"];
         }];
         
         switch (voteNum) {
             case 0:
-                metadataCell.voteUpButton.selected=false;
-                metadataCell.voteDownButton.selected=false;
+                metadataCell.voteUpButton.selected = NO;
+                metadataCell.voteDownButton.selected = NO;
                 break;
             case -1:
-                metadataCell.voteUpButton.selected=false;
-                metadataCell.voteDownButton.selected=true;
+                metadataCell.voteUpButton.selected = NO;
+                metadataCell.voteDownButton.selected = YES;
                 break;
             case 1:
-                metadataCell.voteUpButton.selected=true;
-                metadataCell.voteDownButton.selected=false;
+                metadataCell.voteUpButton.selected = YES;
+                metadataCell.voteDownButton.selected = NO;
                 break;
             default:
                 break;
         }
         if(OPFAppState.sharedAppState.isLoggedIn){
-            metadataCell.voteDownButton.enabled=YES;
-            metadataCell.voteUpButton.enabled=YES;
+            metadataCell.voteDownButton.enabled = YES;
+            metadataCell.voteUpButton.enabled = YES;
         }
         else{
-            metadataCell.voteDownButton.enabled=NO;
-            metadataCell.voteUpButton.enabled=NO;
+            metadataCell.voteDownButton.enabled = NO;
+            metadataCell.voteUpButton.enabled = NO;
         }
 								
 											   
@@ -411,9 +411,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		cell.backgroundColor = UIColor.whiteColor;
 	}
 }
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

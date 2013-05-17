@@ -44,8 +44,6 @@
     NSArray* args = @[@2, @(questionID), date, @0, @0, answerBody, @(userID), date, @0];
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray: args auxiliaryUpdate:NO];
     
-    int id = [self getNextPostId];
-    
     // Query to the auxiliary db so it will be in sync with the SO db
     NSString *auxQuery = @"INSERT INTO posts_index(object_id, aux_index_string) values (?,?);";
     
