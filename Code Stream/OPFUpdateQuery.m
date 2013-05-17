@@ -94,36 +94,46 @@
     return succeeded && auxSucceeded;
 }
 
-+(BOOL) updateVoteWithUserID: (NSInteger) userID PostID: (NSInteger) postID Vote: (NSInteger) vote{
-    
++ (BOOL)updateVoteWithUserID:(NSInteger)userID postID:(NSInteger)postID vote:(NSInteger)voteState
+{
     __block int voteNum;
     __block int exist;
     
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet *result = [db executeQuery:@"SELECT COUNT(0) AS existens FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[@(userID)]];
+        FMResultSet *result = [db executeQuery:@"SELECT COUNT(0) AS existens FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;" withArgumentsInArray:@[ @(userID), @(postID) ]];
         [result next];
         exist = [result intForColumn:@"existens"];
-        result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ?" withArgumentsInArray:@[@(userID)]];
+        result = [db executeQuery:@"SELECT `upvote` FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;" withArgumentsInArray:@[ @(userID), @(postID) ]];
         [result next];
         voteNum = [result intForColumn:@"upvote"];
     }];
     [[OPFDatabaseAccess getDBAccess] close];
     
-    BOOL auxSucceeded;
+    BOOL auxSucceeded = NO;
     
-    if(exist==0){
-        NSArray *args = @[@(userID),@(postID),@(vote)];
-        NSString *auxQuery = [NSString stringWithFormat: @"INSERT INTO users_votes(user_id,post_id,upvote) values (?,?,?);"];
+	NSInteger totalVotes = [OPFQuestion find:postID].score.integerValue;
+	
+	if (voteState == kOPFPostUserVoteStateNone) {
+		NSArray *args = @[ @(userID), @(postID) ];
+		NSString *auxQuery = @"DELETE FROM users_votes WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;";
+		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+		
+		totalVotes -= voteNum;
+	} else if (exist == 0) {
+        NSArray *args = @[ @(userID), @(postID), @(voteState) ];
+        NSString *auxQuery = @"INSERT INTO users_votes(user_id,post_id,upvote) values (?,?,?);";
         auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
-    }
-    else{
-        NSArray *args = @[@(vote+voteNum),@(userID),@(postID)];
-        NSString *auxQuery = [NSString stringWithFormat: @"UPDATE users_votes SET upvote=?  WHERE user_id=? AND post_id=?;"];
-        auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+		
+		totalVotes += voteState;
+	} else {
+		NSArray *args = @[ @(voteState), @(userID), @(postID) ];
+		NSString *auxQuery = @"UPDATE users_votes SET upvote=?  WHERE user_id=? AND post_id=?;";
+		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+		
+		totalVotes = totalVotes - voteNum + voteState;
     }
     
-    NSInteger totalVotes = [[OPFQuestion find:postID].score integerValue]+vote;
-    NSArray *args = @[@(totalVotes),@(postID)];
+    NSArray *args = @[ @(totalVotes), @(postID) ];
     NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
 

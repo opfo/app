@@ -10,6 +10,7 @@
 #import "OPFPost.h"
 
 @interface OPFPostVoteButton : UIButton
-@property (weak, nonatomic) OPFPost *post;
-@property (nonatomic) BOOL buttonTypeUp;
+@property (strong, nonatomic) OPFPost *post;
+@property (assign, nonatomic) BOOL buttonTypeUp;
+@property (weak, nonatomic) OPFPostVoteButton *siblingVoteButton;
 @end
