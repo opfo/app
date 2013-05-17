@@ -18,6 +18,8 @@
 #import "OPFUser.h"
 #import "UIFont+OPFAppFonts.h"
 #import "OPFAppState.h"
+#import "NSString+OPFStripCharacters.h"
+#import "NSString+OPFEscapeStrings.h"
 #import "OPFBarGradientView.h"
 
 #define INPUT_HEIGHT 44.0f
@@ -36,7 +38,6 @@
 static NSString *const OPFCommentTableCell = @"OPFCommentTableCell";
 static NSString *const OPFCommentTableHeader = @"OPFCommentTableHeader";
 static CGFloat const OPFCommentTableCellOffset = 60.0f;
-static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
 - (id)init
 {
@@ -71,7 +72,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewHeaderView) bundle:nil] forHeaderFooterViewReuseIdentifier:OPFCommentTableHeader];
     [self.tableView registerNib:[UINib nibWithNibName:CDStringFromClass(OPFCommentViewCell) bundle:nil] forCellReuseIdentifier:OPFCommentTableCell];
-	
+
 	self.inputView.shouldDrawBottomBorder = NO;
 }
 
@@ -175,11 +176,12 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	OPFComment *commentModel = [self.commentModels objectAtIndex:indexPath.row];
-    NSString *text = commentModel.text;
-    CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(267.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
-    CGFloat offset = textSize.height > 120.f ?  OPFCommentTableCellOffsetExtra : OPFCommentTableCellOffset;
 
-    return textSize.height + offset;
+    NSString *text = [commentModel.text.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace OPF_escapeWithScheme:OPFStripAscii];
+
+    CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(250.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
+
+    return textSize.height + OPFCommentTableCellOffset;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -192,9 +194,9 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 80.0f;
         self.inputTextField.enabled=NO;
         self.inputSendButton.enabled=NO;
     }
-    
+
     [self scrollToBottomAnimated:NO];
-    
+
 	[[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(handleWillShowKeyboard:)
 		name:UIKeyboardWillShowNotification

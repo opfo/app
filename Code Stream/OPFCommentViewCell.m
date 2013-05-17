@@ -16,6 +16,8 @@
 #import <SSLineView.h>
 #import "UIFont+OPFAppFonts.h"
 #import "OPFSidebarView.h"
+#import "NSString+OPFStripCharacters.h"
+#import "NSString+OPFEscapeStrings.h"
 
 @interface OPFCommentViewCell()
 
@@ -31,7 +33,6 @@
 @implementation OPFCommentViewCell
 
 static CGFloat const OPFCommentTableCellOffset = 20.0f;
-static CGFloat const OPFCommentTableCellOffsetExtra = 40.0f;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -90,7 +91,7 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 40.0f;
 {
     self.commentModel = comment;
     
-    self.commentBody.text = self.commentModel.text;
+    self.commentBody.text = [self.commentModel.text.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace OPF_escapeWithScheme:OPFStripAscii];
     self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.creationDate];
     self.commentTime.text = [self.timeFormatter stringFromDate:self.commentModel.creationDate];
     self.commentVoteCount.text =
@@ -117,17 +118,10 @@ static CGFloat const OPFCommentTableCellOffsetExtra = 40.0f;
 - (void)updateConstraints
 {
     [super updateConstraints];
-    
-    NSString *text = self.commentModel.text;
-    
-    CGSize textSize = [text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(267.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
-    
-    CGSize constrainedSize = [self.commentBody sizeThatFits:textSize];
-    CGFloat offset = constrainedSize.height > 120.f ?  OPFCommentTableCellOffsetExtra : OPFCommentTableCellOffset;
 
-    CGRect fittingTextFrame = CGRectMake(self.commentBody.frame.origin.x, self.commentBody.frame.origin.y, self.commentBody.frame.size.width, constrainedSize.height + offset);
-    
-    self.commentBodyHeight.constant = fittingTextFrame.size.height;
+    CGSize textSize = [self.commentBody.text sizeWithFont:[UIFont opf_appFontOfSize:14.0f] constrainedToSize:CGSizeMake(250.f, 1000.f) lineBreakMode:NSLineBreakByWordWrapping];
+        
+    self.commentBodyHeight.constant = textSize.height + OPFCommentTableCellOffset;
 }
 
 @end

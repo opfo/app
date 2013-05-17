@@ -246,7 +246,7 @@
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUINormalTitle">tdeekens</string>
+										<string key="IBUINormalTitle">Tobias Deekens</string>
 										<reference key="IBUIHighlightedTitleColor" ref="1050966945"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">3</int>
