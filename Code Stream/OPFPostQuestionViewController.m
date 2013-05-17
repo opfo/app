@@ -112,17 +112,17 @@
         [tagsString appendFormat:@"<%@>",s];
     }
     
-    OPFQuestion *question = [OPFQuestion new];
-    question.title=self.titleField.text;
-    question.body=[NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
-    question.owner=[OPFAppState userModel];
-    question.tags=tags;
+    OPFQuestion *question = OPFQuestion.new;
+    question.title = self.titleField.text;
+    question.body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
+    question.owner = OPFAppState.sharedAppState.user;
+    question.tags = tags;
     
     
     NSString *title = self.titleField.text;
     NSString *body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
 
-    OPFUser *user = [OPFAppState userModel];
+    OPFUser *user = OPFAppState.sharedAppState.user;
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
    
@@ -149,7 +149,7 @@
     NSString* password = self.password.text;
     BOOL persistFlag = self.rememberUser.isOn;
     
-    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
+    BOOL loginReponse = [OPFAppState.sharedAppState loginWithEmailHash:email.opf_md5hash password:password persistLogin:persistFlag];
     
     if(loginReponse == YES) {
         self.loginView.hidden=YES;

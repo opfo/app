@@ -74,15 +74,15 @@ static NSString *const OPFActivityCommentViewCellIdentifier = @"OPFActivityComme
 
 - (void)fetchModels
 {
-    if (![OPFAppState isLoggedIn]) { return; }
+    if (OPFAppState.sharedAppState.isLoggedIn == NO) { return; }
     
     OPFQuery *questionsQuery = nil;
     OPFQuery *answersQuery = nil;
     OPFQuery *commentsQuery = nil;
     
-    questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
-    answersQuery = [[[OPFAnswer.query whereColumn:@"owner_user_id" is:[OPFAppState userModel].identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
-    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:[OPFAppState userModel].identifier] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];
+    questionsQuery = [[[OPFQuestion.query whereColumn:@"owner_user_id" is:OPFAppState.sharedAppState.user.identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    answersQuery = [[[OPFAnswer.query whereColumn:@"owner_user_id" is:OPFAppState.sharedAppState.user.identifier] orderBy:@"last_activity_date" order:kOPFSortOrderAscending] limit:@(25)];
+    commentsQuery = [[[OPFComment.query whereColumn:@"user_id" is:OPFAppState.sharedAppState.user.identifier] orderBy:@"creation_date" order:kOPFSortOrderAscending] limit:@(25)];
     
     self.questionModels = [questionsQuery getMany];
     self.answerModels = [answersQuery getMany];

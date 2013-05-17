@@ -737,17 +737,12 @@
 						</object>
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="data">OPFBarGradientView</string>
 						<string key="inputSendButton">UIButton</string>
 						<string key="inputTextField">UITextField</string>
 						<string key="inputView">OPFBarGradientView</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="data">
-							<string key="name">data</string>
-							<string key="candidateClassName">OPFBarGradientView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="inputSendButton">
 							<string key="name">inputSendButton</string>
 							<string key="candidateClassName">UIButton</string>

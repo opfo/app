@@ -88,6 +88,7 @@ static NSString *const OPFTagBrowserCellViewIdenfifier = @"OPFTagBrowserCollecti
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self didSelectTag:[self tagFromIndexPath:indexPath]];
+	[collectionView deleteItemsAtIndexPaths:@[ indexPath ]];
 }
 
 #pragma mark - Private Methods

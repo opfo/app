@@ -69,8 +69,8 @@ static const NSTimeInterval TransitionDuration = .5f;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if ([OPFAppState isLoggedIn]) {
-        self.profileViewController.user = [OPFAppState userModel];
+    if (OPFAppState.sharedAppState.isLoggedIn) {
+        self.profileViewController.user = OPFAppState.sharedAppState.user;
         
         [self.view addSubview:self.profileViewController.view];
     } else {
@@ -123,7 +123,7 @@ static const NSTimeInterval TransitionDuration = .5f;
 {
     self.title = NSLocalizedString(@"Profile", @"Profile View controller title");
     
-    self.profileViewController.user = [OPFAppState userModel];
+    self.profileViewController.user = OPFAppState.sharedAppState.user;
     
     [self transitionFromViewController:viewController
                       toViewController:self.profileViewController
@@ -155,7 +155,7 @@ static const NSTimeInterval TransitionDuration = .5f;
     NSString* password = self.loginViewController.passwordField.text;
     BOOL persistFlag = self.loginViewController.rememberUser.isOn;
     
-    BOOL loginReponse = [OPFAppState loginWithEMailHash:email.opf_md5hash andPassword:password persistLogin:persistFlag];
+    BOOL loginReponse = [OPFAppState.sharedAppState loginWithEmailHash:email.opf_md5hash password:password persistLogin:persistFlag];
     
     if(loginReponse == YES) {
         [self transitionToProfileViewControllerFromViewController:self.loginViewController];
@@ -166,7 +166,7 @@ static const NSTimeInterval TransitionDuration = .5f;
 
 - (void)userRequestsLogout:(id)sender
 {
-    [OPFAppState logout];
+    [OPFAppState.sharedAppState logout];
     [self transitionToLoginViewControllerFromViewController:self.profileViewController];
 }
 

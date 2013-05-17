@@ -129,7 +129,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	NSNumberFormatter *format = NSNumberFormatter.new;
 	[format setNumberStyle:NSNumberFormatterDecimalStyle];
-	NSString* height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"];
+	NSString* height = [webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"];
 	
 	[self.rowHeights replaceObjectAtIndex:webView.tag withObject:[format numberFromString:height]];
 	
@@ -197,7 +197,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	[super viewWillAppear:animated];
     
     // If user is logged out, disable button, otherwise enable it
-    self.navigationItem.rightBarButtonItem.enabled = [OPFAppState isLoggedIn] ? YES : NO;
+    self.navigationItem.rightBarButtonItem.enabled = OPFAppState.sharedAppState.isLoggedIn;
     
 	[self updatePostsFromQuestion];
 }
@@ -353,7 +353,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
         __block int voteNum;
         
         [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[[OPFAppState userModel].identifier,metadataCell.voteUpButton.post.identifier]];
+            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[@(OPFAppState.sharedAppState.user.identifier.integerValue),metadataCell.voteUpButton.post.identifier]];
             [result next];
             voteNum = [result intForColumn:@"upvote"];
         }];
@@ -374,9 +374,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
             default:
                 break;
         }
-
-        
-        if([OPFAppState isLoggedIn]){
+        if(OPFAppState.sharedAppState.isLoggedIn){
             metadataCell.voteDownButton.enabled=YES;
             metadataCell.voteUpButton.enabled=YES;
         }
@@ -459,28 +457,33 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 
 -(void) pressedUserVoteButton:(id) sender{
     OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
-    __block int voteNum;
-    
+    __block int voteNum = 0;
+	
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[[OPFAppState userModel].identifier,vote.post.identifier]];
+
+        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[OPFAppState.sharedAppState.user.identifier,vote.post.identifier]];
+
         [result next];
         voteNum = [result intForColumn:@"upvote"];
     }];
-
+	
+	NSInteger userIdentifier = OPFAppState.sharedAppState.user.identifier.integerValue;
+	NSInteger postIdentifier = vote.post.identifier.integerValue;
     switch (voteNum) {
         case 0:
-            [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 1 : -1];
+            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 1 : -1];
             break;
         case 1:
-            [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 0 : -1];
+            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 0 : -1];
             break;
         case -1:
-            [OPFUpdateQuery updateVoteWithUserID:[[OPFAppState userModel].identifier integerValue] PostID:[vote.post.identifier integerValue] Vote:vote.buttonTypeUp ? 1 : 0];
+            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 1 : 0];
             break;
             
         default:
             break;
     }
+
     [self refreshQuestion];
     [self updatePostsFromQuestion];
     
