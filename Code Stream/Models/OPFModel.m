@@ -38,6 +38,12 @@
     return result;
 }
 
+#pragma mark - Refreshing Objects
+- (instancetype)refreshedObject
+{
+	return [self.class find:self.identifier.integerValue];
+}
+
 # pragma mark - Data parsing methods
 
 + (NSDateFormatter*) dateFormatter

@@ -25,4 +25,7 @@
 +(instancetype) parseDictionary: (NSDictionary*) attributes;
 +(NSString*) dbName;
 -(BOOL) isEqualToModel:(OPFModel*) other;
+
+- (instancetype)refreshedObject;
+
 @end
