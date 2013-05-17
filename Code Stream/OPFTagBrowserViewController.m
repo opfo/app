@@ -324,7 +324,7 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 		
 		[self didDoubleTapTag:[self tagFromIndexPath:indexPath]];
 	} else {
-		if (self.lastTappedIndexPath != nil) {
+		if (self.lastTappedIndexPath != nil && self.singleTapDelayTimer != nil) {
 			[self.singleTapDelayTimer invalidate];
 			self.singleTapDelayTimer = nil;
 			
