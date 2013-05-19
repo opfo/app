@@ -7,4 +7,4 @@ before_install:
   - brew update
   - brew install xctool --HEAD
   - ./Scripts/bootstrap
-script: rake test
+script: xctool -workspace 'Code Stream.xcworkspace' -scheme 'Code StreamTests' test -test-sdk iphonesimulator
