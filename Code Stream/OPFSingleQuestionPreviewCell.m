@@ -16,8 +16,8 @@
 
 
 @interface OPFSingleQuestionPreviewCell (/*Private*/)
-@property (copy, nonatomic) NSString *questionTitle;
-@property (copy, nonatomic) NSString *questionBody;
+@property (strong, nonatomic) NSAttributedString *questionTextLabelText;
+@property (strong, nonatomic) NSAttributedString *highlightedQuestionTextLabelText;
 @end
 
 
@@ -50,39 +50,16 @@
 	}
 	self.metadataBackgroundImageView.image = metadataBackgroundImage;
 	
-	self.questionTitle = question.title;
-	self.questionBody = question.body;
-	NSAttributedString *questionText = [self attributedTextForQuestion:question highlighted:self.highlighted];
-	self.questionTextLabel.attributedText = questionText;
+	NSString *questionTitle = question.title.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	NSString *questionBody = question.body.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	self.questionTextLabelText = [self attributedTextForQuestionTitle:questionTitle questionBody:questionBody highlighted:NO];
+	self.highlightedQuestionTextLabelText = [self attributedTextForQuestionTitle:questionTitle questionBody:questionBody highlighted:YES];
+	
+	[self updateQuestionTextLabelForHightlightState:(self.highlighted || self.selected)];
 }
 
-- (NSAttributedString *)attributedTextForQuestion:(OPFQuestion *)question highlighted:(BOOL)highlighted
-{
-	return [self attributedTextForQuestionTitle:question.title questionBody:question.body highlighted:highlighted];
-}
 
-- (NSAttributedString *)attributedTextForQuestionTitle:(NSString *)questionTitle questionBody:(NSString *)questionBody highlighted:(BOOL)highlighted
-{
-	NSParameterAssert(questionTitle != nil);
-	NSParameterAssert(questionBody != nil);
-	
-	NSDictionary *questionTitleAttributes = (highlighted == NO ? self.class.questionTitleAttributes : self.class.highlightedQuestionTitleAttributes);
-	NSAttributedString *questionTitleString = [[NSAttributedString alloc] initWithString:questionTitle attributes:questionTitleAttributes];
-	
-	// Body text disabled at the moment as we would need to strip every single
-	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
-	// got time for that!
-	NSDictionary *questionBodyAttributes = (highlighted == NO ? self.class.questionBodyAttributes : self.class.highlightedQuestionBodyAttributes);
-	NSString *body = questionBody.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
-	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
-
-	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
-	[questionText appendAttributedString:questionTitleString];
-	[questionText appendAttributedString:questionBodyString];
-	
-	return questionText;
-}
-
+#pragma mark - Layout and Drawing
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
@@ -96,10 +73,10 @@
 	self.questionTextLabel.frame = questionTextLabelFrame;
 }
 
+
+#pragma mark - Object Lifecycle
 - (void)sharedSingleQuestionPreviewCellInit
 {
-	_questionTitle = @"";
-	_questionBody = @"";
 	_numberFormatter = OPFScoreNumberFormatter.new;
 	
 	UIView *backgroundView = UIView.new;
@@ -142,6 +119,8 @@
 	self.delegate = nil;
 }
 
+
+#pragma mark - Highlight State
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
 	[super setHighlighted:highlighted animated:animated];
@@ -156,8 +135,31 @@
 
 - (void)updateQuestionTextLabelForHightlightState:(BOOL)highlight
 {
-	NSAttributedString *questionText = [self attributedTextForQuestionTitle:self.questionTitle questionBody:self.questionBody highlighted:highlight];
-	self.questionTextLabel.attributedText = questionText;
+	self.questionTextLabel.attributedText = (highlight ? self.highlightedQuestionTextLabelText : self.questionTextLabelText);
+}
+
+
+#pragma mark - Question Label Text
+- (NSAttributedString *)attributedTextForQuestionTitle:(NSString *)questionTitle questionBody:(NSString *)questionBody highlighted:(BOOL)highlighted
+{
+	NSParameterAssert(questionTitle != nil);
+	questionBody = questionBody ?: @"";
+
+	NSDictionary *questionTitleAttributes = (highlighted == NO ? self.class.questionTitleAttributes : self.class.highlightedQuestionTitleAttributes);
+	NSAttributedString *questionTitleString = [[NSAttributedString alloc] initWithString:questionTitle attributes:questionTitleAttributes];
+
+	// Body text disabled at the moment as we would need to strip every single
+	// peice of HTML/Markdown/whatnot from it before showing it. Ain’t nobody
+	// got time for that!
+	NSDictionary *questionBodyAttributes = (highlighted == NO ? self.class.questionBodyAttributes : self.class.highlightedQuestionBodyAttributes);
+	NSString *body = questionBody.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	NSAttributedString *questionBodyString = [[NSAttributedString alloc] initWithString:[@"\n" stringByAppendingString:body] attributes:questionBodyAttributes];
+
+	NSMutableAttributedString *questionText = [[NSMutableAttributedString alloc] init];
+	[questionText appendAttributedString:questionTitleString];
+	[questionText appendAttributedString:questionBodyString];
+
+	return questionText;
 }
 
 
