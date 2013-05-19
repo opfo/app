@@ -164,6 +164,7 @@
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
+		8C0FFABD1746BC520078B912 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0FFABC1746BC520078B912 /* arrow_left.png */; };
 		8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2725D51738562D0068D89C /* OPFWebViewController.m */; };
 		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
 		8C420191173CE3F100329C6D /* OPFUpdateQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C420190173CE3F100329C6D /* OPFUpdateQuery.m */; };
@@ -172,6 +173,8 @@
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
 		8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
+		8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */; };
+		8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7B7A71748434600DD3629 /* OPFDBInsertionIdentifier.m */; };
 		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
 		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
 		8CF371C817398D68009B6425 /* forwardArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CF371C717398D68009B6425 /* forwardArrow.png */; };
@@ -498,6 +501,7 @@
 		81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPostSpec.m; path = ModelSpecs/OPFPostSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
+		8C0FFABC1746BC520078B912 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		8C2725D41738562D0068D89C /* OPFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFWebViewController.h; sourceTree = "<group>"; };
 		8C2725D51738562D0068D89C /* OPFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFWebViewController.m; sourceTree = "<group>"; };
 		8C2725D61738562D0068D89C /* OPFWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFWebView.xib; sourceTree = "<group>"; };
@@ -511,6 +515,10 @@
 		8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostVoteButton.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
+		8CE7B7A31748429500DD3629 /* OPFDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDateFormatter.h; sourceTree = "<group>"; };
+		8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDateFormatter.m; sourceTree = "<group>"; };
+		8CE7B7A61748434600DD3629 /* OPFDBInsertionIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDBInsertionIdentifier.h; sourceTree = "<group>"; };
+		8CE7B7A71748434600DD3629 /* OPFDBInsertionIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDBInsertionIdentifier.m; sourceTree = "<group>"; };
 		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
 		8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostAnswerViewController.m; sourceTree = "<group>"; };
 		8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostAnswerView.xib; sourceTree = "<group>"; };
@@ -987,6 +995,8 @@
 				813F5CDC17329E2B00F71CD6 /* OPFSearchQuery.m */,
 				8C42018F173CE3F100329C6D /* OPFUpdateQuery.h */,
 				8C420190173CE3F100329C6D /* OPFUpdateQuery.m */,
+				8CE7B7A61748434600DD3629 /* OPFDBInsertionIdentifier.h */,
+				8CE7B7A71748434600DD3629 /* OPFDBInsertionIdentifier.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -1126,6 +1136,7 @@
 		9C1C513B1716FBE0004CC9E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8C0FFABC1746BC520078B912 /* arrow_left.png */,
 				9C235FC7173A9E0800907558 /* Images */,
 				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1A816ABE171DF51700964AF2 /* Avatars */,
@@ -1411,6 +1422,8 @@
 			children = (
 				9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */,
 				9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */,
+				8CE7B7A31748429500DD3629 /* OPFDateFormatter.h */,
+				8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -1818,6 +1831,7 @@
 				9CA65D3117459A1000F6D46A /* comments-compose-disabled@2x.png in Resources */,
 				9CA65D3217459A1000F6D46A /* comments-compose-highlighted@2x.png in Resources */,
 				9CA65D3317459A1000F6D46A /* comments-compose@2x.png in Resources */,
+				8C0FFABD1746BC520078B912 /* arrow_left.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1996,6 +2010,8 @@
 				9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */,
 				1A1DC53B17454DD600E1A01A /* OPFBarGradientView.m in Sources */,
 				9CA65D3C1745A7BC00F6D46A /* OPFSignOutTableFooterView.m in Sources */,
+				8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */,
+				8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

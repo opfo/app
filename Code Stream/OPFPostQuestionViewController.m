@@ -15,8 +15,10 @@
 #import "OPFSignupViewController.h"
 #import "NSString+OPFMD5Hash.h"
 #import "UIColor+OPFAppColors.h"
-
+#import <QuartzCore/QuartzCore.h>
 #import <BlocksKit.h>
+#import "OPFDateFormatter.h"
+#import "OPFDBInsertionIdentifier.h"
 
 @interface OPFPostQuestionViewController ()
 @property (strong, nonatomic) OPFLoginViewController *loginViewController;
@@ -24,12 +26,13 @@
 
 @implementation OPFPostQuestionViewController
 
+const unichar Bullet = 0x25CF;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [self configureView];
     }
     return self;
 }
@@ -37,39 +40,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-}
-
-- (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    self.bodyField.layer.borderColor = [[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor];
+    self.bodyField.layer.borderWidth = 2.0;
+    self.bodyField.layer.cornerRadius = 10;
+    self.bodyField.clipsToBounds = YES;
+    self.bulletBarItem.title = [NSString stringWithFormat:@"%C",Bullet];
+    self.insertCode.title = @"{}";
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) configureView{
-    //listen for clicks
-    [self.loginButton addTarget:self action:@selector(postButtonPressed)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    UIButton *loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    //set the position of the button
-    loginButton.frame = CGRectMake(20, 247, 280, 44);
-    
-    //set the button's title
-    [loginButton setTitle:@"Login" forState:UIControlStateNormal];
-    
-    //listen for clicks
-    [loginButton addTarget:self action:@selector(userRequestLogin)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    //add the button to the view
-    [self.loginView addSubview:loginButton];
 }
 
 -(OPFQuestion *) postButtonPressed{
@@ -105,6 +87,10 @@
 // Update database with the data
 -(OPFQuestion *) updateDatabase{
     
+    // Current date
+    NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+    int id = [OPFDBInsertionIdentifier getNextPostId];
+    
     NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
     NSMutableString *tagsString=[[NSMutableString alloc]initWithString:@""];
     
@@ -112,50 +98,133 @@
         [tagsString appendFormat:@"<%@>",s];
     }
     
-    OPFQuestion *question = OPFQuestion.new;
-    question.title = self.titleField.text;
-    question.body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
-    question.owner = OPFAppState.sharedAppState.user;
-    question.tags = tags;
-    
-    
     NSString *title = self.titleField.text;
     NSString *body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
 
     OPFUser *user = OPFAppState.sharedAppState.user;
     NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
-   
-
-    [OPFUpdateQuery updateWithQuestionTitle:title Body:body Tags:tagsString ByUser:userName userID:userID];
+    
+    NSArray* args = @[@(id), @1, date, @0, @0, body, @(userID), date, title, tagsString, @0, @0, @0];
+    NSArray* col = @[@"id", @"post_type_id", @"creation_date", @"score", @"view_count", @"body", @"owner_user_id", @"last_activity_date", @"title", @"tags", @"answer_count", @"comment_count", @"favorite_count"];
+    BOOL succeeded = [OPFUpdateQuery insertInto:@"posts" forColumns:col values:args auxiliaryDB:NO];
+    
+    col = @[@"object_id", @"main_index_string", @"tags"];
+    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [OPFUpdateQuery removeHTMLTags:body], title, userName];
+    
+    args = @[@(id), index_string, tagsString];
+    BOOL auxSucceeded = [OPFUpdateQuery insertInto:@"posts_index" forColumns:col values:args auxiliaryDB:YES];
+    
+    
+    OPFQuestion *question = OPFQuestion.new;
+    if(succeeded&&auxSucceeded){
+        question.title = self.titleField.text;
+        question.body = [NSString stringWithFormat:@"<p>%@</p>",self.bodyField.text];
+        question.owner = OPFAppState.sharedAppState.user;
+        question.tags = tags;
+        question.identifier=@(id);
+    }
     
     return question;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    if(textField==self.titleField || textField==self.bodyField || textField==self.tagsField || textField==self.email || textField==self.password){
+    if(textField==self.titleField || textField==self.tagsField){
         [textField resignFirstResponder];
     }
     return YES;
 }
 
-// Go back to questionsview if user press cancel
--(IBAction)cancelView:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+-(BOOL) textViewShouldBeginEditing:(UITextView *)textView{
+    [textView setInputAccessoryView:self.keyboardAccessoryView];
+    self.bodyField = textView;
+    
+    return YES;
 }
 
--(void) userRequestLogin{
-    NSString* email = self.email.text;
-    NSString* password = self.password.text;
-    BOOL persistFlag = self.rememberUser.isOn;
+-(void) textFieldDidBeginEditing:(UITextField *)textField{
+    [self animateTextField:textField up:YES];
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    const int movementDistance = 80; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
     
-    BOOL loginReponse = [OPFAppState.sharedAppState loginWithEmailHash:email.opf_md5hash password:password persistLogin:persistFlag];
+    int movement = (up ? -movementDistance : movementDistance);
     
-    if(loginReponse == YES) {
-        self.loginView.hidden=YES;
-    } else {
-        self.wrongPasswordLabel.hidden = NO;
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
+
+-(IBAction)inputCode{
+    // Possible link text
+    NSString *markedText = [self.bodyField textInRange:self.bodyField.selectedTextRange];
+    
+    // Insert text into textfield
+    [self.bodyField replaceRange:self.bodyField.selectedTextRange withText:[NSString stringWithFormat:@"<code>%@</code>",markedText]];
+    
+    // Set cursor position
+    UITextPosition *newCursorPosition = [self.bodyField positionFromPosition:self.bodyField.selectedTextRange.start offset:-7];
+    UITextRange *newRange = [self.bodyField textRangeFromPosition:newCursorPosition toPosition:newCursorPosition];
+    self.bodyField.selectedTextRange = newRange;
+}
+
+-(IBAction) inputLink{
+    // Possible link text
+    NSString *markedText = [self.bodyField textInRange:self.bodyField.selectedTextRange];
+    
+    // Insert text into textfield
+    [self.bodyField replaceRange:self.bodyField.selectedTextRange withText:[NSString stringWithFormat:@"<a href=\"\">%@</a>",markedText]];
+    
+    // Set cursor position
+    UITextPosition *newCursorPosition = [self.bodyField positionFromPosition:self.bodyField.selectedTextRange.start offset:(-6-markedText.length)];
+    UITextRange *newRange = [self.bodyField textRangeFromPosition:newCursorPosition toPosition:newCursorPosition];
+    self.bodyField.selectedTextRange = newRange;
+}
+
+-(IBAction)inputBulletList{
+    [self.bodyField replaceRange:self.bodyField.selectedTextRange withText:[NSString stringWithFormat:@"%C ",Bullet]];
+}
+-(IBAction)inputNumberList{
+    NSArray *lines = [self.bodyField.text componentsSeparatedByString:@"\n"];
+    
+    NSString *prevLineNumber;
+    if(lines.count>1)
+        prevLineNumber = [(NSString *)[lines objectAtIndex:lines.count-2] substringToIndex:1];
+
+    [self.bodyField replaceRange:self.bodyField.selectedTextRange withText:[NSString stringWithFormat:@"%d. ",[prevLineNumber intValue]+1]];
+}
+
+-(IBAction)prev{
+    if(self.titleField.isFirstResponder){
+        [self.tagsField becomeFirstResponder];
+    }
+    else if(self.bodyField.isFirstResponder){
+        [self.titleField becomeFirstResponder];
+        [self.scrollView scrollsToTop];
+    }
+    else if(self.tagsField.isFirstResponder){
+        [self.bodyField becomeFirstResponder];
+        CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+        [self.scrollView setContentOffset:bottomOffset animated:YES];
     }
 }
-
+-(IBAction)next{
+    if(self.titleField.isFirstResponder){
+        [self.bodyField becomeFirstResponder];
+    }
+    else if(self.bodyField.isFirstResponder){
+        [self.tagsField becomeFirstResponder];
+        CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+        [self.scrollView setContentOffset:bottomOffset animated:YES];
+    }
+    else if(self.tagsField.isFirstResponder){
+        [self.titleField becomeFirstResponder];
+    }
+}
 @end

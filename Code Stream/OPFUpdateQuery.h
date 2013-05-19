@@ -10,6 +10,8 @@
 
 @interface OPFUpdateQuery : NSObject
 
++(BOOL) insertInto: (NSString *) tableName forColumns: (NSArray *) attributes values:(NSArray *) values auxiliaryDB: (BOOL) auxDB;
+
 // Update database with new question
 +(BOOL) updateWithQuestionTitle: (NSString *) title Body: (NSString *) body Tags: (NSString *) tags ByUser: (NSString *) userName userID: (NSInteger) userID;
 
@@ -29,4 +31,6 @@
 +(NSString *) removeHTMLTags: (NSString*) input;
 
 +(int) getNextPostId;
++(int) getNextUserId;
++(int) getNextCommentId;
 @end

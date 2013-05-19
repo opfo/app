@@ -10,6 +10,8 @@
 #import "OPFAppState.h"
 #import "OPFUser.h"
 #import "OPFUpdateQuery.h"
+#import "OPFDateFormatter.h"
+#import "OPFDBInsertionIdentifier.h"
 
 @interface OPFPostAnswerViewController ()
 
@@ -20,7 +22,16 @@
 
 - (void)awakeFromNib
 {
-	// Configure navigationbar
+    [super awakeFromNib];
+}
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return YES;
+}
+
+-(void) viewDidLoad{
+    // Configure navigationbar
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelView)];
     
@@ -41,13 +52,6 @@
     [self.view addSubview:button];
 }
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField
-{
-	[textField resignFirstResponder];
-	return YES;
-}
-
-
 - (void)postButtonPressed
 {
     
@@ -58,11 +62,8 @@
         self.answerBodyWarning.hidden = NO;
     }
     else{
-        // Update database and store the id for the post
-        NSInteger lastAnswer=[self updateDatabase];
-        
         // If update was successful; show an UIAlert, get the answer from db and put it into the answerview
-        if(lastAnswer!=0){
+        if([self updateDatabase]){
             [self.delegate updateQuestionView];
         }
         else{
@@ -75,13 +76,28 @@
 }
 
 // Update database with the filled in data
-- (NSInteger)updateDatabase
+- (BOOL)updateDatabase
 {
+    int id = [OPFDBInsertionIdentifier getNextPostId];
+    
+    // Current date
+    NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+    
     OPFUser *user = OPFAppState.sharedAppState.user;
-    NSString *userName = user.displayName;
     NSInteger userID = [user.identifier integerValue];
     
-    return [OPFUpdateQuery updateWithAnswerText:self.answerBody.text ByUser:userName UserID:userID ParentQuestion:self.parentQuestion];
+    // Query to the SO db
+    NSArray* args = @[@(id),@2, @(self.parentQuestion), date, @0, @0, self.answerBody.text, @(userID), date, @0];
+    NSArray* col = @[@"id", @"post_type_id", @"parent_id", @"creation_date", @"score", @"view_count", @"body", @"owner_user_id", @"last_activity_date", @"comment_count"];
+    BOOL succeeded = [OPFUpdateQuery insertInto:@"posts" forColumns:col values:args auxiliaryDB:NO];
+    
+    
+    // Query to the auxiliary db so it will be in sync with the SO db
+    args = @[@(self.parentQuestion), [OPFUpdateQuery removeHTMLTags:self.answerBody.text]];
+    col = @[@"object_id", @"aux_index_string"];
+    BOOL auxSucceeded = [OPFUpdateQuery insertInto:@"posts_index" forColumns:col values:args auxiliaryDB:YES];
+    
+    return (succeeded && auxSucceeded);
 }
 
 // Go to previous view if user press cancel

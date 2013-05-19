@@ -42,7 +42,6 @@
 						<int key="NSvFlags">302</int>
 						<string key="NSFrame">{{46, 4}, {194, 22}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="744048963"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -79,7 +78,6 @@
 						<int key="NSvFlags">302</int>
 						<string key="NSFrame">{{46, 24}, {97, 22}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="429739593"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -113,7 +111,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{150, 28}, {13, 13}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="253616084"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.69999998807907104</float>
@@ -129,7 +126,6 @@
 						<int key="NSvFlags">297</int>
 						<string key="NSFrame">{{264, 4}, {56, 36}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="472570845"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -140,7 +136,6 @@
 						<int key="NSvFlags">297</int>
 						<string key="NSFrame">{{272, 12}, {26, 19}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -171,7 +166,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{40, 44}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="474567997"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -186,7 +180,6 @@
 						<int key="NSvFlags">302</int>
 						<string key="NSFrame">{{170, 24}, {70, 22}}</string>
 						<reference key="NSSuperview" ref="921881812"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="935109745"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -215,7 +208,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="349304389"/>
 				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
@@ -1037,68 +1029,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">745</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">OPFCommentViewHeaderView</string>
-					<string key="superclassName">UITableViewHeaderFooterView</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="metadataBackgroundImageView">UIImageView</string>
-						<string key="postCommentCount">UILabel</string>
-						<string key="postDate">UILabel</string>
-						<string key="postTitle">UILabel</string>
-						<string key="postUserName">UILabel</string>
-						<string key="userAvatar">UIImageView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="metadataBackgroundImageView">
-							<string key="name">metadataBackgroundImageView</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="postCommentCount">
-							<string key="name">postCommentCount</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="postDate">
-							<string key="name">postDate</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="postTitle">
-							<string key="name">postTitle</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="postUserName">
-							<string key="name">postUserName</string>
-							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="userAvatar">
-							<string key="name">userAvatar</string>
-							<string key="candidateClassName">UIImageView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/OPFCommentViewHeaderView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">UITableViewHeaderFooterView</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/UITableViewHeaderFooterView.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
