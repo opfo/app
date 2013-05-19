@@ -33,12 +33,18 @@
         else
             query = [query stringByAppendingString:@"?);"];
     }
-    NSLog(@"%@",query);
     
     BOOL succeeded = auxDB ? [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:values auxiliaryUpdate:YES] :
     [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:values auxiliaryUpdate:auxDB];
     
-    NSLog(@"Insert succeeded: %i \nAuxDB? %i",succeeded,auxDB);
+    return succeeded;
+}
+
++(BOOL) updateTable: (NSString *) tableName setValues: (NSArray *) setString where: (NSString *) whereString values: (NSArray *) values auxiliaryDB: (BOOL) auxDB{
+    
+    NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET %@ WHERE %@;",tableName,values,whereString];
+    
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:values auxiliaryUpdate:auxDB];
     
     return succeeded;
 }

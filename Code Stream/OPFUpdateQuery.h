@@ -14,11 +14,5 @@
 
 + (BOOL)updateVoteWithUserID:(NSInteger)userID postID:(NSInteger)postID vote:(NSInteger)voteState;
 
-+(NSString *) currentDateAsStringWithDateFormat:(NSString *) format;
-
 +(NSString *) removeHTMLTags: (NSString*) input;
-
-+(int) getNextPostId;
-+(int) getNextUserId;
-+(int) getNextCommentId;
 @end
