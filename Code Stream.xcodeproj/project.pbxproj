@@ -173,7 +173,6 @@
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
 		8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
-		8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */; };
 		8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7B7A71748434600DD3629 /* OPFDBInsertionIdentifier.m */; };
 		8CF0A268173F21E700DF294A /* OPFPostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0A266173F21E700DF294A /* OPFPostAnswerViewController.m */; };
 		8CF0A269173F21E700DF294A /* OPFPostAnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF0A267173F21E700DF294A /* OPFPostAnswerView.xib */; };
@@ -201,6 +200,7 @@
 		9C1C515A1716FBE1004CC9E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51341716FBE0004CC9E3 /* UIKit.framework */; };
 		9C1C515B1716FBE1004CC9E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1C51361716FBE0004CC9E3 /* Foundation.framework */; };
 		9C1C51631716FBE1004CC9E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C1C51611716FBE1004CC9E3 /* InfoPlist.strings */; };
+		9C22144C1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C22144B1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m */; };
 		9C235FCE173A9E6800907558 /* question-row-metadata-accepted-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FC9173A9E6800907558 /* question-row-metadata-accepted-background@2x.png */; };
 		9C235FD1173A9E6800907558 /* question-row-metadata-horrible-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCC173A9E6800907558 /* question-row-metadata-horrible-background@2x.png */; };
 		9C235FD2173A9E6800907558 /* question-row-metadata-normal-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCD173A9E6800907558 /* question-row-metadata-normal-background@2x.png */; };
@@ -515,8 +515,6 @@
 		8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostVoteButton.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
 		8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFUserProfileViewController.m; sourceTree = "<group>"; };
-		8CE7B7A31748429500DD3629 /* OPFDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDateFormatter.h; sourceTree = "<group>"; };
-		8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDateFormatter.m; sourceTree = "<group>"; };
 		8CE7B7A61748434600DD3629 /* OPFDBInsertionIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFDBInsertionIdentifier.h; sourceTree = "<group>"; };
 		8CE7B7A71748434600DD3629 /* OPFDBInsertionIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFDBInsertionIdentifier.m; sourceTree = "<group>"; };
 		8CF0A265173F21E700DF294A /* OPFPostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostAnswerViewController.h; sourceTree = "<group>"; };
@@ -565,6 +563,8 @@
 		9C1C51861716FFD4004CC9E3 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
 		9C1C51871716FFD4004CC9E3 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		9C1C51881716FFD4004CC9E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		9C22144A1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+OPFDateFormatters.h"; sourceTree = "<group>"; };
+		9C22144B1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+OPFDateFormatters.m"; sourceTree = "<group>"; };
 		9C235FC9173A9E6800907558 /* question-row-metadata-accepted-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-row-metadata-accepted-background@2x.png"; sourceTree = "<group>"; };
 		9C235FCA173A9E6800907558 /* question-row-metadata-bad-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-row-metadata-bad-background@2x.png"; sourceTree = "<group>"; };
 		9C235FCB173A9E6800907558 /* question-row-metadata-cool-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-row-metadata-cool-background@2x.png"; sourceTree = "<group>"; };
@@ -1422,8 +1422,6 @@
 			children = (
 				9C8DC915172187D00098C7A4 /* OPFScoreNumberFormatter.h */,
 				9C8DC916172187D00098C7A4 /* OPFScoreNumberFormatter.m */,
-				8CE7B7A31748429500DD3629 /* OPFDateFormatter.h */,
-				8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -1453,6 +1451,8 @@
 			children = (
 				9C46926B171F38C700F75C31 /* NSCache+OPFSubscripting.h */,
 				9C46926C171F38C700F75C31 /* NSCache+OPFSubscripting.m */,
+				9C22144A1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.h */,
+				9C22144B1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m */,
 				9CB0DF951732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.h */,
 				9CB0DF961732C1AD0015ABA3 /* NSRegularExpression+OPFSearchString.m */,
 				9C8619A917328BC5004CA0DC /* NSString+OPFContains.h */,
@@ -2010,8 +2010,8 @@
 				9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */,
 				1A1DC53B17454DD600E1A01A /* OPFBarGradientView.m in Sources */,
 				9CA65D3C1745A7BC00F6D46A /* OPFSignOutTableFooterView.m in Sources */,
-				8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */,
 				8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */,
+				9C22144C1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

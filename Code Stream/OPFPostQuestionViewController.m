@@ -18,8 +18,9 @@
 #import "UIColor+OPFAppColors.h"
 #import <QuartzCore/QuartzCore.h>
 #import <BlocksKit.h>
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
+
 
 @interface OPFPostQuestionViewController ()
 @property (strong, nonatomic) OPFLoginViewController *loginViewController;
@@ -89,7 +90,7 @@ const unichar Bullet = 0x25CF;
 -(OPFQuestion *) updateDatabase{
     
     // Current date
-    NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
     int id = [OPFDBInsertionIdentifier getNextPostId];
     
     NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];

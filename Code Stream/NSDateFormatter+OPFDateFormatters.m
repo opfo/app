@@ -10,4 +10,17 @@
 
 @implementation NSDateFormatter (OPFDateFormatters)
 
++ (instancetype)opf_dateFormatterWithFormat:(NSString *)format
+{
+	NSDateFormatter *dateFormatter = self.new;
+	dateFormatter.dateFormat = format;
+	return dateFormatter;
+}
+
++ (NSString *)opf_currentDateAsStringWithDateFormat:(NSString *)format
+{
+	NSDateFormatter *dateFormatter = [self opf_dateFormatterWithFormat:format];
+    return [dateFormatter stringFromDate:NSDate.date];
+}
+
 @end

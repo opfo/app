@@ -10,9 +10,9 @@
 #import "OPFAppState.h"
 #import "OPFUser.h"
 #import "OPFUpdateQuery.h"
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
 #import "NSString+OPFStripCharacters.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
 
 @interface OPFPostAnswerViewController ()
 
@@ -82,7 +82,7 @@
     int id = [OPFDBInsertionIdentifier getNextPostId];
     
     // Current date
-    NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
     
     OPFUser *user = OPFAppState.sharedAppState.user;
     NSInteger userID = [user.identifier integerValue];

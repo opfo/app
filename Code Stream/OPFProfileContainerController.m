@@ -13,8 +13,8 @@
 #import "OPFUserProfileViewController.h"
 #import "NSString+OPFMD5Hash.h"
 #import "OPFUpdateQuery.h"
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
 
 @interface OPFProfileContainerController ()
 
@@ -203,7 +203,7 @@ static const NSTimeInterval TransitionDuration = .5f;
     if(emailFilled && passwordFilled && repeatedPasswordFilled && nameFilled && passwordMatch && correctEmail){
             
         // Current date
-        NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+        NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
             
         int id = [OPFDBInsertionIdentifier getNextUserId];
             

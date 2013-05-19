@@ -10,7 +10,6 @@
 #import "OPFDatabaseAccess.h"
 #import "OPFQuestion.h"
 #import <stdlib.h>
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
 
 @implementation OPFUpdateQuery

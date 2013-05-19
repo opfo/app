@@ -10,4 +10,8 @@
 
 @interface NSDateFormatter (OPFDateFormatters)
 
++ (instancetype)opf_dateFormatterWithFormat:(NSString *)format;
+
++ (NSString *)opf_currentDateAsStringWithDateFormat:(NSString *)format;
+
 @end
