@@ -152,7 +152,7 @@ const unichar Bullet = 0x25CF;
     
     CGFloat tHeight = [[UIScreen mainScreen] bounds].size.height-[textField convertPoint:textField.center toView:[UIApplication sharedApplication].keyWindow].y;
     
-    NSLog(@"Height: %f", tHeight);
+    DLog(@"Height: %f", tHeight);
     
     if(tHeight<0)
         [self animateTextField:textField distance:@(tHeight-[[UIScreen mainScreen] bounds].size.height) up: YES];
