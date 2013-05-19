@@ -98,6 +98,21 @@ static CGFloat userAboutMeInset = 20.0;
     [self configureView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+
+    if(OPFAppState.sharedAppState.user.identifier != self.user.identifier){
+		self.signOutTableViewFooter.hidden = YES;
+		self.tableView.tableFooterView = nil;
+		self.tableView.contentInset = UIEdgeInsetsZero;
+    } else {
+		self.signOutTableViewFooter.hidden = NO;
+		self.tableView.tableFooterView = self.signOutTableViewFooter;
+		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 40.f, 0);
+	}
+}
+
 
 #pragma mark - TabbedViewController methods
 
@@ -137,15 +152,6 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    // Hide logout-button if user to be shown is not the user that is logged in
-    if(OPFAppState.sharedAppState.user.identifier != self.user.identifier){
-		self.tableView.tableFooterView = nil;
-		self.tableView.contentInset = UIEdgeInsetsZero;
-    } else {
-		self.tableView.tableFooterView = self.signOutTableViewFooter;
-		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.f, 0);
-	}
-    
     [self loadUserGravatar];
     
     // Set the textFields in the userInterface
