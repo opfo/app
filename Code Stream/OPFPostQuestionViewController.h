@@ -13,10 +13,12 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *tagsField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *bodyViewFixedBarButtonItem;
 @property (weak, nonatomic) IBOutlet UILabel *titleWarning;
 @property (weak, nonatomic) IBOutlet UILabel *bodyTextWarning;
 @property (weak, nonatomic) IBOutlet UILabel *generalWarningLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *insertNumbers;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *prevNextFixedBarButtonItem;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *insertCode;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *insertLink;

@@ -267,7 +267,6 @@
 						<string key="NSFrame">{{20, 349}, {213, 21}}</string>
 						<reference key="NSSuperview" ref="566534599"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -339,9 +338,11 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIToolbar" id="44083713">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<string key="NSFrameSize">{320, 44}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -373,7 +374,7 @@
 					</object>
 					<object class="IBUIBarButtonItem" id="377870857">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<float key="IBUIWidth">7</float>
+						<float key="IBUIWidth">20</float>
 						<int key="IBUIStyle">1</int>
 						<reference key="IBUIToolbar" ref="44083713"/>
 						<int key="IBUISystemItemIdentifier">6</int>
@@ -399,6 +400,11 @@
 						</object>
 					</object>
 				</array>
+			</object>
+			<object class="IBUIBarButtonItem" id="560354835">
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<float key="IBUIWidth">197</float>
+				<int key="IBUISystemItemIdentifier">6</int>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -530,6 +536,22 @@
 						<reference key="destination" ref="566534599"/>
 					</object>
 					<int key="connectionID">536</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">prevNextFixedBarButtonItem</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="560354835"/>
+					</object>
+					<int key="connectionID">538</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bodyViewFixedBarButtonItem</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="377870857"/>
+					</object>
+					<int key="connectionID">539</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1444,6 +1466,11 @@
 						<reference key="object" ref="1068106573"/>
 						<reference key="parent" ref="44083713"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">537</int>
+						<reference key="object" ref="560354835"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1558,12 +1585,13 @@
 				<string key="528.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="529.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="533.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="537.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">536</int>
+			<int key="maxID">539</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1615,6 +1643,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bodyField">UITextView</string>
 						<string key="bodyTextWarning">UILabel</string>
+						<string key="bodyViewFixedBarButtonItem">UIBarButtonItem</string>
 						<string key="bulletBarItem">UIBarButtonItem</string>
 						<string key="fixedBarItem">UIBarButtonItem</string>
 						<string key="generalWarningLabel">UILabel</string>
@@ -1624,6 +1653,7 @@
 						<string key="keyboardAccessoryView">UIToolbar</string>
 						<string key="nextField">UIBarButtonItem</string>
 						<string key="prevField">UIBarButtonItem</string>
+						<string key="prevNextFixedBarButtonItem">UIBarButtonItem</string>
 						<string key="scrollView">UIScrollView</string>
 						<string key="tagsField">UITextField</string>
 						<string key="titleField">UITextField</string>
@@ -1637,6 +1667,10 @@
 						<object class="IBToOneOutletInfo" key="bodyTextWarning">
 							<string key="name">bodyTextWarning</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bodyViewFixedBarButtonItem">
+							<string key="name">bodyViewFixedBarButtonItem</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="bulletBarItem">
 							<string key="name">bulletBarItem</string>
@@ -1672,6 +1706,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="prevField">
 							<string key="name">prevField</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="prevNextFixedBarButtonItem">
+							<string key="name">prevNextFixedBarButtonItem</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scrollView">
