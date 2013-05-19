@@ -19,6 +19,7 @@
 #import <BlocksKit.h>
 #import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
+#import "OPFHTMLFormatter.h"
 
 @interface OPFPostQuestionViewController ()
 @property (strong, nonatomic) OPFLoginViewController *loginViewController;
@@ -110,7 +111,7 @@ const unichar Bullet = 0x25CF;
     BOOL succeeded = [OPFUpdateQuery insertInto:@"posts" forColumns:col values:args auxiliaryDB:NO];
     
     col = @[@"object_id", @"main_index_string", @"tags"];
-    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [OPFUpdateQuery removeHTMLTags:body], title, userName];
+    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [OPFHTMLFormatter removeHTMLTags:body], title, userName];
     
     args = @[@(id), index_string, tagsString];
     BOOL auxSucceeded = [OPFUpdateQuery insertInto:@"posts_index" forColumns:col values:args auxiliaryDB:YES];
@@ -137,16 +138,34 @@ const unichar Bullet = 0x25CF;
 
 -(BOOL) textViewShouldBeginEditing:(UITextView *)textView{
     [textView setInputAccessoryView:self.keyboardAccessoryView];
+    [self.keyboardAccessoryView setItems:@[self.insertCode,self.insertLink,self.insertNumbers, self.bulletBarItem,self.bodyViewFixedBarButtonItem, self.prevField,self.nextField] animated:YES];
     self.bodyField = textView;
     
     return YES;
 }
 
 -(void) textFieldDidBeginEditing:(UITextField *)textField{
-    [self animateTextField:textField up:YES];
+    
+    [textField setInputAccessoryView:self.keyboardAccessoryView];
+    [self.keyboardAccessoryView setItems:@[self.prevNextFixedBarButtonItem,self.prevField,self.nextField] animated:YES];
+    
+    CGFloat tHeight = [[UIScreen mainScreen] bounds].size.height-[textField convertPoint:textField.center toView:[UIApplication sharedApplication].keyWindow].y;
+    
+    NSLog(@"Height: %f", tHeight);
+    
+    if(tHeight<0)
+        [self animateTextField:textField distance:@(tHeight-[[UIScreen mainScreen] bounds].size.height) up: YES];
+    else if(tHeight>[[UIScreen mainScreen] bounds].size.height)
+        [self animateTextField:textField distance:@(tHeight+[[UIScreen mainScreen] bounds].size.height) up: NO];
+    
+   // CGRect cr = self.scrollView.frame;
+    
+  //  CGRect visibleRect = CGRectIntersection(self.scrollView.frame, screenRect);
+    
+    //[self.scrollView setContentOffset:CGPointMake(x, y) animated:YES];
 }
 
-- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+- (void) animateTextField: (UITextField*) textField distance: NSInteger up: (BOOL) up
 {
     const int movementDistance = 80; // tweak as needed
     const float movementDuration = 0.3f; // tweak as needed
@@ -194,7 +213,7 @@ const unichar Bullet = 0x25CF;
     NSArray *lines = [self.bodyField.text componentsSeparatedByString:@"\n"];
     
     NSString *prevLineNumber;
-    if(lines.count>1)
+    if(lines.count>1 && ![(NSString *)[lines objectAtIndex:lines.count-2] isEqualToString:@""])
         prevLineNumber = [(NSString *)[lines objectAtIndex:lines.count-2] substringToIndex:1];
 
     [self.bodyField replaceRange:self.bodyField.selectedTextRange withText:[NSString stringWithFormat:@"%d. ",[prevLineNumber intValue]+1]];

@@ -12,7 +12,6 @@
 
 +(BOOL) insertInto: (NSString *) tableName forColumns: (NSArray *) attributes values:(NSArray *) values auxiliaryDB: (BOOL) auxDB;
 
-+ (BOOL)updateVoteWithUserID:(NSInteger)userID postID:(NSInteger)postID vote:(NSInteger)voteState;
++(BOOL) updateTable: (NSString *) tableName setValues: (NSArray *) setString where: (NSString *) whereString values: (NSArray *) values auxiliaryDB: (BOOL) auxDB;
 
-+(NSString *) removeHTMLTags: (NSString*) input;
 @end

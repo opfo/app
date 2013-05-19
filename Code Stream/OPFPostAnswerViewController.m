@@ -12,6 +12,7 @@
 #import "OPFUpdateQuery.h"
 #import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
+#import "OPFHTMLFormatter.h"
 
 @interface OPFPostAnswerViewController ()
 
@@ -93,7 +94,7 @@
     
     
     // Query to the auxiliary db so it will be in sync with the SO db
-    args = @[@(self.parentQuestion), [OPFUpdateQuery removeHTMLTags:self.answerBody.text]];
+    args = @[@(self.parentQuestion), [OPFHTMLFormatter removeHTMLTags:self.answerBody.text]];
     col = @[@"object_id", @"aux_index_string"];
     BOOL auxSucceeded = [OPFUpdateQuery insertInto:@"posts_index" forColumns:col values:args auxiliaryDB:YES];
     
