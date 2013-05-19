@@ -118,14 +118,11 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 }
 
 #pragma mark - WebViewDelegate
--(void)webViewDidFinishLoad:(UIWebView *)webView {
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
 	
 	if (![self.rowHeights[webView.tag] isEqual: @5])
 		return;
-	
-    /*CGRect frame = webView.frame;
-    frame.size = [webView sizeThatFits:CGSizeZero];
-    webView.frame = frame;*/
 	
 	NSNumberFormatter *format = NSNumberFormatter.new;
 	[format setNumberStyle:NSNumberFormatterDecimalStyle];
@@ -208,6 +205,27 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 {
 	OPFQuestion *question = [OPFQuestion find:self.question.identifier.integerValue];
 	self.question = question;
+}
+
+- (void)updatePost:(OPFPost *)post
+{
+	OPFPost *refreshedPost = [post refreshedObject];
+	if (refreshedPost != nil) {
+		NSUInteger postIndex = [self.posts indexOfObject:post];
+		[self.posts replaceObjectAtIndex:postIndex withObject:refreshedPost];
+		
+//		[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:postIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+//		NSIndexPath *metadataCellIndexPath = [NSIndexPath indexPathForRow:kOPFQuestionMetadataCell inSection:postIndex];
+//		[self.tableView reloadRowsAtIndexPaths:@[ metadataCellIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+		
+		if (refreshedPost.postType == KOPF_POST_TYPE_QUESTION) {
+			OPFQuestionHeaderView *questionHeaderView = (OPFQuestionHeaderView *)[self.tableView headerViewForSection:kOPFQuestionSection];
+			questionHeaderView.scoreLabel.text = [[OPFScoreNumberFormatter new] stringFromScoreNumber:refreshedPost.score];
+			[questionHeaderView setNeedsLayout];
+		}
+	} else {
+		ALog(@"The given post seems to have been removed from the database, post = %@", post);
+	}
 }
 
 - (void)updatePostsFromQuestion
@@ -340,50 +358,35 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		
 	} else if ([cellIdentifier isEqualToString:MetadataCellIdentifier]) {
 		OPFPostMetadataTableViewCell *metadataCell = (OPFPostMetadataTableViewCell *)cell;
+		
 		metadataCell.userPreviewButton.iconAlign = kOPFIconAlignRight;
 		metadataCell.userPreviewButton.user = post.owner;
 		[metadataCell.userPreviewButton addTarget:self action:@selector(pressedUserPreviewButton:) forControlEvents:UIControlEventTouchUpInside];
-        metadataCell.voteUpButton.post=post;
-        metadataCell.voteUpButton.buttonTypeUp=YES;
-        metadataCell.voteDownButton.post=post;
-        metadataCell.voteDownButton.buttonTypeUp=NO;
-        [metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+		
+        metadataCell.voteUpButton.post = post;
+        metadataCell.voteUpButton.buttonTypeUp = YES;
+		[metadataCell.voteUpButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+		
+        metadataCell.voteDownButton.post = post;
+        metadataCell.voteDownButton.buttonTypeUp = NO;
         [metadataCell.voteDownButton addTarget:self action:@selector(pressedUserVoteButton:) forControlEvents:UIControlEventTouchUpInside];
+		
+		metadataCell.voteDownButton.siblingVoteButton = metadataCell.voteUpButton;
+		metadataCell.voteUpButton.siblingVoteButton = metadataCell.voteDownButton;
         
-        __block int voteNum;
+		__block int voteNum = kOPFPostUserVoteStateNone;
+		if (OPFAppState.sharedAppState.isLoggedIn) {
+			[[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+				FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[ OPFAppState.sharedAppState.user.identifier, post.identifier ]];
+				[result next];
+				voteNum = [result intForColumn:@"upvote"];
+			}];
+		}
         
-        [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[@(OPFAppState.sharedAppState.user.identifier.integerValue),metadataCell.voteUpButton.post.identifier]];
-            [result next];
-            voteNum = [result intForColumn:@"upvote"];
-        }];
-        
-        switch (voteNum) {
-            case 0:
-                metadataCell.voteUpButton.selected=false;
-                metadataCell.voteDownButton.selected=false;
-                break;
-            case -1:
-                metadataCell.voteUpButton.selected=false;
-                metadataCell.voteDownButton.selected=true;
-                break;
-            case 1:
-                metadataCell.voteUpButton.selected=true;
-                metadataCell.voteDownButton.selected=false;
-                break;
-            default:
-                break;
-        }
-        if(OPFAppState.sharedAppState.isLoggedIn){
-            metadataCell.voteDownButton.enabled=YES;
-            metadataCell.voteUpButton.enabled=YES;
-        }
-        else{
-            metadataCell.voteDownButton.enabled=NO;
-            metadataCell.voteUpButton.enabled=NO;
-        }
-								
-											   
+		metadataCell.voteUpButton.selected = voteNum == kOPFPostUserVoteStateUp;
+		metadataCell.voteDownButton.selected = voteNum == kOPFPostUserVoteStateDown;
+		metadataCell.voteDownButton.enabled = OPFAppState.sharedAppState.isLoggedIn;
+		metadataCell.voteUpButton.enabled = OPFAppState.sharedAppState.isLoggedIn;
 	} else if ([cellIdentifier isEqualToString:TagsCellIdentifier]) {
 		OPFPostTagsTableViewCell *tagsCell = (OPFPostTagsTableViewCell *)cell;
 		tagsCell.tags = self.question.tags;
@@ -411,9 +414,6 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		cell.backgroundColor = UIColor.whiteColor;
 	}
 }
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -455,39 +455,52 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self.navigationController pushViewController:userProfileViewController animated:YES];
 }
 
--(void) pressedUserVoteButton:(id) sender{
-    OPFPostVoteButton *vote = ((OPFPostVoteButton*)sender);
-    __block int voteNum = 0;
-	
+- (void)pressedUserVoteButton:(OPFPostVoteButton *)voteButton
+{
+    __block NSInteger voteState = kOPFPostUserVoteStateNone;
     [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
-
-        FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[OPFAppState.sharedAppState.user.identifier,vote.post.identifier]];
-
-        [result next];
-        voteNum = [result intForColumn:@"upvote"];
+        FMResultSet *result = [db executeQuery:@"SELECT `upvote` FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?" withArgumentsInArray:@[ OPFAppState.sharedAppState.user.identifier, voteButton.post.identifier ]];
+		
+		[result next];
+		voteState = [result intForColumn:@"upvote"];
     }];
 	
+	NSInteger newVoteState = kOPFPostUserVoteStateNone;
+	if ((voteButton.buttonTypeUp && voteState == kOPFPostUserVoteStateUp) ||
+		(voteButton.buttonTypeUp == NO && voteState == kOPFPostUserVoteStateDown)) {
+		newVoteState = kOPFPostUserVoteStateNone;
+	} else {
+		newVoteState = voteButton.buttonTypeUp ? kOPFPostUserVoteStateUp : kOPFPostUserVoteStateDown;
+	}
+	
+//    switch (voteState) {
+//        case 0: newVoteState = voteButton.buttonTypeUp ? 1 : -1; break;
+//        case 1: newVoteState = voteButton.buttonTypeUp ? 0 : -1; break;
+//        case -1: newVoteState = voteButton.buttonTypeUp ? 1 : 0; break;
+//        default:
+//            break;
+//    }
+	
 	NSInteger userIdentifier = OPFAppState.sharedAppState.user.identifier.integerValue;
-	NSInteger postIdentifier = vote.post.identifier.integerValue;
-    switch (voteNum) {
-        case 0:
-            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 1 : -1];
-            break;
-        case 1:
-            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 0 : -1];
-            break;
-        case -1:
-            [OPFUpdateQuery updateVoteWithUserID:userIdentifier PostID:postIdentifier Vote:vote.buttonTypeUp ? 1 : 0];
-            break;
-            
-        default:
-            break;
-    }
-
-    [self refreshQuestion];
-    [self updatePostsFromQuestion];
-    
+	NSInteger postIdentifier = voteButton.post.identifier.integerValue;
+	BOOL updated = [OPFUpdateQuery updateVoteWithUserID:userIdentifier postID:postIdentifier vote:newVoteState];
+	DLog(@"updated: %@", CDStringFromBOOL(updated));
+	
+	__strong OPFPostVoteButton *siblingVoteButton = voteButton.siblingVoteButton;
+	if (voteButton.selected == YES) {
+		voteButton.selected = NO;
+		siblingVoteButton.selected = NO;
+	} else {
+		voteButton.selected = !(voteButton.selected);
+		siblingVoteButton.selected = !(voteButton.selected);
+	}
+	
+	[self updatePost:voteButton.post];
+	
+//    [self refreshQuestion];
+//    [self updatePostsFromQuestion];
 }
+
 
 #pragma mark - Tag List Delegate
 // TODO: Rewrite and fix.

@@ -187,6 +187,8 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
     OPFTagBrowserViewController *nestedTagController = [OPFTagBrowserViewController new];
     nestedTagController.adjacentTag = tag;
     nestedTagController.selectedTags = self.selectedTags;
+    [nestedTagController.selectedTags addObject:tag];
+    [nestedTagController.selectedTagsController.tags addObject:tag];
     
     [self.navigationController pushViewController:nestedTagController animated:YES];
 }

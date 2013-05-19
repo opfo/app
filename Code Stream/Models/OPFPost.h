@@ -16,6 +16,12 @@ typedef enum : NSInteger {
     KOPF_POST_TYPE_ANSWER = 2
 } OPFPostType;
 
+//typedef enum {
+static const NSInteger kOPFPostUserVoteStateDown = -1;
+static const NSInteger kOPFPostUserVoteStateNone = 0;
+static const NSInteger kOPFPostUserVoteStateUp = 1;
+//} OPFPostUserVoteState;
+
 @interface OPFPost : OPFSearchable <OPFRecordProtocol>
 
 @property (strong, readonly) NSDate* creationDate;

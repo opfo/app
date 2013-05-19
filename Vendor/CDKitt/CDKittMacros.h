@@ -167,21 +167,23 @@
 
 /// Logs the given message if the cupplied condition _condition_ is true and we
 /// are in debug mode. The message is logged as a notice.
-#define DCLog(condition, ...)						_DCLog((condition), kCDKittLoggingNoticePrefix, __VA_ARGS__)
+#define DCLog(condition, ...)					_DCLog((condition), kCDKittLoggingNoticePrefix, __VA_ARGS__)
 /// Logs the given notice if the cupplied condition _condition_ is true and we
 /// are in debug mode.
 #define DCLogNotice(condition, ...)				DCLog((condition), __VA_ARGS__)
 /// Logs the given warning if the cupplied condition _condition_ is true and we
 /// are in debug mode.
-#define DCLogWarning(condition, ...)				_DCLog((condition), kCDKittLoggingWarningPrefix, __VA_ARGS__)
+#define DCLogWarning(condition, ...)			_DCLog((condition), kCDKittLoggingWarningPrefix, __VA_ARGS__)
 /// Logs the given error if the cupplied condition _condition_ is true and we
 /// are in debug mode.
 #define DCLogError(condition, ...)				_DCLog((condition), kCDKittLoggingErrorPrefix, __VA_ARGS__)
 
 /// Just logs the current method’s name.
-#define DLogMethod()								DLog(@"")
+#define DLogMethod()							DLog(@"")
+
+#define ACLog(condition, ...)					do { if ((condition)) { ALog(__VA_ARGS__); } } while (0)
 
 /// Only triggers an assert if in debugging mode, otherwise it will just log the
 /// the input to the standard output.
-#define ZAssert(condition, ...)					do { if (!(condition)) { ALog(__VA_ARGS__); }} while(0)
+#define ZAssert(condition, ...)					ACLog(!(condition), __VA_ARGS__);
 

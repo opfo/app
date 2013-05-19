@@ -1406,13 +1406,13 @@
 				9C7F6E10171FE171008F6473 /* OPFPostTagsTableViewCell.h */,
 				9C7F6E11171FE171008F6473 /* OPFPostTagsTableViewCell.m */,
 				9C9B79CF1726A24400E5333B /* OPFPostCommentTableViewCell.xib */,
+				9CA03251174272DD00996DE0 /* OPFQuestionAnswerSeparatorCell.xib */,
+				9CA0325E174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.h */,
+				9CA0325F174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m */,
 				14E018DA172FBA0200CA2763 /* OPFUserPreviewButton.h */,
 				14E018DB172FBA0200CA2763 /* OPFUserPreviewButton.m */,
 				8C974B971743A63900D9E6E9 /* OPFPostVoteButton.h */,
 				8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */,
-				9CA03251174272DD00996DE0 /* OPFQuestionAnswerSeparatorCell.xib */,
-				9CA0325E174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.h */,
-				9CA0325F174294DA00996DE0 /* OPFQuestionAnswerSeparatorCell.m */,
 			);
 			name = "Post Table View Cells";
 			sourceTree = "<group>";

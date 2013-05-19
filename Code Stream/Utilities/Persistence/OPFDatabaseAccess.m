@@ -61,16 +61,16 @@ static NSString* OPFWritableAuxDBPath;
     successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
     successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
     if (!successBase) {
+		DLogNotice(@"Will update base database.");
         successBase = [fileManager copyItemAtPath:defaultDBPath toPath: OPFWritableBaseDBPath error: &error];
+		ACLog(successBase == NO, @"Failed to copy base database to documents directory");
+		DCLogNotice(OPF_DATABASE_ACCESS_DEBUG && successBase, @"Did update base database.");
     }
     if (!successAux) {
+		DLogNotice(@"Will update auxiliary database");
         successAux = [fileManager copyItemAtPath:auxDBPath toPath: OPFWritableAuxDBPath error: &error];
-    }
-    if(!successBase) {
-        DLogError(@"Failed to copy base db to documents directory");
-    }
-    if(!successAux) {
-        DLogError(@"Failed to copy aux db to documents directory");
+		ACLog(successAux == NO, @"Failed to copy auxiliary database to documents directory");
+		DCLogNotice(OPF_DATABASE_ACCESS_DEBUG && successBase, @"Did update auxiliary database.");
     }
 }
 

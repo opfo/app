@@ -21,6 +21,8 @@
 #import "NSString+OPFStripCharacters.h"
 #import "NSString+OPFEscapeStrings.h"
 #import "OPFBarGradientView.h"
+#import "OPFDateFormatter.h"
+#import "OPFDBInsertionIdentifier.h"
 
 #define INPUT_HEIGHT 44.0f
 
@@ -95,8 +97,22 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
     // Comment is inserted into db and view is updated
     // I will change how the OPFUpdateQuery works, so some things are going to be changed here
     if(![self.inputTextField.text isEqualToString:@""]){
-       [OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[OPFAppState.sharedAppState.user.identifier integerValue]];
+       //[OPFUpdateQuery updateWithCommentText:self.inputTextField.text PostID:[self.postModel.identifier integerValue] ByUser:[OPFAppState.sharedAppState.user.identifier integerValue]];
 
+        
+        // Current date
+        NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+        
+        int id = [OPFDBInsertionIdentifier getNextCommentId];
+        
+        // Query to the SO db
+        NSArray* args = @[@(id), @([self.postModel.identifier integerValue]), @0, self.inputTextField.text, date, @([OPFAppState.sharedAppState.user.identifier integerValue])];
+        NSArray* col = @[@"id", @"post_id", @"score", @"text", @"creation_date", @"user_id"];
+        
+        
+        [OPFUpdateQuery insertInto:@"comments" forColumns:col values:args auxiliaryDB:NO];
+
+        
         __strong OPFPost *post = [[[OPFPost query] whereColumn:@"id" is:self.postModel.identifier] getOne];
         self.postModel=post;
 
