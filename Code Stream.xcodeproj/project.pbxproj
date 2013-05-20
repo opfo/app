@@ -828,14 +828,6 @@
 			name = Storyboard;
 			sourceTree = "<group>";
 		};
-		1A816AC3171DF7EC00964AF2 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				9C730A47174AA512007CDDB2 /* New Group */,
-			);
-			path = Icons;
-			sourceTree = "<group>";
-		};
 		1A896CE7172FD00800E19525 /* Activity View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,7 +1051,6 @@
 			isa = PBXGroup;
 			children = (
 				9C235FC7173A9E0800907558 /* Images */,
-				1A816AC3171DF7EC00964AF2 /* Icons */,
 				1AB5CA70172C1134009FD9B7 /* app-icon@2.png */,
 				813482441727C045008E8F22 /* auxiliary.sqlite */,
 				8128DF95171D832C00C44410 /* so.sqlite */,
@@ -1353,13 +1344,6 @@
 				1A896CF2172FD3A300E19525 /* tab-searchprofiles@2x.png */,
 			);
 			name = "Tab Bar";
-			sourceTree = "<group>";
-		};
-		9C730A47174AA512007CDDB2 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		9C7F6E16171FE185008F6473 /* Post Table View Cells */ = {
