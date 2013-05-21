@@ -775,14 +775,14 @@
 			name = "Profile Search Table View Cells";
 			sourceTree = "<group>";
 		};
-		1A639EC91726821A009EB280 /* Profile and Profile Searc View */ = {
+		1A639EC91726821A009EB280 /* Profile and Profile Search View */ = {
 			isa = PBXGroup;
 			children = (
 				1A639ECA17268280009EB280 /* OPFProfileSearchView.xib */,
 				9CA65D3A1745A7BC00F6D46A /* OPFSignOutTableFooterView.h */,
 				9CA65D3B1745A7BC00F6D46A /* OPFSignOutTableFooterView.m */,
 			);
-			name = "Profile and Profile Searc View";
+			name = "Profile and Profile Search View";
 			sourceTree = "<group>";
 		};
 		1A639ECF17269C01009EB280 /* Table View Headers */ = {
@@ -1122,7 +1122,7 @@
 				1A94240B173BCD5100DE9D9B /* Collection View Headers & Footers */,
 				1A639ECF17269C01009EB280 /* Table View Headers */,
 				9C9BF2E7171DF5080057BF46 /* Table View Cells */,
-				1A639EC91726821A009EB280 /* Profile and Profile Searc View */,
+				1A639EC91726821A009EB280 /* Profile and Profile Search View */,
 				1A6833471726A23600E3A687 /* Comments View */,
 				1478B5ED171FD8E30033DFA8 /* Questions View */,
 				1A896CE7172FD00800E19525 /* Activity View */,
