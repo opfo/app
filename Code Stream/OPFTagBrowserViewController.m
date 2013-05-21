@@ -169,7 +169,6 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 
 - (void)didSelectTag:(OPFTag *)tag
 {
-    //I know its a set with unique items but i need to know if its a new tag
     if (! [self.selectedTags containsObject:tag]) {
         [self.selectedTagsController.tags addObject:tag];
 		NSIndexPath *insertedTagIndexPath = [NSIndexPath indexPathForItem:self.selectedTagsController.tags.count - 1 inSection:0];
@@ -183,12 +182,10 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 
 
 - (void)didDoubleTapTag:(OPFTag *)tag
-{
+{    
     OPFTagBrowserViewController *nestedTagController = [OPFTagBrowserViewController new];
     nestedTagController.adjacentTag = tag;
     nestedTagController.selectedTags = self.selectedTags;
-    [nestedTagController.selectedTags addObject:tag];
-    [nestedTagController.selectedTagsController.tags addObject:tag];
     
     [self.navigationController pushViewController:nestedTagController animated:YES];
 }
@@ -312,6 +309,7 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 	CGFloat height = kOPFTokenHeight;
 	
 	CGSize size = CGSizeMake(width, height);
+    
 	return size;
 }
 
@@ -324,7 +322,11 @@ static NSTimeInterval const OPFDoubleTapDelay = 0.2;
 		self.singleTapDelayTimer = nil;
 		self.lastTappedIndexPath = nil;
 		
-		[self didDoubleTapTag:[self tagFromIndexPath:indexPath]];
+        OPFTag *selectedTag = [self tagFromIndexPath:indexPath];
+        
+        [self selectTagAtIndexPath:indexPath];
+        
+        [self didDoubleTapTag:selectedTag];
 	} else {
 		if (self.lastTappedIndexPath != nil && self.singleTapDelayTimer != nil) {
 			[self.singleTapDelayTimer invalidate];
