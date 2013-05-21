@@ -113,6 +113,9 @@ static const NSTimeInterval TransitionDuration = .5f;
 {
     self.title = NSLocalizedString(@"Signup", @"Signup View controller title");
     
+    UIBarButtonItem *dismissSignupButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissSignupViewController:)];
+	self.navigationItem.leftBarButtonItem = dismissSignupButton;
+    
     [self transitionFromViewController:viewController
                       toViewController:self.signupViewController
                               duration:TransitionDuration
@@ -147,6 +150,14 @@ static const NSTimeInterval TransitionDuration = .5f;
 - (NSString *)tabTitle
 {
     return NSLocalizedString(@"My Profile", @"Profile View Controller tab title");
+}
+
+#pragma mark - Asking New Questions
+- (IBAction)dismissSignupViewController:(id)sender
+{
+    self.navigationItem.leftBarButtonItem = nil;
+    
+	[self transitionToLoginViewControllerFromViewController:self.signupViewController];
 }
 
 #pragma mark - IBOutlet responder chain catches
