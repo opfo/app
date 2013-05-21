@@ -2102,6 +2102,10 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = (
+					"$(INHERIT)",
+					"-Warc-repeated-use-of-weak",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -2128,6 +2132,11 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				INFOPLIST_FILE = "Code Stream/Code Stream-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = (
+					"$(INHERIT)",
+					"-Warc-repeated-use-of-weak",
+					"-DNS_BLOCK_ASSERTIONS=1",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = app;
@@ -2136,7 +2145,7 @@
 		};
 		9C1C516D1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2160,7 +2169,7 @@
 		};
 		9C1C516E1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
