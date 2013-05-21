@@ -176,9 +176,9 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
 
 - (void)voteUpComment:(OPFCommentVoteButton *)sender
 {
-    OPFComment *updatedComment = [self updateVoteWithUserID:[OPFAppState.sharedAppState.user.identifier integerValue] comment:sender];
+    [self updateVoteWithUserID:[OPFAppState.sharedAppState.user.identifier integerValue] comment:sender];
     
-    [self.delegate commentsViewController:self didUpvoteComment:updatedComment];
+    [self.delegate commentsViewController:self didUpvoteComment:sender.comment];
 }
 
 - (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
@@ -299,14 +299,17 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
     }
 }
 
-- (OPFComment*) updateVoteWithUserID:(NSInteger)userID comment: (OPFCommentVoteButton *) comment
+- (BOOL) updateVoteWithUserID:(NSInteger)userID comment: (OPFCommentVoteButton *) comment
 {
     BOOL auxSucceeded = NO;
     BOOL succeeded = NO;
     
 	NSInteger totalVotes = [[OPFComment find:[comment.comment.identifier integerValue]].score integerValue];
 	
-    if(comment.isSelected){
+    NSNumber *n = comment.comment.author.identifier;
+    NSNumber *user = OPFAppState.sharedAppState.user.identifier;
+    
+    if(comment.isSelected && comment.comment.author.identifier!=OPFAppState.sharedAppState.user.identifier){
         NSArray *args = @[ @(totalVotes-1), comment.comment.identifier ];
         NSString *query = [NSString stringWithFormat:@"UPDATE comments SET score=? WHERE id=?;"];
         succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
@@ -316,7 +319,7 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
 		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
         comment.selected = !(succeeded && auxSucceeded);
     }
-    else{
+    else if(!comment.isSelected && [comment.comment.author.identifier integerValue]!=[OPFAppState.sharedAppState.user.identifier integerValue]){
         NSArray *args = @[ @(totalVotes+1), comment.comment.identifier ];
         NSString *query = [NSString stringWithFormat:@"UPDATE comments SET score=? WHERE id=?;"];
         succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
@@ -329,7 +332,7 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
     OPFPost *post = [OPFPost find:[self.postModel.identifier integerValue]];
     [self setPostModel:post];
     
-    return [OPFComment find:[comment.comment.identifier integerValue]];
+    return succeeded && auxSucceeded;
 }
 
 
