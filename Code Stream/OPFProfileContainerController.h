@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OPFProfileContainerController : UIViewController
+@interface OPFProfileContainerController : UIViewController<UITextFieldDelegate>
 
 - (void)transitionToLoginViewControllerFromViewController :(UIViewController *) viewController;
 - (void)transitionToSignupViewControllerFromViewController :(UIViewController *) viewController;
@@ -18,5 +18,6 @@
 - (void)userRequestsLogout:(id)sender;
 - (void)userRequestsSignup:(id)sender;
 - (void)userFinishedSignup:(id)sender;
+- (void)userCancelsLogin:(id)sender;
 
 @end
