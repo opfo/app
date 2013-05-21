@@ -178,7 +178,7 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
 {
     [self updateVoteWithUserID:[OPFAppState.sharedAppState.user.identifier integerValue] comment:sender];
     
-    [self.delegate commentsViewController:self didUpvoteComment:sender.comment];
+    [self.delegate commentsViewControllerUpvotedComment:self];
 }
 
 - (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
@@ -305,9 +305,6 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
     BOOL succeeded = NO;
     
 	NSInteger totalVotes = [[OPFComment find:[comment.comment.identifier integerValue]].score integerValue];
-	
-    NSNumber *n = comment.comment.author.identifier;
-    NSNumber *user = OPFAppState.sharedAppState.user.identifier;
     
     if(comment.isSelected && comment.comment.author.identifier!=OPFAppState.sharedAppState.user.identifier){
         NSArray *args = @[ @(totalVotes-1), comment.comment.identifier ];

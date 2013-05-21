@@ -587,9 +587,9 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     
     return auxSucceeded && succeeded;
 }
-
-- (void)commentsViewController:(OPFCommentsViewController *)commentsViewController didUpvoteComment:(OPFComment *)comment{
-    [self updatePost:comment.post];
+// Refresh question from DB to get the vote + posts/votes which other users done since last update from db
+- (void)commentsViewControllerUpvotedComment:(OPFCommentsViewController *)commentsViewController{
+    [self refreshQuestion];
 }
 
 

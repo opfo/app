@@ -14,7 +14,7 @@
 
 @protocol OPFCommentViewControllerDelegate <NSObject>
 
--(void) commentsViewController:(OPFCommentsViewController *) commentsViewController didUpvoteComment: (OPFComment *) comment;
+-(void) commentsViewControllerUpvotedComment:(OPFCommentsViewController *) commentsViewController;
 
 @end
 
