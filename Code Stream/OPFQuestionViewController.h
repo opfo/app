@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "OPFUserPreviewButton.h"
 #import "OPFPostAnswerViewController.h"
+#import "OPFCommentsViewController.h"
 
 @class OPFPost;
 @class OPFQuestion;
 
 
-@interface OPFQuestionViewController : UITableViewController <UIWebViewDelegate, PostAnswerDelegate>
+@interface OPFQuestionViewController : UITableViewController <UIWebViewDelegate, PostAnswerDelegate, OPFCommentViewControllerDelegate>
 
 @property (strong) OPFQuestion *question;
 - (void)refreshQuestion;

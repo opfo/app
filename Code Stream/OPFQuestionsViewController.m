@@ -221,7 +221,8 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 {
 	OPFPostQuestionViewController *postQuestionViewController = OPFPostQuestionViewController.new;
     postQuestionViewController.title = @"Post a question";
-	UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
+	
+    UINavigationController *postQuestionNavigationController = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
 	postQuestionNavigationController.view.backgroundColor = UIColor.opf_defaultBackgroundColor;
 	
 	postQuestionViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(__unused id _) {

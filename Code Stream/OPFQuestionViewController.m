@@ -442,6 +442,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 		OPFCommentsViewController *commentViewController = OPFCommentsViewController.new;
 		OPFPost *post = [self postForIndexPath:indexPath];
 		commentViewController.postModel = post;
+        commentViewController.delegate=self;
 		
 		[self.navigationController pushViewController:commentViewController animated:YES];
 	}
@@ -585,6 +586,10 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
     
     return auxSucceeded && succeeded;
+}
+
+- (void)commentsViewController:(OPFCommentsViewController *)commentsViewController didUpvoteComment:(OPFComment *)comment{
+    [self updatePost:comment.post];
 }
 
 

@@ -172,6 +172,7 @@
 		8C7D1132173A4AC700E8149D /* OPFPostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7D1130173A4AC700E8149D /* OPFPostQuestionViewController.m */; };
 		8C7D1133173A4AC700E8149D /* OPFPostQuestionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */; };
 		8C8EB8E0174969E50012A6BF /* OPFHTMLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EB8DF174969E50012A6BF /* OPFHTMLFormatter.m */; };
+		8C8EB8E3174A42380012A6BF /* OPFCommentVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C8EB8E2174A42370012A6BF /* OPFCommentVoteButton.m */; };
 		8C974B991743A63900D9E6E9 /* OPFPostVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */; };
 		8CD97A3F17291C7100B2B037 /* OPFUserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD97A3E17291C7100B2B037 /* OPFUserProfileViewController.m */; };
 		8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE7B7A41748429500DD3629 /* OPFDateFormatter.m */; };
@@ -514,6 +515,8 @@
 		8C7D1131173A4AC700E8149D /* OPFPostQuestionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OPFPostQuestionView.xib; sourceTree = "<group>"; };
 		8C8EB8DE174969E50012A6BF /* OPFHTMLFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFHTMLFormatter.h; sourceTree = "<group>"; };
 		8C8EB8DF174969E50012A6BF /* OPFHTMLFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFHTMLFormatter.m; sourceTree = "<group>"; };
+		8C8EB8E1174A42370012A6BF /* OPFCommentVoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentVoteButton.h; sourceTree = "<group>"; };
+		8C8EB8E2174A42370012A6BF /* OPFCommentVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentVoteButton.m; sourceTree = "<group>"; };
 		8C974B971743A63900D9E6E9 /* OPFPostVoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFPostVoteButton.h; sourceTree = "<group>"; };
 		8C974B981743A63900D9E6E9 /* OPFPostVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFPostVoteButton.m; sourceTree = "<group>"; };
 		8CD97A3D17291C7100B2B037 /* OPFUserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFUserProfileViewController.h; sourceTree = "<group>"; };
@@ -953,6 +956,8 @@
 				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 				1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */,
 				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
+				8C8EB8E1174A42370012A6BF /* OPFCommentVoteButton.h */,
+				8C8EB8E2174A42370012A6BF /* OPFCommentVoteButton.m */,
 			);
 			name = "Comment Table View Cells";
 			sourceTree = "<group>";
@@ -2018,6 +2023,7 @@
 				8CE7B7A51748429500DD3629 /* OPFDateFormatter.m in Sources */,
 				8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */,
 				8C8EB8E0174969E50012A6BF /* OPFHTMLFormatter.m in Sources */,
+				8C8EB8E3174A42380012A6BF /* OPFCommentVoteButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,6 @@
 
 @interface OPFCommentViewCell()
 
-@property(strong, nonatomic) OPFComment *commentModel;
 @property(strong, nonatomic) NSDateFormatter *dateFormatter;
 @property(strong, nonatomic) NSDateFormatter *timeFormatter;
 
@@ -90,6 +89,7 @@ static CGFloat const OPFCommentTableCellOffset = 20.0f;
 - (void)configureForComment:(OPFComment *)comment
 {
     self.commentModel = comment;
+    self.commentVoteUp.comment = comment;
     
     self.commentBody.text = [self.commentModel.text.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace OPF_escapeWithScheme:OPFStripAscii];
     self.commentDate.text = [self.dateFormatter stringFromDate:self.commentModel.creationDate];
@@ -97,7 +97,7 @@ static CGFloat const OPFCommentTableCellOffset = 20.0f;
     self.commentVoteCount.text =
     [NSString stringWithFormat:@"%d", [self.commentModel.score integerValue]];
     self.commentUserName.titleLabel.text = self.commentModel.author.displayName;
-        
+    
     [self loadUserGravatar];
 }
 

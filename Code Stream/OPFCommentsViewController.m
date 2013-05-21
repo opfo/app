@@ -37,6 +37,7 @@
 
 @implementation OPFCommentsViewController
 
+@synthesize delegate;
 static NSString *const OPFCommentTableCell = @"OPFCommentTableCell";
 static NSString *const OPFCommentTableHeader = @"OPFCommentTableHeader";
 static CGFloat const OPFCommentTableCellOffset = 60.0f;
@@ -151,16 +152,33 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
     OPFCommentViewCell *cell = (OPFCommentViewCell *)[tableView dequeueReusableCellWithIdentifier:OPFCommentTableCell forIndexPath:indexPath];
 
     [cell configureForComment:[self.commentModels objectAtIndex:indexPath.row]];
-
+    
+    
+    // Check if user alreade have voted on a comment
+    __block int voteNum = kOPFPostUserVoteStateNone;
+    if (OPFAppState.sharedAppState.isLoggedIn) {
+        [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+            FMResultSet *result = [db executeQuery:@"SELECT * FROM 'auxDB'.'comments_votes' WHERE 'comments_votes'.'user_id' = ? AND 'comments_votes'.'comment_id' = ?" withArgumentsInArray:@[ OPFAppState.sharedAppState.user.identifier, cell.commentModel.identifier]];
+            [result next];
+            voteNum = [result intForColumn:@"user_id"];
+        }];
+    }
+    
+    // Set the state of the comment
+    cell.commentVoteUp.selected = voteNum != kOPFPostUserVoteStateNone;
+    cell.commentVoteUp.enabled = OPFAppState.sharedAppState.isLoggedIn;
+    
+    
     cell.commentsViewController = self;
 
     return cell;
 }
 
-- (void)voteUpComment:(UIButton *)sender
+- (void)voteUpComment:(OPFCommentVoteButton *)sender
 {
-//    OPFCommentViewCell *subordinateCommentViewCell = (OPFCommentViewCell *)[[sender superview] superview];
-//    NSIndexPath *indexPathOfCommentViewCell = [self.tableView indexPathForCell:subordinateCommentViewCell];
+    OPFComment *updatedComment = [self updateVoteWithUserID:[OPFAppState.sharedAppState.user.identifier integerValue] comment:sender];
+    
+    [self.delegate commentsViewController:self didUpvoteComment:updatedComment];
 }
 
 - (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel
@@ -280,6 +298,40 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
                         animated:animated];
     }
 }
+
+- (OPFComment*) updateVoteWithUserID:(NSInteger)userID comment: (OPFCommentVoteButton *) comment
+{
+    BOOL auxSucceeded = NO;
+    BOOL succeeded = NO;
+    
+	NSInteger totalVotes = [[OPFComment find:[comment.comment.identifier integerValue]].score integerValue];
+	
+    if(comment.isSelected){
+        NSArray *args = @[ @(totalVotes-1), comment.comment.identifier ];
+        NSString *query = [NSString stringWithFormat:@"UPDATE comments SET score=? WHERE id=?;"];
+        succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
+        
+        args = @[OPFAppState.sharedAppState.user.identifier, comment.comment.identifier ];
+		NSString *auxQuery = @"DELETE FROM comments_votes WHERE 'comments_votes'.'user_id' = ? AND 'comments_votes'.'comment_id' = ?;";
+		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+        comment.selected = !(succeeded && auxSucceeded);
+    }
+    else{
+        NSArray *args = @[ @(totalVotes+1), comment.comment.identifier ];
+        NSString *query = [NSString stringWithFormat:@"UPDATE comments SET score=? WHERE id=?;"];
+        succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
+        
+        args = @[ OPFAppState.sharedAppState.user.identifier, comment.comment.identifier];
+        NSArray* col = @[@"user_id",@"comment_id"];
+        auxSucceeded = [OPFUpdateQuery insertInto:@"comments_votes" forColumns:col values:args auxiliaryDB:YES];
+        comment.selected=YES;
+    }
+    OPFPost *post = [OPFPost find:[self.postModel.identifier integerValue]];
+    [self setPostModel:post];
+    
+    return [OPFComment find:[comment.comment.identifier integerValue]];
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
