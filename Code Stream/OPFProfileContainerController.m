@@ -55,7 +55,7 @@ static const NSTimeInterval TransitionDuration = .5f;
     self.loginViewController.view.frame = rect;
     self.signupViewController.view.frame = rect;
     self.profileViewController.view.frame = rect;
-    
+        
     //self.profileViewController.nextResponder = self;
     
     //Add them to self (container) as child
@@ -175,6 +175,13 @@ static const NSTimeInterval TransitionDuration = .5f;
     } else {
         self.loginViewController.loginMessageLabel.text = NSLocalizedString(@"Wrong username or password!", @"Login failure message");
     }
+}
+
+- (void)userCancelsLogin:(id)sender
+{
+    self.navigationItem.leftBarButtonItem = nil;
+    
+    [self.view endEditing:YES];
 }
 
 - (void)userRequestsLogout:(id)sender
