@@ -13,6 +13,8 @@
 #import "OPFUserProfileViewController.h"
 #import "NSString+OPFMD5Hash.h"
 #import "OPFUpdateQuery.h"
+#import "OPFDBInsertionIdentifier.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
 
 @interface OPFProfileContainerController ()
 
@@ -199,7 +201,23 @@ static const NSTimeInterval TransitionDuration = .5f;
     
     // Set notificationlabels
     if(emailFilled && passwordFilled && repeatedPasswordFilled && nameFilled && passwordMatch && correctEmail){
-        [OPFUpdateQuery updateWithUserName:userName EmailHash:email Website:website Location:location Age:age Bio:bio];
+            
+        // Current date
+        NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+            
+        int id = [OPFDBInsertionIdentifier getNextUserId];
+            
+        // Query to the SO db
+        NSArray* args = @[@(id), @0, date, userName, email, date, website, location, @(age), bio, @0, @0, @0];
+        NSArray *col = @[@"id", @"reputation", @"creation_date", @"display_name", @"email_hash", @"last_access_date", @"website_url", @"location", @"age", @"about_me", @"views", @"up_votes", @"down_votes"];
+            [OPFUpdateQuery insertInto:@"users" forColumns:col values:args auxiliaryDB:NO];
+            
+            
+        // Query to the auxiliary db to keep it in sync with the SO db
+        args = @[@(id), userName];
+        col = @[@"object_id", @"index_string"];
+        [OPFUpdateQuery insertInto:@"users_index" forColumns:col values:args auxiliaryDB:YES];
+        
         [self transitionToLoginViewControllerFromViewController:self.signupViewController];
     }
     else{

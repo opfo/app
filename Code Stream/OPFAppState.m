@@ -95,31 +95,4 @@
 }
 
 
-#pragma mark - Deprecated methods
-+ (OPFUser *)userModel
-{
-    return [(OPFAppState *)self.sharedAppState user];
-}
-
-+ (void)setUserModel:(OPFUser *)userModel
-{
-    [(OPFAppState *)self.sharedAppState setUser:userModel];
-}
-
-+ (BOOL)loginWithEMailHash:(NSString *)eMailHash andPassword:(NSString *)password persistLogin:(BOOL)persistFlag
-{
-	return [(OPFAppState *)self.sharedAppState loginWithEmailHash:eMailHash password:password persistLogin:persistFlag];
-}
-
-+ (void)logout
-{
-    [(OPFAppState *)self.sharedAppState logout];
-}
-
-+ (BOOL)isLoggedIn
-{
-	return [(OPFAppState *)self.sharedAppState isLoggedIn];
-}
-
-
 @end

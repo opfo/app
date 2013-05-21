@@ -466,7 +466,8 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     }];
 	
 	NSInteger newVoteState = kOPFPostUserVoteStateNone;
-	if ((voteButton.buttonTypeUp && voteState == kOPFPostUserVoteStateUp) ||
+	
+    if ((voteButton.buttonTypeUp && voteState == kOPFPostUserVoteStateUp) ||
 		(voteButton.buttonTypeUp == NO && voteState == kOPFPostUserVoteStateDown)) {
 		newVoteState = kOPFPostUserVoteStateNone;
 	} else {
@@ -483,7 +484,7 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
 	
 	NSInteger userIdentifier = OPFAppState.sharedAppState.user.identifier.integerValue;
 	NSInteger postIdentifier = voteButton.post.identifier.integerValue;
-	BOOL updated = [OPFUpdateQuery updateVoteWithUserID:userIdentifier postID:postIdentifier vote:newVoteState];
+	BOOL updated = [self updateVoteWithUserID:userIdentifier postID:postIdentifier vote:newVoteState];
 	DLog(@"updated: %@", CDStringFromBOOL(updated));
 	
 	__strong OPFPostVoteButton *siblingVoteButton = voteButton.siblingVoteButton;
@@ -538,6 +539,54 @@ static NSString *const QuestionHeaderViewIdentifier = @"QuestionHeaderView";
     [self refreshQuestion];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (BOOL)updateVoteWithUserID:(NSInteger)userID postID:(NSInteger)postID vote:(NSInteger)voteState
+{
+    __block int voteNum;
+    __block int exist;
+    
+    [[[OPFDatabaseAccess getDBAccess] combinedQueue] inDatabase:^(FMDatabase* db){
+        FMResultSet *result = [db executeQuery:@"SELECT COUNT(0) AS existens FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;" withArgumentsInArray:@[ @(userID), @(postID) ]];
+        [result next];
+        exist = [result intForColumn:@"existens"];
+        result = [db executeQuery:@"SELECT `upvote` FROM 'auxDB'.'users_votes' WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;" withArgumentsInArray:@[ @(userID), @(postID) ]];
+        [result next];
+        voteNum = [result intForColumn:@"upvote"];
+    }];
+    [[OPFDatabaseAccess getDBAccess] close];
+    
+    BOOL auxSucceeded = NO;
+    
+	NSInteger totalVotes = [OPFQuestion find:postID].score.integerValue;
+	
+	if (voteState == kOPFPostUserVoteStateNone) {
+		NSArray *args = @[ @(userID), @(postID) ];
+		NSString *auxQuery = @"DELETE FROM users_votes WHERE 'users_votes'.'user_id' = ? AND 'users_votes'.'post_id' = ?;";
+		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+		
+		totalVotes -= voteNum;
+	} else if (exist == 0) {
+        NSArray *args = @[ @(userID), @(postID), @(voteState) ];
+        NSArray* col = @[@"user_id",@"post_id",@"upvote"];
+        auxSucceeded = [OPFUpdateQuery insertInto:@"users_votes" forColumns:col values:args auxiliaryDB:YES];
+		
+		totalVotes += voteState;
+	} else {
+		NSArray *args = @[ @(voteState), @(userID), @(postID) ];
+		NSString *auxQuery = @"UPDATE users_votes SET upvote=?  WHERE user_id=? AND post_id=?;";
+		auxSucceeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:auxQuery withArgumentsInArray:args auxiliaryUpdate:YES];
+		
+		totalVotes = totalVotes - voteNum + voteState;
+    }
+    
+    NSArray *args = @[ @(totalVotes), @(postID) ];
+    NSString *query = [NSString stringWithFormat:@"UPDATE posts SET score=? WHERE id=?;"];
+    BOOL succeeded = [[OPFDatabaseAccess getDBAccess] executeUpdate:query withArgumentsInArray:args auxiliaryUpdate:NO];
+    
+    return auxSucceeded && succeeded;
+}
+
 
 
 @end

@@ -36,7 +36,7 @@ enum  {
 @property (strong, nonatomic, readonly) UIButton *logoutButton;
 
 @property(nonatomic, strong) OPFScoreNumberFormatter *scoreFormatter;
-@property(nonatomic, strong) NSNumberFormatter *numberFormatter;
+@property(nonatomic, strong) NSNumberFormatter *ageNumberFormatter;
 @property(nonatomic, strong) NSDateFormatter *dateFormatter;
 
 - (void)loadUserGravatar;
@@ -71,8 +71,14 @@ static CGFloat userAboutMeInset = 20.0;
     [super viewDidLoad];
 	
 	self.scoreFormatter = [OPFScoreNumberFormatter new];
-    self.numberFormatter = [NSNumberFormatter new];
-    self.dateFormatter = [NSDateFormatter new];
+	self.dateFormatter = [NSDateFormatter new];
+	
+    NSNumberFormatter *ageNumberFormatter = [NSNumberFormatter new];
+	ageNumberFormatter.numberStyle = NSNumberFormatterNoStyle;
+	ageNumberFormatter.nilSymbol = NotSpecifiedInformationPlaceholder;
+	ageNumberFormatter.groupingSeparator = @"";
+	ageNumberFormatter.roundingMode = NSNumberFormatterRoundFloor;
+	self.ageNumberFormatter = ageNumberFormatter;
 	
 	self.userBio.layer.cornerRadius = 10.f;
 	self.userBio.layer.masksToBounds = YES;
@@ -88,7 +94,8 @@ static CGFloat userAboutMeInset = 20.0;
 	self.userAvatar.layer.masksToBounds = YES;
 	
 	self.signOutTableViewFooter = OPFSignOutTableFooterView.new;
-	self.signOutTableViewFooter.padding = UIEdgeInsetsMake(50.f, kOPFSignOutTableFooterViewPaddingLeft, kOPFSignOutTableFooterViewPaddingBottom, kOPFSignOutTableFooterViewPaddingRight);
+	self.signOutTableViewFooter.padding = UIEdgeInsetsMake(40.f, kOPFSignOutTableFooterViewPaddingLeft, kOPFSignOutTableFooterViewPaddingBottom, kOPFSignOutTableFooterViewPaddingRight);
+	self.signOutTableViewFooter.hidden = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -96,6 +103,21 @@ static CGFloat userAboutMeInset = 20.0;
 	[super viewWillAppear:animated];
     // Configure the view according to the userdata
     [self configureView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+
+    if(OPFAppState.sharedAppState.user.identifier != self.user.identifier){
+		self.signOutTableViewFooter.hidden = YES;
+		self.tableView.tableFooterView = nil;
+		self.tableView.contentInset = UIEdgeInsetsZero;
+    } else {
+		self.signOutTableViewFooter.hidden = NO;
+		self.tableView.tableFooterView = self.signOutTableViewFooter;
+		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 40.f, 0);
+	}
 }
 
 
@@ -137,31 +159,13 @@ static CGFloat userAboutMeInset = 20.0;
 
 -(void) configureView
 {
-    // Hide logout-button if user to be shown is not the user that is logged in
-    if(OPFAppState.sharedAppState.user.identifier != self.user.identifier){
-		self.tableView.tableFooterView = nil;
-		self.tableView.contentInset = UIEdgeInsetsZero;
-    } else {
-		self.tableView.tableFooterView = self.signOutTableViewFooter;
-		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 60.f, 0);
-	}
-    
     [self loadUserGravatar];
     
-    // Set the textFields in the userInterface
-    // Set User Display Name
     self.userName.text = self.user.displayName;
-    
-    // Set user location
-    self.userLocation.text = (! [self.user.location isEqualToString:@"NULL"] ) ? self.user.location : NotSpecifiedInformationPlaceholder;
-    
-    // Set user bio
-    self.userWebsite.text = (! [[self.user.websiteUrl absoluteString] isEqualToString:@"NULL"] ) ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
-    
-    //Set number-fields by using a NSNumberFormatter and OPFScoreNumberFormatter
-    self.userReputation.text = [self.scoreFormatter stringFromScore:[self.user.reputation integerValue]];;
-    
-    self.userAge.text = (self.user.age!=nil) ? [self.numberFormatter stringFromNumber:self.user.age] :  NotSpecifiedInformationPlaceholder;
+    self.userLocation.text = [self.user.location isEqualToString:@"NULL"] == NO ? self.user.location : NotSpecifiedInformationPlaceholder;
+    self.userWebsite.text = [self.user.websiteUrl.absoluteString isEqualToString:@"NULL"] == NO ? [self.user.websiteUrl absoluteString] : NotSpecifiedInformationPlaceholder;
+    self.userReputation.text = [self.scoreFormatter stringFromScoreNumber:self.user.reputation];;
+    self.userAge.text = [self.ageNumberFormatter stringFromNumber:self.user.age];
     
     
     // Set date-fields by using a NSDateFormatter
@@ -178,11 +182,11 @@ static CGFloat userAboutMeInset = 20.0;
 	self.userBio.delegate = self;
     
     // Set up/downvotes
-	self.userUpVotes.text = [self.scoreFormatter stringFromScore:self.user.upVotes.unsignedIntegerValue];
-	self.userDownVotes.text = [self.scoreFormatter stringFromScore:self.user.downVotes.unsignedIntegerValue];
+	self.userUpVotes.text = [self.scoreFormatter stringFromScoreNumber:self.user.upVotes];
+	self.userDownVotes.text = [self.scoreFormatter stringFromScoreNumber:self.user.downVotes];
     
     // Set number of visitors
-    self.views.text = [self.scoreFormatter stringFromScore:self.user.views.unsignedIntegerValue];
+    self.views.text = [self.scoreFormatter stringFromScoreNumber:self.user.views];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

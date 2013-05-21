@@ -15,7 +15,7 @@
 @interface OPFModel : MTLModel <MTLJSONSerializing, OPFRecordProtocol, OPFQueryable>
 
 @property (strong, readonly) NSString* modelName;
-@property (copy, readonly) NSNumber* identifier;
+@property (copy) NSNumber* identifier;
 
 +(NSDateFormatter*) dateFormatter;
 +(NSInteger) defaultPageSize;

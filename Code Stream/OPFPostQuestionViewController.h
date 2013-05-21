@@ -9,20 +9,35 @@
 #import <UIKit/UIKit.h>
 #import "OPFQuestion.h"
 
-@interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate>
+@interface OPFPostQuestionViewController : UIViewController<UITextFieldDelegate,UITextViewDelegate>
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
-@property (weak, nonatomic) IBOutlet UITextField *bodyField;
 @property (weak, nonatomic) IBOutlet UITextField *tagsField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *bodyViewFixedBarButtonItem;
 @property (weak, nonatomic) IBOutlet UILabel *titleWarning;
-@property (weak, nonatomic) IBOutlet UILabel *wrongPasswordLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bodyTextWarning;
 @property (weak, nonatomic) IBOutlet UILabel *generalWarningLabel;
-@property (weak, nonatomic) IBOutlet UITextField *email;
-@property (weak, nonatomic) IBOutlet UITextField *password;
-@property (weak, nonatomic) IBOutlet UIView *loginView;
-@property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UISwitch *rememberUser;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *insertNumbers;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *prevNextFixedBarButtonItem;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *insertCode;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *insertLink;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *fixedBarItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *prevField;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *nextField;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *bulletBarItem;
+@property (weak, nonatomic) IBOutlet UITextView *bodyField;
+
+
+
+@property (strong, nonatomic) IBOutlet UIToolbar *keyboardAccessoryView;
+
+-(IBAction)inputCode;
+-(IBAction)inputLink;
+-(IBAction)prev;
+-(IBAction)next;
+-(IBAction)inputBulletList;
+-(IBAction)inputNumberList;
 -(OPFQuestion *) postButtonPressed;
 
 @end
