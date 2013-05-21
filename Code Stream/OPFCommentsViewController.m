@@ -20,8 +20,8 @@
 #import "OPFAppState.h"
 #import "NSString+OPFStripCharacters.h"
 #import "NSString+OPFEscapeStrings.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
 #import "OPFBarGradientView.h"
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
 
 #define INPUT_HEIGHT 44.0f
@@ -102,7 +102,7 @@ static CGFloat const OPFCommentTableCellOffset = 60.0f;
 
         
         // Current date
-        NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+        NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
         
         int id = [OPFDBInsertionIdentifier getNextCommentId];
         

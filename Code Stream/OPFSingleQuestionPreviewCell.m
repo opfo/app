@@ -52,6 +52,8 @@
 	
 	NSString *questionTitle = question.title.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
 	NSString *questionBody = question.body.opf_stringByStrippingHTML.opf_stringByTrimmingWhitespace;
+	NSUInteger questionBodyToIndex = questionBody.length < 200 ? questionBody.length - 1 : 200;
+	questionBody = [questionBody substringToIndex:questionBodyToIndex];
 	self.questionTextLabelText = [self attributedTextForQuestionTitle:questionTitle questionBody:questionBody highlighted:NO];
 	self.highlightedQuestionTextLabelText = [self attributedTextForQuestionTitle:questionTitle questionBody:questionBody highlighted:YES];
 	

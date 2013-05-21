@@ -693,14 +693,21 @@ static NSString *const SuggestedUserCellIdentifier = @"SuggestedUserCellIdentifi
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-	if (!self.searchString.length && searchText.length > 0)
+	if (!self.searchString.length && searchText.length > 0 && self.sortOrder != kOPFScore) {
 		self.searchBarHeader.sortOrderControl.selectedSegmentIndex = kOPFScore;
+		[self updateSorting:self.searchBarHeader.sortOrderControl];
+	}
 	self.searchString = searchText;
 	
 	if (searchText.length == 0) {
 		self.tokenBeingInputted = nil;
 		self.tokenBeingInputtedType = kOPFQuestionsViewControllerTokenBeingInputtedNone;
 		[self changeSearchBarInputViewToButtonsView];
+		
+		if (self.sortOrder != kOPFActivity) {
+			self.searchBarHeader.sortOrderControl.selectedSegmentIndex = kOPFActivity;
+			[self updateSorting:self.searchBarHeader.sortOrderControl];
+		}
 	}
 }
 

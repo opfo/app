@@ -14,12 +14,13 @@
 #import "OPFLoginViewController.h"
 #import "OPFSignupViewController.h"
 #import "NSString+OPFMD5Hash.h"
+#import "NSString+OPFStripCharacters.h"
 #import "UIColor+OPFAppColors.h"
 #import <QuartzCore/QuartzCore.h>
 #import <BlocksKit.h>
-#import "OPFDateFormatter.h"
 #import "OPFDBInsertionIdentifier.h"
-#import "OPFHTMLFormatter.h"
+#import "NSDateFormatter+OPFDateFormatters.h"
+
 
 @interface OPFPostQuestionViewController ()
 @property (strong, nonatomic) OPFLoginViewController *loginViewController;
@@ -89,7 +90,7 @@ const unichar Bullet = 0x25CF;
 -(OPFQuestion *) updateDatabase{
     
     // Current date
-    NSString *date = [OPFDateFormatter currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [NSDateFormatter opf_currentDateAsStringWithDateFormat:@"yyyy-MM-dd"];
     int id = [OPFDBInsertionIdentifier getNextPostId];
     
     NSArray *tags = [self.tagsField.text componentsSeparatedByString:@" "];
@@ -111,7 +112,7 @@ const unichar Bullet = 0x25CF;
     BOOL succeeded = [OPFUpdateQuery insertInto:@"posts" forColumns:col values:args auxiliaryDB:NO];
     
     col = @[@"object_id", @"main_index_string", @"tags"];
-    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", [OPFHTMLFormatter removeHTMLTags:body], title, userName];
+    NSString* index_string = [NSString stringWithFormat:@"%@ %@ %@", body.opf_stringByStrippingHTML, title, userName];
     
     args = @[@(id), index_string, tagsString];
     BOOL auxSucceeded = [OPFUpdateQuery insertInto:@"posts_index" forColumns:col values:args auxiliaryDB:YES];
@@ -151,7 +152,7 @@ const unichar Bullet = 0x25CF;
     
     CGFloat tHeight = [[UIScreen mainScreen] bounds].size.height-[textField convertPoint:textField.center toView:[UIApplication sharedApplication].keyWindow].y;
     
-    NSLog(@"Height: %f", tHeight);
+    DLog(@"Height: %f", tHeight);
     
     if(tHeight<0)
         [self animateTextField:textField distance:@(tHeight-[[UIScreen mainScreen] bounds].size.height) up: YES];
