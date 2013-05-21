@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class OPFPost, OPFUser;
+@class OPFPost, OPFUser, OPFComment;
 @class OPFBarGradientView;
+@class OPFCommentsViewController;
+
+@protocol OPFCommentViewControllerDelegate <NSObject>
+
+-(void) commentsViewController:(OPFCommentsViewController *) commentsViewController didUpvoteComment: (OPFComment *) comment;
+
+@end
 
 @interface OPFCommentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 
@@ -19,10 +26,10 @@
 @property (weak, nonatomic) IBOutlet OPFBarGradientView *inputView;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet UIButton *inputSendButton;
+@property (assign) id <OPFCommentViewControllerDelegate> delegate;
 
 - (void)voteUpComment:(UIButton *)sender;
 - (void)didSelectDisplayName:(UIButton *)sender :(OPFUser *)userModel;
-
 - (IBAction)commentSavePressed:(UIButton *)sender;
 - (void)scrollToBottomAnimated:(BOOL)animated;
 

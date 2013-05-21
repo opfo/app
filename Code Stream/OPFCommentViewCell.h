@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OPFCommentVoteButton.h"
 
 @class OPFCommentsViewController, OPFComment, OPFSidebarView;
 
 @interface OPFCommentViewCell : UITableViewCell
+@property(strong, nonatomic) OPFComment *commentModel;
 
 @property(nonatomic, weak) OPFCommentsViewController *commentsViewController;
-
 @property (strong, nonatomic) IBOutlet OPFSidebarView *sidebarBackground;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *commentBodyHeight;
 @property(weak, nonatomic) IBOutlet UITextView *commentBody;
@@ -21,9 +22,10 @@
 @property(weak, nonatomic) IBOutlet UILabel *commentDate;
 @property(weak, nonatomic) IBOutlet UILabel *commentTime;
 @property (strong, nonatomic) IBOutlet UILabel *commentVoteCountSubHeader;
-@property(weak, nonatomic) IBOutlet UIButton *commentVoteUp;
+@property(weak, nonatomic) IBOutlet OPFCommentVoteButton *commentVoteUp;
 @property (strong, nonatomic) IBOutlet UILabel *commentVoteCount;
 @property(weak, nonatomic) IBOutlet UIImageView *userAvatar;
+
 
 - (IBAction)voteUpComment:(UIButton *)sender;
 - (IBAction)didSelectDisplayName:(UIButton *)sender;

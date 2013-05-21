@@ -156,6 +156,7 @@
 		81E5793A1720131100F9D4E3 /* OPFDatabaseAccessSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E579391720131100F9D4E3 /* OPFDatabaseAccessSpec.m */; };
 		81EF07BC1731095A00DD7A2D /* OPFPostSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */; };
 		81FDFF3B172039A00060DBC6 /* OPFModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FDFF3A172039A00060DBC6 /* OPFModel.m */; };
+		8C0EF3DD174BACEE00A1631E /* OPFCommentVoteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EF3DC174BACEE00A1631E /* OPFCommentVoteButton.m */; };
 		8C0FFABD1746BC520078B912 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C0FFABC1746BC520078B912 /* arrow_left.png */; };
 		8C2725D71738562D0068D89C /* OPFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2725D51738562D0068D89C /* OPFWebViewController.m */; };
 		8C2725D81738562D0068D89C /* OPFWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C2725D61738562D0068D89C /* OPFWebView.xib */; };
@@ -482,6 +483,8 @@
 		81EF07BB1731095A00DD7A2D /* OPFPostSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFPostSpec.m; path = ModelSpecs/OPFPostSpec.m; sourceTree = "<group>"; };
 		81FDFF39172039A00060DBC6 /* OPFModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OPFModel.h; path = Models/OPFModel.h; sourceTree = "<group>"; };
 		81FDFF3A172039A00060DBC6 /* OPFModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OPFModel.m; path = Models/OPFModel.m; sourceTree = "<group>"; };
+		8C0EF3DB174BACEE00A1631E /* OPFCommentVoteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFCommentVoteButton.h; sourceTree = "<group>"; };
+		8C0EF3DC174BACEE00A1631E /* OPFCommentVoteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFCommentVoteButton.m; sourceTree = "<group>"; };
 		8C0FFABC1746BC520078B912 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		8C2725D41738562D0068D89C /* OPFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OPFWebViewController.h; sourceTree = "<group>"; };
 		8C2725D51738562D0068D89C /* OPFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OPFWebViewController.m; sourceTree = "<group>"; };
@@ -874,6 +877,8 @@
 		1A9EDC1A1720160200ABCE81 /* Comment Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8C0EF3DB174BACEE00A1631E /* OPFCommentVoteButton.h */,
+				8C0EF3DC174BACEE00A1631E /* OPFCommentVoteButton.m */,
 				1A816ABC171DF2C900964AF2 /* OPFCommentViewCell.xib */,
 				1A816AB9171DECA300964AF2 /* OPFCommentViewCell.h */,
 				1A816ABA171DECA300964AF2 /* OPFCommentViewCell.m */,
@@ -1960,6 +1965,7 @@
 				9CA65D3C1745A7BC00F6D46A /* OPFSignOutTableFooterView.m in Sources */,
 				8CE7B7A81748434700DD3629 /* OPFDBInsertionIdentifier.m in Sources */,
 				9C22144C1749877C006EBA0B /* NSDateFormatter+OPFDateFormatters.m in Sources */,
+				8C0EF3DD174BACEE00A1631E /* OPFCommentVoteButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2136,7 +2142,7 @@
 		};
 		9C1C516D1716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2160,7 +2166,7 @@
 		};
 		9C1C516E1716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F20BB839BB94829A679CCE6 /* Pods-Code StreamTests.xcconfig */;
+			baseConfigurationReference = 9C9BF57B171D6385002DFAE2 /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Code Stream.app/Code Stream";
 				FRAMEWORK_SEARCH_PATHS = (

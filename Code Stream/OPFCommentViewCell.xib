@@ -84,7 +84,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{275, 0}, {45, 146}}</string>
 								<reference key="NSSuperview" ref="766514421"/>
-								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -185,6 +185,10 @@
 										<object class="NSCustomResource" key="IBUIHighlightedImage">
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">vote-up-highlighted@2x.png</string>
+										</object>
+										<object class="NSCustomResource" key="IBUISelectedImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">vote-up-selected@2x.png</string>
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
@@ -1898,8 +1902,9 @@
 					<reference ref="517560186"/>
 				</array>
 				<boolean value="NO" key="721.IBViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
+				<string key="747.CustomClassName">OPFCommentVoteButton</string>
 				<string key="747.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="747.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="747.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="747.IBUserGuides" ref="0"/>
 				<array class="NSMutableArray" key="747.IBViewMetadataConstraints">
 					<reference ref="231842927"/>
@@ -1930,6 +1935,7 @@
 			<string key="clock-grey@2x.png">{30, 30}</string>
 			<string key="tdeekens@2x.jpg">{90, 90}</string>
 			<string key="vote-up-highlighted@2x.png">{88, 88}</string>
+			<string key="vote-up-selected@2x.png">{88, 88}</string>
 			<string key="vote-up@2x.png">{88, 88}</string>
 		</dictionary>
 		<bool key="IBDocument.UseAutolayout">YES</bool>
