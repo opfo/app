@@ -84,17 +84,18 @@
         
         [cell.contentView addSubview:startLabel];
         
-        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 12, 160, 35)];
+        UITextField *inputField = [[UITextField alloc] initWithFrame:CGRectMake(125, 12, 160, 20.f)];
 		inputField.font = [UIFont opf_appFontOfSize:15.f];
 		inputField.adjustsFontSizeToFitWidth = YES;
 		inputField.minimumFontSize = 10.f;
         inputField.delegate = self;
+		inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
         
         if (indexPath.row == 0) {
             inputField.tag = 0;
             
             self.eMailField = inputField;
-            self.eMailField.text = @"thomas.j.owens@gmail.com";
+            self.eMailField.text = @"john@doe.com";
             
             [cell.contentView addSubview:inputField];
         } else /*if(indexPath.row == 1)*/ {
