@@ -95,7 +95,7 @@
             inputField.tag = 0;
             
             self.eMailField = inputField;
-            self.eMailField.text = @"john@doe.com";
+            self.eMailField.text = @"marc.gravell@gmail.com";
             
             [cell.contentView addSubview:inputField];
         } else /*if(indexPath.row == 1)*/ {
