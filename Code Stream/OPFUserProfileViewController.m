@@ -174,10 +174,10 @@ static CGFloat userAboutMeInset = 20.0;
     self.userLastAccess.text = [self.dateFormatter stringFromDate:self.user.lastAccessDate];
     
     if (![self.user.aboutMe isEqualToString:@"NULL"]) {
-        [self.userBio opf_loadHTMLString:self.user.aboutMe];
+        [self.userBio opf_loadHTMLString:self.user.aboutMe withWidth:@"300px" andBackgroundColor:@"#f7f7f7"];
     }
     else{
-        [self.userBio loadHTMLString:[NSString stringWithFormat:@"<body bgcolor=\"#F7F7F7\"><font face='Helvetica' size='2'>-</body>"] baseURL:nil];
+        [self.userBio opf_loadHTMLString:@"No bio available" withWidth:@"300px" andBackgroundColor:@"#f7f7f7"];
     }
 	self.userBio.delegate = self;
     
