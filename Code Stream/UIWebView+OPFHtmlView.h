@@ -10,4 +10,5 @@
 
 @interface UIWebView (OPFHtmlView)
 - (void)opf_loadHTMLString:(NSString*) string;
+- (void)opf_loadHTMLString:(NSString *)string withWidth:(NSString *)width andBackgroundColor:(NSString *)color;
 @end

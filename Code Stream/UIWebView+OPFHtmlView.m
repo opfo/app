@@ -10,15 +10,26 @@
 #import "NSString+OPFEscapeStrings.h"
 
 
+#define stringTemplate @"<!-- content -->"
+#define widthTemplate @"<!-- width -->"
+#define colorTemplate @"<!-- color -->"
 
 @implementation UIWebView (OPFHtmlView)
 - (void)opf_loadHTMLString:(NSString *)string {
 	
-	NSString *template = [[NSString alloc] initWithData:opf_template() encoding:NSUTF8StringEncoding];
-	NSString *command = [template stringByReplacingOccurrencesOfString:@"<!-- content -->" withString:[string OPF_escapeWithScheme:OPFEscapeHtmlPrettify]];
+	[self opf_loadHTMLString:string withWidth:@"device-width" andBackgroundColor:@"#fff"];
+}
+
+- (void)opf_loadHTMLString:(NSString *)string withWidth:(NSString *)width andBackgroundColor:(NSString	*)color {
+	NSMutableString* template = [[NSString alloc] initWithData:opf_template() encoding:NSUTF8StringEncoding].mutableCopy;
 	
+	id escapedContent = [string OPF_escapeWithScheme:OPFEscapeHtmlPrettify];
 	
-	[self loadHTMLString:command baseURL:[[NSBundle mainBundle] bundleURL]];
+	[template replaceOccurrencesOfString:stringTemplate withString:escapedContent options:0 range:NSMakeRange(0, [template length])];
+	[template replaceOccurrencesOfString:widthTemplate withString:width options:0 range:NSMakeRange(0, [template length])];
+	[template replaceOccurrencesOfString:colorTemplate withString:color options:0 range:NSMakeRange(0, [template length])];
+	
+	[self loadHTMLString:template baseURL:[[NSBundle mainBundle] bundleURL]];
 }
 
 NSData* opf_template() {
