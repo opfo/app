@@ -216,6 +216,8 @@
 		9C2977B81744F622005F140E /* UIColor+OPFColorAdjustment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2977B71744F622005F140E /* UIColor+OPFColorAdjustment.m */; };
 		9C2977BB17451722005F140E /* vote-down-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2977B917451722005F140E /* vote-down-selected@2x.png */; };
 		9C2977BC17451722005F140E /* vote-up-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C2977BA17451722005F140E /* vote-up-selected@2x.png */; };
+		9C34DE43174D7ED400FB157A /* question-row-metadata-cool-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCB173A9E6800907558 /* question-row-metadata-cool-background@2x.png */; };
+		9C34DE44174D7ED400FB157A /* question-row-metadata-bad-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C235FCA173A9E6800907558 /* question-row-metadata-bad-background@2x.png */; };
 		9C3768711733277800719F2A /* SSBorderedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C37686E1733277800719F2A /* SSBorderedView.m */; };
 		9C3768721733277800719F2A /* SSDrawingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3768701733277800719F2A /* SSDrawingUtilities.m */; };
 		9C3768751733292800719F2A /* OPFTabbedHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A896CE5172FB79000E19525 /* OPFTabbedHomeViewController.m */; };
@@ -1785,6 +1787,8 @@
 				9CA65D3217459A1000F6D46A /* comments-compose-highlighted@2x.png in Resources */,
 				9CA65D3317459A1000F6D46A /* comments-compose@2x.png in Resources */,
 				8C0FFABD1746BC520078B912 /* arrow_left.png in Resources */,
+				9C34DE43174D7ED400FB157A /* question-row-metadata-cool-background@2x.png in Resources */,
+				9C34DE44174D7ED400FB157A /* question-row-metadata-bad-background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
