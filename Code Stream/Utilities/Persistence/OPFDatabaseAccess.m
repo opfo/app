@@ -8,7 +8,7 @@
 
 #import "OPFDatabaseAccess.h"
 
-static NSInteger OPFDBOverwriteDBs = YES;
+static BOOL OPFDBOverwriteDBs = (OPF_DATABASE_ACCESS_DEBUG) == 1;
 static NSString* OPFDefaultDBFilename = @"so.sqlite";
 static NSString* OPFAuxDBFilename = @"auxiliary.sqlite";
 static NSString* OPFWritableBaseDBPath;
@@ -49,14 +49,12 @@ static NSString* OPFWritableAuxDBPath;
 	NSString* auxDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:OPFAuxDBFilename];
     NSError *error;
 	
-    if (OPFDBOverwriteDBs) {
-		if ([self isFileAtPath:defaultDBPath newerThanFileAtPath:OPFWritableBaseDBPath usingFileManager:fileManager]) {
-			[fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
-		}
-		if ([self isFileAtPath:auxDBPath newerThanFileAtPath:OPFWritableAuxDBPath usingFileManager:fileManager]) {
-			[fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
-		}
-    }
+	if (OPFDBOverwriteDBs || [self isFileAtPath:defaultDBPath newerThanFileAtPath:OPFWritableBaseDBPath usingFileManager:fileManager]) {
+		[fileManager removeItemAtPath:OPFWritableBaseDBPath error:&error];
+	}
+	if (OPFDBOverwriteDBs || [self isFileAtPath:auxDBPath newerThanFileAtPath:OPFWritableAuxDBPath usingFileManager:fileManager]) {
+		[fileManager removeItemAtPath:OPFWritableAuxDBPath error:&error];
+	}
 	
     successBase = [fileManager fileExistsAtPath: OPFWritableBaseDBPath];
     successAux = [fileManager fileExistsAtPath:OPFWritableAuxDBPath];
