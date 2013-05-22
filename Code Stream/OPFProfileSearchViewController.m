@@ -13,11 +13,13 @@
 #import "UIView+OPFViewLoading.h"
 #import "OPFUserProfileViewController.h"
 #import "OPFAppDelegate.h"
+#import "OPFQuery.h"
 
 @interface OPFProfileSearchViewController ()
 
 @property(strong, nonatomic) NSMutableArray *mutableUserModels;
 @property(strong, nonatomic) NSArray *databaseUserModels;
+@property(strong, nonatomic) OPFQuery *userQuery;
 @property(nonatomic) BOOL hasLoaded;
 @property(nonatomic) BOOL isSearching;
 
@@ -31,9 +33,7 @@
 	BOOL _isFirstTimeAppearing;
 }
 
-//Used for initial fetch and any susequent call
-#define OPF_PAGE_SIZE 25
-
+static NSInteger const OPFPageSize = 25;
 static NSString *const ProfileHeaderViewIdentifier = @"OPFProfileSearchHeaderView";
 static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
 
@@ -110,8 +110,11 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
 - (void)performInitialDatabaseFetch
 {
     self.atPage = [NSNumber numberWithInt:0];
-
-    self.mutableUserModels = [NSMutableArray arrayWithArray:[OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE]];
+    
+    self.userQuery = [OPFUser.query orderBy:@"reputation" order:kOPFSortOrderDescending];
+    self.userQuery = [self.userQuery page:self.atPage per:@(OPFPageSize)];
+    
+    self.mutableUserModels = [NSMutableArray arrayWithArray:[self.userQuery getMany]];
 }
 
 - (void)setupRefreshControl
@@ -256,7 +259,7 @@ static NSString *ProfileViewCellIdentifier = @"OPFProfileViewCell";
     
     self.hasLoaded = YES;
     
-    NSArray *fetchedModels = [OPFUser all:[self.atPage integerValue] per:OPF_PAGE_SIZE];
+    NSArray *fetchedModels = [[self.userQuery page:self.atPage] getMany];
     
     [self.mutableUserModels addObjectsFromArray:fetchedModels];
     
