@@ -26,14 +26,14 @@ end
 
 unless File.file? "auxiliary.sqlite"
   puts "Fetching auxiliary database".yellow
-  `wget #{auxDBURL}`
+  `wget #{auxDBURL} -O auxiliary.sqlite`
 else
   puts "Did not need to fetch aux db".green
 end
 
 unless File.file? "so.sqlite"
   puts "Fetching base DB".yellow
-  `wget #{baseDBURL}`
+  `wget #{baseDBURL} -O so.sqlite`
 else
   puts "Did not need to fetch base db".green
 end
