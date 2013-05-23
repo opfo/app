@@ -42,11 +42,11 @@ If you want to configure when and why you receive build status notifications ple
 # Screenshots of the App
 
 ![Questions View](https://raw.github.com/opfo/resources/master/Screenshots/screen-3.png)
-![Sorting in Questions View](https://raw.github.com/opfo/resources/master/Screenshots/screen-11.png)
-![Single Question View](https://raw.github.com/opfo/resources/master/Screenshots/screen-1.png)
-![Answer to Question](https://raw.github.com/opfo/resources/master/Screenshots/screen-4.png)
+![Sorting in Questions View](https://raw.github.com/opfo/resources/master/Screenshots/screen-12.png)
 ![Searching for Posts](https://raw.github.com/opfo/resources/master/Screenshots/screen-2.png)
 ![Searching for User in Posts](https://raw.github.com/opfo/resources/master/Screenshots/screen-11.png)
+![Single Question View](https://raw.github.com/opfo/resources/master/Screenshots/screen-1.png)
+![Answer to Question](https://raw.github.com/opfo/resources/master/Screenshots/screen-4.png)
 ![Comments View](https://raw.github.com/opfo/resources/master/Screenshots/screen-5.png)
 ![Tag Browser](https://raw.github.com/opfo/resources/master/Screenshots/screen-6.png)
 ![Users Search](https://raw.github.com/opfo/resources/master/Screenshots/screen-7.png)
