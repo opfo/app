@@ -64,7 +64,7 @@
 									<object class="IBUITextView" id="607480">
 										<reference key="NSNextResponder" ref="940154976"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{-1, 11}, {206, 35}}</string>
+										<string key="NSFrame">{{-1, 11}, {206, 29}}</string>
 										<reference key="NSSuperview" ref="940154976"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="420081549"/>
@@ -166,7 +166,7 @@
 										<string key="NSFrame">{{15, 22}, {20, 21}}</string>
 										<reference key="NSSuperview" ref="74209811"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="696393481"/>
+										<reference key="NSNextKeyView" ref="264914476"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -194,27 +194,13 @@
 										</object>
 										<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 									</object>
-									<object class="IBUIImageView" id="275014296">
-										<reference key="NSNextResponder" ref="74209811"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{5, 27}, {10, 10}}</string>
-										<reference key="NSSuperview" ref="74209811"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="14337220"/>
-										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">answer-count.png</string>
-										</object>
-									</object>
 									<object class="IBUILabel" id="1244134">
 										<reference key="NSNextResponder" ref="74209811"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{56, 22}, {20, 21}}</string>
 										<reference key="NSSuperview" ref="74209811"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -282,13 +268,28 @@
 											<string key="NSResourceName">view-count@2x.png</string>
 										</object>
 									</object>
+									<object class="IBUIImageView" id="390072676">
+										<reference key="NSNextResponder" ref="74209811"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{5, 27}, {10, 10}}</string>
+										<reference key="NSSuperview" ref="74209811"/>
+										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="696393481"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">answer-count@2x.png</string>
+										</object>
+									</object>
 									<object class="IBUILabel" id="264914476">
 										<reference key="NSNextResponder" ref="74209811"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{56, 4}, {20, 21}}</string>
 										<reference key="NSSuperview" ref="74209811"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="275014296"/>
+										<reference key="NSNextKeyView" ref="390072676"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -315,7 +316,7 @@
 										<string key="NSFrame">{{46, 9}, {10, 10}}</string>
 										<reference key="NSSuperview" ref="74209811"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="264914476"/>
+										<reference key="NSNextKeyView" ref="14337220"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -481,7 +482,6 @@
 						<int key="objectID">131</int>
 						<reference key="object" ref="74209811"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="275014296"/>
 							<reference ref="14337220"/>
 							<reference ref="1244134"/>
 							<reference ref="696393481"/>
@@ -489,6 +489,7 @@
 							<reference ref="92170258"/>
 							<reference ref="264914476"/>
 							<reference ref="61907295"/>
+							<reference ref="390072676"/>
 						</array>
 						<reference key="parent" ref="42641345"/>
 						<string key="objectName">Score/Vote View</string>
@@ -499,13 +500,6 @@
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="74209811"/>
 						<string key="objectName">Answer Count</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">305</int>
-						<reference key="object" ref="275014296"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="74209811"/>
-						<string key="objectName">Answer Count Icon</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">463</int>
@@ -556,17 +550,23 @@
 						<reference key="parent" ref="42641345"/>
 						<string key="objectName">Accepted Answer</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1106</int>
+						<reference key="object" ref="390072676"/>
+						<reference key="parent" ref="74209811"/>
+						<string key="objectName">View Count Icon</string>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="1106.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.CustomClassName">OPFActivityQuestionViewCell</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="304.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="305.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="45.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="463.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -587,7 +587,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1105</int>
+			<int key="maxID">1106</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -646,7 +646,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="acceptedAnswer-grey@2x.png">{26, 28}</string>
-			<string key="answer-count.png">{30, 30}</string>
+			<string key="answer-count@2x.png">{30, 30}</string>
 			<string key="comment-count@2x.png">{60, 60}</string>
 			<string key="score@2x.png">{30, 30}</string>
 			<string key="view-count@2x.png">{30, 30}</string>
