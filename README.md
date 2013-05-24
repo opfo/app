@@ -38,3 +38,18 @@ Please have a look at our [definition of done](https://github.com/opfo/resources
 You can view the status of the constant integration (run every time new commits are pushed to GitHub) on [Code Stream’s Travis CI status page](https://travis-ci.org/opfo/app).
 
 If you want to configure when and why you receive build status notifications please have a look at Travis CI’s [notifications documentation](http://about.travis-ci.org/docs/user/notifications/).
+
+# Screenshots of the App
+
+![Questions View](https://raw.github.com/opfo/resources/master/Screenshots/screen-3.png)
+![Sorting in Questions View](https://raw.github.com/opfo/resources/master/Screenshots/screen-12.png)
+![Searching for Posts](https://raw.github.com/opfo/resources/master/Screenshots/screen-2.png)
+![Searching for User in Posts](https://raw.github.com/opfo/resources/master/Screenshots/screen-11.png)
+![Single Question View](https://raw.github.com/opfo/resources/master/Screenshots/screen-1.png)
+![Answer to Question](https://raw.github.com/opfo/resources/master/Screenshots/screen-4.png)
+![Comments View](https://raw.github.com/opfo/resources/master/Screenshots/screen-5.png)
+![Tag Browser](https://raw.github.com/opfo/resources/master/Screenshots/screen-6.png)
+![Users Search](https://raw.github.com/opfo/resources/master/Screenshots/screen-7.png)
+![Profile View Top](https://raw.github.com/opfo/resources/master/Screenshots/screen-10.png)
+![Profile View Buttom](https://raw.github.com/opfo/resources/master/Screenshots/screen-8.png)
+![Activity View](https://raw.github.com/opfo/resources/master/Screenshots/screen-9.png)
