@@ -8,8 +8,6 @@
 
 #import "UIColor+OPFColorAdjustment.h"
 
-static void HSL2RGB(float h, float s, float l, float* outR, float* outG, float* outB);
-
 @implementation UIColor (OPFColorAdjustment)
 
 #pragma mark - Modifying the Color
