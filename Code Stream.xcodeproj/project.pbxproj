@@ -2037,6 +2037,7 @@
 /* Begin XCBuildConfiguration section */
 		9C1C51671716FBE1004CC9E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C1C51781716FFD4004CC9E3 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2068,6 +2069,7 @@
 		};
 		9C1C51681716FBE1004CC9E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C1C517A1716FFD4004CC9E3 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
